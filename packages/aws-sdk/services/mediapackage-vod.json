@@ -1,0 +1,1848 @@
+{
+    "name": "mediapackage-vod",
+    "commands": [
+        {
+            "name": "ConfigureLogs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ConfigureLogs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigureLogsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ConfigureLogsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAsset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAsset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAssetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAssetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePackagingConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePackagingConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePackagingConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePackagingConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePackagingGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePackagingGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePackagingGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePackagingGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAsset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAsset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteAssetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAssetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePackagingConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePackagingConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePackagingConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePackagingConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePackagingGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePackagingGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePackagingGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePackagingGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAsset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAsset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAssetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAssetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribePackagingConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribePackagingConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePackagingConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePackagingConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribePackagingGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribePackagingGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePackagingGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePackagingGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAssets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPackagingConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPackagingConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPackagingConfigurationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPackagingConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPackagingGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPackagingGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPackagingGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPackagingGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePackagingGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePackagingGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePackagingGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePackagingGroupRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ConfigureLogsResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Authorization": {
+                    "$ref": "#/$defs/Authorization"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
+        "Authorization": {
+            "type": "object",
+            "properties": {
+                "CdnIdentifierSecret": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SecretsRoleArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "EgressAccessLogs": {
+            "type": "object",
+            "properties": {
+                "LogGroupName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "ConfigureLogsRequest": {
+            "type": "object",
+            "properties": {
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateAssetResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EgressEndpoints": {
+                    "$ref": "#/$defs/__listOfEgressEndpoint"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceRoleArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "__listOfEgressEndpoint": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EgressEndpoint"
+            }
+        },
+        "EgressEndpoint": {
+            "type": "object",
+            "properties": {
+                "PackagingConfigurationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Status": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Url": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateAssetRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceRoleArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreatePackagingConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CmafPackage": {
+                    "$ref": "#/$defs/CmafPackage"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DashPackage": {
+                    "$ref": "#/$defs/DashPackage"
+                },
+                "HlsPackage": {
+                    "$ref": "#/$defs/HlsPackage"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MssPackage": {
+                    "$ref": "#/$defs/MssPackage"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CmafPackage": {
+            "type": "object",
+            "properties": {
+                "Encryption": {
+                    "$ref": "#/$defs/CmafEncryption"
+                },
+                "HlsManifests": {
+                    "$ref": "#/$defs/__listOfHlsManifest"
+                },
+                "IncludeEncoderConfigurationInSegments": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "SegmentDurationSeconds": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "CmafEncryption": {
+            "type": "object",
+            "properties": {
+                "ConstantInitializationVector": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SpekeKeyProvider": {
+                    "$ref": "#/$defs/SpekeKeyProvider"
+                }
+            }
+        },
+        "SpekeKeyProvider": {
+            "type": "object",
+            "properties": {
+                "EncryptionContractConfiguration": {
+                    "$ref": "#/$defs/EncryptionContractConfiguration"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SystemIds": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Url": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "EncryptionContractConfiguration": {
+            "type": "object",
+            "properties": {
+                "PresetSpeke20Audio": {
+                    "$ref": "#/$defs/PresetSpeke20Audio"
+                },
+                "PresetSpeke20Video": {
+                    "$ref": "#/$defs/PresetSpeke20Video"
+                }
+            }
+        },
+        "PresetSpeke20Audio": {
+            "enum": [
+                "PRESET_AUDIO_1",
+                "PRESET_AUDIO_2",
+                "PRESET_AUDIO_3",
+                "SHARED",
+                "UNENCRYPTED"
+            ]
+        },
+        "PresetSpeke20Video": {
+            "enum": [
+                "PRESET_VIDEO_1",
+                "PRESET_VIDEO_2",
+                "PRESET_VIDEO_3",
+                "PRESET_VIDEO_4",
+                "PRESET_VIDEO_5",
+                "PRESET_VIDEO_6",
+                "PRESET_VIDEO_7",
+                "PRESET_VIDEO_8",
+                "SHARED",
+                "UNENCRYPTED"
+            ]
+        },
+        "__listOf__string": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "__listOfHlsManifest": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HlsManifest"
+            }
+        },
+        "HlsManifest": {
+            "type": "object",
+            "properties": {
+                "AdMarkers": {
+                    "$ref": "#/$defs/AdMarkers"
+                },
+                "IncludeIframeOnlyStream": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "ManifestName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ProgramDateTimeIntervalSeconds": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "RepeatExtXKey": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "StreamSelection": {
+                    "$ref": "#/$defs/StreamSelection"
+                }
+            }
+        },
+        "AdMarkers": {
+            "enum": [
+                "NONE",
+                "SCTE35_ENHANCED",
+                "PASSTHROUGH"
+            ]
+        },
+        "__boolean": {
+            "type": "boolean"
+        },
+        "__integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "StreamSelection": {
+            "type": "object",
+            "properties": {
+                "MaxVideoBitsPerSecond": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "MinVideoBitsPerSecond": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "StreamOrder": {
+                    "$ref": "#/$defs/StreamOrder"
+                }
+            }
+        },
+        "StreamOrder": {
+            "enum": [
+                "ORIGINAL",
+                "VIDEO_BITRATE_ASCENDING",
+                "VIDEO_BITRATE_DESCENDING"
+            ]
+        },
+        "DashPackage": {
+            "type": "object",
+            "properties": {
+                "DashManifests": {
+                    "$ref": "#/$defs/__listOfDashManifest"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/DashEncryption"
+                },
+                "IncludeEncoderConfigurationInSegments": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "IncludeIframeOnlyStream": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "PeriodTriggers": {
+                    "$ref": "#/$defs/__listOf__PeriodTriggersElement"
+                },
+                "SegmentDurationSeconds": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "SegmentTemplateFormat": {
+                    "$ref": "#/$defs/SegmentTemplateFormat"
+                }
+            }
+        },
+        "__listOfDashManifest": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DashManifest"
+            }
+        },
+        "DashManifest": {
+            "type": "object",
+            "properties": {
+                "ManifestLayout": {
+                    "$ref": "#/$defs/ManifestLayout"
+                },
+                "ManifestName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MinBufferTimeSeconds": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "Profile": {
+                    "$ref": "#/$defs/Profile"
+                },
+                "ScteMarkersSource": {
+                    "$ref": "#/$defs/ScteMarkersSource"
+                },
+                "StreamSelection": {
+                    "$ref": "#/$defs/StreamSelection"
+                }
+            }
+        },
+        "ManifestLayout": {
+            "enum": [
+                "FULL",
+                "COMPACT"
+            ]
+        },
+        "Profile": {
+            "enum": [
+                "NONE",
+                "HBBTV_1_5"
+            ]
+        },
+        "ScteMarkersSource": {
+            "enum": [
+                "SEGMENTS",
+                "MANIFEST"
+            ]
+        },
+        "DashEncryption": {
+            "type": "object",
+            "properties": {
+                "SpekeKeyProvider": {
+                    "$ref": "#/$defs/SpekeKeyProvider"
+                }
+            }
+        },
+        "__listOf__PeriodTriggersElement": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__PeriodTriggersElement"
+            }
+        },
+        "__PeriodTriggersElement": {
+            "enum": [
+                "ADS"
+            ]
+        },
+        "SegmentTemplateFormat": {
+            "enum": [
+                "NUMBER_WITH_TIMELINE",
+                "TIME_WITH_TIMELINE",
+                "NUMBER_WITH_DURATION"
+            ]
+        },
+        "HlsPackage": {
+            "type": "object",
+            "properties": {
+                "Encryption": {
+                    "$ref": "#/$defs/HlsEncryption"
+                },
+                "HlsManifests": {
+                    "$ref": "#/$defs/__listOfHlsManifest"
+                },
+                "IncludeDvbSubtitles": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "SegmentDurationSeconds": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "UseAudioRenditionGroup": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "HlsEncryption": {
+            "type": "object",
+            "properties": {
+                "ConstantInitializationVector": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EncryptionMethod": {
+                    "$ref": "#/$defs/EncryptionMethod"
+                },
+                "SpekeKeyProvider": {
+                    "$ref": "#/$defs/SpekeKeyProvider"
+                }
+            }
+        },
+        "EncryptionMethod": {
+            "enum": [
+                "AES_128",
+                "SAMPLE_AES"
+            ]
+        },
+        "MssPackage": {
+            "type": "object",
+            "properties": {
+                "Encryption": {
+                    "$ref": "#/$defs/MssEncryption"
+                },
+                "MssManifests": {
+                    "$ref": "#/$defs/__listOfMssManifest"
+                },
+                "SegmentDurationSeconds": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "MssEncryption": {
+            "type": "object",
+            "properties": {
+                "SpekeKeyProvider": {
+                    "$ref": "#/$defs/SpekeKeyProvider"
+                }
+            }
+        },
+        "__listOfMssManifest": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MssManifest"
+            }
+        },
+        "MssManifest": {
+            "type": "object",
+            "properties": {
+                "ManifestName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "StreamSelection": {
+                    "$ref": "#/$defs/StreamSelection"
+                }
+            }
+        },
+        "CreatePackagingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "CmafPackage": {
+                    "$ref": "#/$defs/CmafPackage"
+                },
+                "DashPackage": {
+                    "$ref": "#/$defs/DashPackage"
+                },
+                "HlsPackage": {
+                    "$ref": "#/$defs/HlsPackage"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MssPackage": {
+                    "$ref": "#/$defs/MssPackage"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreatePackagingGroupResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Authorization": {
+                    "$ref": "#/$defs/Authorization"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreatePackagingGroupRequest": {
+            "type": "object",
+            "properties": {
+                "Authorization": {
+                    "$ref": "#/$defs/Authorization"
+                },
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DeleteAssetResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteAssetRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeletePackagingConfigurationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeletePackagingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeletePackagingGroupResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeletePackagingGroupRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeAssetResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EgressEndpoints": {
+                    "$ref": "#/$defs/__listOfEgressEndpoint"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceRoleArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DescribeAssetRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribePackagingConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CmafPackage": {
+                    "$ref": "#/$defs/CmafPackage"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DashPackage": {
+                    "$ref": "#/$defs/DashPackage"
+                },
+                "HlsPackage": {
+                    "$ref": "#/$defs/HlsPackage"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MssPackage": {
+                    "$ref": "#/$defs/MssPackage"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DescribePackagingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribePackagingGroupResponse": {
+            "type": "object",
+            "properties": {
+                "ApproximateAssetCount": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Authorization": {
+                    "$ref": "#/$defs/Authorization"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DescribePackagingGroupRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListAssetsResponse": {
+            "type": "object",
+            "properties": {
+                "Assets": {
+                    "$ref": "#/$defs/__listOfAssetShallow"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfAssetShallow": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetShallow"
+            }
+        },
+        "AssetShallow": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceRoleArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListAssetsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListPackagingConfigurationsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PackagingConfigurations": {
+                    "$ref": "#/$defs/__listOfPackagingConfiguration"
+                }
+            }
+        },
+        "__listOfPackagingConfiguration": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PackagingConfiguration"
+            }
+        },
+        "PackagingConfiguration": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CmafPackage": {
+                    "$ref": "#/$defs/CmafPackage"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DashPackage": {
+                    "$ref": "#/$defs/DashPackage"
+                },
+                "HlsPackage": {
+                    "$ref": "#/$defs/HlsPackage"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MssPackage": {
+                    "$ref": "#/$defs/MssPackage"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListPackagingConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListPackagingGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PackagingGroups": {
+                    "$ref": "#/$defs/__listOfPackagingGroup"
+                }
+            }
+        },
+        "__listOfPackagingGroup": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PackagingGroup"
+            }
+        },
+        "PackagingGroup": {
+            "type": "object",
+            "properties": {
+                "ApproximateAssetCount": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Authorization": {
+                    "$ref": "#/$defs/Authorization"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListPackagingGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "__mapOf__string": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "UpdatePackagingGroupResponse": {
+            "type": "object",
+            "properties": {
+                "ApproximateAssetCount": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Authorization": {
+                    "$ref": "#/$defs/Authorization"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UpdatePackagingGroupRequest": {
+            "type": "object",
+            "properties": {
+                "Authorization": {
+                    "$ref": "#/$defs/Authorization"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mediapackage-vod-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mediapackage-vod-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mediapackage-vod.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://mediapackage-vod.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

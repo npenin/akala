@@ -1,0 +1,1539 @@
+{
+    "name": "cognito-sync",
+    "commands": [
+        {
+            "name": "BulkPublish",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BulkPublish"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BulkPublishResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BulkPublishRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeIdentityPoolUsage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeIdentityPoolUsage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeIdentityPoolUsageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeIdentityPoolUsageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeIdentityUsage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeIdentityUsage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeIdentityUsageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeIdentityUsageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBulkPublishDetails",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBulkPublishDetails"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBulkPublishDetailsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBulkPublishDetailsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCognitoEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCognitoEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCognitoEventsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCognitoEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetIdentityPoolConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetIdentityPoolConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIdentityPoolConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIdentityPoolConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatasets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDatasets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatasetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatasetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListIdentityPoolUsage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListIdentityPoolUsage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListIdentityPoolUsageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListIdentityPoolUsageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRecords",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRecords"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRecordsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRecordsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetCognitoEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetCognitoEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetCognitoEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetIdentityPoolConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetIdentityPoolConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SetIdentityPoolConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetIdentityPoolConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SubscribeToDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SubscribeToDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SubscribeToDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SubscribeToDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UnsubscribeFromDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UnsubscribeFromDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UnsubscribeFromDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnsubscribeFromDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRecords",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRecords"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateRecordsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRecordsRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BulkPublishResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                }
+            }
+        },
+        "IdentityPoolId": {
+            "type": "string"
+        },
+        "BulkPublishRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                }
+            }
+        },
+        "DeleteDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "Dataset": {
+                    "$ref": "#/$defs/Dataset"
+                }
+            }
+        },
+        "Dataset": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LastModifiedBy": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataStorage": {
+                    "$ref": "#/$defs/Long"
+                },
+                "NumRecords": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "IdentityId": {
+            "type": "string"
+        },
+        "DatasetName": {
+            "type": "string"
+        },
+        "Date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "String": {
+            "type": "string"
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DeleteDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                }
+            }
+        },
+        "DescribeDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "Dataset": {
+                    "$ref": "#/$defs/Dataset"
+                }
+            }
+        },
+        "DescribeDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                }
+            }
+        },
+        "DescribeIdentityPoolUsageResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolUsage": {
+                    "$ref": "#/$defs/IdentityPoolUsage"
+                }
+            }
+        },
+        "IdentityPoolUsage": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "SyncSessionsCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "DataStorage": {
+                    "$ref": "#/$defs/Long"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "DescribeIdentityPoolUsageRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                }
+            }
+        },
+        "DescribeIdentityUsageResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityUsage": {
+                    "$ref": "#/$defs/IdentityUsage"
+                }
+            }
+        },
+        "IdentityUsage": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/Date"
+                },
+                "DatasetCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "DataStorage": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeIdentityUsageRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                }
+            }
+        },
+        "GetBulkPublishDetailsResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "BulkPublishStartTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "BulkPublishCompleteTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "BulkPublishStatus": {
+                    "$ref": "#/$defs/BulkPublishStatus"
+                },
+                "FailureMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BulkPublishStatus": {
+            "enum": [
+                "NOT_STARTED",
+                "IN_PROGRESS",
+                "FAILED",
+                "SUCCEEDED"
+            ]
+        },
+        "GetBulkPublishDetailsRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                }
+            }
+        },
+        "GetCognitoEventsResponse": {
+            "type": "object",
+            "properties": {
+                "Events": {
+                    "$ref": "#/$defs/Events"
+                }
+            }
+        },
+        "Events": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/LambdaFunctionArn"
+            }
+        },
+        "LambdaFunctionArn": {
+            "type": "string"
+        },
+        "GetCognitoEventsRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                }
+            }
+        },
+        "GetIdentityPoolConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "PushSync": {
+                    "$ref": "#/$defs/PushSync"
+                },
+                "CognitoStreams": {
+                    "$ref": "#/$defs/CognitoStreams"
+                }
+            }
+        },
+        "PushSync": {
+            "type": "object",
+            "properties": {
+                "ApplicationArns": {
+                    "$ref": "#/$defs/ApplicationArnList"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/AssumeRoleArn"
+                }
+            }
+        },
+        "ApplicationArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationArn"
+            }
+        },
+        "ApplicationArn": {
+            "type": "string"
+        },
+        "AssumeRoleArn": {
+            "type": "string"
+        },
+        "CognitoStreams": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/AssumeRoleArn"
+                },
+                "StreamingStatus": {
+                    "$ref": "#/$defs/StreamingStatus"
+                }
+            }
+        },
+        "StreamName": {
+            "type": "string"
+        },
+        "StreamingStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "GetIdentityPoolConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                }
+            }
+        },
+        "ListDatasetsResponse": {
+            "type": "object",
+            "properties": {
+                "Datasets": {
+                    "$ref": "#/$defs/DatasetList"
+                },
+                "Count": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DatasetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Dataset"
+            }
+        },
+        "ListDatasetsRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/IntegerString"
+                }
+            }
+        },
+        "IntegerString": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListIdentityPoolUsageResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolUsages": {
+                    "$ref": "#/$defs/IdentityPoolUsageList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Count": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "IdentityPoolUsageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdentityPoolUsage"
+            }
+        },
+        "ListIdentityPoolUsageRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/IntegerString"
+                }
+            }
+        },
+        "ListRecordsResponse": {
+            "type": "object",
+            "properties": {
+                "Records": {
+                    "$ref": "#/$defs/RecordList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "Count": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "DatasetSyncCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "LastModifiedBy": {
+                    "$ref": "#/$defs/String"
+                },
+                "MergedDatasetNames": {
+                    "$ref": "#/$defs/MergedDatasetNameList"
+                },
+                "DatasetExists": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DatasetDeletedAfterRequestedSyncCount": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SyncSessionToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RecordList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Record"
+            }
+        },
+        "Record": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/RecordKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/RecordValue"
+                },
+                "SyncCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LastModifiedBy": {
+                    "$ref": "#/$defs/String"
+                },
+                "DeviceLastModifiedDate": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "RecordKey": {
+            "type": "string"
+        },
+        "RecordValue": {
+            "type": "string"
+        },
+        "MergedDatasetNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "ListRecordsRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "LastSyncCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/IntegerString"
+                },
+                "SyncSessionToken": {
+                    "$ref": "#/$defs/SyncSessionToken"
+                }
+            }
+        },
+        "SyncSessionToken": {
+            "type": "string"
+        },
+        "RegisterDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "DeviceId": {
+                    "$ref": "#/$defs/DeviceId"
+                }
+            }
+        },
+        "DeviceId": {
+            "type": "string"
+        },
+        "RegisterDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "Platform": {
+                    "$ref": "#/$defs/Platform"
+                },
+                "Token": {
+                    "$ref": "#/$defs/PushToken"
+                }
+            }
+        },
+        "Platform": {
+            "enum": [
+                "APNS",
+                "APNS_SANDBOX",
+                "GCM",
+                "ADM"
+            ]
+        },
+        "PushToken": {
+            "type": "string"
+        },
+        "SetCognitoEventsRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "Events": {
+                    "$ref": "#/$defs/Events"
+                }
+            }
+        },
+        "SetIdentityPoolConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "PushSync": {
+                    "$ref": "#/$defs/PushSync"
+                },
+                "CognitoStreams": {
+                    "$ref": "#/$defs/CognitoStreams"
+                }
+            }
+        },
+        "SetIdentityPoolConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "PushSync": {
+                    "$ref": "#/$defs/PushSync"
+                },
+                "CognitoStreams": {
+                    "$ref": "#/$defs/CognitoStreams"
+                }
+            }
+        },
+        "SubscribeToDatasetResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "SubscribeToDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DeviceId": {
+                    "$ref": "#/$defs/DeviceId"
+                }
+            }
+        },
+        "UnsubscribeFromDatasetResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UnsubscribeFromDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DeviceId": {
+                    "$ref": "#/$defs/DeviceId"
+                }
+            }
+        },
+        "UpdateRecordsResponse": {
+            "type": "object",
+            "properties": {
+                "Records": {
+                    "$ref": "#/$defs/RecordList"
+                }
+            }
+        },
+        "UpdateRecordsRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DeviceId": {
+                    "$ref": "#/$defs/DeviceId"
+                },
+                "RecordPatches": {
+                    "$ref": "#/$defs/RecordPatchList"
+                },
+                "SyncSessionToken": {
+                    "$ref": "#/$defs/SyncSessionToken"
+                },
+                "ClientContext": {
+                    "$ref": "#/$defs/ClientContext"
+                }
+            }
+        },
+        "RecordPatchList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecordPatch"
+            }
+        },
+        "RecordPatch": {
+            "type": "object",
+            "properties": {
+                "Op": {
+                    "$ref": "#/$defs/Operation"
+                },
+                "Key": {
+                    "$ref": "#/$defs/RecordKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/RecordValue"
+                },
+                "SyncCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "DeviceLastModifiedDate": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "Operation": {
+            "enum": [
+                "replace",
+                "remove"
+            ]
+        },
+        "ClientContext": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cognito-sync-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cognito-sync-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cognito-sync.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://cognito-sync.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

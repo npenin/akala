@@ -1,0 +1,1442 @@
+{
+    "name": "redshift-data",
+    "commands": [
+        {
+            "name": "BatchExecuteStatement",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchExecuteStatement"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchExecuteStatementOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchExecuteStatementInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelStatement",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelStatement"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelStatementResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelStatementRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeStatement",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeStatement"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeStatementResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeStatementRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTableResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExecuteStatement",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ExecuteStatement"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExecuteStatementOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExecuteStatementInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetStatementResult",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetStatementResult"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetStatementResultResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetStatementResultRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatabases",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDatabases"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatabasesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatabasesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSchemas",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSchemas"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSchemasResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSchemasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStatements",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListStatements"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStatementsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStatementsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTables",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTables"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTablesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTablesRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchExecuteStatementOutput": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/ClusterIdentifierString"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbGroups": {
+                    "$ref": "#/$defs/DbGroupList"
+                },
+                "Database": {
+                    "$ref": "#/$defs/String"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "WorkgroupName": {
+                    "$ref": "#/$defs/WorkgroupNameString"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "ClusterIdentifierString": {
+            "type": "string"
+        },
+        "String": {
+            "type": "string"
+        },
+        "DbGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "SecretArn": {
+            "type": "string"
+        },
+        "WorkgroupNameString": {
+            "type": "string"
+        },
+        "BatchExecuteStatementInput": {
+            "type": "object",
+            "properties": {
+                "Sqls": {
+                    "$ref": "#/$defs/SqlList"
+                },
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/ClusterIdentifierString"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "Database": {
+                    "$ref": "#/$defs/String"
+                },
+                "WithEvent": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "StatementName": {
+                    "$ref": "#/$defs/StatementNameString"
+                },
+                "WorkgroupName": {
+                    "$ref": "#/$defs/WorkgroupNameString"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "SessionKeepAliveSeconds": {
+                    "$ref": "#/$defs/SessionAliveSeconds"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "SqlList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StatementString"
+            }
+        },
+        "StatementString": {
+            "type": "string"
+        },
+        "StatementNameString": {
+            "type": "string"
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "SessionAliveSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CancelStatementResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "CancelStatementRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "DescribeStatementResponse": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "Database": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Error": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusString"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "RedshiftPid": {
+                    "$ref": "#/$defs/Long"
+                },
+                "HasResultSet": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "QueryString": {
+                    "$ref": "#/$defs/StatementString"
+                },
+                "ResultRows": {
+                    "$ref": "#/$defs/Long"
+                },
+                "ResultSize": {
+                    "$ref": "#/$defs/Long"
+                },
+                "RedshiftQueryId": {
+                    "$ref": "#/$defs/Long"
+                },
+                "QueryParameters": {
+                    "$ref": "#/$defs/SqlParametersList"
+                },
+                "SubStatements": {
+                    "$ref": "#/$defs/SubStatementList"
+                },
+                "WorkgroupName": {
+                    "$ref": "#/$defs/WorkgroupNameString"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "StatusString": {
+            "type": "string"
+        },
+        "SqlParametersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SqlParameter"
+            }
+        },
+        "SqlParameter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ParameterName"
+                },
+                "value": {
+                    "$ref": "#/$defs/ParameterValue"
+                }
+            }
+        },
+        "ParameterName": {
+            "type": "string"
+        },
+        "ParameterValue": {
+            "type": "string"
+        },
+        "SubStatementList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubStatementData"
+            }
+        },
+        "SubStatementData": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Error": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatementStatusString"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "QueryString": {
+                    "$ref": "#/$defs/StatementString"
+                },
+                "ResultRows": {
+                    "$ref": "#/$defs/Long"
+                },
+                "ResultSize": {
+                    "$ref": "#/$defs/Long"
+                },
+                "RedshiftQueryId": {
+                    "$ref": "#/$defs/Long"
+                },
+                "HasResultSet": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "StatementStatusString": {
+            "type": "string"
+        },
+        "DescribeStatementRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "DescribeTableResponse": {
+            "type": "object",
+            "properties": {
+                "TableName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ColumnList": {
+                    "$ref": "#/$defs/ColumnList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ColumnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ColumnMetadata"
+            }
+        },
+        "ColumnMetadata": {
+            "type": "object",
+            "properties": {
+                "isCaseSensitive": {
+                    "$ref": "#/$defs/bool"
+                },
+                "isCurrency": {
+                    "$ref": "#/$defs/bool"
+                },
+                "isSigned": {
+                    "$ref": "#/$defs/bool"
+                },
+                "label": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "nullable": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "precision": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "scale": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "schemaName": {
+                    "$ref": "#/$defs/String"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/String"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/String"
+                },
+                "length": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "columnDefault": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "bool": {
+            "type": "boolean"
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeTableRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/ClusterIdentifierString"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "Database": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConnectedDatabase": {
+                    "$ref": "#/$defs/String"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/String"
+                },
+                "Table": {
+                    "$ref": "#/$defs/String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "WorkgroupName": {
+                    "$ref": "#/$defs/WorkgroupNameString"
+                }
+            }
+        },
+        "PageSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ExecuteStatementOutput": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/ClusterIdentifierString"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbGroups": {
+                    "$ref": "#/$defs/DbGroupList"
+                },
+                "Database": {
+                    "$ref": "#/$defs/String"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "WorkgroupName": {
+                    "$ref": "#/$defs/WorkgroupNameString"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "ExecuteStatementInput": {
+            "type": "object",
+            "properties": {
+                "Sql": {
+                    "$ref": "#/$defs/StatementString"
+                },
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/ClusterIdentifierString"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "Database": {
+                    "$ref": "#/$defs/String"
+                },
+                "WithEvent": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "StatementName": {
+                    "$ref": "#/$defs/StatementNameString"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/SqlParametersList"
+                },
+                "WorkgroupName": {
+                    "$ref": "#/$defs/WorkgroupNameString"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "SessionKeepAliveSeconds": {
+                    "$ref": "#/$defs/SessionAliveSeconds"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "GetStatementResultResponse": {
+            "type": "object",
+            "properties": {
+                "Records": {
+                    "$ref": "#/$defs/SqlRecords"
+                },
+                "ColumnMetadata": {
+                    "$ref": "#/$defs/ColumnMetadataList"
+                },
+                "TotalNumRows": {
+                    "$ref": "#/$defs/Long"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SqlRecords": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FieldList"
+            }
+        },
+        "FieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Field"
+            }
+        },
+        "Field": {
+            "type": "object",
+            "properties": {
+                "isNull": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "booleanValue": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "longValue": {
+                    "$ref": "#/$defs/BoxedLong"
+                },
+                "doubleValue": {
+                    "$ref": "#/$defs/BoxedDouble"
+                },
+                "stringValue": {
+                    "$ref": "#/$defs/String"
+                },
+                "blobValue": {
+                    "$ref": "#/$defs/Blob"
+                }
+            }
+        },
+        "BoxedBoolean": {
+            "type": "boolean"
+        },
+        "BoxedLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "BoxedDouble": {
+            "type": "number",
+            "format": "double"
+        },
+        "Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ColumnMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ColumnMetadata"
+            }
+        },
+        "GetStatementResultRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListDatabasesResponse": {
+            "type": "object",
+            "properties": {
+                "Databases": {
+                    "$ref": "#/$defs/DatabaseList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DatabaseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ListDatabasesRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/ClusterIdentifierString"
+                },
+                "Database": {
+                    "$ref": "#/$defs/String"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "WorkgroupName": {
+                    "$ref": "#/$defs/WorkgroupNameString"
+                }
+            }
+        },
+        "ListSchemasResponse": {
+            "type": "object",
+            "properties": {
+                "Schemas": {
+                    "$ref": "#/$defs/SchemaList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SchemaList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ListSchemasRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/ClusterIdentifierString"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "Database": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConnectedDatabase": {
+                    "$ref": "#/$defs/String"
+                },
+                "SchemaPattern": {
+                    "$ref": "#/$defs/String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "WorkgroupName": {
+                    "$ref": "#/$defs/WorkgroupNameString"
+                }
+            }
+        },
+        "ListStatementsResponse": {
+            "type": "object",
+            "properties": {
+                "Statements": {
+                    "$ref": "#/$defs/StatementList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StatementList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StatementData"
+            }
+        },
+        "StatementData": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "QueryString": {
+                    "$ref": "#/$defs/StatementString"
+                },
+                "QueryStrings": {
+                    "$ref": "#/$defs/StatementStringList"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusString"
+                },
+                "StatementName": {
+                    "$ref": "#/$defs/StatementNameString"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "QueryParameters": {
+                    "$ref": "#/$defs/SqlParametersList"
+                },
+                "IsBatchStatement": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "StatementStringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StatementString"
+            }
+        },
+        "ListStatementsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListStatementsLimit"
+                },
+                "StatementName": {
+                    "$ref": "#/$defs/StatementNameString"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusString"
+                },
+                "RoleLevel": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "ListStatementsLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTablesResponse": {
+            "type": "object",
+            "properties": {
+                "Tables": {
+                    "$ref": "#/$defs/TableList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TableList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TableMember"
+            }
+        },
+        "TableMember": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "type": {
+                    "$ref": "#/$defs/String"
+                },
+                "schema": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListTablesRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/ClusterIdentifierString"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "Database": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConnectedDatabase": {
+                    "$ref": "#/$defs/String"
+                },
+                "SchemaPattern": {
+                    "$ref": "#/$defs/String"
+                },
+                "TablePattern": {
+                    "$ref": "#/$defs/String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "WorkgroupName": {
+                    "$ref": "#/$defs/WorkgroupNameString"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://redshift-data-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://redshift-data-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://redshift-data.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://redshift-data.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

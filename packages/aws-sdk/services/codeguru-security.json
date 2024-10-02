@@ -1,0 +1,1544 @@
+{
+    "name": "codeguru-security",
+    "commands": [
+        {
+            "name": "BatchGetFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetFindingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetFindingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateScan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateScan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateScanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateScanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateUploadUrl",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateUploadUrl"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateUploadUrlResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateUploadUrlRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccountConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccountConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAccountConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAccountConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFindingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFindingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMetricsSummary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMetricsSummary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMetricsSummaryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMetricsSummaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetScan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetScan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetScanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetScanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFindingsMetrics",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFindingsMetrics"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFindingsMetricsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFindingsMetricsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListScans",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListScans"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListScansResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListScansRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAccountConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAccountConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAccountConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAccountConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchGetFindingsResponse": {
+            "type": "object",
+            "properties": {
+                "findings": {
+                    "$ref": "#/$defs/Findings"
+                },
+                "failedFindings": {
+                    "$ref": "#/$defs/BatchGetFindingsErrors"
+                }
+            }
+        },
+        "Findings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Finding"
+            }
+        },
+        "Finding": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "generatorId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "resource": {
+                    "$ref": "#/$defs/Resource"
+                },
+                "vulnerability": {
+                    "$ref": "#/$defs/Vulnerability"
+                },
+                "severity": {
+                    "$ref": "#/$defs/Severity"
+                },
+                "remediation": {
+                    "$ref": "#/$defs/Remediation"
+                },
+                "title": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "detectorTags": {
+                    "$ref": "#/$defs/DetectorTags"
+                },
+                "detectorId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "detectorName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ruleId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Status": {
+            "enum": [
+                "CLOSED",
+                "OPEN",
+                "ALL"
+            ]
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "subResourceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Vulnerability": {
+            "type": "object",
+            "properties": {
+                "referenceUrls": {
+                    "$ref": "#/$defs/ReferenceUrls"
+                },
+                "relatedVulnerabilities": {
+                    "$ref": "#/$defs/RelatedVulnerabilities"
+                },
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "filePath": {
+                    "$ref": "#/$defs/FilePath"
+                },
+                "itemCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ReferenceUrls": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "RelatedVulnerabilities": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "FilePath": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "path": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "startLine": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "endLine": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "codeSnippet": {
+                    "$ref": "#/$defs/CodeSnippet"
+                }
+            }
+        },
+        "CodeSnippet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CodeLine"
+            }
+        },
+        "CodeLine": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "content": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Severity": {
+            "enum": [
+                "CRITICAL",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+            ]
+        },
+        "Remediation": {
+            "type": "object",
+            "properties": {
+                "recommendation": {
+                    "$ref": "#/$defs/Recommendation"
+                },
+                "suggestedFixes": {
+                    "$ref": "#/$defs/SuggestedFixes"
+                }
+            }
+        },
+        "Recommendation": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "url": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SuggestedFixes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SuggestedFix"
+            }
+        },
+        "SuggestedFix": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "code": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "DetectorTags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "BatchGetFindingsErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchGetFindingsError"
+            }
+        },
+        "BatchGetFindingsError": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                },
+                "findingId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ScanName": {
+            "type": "string"
+        },
+        "ErrorCode": {
+            "enum": [
+                "DUPLICATE_IDENTIFIER",
+                "ITEM_DOES_NOT_EXIST",
+                "INTERNAL_ERROR",
+                "INVALID_FINDING_ID",
+                "INVALID_SCAN_NAME"
+            ]
+        },
+        "BatchGetFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "findingIdentifiers": {
+                    "$ref": "#/$defs/FindingIdentifiers"
+                }
+            }
+        },
+        "FindingIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingIdentifier"
+            }
+        },
+        "FindingIdentifier": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "findingId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "CreateScanResponse": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                },
+                "runId": {
+                    "$ref": "#/$defs/Uuid"
+                },
+                "resourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "scanState": {
+                    "$ref": "#/$defs/ScanState"
+                },
+                "scanNameArn": {
+                    "$ref": "#/$defs/ScanNameArn"
+                }
+            }
+        },
+        "Uuid": {
+            "type": "string"
+        },
+        "ResourceId": {
+            "type": "object",
+            "properties": {
+                "codeArtifactId": {
+                    "$ref": "#/$defs/Uuid"
+                }
+            }
+        },
+        "ScanState": {
+            "enum": [
+                "IN_PROGRESS",
+                "SUCCESSFUL",
+                "FAILED"
+            ]
+        },
+        "ScanNameArn": {
+            "type": "string"
+        },
+        "CreateScanRequest": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "resourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                },
+                "scanType": {
+                    "$ref": "#/$defs/ScanType"
+                },
+                "analysisType": {
+                    "$ref": "#/$defs/AnalysisType"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "ScanType": {
+            "enum": [
+                "STANDARD",
+                "EXPRESS"
+            ]
+        },
+        "AnalysisType": {
+            "enum": [
+                "SECURITY",
+                "ALL"
+            ]
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateUploadUrlResponse": {
+            "type": "object",
+            "properties": {
+                "s3Url": {
+                    "$ref": "#/$defs/S3Url"
+                },
+                "requestHeaders": {
+                    "$ref": "#/$defs/RequestHeaderMap"
+                },
+                "codeArtifactId": {
+                    "$ref": "#/$defs/Uuid"
+                }
+            }
+        },
+        "S3Url": {
+            "type": "string"
+        },
+        "RequestHeaderMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/HeaderValue"
+            }
+        },
+        "HeaderValue": {
+            "type": "string"
+        },
+        "CreateUploadUrlRequest": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                }
+            }
+        },
+        "GetAccountConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "encryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                }
+            }
+        },
+        "EncryptionConfig": {
+            "type": "object",
+            "properties": {
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                }
+            }
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "GetAccountConfigurationRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetFindingsResponse": {
+            "type": "object",
+            "properties": {
+                "findings": {
+                    "$ref": "#/$defs/Findings"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "GetFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "GetMetricsSummaryResponse": {
+            "type": "object",
+            "properties": {
+                "metricsSummary": {
+                    "$ref": "#/$defs/MetricsSummary"
+                }
+            }
+        },
+        "MetricsSummary": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "openFindings": {
+                    "$ref": "#/$defs/FindingMetricsValuePerSeverity"
+                },
+                "categoriesWithMostFindings": {
+                    "$ref": "#/$defs/CategoriesWithMostFindings"
+                },
+                "scansWithMostOpenFindings": {
+                    "$ref": "#/$defs/ScansWithMostOpenFindings"
+                },
+                "scansWithMostOpenCriticalFindings": {
+                    "$ref": "#/$defs/ScansWithMostOpenCriticalFindings"
+                }
+            }
+        },
+        "FindingMetricsValuePerSeverity": {
+            "type": "object",
+            "properties": {
+                "info": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "low": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "medium": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "high": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "critical": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                }
+            }
+        },
+        "CategoriesWithMostFindings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CategoryWithFindingNum"
+            }
+        },
+        "CategoryWithFindingNum": {
+            "type": "object",
+            "properties": {
+                "categoryName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "findingNumber": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ScansWithMostOpenFindings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScanNameWithFindingNum"
+            }
+        },
+        "ScanNameWithFindingNum": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "findingNumber": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ScansWithMostOpenCriticalFindings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScanNameWithFindingNum"
+            }
+        },
+        "GetMetricsSummaryRequest": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "GetScanResponse": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                },
+                "runId": {
+                    "$ref": "#/$defs/Uuid"
+                },
+                "scanState": {
+                    "$ref": "#/$defs/ScanState"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "analysisType": {
+                    "$ref": "#/$defs/AnalysisType"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "numberOfRevisions": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "scanNameArn": {
+                    "$ref": "#/$defs/ScanNameArn"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "GetScanRequest": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                },
+                "runId": {
+                    "$ref": "#/$defs/Uuid"
+                }
+            }
+        },
+        "ListFindingsMetricsResponse": {
+            "type": "object",
+            "properties": {
+                "findingsMetrics": {
+                    "$ref": "#/$defs/FindingsMetricList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FindingsMetricList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountFindingsMetric"
+            }
+        },
+        "AccountFindingsMetric": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "newFindings": {
+                    "$ref": "#/$defs/FindingMetricsValuePerSeverity"
+                },
+                "closedFindings": {
+                    "$ref": "#/$defs/FindingMetricsValuePerSeverity"
+                },
+                "openFindings": {
+                    "$ref": "#/$defs/FindingMetricsValuePerSeverity"
+                },
+                "meanTimeToClose": {
+                    "$ref": "#/$defs/FindingMetricsValuePerSeverity"
+                }
+            }
+        },
+        "ListFindingsMetricsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "startDate": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "endDate": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "ListScansResponse": {
+            "type": "object",
+            "properties": {
+                "summaries": {
+                    "$ref": "#/$defs/ScanSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ScanSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScanSummary"
+            }
+        },
+        "ScanSummary": {
+            "type": "object",
+            "properties": {
+                "scanState": {
+                    "$ref": "#/$defs/ScanState"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                },
+                "runId": {
+                    "$ref": "#/$defs/Uuid"
+                },
+                "scanNameArn": {
+                    "$ref": "#/$defs/ScanNameArn"
+                }
+            }
+        },
+        "ListScansRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ScanNameArn"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ScanNameArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ScanNameArn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateAccountConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "encryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                }
+            }
+        },
+        "UpdateAccountConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "encryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://codeguru-security-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://codeguru-security-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://codeguru-security.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codeguru-security.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

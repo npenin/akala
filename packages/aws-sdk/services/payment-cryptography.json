@@ -1,0 +1,1251 @@
+{
+    "name": "payment-cryptography",
+    "commands": [
+        {
+            "name": "ExportKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ExportKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExportKeyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExportKeyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetParametersForExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetParametersForExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetParametersForExportOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetParametersForExportInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetParametersForImport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetParametersForImport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetParametersForImportOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetParametersForImportInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPublicKeyCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPublicKeyCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPublicKeyCertificateOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPublicKeyCertificateInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportKeyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportKeyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ExportKeyOutput": {
+            "type": "object",
+            "properties": {
+                "WrappedKey": {
+                    "$ref": "#/$defs/WrappedKey"
+                }
+            }
+        },
+        "WrappedKey": {
+            "type": "object",
+            "properties": {
+                "WrappingKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "WrappedKeyMaterialFormat": {
+                    "$ref": "#/$defs/WrappedKeyMaterialFormat"
+                },
+                "KeyMaterial": {
+                    "$ref": "#/$defs/KeyMaterial"
+                },
+                "KeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "KeyCheckValueAlgorithm": {
+                    "$ref": "#/$defs/KeyCheckValueAlgorithm"
+                }
+            }
+        },
+        "KeyArn": {
+            "type": "string"
+        },
+        "WrappedKeyMaterialFormat": {
+            "type": "string"
+        },
+        "KeyMaterial": {
+            "type": "string"
+        },
+        "KeyCheckValue": {
+            "type": "string"
+        },
+        "KeyCheckValueAlgorithm": {
+            "type": "string"
+        },
+        "ExportKeyInput": {
+            "type": "object",
+            "properties": {
+                "KeyMaterial": {
+                    "$ref": "#/$defs/ExportKeyMaterial"
+                },
+                "ExportKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "ExportAttributes": {
+                    "$ref": "#/$defs/ExportAttributes"
+                }
+            }
+        },
+        "ExportKeyMaterial": {
+            "type": "object",
+            "properties": {
+                "Tr31KeyBlock": {
+                    "$ref": "#/$defs/ExportTr31KeyBlock"
+                },
+                "Tr34KeyBlock": {
+                    "$ref": "#/$defs/ExportTr34KeyBlock"
+                },
+                "KeyCryptogram": {
+                    "$ref": "#/$defs/ExportKeyCryptogram"
+                }
+            }
+        },
+        "ExportTr31KeyBlock": {
+            "type": "object",
+            "properties": {
+                "WrappingKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "KeyBlockHeaders": {
+                    "$ref": "#/$defs/KeyBlockHeaders"
+                }
+            }
+        },
+        "KeyArnOrKeyAliasType": {
+            "type": "string"
+        },
+        "KeyBlockHeaders": {
+            "type": "object",
+            "properties": {
+                "KeyModesOfUse": {
+                    "$ref": "#/$defs/KeyModesOfUse"
+                },
+                "KeyExportability": {
+                    "$ref": "#/$defs/KeyExportability"
+                },
+                "KeyVersion": {
+                    "$ref": "#/$defs/KeyVersion"
+                },
+                "OptionalBlocks": {
+                    "$ref": "#/$defs/OptionalBlocks"
+                }
+            }
+        },
+        "KeyModesOfUse": {
+            "type": "object",
+            "properties": {
+                "Encrypt": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                },
+                "Decrypt": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                },
+                "Wrap": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                },
+                "Unwrap": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                },
+                "Generate": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                },
+                "Sign": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                },
+                "Verify": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                },
+                "DeriveKey": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                },
+                "NoRestrictions": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                }
+            }
+        },
+        "KeyExportability": {
+            "type": "string"
+        },
+        "KeyVersion": {
+            "type": "string"
+        },
+        "OptionalBlocks": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/OptionalBlockValue"
+            }
+        },
+        "OptionalBlockValue": {
+            "type": "string"
+        },
+        "ExportTr34KeyBlock": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityPublicKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "WrappingKeyCertificate": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "ExportToken": {
+                    "$ref": "#/$defs/ExportTokenId"
+                },
+                "KeyBlockFormat": {
+                    "$ref": "#/$defs/Tr34KeyBlockFormat"
+                },
+                "RandomNonce": {
+                    "$ref": "#/$defs/EvenHexLengthBetween16And32"
+                },
+                "KeyBlockHeaders": {
+                    "$ref": "#/$defs/KeyBlockHeaders"
+                }
+            }
+        },
+        "CertificateType": {
+            "type": "string"
+        },
+        "ExportTokenId": {
+            "type": "string"
+        },
+        "Tr34KeyBlockFormat": {
+            "type": "string"
+        },
+        "EvenHexLengthBetween16And32": {
+            "type": "string"
+        },
+        "ExportKeyCryptogram": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityPublicKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "WrappingKeyCertificate": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "WrappingSpec": {
+                    "$ref": "#/$defs/WrappingKeySpec"
+                }
+            }
+        },
+        "WrappingKeySpec": {
+            "type": "string"
+        },
+        "ExportAttributes": {
+            "type": "object",
+            "properties": {
+                "ExportDukptInitialKey": {
+                    "$ref": "#/$defs/ExportDukptInitialKey"
+                },
+                "KeyCheckValueAlgorithm": {
+                    "$ref": "#/$defs/KeyCheckValueAlgorithm"
+                }
+            }
+        },
+        "ExportDukptInitialKey": {
+            "type": "object",
+            "properties": {
+                "KeySerialNumber": {
+                    "$ref": "#/$defs/HexLength20Or24"
+                }
+            }
+        },
+        "HexLength20Or24": {
+            "type": "string"
+        },
+        "GetParametersForExportOutput": {
+            "type": "object",
+            "properties": {
+                "SigningKeyCertificate": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "SigningKeyCertificateChain": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "SigningKeyAlgorithm": {
+                    "$ref": "#/$defs/KeyAlgorithm"
+                },
+                "ExportToken": {
+                    "$ref": "#/$defs/ExportTokenId"
+                },
+                "ParametersValidUntilTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "KeyAlgorithm": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetParametersForExportInput": {
+            "type": "object",
+            "properties": {
+                "KeyMaterialType": {
+                    "$ref": "#/$defs/KeyMaterialType"
+                },
+                "SigningKeyAlgorithm": {
+                    "$ref": "#/$defs/KeyAlgorithm"
+                }
+            }
+        },
+        "KeyMaterialType": {
+            "type": "string"
+        },
+        "GetParametersForImportOutput": {
+            "type": "object",
+            "properties": {
+                "WrappingKeyCertificate": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "WrappingKeyCertificateChain": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "WrappingKeyAlgorithm": {
+                    "$ref": "#/$defs/KeyAlgorithm"
+                },
+                "ImportToken": {
+                    "$ref": "#/$defs/ImportTokenId"
+                },
+                "ParametersValidUntilTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ImportTokenId": {
+            "type": "string"
+        },
+        "GetParametersForImportInput": {
+            "type": "object",
+            "properties": {
+                "KeyMaterialType": {
+                    "$ref": "#/$defs/KeyMaterialType"
+                },
+                "WrappingKeyAlgorithm": {
+                    "$ref": "#/$defs/KeyAlgorithm"
+                }
+            }
+        },
+        "GetPublicKeyCertificateOutput": {
+            "type": "object",
+            "properties": {
+                "KeyCertificate": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "KeyCertificateChain": {
+                    "$ref": "#/$defs/CertificateType"
+                }
+            }
+        },
+        "GetPublicKeyCertificateInput": {
+            "type": "object",
+            "properties": {
+                "KeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                }
+            }
+        },
+        "ImportKeyOutput": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/Key"
+                }
+            }
+        },
+        "Key": {
+            "type": "object",
+            "properties": {
+                "KeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "KeyAttributes": {
+                    "$ref": "#/$defs/KeyAttributes"
+                },
+                "KeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "KeyCheckValueAlgorithm": {
+                    "$ref": "#/$defs/KeyCheckValueAlgorithm"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "Exportable": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "KeyState": {
+                    "$ref": "#/$defs/KeyState"
+                },
+                "KeyOrigin": {
+                    "$ref": "#/$defs/KeyOrigin"
+                },
+                "CreateTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UsageStartTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UsageStopTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DeletePendingTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DeleteTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "KeyAttributes": {
+            "type": "object",
+            "properties": {
+                "KeyUsage": {
+                    "$ref": "#/$defs/KeyUsage"
+                },
+                "KeyClass": {
+                    "$ref": "#/$defs/KeyClass"
+                },
+                "KeyAlgorithm": {
+                    "$ref": "#/$defs/KeyAlgorithm"
+                },
+                "KeyModesOfUse": {
+                    "$ref": "#/$defs/KeyModesOfUse"
+                }
+            }
+        },
+        "KeyUsage": {
+            "type": "string"
+        },
+        "KeyClass": {
+            "type": "string"
+        },
+        "KeyState": {
+            "type": "string"
+        },
+        "KeyOrigin": {
+            "type": "string"
+        },
+        "ImportKeyInput": {
+            "type": "object",
+            "properties": {
+                "KeyMaterial": {
+                    "$ref": "#/$defs/ImportKeyMaterial"
+                },
+                "KeyCheckValueAlgorithm": {
+                    "$ref": "#/$defs/KeyCheckValueAlgorithm"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ImportKeyMaterial": {
+            "type": "object",
+            "properties": {
+                "RootCertificatePublicKey": {
+                    "$ref": "#/$defs/RootCertificatePublicKey"
+                },
+                "TrustedCertificatePublicKey": {
+                    "$ref": "#/$defs/TrustedCertificatePublicKey"
+                },
+                "Tr31KeyBlock": {
+                    "$ref": "#/$defs/ImportTr31KeyBlock"
+                },
+                "Tr34KeyBlock": {
+                    "$ref": "#/$defs/ImportTr34KeyBlock"
+                },
+                "KeyCryptogram": {
+                    "$ref": "#/$defs/ImportKeyCryptogram"
+                }
+            }
+        },
+        "RootCertificatePublicKey": {
+            "type": "object",
+            "properties": {
+                "KeyAttributes": {
+                    "$ref": "#/$defs/KeyAttributes"
+                },
+                "PublicKeyCertificate": {
+                    "$ref": "#/$defs/CertificateType"
+                }
+            }
+        },
+        "TrustedCertificatePublicKey": {
+            "type": "object",
+            "properties": {
+                "KeyAttributes": {
+                    "$ref": "#/$defs/KeyAttributes"
+                },
+                "PublicKeyCertificate": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "CertificateAuthorityPublicKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                }
+            }
+        },
+        "ImportTr31KeyBlock": {
+            "type": "object",
+            "properties": {
+                "WrappingKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "WrappedKeyBlock": {
+                    "$ref": "#/$defs/Tr31WrappedKeyBlock"
+                }
+            }
+        },
+        "Tr31WrappedKeyBlock": {
+            "type": "string"
+        },
+        "ImportTr34KeyBlock": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityPublicKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "SigningKeyCertificate": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "ImportToken": {
+                    "$ref": "#/$defs/ImportTokenId"
+                },
+                "WrappedKeyBlock": {
+                    "$ref": "#/$defs/Tr34WrappedKeyBlock"
+                },
+                "KeyBlockFormat": {
+                    "$ref": "#/$defs/Tr34KeyBlockFormat"
+                },
+                "RandomNonce": {
+                    "$ref": "#/$defs/EvenHexLengthBetween16And32"
+                }
+            }
+        },
+        "Tr34WrappedKeyBlock": {
+            "type": "string"
+        },
+        "ImportKeyCryptogram": {
+            "type": "object",
+            "properties": {
+                "KeyAttributes": {
+                    "$ref": "#/$defs/KeyAttributes"
+                },
+                "Exportable": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "WrappedKeyCryptogram": {
+                    "$ref": "#/$defs/WrappedKeyCryptogram"
+                },
+                "ImportToken": {
+                    "$ref": "#/$defs/ImportTokenId"
+                },
+                "WrappingSpec": {
+                    "$ref": "#/$defs/WrappingKeySpec"
+                }
+            }
+        },
+        "WrappedKeyCryptogram": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceOutput": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://controlplane.payment-cryptography-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://controlplane.payment-cryptography-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://controlplane.payment-cryptography.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://controlplane.payment-cryptography.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

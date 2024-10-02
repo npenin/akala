@@ -1,0 +1,2368 @@
+{
+    "name": "elasticfilesystem",
+    "commands": [
+        {
+            "name": "CreateAccessPoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAccessPoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AccessPointDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAccessPointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateFileSystem",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateFileSystem"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FileSystemDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateFileSystemRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateMountTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateMountTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/MountTargetDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateMountTargetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateReplicationConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateReplicationConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ReplicationConfigurationDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateReplicationConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAccessPoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAccessPoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAccessPointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFileSystem",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFileSystem"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFileSystemRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFileSystemPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFileSystemPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFileSystemPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMountTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMountTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMountTargetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteReplicationConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteReplicationConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteReplicationConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAccessPoints",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAccessPoints"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAccessPointsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAccessPointsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAccountPreferences",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAccountPreferences"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAccountPreferencesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAccountPreferencesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeBackupPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeBackupPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BackupPolicyDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeBackupPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFileSystemPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeFileSystemPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FileSystemPolicyDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFileSystemPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFileSystems",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeFileSystems"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFileSystemsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFileSystemsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLifecycleConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLifecycleConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/LifecycleConfigurationDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLifecycleConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeMountTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeMountTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeMountTargetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeMountTargetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeMountTargetSecurityGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeMountTargetSecurityGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeMountTargetSecurityGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeMountTargetSecurityGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeReplicationConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeReplicationConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeReplicationConfigurationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeReplicationConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ModifyMountTargetSecurityGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ModifyMountTargetSecurityGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyMountTargetSecurityGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAccountPreferences",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAccountPreferences"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutAccountPreferencesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAccountPreferencesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutBackupPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutBackupPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BackupPolicyDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutBackupPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutFileSystemPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutFileSystemPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FileSystemPolicyDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutFileSystemPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutLifecycleConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutLifecycleConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/LifecycleConfigurationDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutLifecycleConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateFileSystem",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateFileSystem"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FileSystemDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateFileSystemRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateFileSystemProtection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateFileSystemProtection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FileSystemProtectionDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateFileSystemProtectionRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AccessPointDescription": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "AccessPointId": {
+                    "$ref": "#/$defs/AccessPointId"
+                },
+                "AccessPointArn": {
+                    "$ref": "#/$defs/AccessPointArn"
+                },
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "PosixUser": {
+                    "$ref": "#/$defs/PosixUser"
+                },
+                "RootDirectory": {
+                    "$ref": "#/$defs/RootDirectory"
+                },
+                "OwnerId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "LifeCycleState": {
+                    "$ref": "#/$defs/LifeCycleState"
+                }
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "AccessPointId": {
+            "type": "string"
+        },
+        "AccessPointArn": {
+            "type": "string"
+        },
+        "FileSystemId": {
+            "type": "string"
+        },
+        "PosixUser": {
+            "type": "object",
+            "properties": {
+                "Uid": {
+                    "$ref": "#/$defs/Uid"
+                },
+                "Gid": {
+                    "$ref": "#/$defs/Gid"
+                },
+                "SecondaryGids": {
+                    "$ref": "#/$defs/SecondaryGids"
+                }
+            }
+        },
+        "Uid": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Gid": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "SecondaryGids": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Gid"
+            }
+        },
+        "RootDirectory": {
+            "type": "object",
+            "properties": {
+                "Path": {
+                    "$ref": "#/$defs/Path"
+                },
+                "CreationInfo": {
+                    "$ref": "#/$defs/CreationInfo"
+                }
+            }
+        },
+        "Path": {
+            "type": "string"
+        },
+        "CreationInfo": {
+            "type": "object",
+            "properties": {
+                "OwnerUid": {
+                    "$ref": "#/$defs/OwnerUid"
+                },
+                "OwnerGid": {
+                    "$ref": "#/$defs/OwnerGid"
+                },
+                "Permissions": {
+                    "$ref": "#/$defs/Permissions"
+                }
+            }
+        },
+        "OwnerUid": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "OwnerGid": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Permissions": {
+            "type": "string"
+        },
+        "AwsAccountId": {
+            "type": "string"
+        },
+        "LifeCycleState": {
+            "enum": [
+                "CREATING",
+                "AVAILABLE",
+                "UPDATING",
+                "DELETING",
+                "DELETED",
+                "ERROR"
+            ]
+        },
+        "CreateAccessPointRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "PosixUser": {
+                    "$ref": "#/$defs/PosixUser"
+                },
+                "RootDirectory": {
+                    "$ref": "#/$defs/RootDirectory"
+                }
+            }
+        },
+        "FileSystemDescription": {
+            "type": "object",
+            "properties": {
+                "OwnerId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "CreationToken": {
+                    "$ref": "#/$defs/CreationToken"
+                },
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "FileSystemArn": {
+                    "$ref": "#/$defs/FileSystemArn"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LifeCycleState": {
+                    "$ref": "#/$defs/LifeCycleState"
+                },
+                "Name": {
+                    "$ref": "#/$defs/TagValue"
+                },
+                "NumberOfMountTargets": {
+                    "$ref": "#/$defs/MountTargetCount"
+                },
+                "SizeInBytes": {
+                    "$ref": "#/$defs/FileSystemSize"
+                },
+                "PerformanceMode": {
+                    "$ref": "#/$defs/PerformanceMode"
+                },
+                "Encrypted": {
+                    "$ref": "#/$defs/Encrypted"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "ThroughputMode": {
+                    "$ref": "#/$defs/ThroughputMode"
+                },
+                "ProvisionedThroughputInMibps": {
+                    "$ref": "#/$defs/ProvisionedThroughputInMibps"
+                },
+                "AvailabilityZoneName": {
+                    "$ref": "#/$defs/AvailabilityZoneName"
+                },
+                "AvailabilityZoneId": {
+                    "$ref": "#/$defs/AvailabilityZoneId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "FileSystemProtection": {
+                    "$ref": "#/$defs/FileSystemProtectionDescription"
+                }
+            }
+        },
+        "CreationToken": {
+            "type": "string"
+        },
+        "FileSystemArn": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "MountTargetCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FileSystemSize": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/FileSystemSizeValue"
+                },
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ValueInIA": {
+                    "$ref": "#/$defs/FileSystemNullableSizeValue"
+                },
+                "ValueInStandard": {
+                    "$ref": "#/$defs/FileSystemNullableSizeValue"
+                },
+                "ValueInArchive": {
+                    "$ref": "#/$defs/FileSystemNullableSizeValue"
+                }
+            }
+        },
+        "FileSystemSizeValue": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "FileSystemNullableSizeValue": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "PerformanceMode": {
+            "enum": [
+                "GENERAL_PURPOSE",
+                "MAX_IO"
+            ]
+        },
+        "Encrypted": {
+            "type": "boolean"
+        },
+        "KmsKeyId": {
+            "type": "string"
+        },
+        "ThroughputMode": {
+            "enum": [
+                "BURSTING",
+                "PROVISIONED",
+                "ELASTIC"
+            ]
+        },
+        "ProvisionedThroughputInMibps": {
+            "type": "number",
+            "format": "double"
+        },
+        "AvailabilityZoneName": {
+            "type": "string"
+        },
+        "AvailabilityZoneId": {
+            "type": "string"
+        },
+        "FileSystemProtectionDescription": {
+            "type": "object",
+            "properties": {
+                "ReplicationOverwriteProtection": {
+                    "$ref": "#/$defs/ReplicationOverwriteProtection"
+                }
+            }
+        },
+        "ReplicationOverwriteProtection": {
+            "enum": [
+                "ENABLED",
+                "DISABLED",
+                "REPLICATING"
+            ]
+        },
+        "CreateFileSystemRequest": {
+            "type": "object",
+            "properties": {
+                "CreationToken": {
+                    "$ref": "#/$defs/CreationToken"
+                },
+                "PerformanceMode": {
+                    "$ref": "#/$defs/PerformanceMode"
+                },
+                "Encrypted": {
+                    "$ref": "#/$defs/Encrypted"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "ThroughputMode": {
+                    "$ref": "#/$defs/ThroughputMode"
+                },
+                "ProvisionedThroughputInMibps": {
+                    "$ref": "#/$defs/ProvisionedThroughputInMibps"
+                },
+                "AvailabilityZoneName": {
+                    "$ref": "#/$defs/AvailabilityZoneName"
+                },
+                "Backup": {
+                    "$ref": "#/$defs/Backup"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Backup": {
+            "type": "boolean"
+        },
+        "MountTargetDescription": {
+            "type": "object",
+            "properties": {
+                "OwnerId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "MountTargetId": {
+                    "$ref": "#/$defs/MountTargetId"
+                },
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "SubnetId": {
+                    "$ref": "#/$defs/SubnetId"
+                },
+                "LifeCycleState": {
+                    "$ref": "#/$defs/LifeCycleState"
+                },
+                "IpAddress": {
+                    "$ref": "#/$defs/IpAddress"
+                },
+                "NetworkInterfaceId": {
+                    "$ref": "#/$defs/NetworkInterfaceId"
+                },
+                "AvailabilityZoneId": {
+                    "$ref": "#/$defs/AvailabilityZoneId"
+                },
+                "AvailabilityZoneName": {
+                    "$ref": "#/$defs/AvailabilityZoneName"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/VpcId"
+                }
+            }
+        },
+        "MountTargetId": {
+            "type": "string"
+        },
+        "SubnetId": {
+            "type": "string"
+        },
+        "IpAddress": {
+            "type": "string"
+        },
+        "NetworkInterfaceId": {
+            "type": "string"
+        },
+        "VpcId": {
+            "type": "string"
+        },
+        "CreateMountTargetRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "SubnetId": {
+                    "$ref": "#/$defs/SubnetId"
+                },
+                "IpAddress": {
+                    "$ref": "#/$defs/IpAddress"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/SecurityGroups"
+                }
+            }
+        },
+        "SecurityGroups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityGroup"
+            }
+        },
+        "SecurityGroup": {
+            "type": "string"
+        },
+        "ReplicationConfigurationDescription": {
+            "type": "object",
+            "properties": {
+                "SourceFileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "SourceFileSystemRegion": {
+                    "$ref": "#/$defs/RegionName"
+                },
+                "SourceFileSystemArn": {
+                    "$ref": "#/$defs/FileSystemArn"
+                },
+                "OriginalSourceFileSystemArn": {
+                    "$ref": "#/$defs/FileSystemArn"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/Destinations"
+                }
+            }
+        },
+        "RegionName": {
+            "type": "string"
+        },
+        "Destinations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Destination"
+            }
+        },
+        "Destination": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/ReplicationStatus"
+                },
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "Region": {
+                    "$ref": "#/$defs/RegionName"
+                },
+                "LastReplicatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ReplicationStatus": {
+            "enum": [
+                "ENABLED",
+                "ENABLING",
+                "DELETING",
+                "ERROR",
+                "PAUSED",
+                "PAUSING"
+            ]
+        },
+        "CreateReplicationConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "SourceFileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/DestinationsToCreate"
+                }
+            }
+        },
+        "DestinationsToCreate": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DestinationToCreate"
+            }
+        },
+        "DestinationToCreate": {
+            "type": "object",
+            "properties": {
+                "Region": {
+                    "$ref": "#/$defs/RegionName"
+                },
+                "AvailabilityZoneName": {
+                    "$ref": "#/$defs/AvailabilityZoneName"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "CreateTagsRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DeleteAccessPointRequest": {
+            "type": "object",
+            "properties": {
+                "AccessPointId": {
+                    "$ref": "#/$defs/AccessPointId"
+                }
+            }
+        },
+        "DeleteFileSystemRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "DeleteFileSystemPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "DeleteMountTargetRequest": {
+            "type": "object",
+            "properties": {
+                "MountTargetId": {
+                    "$ref": "#/$defs/MountTargetId"
+                }
+            }
+        },
+        "DeleteReplicationConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "SourceFileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "DeleteTagsRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "DescribeAccessPointsResponse": {
+            "type": "object",
+            "properties": {
+                "AccessPoints": {
+                    "$ref": "#/$defs/AccessPointDescriptions"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "AccessPointDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessPointDescription"
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "DescribeAccessPointsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "AccessPointId": {
+                    "$ref": "#/$defs/AccessPointId"
+                },
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeAccountPreferencesResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceIdPreference": {
+                    "$ref": "#/$defs/ResourceIdPreference"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ResourceIdPreference": {
+            "type": "object",
+            "properties": {
+                "ResourceIdType": {
+                    "$ref": "#/$defs/ResourceIdType"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/Resources"
+                }
+            }
+        },
+        "ResourceIdType": {
+            "enum": [
+                "LongId",
+                "ShortId"
+            ]
+        },
+        "Resources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Resource"
+            }
+        },
+        "Resource": {
+            "enum": [
+                "FileSystem",
+                "MountTarget"
+            ]
+        },
+        "DescribeAccountPreferencesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "BackupPolicyDescription": {
+            "type": "object",
+            "properties": {
+                "BackupPolicy": {
+                    "$ref": "#/$defs/BackupPolicy"
+                }
+            }
+        },
+        "BackupPolicy": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "Status": {
+            "enum": [
+                "ENABLED",
+                "ENABLING",
+                "DISABLED",
+                "DISABLING"
+            ]
+        },
+        "DescribeBackupPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "FileSystemPolicyDescription": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                }
+            }
+        },
+        "Policy": {
+            "type": "string"
+        },
+        "DescribeFileSystemPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "DescribeFileSystemsResponse": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                },
+                "FileSystems": {
+                    "$ref": "#/$defs/FileSystemDescriptions"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/Marker"
+                }
+            }
+        },
+        "Marker": {
+            "type": "string"
+        },
+        "FileSystemDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FileSystemDescription"
+            }
+        },
+        "DescribeFileSystemsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxItems"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                },
+                "CreationToken": {
+                    "$ref": "#/$defs/CreationToken"
+                },
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "MaxItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LifecycleConfigurationDescription": {
+            "type": "object",
+            "properties": {
+                "LifecyclePolicies": {
+                    "$ref": "#/$defs/LifecyclePolicies"
+                }
+            }
+        },
+        "LifecyclePolicies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LifecyclePolicy"
+            }
+        },
+        "LifecyclePolicy": {
+            "type": "object",
+            "properties": {
+                "TransitionToIA": {
+                    "$ref": "#/$defs/TransitionToIARules"
+                },
+                "TransitionToPrimaryStorageClass": {
+                    "$ref": "#/$defs/TransitionToPrimaryStorageClassRules"
+                },
+                "TransitionToArchive": {
+                    "$ref": "#/$defs/TransitionToArchiveRules"
+                }
+            }
+        },
+        "TransitionToIARules": {
+            "enum": [
+                "AFTER_7_DAYS",
+                "AFTER_14_DAYS",
+                "AFTER_30_DAYS",
+                "AFTER_60_DAYS",
+                "AFTER_90_DAYS",
+                "AFTER_1_DAY",
+                "AFTER_180_DAYS",
+                "AFTER_270_DAYS",
+                "AFTER_365_DAYS"
+            ]
+        },
+        "TransitionToPrimaryStorageClassRules": {
+            "enum": [
+                "AFTER_1_ACCESS"
+            ]
+        },
+        "TransitionToArchiveRules": {
+            "enum": [
+                "AFTER_1_DAY",
+                "AFTER_7_DAYS",
+                "AFTER_14_DAYS",
+                "AFTER_30_DAYS",
+                "AFTER_60_DAYS",
+                "AFTER_90_DAYS",
+                "AFTER_180_DAYS",
+                "AFTER_270_DAYS",
+                "AFTER_365_DAYS"
+            ]
+        },
+        "DescribeLifecycleConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "DescribeMountTargetsResponse": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                },
+                "MountTargets": {
+                    "$ref": "#/$defs/MountTargetDescriptions"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/Marker"
+                }
+            }
+        },
+        "MountTargetDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MountTargetDescription"
+            }
+        },
+        "DescribeMountTargetsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxItems"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                },
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "MountTargetId": {
+                    "$ref": "#/$defs/MountTargetId"
+                },
+                "AccessPointId": {
+                    "$ref": "#/$defs/AccessPointId"
+                }
+            }
+        },
+        "DescribeMountTargetSecurityGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "SecurityGroups": {
+                    "$ref": "#/$defs/SecurityGroups"
+                }
+            }
+        },
+        "DescribeMountTargetSecurityGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "MountTargetId": {
+                    "$ref": "#/$defs/MountTargetId"
+                }
+            }
+        },
+        "DescribeReplicationConfigurationsResponse": {
+            "type": "object",
+            "properties": {
+                "Replications": {
+                    "$ref": "#/$defs/ReplicationConfigurationDescriptions"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ReplicationConfigurationDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReplicationConfigurationDescription"
+            }
+        },
+        "DescribeReplicationConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "DescribeTagsResponse": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/Marker"
+                }
+            }
+        },
+        "DescribeTagsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxItems"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                },
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "ModifyMountTargetSecurityGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "MountTargetId": {
+                    "$ref": "#/$defs/MountTargetId"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/SecurityGroups"
+                }
+            }
+        },
+        "PutAccountPreferencesResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceIdPreference": {
+                    "$ref": "#/$defs/ResourceIdPreference"
+                }
+            }
+        },
+        "PutAccountPreferencesRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceIdType": {
+                    "$ref": "#/$defs/ResourceIdType"
+                }
+            }
+        },
+        "PutBackupPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "BackupPolicy": {
+                    "$ref": "#/$defs/BackupPolicy"
+                }
+            }
+        },
+        "PutFileSystemPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                },
+                "BypassPolicyLockoutSafetyCheck": {
+                    "$ref": "#/$defs/BypassPolicyLockoutSafetyCheck"
+                }
+            }
+        },
+        "BypassPolicyLockoutSafetyCheck": {
+            "type": "boolean"
+        },
+        "PutLifecycleConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "LifecyclePolicies": {
+                    "$ref": "#/$defs/LifecyclePolicies"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "UpdateFileSystemRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "ThroughputMode": {
+                    "$ref": "#/$defs/ThroughputMode"
+                },
+                "ProvisionedThroughputInMibps": {
+                    "$ref": "#/$defs/ProvisionedThroughputInMibps"
+                }
+            }
+        },
+        "UpdateFileSystemProtectionRequest": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "ReplicationOverwriteProtection": {
+                    "$ref": "#/$defs/ReplicationOverwriteProtection"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elasticfilesystem-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elasticfilesystem-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elasticfilesystem.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://elasticfilesystem.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

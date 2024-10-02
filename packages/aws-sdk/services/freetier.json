@@ -1,0 +1,624 @@
+{
+    "commands": [
+        {
+            "name": "GetFreeTierUsage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFreeTierUsage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFreeTierUsageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFreeTierUsageRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetFreeTierUsageResponse": {
+            "type": "object",
+            "properties": {
+                "freeTierUsages": {
+                    "$ref": "#/$defs/FreeTierUsages"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                }
+            }
+        },
+        "FreeTierUsages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FreeTierUsage"
+            }
+        },
+        "FreeTierUsage": {
+            "type": "object",
+            "properties": {
+                "service": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "operation": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "usageType": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "region": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "actualUsageAmount": {
+                    "$ref": "#/$defs/GenericDouble"
+                },
+                "forecastedUsageAmount": {
+                    "$ref": "#/$defs/GenericDouble"
+                },
+                "limit": {
+                    "$ref": "#/$defs/GenericDouble"
+                },
+                "unit": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "description": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "freeTierType": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "GenericString": {
+            "type": "string"
+        },
+        "GenericDouble": {
+            "type": "number",
+            "format": "double"
+        },
+        "NextPageToken": {
+            "type": "string"
+        },
+        "GetFreeTierUsageRequest": {
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "$ref": "#/$defs/Expression"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                }
+            }
+        },
+        "Expression": {
+            "type": "object",
+            "properties": {
+                "Or": {
+                    "$ref": "#/$defs/Expressions"
+                },
+                "And": {
+                    "$ref": "#/$defs/Expressions"
+                },
+                "Not": {
+                    "$ref": "#/$defs/Expression"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/DimensionValues"
+                }
+            }
+        },
+        "Expressions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Expression"
+            }
+        },
+        "DimensionValues": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/Dimension"
+                },
+                "Values": {
+                    "$ref": "#/$defs/Values"
+                },
+                "MatchOptions": {
+                    "$ref": "#/$defs/MatchOptions"
+                }
+            }
+        },
+        "Dimension": {
+            "enum": [
+                "SERVICE",
+                "OPERATION",
+                "USAGE_TYPE",
+                "REGION",
+                "FREE_TIER_TYPE",
+                "DESCRIPTION",
+                "USAGE_PERCENTAGE"
+            ]
+        },
+        "Values": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "Value": {
+            "type": "string"
+        },
+        "MatchOptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MatchOption"
+            }
+        },
+        "MatchOption": {
+            "enum": [
+                "EQUALS",
+                "STARTS_WITH",
+                "ENDS_WITH",
+                "CONTAINS",
+                "GREATER_THAN_OR_EQUAL"
+            ]
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws"
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "endpoint": {
+                                                            "url": "https://freetier-fips.{Region}.api.aws",
+                                                            "properties": {},
+                                                            "headers": {}
+                                                        },
+                                                        "type": "endpoint"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "endpoint": {
+                                            "url": "https://freetier.us-east-1.api.aws",
+                                            "properties": {
+                                                "authSchemes": [
+                                                    {
+                                                        "name": "sigv4",
+                                                        "signingName": "freetier",
+                                                        "signingRegion": "us-east-1"
+                                                    }
+                                                ]
+                                            },
+                                            "headers": {}
+                                        },
+                                        "type": "endpoint"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            true,
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "supportsDualStack"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "endpoint": {
+                                                            "url": "https://freetier-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                            "properties": {},
+                                                            "headers": {}
+                                                        },
+                                                        "type": "endpoint"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "stringEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "Region"
+                                                    },
+                                                    "aws-cn-global"
+                                                ]
+                                            }
+                                        ],
+                                        "endpoint": {
+                                            "url": "https://freetier.cn-northwest-1.api.amazonwebservices.com.cn",
+                                            "properties": {
+                                                "authSchemes": [
+                                                    {
+                                                        "name": "sigv4",
+                                                        "signingName": "freetier",
+                                                        "signingRegion": "cn-northwest-1"
+                                                    }
+                                                ]
+                                            },
+                                            "headers": {}
+                                        },
+                                        "type": "endpoint"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "endpoint": {
+                                            "url": "https://freetier.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                            "properties": {},
+                                            "headers": {}
+                                        },
+                                        "type": "endpoint"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://freetier-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            },
+                                            "aws-cn-global"
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://freetier.cn-northwest-1.api.amazonwebservices.com.cn",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "freetier",
+                                                "signingRegion": "cn-northwest-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://freetier.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

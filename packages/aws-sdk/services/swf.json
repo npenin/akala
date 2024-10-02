@@ -1,0 +1,4475 @@
+{
+    "name": "swf",
+    "commands": [
+        {
+            "name": "CountClosedWorkflowExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CountClosedWorkflowExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/WorkflowExecutionCount"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CountClosedWorkflowExecutionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CountOpenWorkflowExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CountOpenWorkflowExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/WorkflowExecutionCount"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CountOpenWorkflowExecutionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CountPendingActivityTasks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CountPendingActivityTasks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PendingTaskCount"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CountPendingActivityTasksInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CountPendingDecisionTasks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CountPendingDecisionTasks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PendingTaskCount"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CountPendingDecisionTasksInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteActivityType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteActivityType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteActivityTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteWorkflowType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteWorkflowType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteWorkflowTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeprecateActivityType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeprecateActivityType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeprecateActivityTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeprecateDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeprecateDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeprecateDomainInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeprecateWorkflowType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeprecateWorkflowType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeprecateWorkflowTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeActivityType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeActivityType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ActivityTypeDetail"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeActivityTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DomainDetail"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDomainInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeWorkflowExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeWorkflowExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/WorkflowExecutionDetail"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeWorkflowExecutionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeWorkflowType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeWorkflowType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/WorkflowTypeDetail"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeWorkflowTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetWorkflowExecutionHistory",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetWorkflowExecutionHistory"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/History"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetWorkflowExecutionHistoryInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListActivityTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListActivityTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ActivityTypeInfos"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListActivityTypesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListClosedWorkflowExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListClosedWorkflowExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/WorkflowExecutionInfos"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListClosedWorkflowExecutionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDomains",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDomains"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DomainInfos"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDomainsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOpenWorkflowExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOpenWorkflowExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/WorkflowExecutionInfos"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOpenWorkflowExecutionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListWorkflowTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListWorkflowTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/WorkflowTypeInfos"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListWorkflowTypesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PollForActivityTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PollForActivityTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ActivityTask"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PollForActivityTaskInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PollForDecisionTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PollForDecisionTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DecisionTask"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PollForDecisionTaskInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RecordActivityTaskHeartbeat",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RecordActivityTaskHeartbeat"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ActivityTaskStatus"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RecordActivityTaskHeartbeatInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterActivityType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterActivityType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterActivityTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterDomainInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterWorkflowType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterWorkflowType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterWorkflowTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RequestCancelWorkflowExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RequestCancelWorkflowExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RequestCancelWorkflowExecutionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RespondActivityTaskCanceled",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RespondActivityTaskCanceled"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RespondActivityTaskCanceledInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RespondActivityTaskCompleted",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RespondActivityTaskCompleted"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RespondActivityTaskCompletedInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RespondActivityTaskFailed",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RespondActivityTaskFailed"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RespondActivityTaskFailedInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RespondDecisionTaskCompleted",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RespondDecisionTaskCompleted"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RespondDecisionTaskCompletedInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SignalWorkflowExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SignalWorkflowExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SignalWorkflowExecutionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartWorkflowExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartWorkflowExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Run"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartWorkflowExecutionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TerminateWorkflowExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TerminateWorkflowExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TerminateWorkflowExecutionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UndeprecateActivityType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UndeprecateActivityType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UndeprecateActivityTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UndeprecateDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UndeprecateDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UndeprecateDomainInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UndeprecateWorkflowType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UndeprecateWorkflowType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UndeprecateWorkflowTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "WorkflowExecutionCount": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "$ref": "#/$defs/Count"
+                },
+                "truncated": {
+                    "$ref": "#/$defs/Truncated"
+                }
+            }
+        },
+        "Count": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Truncated": {
+            "type": "boolean"
+        },
+        "CountClosedWorkflowExecutionsInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "startTimeFilter": {
+                    "$ref": "#/$defs/ExecutionTimeFilter"
+                },
+                "closeTimeFilter": {
+                    "$ref": "#/$defs/ExecutionTimeFilter"
+                },
+                "executionFilter": {
+                    "$ref": "#/$defs/WorkflowExecutionFilter"
+                },
+                "typeFilter": {
+                    "$ref": "#/$defs/WorkflowTypeFilter"
+                },
+                "tagFilter": {
+                    "$ref": "#/$defs/TagFilter"
+                },
+                "closeStatusFilter": {
+                    "$ref": "#/$defs/CloseStatusFilter"
+                }
+            }
+        },
+        "DomainName": {
+            "type": "string"
+        },
+        "ExecutionTimeFilter": {
+            "type": "object",
+            "properties": {
+                "oldestDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "latestDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "WorkflowExecutionFilter": {
+            "type": "object",
+            "properties": {
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                }
+            }
+        },
+        "WorkflowId": {
+            "type": "string"
+        },
+        "WorkflowTypeFilter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "version": {
+                    "$ref": "#/$defs/VersionOptional"
+                }
+            }
+        },
+        "Name": {
+            "type": "string"
+        },
+        "VersionOptional": {
+            "type": "string"
+        },
+        "TagFilter": {
+            "type": "object",
+            "properties": {
+                "tag": {
+                    "$ref": "#/$defs/Tag"
+                }
+            }
+        },
+        "Tag": {
+            "type": "string"
+        },
+        "CloseStatusFilter": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/CloseStatus"
+                }
+            }
+        },
+        "CloseStatus": {
+            "enum": [
+                "COMPLETED",
+                "FAILED",
+                "CANCELED",
+                "TERMINATED",
+                "CONTINUED_AS_NEW",
+                "TIMED_OUT"
+            ]
+        },
+        "CountOpenWorkflowExecutionsInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "startTimeFilter": {
+                    "$ref": "#/$defs/ExecutionTimeFilter"
+                },
+                "typeFilter": {
+                    "$ref": "#/$defs/WorkflowTypeFilter"
+                },
+                "tagFilter": {
+                    "$ref": "#/$defs/TagFilter"
+                },
+                "executionFilter": {
+                    "$ref": "#/$defs/WorkflowExecutionFilter"
+                }
+            }
+        },
+        "PendingTaskCount": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "$ref": "#/$defs/Count"
+                },
+                "truncated": {
+                    "$ref": "#/$defs/Truncated"
+                }
+            }
+        },
+        "CountPendingActivityTasksInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                }
+            }
+        },
+        "TaskList": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/Name"
+                }
+            }
+        },
+        "CountPendingDecisionTasksInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                }
+            }
+        },
+        "DeleteActivityTypeInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "activityType": {
+                    "$ref": "#/$defs/ActivityType"
+                }
+            }
+        },
+        "ActivityType": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "Version": {
+            "type": "string"
+        },
+        "DeleteWorkflowTypeInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                }
+            }
+        },
+        "WorkflowType": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "DeprecateActivityTypeInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "activityType": {
+                    "$ref": "#/$defs/ActivityType"
+                }
+            }
+        },
+        "DeprecateDomainInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "DeprecateWorkflowTypeInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                }
+            }
+        },
+        "ActivityTypeDetail": {
+            "type": "object",
+            "properties": {
+                "typeInfo": {
+                    "$ref": "#/$defs/ActivityTypeInfo"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/ActivityTypeConfiguration"
+                }
+            }
+        },
+        "ActivityTypeInfo": {
+            "type": "object",
+            "properties": {
+                "activityType": {
+                    "$ref": "#/$defs/ActivityType"
+                },
+                "status": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "creationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "deprecationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "RegistrationStatus": {
+            "enum": [
+                "REGISTERED",
+                "DEPRECATED"
+            ]
+        },
+        "Description": {
+            "type": "string"
+        },
+        "ActivityTypeConfiguration": {
+            "type": "object",
+            "properties": {
+                "defaultTaskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "defaultTaskHeartbeatTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "defaultTaskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "defaultTaskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "defaultTaskScheduleToStartTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "defaultTaskScheduleToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                }
+            }
+        },
+        "DurationInSecondsOptional": {
+            "type": "string"
+        },
+        "TaskPriority": {
+            "type": "string"
+        },
+        "DescribeActivityTypeInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "activityType": {
+                    "$ref": "#/$defs/ActivityType"
+                }
+            }
+        },
+        "DomainDetail": {
+            "type": "object",
+            "properties": {
+                "domainInfo": {
+                    "$ref": "#/$defs/DomainInfo"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/DomainConfiguration"
+                }
+            }
+        },
+        "DomainInfo": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "status": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "DomainConfiguration": {
+            "type": "object",
+            "properties": {
+                "workflowExecutionRetentionPeriodInDays": {
+                    "$ref": "#/$defs/DurationInDays"
+                }
+            }
+        },
+        "DurationInDays": {
+            "type": "string"
+        },
+        "DescribeDomainInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "WorkflowExecutionDetail": {
+            "type": "object",
+            "properties": {
+                "executionInfo": {
+                    "$ref": "#/$defs/WorkflowExecutionInfo"
+                },
+                "executionConfiguration": {
+                    "$ref": "#/$defs/WorkflowExecutionConfiguration"
+                },
+                "openCounts": {
+                    "$ref": "#/$defs/WorkflowExecutionOpenCounts"
+                },
+                "latestActivityTaskTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "latestExecutionContext": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "WorkflowExecutionInfo": {
+            "type": "object",
+            "properties": {
+                "execution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "startTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "closeTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "executionStatus": {
+                    "$ref": "#/$defs/ExecutionStatus"
+                },
+                "closeStatus": {
+                    "$ref": "#/$defs/CloseStatus"
+                },
+                "parent": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "tagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "cancelRequested": {
+                    "$ref": "#/$defs/Canceled"
+                }
+            }
+        },
+        "WorkflowExecution": {
+            "type": "object",
+            "properties": {
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunId"
+                }
+            }
+        },
+        "WorkflowRunId": {
+            "type": "string"
+        },
+        "ExecutionStatus": {
+            "enum": [
+                "OPEN",
+                "CLOSED"
+            ]
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Canceled": {
+            "type": "boolean"
+        },
+        "WorkflowExecutionConfiguration": {
+            "type": "object",
+            "properties": {
+                "taskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSeconds"
+                },
+                "executionStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSeconds"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "childPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                },
+                "lambdaRole": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DurationInSeconds": {
+            "type": "string"
+        },
+        "ChildPolicy": {
+            "enum": [
+                "TERMINATE",
+                "REQUEST_CANCEL",
+                "ABANDON"
+            ]
+        },
+        "WorkflowExecutionOpenCounts": {
+            "type": "object",
+            "properties": {
+                "openActivityTasks": {
+                    "$ref": "#/$defs/Count"
+                },
+                "openDecisionTasks": {
+                    "$ref": "#/$defs/OpenDecisionTasksCount"
+                },
+                "openTimers": {
+                    "$ref": "#/$defs/Count"
+                },
+                "openChildWorkflowExecutions": {
+                    "$ref": "#/$defs/Count"
+                },
+                "openLambdaFunctions": {
+                    "$ref": "#/$defs/Count"
+                }
+            }
+        },
+        "OpenDecisionTasksCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Data": {
+            "type": "string"
+        },
+        "DescribeWorkflowExecutionInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "execution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                }
+            }
+        },
+        "WorkflowTypeDetail": {
+            "type": "object",
+            "properties": {
+                "typeInfo": {
+                    "$ref": "#/$defs/WorkflowTypeInfo"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/WorkflowTypeConfiguration"
+                }
+            }
+        },
+        "WorkflowTypeInfo": {
+            "type": "object",
+            "properties": {
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "status": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "creationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "deprecationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "WorkflowTypeConfiguration": {
+            "type": "object",
+            "properties": {
+                "defaultTaskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "defaultExecutionStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "defaultTaskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "defaultTaskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "defaultChildPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                },
+                "defaultLambdaRole": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeWorkflowTypeInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                }
+            }
+        },
+        "History": {
+            "type": "object",
+            "properties": {
+                "events": {
+                    "$ref": "#/$defs/HistoryEventList"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "HistoryEventList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HistoryEvent"
+            }
+        },
+        "HistoryEvent": {
+            "type": "object",
+            "properties": {
+                "eventTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "eventType": {
+                    "$ref": "#/$defs/EventType"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "workflowExecutionStartedEventAttributes": {
+                    "$ref": "#/$defs/WorkflowExecutionStartedEventAttributes"
+                },
+                "workflowExecutionCompletedEventAttributes": {
+                    "$ref": "#/$defs/WorkflowExecutionCompletedEventAttributes"
+                },
+                "completeWorkflowExecutionFailedEventAttributes": {
+                    "$ref": "#/$defs/CompleteWorkflowExecutionFailedEventAttributes"
+                },
+                "workflowExecutionFailedEventAttributes": {
+                    "$ref": "#/$defs/WorkflowExecutionFailedEventAttributes"
+                },
+                "failWorkflowExecutionFailedEventAttributes": {
+                    "$ref": "#/$defs/FailWorkflowExecutionFailedEventAttributes"
+                },
+                "workflowExecutionTimedOutEventAttributes": {
+                    "$ref": "#/$defs/WorkflowExecutionTimedOutEventAttributes"
+                },
+                "workflowExecutionCanceledEventAttributes": {
+                    "$ref": "#/$defs/WorkflowExecutionCanceledEventAttributes"
+                },
+                "cancelWorkflowExecutionFailedEventAttributes": {
+                    "$ref": "#/$defs/CancelWorkflowExecutionFailedEventAttributes"
+                },
+                "workflowExecutionContinuedAsNewEventAttributes": {
+                    "$ref": "#/$defs/WorkflowExecutionContinuedAsNewEventAttributes"
+                },
+                "continueAsNewWorkflowExecutionFailedEventAttributes": {
+                    "$ref": "#/$defs/ContinueAsNewWorkflowExecutionFailedEventAttributes"
+                },
+                "workflowExecutionTerminatedEventAttributes": {
+                    "$ref": "#/$defs/WorkflowExecutionTerminatedEventAttributes"
+                },
+                "workflowExecutionCancelRequestedEventAttributes": {
+                    "$ref": "#/$defs/WorkflowExecutionCancelRequestedEventAttributes"
+                },
+                "decisionTaskScheduledEventAttributes": {
+                    "$ref": "#/$defs/DecisionTaskScheduledEventAttributes"
+                },
+                "decisionTaskStartedEventAttributes": {
+                    "$ref": "#/$defs/DecisionTaskStartedEventAttributes"
+                },
+                "decisionTaskCompletedEventAttributes": {
+                    "$ref": "#/$defs/DecisionTaskCompletedEventAttributes"
+                },
+                "decisionTaskTimedOutEventAttributes": {
+                    "$ref": "#/$defs/DecisionTaskTimedOutEventAttributes"
+                },
+                "activityTaskScheduledEventAttributes": {
+                    "$ref": "#/$defs/ActivityTaskScheduledEventAttributes"
+                },
+                "activityTaskStartedEventAttributes": {
+                    "$ref": "#/$defs/ActivityTaskStartedEventAttributes"
+                },
+                "activityTaskCompletedEventAttributes": {
+                    "$ref": "#/$defs/ActivityTaskCompletedEventAttributes"
+                },
+                "activityTaskFailedEventAttributes": {
+                    "$ref": "#/$defs/ActivityTaskFailedEventAttributes"
+                },
+                "activityTaskTimedOutEventAttributes": {
+                    "$ref": "#/$defs/ActivityTaskTimedOutEventAttributes"
+                },
+                "activityTaskCanceledEventAttributes": {
+                    "$ref": "#/$defs/ActivityTaskCanceledEventAttributes"
+                },
+                "activityTaskCancelRequestedEventAttributes": {
+                    "$ref": "#/$defs/ActivityTaskCancelRequestedEventAttributes"
+                },
+                "workflowExecutionSignaledEventAttributes": {
+                    "$ref": "#/$defs/WorkflowExecutionSignaledEventAttributes"
+                },
+                "markerRecordedEventAttributes": {
+                    "$ref": "#/$defs/MarkerRecordedEventAttributes"
+                },
+                "recordMarkerFailedEventAttributes": {
+                    "$ref": "#/$defs/RecordMarkerFailedEventAttributes"
+                },
+                "timerStartedEventAttributes": {
+                    "$ref": "#/$defs/TimerStartedEventAttributes"
+                },
+                "timerFiredEventAttributes": {
+                    "$ref": "#/$defs/TimerFiredEventAttributes"
+                },
+                "timerCanceledEventAttributes": {
+                    "$ref": "#/$defs/TimerCanceledEventAttributes"
+                },
+                "startChildWorkflowExecutionInitiatedEventAttributes": {
+                    "$ref": "#/$defs/StartChildWorkflowExecutionInitiatedEventAttributes"
+                },
+                "childWorkflowExecutionStartedEventAttributes": {
+                    "$ref": "#/$defs/ChildWorkflowExecutionStartedEventAttributes"
+                },
+                "childWorkflowExecutionCompletedEventAttributes": {
+                    "$ref": "#/$defs/ChildWorkflowExecutionCompletedEventAttributes"
+                },
+                "childWorkflowExecutionFailedEventAttributes": {
+                    "$ref": "#/$defs/ChildWorkflowExecutionFailedEventAttributes"
+                },
+                "childWorkflowExecutionTimedOutEventAttributes": {
+                    "$ref": "#/$defs/ChildWorkflowExecutionTimedOutEventAttributes"
+                },
+                "childWorkflowExecutionCanceledEventAttributes": {
+                    "$ref": "#/$defs/ChildWorkflowExecutionCanceledEventAttributes"
+                },
+                "childWorkflowExecutionTerminatedEventAttributes": {
+                    "$ref": "#/$defs/ChildWorkflowExecutionTerminatedEventAttributes"
+                },
+                "signalExternalWorkflowExecutionInitiatedEventAttributes": {
+                    "$ref": "#/$defs/SignalExternalWorkflowExecutionInitiatedEventAttributes"
+                },
+                "externalWorkflowExecutionSignaledEventAttributes": {
+                    "$ref": "#/$defs/ExternalWorkflowExecutionSignaledEventAttributes"
+                },
+                "signalExternalWorkflowExecutionFailedEventAttributes": {
+                    "$ref": "#/$defs/SignalExternalWorkflowExecutionFailedEventAttributes"
+                },
+                "externalWorkflowExecutionCancelRequestedEventAttributes": {
+                    "$ref": "#/$defs/ExternalWorkflowExecutionCancelRequestedEventAttributes"
+                },
+                "requestCancelExternalWorkflowExecutionInitiatedEventAttributes": {
+                    "$ref": "#/$defs/RequestCancelExternalWorkflowExecutionInitiatedEventAttributes"
+                },
+                "requestCancelExternalWorkflowExecutionFailedEventAttributes": {
+                    "$ref": "#/$defs/RequestCancelExternalWorkflowExecutionFailedEventAttributes"
+                },
+                "scheduleActivityTaskFailedEventAttributes": {
+                    "$ref": "#/$defs/ScheduleActivityTaskFailedEventAttributes"
+                },
+                "requestCancelActivityTaskFailedEventAttributes": {
+                    "$ref": "#/$defs/RequestCancelActivityTaskFailedEventAttributes"
+                },
+                "startTimerFailedEventAttributes": {
+                    "$ref": "#/$defs/StartTimerFailedEventAttributes"
+                },
+                "cancelTimerFailedEventAttributes": {
+                    "$ref": "#/$defs/CancelTimerFailedEventAttributes"
+                },
+                "startChildWorkflowExecutionFailedEventAttributes": {
+                    "$ref": "#/$defs/StartChildWorkflowExecutionFailedEventAttributes"
+                },
+                "lambdaFunctionScheduledEventAttributes": {
+                    "$ref": "#/$defs/LambdaFunctionScheduledEventAttributes"
+                },
+                "lambdaFunctionStartedEventAttributes": {
+                    "$ref": "#/$defs/LambdaFunctionStartedEventAttributes"
+                },
+                "lambdaFunctionCompletedEventAttributes": {
+                    "$ref": "#/$defs/LambdaFunctionCompletedEventAttributes"
+                },
+                "lambdaFunctionFailedEventAttributes": {
+                    "$ref": "#/$defs/LambdaFunctionFailedEventAttributes"
+                },
+                "lambdaFunctionTimedOutEventAttributes": {
+                    "$ref": "#/$defs/LambdaFunctionTimedOutEventAttributes"
+                },
+                "scheduleLambdaFunctionFailedEventAttributes": {
+                    "$ref": "#/$defs/ScheduleLambdaFunctionFailedEventAttributes"
+                },
+                "startLambdaFunctionFailedEventAttributes": {
+                    "$ref": "#/$defs/StartLambdaFunctionFailedEventAttributes"
+                }
+            }
+        },
+        "EventType": {
+            "enum": [
+                "WorkflowExecutionStarted",
+                "WorkflowExecutionCancelRequested",
+                "WorkflowExecutionCompleted",
+                "CompleteWorkflowExecutionFailed",
+                "WorkflowExecutionFailed",
+                "FailWorkflowExecutionFailed",
+                "WorkflowExecutionTimedOut",
+                "WorkflowExecutionCanceled",
+                "CancelWorkflowExecutionFailed",
+                "WorkflowExecutionContinuedAsNew",
+                "ContinueAsNewWorkflowExecutionFailed",
+                "WorkflowExecutionTerminated",
+                "DecisionTaskScheduled",
+                "DecisionTaskStarted",
+                "DecisionTaskCompleted",
+                "DecisionTaskTimedOut",
+                "ActivityTaskScheduled",
+                "ScheduleActivityTaskFailed",
+                "ActivityTaskStarted",
+                "ActivityTaskCompleted",
+                "ActivityTaskFailed",
+                "ActivityTaskTimedOut",
+                "ActivityTaskCanceled",
+                "ActivityTaskCancelRequested",
+                "RequestCancelActivityTaskFailed",
+                "WorkflowExecutionSignaled",
+                "MarkerRecorded",
+                "RecordMarkerFailed",
+                "TimerStarted",
+                "StartTimerFailed",
+                "TimerFired",
+                "TimerCanceled",
+                "CancelTimerFailed",
+                "StartChildWorkflowExecutionInitiated",
+                "StartChildWorkflowExecutionFailed",
+                "ChildWorkflowExecutionStarted",
+                "ChildWorkflowExecutionCompleted",
+                "ChildWorkflowExecutionFailed",
+                "ChildWorkflowExecutionTimedOut",
+                "ChildWorkflowExecutionCanceled",
+                "ChildWorkflowExecutionTerminated",
+                "SignalExternalWorkflowExecutionInitiated",
+                "SignalExternalWorkflowExecutionFailed",
+                "ExternalWorkflowExecutionSignaled",
+                "RequestCancelExternalWorkflowExecutionInitiated",
+                "RequestCancelExternalWorkflowExecutionFailed",
+                "ExternalWorkflowExecutionCancelRequested",
+                "LambdaFunctionScheduled",
+                "LambdaFunctionStarted",
+                "LambdaFunctionCompleted",
+                "LambdaFunctionFailed",
+                "LambdaFunctionTimedOut",
+                "ScheduleLambdaFunctionFailed",
+                "StartLambdaFunctionFailed"
+            ]
+        },
+        "EventId": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "WorkflowExecutionStartedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "executionStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "taskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "childPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "tagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "continuedExecutionRunId": {
+                    "$ref": "#/$defs/WorkflowRunIdOptional"
+                },
+                "parentWorkflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "parentInitiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "lambdaRole": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "WorkflowRunIdOptional": {
+            "type": "string"
+        },
+        "WorkflowExecutionCompletedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/$defs/Data"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "CompleteWorkflowExecutionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "cause": {
+                    "$ref": "#/$defs/CompleteWorkflowExecutionFailedCause"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "CompleteWorkflowExecutionFailedCause": {
+            "enum": [
+                "UNHANDLED_DECISION",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "WorkflowExecutionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "reason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "FailureReason": {
+            "type": "string"
+        },
+        "FailWorkflowExecutionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "cause": {
+                    "$ref": "#/$defs/FailWorkflowExecutionFailedCause"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "FailWorkflowExecutionFailedCause": {
+            "enum": [
+                "UNHANDLED_DECISION",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "WorkflowExecutionTimedOutEventAttributes": {
+            "type": "object",
+            "properties": {
+                "timeoutType": {
+                    "$ref": "#/$defs/WorkflowExecutionTimeoutType"
+                },
+                "childPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                }
+            }
+        },
+        "WorkflowExecutionTimeoutType": {
+            "enum": [
+                "START_TO_CLOSE"
+            ]
+        },
+        "WorkflowExecutionCanceledEventAttributes": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "$ref": "#/$defs/Data"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "CancelWorkflowExecutionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "cause": {
+                    "$ref": "#/$defs/CancelWorkflowExecutionFailedCause"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "CancelWorkflowExecutionFailedCause": {
+            "enum": [
+                "UNHANDLED_DECISION",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "WorkflowExecutionContinuedAsNewEventAttributes": {
+            "type": "object",
+            "properties": {
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "newExecutionRunId": {
+                    "$ref": "#/$defs/WorkflowRunId"
+                },
+                "executionStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "taskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "childPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                },
+                "tagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "lambdaRole": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ContinueAsNewWorkflowExecutionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "cause": {
+                    "$ref": "#/$defs/ContinueAsNewWorkflowExecutionFailedCause"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ContinueAsNewWorkflowExecutionFailedCause": {
+            "enum": [
+                "UNHANDLED_DECISION",
+                "WORKFLOW_TYPE_DEPRECATED",
+                "WORKFLOW_TYPE_DOES_NOT_EXIST",
+                "DEFAULT_EXECUTION_START_TO_CLOSE_TIMEOUT_UNDEFINED",
+                "DEFAULT_TASK_START_TO_CLOSE_TIMEOUT_UNDEFINED",
+                "DEFAULT_TASK_LIST_UNDEFINED",
+                "DEFAULT_CHILD_POLICY_UNDEFINED",
+                "CONTINUE_AS_NEW_WORKFLOW_EXECUTION_RATE_EXCEEDED",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "WorkflowExecutionTerminatedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "reason": {
+                    "$ref": "#/$defs/TerminateReason"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                },
+                "childPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                },
+                "cause": {
+                    "$ref": "#/$defs/WorkflowExecutionTerminatedCause"
+                }
+            }
+        },
+        "TerminateReason": {
+            "type": "string"
+        },
+        "WorkflowExecutionTerminatedCause": {
+            "enum": [
+                "CHILD_POLICY_APPLIED",
+                "EVENT_LIMIT_EXCEEDED",
+                "OPERATOR_INITIATED"
+            ]
+        },
+        "WorkflowExecutionCancelRequestedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "externalWorkflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "externalInitiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "cause": {
+                    "$ref": "#/$defs/WorkflowExecutionCancelRequestedCause"
+                }
+            }
+        },
+        "WorkflowExecutionCancelRequestedCause": {
+            "enum": [
+                "CHILD_POLICY_APPLIED"
+            ]
+        },
+        "DecisionTaskScheduledEventAttributes": {
+            "type": "object",
+            "properties": {
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "startToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "scheduleToStartTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                }
+            }
+        },
+        "DecisionTaskStartedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "identity": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "Identity": {
+            "type": "string"
+        },
+        "DecisionTaskCompletedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "executionContext": {
+                    "$ref": "#/$defs/Data"
+                },
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskListScheduleToStartTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                }
+            }
+        },
+        "DecisionTaskTimedOutEventAttributes": {
+            "type": "object",
+            "properties": {
+                "timeoutType": {
+                    "$ref": "#/$defs/DecisionTaskTimeoutType"
+                },
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "DecisionTaskTimeoutType": {
+            "enum": [
+                "START_TO_CLOSE",
+                "SCHEDULE_TO_START"
+            ]
+        },
+        "ActivityTaskScheduledEventAttributes": {
+            "type": "object",
+            "properties": {
+                "activityType": {
+                    "$ref": "#/$defs/ActivityType"
+                },
+                "activityId": {
+                    "$ref": "#/$defs/ActivityId"
+                },
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                },
+                "scheduleToStartTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "scheduleToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "startToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "heartbeatTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                }
+            }
+        },
+        "ActivityId": {
+            "type": "string"
+        },
+        "ActivityTaskStartedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "identity": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ActivityTaskCompletedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/$defs/Data"
+                },
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ActivityTaskFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "reason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                },
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ActivityTaskTimedOutEventAttributes": {
+            "type": "object",
+            "properties": {
+                "timeoutType": {
+                    "$ref": "#/$defs/ActivityTaskTimeoutType"
+                },
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "details": {
+                    "$ref": "#/$defs/LimitedData"
+                }
+            }
+        },
+        "ActivityTaskTimeoutType": {
+            "enum": [
+                "START_TO_CLOSE",
+                "SCHEDULE_TO_START",
+                "SCHEDULE_TO_CLOSE",
+                "HEARTBEAT"
+            ]
+        },
+        "LimitedData": {
+            "type": "string"
+        },
+        "ActivityTaskCanceledEventAttributes": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "$ref": "#/$defs/Data"
+                },
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "latestCancelRequestedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ActivityTaskCancelRequestedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "activityId": {
+                    "$ref": "#/$defs/ActivityId"
+                }
+            }
+        },
+        "WorkflowExecutionSignaledEventAttributes": {
+            "type": "object",
+            "properties": {
+                "signalName": {
+                    "$ref": "#/$defs/SignalName"
+                },
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "externalWorkflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "externalInitiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "SignalName": {
+            "type": "string"
+        },
+        "MarkerRecordedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "markerName": {
+                    "$ref": "#/$defs/MarkerName"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "MarkerName": {
+            "type": "string"
+        },
+        "RecordMarkerFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "markerName": {
+                    "$ref": "#/$defs/MarkerName"
+                },
+                "cause": {
+                    "$ref": "#/$defs/RecordMarkerFailedCause"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "RecordMarkerFailedCause": {
+            "enum": [
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "TimerStartedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "timerId": {
+                    "$ref": "#/$defs/TimerId"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                },
+                "startToFireTimeout": {
+                    "$ref": "#/$defs/DurationInSeconds"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "TimerId": {
+            "type": "string"
+        },
+        "TimerFiredEventAttributes": {
+            "type": "object",
+            "properties": {
+                "timerId": {
+                    "$ref": "#/$defs/TimerId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "TimerCanceledEventAttributes": {
+            "type": "object",
+            "properties": {
+                "timerId": {
+                    "$ref": "#/$defs/TimerId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "StartChildWorkflowExecutionInitiatedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                },
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "executionStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "childPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                },
+                "taskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "tagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "lambdaRole": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ChildWorkflowExecutionStartedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ChildWorkflowExecutionCompletedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "result": {
+                    "$ref": "#/$defs/Data"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ChildWorkflowExecutionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "reason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ChildWorkflowExecutionTimedOutEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "timeoutType": {
+                    "$ref": "#/$defs/WorkflowExecutionTimeoutType"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ChildWorkflowExecutionCanceledEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ChildWorkflowExecutionTerminatedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "SignalExternalWorkflowExecutionInitiatedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunIdOptional"
+                },
+                "signalName": {
+                    "$ref": "#/$defs/SignalName"
+                },
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "ExternalWorkflowExecutionSignaledEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "SignalExternalWorkflowExecutionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunIdOptional"
+                },
+                "cause": {
+                    "$ref": "#/$defs/SignalExternalWorkflowExecutionFailedCause"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "SignalExternalWorkflowExecutionFailedCause": {
+            "enum": [
+                "UNKNOWN_EXTERNAL_WORKFLOW_EXECUTION",
+                "SIGNAL_EXTERNAL_WORKFLOW_EXECUTION_RATE_EXCEEDED",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "ExternalWorkflowExecutionCancelRequestedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "RequestCancelExternalWorkflowExecutionInitiatedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunIdOptional"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "RequestCancelExternalWorkflowExecutionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunIdOptional"
+                },
+                "cause": {
+                    "$ref": "#/$defs/RequestCancelExternalWorkflowExecutionFailedCause"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "RequestCancelExternalWorkflowExecutionFailedCause": {
+            "enum": [
+                "UNKNOWN_EXTERNAL_WORKFLOW_EXECUTION",
+                "REQUEST_CANCEL_EXTERNAL_WORKFLOW_EXECUTION_RATE_EXCEEDED",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "ScheduleActivityTaskFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "activityType": {
+                    "$ref": "#/$defs/ActivityType"
+                },
+                "activityId": {
+                    "$ref": "#/$defs/ActivityId"
+                },
+                "cause": {
+                    "$ref": "#/$defs/ScheduleActivityTaskFailedCause"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ScheduleActivityTaskFailedCause": {
+            "enum": [
+                "ACTIVITY_TYPE_DEPRECATED",
+                "ACTIVITY_TYPE_DOES_NOT_EXIST",
+                "ACTIVITY_ID_ALREADY_IN_USE",
+                "OPEN_ACTIVITIES_LIMIT_EXCEEDED",
+                "ACTIVITY_CREATION_RATE_EXCEEDED",
+                "DEFAULT_SCHEDULE_TO_CLOSE_TIMEOUT_UNDEFINED",
+                "DEFAULT_TASK_LIST_UNDEFINED",
+                "DEFAULT_SCHEDULE_TO_START_TIMEOUT_UNDEFINED",
+                "DEFAULT_START_TO_CLOSE_TIMEOUT_UNDEFINED",
+                "DEFAULT_HEARTBEAT_TIMEOUT_UNDEFINED",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "RequestCancelActivityTaskFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "activityId": {
+                    "$ref": "#/$defs/ActivityId"
+                },
+                "cause": {
+                    "$ref": "#/$defs/RequestCancelActivityTaskFailedCause"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "RequestCancelActivityTaskFailedCause": {
+            "enum": [
+                "ACTIVITY_ID_UNKNOWN",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "StartTimerFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "timerId": {
+                    "$ref": "#/$defs/TimerId"
+                },
+                "cause": {
+                    "$ref": "#/$defs/StartTimerFailedCause"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "StartTimerFailedCause": {
+            "enum": [
+                "TIMER_ID_ALREADY_IN_USE",
+                "OPEN_TIMERS_LIMIT_EXCEEDED",
+                "TIMER_CREATION_RATE_EXCEEDED",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "CancelTimerFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "timerId": {
+                    "$ref": "#/$defs/TimerId"
+                },
+                "cause": {
+                    "$ref": "#/$defs/CancelTimerFailedCause"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "CancelTimerFailedCause": {
+            "enum": [
+                "TIMER_ID_UNKNOWN",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "StartChildWorkflowExecutionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "cause": {
+                    "$ref": "#/$defs/StartChildWorkflowExecutionFailedCause"
+                },
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "initiatedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "StartChildWorkflowExecutionFailedCause": {
+            "enum": [
+                "WORKFLOW_TYPE_DOES_NOT_EXIST",
+                "WORKFLOW_TYPE_DEPRECATED",
+                "OPEN_CHILDREN_LIMIT_EXCEEDED",
+                "OPEN_WORKFLOWS_LIMIT_EXCEEDED",
+                "CHILD_CREATION_RATE_EXCEEDED",
+                "WORKFLOW_ALREADY_RUNNING",
+                "DEFAULT_EXECUTION_START_TO_CLOSE_TIMEOUT_UNDEFINED",
+                "DEFAULT_TASK_LIST_UNDEFINED",
+                "DEFAULT_TASK_START_TO_CLOSE_TIMEOUT_UNDEFINED",
+                "DEFAULT_CHILD_POLICY_UNDEFINED",
+                "OPERATION_NOT_PERMITTED"
+            ]
+        },
+        "LambdaFunctionScheduledEventAttributes": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/FunctionId"
+                },
+                "name": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                },
+                "input": {
+                    "$ref": "#/$defs/FunctionInput"
+                },
+                "startToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "FunctionId": {
+            "type": "string"
+        },
+        "FunctionName": {
+            "type": "string"
+        },
+        "FunctionInput": {
+            "type": "string"
+        },
+        "LambdaFunctionStartedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "LambdaFunctionCompletedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "result": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "LambdaFunctionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "reason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "LambdaFunctionTimedOutEventAttributes": {
+            "type": "object",
+            "properties": {
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "timeoutType": {
+                    "$ref": "#/$defs/LambdaFunctionTimeoutType"
+                }
+            }
+        },
+        "LambdaFunctionTimeoutType": {
+            "enum": [
+                "START_TO_CLOSE"
+            ]
+        },
+        "ScheduleLambdaFunctionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/FunctionId"
+                },
+                "name": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "cause": {
+                    "$ref": "#/$defs/ScheduleLambdaFunctionFailedCause"
+                },
+                "decisionTaskCompletedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "ScheduleLambdaFunctionFailedCause": {
+            "enum": [
+                "ID_ALREADY_IN_USE",
+                "OPEN_LAMBDA_FUNCTIONS_LIMIT_EXCEEDED",
+                "LAMBDA_FUNCTION_CREATION_RATE_EXCEEDED",
+                "LAMBDA_SERVICE_NOT_AVAILABLE_IN_REGION"
+            ]
+        },
+        "StartLambdaFunctionFailedEventAttributes": {
+            "type": "object",
+            "properties": {
+                "scheduledEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "cause": {
+                    "$ref": "#/$defs/StartLambdaFunctionFailedCause"
+                },
+                "message": {
+                    "$ref": "#/$defs/CauseMessage"
+                }
+            }
+        },
+        "StartLambdaFunctionFailedCause": {
+            "enum": [
+                "ASSUME_ROLE_FAILED"
+            ]
+        },
+        "CauseMessage": {
+            "type": "string"
+        },
+        "PageToken": {
+            "type": "string"
+        },
+        "GetWorkflowExecutionHistoryInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "execution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "maximumPageSize": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "reverseOrder": {
+                    "$ref": "#/$defs/ReverseOrder"
+                }
+            }
+        },
+        "PageSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ReverseOrder": {
+            "type": "boolean"
+        },
+        "ActivityTypeInfos": {
+            "type": "object",
+            "properties": {
+                "typeInfos": {
+                    "$ref": "#/$defs/ActivityTypeInfoList"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "ActivityTypeInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActivityTypeInfo"
+            }
+        },
+        "ListActivityTypesInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "registrationStatus": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "maximumPageSize": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "reverseOrder": {
+                    "$ref": "#/$defs/ReverseOrder"
+                }
+            }
+        },
+        "WorkflowExecutionInfos": {
+            "type": "object",
+            "properties": {
+                "executionInfos": {
+                    "$ref": "#/$defs/WorkflowExecutionInfoList"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "WorkflowExecutionInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WorkflowExecutionInfo"
+            }
+        },
+        "ListClosedWorkflowExecutionsInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "startTimeFilter": {
+                    "$ref": "#/$defs/ExecutionTimeFilter"
+                },
+                "closeTimeFilter": {
+                    "$ref": "#/$defs/ExecutionTimeFilter"
+                },
+                "executionFilter": {
+                    "$ref": "#/$defs/WorkflowExecutionFilter"
+                },
+                "closeStatusFilter": {
+                    "$ref": "#/$defs/CloseStatusFilter"
+                },
+                "typeFilter": {
+                    "$ref": "#/$defs/WorkflowTypeFilter"
+                },
+                "tagFilter": {
+                    "$ref": "#/$defs/TagFilter"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "maximumPageSize": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "reverseOrder": {
+                    "$ref": "#/$defs/ReverseOrder"
+                }
+            }
+        },
+        "DomainInfos": {
+            "type": "object",
+            "properties": {
+                "domainInfos": {
+                    "$ref": "#/$defs/DomainInfoList"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "DomainInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DomainInfo"
+            }
+        },
+        "ListDomainsInput": {
+            "type": "object",
+            "properties": {
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "registrationStatus": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "maximumPageSize": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "reverseOrder": {
+                    "$ref": "#/$defs/ReverseOrder"
+                }
+            }
+        },
+        "ListOpenWorkflowExecutionsInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "startTimeFilter": {
+                    "$ref": "#/$defs/ExecutionTimeFilter"
+                },
+                "typeFilter": {
+                    "$ref": "#/$defs/WorkflowTypeFilter"
+                },
+                "tagFilter": {
+                    "$ref": "#/$defs/TagFilter"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "maximumPageSize": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "reverseOrder": {
+                    "$ref": "#/$defs/ReverseOrder"
+                },
+                "executionFilter": {
+                    "$ref": "#/$defs/WorkflowExecutionFilter"
+                }
+            }
+        },
+        "ListTagsForResourceOutput": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/ResourceTagList"
+                }
+            }
+        },
+        "ResourceTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTag"
+            }
+        },
+        "ResourceTag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/ResourceTagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/ResourceTagValue"
+                }
+            }
+        },
+        "ResourceTagKey": {
+            "type": "string"
+        },
+        "ResourceTagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "WorkflowTypeInfos": {
+            "type": "object",
+            "properties": {
+                "typeInfos": {
+                    "$ref": "#/$defs/WorkflowTypeInfoList"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "WorkflowTypeInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WorkflowTypeInfo"
+            }
+        },
+        "ListWorkflowTypesInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "registrationStatus": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "maximumPageSize": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "reverseOrder": {
+                    "$ref": "#/$defs/ReverseOrder"
+                }
+            }
+        },
+        "ActivityTask": {
+            "type": "object",
+            "properties": {
+                "taskToken": {
+                    "$ref": "#/$defs/TaskToken"
+                },
+                "activityId": {
+                    "$ref": "#/$defs/ActivityId"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "workflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "activityType": {
+                    "$ref": "#/$defs/ActivityType"
+                },
+                "input": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "TaskToken": {
+            "type": "string"
+        },
+        "PollForActivityTaskInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "identity": {
+                    "$ref": "#/$defs/Identity"
+                }
+            }
+        },
+        "DecisionTask": {
+            "type": "object",
+            "properties": {
+                "taskToken": {
+                    "$ref": "#/$defs/TaskToken"
+                },
+                "startedEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "workflowExecution": {
+                    "$ref": "#/$defs/WorkflowExecution"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "events": {
+                    "$ref": "#/$defs/HistoryEventList"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "previousStartedEventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "PollForDecisionTaskInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "identity": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "nextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "maximumPageSize": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "reverseOrder": {
+                    "$ref": "#/$defs/ReverseOrder"
+                },
+                "startAtPreviousStartedEvent": {
+                    "$ref": "#/$defs/StartAtPreviousStartedEvent"
+                }
+            }
+        },
+        "StartAtPreviousStartedEvent": {
+            "type": "boolean"
+        },
+        "ActivityTaskStatus": {
+            "type": "object",
+            "properties": {
+                "cancelRequested": {
+                    "$ref": "#/$defs/Canceled"
+                }
+            }
+        },
+        "RecordActivityTaskHeartbeatInput": {
+            "type": "object",
+            "properties": {
+                "taskToken": {
+                    "$ref": "#/$defs/TaskToken"
+                },
+                "details": {
+                    "$ref": "#/$defs/LimitedData"
+                }
+            }
+        },
+        "RegisterActivityTypeInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "defaultTaskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "defaultTaskHeartbeatTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "defaultTaskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "defaultTaskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "defaultTaskScheduleToStartTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "defaultTaskScheduleToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                }
+            }
+        },
+        "RegisterDomainInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "workflowExecutionRetentionPeriodInDays": {
+                    "$ref": "#/$defs/DurationInDays"
+                },
+                "tags": {
+                    "$ref": "#/$defs/ResourceTagList"
+                }
+            }
+        },
+        "RegisterWorkflowTypeInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "defaultTaskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "defaultExecutionStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "defaultTaskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "defaultTaskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "defaultChildPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                },
+                "defaultLambdaRole": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "RequestCancelWorkflowExecutionInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunIdOptional"
+                }
+            }
+        },
+        "RespondActivityTaskCanceledInput": {
+            "type": "object",
+            "properties": {
+                "taskToken": {
+                    "$ref": "#/$defs/TaskToken"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "RespondActivityTaskCompletedInput": {
+            "type": "object",
+            "properties": {
+                "taskToken": {
+                    "$ref": "#/$defs/TaskToken"
+                },
+                "result": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "RespondActivityTaskFailedInput": {
+            "type": "object",
+            "properties": {
+                "taskToken": {
+                    "$ref": "#/$defs/TaskToken"
+                },
+                "reason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "RespondDecisionTaskCompletedInput": {
+            "type": "object",
+            "properties": {
+                "taskToken": {
+                    "$ref": "#/$defs/TaskToken"
+                },
+                "decisions": {
+                    "$ref": "#/$defs/DecisionList"
+                },
+                "executionContext": {
+                    "$ref": "#/$defs/Data"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskListScheduleToStartTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                }
+            }
+        },
+        "DecisionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Decision"
+            }
+        },
+        "Decision": {
+            "type": "object",
+            "properties": {
+                "decisionType": {
+                    "$ref": "#/$defs/DecisionType"
+                },
+                "scheduleActivityTaskDecisionAttributes": {
+                    "$ref": "#/$defs/ScheduleActivityTaskDecisionAttributes"
+                },
+                "requestCancelActivityTaskDecisionAttributes": {
+                    "$ref": "#/$defs/RequestCancelActivityTaskDecisionAttributes"
+                },
+                "completeWorkflowExecutionDecisionAttributes": {
+                    "$ref": "#/$defs/CompleteWorkflowExecutionDecisionAttributes"
+                },
+                "failWorkflowExecutionDecisionAttributes": {
+                    "$ref": "#/$defs/FailWorkflowExecutionDecisionAttributes"
+                },
+                "cancelWorkflowExecutionDecisionAttributes": {
+                    "$ref": "#/$defs/CancelWorkflowExecutionDecisionAttributes"
+                },
+                "continueAsNewWorkflowExecutionDecisionAttributes": {
+                    "$ref": "#/$defs/ContinueAsNewWorkflowExecutionDecisionAttributes"
+                },
+                "recordMarkerDecisionAttributes": {
+                    "$ref": "#/$defs/RecordMarkerDecisionAttributes"
+                },
+                "startTimerDecisionAttributes": {
+                    "$ref": "#/$defs/StartTimerDecisionAttributes"
+                },
+                "cancelTimerDecisionAttributes": {
+                    "$ref": "#/$defs/CancelTimerDecisionAttributes"
+                },
+                "signalExternalWorkflowExecutionDecisionAttributes": {
+                    "$ref": "#/$defs/SignalExternalWorkflowExecutionDecisionAttributes"
+                },
+                "requestCancelExternalWorkflowExecutionDecisionAttributes": {
+                    "$ref": "#/$defs/RequestCancelExternalWorkflowExecutionDecisionAttributes"
+                },
+                "startChildWorkflowExecutionDecisionAttributes": {
+                    "$ref": "#/$defs/StartChildWorkflowExecutionDecisionAttributes"
+                },
+                "scheduleLambdaFunctionDecisionAttributes": {
+                    "$ref": "#/$defs/ScheduleLambdaFunctionDecisionAttributes"
+                }
+            }
+        },
+        "DecisionType": {
+            "enum": [
+                "ScheduleActivityTask",
+                "RequestCancelActivityTask",
+                "CompleteWorkflowExecution",
+                "FailWorkflowExecution",
+                "CancelWorkflowExecution",
+                "ContinueAsNewWorkflowExecution",
+                "RecordMarker",
+                "StartTimer",
+                "CancelTimer",
+                "SignalExternalWorkflowExecution",
+                "RequestCancelExternalWorkflowExecution",
+                "StartChildWorkflowExecution",
+                "ScheduleLambdaFunction"
+            ]
+        },
+        "ScheduleActivityTaskDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "activityType": {
+                    "$ref": "#/$defs/ActivityType"
+                },
+                "activityId": {
+                    "$ref": "#/$defs/ActivityId"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                },
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "scheduleToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "scheduleToStartTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "startToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "heartbeatTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                }
+            }
+        },
+        "RequestCancelActivityTaskDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "activityId": {
+                    "$ref": "#/$defs/ActivityId"
+                }
+            }
+        },
+        "CompleteWorkflowExecutionDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "FailWorkflowExecutionDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "reason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "CancelWorkflowExecutionDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "ContinueAsNewWorkflowExecutionDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "executionStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "taskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "childPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                },
+                "tagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "workflowTypeVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "lambdaRole": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "RecordMarkerDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "markerName": {
+                    "$ref": "#/$defs/MarkerName"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "StartTimerDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "timerId": {
+                    "$ref": "#/$defs/TimerId"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                },
+                "startToFireTimeout": {
+                    "$ref": "#/$defs/DurationInSeconds"
+                }
+            }
+        },
+        "CancelTimerDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "timerId": {
+                    "$ref": "#/$defs/TimerId"
+                }
+            }
+        },
+        "SignalExternalWorkflowExecutionDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunIdOptional"
+                },
+                "signalName": {
+                    "$ref": "#/$defs/SignalName"
+                },
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "RequestCancelExternalWorkflowExecutionDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunIdOptional"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "StartChildWorkflowExecutionDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                },
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "executionStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "taskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "childPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                },
+                "tagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "lambdaRole": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ScheduleLambdaFunctionDecisionAttributes": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/FunctionId"
+                },
+                "name": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "control": {
+                    "$ref": "#/$defs/Data"
+                },
+                "input": {
+                    "$ref": "#/$defs/FunctionInput"
+                },
+                "startToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                }
+            }
+        },
+        "SignalWorkflowExecutionInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunIdOptional"
+                },
+                "signalName": {
+                    "$ref": "#/$defs/SignalName"
+                },
+                "input": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "Run": {
+            "type": "object",
+            "properties": {
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunId"
+                }
+            }
+        },
+        "StartWorkflowExecutionInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                },
+                "taskList": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "taskPriority": {
+                    "$ref": "#/$defs/TaskPriority"
+                },
+                "input": {
+                    "$ref": "#/$defs/Data"
+                },
+                "executionStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "tagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "taskStartToCloseTimeout": {
+                    "$ref": "#/$defs/DurationInSecondsOptional"
+                },
+                "childPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                },
+                "lambdaRole": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/ResourceTagList"
+                }
+            }
+        },
+        "TerminateWorkflowExecutionInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "workflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "runId": {
+                    "$ref": "#/$defs/WorkflowRunIdOptional"
+                },
+                "reason": {
+                    "$ref": "#/$defs/TerminateReason"
+                },
+                "details": {
+                    "$ref": "#/$defs/Data"
+                },
+                "childPolicy": {
+                    "$ref": "#/$defs/ChildPolicy"
+                }
+            }
+        },
+        "UndeprecateActivityTypeInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "activityType": {
+                    "$ref": "#/$defs/ActivityType"
+                }
+            }
+        },
+        "UndeprecateDomainInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "UndeprecateWorkflowTypeInput": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "workflowType": {
+                    "$ref": "#/$defs/WorkflowType"
+                }
+            }
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/ResourceTagKeyList"
+                }
+            }
+        },
+        "ResourceTagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://swf-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://swf.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://swf-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://swf.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://swf.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

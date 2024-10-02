@@ -1,0 +1,2078 @@
+{
+    "name": "app-integrations",
+    "commands": [
+        {
+            "name": "CreateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDataIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDataIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDataIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDataIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDataIntegrationAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDataIntegrationAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDataIntegrationAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDataIntegrationAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateEventIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateEventIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateEventIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEventIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDataIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDataIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDataIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDataIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEventIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEventIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteEventIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEventIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDataIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDataIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDataIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDataIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEventIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEventIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEventIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEventIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApplicationAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListApplicationAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApplicationAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApplicationAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListApplications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApplicationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApplicationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDataIntegrationAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDataIntegrationAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDataIntegrationAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDataIntegrationAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDataIntegrations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDataIntegrations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDataIntegrationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDataIntegrationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEventIntegrationAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEventIntegrationAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEventIntegrationAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEventIntegrationAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEventIntegrations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEventIntegrations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEventIntegrationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEventIntegrationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDataIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDataIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDataIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDataIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDataIntegrationAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDataIntegrationAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDataIntegrationAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDataIntegrationAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateEventIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateEventIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateEventIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEventIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "CreateApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/ApplicationNamespace"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ApplicationSourceConfig": {
+                    "$ref": "#/$defs/ApplicationSourceConfig"
+                },
+                "Subscriptions": {
+                    "$ref": "#/$defs/SubscriptionList"
+                },
+                "Publications": {
+                    "$ref": "#/$defs/PublicationList"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "Permissions": {
+                    "$ref": "#/$defs/PermissionList"
+                }
+            }
+        },
+        "ApplicationName": {
+            "type": "string"
+        },
+        "ApplicationNamespace": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "ApplicationSourceConfig": {
+            "type": "object",
+            "properties": {
+                "ExternalUrlConfig": {
+                    "$ref": "#/$defs/ExternalUrlConfig"
+                }
+            }
+        },
+        "ExternalUrlConfig": {
+            "type": "object",
+            "properties": {
+                "AccessUrl": {
+                    "$ref": "#/$defs/URL"
+                },
+                "ApprovedOrigins": {
+                    "$ref": "#/$defs/ApplicationApprovedOrigins"
+                }
+            }
+        },
+        "URL": {
+            "type": "string"
+        },
+        "ApplicationApprovedOrigins": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationTrustedSource"
+            }
+        },
+        "ApplicationTrustedSource": {
+            "type": "string"
+        },
+        "SubscriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Subscription"
+            }
+        },
+        "Subscription": {
+            "type": "object",
+            "properties": {
+                "Event": {
+                    "$ref": "#/$defs/EventName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "EventName": {
+            "type": "string"
+        },
+        "PublicationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Publication"
+            }
+        },
+        "Publication": {
+            "type": "object",
+            "properties": {
+                "Event": {
+                    "$ref": "#/$defs/EventName"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/EventDefinitionSchema"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "EventDefinitionSchema": {
+            "type": "string"
+        },
+        "IdempotencyToken": {
+            "type": "string"
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "PermissionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Permission"
+            }
+        },
+        "Permission": {
+            "type": "string"
+        },
+        "CreateDataIntegrationResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "KmsKey": {
+                    "$ref": "#/$defs/NonBlankString"
+                },
+                "SourceURI": {
+                    "$ref": "#/$defs/SourceURI"
+                },
+                "ScheduleConfiguration": {
+                    "$ref": "#/$defs/ScheduleConfiguration"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "FileConfiguration": {
+                    "$ref": "#/$defs/FileConfiguration"
+                },
+                "ObjectConfiguration": {
+                    "$ref": "#/$defs/ObjectConfiguration"
+                }
+            }
+        },
+        "Name": {
+            "type": "string"
+        },
+        "NonBlankString": {
+            "type": "string"
+        },
+        "SourceURI": {
+            "type": "string"
+        },
+        "ScheduleConfiguration": {
+            "type": "object",
+            "properties": {
+                "FirstExecutionFrom": {
+                    "$ref": "#/$defs/NonBlankString"
+                },
+                "Object": {
+                    "$ref": "#/$defs/Object"
+                },
+                "ScheduleExpression": {
+                    "$ref": "#/$defs/NonBlankString"
+                }
+            }
+        },
+        "Object": {
+            "type": "string"
+        },
+        "FileConfiguration": {
+            "type": "object",
+            "properties": {
+                "Folders": {
+                    "$ref": "#/$defs/FolderList"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FieldsMap"
+                }
+            }
+        },
+        "FolderList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonBlankLongString"
+            }
+        },
+        "NonBlankLongString": {
+            "type": "string"
+        },
+        "FieldsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FieldsList"
+            }
+        },
+        "FieldsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Fields"
+            }
+        },
+        "Fields": {
+            "type": "string"
+        },
+        "ObjectConfiguration": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FieldsMap"
+            }
+        },
+        "CreateDataIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "KmsKey": {
+                    "$ref": "#/$defs/NonBlankString"
+                },
+                "SourceURI": {
+                    "$ref": "#/$defs/SourceURI"
+                },
+                "ScheduleConfig": {
+                    "$ref": "#/$defs/ScheduleConfiguration"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "FileConfiguration": {
+                    "$ref": "#/$defs/FileConfiguration"
+                },
+                "ObjectConfiguration": {
+                    "$ref": "#/$defs/ObjectConfiguration"
+                }
+            }
+        },
+        "CreateDataIntegrationAssociationResponse": {
+            "type": "object",
+            "properties": {
+                "DataIntegrationAssociationId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "DataIntegrationArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateDataIntegrationAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "DataIntegrationIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "ObjectConfiguration": {
+                    "$ref": "#/$defs/ObjectConfiguration"
+                },
+                "DestinationURI": {
+                    "$ref": "#/$defs/DestinationURI"
+                },
+                "ClientAssociationMetadata": {
+                    "$ref": "#/$defs/ClientAssociationMetadata"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "ExecutionConfiguration": {
+                    "$ref": "#/$defs/ExecutionConfiguration"
+                }
+            }
+        },
+        "Identifier": {
+            "type": "string"
+        },
+        "ClientId": {
+            "type": "string"
+        },
+        "DestinationURI": {
+            "type": "string"
+        },
+        "ClientAssociationMetadata": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/NonBlankString"
+            }
+        },
+        "ExecutionConfiguration": {
+            "type": "object",
+            "properties": {
+                "ExecutionMode": {
+                    "$ref": "#/$defs/ExecutionMode"
+                },
+                "OnDemandConfiguration": {
+                    "$ref": "#/$defs/OnDemandConfiguration"
+                },
+                "ScheduleConfiguration": {
+                    "$ref": "#/$defs/ScheduleConfiguration"
+                }
+            }
+        },
+        "ExecutionMode": {
+            "enum": [
+                "ON_DEMAND",
+                "SCHEDULED"
+            ]
+        },
+        "OnDemandConfiguration": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/NonBlankString"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/NonBlankString"
+                }
+            }
+        },
+        "CreateEventIntegrationResponse": {
+            "type": "object",
+            "properties": {
+                "EventIntegrationArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateEventIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "EventFilter": {
+                    "$ref": "#/$defs/EventFilter"
+                },
+                "EventBridgeBus": {
+                    "$ref": "#/$defs/EventBridgeBus"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "EventFilter": {
+            "type": "object",
+            "properties": {
+                "Source": {
+                    "$ref": "#/$defs/Source"
+                }
+            }
+        },
+        "Source": {
+            "type": "string"
+        },
+        "EventBridgeBus": {
+            "type": "string"
+        },
+        "DeleteApplicationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/ArnOrUUID"
+                }
+            }
+        },
+        "ArnOrUUID": {
+            "type": "string"
+        },
+        "DeleteDataIntegrationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteDataIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "DataIntegrationIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                }
+            }
+        },
+        "DeleteEventIntegrationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteEventIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                }
+            }
+        },
+        "GetApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/ApplicationNamespace"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ApplicationSourceConfig": {
+                    "$ref": "#/$defs/ApplicationSourceConfig"
+                },
+                "Subscriptions": {
+                    "$ref": "#/$defs/SubscriptionList"
+                },
+                "Publications": {
+                    "$ref": "#/$defs/PublicationList"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "Permissions": {
+                    "$ref": "#/$defs/PermissionList"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/ArnOrUUID"
+                }
+            }
+        },
+        "GetDataIntegrationResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "KmsKey": {
+                    "$ref": "#/$defs/NonBlankString"
+                },
+                "SourceURI": {
+                    "$ref": "#/$defs/SourceURI"
+                },
+                "ScheduleConfiguration": {
+                    "$ref": "#/$defs/ScheduleConfiguration"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "FileConfiguration": {
+                    "$ref": "#/$defs/FileConfiguration"
+                },
+                "ObjectConfiguration": {
+                    "$ref": "#/$defs/ObjectConfiguration"
+                }
+            }
+        },
+        "GetDataIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                }
+            }
+        },
+        "GetEventIntegrationResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "EventIntegrationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "EventBridgeBus": {
+                    "$ref": "#/$defs/EventBridgeBus"
+                },
+                "EventFilter": {
+                    "$ref": "#/$defs/EventFilter"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "GetEventIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                }
+            }
+        },
+        "ListApplicationAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationAssociations": {
+                    "$ref": "#/$defs/ApplicationAssociationsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ApplicationAssociationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationAssociationSummary"
+            }
+        },
+        "ApplicationAssociationSummary": {
+            "type": "object",
+            "properties": {
+                "ApplicationAssociationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ApplicationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/ClientId"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListApplicationAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ArnOrUUID"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListApplicationsResponse": {
+            "type": "object",
+            "properties": {
+                "Applications": {
+                    "$ref": "#/$defs/ApplicationsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ApplicationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationSummary"
+            }
+        },
+        "ApplicationSummary": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/ApplicationNamespace"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListApplicationsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListDataIntegrationAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "DataIntegrationAssociations": {
+                    "$ref": "#/$defs/DataIntegrationAssociationsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DataIntegrationAssociationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataIntegrationAssociationSummary"
+            }
+        },
+        "DataIntegrationAssociationSummary": {
+            "type": "object",
+            "properties": {
+                "DataIntegrationAssociationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DataIntegrationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "DestinationURI": {
+                    "$ref": "#/$defs/DestinationURI"
+                },
+                "LastExecutionStatus": {
+                    "$ref": "#/$defs/LastExecutionStatus"
+                },
+                "ExecutionConfiguration": {
+                    "$ref": "#/$defs/ExecutionConfiguration"
+                }
+            }
+        },
+        "LastExecutionStatus": {
+            "type": "object",
+            "properties": {
+                "ExecutionStatus": {
+                    "$ref": "#/$defs/ExecutionStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/NonBlankString"
+                }
+            }
+        },
+        "ExecutionStatus": {
+            "enum": [
+                "COMPLETED",
+                "IN_PROGRESS",
+                "FAILED"
+            ]
+        },
+        "ListDataIntegrationAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "DataIntegrationIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListDataIntegrationsResponse": {
+            "type": "object",
+            "properties": {
+                "DataIntegrations": {
+                    "$ref": "#/$defs/DataIntegrationsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DataIntegrationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataIntegrationSummary"
+            }
+        },
+        "DataIntegrationSummary": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "SourceURI": {
+                    "$ref": "#/$defs/SourceURI"
+                }
+            }
+        },
+        "ListDataIntegrationsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListEventIntegrationAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "EventIntegrationAssociations": {
+                    "$ref": "#/$defs/EventIntegrationAssociationsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EventIntegrationAssociationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventIntegrationAssociation"
+            }
+        },
+        "EventIntegrationAssociation": {
+            "type": "object",
+            "properties": {
+                "EventIntegrationAssociationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "EventIntegrationAssociationId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "EventIntegrationName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "EventBridgeRuleName": {
+                    "$ref": "#/$defs/EventBridgeRuleName"
+                },
+                "ClientAssociationMetadata": {
+                    "$ref": "#/$defs/ClientAssociationMetadata"
+                }
+            }
+        },
+        "EventBridgeRuleName": {
+            "type": "string"
+        },
+        "ListEventIntegrationAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "EventIntegrationName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListEventIntegrationsResponse": {
+            "type": "object",
+            "properties": {
+                "EventIntegrations": {
+                    "$ref": "#/$defs/EventIntegrationsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EventIntegrationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventIntegration"
+            }
+        },
+        "EventIntegration": {
+            "type": "object",
+            "properties": {
+                "EventIntegrationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "EventFilter": {
+                    "$ref": "#/$defs/EventFilter"
+                },
+                "EventBridgeBus": {
+                    "$ref": "#/$defs/EventBridgeBus"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListEventIntegrationsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateApplicationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/ArnOrUUID"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ApplicationSourceConfig": {
+                    "$ref": "#/$defs/ApplicationSourceConfig"
+                },
+                "Subscriptions": {
+                    "$ref": "#/$defs/SubscriptionList"
+                },
+                "Publications": {
+                    "$ref": "#/$defs/PublicationList"
+                },
+                "Permissions": {
+                    "$ref": "#/$defs/PermissionList"
+                }
+            }
+        },
+        "UpdateDataIntegrationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateDataIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "UpdateDataIntegrationAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateDataIntegrationAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "DataIntegrationIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "DataIntegrationAssociationIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "ExecutionConfiguration": {
+                    "$ref": "#/$defs/ExecutionConfiguration"
+                }
+            }
+        },
+        "UpdateEventIntegrationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateEventIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://app-integrations-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://app-integrations-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://app-integrations.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://app-integrations.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

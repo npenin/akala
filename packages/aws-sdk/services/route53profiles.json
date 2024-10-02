@@ -1,0 +1,1410 @@
+{
+    "name": "route53profiles",
+    "commands": [
+        {
+            "name": "AssociateProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateResourceToProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateResourceToProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateResourceToProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateResourceToProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateResourceFromProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateResourceFromProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateResourceFromProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateResourceFromProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetProfileAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetProfileAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetProfileAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetProfileAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetProfileResourceAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetProfileResourceAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetProfileResourceAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetProfileResourceAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProfileAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListProfileAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProfileAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProfileAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProfileResourceAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListProfileResourceAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProfileResourceAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProfileResourceAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProfiles",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListProfiles"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProfilesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProfilesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateProfileResourceAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateProfileResourceAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateProfileResourceAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateProfileResourceAssociationRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssociateProfileResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileAssociation": {
+                    "$ref": "#/$defs/ProfileAssociation"
+                }
+            }
+        },
+        "ProfileAssociation": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "OwnerId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ProfileStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Rfc3339Timestamp"
+                },
+                "ModificationTime": {
+                    "$ref": "#/$defs/Rfc3339Timestamp"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "ProfileStatus": {
+            "enum": [
+                "COMPLETE",
+                "DELETING",
+                "UPDATING",
+                "CREATING",
+                "DELETED",
+                "FAILED"
+            ]
+        },
+        "String": {
+            "type": "string"
+        },
+        "Rfc3339Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "AssociateProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "AssociateResourceToProfileResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileResourceAssociation": {
+                    "$ref": "#/$defs/ProfileResourceAssociation"
+                }
+            }
+        },
+        "ProfileResourceAssociation": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "OwnerId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceProperties": {
+                    "$ref": "#/$defs/ResourceProperties"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ProfileStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Rfc3339Timestamp"
+                },
+                "ModificationTime": {
+                    "$ref": "#/$defs/Rfc3339Timestamp"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "ResourceProperties": {
+            "type": "string"
+        },
+        "AssociateResourceToProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ResourceProperties": {
+                    "$ref": "#/$defs/ResourceProperties"
+                }
+            }
+        },
+        "CreateProfileResponse": {
+            "type": "object",
+            "properties": {
+                "Profile": {
+                    "$ref": "#/$defs/Profile"
+                }
+            }
+        },
+        "Profile": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "OwnerId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ProfileStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "ShareStatus": {
+                    "$ref": "#/$defs/ShareStatus"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Rfc3339Timestamp"
+                },
+                "ModificationTime": {
+                    "$ref": "#/$defs/Rfc3339Timestamp"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/CreatorRequestId"
+                }
+            }
+        },
+        "ShareStatus": {
+            "enum": [
+                "NOT_SHARED",
+                "SHARED_WITH_ME",
+                "SHARED_BY_ME"
+            ]
+        },
+        "CreatorRequestId": {
+            "type": "string"
+        },
+        "CreateProfileRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/CreatorRequestId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "DeleteProfileResponse": {
+            "type": "object",
+            "properties": {
+                "Profile": {
+                    "$ref": "#/$defs/Profile"
+                }
+            }
+        },
+        "DeleteProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DisassociateProfileResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileAssociation": {
+                    "$ref": "#/$defs/ProfileAssociation"
+                }
+            }
+        },
+        "DisassociateProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DisassociateResourceFromProfileResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileResourceAssociation": {
+                    "$ref": "#/$defs/ProfileResourceAssociation"
+                }
+            }
+        },
+        "DisassociateResourceFromProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "GetProfileResponse": {
+            "type": "object",
+            "properties": {
+                "Profile": {
+                    "$ref": "#/$defs/Profile"
+                }
+            }
+        },
+        "GetProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "GetProfileAssociationResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileAssociation": {
+                    "$ref": "#/$defs/ProfileAssociation"
+                }
+            }
+        },
+        "GetProfileAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileAssociationId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "GetProfileResourceAssociationResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileResourceAssociation": {
+                    "$ref": "#/$defs/ProfileResourceAssociation"
+                }
+            }
+        },
+        "GetProfileResourceAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileResourceAssociationId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "ListProfileAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileAssociations": {
+                    "$ref": "#/$defs/ProfileAssociations"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ProfileAssociations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProfileAssociation"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListProfileAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListProfileResourceAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileResourceAssociations": {
+                    "$ref": "#/$defs/ProfileResourceAssociations"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ProfileResourceAssociations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProfileResourceAssociation"
+            }
+        },
+        "ListProfileResourceAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListProfilesResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileSummaries": {
+                    "$ref": "#/$defs/ProfileSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ProfileSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProfileSummary"
+            }
+        },
+        "ProfileSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ShareStatus": {
+                    "$ref": "#/$defs/ShareStatus"
+                }
+            }
+        },
+        "ListProfilesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateProfileResourceAssociationResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileResourceAssociation": {
+                    "$ref": "#/$defs/ProfileResourceAssociation"
+                }
+            }
+        },
+        "UpdateProfileResourceAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileResourceAssociationId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ResourceProperties": {
+                    "$ref": "#/$defs/ResourceProperties"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://route53profiles-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://route53profiles-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://route53profiles.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://route53profiles.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

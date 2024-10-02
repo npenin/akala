@@ -1,0 +1,1152 @@
+{
+    "commands": [
+        {
+            "name": "DescribeAgreement",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAgreement"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAgreementOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAgreementInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAgreementTerms",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAgreementTerms"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAgreementTermsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAgreementTermsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchAgreements",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SearchAgreements"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchAgreementsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchAgreementsInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DescribeAgreementOutput": {
+            "type": "object",
+            "properties": {
+                "agreementId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "acceptor": {
+                    "$ref": "#/$defs/Acceptor"
+                },
+                "proposer": {
+                    "$ref": "#/$defs/Proposer"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "acceptanceTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "agreementType": {
+                    "$ref": "#/$defs/AgreementType"
+                },
+                "estimatedCharges": {
+                    "$ref": "#/$defs/EstimatedCharges"
+                },
+                "proposalSummary": {
+                    "$ref": "#/$defs/ProposalSummary"
+                },
+                "status": {
+                    "$ref": "#/$defs/AgreementStatus"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "Acceptor": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AWSAccountId"
+                }
+            }
+        },
+        "AWSAccountId": {
+            "type": "string"
+        },
+        "Proposer": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AWSAccountId"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "AgreementType": {
+            "type": "string"
+        },
+        "EstimatedCharges": {
+            "type": "object",
+            "properties": {
+                "currencyCode": {
+                    "$ref": "#/$defs/CurrencyCode"
+                },
+                "agreementValue": {
+                    "$ref": "#/$defs/BoundedString"
+                }
+            }
+        },
+        "CurrencyCode": {
+            "type": "string"
+        },
+        "BoundedString": {
+            "type": "string"
+        },
+        "ProposalSummary": {
+            "type": "object",
+            "properties": {
+                "resources": {
+                    "$ref": "#/$defs/Resources"
+                },
+                "offerId": {
+                    "$ref": "#/$defs/OfferId"
+                }
+            }
+        },
+        "Resources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Resource"
+            }
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "type": {
+                    "$ref": "#/$defs/AgreementResourceType"
+                }
+            }
+        },
+        "AgreementResourceType": {
+            "type": "string"
+        },
+        "OfferId": {
+            "type": "string"
+        },
+        "AgreementStatus": {
+            "enum": [
+                "ACTIVE",
+                "ARCHIVED",
+                "CANCELLED",
+                "EXPIRED",
+                "RENEWED",
+                "REPLACED",
+                "ROLLED_BACK",
+                "SUPERSEDED",
+                "TERMINATED"
+            ]
+        },
+        "DescribeAgreementInput": {
+            "type": "object",
+            "properties": {
+                "agreementId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "GetAgreementTermsOutput": {
+            "type": "object",
+            "properties": {
+                "acceptedTerms": {
+                    "$ref": "#/$defs/AcceptedTermList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AcceptedTermList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AcceptedTerm"
+            }
+        },
+        "AcceptedTerm": {
+            "type": "object",
+            "properties": {
+                "legalTerm": {
+                    "$ref": "#/$defs/LegalTerm"
+                },
+                "supportTerm": {
+                    "$ref": "#/$defs/SupportTerm"
+                },
+                "renewalTerm": {
+                    "$ref": "#/$defs/RenewalTerm"
+                },
+                "usageBasedPricingTerm": {
+                    "$ref": "#/$defs/UsageBasedPricingTerm"
+                },
+                "configurableUpfrontPricingTerm": {
+                    "$ref": "#/$defs/ConfigurableUpfrontPricingTerm"
+                },
+                "byolPricingTerm": {
+                    "$ref": "#/$defs/ByolPricingTerm"
+                },
+                "recurringPaymentTerm": {
+                    "$ref": "#/$defs/RecurringPaymentTerm"
+                },
+                "validityTerm": {
+                    "$ref": "#/$defs/ValidityTerm"
+                },
+                "paymentScheduleTerm": {
+                    "$ref": "#/$defs/PaymentScheduleTerm"
+                },
+                "freeTrialPricingTerm": {
+                    "$ref": "#/$defs/FreeTrialPricingTerm"
+                },
+                "fixedUpfrontPricingTerm": {
+                    "$ref": "#/$defs/FixedUpfrontPricingTerm"
+                }
+            }
+        },
+        "LegalTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                },
+                "documents": {
+                    "$ref": "#/$defs/DocumentList"
+                }
+            }
+        },
+        "UnversionedTermType": {
+            "type": "string"
+        },
+        "DocumentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DocumentItem"
+            }
+        },
+        "DocumentItem": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "url": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "version": {
+                    "$ref": "#/$defs/BoundedString"
+                }
+            }
+        },
+        "SupportTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                },
+                "refundPolicy": {
+                    "$ref": "#/$defs/BoundedString"
+                }
+            }
+        },
+        "RenewalTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/RenewalTermConfiguration"
+                }
+            }
+        },
+        "RenewalTermConfiguration": {
+            "type": "object",
+            "properties": {
+                "enableAutoRenew": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "UsageBasedPricingTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                },
+                "currencyCode": {
+                    "$ref": "#/$defs/CurrencyCode"
+                },
+                "rateCards": {
+                    "$ref": "#/$defs/UsageBasedRateCardList"
+                }
+            }
+        },
+        "UsageBasedRateCardList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UsageBasedRateCardItem"
+            }
+        },
+        "UsageBasedRateCardItem": {
+            "type": "object",
+            "properties": {
+                "rateCard": {
+                    "$ref": "#/$defs/RateCardList"
+                }
+            }
+        },
+        "RateCardList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RateCardItem"
+            }
+        },
+        "RateCardItem": {
+            "type": "object",
+            "properties": {
+                "dimensionKey": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "price": {
+                    "$ref": "#/$defs/BoundedString"
+                }
+            }
+        },
+        "ConfigurableUpfrontPricingTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                },
+                "currencyCode": {
+                    "$ref": "#/$defs/CurrencyCode"
+                },
+                "rateCards": {
+                    "$ref": "#/$defs/ConfigurableUpfrontRateCardList"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/ConfigurableUpfrontPricingTermConfiguration"
+                }
+            }
+        },
+        "ConfigurableUpfrontRateCardList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurableUpfrontRateCardItem"
+            }
+        },
+        "ConfigurableUpfrontRateCardItem": {
+            "type": "object",
+            "properties": {
+                "selector": {
+                    "$ref": "#/$defs/Selector"
+                },
+                "constraints": {
+                    "$ref": "#/$defs/Constraints"
+                },
+                "rateCard": {
+                    "$ref": "#/$defs/RateCardList"
+                }
+            }
+        },
+        "Selector": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "value": {
+                    "$ref": "#/$defs/BoundedString"
+                }
+            }
+        },
+        "Constraints": {
+            "type": "object",
+            "properties": {
+                "multipleDimensionSelection": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "quantityConfiguration": {
+                    "$ref": "#/$defs/BoundedString"
+                }
+            }
+        },
+        "ConfigurableUpfrontPricingTermConfiguration": {
+            "type": "object",
+            "properties": {
+                "selectorValue": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "dimensions": {
+                    "$ref": "#/$defs/DimensionList"
+                }
+            }
+        },
+        "DimensionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Dimension"
+            }
+        },
+        "Dimension": {
+            "type": "object",
+            "properties": {
+                "dimensionKey": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "dimensionValue": {
+                    "$ref": "#/$defs/ZeroValueInteger"
+                }
+            }
+        },
+        "ZeroValueInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ByolPricingTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                }
+            }
+        },
+        "RecurringPaymentTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                },
+                "currencyCode": {
+                    "$ref": "#/$defs/CurrencyCode"
+                },
+                "billingPeriod": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "price": {
+                    "$ref": "#/$defs/BoundedString"
+                }
+            }
+        },
+        "ValidityTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                },
+                "agreementDuration": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "agreementStartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "agreementEndDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PaymentScheduleTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                },
+                "currencyCode": {
+                    "$ref": "#/$defs/CurrencyCode"
+                },
+                "schedule": {
+                    "$ref": "#/$defs/ScheduleList"
+                }
+            }
+        },
+        "ScheduleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScheduleItem"
+            }
+        },
+        "ScheduleItem": {
+            "type": "object",
+            "properties": {
+                "chargeDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "chargeAmount": {
+                    "$ref": "#/$defs/BoundedString"
+                }
+            }
+        },
+        "FreeTrialPricingTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                },
+                "duration": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "grants": {
+                    "$ref": "#/$defs/GrantList"
+                }
+            }
+        },
+        "GrantList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GrantItem"
+            }
+        },
+        "GrantItem": {
+            "type": "object",
+            "properties": {
+                "dimensionKey": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "maxQuantity": {
+                    "$ref": "#/$defs/PositiveIntegerWithDefaultValueOne"
+                }
+            }
+        },
+        "PositiveIntegerWithDefaultValueOne": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FixedUpfrontPricingTerm": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/UnversionedTermType"
+                },
+                "currencyCode": {
+                    "$ref": "#/$defs/CurrencyCode"
+                },
+                "duration": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "price": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "grants": {
+                    "$ref": "#/$defs/GrantList"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "GetAgreementTermsInput": {
+            "type": "object",
+            "properties": {
+                "agreementId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SearchAgreementsOutput": {
+            "type": "object",
+            "properties": {
+                "agreementViewSummaries": {
+                    "$ref": "#/$defs/AgreementViewSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AgreementViewSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AgreementViewSummary"
+            }
+        },
+        "AgreementViewSummary": {
+            "type": "object",
+            "properties": {
+                "agreementId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "acceptanceTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "agreementType": {
+                    "$ref": "#/$defs/AgreementType"
+                },
+                "acceptor": {
+                    "$ref": "#/$defs/Acceptor"
+                },
+                "proposer": {
+                    "$ref": "#/$defs/Proposer"
+                },
+                "proposalSummary": {
+                    "$ref": "#/$defs/ProposalSummary"
+                },
+                "status": {
+                    "$ref": "#/$defs/AgreementStatus"
+                }
+            }
+        },
+        "SearchAgreementsInput": {
+            "type": "object",
+            "properties": {
+                "catalog": {
+                    "$ref": "#/$defs/Catalog"
+                },
+                "filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "sort": {
+                    "$ref": "#/$defs/Sort"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Catalog": {
+            "type": "string"
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/FilterName"
+                },
+                "values": {
+                    "$ref": "#/$defs/FilterValueList"
+                }
+            }
+        },
+        "FilterName": {
+            "type": "string"
+        },
+        "FilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterValue"
+            }
+        },
+        "FilterValue": {
+            "type": "string"
+        },
+        "Sort": {
+            "type": "object",
+            "properties": {
+                "sortBy": {
+                    "$ref": "#/$defs/SortBy"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "SortBy": {
+            "type": "string"
+        },
+        "SortOrder": {
+            "enum": [
+                "ASCENDING",
+                "DESCENDING"
+            ]
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://agreement-marketplace-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://agreement-marketplace-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://agreement-marketplace.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://agreement-marketplace.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

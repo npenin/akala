@@ -1,0 +1,1618 @@
+{
+    "name": "serverlessrepo",
+    "commands": [
+        {
+            "name": "CreateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateApplicationVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateApplicationVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateApplicationVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApplicationVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCloudFormationChangeSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCloudFormationChangeSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCloudFormationChangeSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCloudFormationChangeSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCloudFormationTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCloudFormationTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCloudFormationTemplateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCloudFormationTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetApplicationPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetApplicationPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetApplicationPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetApplicationPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCloudFormationTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCloudFormationTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCloudFormationTemplateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCloudFormationTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApplicationDependencies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListApplicationDependencies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApplicationDependenciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApplicationDependenciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListApplications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApplicationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApplicationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApplicationVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListApplicationVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApplicationVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApplicationVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutApplicationPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutApplicationPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutApplicationPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutApplicationPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UnshareApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UnshareApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnshareApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApplicationRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Author": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HomePageUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "IsVerifiedAuthor": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "LicenseUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadmeUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SpdxLicenseId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "VerifiedAuthorUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
+        "__boolean": {
+            "type": "boolean"
+        },
+        "__listOf__string": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "Version": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ParameterDefinitions": {
+                    "$ref": "#/$defs/__listOfParameterDefinition"
+                },
+                "RequiredCapabilities": {
+                    "$ref": "#/$defs/__listOfCapability"
+                },
+                "ResourcesSupported": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeArchiveUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateUrl": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfParameterDefinition": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ParameterDefinition"
+            }
+        },
+        "ParameterDefinition": {
+            "type": "object",
+            "properties": {
+                "AllowedPattern": {
+                    "$ref": "#/$defs/__string"
+                },
+                "AllowedValues": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "ConstraintDescription": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DefaultValue": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxLength": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "MaxValue": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "MinLength": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "MinValue": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "NoEcho": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "ReferencedByResources": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Type": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "__listOfCapability": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Capability"
+            }
+        },
+        "Capability": {
+            "enum": [
+                "CAPABILITY_IAM",
+                "CAPABILITY_NAMED_IAM",
+                "CAPABILITY_AUTO_EXPAND",
+                "CAPABILITY_RESOURCE_POLICY"
+            ]
+        },
+        "CreateApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "Author": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HomePageUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "LicenseBody": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LicenseUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadmeBody": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadmeUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeArchiveUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SpdxLicenseId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateBody": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateUrl": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateApplicationVersionResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ParameterDefinitions": {
+                    "$ref": "#/$defs/__listOfParameterDefinition"
+                },
+                "RequiredCapabilities": {
+                    "$ref": "#/$defs/__listOfCapability"
+                },
+                "ResourcesSupported": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeArchiveUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateUrl": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateApplicationVersionRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeArchiveUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateBody": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateUrl": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateCloudFormationChangeSetResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ChangeSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateCloudFormationChangeSetRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "ChangeSetName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "NotificationArns": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "ParameterOverrides": {
+                    "$ref": "#/$defs/__listOfParameterValue"
+                },
+                "ResourceTypes": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "RollbackConfiguration": {
+                    "$ref": "#/$defs/RollbackConfiguration"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "StackName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__listOfTag"
+                },
+                "TemplateId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfParameterValue": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ParameterValue"
+            }
+        },
+        "ParameterValue": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Value": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "RollbackConfiguration": {
+            "type": "object",
+            "properties": {
+                "MonitoringTimeInMinutes": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "RollbackTriggers": {
+                    "$ref": "#/$defs/__listOfRollbackTrigger"
+                }
+            }
+        },
+        "__listOfRollbackTrigger": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RollbackTrigger"
+            }
+        },
+        "RollbackTrigger": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Type": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfTag": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Value": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateCloudFormationTemplateResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ExpirationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "TemplateId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateUrl": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "Status": {
+            "enum": [
+                "PREPARING",
+                "ACTIVE",
+                "EXPIRED"
+            ]
+        },
+        "CreateCloudFormationTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Author": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HomePageUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "IsVerifiedAuthor": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "LicenseUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadmeUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SpdxLicenseId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "VerifiedAuthorUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "GetApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetApplicationPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Statements": {
+                    "$ref": "#/$defs/__listOfApplicationPolicyStatement"
+                }
+            }
+        },
+        "__listOfApplicationPolicyStatement": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationPolicyStatement"
+            }
+        },
+        "ApplicationPolicyStatement": {
+            "type": "object",
+            "properties": {
+                "Actions": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "PrincipalOrgIDs": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Principals": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "StatementId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetApplicationPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetCloudFormationTemplateResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ExpirationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "TemplateId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateUrl": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetCloudFormationTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListApplicationDependenciesResponse": {
+            "type": "object",
+            "properties": {
+                "Dependencies": {
+                    "$ref": "#/$defs/__listOfApplicationDependencySummary"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfApplicationDependencySummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationDependencySummary"
+            }
+        },
+        "ApplicationDependencySummary": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListApplicationDependenciesRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxItems"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListApplicationsResponse": {
+            "type": "object",
+            "properties": {
+                "Applications": {
+                    "$ref": "#/$defs/__listOfApplicationSummary"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfApplicationSummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationSummary"
+            }
+        },
+        "ApplicationSummary": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Author": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HomePageUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SpdxLicenseId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListApplicationsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxItems"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListApplicationVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Versions": {
+                    "$ref": "#/$defs/__listOfVersionSummary"
+                }
+            }
+        },
+        "__listOfVersionSummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VersionSummary"
+            }
+        },
+        "VersionSummary": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeUrl": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListApplicationVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxItems"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "PutApplicationPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Statements": {
+                    "$ref": "#/$defs/__listOfApplicationPolicyStatement"
+                }
+            }
+        },
+        "PutApplicationPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Statements": {
+                    "$ref": "#/$defs/__listOfApplicationPolicyStatement"
+                }
+            }
+        },
+        "UnshareApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "OrganizationId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "UpdateApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Author": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HomePageUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "IsVerifiedAuthor": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "LicenseUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadmeUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SpdxLicenseId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "VerifiedAuthorUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "UpdateApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Author": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HomePageUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "ReadmeBody": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadmeUrl": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://serverlessrepo-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://serverlessrepo.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://serverlessrepo-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://serverlessrepo.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://serverlessrepo.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

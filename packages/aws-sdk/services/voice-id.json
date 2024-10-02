@@ -1,0 +1,2242 @@
+{
+    "name": "voiceid",
+    "commands": [
+        {
+            "name": "AssociateFraudster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateFraudster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateFraudsterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateFraudsterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateWatchlist",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateWatchlist"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateWatchlistResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateWatchlistRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFraudster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFraudster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFraudsterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSpeaker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSpeaker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSpeakerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteWatchlist",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteWatchlist"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteWatchlistRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFraudster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeFraudster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFraudsterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFraudsterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFraudsterRegistrationJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeFraudsterRegistrationJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFraudsterRegistrationJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFraudsterRegistrationJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeSpeaker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeSpeaker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeSpeakerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeSpeakerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeSpeakerEnrollmentJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeSpeakerEnrollmentJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeSpeakerEnrollmentJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeSpeakerEnrollmentJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeWatchlist",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeWatchlist"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeWatchlistResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeWatchlistRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateFraudster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateFraudster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateFraudsterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateFraudsterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EvaluateSession",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EvaluateSession"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EvaluateSessionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EvaluateSessionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFraudsterRegistrationJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFraudsterRegistrationJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFraudsterRegistrationJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFraudsterRegistrationJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFraudsters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFraudsters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFraudstersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFraudstersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSpeakerEnrollmentJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSpeakerEnrollmentJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSpeakerEnrollmentJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSpeakerEnrollmentJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSpeakers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSpeakers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSpeakersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSpeakersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListWatchlists",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListWatchlists"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListWatchlistsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListWatchlistsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "OptOutSpeaker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "OptOutSpeaker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/OptOutSpeakerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/OptOutSpeakerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartFraudsterRegistrationJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartFraudsterRegistrationJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartFraudsterRegistrationJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartFraudsterRegistrationJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartSpeakerEnrollmentJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartSpeakerEnrollmentJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartSpeakerEnrollmentJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartSpeakerEnrollmentJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateWatchlist",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateWatchlist"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateWatchlistResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateWatchlistRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssociateFraudsterResponse": {
+            "type": "object",
+            "properties": {
+                "Fraudster": {
+                    "$ref": "#/$defs/Fraudster"
+                }
+            }
+        },
+        "Fraudster": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "GeneratedFraudsterId": {
+                    "$ref": "#/$defs/GeneratedFraudsterId"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "WatchlistIds": {
+                    "$ref": "#/$defs/ResponseWatchlistIds"
+                }
+            }
+        },
+        "DomainId": {
+            "type": "string"
+        },
+        "GeneratedFraudsterId": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ResponseWatchlistIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WatchlistId"
+            }
+        },
+        "WatchlistId": {
+            "type": "string"
+        },
+        "AssociateFraudsterRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "WatchlistId": {
+                    "$ref": "#/$defs/WatchlistId"
+                },
+                "FraudsterId": {
+                    "$ref": "#/$defs/FraudsterId"
+                }
+            }
+        },
+        "FraudsterId": {
+            "type": "string"
+        },
+        "CreateWatchlistResponse": {
+            "type": "object",
+            "properties": {
+                "Watchlist": {
+                    "$ref": "#/$defs/Watchlist"
+                }
+            }
+        },
+        "Watchlist": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "WatchlistId": {
+                    "$ref": "#/$defs/WatchlistId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/WatchlistName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/WatchlistDescription"
+                },
+                "DefaultWatchlist": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "WatchlistName": {
+            "type": "string"
+        },
+        "WatchlistDescription": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "CreateWatchlistRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/WatchlistName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/WatchlistDescription"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                }
+            }
+        },
+        "ClientTokenString": {
+            "type": "string"
+        },
+        "DeleteFraudsterRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "FraudsterId": {
+                    "$ref": "#/$defs/FraudsterId"
+                }
+            }
+        },
+        "DeleteSpeakerRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "SpeakerId": {
+                    "$ref": "#/$defs/SpeakerId"
+                }
+            }
+        },
+        "SpeakerId": {
+            "type": "string"
+        },
+        "DeleteWatchlistRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "WatchlistId": {
+                    "$ref": "#/$defs/WatchlistId"
+                }
+            }
+        },
+        "DescribeFraudsterResponse": {
+            "type": "object",
+            "properties": {
+                "Fraudster": {
+                    "$ref": "#/$defs/Fraudster"
+                }
+            }
+        },
+        "DescribeFraudsterRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "FraudsterId": {
+                    "$ref": "#/$defs/FraudsterId"
+                }
+            }
+        },
+        "DescribeFraudsterRegistrationJobResponse": {
+            "type": "object",
+            "properties": {
+                "Job": {
+                    "$ref": "#/$defs/FraudsterRegistrationJob"
+                }
+            }
+        },
+        "FraudsterRegistrationJob": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/FraudsterRegistrationJobStatus"
+                },
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "RegistrationConfig": {
+                    "$ref": "#/$defs/RegistrationConfig"
+                },
+                "InputDataConfig": {
+                    "$ref": "#/$defs/InputDataConfig"
+                },
+                "OutputDataConfig": {
+                    "$ref": "#/$defs/OutputDataConfig"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FailureDetails": {
+                    "$ref": "#/$defs/FailureDetails"
+                },
+                "JobProgress": {
+                    "$ref": "#/$defs/JobProgress"
+                }
+            }
+        },
+        "JobName": {
+            "type": "string"
+        },
+        "JobId": {
+            "type": "string"
+        },
+        "FraudsterRegistrationJobStatus": {
+            "type": "string"
+        },
+        "IamRoleArn": {
+            "type": "string"
+        },
+        "RegistrationConfig": {
+            "type": "object",
+            "properties": {
+                "DuplicateRegistrationAction": {
+                    "$ref": "#/$defs/DuplicateRegistrationAction"
+                },
+                "FraudsterSimilarityThreshold": {
+                    "$ref": "#/$defs/Score"
+                },
+                "WatchlistIds": {
+                    "$ref": "#/$defs/RegistrationConfigWatchlistIds"
+                }
+            }
+        },
+        "DuplicateRegistrationAction": {
+            "type": "string"
+        },
+        "Score": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RegistrationConfigWatchlistIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WatchlistId"
+            }
+        },
+        "InputDataConfig": {
+            "type": "object",
+            "properties": {
+                "S3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                }
+            }
+        },
+        "S3Uri": {
+            "type": "string"
+        },
+        "OutputDataConfig": {
+            "type": "object",
+            "properties": {
+                "S3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                }
+            }
+        },
+        "KmsKeyId": {
+            "type": "string"
+        },
+        "FailureDetails": {
+            "type": "object",
+            "properties": {
+                "StatusCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "String": {
+            "type": "string"
+        },
+        "JobProgress": {
+            "type": "object",
+            "properties": {
+                "PercentComplete": {
+                    "$ref": "#/$defs/Score"
+                }
+            }
+        },
+        "DescribeFraudsterRegistrationJobRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "DescribeSpeakerResponse": {
+            "type": "object",
+            "properties": {
+                "Speaker": {
+                    "$ref": "#/$defs/Speaker"
+                }
+            }
+        },
+        "Speaker": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "CustomerSpeakerId": {
+                    "$ref": "#/$defs/CustomerSpeakerId"
+                },
+                "GeneratedSpeakerId": {
+                    "$ref": "#/$defs/GeneratedSpeakerId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SpeakerStatus"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastAccessedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "CustomerSpeakerId": {
+            "type": "string"
+        },
+        "GeneratedSpeakerId": {
+            "type": "string"
+        },
+        "SpeakerStatus": {
+            "type": "string"
+        },
+        "DescribeSpeakerRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "SpeakerId": {
+                    "$ref": "#/$defs/SpeakerId"
+                }
+            }
+        },
+        "DescribeSpeakerEnrollmentJobResponse": {
+            "type": "object",
+            "properties": {
+                "Job": {
+                    "$ref": "#/$defs/SpeakerEnrollmentJob"
+                }
+            }
+        },
+        "SpeakerEnrollmentJob": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/SpeakerEnrollmentJobStatus"
+                },
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "EnrollmentConfig": {
+                    "$ref": "#/$defs/EnrollmentConfig"
+                },
+                "InputDataConfig": {
+                    "$ref": "#/$defs/InputDataConfig"
+                },
+                "OutputDataConfig": {
+                    "$ref": "#/$defs/OutputDataConfig"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FailureDetails": {
+                    "$ref": "#/$defs/FailureDetails"
+                },
+                "JobProgress": {
+                    "$ref": "#/$defs/JobProgress"
+                }
+            }
+        },
+        "SpeakerEnrollmentJobStatus": {
+            "type": "string"
+        },
+        "EnrollmentConfig": {
+            "type": "object",
+            "properties": {
+                "ExistingEnrollmentAction": {
+                    "$ref": "#/$defs/ExistingEnrollmentAction"
+                },
+                "FraudDetectionConfig": {
+                    "$ref": "#/$defs/EnrollmentJobFraudDetectionConfig"
+                }
+            }
+        },
+        "ExistingEnrollmentAction": {
+            "type": "string"
+        },
+        "EnrollmentJobFraudDetectionConfig": {
+            "type": "object",
+            "properties": {
+                "FraudDetectionAction": {
+                    "$ref": "#/$defs/FraudDetectionAction"
+                },
+                "RiskThreshold": {
+                    "$ref": "#/$defs/Score"
+                },
+                "WatchlistIds": {
+                    "$ref": "#/$defs/EnrollmentJobFraudDetectionConfigWatchlistIds"
+                }
+            }
+        },
+        "FraudDetectionAction": {
+            "type": "string"
+        },
+        "EnrollmentJobFraudDetectionConfigWatchlistIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WatchlistId"
+            }
+        },
+        "DescribeSpeakerEnrollmentJobRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "DescribeWatchlistResponse": {
+            "type": "object",
+            "properties": {
+                "Watchlist": {
+                    "$ref": "#/$defs/Watchlist"
+                }
+            }
+        },
+        "DescribeWatchlistRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "WatchlistId": {
+                    "$ref": "#/$defs/WatchlistId"
+                }
+            }
+        },
+        "DisassociateFraudsterResponse": {
+            "type": "object",
+            "properties": {
+                "Fraudster": {
+                    "$ref": "#/$defs/Fraudster"
+                }
+            }
+        },
+        "DisassociateFraudsterRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "WatchlistId": {
+                    "$ref": "#/$defs/WatchlistId"
+                },
+                "FraudsterId": {
+                    "$ref": "#/$defs/FraudsterId"
+                }
+            }
+        },
+        "EvaluateSessionResponse": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "SessionName": {
+                    "$ref": "#/$defs/SessionName"
+                },
+                "StreamingStatus": {
+                    "$ref": "#/$defs/StreamingStatus"
+                },
+                "AuthenticationResult": {
+                    "$ref": "#/$defs/AuthenticationResult"
+                },
+                "FraudDetectionResult": {
+                    "$ref": "#/$defs/FraudDetectionResult"
+                }
+            }
+        },
+        "SessionId": {
+            "type": "string"
+        },
+        "SessionName": {
+            "type": "string"
+        },
+        "StreamingStatus": {
+            "type": "string"
+        },
+        "AuthenticationResult": {
+            "type": "object",
+            "properties": {
+                "AuthenticationResultId": {
+                    "$ref": "#/$defs/UniqueIdLarge"
+                },
+                "AudioAggregationStartedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "AudioAggregationEndedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CustomerSpeakerId": {
+                    "$ref": "#/$defs/CustomerSpeakerId"
+                },
+                "GeneratedSpeakerId": {
+                    "$ref": "#/$defs/GeneratedSpeakerId"
+                },
+                "Decision": {
+                    "$ref": "#/$defs/AuthenticationDecision"
+                },
+                "Score": {
+                    "$ref": "#/$defs/Score"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/AuthenticationConfiguration"
+                }
+            }
+        },
+        "UniqueIdLarge": {
+            "type": "string"
+        },
+        "AuthenticationDecision": {
+            "type": "string"
+        },
+        "AuthenticationConfiguration": {
+            "type": "object",
+            "properties": {
+                "AcceptanceThreshold": {
+                    "$ref": "#/$defs/Score"
+                }
+            }
+        },
+        "FraudDetectionResult": {
+            "type": "object",
+            "properties": {
+                "FraudDetectionResultId": {
+                    "$ref": "#/$defs/UniqueIdLarge"
+                },
+                "AudioAggregationStartedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "AudioAggregationEndedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/FraudDetectionConfiguration"
+                },
+                "Decision": {
+                    "$ref": "#/$defs/FraudDetectionDecision"
+                },
+                "Reasons": {
+                    "$ref": "#/$defs/FraudDetectionReasons"
+                },
+                "RiskDetails": {
+                    "$ref": "#/$defs/FraudRiskDetails"
+                }
+            }
+        },
+        "FraudDetectionConfiguration": {
+            "type": "object",
+            "properties": {
+                "RiskThreshold": {
+                    "$ref": "#/$defs/Score"
+                },
+                "WatchlistId": {
+                    "$ref": "#/$defs/WatchlistId"
+                }
+            }
+        },
+        "FraudDetectionDecision": {
+            "type": "string"
+        },
+        "FraudDetectionReasons": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FraudDetectionReason"
+            }
+        },
+        "FraudDetectionReason": {
+            "type": "string"
+        },
+        "FraudRiskDetails": {
+            "type": "object",
+            "properties": {
+                "KnownFraudsterRisk": {
+                    "$ref": "#/$defs/KnownFraudsterRisk"
+                },
+                "VoiceSpoofingRisk": {
+                    "$ref": "#/$defs/VoiceSpoofingRisk"
+                }
+            }
+        },
+        "KnownFraudsterRisk": {
+            "type": "object",
+            "properties": {
+                "RiskScore": {
+                    "$ref": "#/$defs/Score"
+                },
+                "GeneratedFraudsterId": {
+                    "$ref": "#/$defs/GeneratedFraudsterId"
+                }
+            }
+        },
+        "VoiceSpoofingRisk": {
+            "type": "object",
+            "properties": {
+                "RiskScore": {
+                    "$ref": "#/$defs/Score"
+                }
+            }
+        },
+        "EvaluateSessionRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "SessionNameOrId": {
+                    "$ref": "#/$defs/SessionNameOrId"
+                }
+            }
+        },
+        "SessionNameOrId": {
+            "type": "string"
+        },
+        "ListFraudsterRegistrationJobsResponse": {
+            "type": "object",
+            "properties": {
+                "JobSummaries": {
+                    "$ref": "#/$defs/FraudsterRegistrationJobSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FraudsterRegistrationJobSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FraudsterRegistrationJobSummary"
+            }
+        },
+        "FraudsterRegistrationJobSummary": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/FraudsterRegistrationJobStatus"
+                },
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FailureDetails": {
+                    "$ref": "#/$defs/FailureDetails"
+                },
+                "JobProgress": {
+                    "$ref": "#/$defs/JobProgress"
+                }
+            }
+        },
+        "ListFraudsterRegistrationJobsRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/FraudsterRegistrationJobStatus"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsForList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResultsForList": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListFraudstersResponse": {
+            "type": "object",
+            "properties": {
+                "FraudsterSummaries": {
+                    "$ref": "#/$defs/FraudsterSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FraudsterSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FraudsterSummary"
+            }
+        },
+        "FraudsterSummary": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "GeneratedFraudsterId": {
+                    "$ref": "#/$defs/GeneratedFraudsterId"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "WatchlistIds": {
+                    "$ref": "#/$defs/ResponseWatchlistIds"
+                }
+            }
+        },
+        "ListFraudstersRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "WatchlistId": {
+                    "$ref": "#/$defs/WatchlistId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsForList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListSpeakerEnrollmentJobsResponse": {
+            "type": "object",
+            "properties": {
+                "JobSummaries": {
+                    "$ref": "#/$defs/SpeakerEnrollmentJobSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SpeakerEnrollmentJobSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SpeakerEnrollmentJobSummary"
+            }
+        },
+        "SpeakerEnrollmentJobSummary": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/SpeakerEnrollmentJobStatus"
+                },
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FailureDetails": {
+                    "$ref": "#/$defs/FailureDetails"
+                },
+                "JobProgress": {
+                    "$ref": "#/$defs/JobProgress"
+                }
+            }
+        },
+        "ListSpeakerEnrollmentJobsRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/SpeakerEnrollmentJobStatus"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsForList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListSpeakersResponse": {
+            "type": "object",
+            "properties": {
+                "SpeakerSummaries": {
+                    "$ref": "#/$defs/SpeakerSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SpeakerSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SpeakerSummary"
+            }
+        },
+        "SpeakerSummary": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "CustomerSpeakerId": {
+                    "$ref": "#/$defs/CustomerSpeakerId"
+                },
+                "GeneratedSpeakerId": {
+                    "$ref": "#/$defs/GeneratedSpeakerId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SpeakerStatus"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastAccessedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListSpeakersRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsForList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "ListWatchlistsResponse": {
+            "type": "object",
+            "properties": {
+                "WatchlistSummaries": {
+                    "$ref": "#/$defs/WatchlistSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "WatchlistSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WatchlistSummary"
+            }
+        },
+        "WatchlistSummary": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "WatchlistId": {
+                    "$ref": "#/$defs/WatchlistId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/WatchlistName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/WatchlistDescription"
+                },
+                "DefaultWatchlist": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListWatchlistsRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsForList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "OptOutSpeakerResponse": {
+            "type": "object",
+            "properties": {
+                "Speaker": {
+                    "$ref": "#/$defs/Speaker"
+                }
+            }
+        },
+        "OptOutSpeakerRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "SpeakerId": {
+                    "$ref": "#/$defs/SpeakerId"
+                }
+            }
+        },
+        "StartFraudsterRegistrationJobResponse": {
+            "type": "object",
+            "properties": {
+                "Job": {
+                    "$ref": "#/$defs/FraudsterRegistrationJob"
+                }
+            }
+        },
+        "StartFraudsterRegistrationJobRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                },
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "RegistrationConfig": {
+                    "$ref": "#/$defs/RegistrationConfig"
+                },
+                "InputDataConfig": {
+                    "$ref": "#/$defs/InputDataConfig"
+                },
+                "OutputDataConfig": {
+                    "$ref": "#/$defs/OutputDataConfig"
+                }
+            }
+        },
+        "StartSpeakerEnrollmentJobResponse": {
+            "type": "object",
+            "properties": {
+                "Job": {
+                    "$ref": "#/$defs/SpeakerEnrollmentJob"
+                }
+            }
+        },
+        "StartSpeakerEnrollmentJobRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                },
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "EnrollmentConfig": {
+                    "$ref": "#/$defs/EnrollmentConfig"
+                },
+                "InputDataConfig": {
+                    "$ref": "#/$defs/InputDataConfig"
+                },
+                "OutputDataConfig": {
+                    "$ref": "#/$defs/OutputDataConfig"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateWatchlistResponse": {
+            "type": "object",
+            "properties": {
+                "Watchlist": {
+                    "$ref": "#/$defs/Watchlist"
+                }
+            }
+        },
+        "UpdateWatchlistRequest": {
+            "type": "object",
+            "properties": {
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "WatchlistId": {
+                    "$ref": "#/$defs/WatchlistId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/WatchlistName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/WatchlistDescription"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://voiceid-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://voiceid-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://voiceid.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://voiceid.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

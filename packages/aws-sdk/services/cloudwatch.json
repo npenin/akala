@@ -1,0 +1,3831 @@
+{
+    "name": "monitoring",
+    "commands": [
+        {
+            "name": "DeleteAlarms",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAlarms"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAlarmsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAnomalyDetector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAnomalyDetector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteAnomalyDetectorOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAnomalyDetectorInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDashboards",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDashboards"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDashboardsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDashboardsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteInsightRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteInsightRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteInsightRulesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteInsightRulesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMetricStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMetricStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteMetricStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMetricStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAlarmHistory",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAlarmHistory"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAlarmHistoryOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAlarmHistoryInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAlarms",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAlarms"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAlarmsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAlarmsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAlarmsForMetric",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAlarmsForMetric"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAlarmsForMetricOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAlarmsForMetricInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAnomalyDetectors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAnomalyDetectors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAnomalyDetectorsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAnomalyDetectorsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeInsightRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeInsightRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeInsightRulesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeInsightRulesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableAlarmActions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableAlarmActions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableAlarmActionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableInsightRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableInsightRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisableInsightRulesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableInsightRulesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableAlarmActions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableAlarmActions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableAlarmActionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableInsightRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableInsightRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnableInsightRulesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableInsightRulesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDashboard",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDashboard"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDashboardOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDashboardInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetInsightRuleReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetInsightRuleReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetInsightRuleReportOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetInsightRuleReportInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMetricData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMetricData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMetricDataOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMetricDataInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMetricStatistics",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMetricStatistics"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMetricStatisticsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMetricStatisticsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMetricStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMetricStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMetricStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMetricStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMetricWidgetImage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMetricWidgetImage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMetricWidgetImageOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMetricWidgetImageInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDashboards",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDashboards"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDashboardsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDashboardsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListManagedInsightRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListManagedInsightRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListManagedInsightRulesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListManagedInsightRulesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListMetrics",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListMetrics"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMetricsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMetricsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListMetricStreams",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListMetricStreams"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMetricStreamsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMetricStreamsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAnomalyDetector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAnomalyDetector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutAnomalyDetectorOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAnomalyDetectorInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutCompositeAlarm",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutCompositeAlarm"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutCompositeAlarmInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutDashboard",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutDashboard"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutDashboardOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutDashboardInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutInsightRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutInsightRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutInsightRuleOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutInsightRuleInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutManagedInsightRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutManagedInsightRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutManagedInsightRulesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutManagedInsightRulesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutMetricAlarm",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutMetricAlarm"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutMetricAlarmInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutMetricData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutMetricData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutMetricDataInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutMetricStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutMetricStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutMetricStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutMetricStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetAlarmState",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetAlarmState"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetAlarmStateInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartMetricStreams",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartMetricStreams"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartMetricStreamsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartMetricStreamsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopMetricStreams",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopMetricStreams"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopMetricStreamsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopMetricStreamsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DeleteAlarmsInput": {
+            "type": "object",
+            "properties": {
+                "AlarmNames": {
+                    "$ref": "#/$defs/AlarmNames"
+                }
+            }
+        },
+        "AlarmNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AlarmName"
+            }
+        },
+        "AlarmName": {
+            "type": "string"
+        },
+        "DeleteAnomalyDetectorOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteAnomalyDetectorInput": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "Stat": {
+                    "$ref": "#/$defs/AnomalyDetectorMetricStat"
+                },
+                "SingleMetricAnomalyDetector": {
+                    "$ref": "#/$defs/SingleMetricAnomalyDetector"
+                },
+                "MetricMathAnomalyDetector": {
+                    "$ref": "#/$defs/MetricMathAnomalyDetector"
+                }
+            }
+        },
+        "Namespace": {
+            "type": "string"
+        },
+        "MetricName": {
+            "type": "string"
+        },
+        "Dimensions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Dimension"
+            }
+        },
+        "Dimension": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DimensionName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/DimensionValue"
+                }
+            }
+        },
+        "DimensionName": {
+            "type": "string"
+        },
+        "DimensionValue": {
+            "type": "string"
+        },
+        "AnomalyDetectorMetricStat": {
+            "type": "string"
+        },
+        "SingleMetricAnomalyDetector": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "Stat": {
+                    "$ref": "#/$defs/AnomalyDetectorMetricStat"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "MetricMathAnomalyDetector": {
+            "type": "object",
+            "properties": {
+                "MetricDataQueries": {
+                    "$ref": "#/$defs/MetricDataQueries"
+                }
+            }
+        },
+        "MetricDataQueries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricDataQuery"
+            }
+        },
+        "MetricDataQuery": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/MetricId"
+                },
+                "MetricStat": {
+                    "$ref": "#/$defs/MetricStat"
+                },
+                "Expression": {
+                    "$ref": "#/$defs/MetricExpression"
+                },
+                "Label": {
+                    "$ref": "#/$defs/MetricLabel"
+                },
+                "ReturnData": {
+                    "$ref": "#/$defs/ReturnData"
+                },
+                "Period": {
+                    "$ref": "#/$defs/Period"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "MetricId": {
+            "type": "string"
+        },
+        "MetricStat": {
+            "type": "object",
+            "properties": {
+                "Metric": {
+                    "$ref": "#/$defs/Metric"
+                },
+                "Period": {
+                    "$ref": "#/$defs/Period"
+                },
+                "Stat": {
+                    "$ref": "#/$defs/Stat"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/StandardUnit"
+                }
+            }
+        },
+        "Metric": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                }
+            }
+        },
+        "Period": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Stat": {
+            "type": "string"
+        },
+        "StandardUnit": {
+            "enum": [
+                "Seconds",
+                "Microseconds",
+                "Milliseconds",
+                "Bytes",
+                "Kilobytes",
+                "Megabytes",
+                "Gigabytes",
+                "Terabytes",
+                "Bits",
+                "Kilobits",
+                "Megabits",
+                "Gigabits",
+                "Terabits",
+                "Percent",
+                "Count",
+                "Bytes_Second",
+                "Kilobytes_Second",
+                "Megabytes_Second",
+                "Gigabytes_Second",
+                "Terabytes_Second",
+                "Bits_Second",
+                "Kilobits_Second",
+                "Megabits_Second",
+                "Gigabits_Second",
+                "Terabits_Second",
+                "Count_Second",
+                "None"
+            ]
+        },
+        "MetricExpression": {
+            "type": "string"
+        },
+        "MetricLabel": {
+            "type": "string"
+        },
+        "ReturnData": {
+            "type": "boolean"
+        },
+        "DeleteDashboardsOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteDashboardsInput": {
+            "type": "object",
+            "properties": {
+                "DashboardNames": {
+                    "$ref": "#/$defs/DashboardNames"
+                }
+            }
+        },
+        "DashboardNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DashboardName"
+            }
+        },
+        "DashboardName": {
+            "type": "string"
+        },
+        "DeleteInsightRulesOutput": {
+            "type": "object",
+            "properties": {
+                "Failures": {
+                    "$ref": "#/$defs/BatchFailures"
+                }
+            }
+        },
+        "BatchFailures": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartialFailure"
+            }
+        },
+        "PartialFailure": {
+            "type": "object",
+            "properties": {
+                "FailureResource": {
+                    "$ref": "#/$defs/FailureResource"
+                },
+                "ExceptionType": {
+                    "$ref": "#/$defs/ExceptionType"
+                },
+                "FailureCode": {
+                    "$ref": "#/$defs/FailureCode"
+                },
+                "FailureDescription": {
+                    "$ref": "#/$defs/FailureDescription"
+                }
+            }
+        },
+        "FailureResource": {
+            "type": "string"
+        },
+        "ExceptionType": {
+            "type": "string"
+        },
+        "FailureCode": {
+            "type": "string"
+        },
+        "FailureDescription": {
+            "type": "string"
+        },
+        "DeleteInsightRulesInput": {
+            "type": "object",
+            "properties": {
+                "RuleNames": {
+                    "$ref": "#/$defs/InsightRuleNames"
+                }
+            }
+        },
+        "InsightRuleNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightRuleName"
+            }
+        },
+        "InsightRuleName": {
+            "type": "string"
+        },
+        "DeleteMetricStreamOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteMetricStreamInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/MetricStreamName"
+                }
+            }
+        },
+        "MetricStreamName": {
+            "type": "string"
+        },
+        "DescribeAlarmHistoryOutput": {
+            "type": "object",
+            "properties": {
+                "AlarmHistoryItems": {
+                    "$ref": "#/$defs/AlarmHistoryItems"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AlarmHistoryItems": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AlarmHistoryItem"
+            }
+        },
+        "AlarmHistoryItem": {
+            "type": "object",
+            "properties": {
+                "AlarmName": {
+                    "$ref": "#/$defs/AlarmName"
+                },
+                "AlarmType": {
+                    "$ref": "#/$defs/AlarmType"
+                },
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "HistoryItemType": {
+                    "$ref": "#/$defs/HistoryItemType"
+                },
+                "HistorySummary": {
+                    "$ref": "#/$defs/HistorySummary"
+                },
+                "HistoryData": {
+                    "$ref": "#/$defs/HistoryData"
+                }
+            }
+        },
+        "AlarmType": {
+            "enum": [
+                "CompositeAlarm",
+                "MetricAlarm"
+            ]
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "HistoryItemType": {
+            "enum": [
+                "ConfigurationUpdate",
+                "StateUpdate",
+                "Action"
+            ]
+        },
+        "HistorySummary": {
+            "type": "string"
+        },
+        "HistoryData": {
+            "type": "string"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeAlarmHistoryInput": {
+            "type": "object",
+            "properties": {
+                "AlarmName": {
+                    "$ref": "#/$defs/AlarmName"
+                },
+                "AlarmTypes": {
+                    "$ref": "#/$defs/AlarmTypes"
+                },
+                "HistoryItemType": {
+                    "$ref": "#/$defs/HistoryItemType"
+                },
+                "StartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/MaxRecords"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ScanBy": {
+                    "$ref": "#/$defs/ScanBy"
+                }
+            }
+        },
+        "AlarmTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AlarmType"
+            }
+        },
+        "MaxRecords": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ScanBy": {
+            "enum": [
+                "TIMESTAMP_DESCENDING",
+                "TIMESTAMP_ASCENDING"
+            ]
+        },
+        "DescribeAlarmsOutput": {
+            "type": "object",
+            "properties": {
+                "CompositeAlarms": {
+                    "$ref": "#/$defs/CompositeAlarms"
+                },
+                "MetricAlarms": {
+                    "$ref": "#/$defs/MetricAlarms"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "CompositeAlarms": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CompositeAlarm"
+            }
+        },
+        "CompositeAlarm": {
+            "type": "object",
+            "properties": {
+                "ActionsEnabled": {
+                    "$ref": "#/$defs/ActionsEnabled"
+                },
+                "AlarmActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "AlarmArn": {
+                    "$ref": "#/$defs/AlarmArn"
+                },
+                "AlarmConfigurationUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "AlarmDescription": {
+                    "$ref": "#/$defs/AlarmDescription"
+                },
+                "AlarmName": {
+                    "$ref": "#/$defs/AlarmName"
+                },
+                "AlarmRule": {
+                    "$ref": "#/$defs/AlarmRule"
+                },
+                "InsufficientDataActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "OKActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/StateReason"
+                },
+                "StateReasonData": {
+                    "$ref": "#/$defs/StateReasonData"
+                },
+                "StateUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "StateValue": {
+                    "$ref": "#/$defs/StateValue"
+                },
+                "StateTransitionedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ActionsSuppressedBy": {
+                    "$ref": "#/$defs/ActionsSuppressedBy"
+                },
+                "ActionsSuppressedReason": {
+                    "$ref": "#/$defs/ActionsSuppressedReason"
+                },
+                "ActionsSuppressor": {
+                    "$ref": "#/$defs/AlarmArn"
+                },
+                "ActionsSuppressorWaitPeriod": {
+                    "$ref": "#/$defs/SuppressorPeriod"
+                },
+                "ActionsSuppressorExtensionPeriod": {
+                    "$ref": "#/$defs/SuppressorPeriod"
+                }
+            }
+        },
+        "ActionsEnabled": {
+            "type": "boolean"
+        },
+        "ResourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceName"
+            }
+        },
+        "ResourceName": {
+            "type": "string"
+        },
+        "AlarmArn": {
+            "type": "string"
+        },
+        "AlarmDescription": {
+            "type": "string"
+        },
+        "AlarmRule": {
+            "type": "string"
+        },
+        "StateReason": {
+            "type": "string"
+        },
+        "StateReasonData": {
+            "type": "string"
+        },
+        "StateValue": {
+            "enum": [
+                "OK",
+                "ALARM",
+                "INSUFFICIENT_DATA"
+            ]
+        },
+        "ActionsSuppressedBy": {
+            "enum": [
+                "WaitPeriod",
+                "ExtensionPeriod",
+                "Alarm"
+            ]
+        },
+        "ActionsSuppressedReason": {
+            "type": "string"
+        },
+        "SuppressorPeriod": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MetricAlarms": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricAlarm"
+            }
+        },
+        "MetricAlarm": {
+            "type": "object",
+            "properties": {
+                "AlarmName": {
+                    "$ref": "#/$defs/AlarmName"
+                },
+                "AlarmArn": {
+                    "$ref": "#/$defs/AlarmArn"
+                },
+                "AlarmDescription": {
+                    "$ref": "#/$defs/AlarmDescription"
+                },
+                "AlarmConfigurationUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ActionsEnabled": {
+                    "$ref": "#/$defs/ActionsEnabled"
+                },
+                "OKActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "AlarmActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "InsufficientDataActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "StateValue": {
+                    "$ref": "#/$defs/StateValue"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/StateReason"
+                },
+                "StateReasonData": {
+                    "$ref": "#/$defs/StateReasonData"
+                },
+                "StateUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "Statistic": {
+                    "$ref": "#/$defs/Statistic"
+                },
+                "ExtendedStatistic": {
+                    "$ref": "#/$defs/ExtendedStatistic"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "Period": {
+                    "$ref": "#/$defs/Period"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/StandardUnit"
+                },
+                "EvaluationPeriods": {
+                    "$ref": "#/$defs/EvaluationPeriods"
+                },
+                "DatapointsToAlarm": {
+                    "$ref": "#/$defs/DatapointsToAlarm"
+                },
+                "Threshold": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "ComparisonOperator": {
+                    "$ref": "#/$defs/ComparisonOperator"
+                },
+                "TreatMissingData": {
+                    "$ref": "#/$defs/TreatMissingData"
+                },
+                "EvaluateLowSampleCountPercentile": {
+                    "$ref": "#/$defs/EvaluateLowSampleCountPercentile"
+                },
+                "Metrics": {
+                    "$ref": "#/$defs/MetricDataQueries"
+                },
+                "ThresholdMetricId": {
+                    "$ref": "#/$defs/MetricId"
+                },
+                "EvaluationState": {
+                    "$ref": "#/$defs/EvaluationState"
+                },
+                "StateTransitionedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Statistic": {
+            "enum": [
+                "SampleCount",
+                "Average",
+                "Sum",
+                "Minimum",
+                "Maximum"
+            ]
+        },
+        "ExtendedStatistic": {
+            "type": "string"
+        },
+        "EvaluationPeriods": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DatapointsToAlarm": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Threshold": {
+            "type": "number",
+            "format": "double"
+        },
+        "ComparisonOperator": {
+            "enum": [
+                "GreaterThanOrEqualToThreshold",
+                "GreaterThanThreshold",
+                "LessThanThreshold",
+                "LessThanOrEqualToThreshold",
+                "LessThanLowerOrGreaterThanUpperThreshold",
+                "LessThanLowerThreshold",
+                "GreaterThanUpperThreshold"
+            ]
+        },
+        "TreatMissingData": {
+            "type": "string"
+        },
+        "EvaluateLowSampleCountPercentile": {
+            "type": "string"
+        },
+        "EvaluationState": {
+            "enum": [
+                "PARTIAL_DATA"
+            ]
+        },
+        "DescribeAlarmsInput": {
+            "type": "object",
+            "properties": {
+                "AlarmNames": {
+                    "$ref": "#/$defs/AlarmNames"
+                },
+                "AlarmNamePrefix": {
+                    "$ref": "#/$defs/AlarmNamePrefix"
+                },
+                "AlarmTypes": {
+                    "$ref": "#/$defs/AlarmTypes"
+                },
+                "ChildrenOfAlarmName": {
+                    "$ref": "#/$defs/AlarmName"
+                },
+                "ParentsOfAlarmName": {
+                    "$ref": "#/$defs/AlarmName"
+                },
+                "StateValue": {
+                    "$ref": "#/$defs/StateValue"
+                },
+                "ActionPrefix": {
+                    "$ref": "#/$defs/ActionPrefix"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/MaxRecords"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AlarmNamePrefix": {
+            "type": "string"
+        },
+        "ActionPrefix": {
+            "type": "string"
+        },
+        "DescribeAlarmsForMetricOutput": {
+            "type": "object",
+            "properties": {
+                "MetricAlarms": {
+                    "$ref": "#/$defs/MetricAlarms"
+                }
+            }
+        },
+        "DescribeAlarmsForMetricInput": {
+            "type": "object",
+            "properties": {
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "Statistic": {
+                    "$ref": "#/$defs/Statistic"
+                },
+                "ExtendedStatistic": {
+                    "$ref": "#/$defs/ExtendedStatistic"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "Period": {
+                    "$ref": "#/$defs/Period"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/StandardUnit"
+                }
+            }
+        },
+        "DescribeAnomalyDetectorsOutput": {
+            "type": "object",
+            "properties": {
+                "AnomalyDetectors": {
+                    "$ref": "#/$defs/AnomalyDetectors"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AnomalyDetectors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnomalyDetector"
+            }
+        },
+        "AnomalyDetector": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "Stat": {
+                    "$ref": "#/$defs/AnomalyDetectorMetricStat"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/AnomalyDetectorConfiguration"
+                },
+                "StateValue": {
+                    "$ref": "#/$defs/AnomalyDetectorStateValue"
+                },
+                "MetricCharacteristics": {
+                    "$ref": "#/$defs/MetricCharacteristics"
+                },
+                "SingleMetricAnomalyDetector": {
+                    "$ref": "#/$defs/SingleMetricAnomalyDetector"
+                },
+                "MetricMathAnomalyDetector": {
+                    "$ref": "#/$defs/MetricMathAnomalyDetector"
+                }
+            }
+        },
+        "AnomalyDetectorConfiguration": {
+            "type": "object",
+            "properties": {
+                "ExcludedTimeRanges": {
+                    "$ref": "#/$defs/AnomalyDetectorExcludedTimeRanges"
+                },
+                "MetricTimezone": {
+                    "$ref": "#/$defs/AnomalyDetectorMetricTimezone"
+                }
+            }
+        },
+        "AnomalyDetectorExcludedTimeRanges": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Range"
+            }
+        },
+        "Range": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "AnomalyDetectorMetricTimezone": {
+            "type": "string"
+        },
+        "AnomalyDetectorStateValue": {
+            "enum": [
+                "PENDING_TRAINING",
+                "TRAINED_INSUFFICIENT_DATA",
+                "TRAINED"
+            ]
+        },
+        "MetricCharacteristics": {
+            "type": "object",
+            "properties": {
+                "PeriodicSpikes": {
+                    "$ref": "#/$defs/PeriodicSpikes"
+                }
+            }
+        },
+        "PeriodicSpikes": {
+            "type": "boolean"
+        },
+        "DescribeAnomalyDetectorsInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxReturnedResultsCount"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "AnomalyDetectorTypes": {
+                    "$ref": "#/$defs/AnomalyDetectorTypes"
+                }
+            }
+        },
+        "MaxReturnedResultsCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AnomalyDetectorTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnomalyDetectorType"
+            }
+        },
+        "AnomalyDetectorType": {
+            "enum": [
+                "SINGLE_METRIC",
+                "METRIC_MATH"
+            ]
+        },
+        "DescribeInsightRulesOutput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "InsightRules": {
+                    "$ref": "#/$defs/InsightRules"
+                }
+            }
+        },
+        "InsightRules": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightRule"
+            }
+        },
+        "InsightRule": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/InsightRuleName"
+                },
+                "State": {
+                    "$ref": "#/$defs/InsightRuleState"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/InsightRuleSchema"
+                },
+                "Definition": {
+                    "$ref": "#/$defs/InsightRuleDefinition"
+                },
+                "ManagedRule": {
+                    "$ref": "#/$defs/InsightRuleIsManaged"
+                }
+            }
+        },
+        "InsightRuleState": {
+            "type": "string"
+        },
+        "InsightRuleSchema": {
+            "type": "string"
+        },
+        "InsightRuleDefinition": {
+            "type": "string"
+        },
+        "InsightRuleIsManaged": {
+            "type": "boolean"
+        },
+        "DescribeInsightRulesInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/InsightRuleMaxResults"
+                }
+            }
+        },
+        "InsightRuleMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DisableAlarmActionsInput": {
+            "type": "object",
+            "properties": {
+                "AlarmNames": {
+                    "$ref": "#/$defs/AlarmNames"
+                }
+            }
+        },
+        "DisableInsightRulesOutput": {
+            "type": "object",
+            "properties": {
+                "Failures": {
+                    "$ref": "#/$defs/BatchFailures"
+                }
+            }
+        },
+        "DisableInsightRulesInput": {
+            "type": "object",
+            "properties": {
+                "RuleNames": {
+                    "$ref": "#/$defs/InsightRuleNames"
+                }
+            }
+        },
+        "EnableAlarmActionsInput": {
+            "type": "object",
+            "properties": {
+                "AlarmNames": {
+                    "$ref": "#/$defs/AlarmNames"
+                }
+            }
+        },
+        "EnableInsightRulesOutput": {
+            "type": "object",
+            "properties": {
+                "Failures": {
+                    "$ref": "#/$defs/BatchFailures"
+                }
+            }
+        },
+        "EnableInsightRulesInput": {
+            "type": "object",
+            "properties": {
+                "RuleNames": {
+                    "$ref": "#/$defs/InsightRuleNames"
+                }
+            }
+        },
+        "GetDashboardOutput": {
+            "type": "object",
+            "properties": {
+                "DashboardArn": {
+                    "$ref": "#/$defs/DashboardArn"
+                },
+                "DashboardBody": {
+                    "$ref": "#/$defs/DashboardBody"
+                },
+                "DashboardName": {
+                    "$ref": "#/$defs/DashboardName"
+                }
+            }
+        },
+        "DashboardArn": {
+            "type": "string"
+        },
+        "DashboardBody": {
+            "type": "string"
+        },
+        "GetDashboardInput": {
+            "type": "object",
+            "properties": {
+                "DashboardName": {
+                    "$ref": "#/$defs/DashboardName"
+                }
+            }
+        },
+        "GetInsightRuleReportOutput": {
+            "type": "object",
+            "properties": {
+                "KeyLabels": {
+                    "$ref": "#/$defs/InsightRuleContributorKeyLabels"
+                },
+                "AggregationStatistic": {
+                    "$ref": "#/$defs/InsightRuleAggregationStatistic"
+                },
+                "AggregateValue": {
+                    "$ref": "#/$defs/InsightRuleUnboundDouble"
+                },
+                "ApproximateUniqueCount": {
+                    "$ref": "#/$defs/InsightRuleUnboundLong"
+                },
+                "Contributors": {
+                    "$ref": "#/$defs/InsightRuleContributors"
+                },
+                "MetricDatapoints": {
+                    "$ref": "#/$defs/InsightRuleMetricDatapoints"
+                }
+            }
+        },
+        "InsightRuleContributorKeyLabels": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightRuleContributorKeyLabel"
+            }
+        },
+        "InsightRuleContributorKeyLabel": {
+            "type": "string"
+        },
+        "InsightRuleAggregationStatistic": {
+            "type": "string"
+        },
+        "InsightRuleUnboundDouble": {
+            "type": "number",
+            "format": "double"
+        },
+        "InsightRuleUnboundLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "InsightRuleContributors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightRuleContributor"
+            }
+        },
+        "InsightRuleContributor": {
+            "type": "object",
+            "properties": {
+                "Keys": {
+                    "$ref": "#/$defs/InsightRuleContributorKeys"
+                },
+                "ApproximateAggregateValue": {
+                    "$ref": "#/$defs/InsightRuleUnboundDouble"
+                },
+                "Datapoints": {
+                    "$ref": "#/$defs/InsightRuleContributorDatapoints"
+                }
+            }
+        },
+        "InsightRuleContributorKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightRuleContributorKey"
+            }
+        },
+        "InsightRuleContributorKey": {
+            "type": "string"
+        },
+        "InsightRuleContributorDatapoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightRuleContributorDatapoint"
+            }
+        },
+        "InsightRuleContributorDatapoint": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ApproximateValue": {
+                    "$ref": "#/$defs/InsightRuleUnboundDouble"
+                }
+            }
+        },
+        "InsightRuleMetricDatapoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightRuleMetricDatapoint"
+            }
+        },
+        "InsightRuleMetricDatapoint": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UniqueContributors": {
+                    "$ref": "#/$defs/InsightRuleUnboundDouble"
+                },
+                "MaxContributorValue": {
+                    "$ref": "#/$defs/InsightRuleUnboundDouble"
+                },
+                "SampleCount": {
+                    "$ref": "#/$defs/InsightRuleUnboundDouble"
+                },
+                "Average": {
+                    "$ref": "#/$defs/InsightRuleUnboundDouble"
+                },
+                "Sum": {
+                    "$ref": "#/$defs/InsightRuleUnboundDouble"
+                },
+                "Minimum": {
+                    "$ref": "#/$defs/InsightRuleUnboundDouble"
+                },
+                "Maximum": {
+                    "$ref": "#/$defs/InsightRuleUnboundDouble"
+                }
+            }
+        },
+        "GetInsightRuleReportInput": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/InsightRuleName"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Period": {
+                    "$ref": "#/$defs/Period"
+                },
+                "MaxContributorCount": {
+                    "$ref": "#/$defs/InsightRuleUnboundInteger"
+                },
+                "Metrics": {
+                    "$ref": "#/$defs/InsightRuleMetricList"
+                },
+                "OrderBy": {
+                    "$ref": "#/$defs/InsightRuleOrderBy"
+                }
+            }
+        },
+        "InsightRuleUnboundInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "InsightRuleMetricList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightRuleMetricName"
+            }
+        },
+        "InsightRuleMetricName": {
+            "type": "string"
+        },
+        "InsightRuleOrderBy": {
+            "type": "string"
+        },
+        "GetMetricDataOutput": {
+            "type": "object",
+            "properties": {
+                "MetricDataResults": {
+                    "$ref": "#/$defs/MetricDataResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Messages": {
+                    "$ref": "#/$defs/MetricDataResultMessages"
+                }
+            }
+        },
+        "MetricDataResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricDataResult"
+            }
+        },
+        "MetricDataResult": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/MetricId"
+                },
+                "Label": {
+                    "$ref": "#/$defs/MetricLabel"
+                },
+                "Timestamps": {
+                    "$ref": "#/$defs/Timestamps"
+                },
+                "Values": {
+                    "$ref": "#/$defs/DatapointValues"
+                },
+                "StatusCode": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "Messages": {
+                    "$ref": "#/$defs/MetricDataResultMessages"
+                }
+            }
+        },
+        "Timestamps": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Timestamp"
+            }
+        },
+        "DatapointValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatapointValue"
+            }
+        },
+        "DatapointValue": {
+            "type": "number",
+            "format": "double"
+        },
+        "StatusCode": {
+            "enum": [
+                "COMPLETE",
+                "INTERNAL_ERROR",
+                "PARTIAL_DATA",
+                "FORBIDDEN"
+            ]
+        },
+        "MetricDataResultMessages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MessageData"
+            }
+        },
+        "MessageData": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/MessageDataCode"
+                },
+                "Value": {
+                    "$ref": "#/$defs/MessageDataValue"
+                }
+            }
+        },
+        "MessageDataCode": {
+            "type": "string"
+        },
+        "MessageDataValue": {
+            "type": "string"
+        },
+        "GetMetricDataInput": {
+            "type": "object",
+            "properties": {
+                "MetricDataQueries": {
+                    "$ref": "#/$defs/MetricDataQueries"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ScanBy": {
+                    "$ref": "#/$defs/ScanBy"
+                },
+                "MaxDatapoints": {
+                    "$ref": "#/$defs/GetMetricDataMaxDatapoints"
+                },
+                "LabelOptions": {
+                    "$ref": "#/$defs/LabelOptions"
+                }
+            }
+        },
+        "GetMetricDataMaxDatapoints": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LabelOptions": {
+            "type": "object",
+            "properties": {
+                "Timezone": {
+                    "$ref": "#/$defs/GetMetricDataLabelTimezone"
+                }
+            }
+        },
+        "GetMetricDataLabelTimezone": {
+            "type": "string"
+        },
+        "GetMetricStatisticsOutput": {
+            "type": "object",
+            "properties": {
+                "Label": {
+                    "$ref": "#/$defs/MetricLabel"
+                },
+                "Datapoints": {
+                    "$ref": "#/$defs/Datapoints"
+                }
+            }
+        },
+        "Datapoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Datapoint"
+            }
+        },
+        "Datapoint": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SampleCount": {
+                    "$ref": "#/$defs/DatapointValue"
+                },
+                "Average": {
+                    "$ref": "#/$defs/DatapointValue"
+                },
+                "Sum": {
+                    "$ref": "#/$defs/DatapointValue"
+                },
+                "Minimum": {
+                    "$ref": "#/$defs/DatapointValue"
+                },
+                "Maximum": {
+                    "$ref": "#/$defs/DatapointValue"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/StandardUnit"
+                },
+                "ExtendedStatistics": {
+                    "$ref": "#/$defs/DatapointValueMap"
+                }
+            }
+        },
+        "DatapointValueMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/DatapointValue"
+            }
+        },
+        "GetMetricStatisticsInput": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Period": {
+                    "$ref": "#/$defs/Period"
+                },
+                "Statistics": {
+                    "$ref": "#/$defs/Statistics"
+                },
+                "ExtendedStatistics": {
+                    "$ref": "#/$defs/ExtendedStatistics"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/StandardUnit"
+                }
+            }
+        },
+        "Statistics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Statistic"
+            }
+        },
+        "ExtendedStatistics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExtendedStatistic"
+            }
+        },
+        "GetMetricStreamOutput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Name": {
+                    "$ref": "#/$defs/MetricStreamName"
+                },
+                "IncludeFilters": {
+                    "$ref": "#/$defs/MetricStreamFilters"
+                },
+                "ExcludeFilters": {
+                    "$ref": "#/$defs/MetricStreamFilters"
+                },
+                "FirehoseArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "State": {
+                    "$ref": "#/$defs/MetricStreamState"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdateDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "OutputFormat": {
+                    "$ref": "#/$defs/MetricStreamOutputFormat"
+                },
+                "StatisticsConfigurations": {
+                    "$ref": "#/$defs/MetricStreamStatisticsConfigurations"
+                },
+                "IncludeLinkedAccountsMetrics": {
+                    "$ref": "#/$defs/IncludeLinkedAccountsMetrics"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "MetricStreamFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricStreamFilter"
+            }
+        },
+        "MetricStreamFilter": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricNames": {
+                    "$ref": "#/$defs/MetricStreamFilterMetricNames"
+                }
+            }
+        },
+        "MetricStreamFilterMetricNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricName"
+            }
+        },
+        "MetricStreamState": {
+            "type": "string"
+        },
+        "MetricStreamOutputFormat": {
+            "enum": [
+                "JSON",
+                "OPEN_TELEMETRY_0_7",
+                "OPEN_TELEMETRY_1_0"
+            ]
+        },
+        "MetricStreamStatisticsConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricStreamStatisticsConfiguration"
+            }
+        },
+        "MetricStreamStatisticsConfiguration": {
+            "type": "object",
+            "properties": {
+                "IncludeMetrics": {
+                    "$ref": "#/$defs/MetricStreamStatisticsIncludeMetrics"
+                },
+                "AdditionalStatistics": {
+                    "$ref": "#/$defs/MetricStreamStatisticsAdditionalStatistics"
+                }
+            }
+        },
+        "MetricStreamStatisticsIncludeMetrics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricStreamStatisticsMetric"
+            }
+        },
+        "MetricStreamStatisticsMetric": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                }
+            }
+        },
+        "MetricStreamStatisticsAdditionalStatistics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricStreamStatistic"
+            }
+        },
+        "MetricStreamStatistic": {
+            "type": "string"
+        },
+        "IncludeLinkedAccountsMetrics": {
+            "type": "boolean"
+        },
+        "GetMetricStreamInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/MetricStreamName"
+                }
+            }
+        },
+        "GetMetricWidgetImageOutput": {
+            "type": "object",
+            "properties": {
+                "MetricWidgetImage": {
+                    "$ref": "#/$defs/MetricWidgetImage"
+                }
+            }
+        },
+        "MetricWidgetImage": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetMetricWidgetImageInput": {
+            "type": "object",
+            "properties": {
+                "MetricWidget": {
+                    "$ref": "#/$defs/MetricWidget"
+                },
+                "OutputFormat": {
+                    "$ref": "#/$defs/OutputFormat"
+                }
+            }
+        },
+        "MetricWidget": {
+            "type": "string"
+        },
+        "OutputFormat": {
+            "type": "string"
+        },
+        "ListDashboardsOutput": {
+            "type": "object",
+            "properties": {
+                "DashboardEntries": {
+                    "$ref": "#/$defs/DashboardEntries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DashboardEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DashboardEntry"
+            }
+        },
+        "DashboardEntry": {
+            "type": "object",
+            "properties": {
+                "DashboardName": {
+                    "$ref": "#/$defs/DashboardName"
+                },
+                "DashboardArn": {
+                    "$ref": "#/$defs/DashboardArn"
+                },
+                "LastModified": {
+                    "$ref": "#/$defs/LastModified"
+                },
+                "Size": {
+                    "$ref": "#/$defs/Size"
+                }
+            }
+        },
+        "LastModified": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Size": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ListDashboardsInput": {
+            "type": "object",
+            "properties": {
+                "DashboardNamePrefix": {
+                    "$ref": "#/$defs/DashboardNamePrefix"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DashboardNamePrefix": {
+            "type": "string"
+        },
+        "ListManagedInsightRulesOutput": {
+            "type": "object",
+            "properties": {
+                "ManagedRules": {
+                    "$ref": "#/$defs/ManagedRuleDescriptions"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ManagedRuleDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ManagedRuleDescription"
+            }
+        },
+        "ManagedRuleDescription": {
+            "type": "object",
+            "properties": {
+                "TemplateName": {
+                    "$ref": "#/$defs/TemplateName"
+                },
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "RuleState": {
+                    "$ref": "#/$defs/ManagedRuleState"
+                }
+            }
+        },
+        "TemplateName": {
+            "type": "string"
+        },
+        "ManagedRuleState": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/InsightRuleName"
+                },
+                "State": {
+                    "$ref": "#/$defs/InsightRuleState"
+                }
+            }
+        },
+        "ListManagedInsightRulesInput": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/InsightRuleMaxResults"
+                }
+            }
+        },
+        "ListMetricsOutput": {
+            "type": "object",
+            "properties": {
+                "Metrics": {
+                    "$ref": "#/$defs/Metrics"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "OwningAccounts": {
+                    "$ref": "#/$defs/OwningAccounts"
+                }
+            }
+        },
+        "Metrics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Metric"
+            }
+        },
+        "OwningAccounts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "ListMetricsInput": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/DimensionFilters"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "RecentlyActive": {
+                    "$ref": "#/$defs/RecentlyActive"
+                },
+                "IncludeLinkedAccounts": {
+                    "$ref": "#/$defs/IncludeLinkedAccounts"
+                },
+                "OwningAccount": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "DimensionFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DimensionFilter"
+            }
+        },
+        "DimensionFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DimensionName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/DimensionValue"
+                }
+            }
+        },
+        "RecentlyActive": {
+            "enum": [
+                "PT3H"
+            ]
+        },
+        "IncludeLinkedAccounts": {
+            "type": "boolean"
+        },
+        "ListMetricStreamsOutput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Entries": {
+                    "$ref": "#/$defs/MetricStreamEntries"
+                }
+            }
+        },
+        "MetricStreamEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricStreamEntry"
+            }
+        },
+        "MetricStreamEntry": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdateDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Name": {
+                    "$ref": "#/$defs/MetricStreamName"
+                },
+                "FirehoseArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "State": {
+                    "$ref": "#/$defs/MetricStreamState"
+                },
+                "OutputFormat": {
+                    "$ref": "#/$defs/MetricStreamOutputFormat"
+                }
+            }
+        },
+        "ListMetricStreamsInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListMetricStreamsMaxResults"
+                }
+            }
+        },
+        "ListMetricStreamsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceOutput": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "PutAnomalyDetectorOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutAnomalyDetectorInput": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "Stat": {
+                    "$ref": "#/$defs/AnomalyDetectorMetricStat"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/AnomalyDetectorConfiguration"
+                },
+                "MetricCharacteristics": {
+                    "$ref": "#/$defs/MetricCharacteristics"
+                },
+                "SingleMetricAnomalyDetector": {
+                    "$ref": "#/$defs/SingleMetricAnomalyDetector"
+                },
+                "MetricMathAnomalyDetector": {
+                    "$ref": "#/$defs/MetricMathAnomalyDetector"
+                }
+            }
+        },
+        "PutCompositeAlarmInput": {
+            "type": "object",
+            "properties": {
+                "ActionsEnabled": {
+                    "$ref": "#/$defs/ActionsEnabled"
+                },
+                "AlarmActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "AlarmDescription": {
+                    "$ref": "#/$defs/AlarmDescription"
+                },
+                "AlarmName": {
+                    "$ref": "#/$defs/AlarmName"
+                },
+                "AlarmRule": {
+                    "$ref": "#/$defs/AlarmRule"
+                },
+                "InsufficientDataActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "OKActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ActionsSuppressor": {
+                    "$ref": "#/$defs/AlarmArn"
+                },
+                "ActionsSuppressorWaitPeriod": {
+                    "$ref": "#/$defs/SuppressorPeriod"
+                },
+                "ActionsSuppressorExtensionPeriod": {
+                    "$ref": "#/$defs/SuppressorPeriod"
+                }
+            }
+        },
+        "PutDashboardOutput": {
+            "type": "object",
+            "properties": {
+                "DashboardValidationMessages": {
+                    "$ref": "#/$defs/DashboardValidationMessages"
+                }
+            }
+        },
+        "DashboardValidationMessages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DashboardValidationMessage"
+            }
+        },
+        "DashboardValidationMessage": {
+            "type": "object",
+            "properties": {
+                "DataPath": {
+                    "$ref": "#/$defs/DataPath"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "DataPath": {
+            "type": "string"
+        },
+        "Message": {
+            "type": "string"
+        },
+        "PutDashboardInput": {
+            "type": "object",
+            "properties": {
+                "DashboardName": {
+                    "$ref": "#/$defs/DashboardName"
+                },
+                "DashboardBody": {
+                    "$ref": "#/$defs/DashboardBody"
+                }
+            }
+        },
+        "PutInsightRuleOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutInsightRuleInput": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/InsightRuleName"
+                },
+                "RuleState": {
+                    "$ref": "#/$defs/InsightRuleState"
+                },
+                "RuleDefinition": {
+                    "$ref": "#/$defs/InsightRuleDefinition"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PutManagedInsightRulesOutput": {
+            "type": "object",
+            "properties": {
+                "Failures": {
+                    "$ref": "#/$defs/BatchFailures"
+                }
+            }
+        },
+        "PutManagedInsightRulesInput": {
+            "type": "object",
+            "properties": {
+                "ManagedRules": {
+                    "$ref": "#/$defs/ManagedRules"
+                }
+            }
+        },
+        "ManagedRules": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ManagedRule"
+            }
+        },
+        "ManagedRule": {
+            "type": "object",
+            "properties": {
+                "TemplateName": {
+                    "$ref": "#/$defs/TemplateName"
+                },
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PutMetricAlarmInput": {
+            "type": "object",
+            "properties": {
+                "AlarmName": {
+                    "$ref": "#/$defs/AlarmName"
+                },
+                "AlarmDescription": {
+                    "$ref": "#/$defs/AlarmDescription"
+                },
+                "ActionsEnabled": {
+                    "$ref": "#/$defs/ActionsEnabled"
+                },
+                "OKActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "AlarmActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "InsufficientDataActions": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "Statistic": {
+                    "$ref": "#/$defs/Statistic"
+                },
+                "ExtendedStatistic": {
+                    "$ref": "#/$defs/ExtendedStatistic"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "Period": {
+                    "$ref": "#/$defs/Period"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/StandardUnit"
+                },
+                "EvaluationPeriods": {
+                    "$ref": "#/$defs/EvaluationPeriods"
+                },
+                "DatapointsToAlarm": {
+                    "$ref": "#/$defs/DatapointsToAlarm"
+                },
+                "Threshold": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "ComparisonOperator": {
+                    "$ref": "#/$defs/ComparisonOperator"
+                },
+                "TreatMissingData": {
+                    "$ref": "#/$defs/TreatMissingData"
+                },
+                "EvaluateLowSampleCountPercentile": {
+                    "$ref": "#/$defs/EvaluateLowSampleCountPercentile"
+                },
+                "Metrics": {
+                    "$ref": "#/$defs/MetricDataQueries"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ThresholdMetricId": {
+                    "$ref": "#/$defs/MetricId"
+                }
+            }
+        },
+        "PutMetricDataInput": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricData": {
+                    "$ref": "#/$defs/MetricData"
+                }
+            }
+        },
+        "MetricData": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricDatum"
+            }
+        },
+        "MetricDatum": {
+            "type": "object",
+            "properties": {
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Value": {
+                    "$ref": "#/$defs/DatapointValue"
+                },
+                "StatisticValues": {
+                    "$ref": "#/$defs/StatisticSet"
+                },
+                "Values": {
+                    "$ref": "#/$defs/Values"
+                },
+                "Counts": {
+                    "$ref": "#/$defs/Counts"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/StandardUnit"
+                },
+                "StorageResolution": {
+                    "$ref": "#/$defs/StorageResolution"
+                }
+            }
+        },
+        "StatisticSet": {
+            "type": "object",
+            "properties": {
+                "SampleCount": {
+                    "$ref": "#/$defs/DatapointValue"
+                },
+                "Sum": {
+                    "$ref": "#/$defs/DatapointValue"
+                },
+                "Minimum": {
+                    "$ref": "#/$defs/DatapointValue"
+                },
+                "Maximum": {
+                    "$ref": "#/$defs/DatapointValue"
+                }
+            }
+        },
+        "Values": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatapointValue"
+            }
+        },
+        "Counts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatapointValue"
+            }
+        },
+        "StorageResolution": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PutMetricStreamOutput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "PutMetricStreamInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/MetricStreamName"
+                },
+                "IncludeFilters": {
+                    "$ref": "#/$defs/MetricStreamFilters"
+                },
+                "ExcludeFilters": {
+                    "$ref": "#/$defs/MetricStreamFilters"
+                },
+                "FirehoseArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "OutputFormat": {
+                    "$ref": "#/$defs/MetricStreamOutputFormat"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "StatisticsConfigurations": {
+                    "$ref": "#/$defs/MetricStreamStatisticsConfigurations"
+                },
+                "IncludeLinkedAccountsMetrics": {
+                    "$ref": "#/$defs/IncludeLinkedAccountsMetrics"
+                }
+            }
+        },
+        "SetAlarmStateInput": {
+            "type": "object",
+            "properties": {
+                "AlarmName": {
+                    "$ref": "#/$defs/AlarmName"
+                },
+                "StateValue": {
+                    "$ref": "#/$defs/StateValue"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/StateReason"
+                },
+                "StateReasonData": {
+                    "$ref": "#/$defs/StateReasonData"
+                }
+            }
+        },
+        "StartMetricStreamsOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartMetricStreamsInput": {
+            "type": "object",
+            "properties": {
+                "Names": {
+                    "$ref": "#/$defs/MetricStreamNames"
+                }
+            }
+        },
+        "MetricStreamNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricStreamName"
+            }
+        },
+        "StopMetricStreamsOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopMetricStreamsInput": {
+            "type": "object",
+            "properties": {
+                "Names": {
+                    "$ref": "#/$defs/MetricStreamNames"
+                }
+            }
+        },
+        "TagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://monitoring-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://monitoring.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://monitoring-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://monitoring.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://monitoring.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

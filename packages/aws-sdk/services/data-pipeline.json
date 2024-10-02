@@ -1,0 +1,1665 @@
+{
+    "name": "datapipeline",
+    "commands": [
+        {
+            "name": "ActivatePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ActivatePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ActivatePipelineOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ActivatePipelineInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AddTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddTagsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddTagsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePipelineOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePipelineInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeactivatePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeactivatePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeactivatePipelineOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeactivatePipelineInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePipelineInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeObjects",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeObjects"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeObjectsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeObjectsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribePipelines",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribePipelines"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePipelinesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePipelinesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EvaluateExpression",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EvaluateExpression"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EvaluateExpressionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EvaluateExpressionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPipelineDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPipelineDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPipelineDefinitionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPipelineDefinitionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPipelines",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPipelines"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPipelinesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPipelinesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PollForTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PollForTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PollForTaskOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PollForTaskInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutPipelineDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutPipelineDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutPipelineDefinitionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutPipelineDefinitionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "QueryObjects",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "QueryObjects"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/QueryObjectsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/QueryObjectsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RemoveTagsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveTagsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ReportTaskProgress",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ReportTaskProgress"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ReportTaskProgressOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ReportTaskProgressInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ReportTaskRunnerHeartbeat",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ReportTaskRunnerHeartbeat"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ReportTaskRunnerHeartbeatOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ReportTaskRunnerHeartbeatInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetStatusInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetTaskStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetTaskStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SetTaskStatusOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetTaskStatusInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ValidatePipelineDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ValidatePipelineDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ValidatePipelineDefinitionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ValidatePipelineDefinitionInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ActivatePipelineOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "ActivatePipelineInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "parameterValues": {
+                    "$ref": "#/$defs/ParameterValueList"
+                },
+                "startTimestamp": {
+                    "$ref": "#/$defs/timestamp"
+                }
+            }
+        },
+        "id": {
+            "type": "string"
+        },
+        "ParameterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ParameterValue"
+            }
+        },
+        "ParameterValue": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/fieldNameString"
+                },
+                "stringValue": {
+                    "$ref": "#/$defs/fieldStringValue"
+                }
+            }
+        },
+        "fieldNameString": {
+            "type": "string"
+        },
+        "fieldStringValue": {
+            "type": "string"
+        },
+        "timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "AddTagsOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "AddTagsInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "tags": {
+                    "$ref": "#/$defs/tagList"
+                }
+            }
+        },
+        "tagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/tagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/tagValue"
+                }
+            }
+        },
+        "tagKey": {
+            "type": "string"
+        },
+        "tagValue": {
+            "type": "string"
+        },
+        "CreatePipelineOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                }
+            }
+        },
+        "CreatePipelineInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/id"
+                },
+                "uniqueId": {
+                    "$ref": "#/$defs/id"
+                },
+                "description": {
+                    "$ref": "#/$defs/string"
+                },
+                "tags": {
+                    "$ref": "#/$defs/tagList"
+                }
+            }
+        },
+        "string": {
+            "type": "string"
+        },
+        "DeactivatePipelineOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeactivatePipelineInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "cancelActive": {
+                    "$ref": "#/$defs/cancelActive"
+                }
+            }
+        },
+        "cancelActive": {
+            "type": "boolean"
+        },
+        "DeletePipelineInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                }
+            }
+        },
+        "DescribeObjectsOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineObjects": {
+                    "$ref": "#/$defs/PipelineObjectList"
+                },
+                "marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "hasMoreResults": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "PipelineObjectList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineObject"
+            }
+        },
+        "PipelineObject": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/id"
+                },
+                "name": {
+                    "$ref": "#/$defs/id"
+                },
+                "fields": {
+                    "$ref": "#/$defs/fieldList"
+                }
+            }
+        },
+        "fieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Field"
+            }
+        },
+        "Field": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/fieldNameString"
+                },
+                "stringValue": {
+                    "$ref": "#/$defs/fieldStringValue"
+                },
+                "refValue": {
+                    "$ref": "#/$defs/fieldNameString"
+                }
+            }
+        },
+        "boolean": {
+            "type": "boolean"
+        },
+        "DescribeObjectsInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "objectIds": {
+                    "$ref": "#/$defs/idList"
+                },
+                "evaluateExpressions": {
+                    "$ref": "#/$defs/boolean"
+                },
+                "marker": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "idList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/id"
+            }
+        },
+        "DescribePipelinesOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineDescriptionList": {
+                    "$ref": "#/$defs/PipelineDescriptionList"
+                }
+            }
+        },
+        "PipelineDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineDescription"
+            }
+        },
+        "PipelineDescription": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "name": {
+                    "$ref": "#/$defs/id"
+                },
+                "fields": {
+                    "$ref": "#/$defs/fieldList"
+                },
+                "description": {
+                    "$ref": "#/$defs/string"
+                },
+                "tags": {
+                    "$ref": "#/$defs/tagList"
+                }
+            }
+        },
+        "DescribePipelinesInput": {
+            "type": "object",
+            "properties": {
+                "pipelineIds": {
+                    "$ref": "#/$defs/idList"
+                }
+            }
+        },
+        "EvaluateExpressionOutput": {
+            "type": "object",
+            "properties": {
+                "evaluatedExpression": {
+                    "$ref": "#/$defs/longString"
+                }
+            }
+        },
+        "longString": {
+            "type": "string"
+        },
+        "EvaluateExpressionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "objectId": {
+                    "$ref": "#/$defs/id"
+                },
+                "expression": {
+                    "$ref": "#/$defs/longString"
+                }
+            }
+        },
+        "GetPipelineDefinitionOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineObjects": {
+                    "$ref": "#/$defs/PipelineObjectList"
+                },
+                "parameterObjects": {
+                    "$ref": "#/$defs/ParameterObjectList"
+                },
+                "parameterValues": {
+                    "$ref": "#/$defs/ParameterValueList"
+                }
+            }
+        },
+        "ParameterObjectList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ParameterObject"
+            }
+        },
+        "ParameterObject": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/fieldNameString"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/ParameterAttributeList"
+                }
+            }
+        },
+        "ParameterAttributeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ParameterAttribute"
+            }
+        },
+        "ParameterAttribute": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/attributeNameString"
+                },
+                "stringValue": {
+                    "$ref": "#/$defs/attributeValueString"
+                }
+            }
+        },
+        "attributeNameString": {
+            "type": "string"
+        },
+        "attributeValueString": {
+            "type": "string"
+        },
+        "GetPipelineDefinitionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "version": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListPipelinesOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineIdList": {
+                    "$ref": "#/$defs/pipelineList"
+                },
+                "marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "hasMoreResults": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "pipelineList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineIdName"
+            }
+        },
+        "PipelineIdName": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/id"
+                },
+                "name": {
+                    "$ref": "#/$defs/id"
+                }
+            }
+        },
+        "ListPipelinesInput": {
+            "type": "object",
+            "properties": {
+                "marker": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "PollForTaskOutput": {
+            "type": "object",
+            "properties": {
+                "taskObject": {
+                    "$ref": "#/$defs/TaskObject"
+                }
+            }
+        },
+        "TaskObject": {
+            "type": "object",
+            "properties": {
+                "taskId": {
+                    "$ref": "#/$defs/taskId"
+                },
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "attemptId": {
+                    "$ref": "#/$defs/id"
+                },
+                "objects": {
+                    "$ref": "#/$defs/PipelineObjectMap"
+                }
+            }
+        },
+        "taskId": {
+            "type": "string"
+        },
+        "PipelineObjectMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/PipelineObject"
+            }
+        },
+        "PollForTaskInput": {
+            "type": "object",
+            "properties": {
+                "workerGroup": {
+                    "$ref": "#/$defs/string"
+                },
+                "hostname": {
+                    "$ref": "#/$defs/id"
+                },
+                "instanceIdentity": {
+                    "$ref": "#/$defs/InstanceIdentity"
+                }
+            }
+        },
+        "InstanceIdentity": {
+            "type": "object",
+            "properties": {
+                "document": {
+                    "$ref": "#/$defs/string"
+                },
+                "signature": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "PutPipelineDefinitionOutput": {
+            "type": "object",
+            "properties": {
+                "validationErrors": {
+                    "$ref": "#/$defs/ValidationErrors"
+                },
+                "validationWarnings": {
+                    "$ref": "#/$defs/ValidationWarnings"
+                },
+                "errored": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "ValidationErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ValidationError"
+            }
+        },
+        "ValidationError": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/id"
+                },
+                "errors": {
+                    "$ref": "#/$defs/validationMessages"
+                }
+            }
+        },
+        "validationMessages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/validationMessage"
+            }
+        },
+        "validationMessage": {
+            "type": "string"
+        },
+        "ValidationWarnings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ValidationWarning"
+            }
+        },
+        "ValidationWarning": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/id"
+                },
+                "warnings": {
+                    "$ref": "#/$defs/validationMessages"
+                }
+            }
+        },
+        "PutPipelineDefinitionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "pipelineObjects": {
+                    "$ref": "#/$defs/PipelineObjectList"
+                },
+                "parameterObjects": {
+                    "$ref": "#/$defs/ParameterObjectList"
+                },
+                "parameterValues": {
+                    "$ref": "#/$defs/ParameterValueList"
+                }
+            }
+        },
+        "QueryObjectsOutput": {
+            "type": "object",
+            "properties": {
+                "ids": {
+                    "$ref": "#/$defs/idList"
+                },
+                "marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "hasMoreResults": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "QueryObjectsInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "query": {
+                    "$ref": "#/$defs/Query"
+                },
+                "sphere": {
+                    "$ref": "#/$defs/string"
+                },
+                "marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "limit": {
+                    "$ref": "#/$defs/int"
+                }
+            }
+        },
+        "Query": {
+            "type": "object",
+            "properties": {
+                "selectors": {
+                    "$ref": "#/$defs/SelectorList"
+                }
+            }
+        },
+        "SelectorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Selector"
+            }
+        },
+        "Selector": {
+            "type": "object",
+            "properties": {
+                "fieldName": {
+                    "$ref": "#/$defs/string"
+                },
+                "operator": {
+                    "$ref": "#/$defs/Operator"
+                }
+            }
+        },
+        "Operator": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/OperatorType"
+                },
+                "values": {
+                    "$ref": "#/$defs/stringList"
+                }
+            }
+        },
+        "OperatorType": {
+            "enum": [
+                "Equal",
+                "ReferenceEqual",
+                "LessThanOrEqual",
+                "GreaterThanOrEqual",
+                "Between"
+            ]
+        },
+        "stringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/string"
+            }
+        },
+        "int": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RemoveTagsOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "RemoveTagsInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/stringList"
+                }
+            }
+        },
+        "ReportTaskProgressOutput": {
+            "type": "object",
+            "properties": {
+                "canceled": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "ReportTaskProgressInput": {
+            "type": "object",
+            "properties": {
+                "taskId": {
+                    "$ref": "#/$defs/taskId"
+                },
+                "fields": {
+                    "$ref": "#/$defs/fieldList"
+                }
+            }
+        },
+        "ReportTaskRunnerHeartbeatOutput": {
+            "type": "object",
+            "properties": {
+                "terminate": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "ReportTaskRunnerHeartbeatInput": {
+            "type": "object",
+            "properties": {
+                "taskrunnerId": {
+                    "$ref": "#/$defs/id"
+                },
+                "workerGroup": {
+                    "$ref": "#/$defs/string"
+                },
+                "hostname": {
+                    "$ref": "#/$defs/id"
+                }
+            }
+        },
+        "SetStatusInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "objectIds": {
+                    "$ref": "#/$defs/idList"
+                },
+                "status": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "SetTaskStatusOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "SetTaskStatusInput": {
+            "type": "object",
+            "properties": {
+                "taskId": {
+                    "$ref": "#/$defs/taskId"
+                },
+                "taskStatus": {
+                    "$ref": "#/$defs/TaskStatus"
+                },
+                "errorId": {
+                    "$ref": "#/$defs/string"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/errorMessage"
+                },
+                "errorStackTrace": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "TaskStatus": {
+            "enum": [
+                "FINISHED",
+                "FAILED",
+                "FALSE"
+            ]
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "ValidatePipelineDefinitionOutput": {
+            "type": "object",
+            "properties": {
+                "validationErrors": {
+                    "$ref": "#/$defs/ValidationErrors"
+                },
+                "validationWarnings": {
+                    "$ref": "#/$defs/ValidationWarnings"
+                },
+                "errored": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "ValidatePipelineDefinitionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineId": {
+                    "$ref": "#/$defs/id"
+                },
+                "pipelineObjects": {
+                    "$ref": "#/$defs/PipelineObjectList"
+                },
+                "parameterObjects": {
+                    "$ref": "#/$defs/ParameterObjectList"
+                },
+                "parameterValues": {
+                    "$ref": "#/$defs/ParameterValueList"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://datapipeline-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://datapipeline-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://datapipeline.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://datapipeline.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

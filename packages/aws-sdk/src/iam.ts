@@ -1,4 +1,4 @@
-import { sign } from "./signature";
+// import { sign } from "./signature";
 
 export type Policy = { [service: string]: ServicePolicy };
 export type ServicePolicy = { [resource: string]: readonly string[] }

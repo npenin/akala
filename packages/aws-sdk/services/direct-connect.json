@@ -1,0 +1,4681 @@
+{
+    "name": "directconnect",
+    "commands": [
+        {
+            "name": "AcceptDirectConnectGatewayAssociationProposal",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AcceptDirectConnectGatewayAssociationProposal"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AcceptDirectConnectGatewayAssociationProposalResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AcceptDirectConnectGatewayAssociationProposalRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AllocateConnectionOnInterconnect",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AllocateConnectionOnInterconnect"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connection"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AllocateConnectionOnInterconnectRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AllocateHostedConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AllocateHostedConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connection"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AllocateHostedConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AllocatePrivateVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AllocatePrivateVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VirtualInterface"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AllocatePrivateVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AllocatePublicVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AllocatePublicVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VirtualInterface"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AllocatePublicVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AllocateTransitVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AllocateTransitVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AllocateTransitVirtualInterfaceResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AllocateTransitVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateConnectionWithLag",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateConnectionWithLag"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connection"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateConnectionWithLagRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateHostedConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateHostedConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connection"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateHostedConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateMacSecKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateMacSecKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateMacSecKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateMacSecKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VirtualInterface"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ConfirmConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ConfirmConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfirmConnectionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ConfirmConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ConfirmCustomerAgreement",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ConfirmCustomerAgreement"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfirmCustomerAgreementResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ConfirmCustomerAgreementRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ConfirmPrivateVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ConfirmPrivateVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfirmPrivateVirtualInterfaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ConfirmPrivateVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ConfirmPublicVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ConfirmPublicVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfirmPublicVirtualInterfaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ConfirmPublicVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ConfirmTransitVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ConfirmTransitVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfirmTransitVirtualInterfaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ConfirmTransitVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateBGPPeer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateBGPPeer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateBGPPeerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateBGPPeerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connection"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDirectConnectGateway",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDirectConnectGateway"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDirectConnectGatewayResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDirectConnectGatewayRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDirectConnectGatewayAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDirectConnectGatewayAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDirectConnectGatewayAssociationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDirectConnectGatewayAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDirectConnectGatewayAssociationProposal",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDirectConnectGatewayAssociationProposal"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDirectConnectGatewayAssociationProposalResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDirectConnectGatewayAssociationProposalRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateInterconnect",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateInterconnect"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Interconnect"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateInterconnectRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLag",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLag"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Lag"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLagRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePrivateVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePrivateVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VirtualInterface"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePrivateVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePublicVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePublicVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VirtualInterface"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePublicVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateTransitVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateTransitVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateTransitVirtualInterfaceResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTransitVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBGPPeer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteBGPPeer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteBGPPeerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBGPPeerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connection"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDirectConnectGateway",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDirectConnectGateway"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDirectConnectGatewayResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDirectConnectGatewayRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDirectConnectGatewayAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDirectConnectGatewayAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDirectConnectGatewayAssociationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDirectConnectGatewayAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDirectConnectGatewayAssociationProposal",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDirectConnectGatewayAssociationProposal"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDirectConnectGatewayAssociationProposalResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDirectConnectGatewayAssociationProposalRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteInterconnect",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteInterconnect"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteInterconnectResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteInterconnectRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLag",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLag"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Lag"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLagRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteVirtualInterface",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteVirtualInterface"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteVirtualInterfaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteVirtualInterfaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConnectionLoa",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConnectionLoa"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConnectionLoaResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectionLoaRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConnections",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConnections"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connections"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConnectionsOnInterconnect",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConnectionsOnInterconnect"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connections"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectionsOnInterconnectRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCustomerMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCustomerMetadata"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCustomerMetadataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDirectConnectGatewayAssociationProposals",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDirectConnectGatewayAssociationProposals"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDirectConnectGatewayAssociationProposalsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDirectConnectGatewayAssociationProposalsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDirectConnectGatewayAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDirectConnectGatewayAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDirectConnectGatewayAssociationsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDirectConnectGatewayAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDirectConnectGatewayAttachments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDirectConnectGatewayAttachments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDirectConnectGatewayAttachmentsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDirectConnectGatewayAttachmentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDirectConnectGateways",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDirectConnectGateways"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDirectConnectGatewaysResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDirectConnectGatewaysRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeHostedConnections",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeHostedConnections"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connections"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeHostedConnectionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeInterconnectLoa",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeInterconnectLoa"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeInterconnectLoaResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeInterconnectLoaRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeInterconnects",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeInterconnects"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Interconnects"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeInterconnectsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Lags"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLoa",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLoa"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Loa"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLoaRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Locations"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRouterConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRouterConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRouterConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRouterConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeVirtualGateways",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeVirtualGateways"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VirtualGateways"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeVirtualInterfaces",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeVirtualInterfaces"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VirtualInterfaces"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeVirtualInterfacesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateConnectionFromLag",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateConnectionFromLag"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connection"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateConnectionFromLagRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateMacSecKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateMacSecKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateMacSecKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateMacSecKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListVirtualInterfaceTestHistory",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListVirtualInterfaceTestHistory"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListVirtualInterfaceTestHistoryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListVirtualInterfaceTestHistoryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartBgpFailoverTest",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartBgpFailoverTest"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartBgpFailoverTestResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartBgpFailoverTestRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopBgpFailoverTest",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopBgpFailoverTest"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopBgpFailoverTestResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopBgpFailoverTestRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Connection"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDirectConnectGateway",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDirectConnectGateway"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDirectConnectGatewayResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDirectConnectGatewayRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDirectConnectGatewayAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDirectConnectGatewayAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDirectConnectGatewayAssociationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDirectConnectGatewayAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLag",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLag"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Lag"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLagRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateVirtualInterfaceAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateVirtualInterfaceAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VirtualInterface"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateVirtualInterfaceAttributesRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AcceptDirectConnectGatewayAssociationProposalResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayAssociation": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociation"
+                }
+            }
+        },
+        "DirectConnectGatewayAssociation": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "directConnectGatewayOwnerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "associationState": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationState"
+                },
+                "stateChangeError": {
+                    "$ref": "#/$defs/StateChangeError"
+                },
+                "associatedGateway": {
+                    "$ref": "#/$defs/AssociatedGateway"
+                },
+                "associationId": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationId"
+                },
+                "allowedPrefixesToDirectConnectGateway": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                },
+                "virtualGatewayId": {
+                    "$ref": "#/$defs/VirtualGatewayId"
+                },
+                "virtualGatewayRegion": {
+                    "$ref": "#/$defs/VirtualGatewayRegion"
+                },
+                "virtualGatewayOwnerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                }
+            }
+        },
+        "DirectConnectGatewayId": {
+            "type": "string"
+        },
+        "OwnerAccount": {
+            "type": "string"
+        },
+        "DirectConnectGatewayAssociationState": {
+            "enum": [
+                "associating",
+                "associated",
+                "disassociating",
+                "disassociated",
+                "updating"
+            ]
+        },
+        "StateChangeError": {
+            "type": "string"
+        },
+        "AssociatedGateway": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/GatewayIdentifier"
+                },
+                "type": {
+                    "$ref": "#/$defs/GatewayType"
+                },
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "region": {
+                    "$ref": "#/$defs/Region"
+                }
+            }
+        },
+        "GatewayIdentifier": {
+            "type": "string"
+        },
+        "GatewayType": {
+            "enum": [
+                "VirtualPrivateGateway",
+                "TransitGateway"
+            ]
+        },
+        "Region": {
+            "type": "string"
+        },
+        "DirectConnectGatewayAssociationId": {
+            "type": "string"
+        },
+        "RouteFilterPrefixList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RouteFilterPrefix"
+            }
+        },
+        "RouteFilterPrefix": {
+            "type": "object",
+            "properties": {
+                "cidr": {
+                    "$ref": "#/$defs/CIDR"
+                }
+            }
+        },
+        "CIDR": {
+            "type": "string"
+        },
+        "VirtualGatewayId": {
+            "type": "string"
+        },
+        "VirtualGatewayRegion": {
+            "type": "string"
+        },
+        "AcceptDirectConnectGatewayAssociationProposalRequest": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "proposalId": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationProposalId"
+                },
+                "associatedGatewayOwnerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "overrideAllowedPrefixesToDirectConnectGateway": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                }
+            }
+        },
+        "DirectConnectGatewayAssociationProposalId": {
+            "type": "string"
+        },
+        "Connection": {
+            "type": "object",
+            "properties": {
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "connectionName": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "connectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                },
+                "region": {
+                    "$ref": "#/$defs/Region"
+                },
+                "location": {
+                    "$ref": "#/$defs/LocationCode"
+                },
+                "bandwidth": {
+                    "$ref": "#/$defs/Bandwidth"
+                },
+                "vlan": {
+                    "$ref": "#/$defs/VLAN"
+                },
+                "partnerName": {
+                    "$ref": "#/$defs/PartnerName"
+                },
+                "loaIssueTime": {
+                    "$ref": "#/$defs/LoaIssueTime"
+                },
+                "lagId": {
+                    "$ref": "#/$defs/LagId"
+                },
+                "awsDevice": {
+                    "$ref": "#/$defs/AwsDevice"
+                },
+                "jumboFrameCapable": {
+                    "$ref": "#/$defs/JumboFrameCapable"
+                },
+                "awsDeviceV2": {
+                    "$ref": "#/$defs/AwsDeviceV2"
+                },
+                "awsLogicalDeviceId": {
+                    "$ref": "#/$defs/AwsLogicalDeviceId"
+                },
+                "hasLogicalRedundancy": {
+                    "$ref": "#/$defs/HasLogicalRedundancy"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "providerName": {
+                    "$ref": "#/$defs/ProviderName"
+                },
+                "macSecCapable": {
+                    "$ref": "#/$defs/MacSecCapable"
+                },
+                "portEncryptionStatus": {
+                    "$ref": "#/$defs/PortEncryptionStatus"
+                },
+                "encryptionMode": {
+                    "$ref": "#/$defs/EncryptionMode"
+                },
+                "macSecKeys": {
+                    "$ref": "#/$defs/MacSecKeyList"
+                }
+            }
+        },
+        "ConnectionId": {
+            "type": "string"
+        },
+        "ConnectionName": {
+            "type": "string"
+        },
+        "ConnectionState": {
+            "enum": [
+                "ordering",
+                "requested",
+                "pending",
+                "available",
+                "down",
+                "deleting",
+                "deleted",
+                "rejected",
+                "unknown"
+            ]
+        },
+        "LocationCode": {
+            "type": "string"
+        },
+        "Bandwidth": {
+            "type": "string"
+        },
+        "VLAN": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PartnerName": {
+            "type": "string"
+        },
+        "LoaIssueTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "LagId": {
+            "type": "string"
+        },
+        "AwsDevice": {
+            "type": "string"
+        },
+        "JumboFrameCapable": {
+            "type": "boolean"
+        },
+        "AwsDeviceV2": {
+            "type": "string"
+        },
+        "AwsLogicalDeviceId": {
+            "type": "string"
+        },
+        "HasLogicalRedundancy": {
+            "enum": [
+                "Unknown",
+                "Yes",
+                "No"
+            ]
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ProviderName": {
+            "type": "string"
+        },
+        "MacSecCapable": {
+            "type": "boolean"
+        },
+        "PortEncryptionStatus": {
+            "type": "string"
+        },
+        "EncryptionMode": {
+            "type": "string"
+        },
+        "MacSecKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MacSecKey"
+            }
+        },
+        "MacSecKey": {
+            "type": "object",
+            "properties": {
+                "secretARN": {
+                    "$ref": "#/$defs/SecretARN"
+                },
+                "ckn": {
+                    "$ref": "#/$defs/Ckn"
+                },
+                "state": {
+                    "$ref": "#/$defs/State"
+                },
+                "startOn": {
+                    "$ref": "#/$defs/StartOnDate"
+                }
+            }
+        },
+        "SecretARN": {
+            "type": "string"
+        },
+        "Ckn": {
+            "type": "string"
+        },
+        "State": {
+            "type": "string"
+        },
+        "StartOnDate": {
+            "type": "string"
+        },
+        "AllocateConnectionOnInterconnectRequest": {
+            "type": "object",
+            "properties": {
+                "bandwidth": {
+                    "$ref": "#/$defs/Bandwidth"
+                },
+                "connectionName": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "interconnectId": {
+                    "$ref": "#/$defs/InterconnectId"
+                },
+                "vlan": {
+                    "$ref": "#/$defs/VLAN"
+                }
+            }
+        },
+        "InterconnectId": {
+            "type": "string"
+        },
+        "AllocateHostedConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "bandwidth": {
+                    "$ref": "#/$defs/Bandwidth"
+                },
+                "connectionName": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "vlan": {
+                    "$ref": "#/$defs/VLAN"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "VirtualInterface": {
+            "type": "object",
+            "properties": {
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "location": {
+                    "$ref": "#/$defs/LocationCode"
+                },
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "virtualInterfaceType": {
+                    "$ref": "#/$defs/VirtualInterfaceType"
+                },
+                "virtualInterfaceName": {
+                    "$ref": "#/$defs/VirtualInterfaceName"
+                },
+                "vlan": {
+                    "$ref": "#/$defs/VLAN"
+                },
+                "asn": {
+                    "$ref": "#/$defs/ASN"
+                },
+                "amazonSideAsn": {
+                    "$ref": "#/$defs/LongAsn"
+                },
+                "authKey": {
+                    "$ref": "#/$defs/BGPAuthKey"
+                },
+                "amazonAddress": {
+                    "$ref": "#/$defs/AmazonAddress"
+                },
+                "customerAddress": {
+                    "$ref": "#/$defs/CustomerAddress"
+                },
+                "addressFamily": {
+                    "$ref": "#/$defs/AddressFamily"
+                },
+                "virtualInterfaceState": {
+                    "$ref": "#/$defs/VirtualInterfaceState"
+                },
+                "customerRouterConfig": {
+                    "$ref": "#/$defs/RouterConfig"
+                },
+                "mtu": {
+                    "$ref": "#/$defs/MTU"
+                },
+                "jumboFrameCapable": {
+                    "$ref": "#/$defs/JumboFrameCapable"
+                },
+                "virtualGatewayId": {
+                    "$ref": "#/$defs/VirtualGatewayId"
+                },
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "routeFilterPrefixes": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                },
+                "bgpPeers": {
+                    "$ref": "#/$defs/BGPPeerList"
+                },
+                "region": {
+                    "$ref": "#/$defs/Region"
+                },
+                "awsDeviceV2": {
+                    "$ref": "#/$defs/AwsDeviceV2"
+                },
+                "awsLogicalDeviceId": {
+                    "$ref": "#/$defs/AwsLogicalDeviceId"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "siteLinkEnabled": {
+                    "$ref": "#/$defs/SiteLinkEnabled"
+                }
+            }
+        },
+        "VirtualInterfaceId": {
+            "type": "string"
+        },
+        "VirtualInterfaceType": {
+            "type": "string"
+        },
+        "VirtualInterfaceName": {
+            "type": "string"
+        },
+        "ASN": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LongAsn": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "BGPAuthKey": {
+            "type": "string"
+        },
+        "AmazonAddress": {
+            "type": "string"
+        },
+        "CustomerAddress": {
+            "type": "string"
+        },
+        "AddressFamily": {
+            "enum": [
+                "IPv4",
+                "IPv6"
+            ]
+        },
+        "VirtualInterfaceState": {
+            "enum": [
+                "confirming",
+                "verifying",
+                "pending",
+                "available",
+                "down",
+                "deleting",
+                "deleted",
+                "rejected",
+                "unknown"
+            ]
+        },
+        "RouterConfig": {
+            "type": "string"
+        },
+        "MTU": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BGPPeerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BGPPeer"
+            }
+        },
+        "BGPPeer": {
+            "type": "object",
+            "properties": {
+                "bgpPeerId": {
+                    "$ref": "#/$defs/BGPPeerId"
+                },
+                "asn": {
+                    "$ref": "#/$defs/ASN"
+                },
+                "authKey": {
+                    "$ref": "#/$defs/BGPAuthKey"
+                },
+                "addressFamily": {
+                    "$ref": "#/$defs/AddressFamily"
+                },
+                "amazonAddress": {
+                    "$ref": "#/$defs/AmazonAddress"
+                },
+                "customerAddress": {
+                    "$ref": "#/$defs/CustomerAddress"
+                },
+                "bgpPeerState": {
+                    "$ref": "#/$defs/BGPPeerState"
+                },
+                "bgpStatus": {
+                    "$ref": "#/$defs/BGPStatus"
+                },
+                "awsDeviceV2": {
+                    "$ref": "#/$defs/AwsDeviceV2"
+                },
+                "awsLogicalDeviceId": {
+                    "$ref": "#/$defs/AwsLogicalDeviceId"
+                }
+            }
+        },
+        "BGPPeerId": {
+            "type": "string"
+        },
+        "BGPPeerState": {
+            "enum": [
+                "Verifying",
+                "Pending",
+                "Available",
+                "Deleting",
+                "Deleted"
+            ]
+        },
+        "BGPStatus": {
+            "enum": [
+                "Up",
+                "Down",
+                "Unknown"
+            ]
+        },
+        "SiteLinkEnabled": {
+            "type": "boolean"
+        },
+        "AllocatePrivateVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "newPrivateVirtualInterfaceAllocation": {
+                    "$ref": "#/$defs/NewPrivateVirtualInterfaceAllocation"
+                }
+            }
+        },
+        "NewPrivateVirtualInterfaceAllocation": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceName": {
+                    "$ref": "#/$defs/VirtualInterfaceName"
+                },
+                "vlan": {
+                    "$ref": "#/$defs/VLAN"
+                },
+                "asn": {
+                    "$ref": "#/$defs/ASN"
+                },
+                "mtu": {
+                    "$ref": "#/$defs/MTU"
+                },
+                "authKey": {
+                    "$ref": "#/$defs/BGPAuthKey"
+                },
+                "amazonAddress": {
+                    "$ref": "#/$defs/AmazonAddress"
+                },
+                "addressFamily": {
+                    "$ref": "#/$defs/AddressFamily"
+                },
+                "customerAddress": {
+                    "$ref": "#/$defs/CustomerAddress"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "AllocatePublicVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "newPublicVirtualInterfaceAllocation": {
+                    "$ref": "#/$defs/NewPublicVirtualInterfaceAllocation"
+                }
+            }
+        },
+        "NewPublicVirtualInterfaceAllocation": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceName": {
+                    "$ref": "#/$defs/VirtualInterfaceName"
+                },
+                "vlan": {
+                    "$ref": "#/$defs/VLAN"
+                },
+                "asn": {
+                    "$ref": "#/$defs/ASN"
+                },
+                "authKey": {
+                    "$ref": "#/$defs/BGPAuthKey"
+                },
+                "amazonAddress": {
+                    "$ref": "#/$defs/AmazonAddress"
+                },
+                "customerAddress": {
+                    "$ref": "#/$defs/CustomerAddress"
+                },
+                "addressFamily": {
+                    "$ref": "#/$defs/AddressFamily"
+                },
+                "routeFilterPrefixes": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "AllocateTransitVirtualInterfaceResult": {
+            "type": "object",
+            "properties": {
+                "virtualInterface": {
+                    "$ref": "#/$defs/VirtualInterface"
+                }
+            }
+        },
+        "AllocateTransitVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "newTransitVirtualInterfaceAllocation": {
+                    "$ref": "#/$defs/NewTransitVirtualInterfaceAllocation"
+                }
+            }
+        },
+        "NewTransitVirtualInterfaceAllocation": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceName": {
+                    "$ref": "#/$defs/VirtualInterfaceName"
+                },
+                "vlan": {
+                    "$ref": "#/$defs/VLAN"
+                },
+                "asn": {
+                    "$ref": "#/$defs/ASN"
+                },
+                "mtu": {
+                    "$ref": "#/$defs/MTU"
+                },
+                "authKey": {
+                    "$ref": "#/$defs/BGPAuthKey"
+                },
+                "amazonAddress": {
+                    "$ref": "#/$defs/AmazonAddress"
+                },
+                "customerAddress": {
+                    "$ref": "#/$defs/CustomerAddress"
+                },
+                "addressFamily": {
+                    "$ref": "#/$defs/AddressFamily"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "AssociateConnectionWithLagRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "lagId": {
+                    "$ref": "#/$defs/LagId"
+                }
+            }
+        },
+        "AssociateHostedConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "parentConnectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                }
+            }
+        },
+        "AssociateMacSecKeyResponse": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "macSecKeys": {
+                    "$ref": "#/$defs/MacSecKeyList"
+                }
+            }
+        },
+        "AssociateMacSecKeyRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "secretARN": {
+                    "$ref": "#/$defs/SecretARN"
+                },
+                "ckn": {
+                    "$ref": "#/$defs/Ckn"
+                },
+                "cak": {
+                    "$ref": "#/$defs/Cak"
+                }
+            }
+        },
+        "Cak": {
+            "type": "string"
+        },
+        "AssociateVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                }
+            }
+        },
+        "ConfirmConnectionResponse": {
+            "type": "object",
+            "properties": {
+                "connectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                }
+            }
+        },
+        "ConfirmConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                }
+            }
+        },
+        "ConfirmCustomerAgreementResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "Status": {
+            "type": "string"
+        },
+        "ConfirmCustomerAgreementRequest": {
+            "type": "object",
+            "properties": {
+                "agreementName": {
+                    "$ref": "#/$defs/AgreementName"
+                }
+            }
+        },
+        "AgreementName": {
+            "type": "string"
+        },
+        "ConfirmPrivateVirtualInterfaceResponse": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceState": {
+                    "$ref": "#/$defs/VirtualInterfaceState"
+                }
+            }
+        },
+        "ConfirmPrivateVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "virtualGatewayId": {
+                    "$ref": "#/$defs/VirtualGatewayId"
+                },
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                }
+            }
+        },
+        "ConfirmPublicVirtualInterfaceResponse": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceState": {
+                    "$ref": "#/$defs/VirtualInterfaceState"
+                }
+            }
+        },
+        "ConfirmPublicVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                }
+            }
+        },
+        "ConfirmTransitVirtualInterfaceResponse": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceState": {
+                    "$ref": "#/$defs/VirtualInterfaceState"
+                }
+            }
+        },
+        "ConfirmTransitVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                }
+            }
+        },
+        "CreateBGPPeerResponse": {
+            "type": "object",
+            "properties": {
+                "virtualInterface": {
+                    "$ref": "#/$defs/VirtualInterface"
+                }
+            }
+        },
+        "CreateBGPPeerRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "newBGPPeer": {
+                    "$ref": "#/$defs/NewBGPPeer"
+                }
+            }
+        },
+        "NewBGPPeer": {
+            "type": "object",
+            "properties": {
+                "asn": {
+                    "$ref": "#/$defs/ASN"
+                },
+                "authKey": {
+                    "$ref": "#/$defs/BGPAuthKey"
+                },
+                "addressFamily": {
+                    "$ref": "#/$defs/AddressFamily"
+                },
+                "amazonAddress": {
+                    "$ref": "#/$defs/AmazonAddress"
+                },
+                "customerAddress": {
+                    "$ref": "#/$defs/CustomerAddress"
+                }
+            }
+        },
+        "CreateConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "$ref": "#/$defs/LocationCode"
+                },
+                "bandwidth": {
+                    "$ref": "#/$defs/Bandwidth"
+                },
+                "connectionName": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "lagId": {
+                    "$ref": "#/$defs/LagId"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "providerName": {
+                    "$ref": "#/$defs/ProviderName"
+                },
+                "requestMACSec": {
+                    "$ref": "#/$defs/RequestMACSec"
+                }
+            }
+        },
+        "RequestMACSec": {
+            "type": "boolean"
+        },
+        "CreateDirectConnectGatewayResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGateway": {
+                    "$ref": "#/$defs/DirectConnectGateway"
+                }
+            }
+        },
+        "DirectConnectGateway": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "directConnectGatewayName": {
+                    "$ref": "#/$defs/DirectConnectGatewayName"
+                },
+                "amazonSideAsn": {
+                    "$ref": "#/$defs/LongAsn"
+                },
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "directConnectGatewayState": {
+                    "$ref": "#/$defs/DirectConnectGatewayState"
+                },
+                "stateChangeError": {
+                    "$ref": "#/$defs/StateChangeError"
+                }
+            }
+        },
+        "DirectConnectGatewayName": {
+            "type": "string"
+        },
+        "DirectConnectGatewayState": {
+            "enum": [
+                "pending",
+                "available",
+                "deleting",
+                "deleted"
+            ]
+        },
+        "CreateDirectConnectGatewayRequest": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayName": {
+                    "$ref": "#/$defs/DirectConnectGatewayName"
+                },
+                "amazonSideAsn": {
+                    "$ref": "#/$defs/LongAsn"
+                }
+            }
+        },
+        "CreateDirectConnectGatewayAssociationResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayAssociation": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociation"
+                }
+            }
+        },
+        "CreateDirectConnectGatewayAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "gatewayId": {
+                    "$ref": "#/$defs/GatewayIdToAssociate"
+                },
+                "addAllowedPrefixesToDirectConnectGateway": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                },
+                "virtualGatewayId": {
+                    "$ref": "#/$defs/VirtualGatewayId"
+                }
+            }
+        },
+        "GatewayIdToAssociate": {
+            "type": "string"
+        },
+        "CreateDirectConnectGatewayAssociationProposalResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayAssociationProposal": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationProposal"
+                }
+            }
+        },
+        "DirectConnectGatewayAssociationProposal": {
+            "type": "object",
+            "properties": {
+                "proposalId": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationProposalId"
+                },
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "directConnectGatewayOwnerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "proposalState": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationProposalState"
+                },
+                "associatedGateway": {
+                    "$ref": "#/$defs/AssociatedGateway"
+                },
+                "existingAllowedPrefixesToDirectConnectGateway": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                },
+                "requestedAllowedPrefixesToDirectConnectGateway": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                }
+            }
+        },
+        "DirectConnectGatewayAssociationProposalState": {
+            "enum": [
+                "requested",
+                "accepted",
+                "deleted"
+            ]
+        },
+        "CreateDirectConnectGatewayAssociationProposalRequest": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "directConnectGatewayOwnerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "gatewayId": {
+                    "$ref": "#/$defs/GatewayIdToAssociate"
+                },
+                "addAllowedPrefixesToDirectConnectGateway": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                },
+                "removeAllowedPrefixesToDirectConnectGateway": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                }
+            }
+        },
+        "Interconnect": {
+            "type": "object",
+            "properties": {
+                "interconnectId": {
+                    "$ref": "#/$defs/InterconnectId"
+                },
+                "interconnectName": {
+                    "$ref": "#/$defs/InterconnectName"
+                },
+                "interconnectState": {
+                    "$ref": "#/$defs/InterconnectState"
+                },
+                "region": {
+                    "$ref": "#/$defs/Region"
+                },
+                "location": {
+                    "$ref": "#/$defs/LocationCode"
+                },
+                "bandwidth": {
+                    "$ref": "#/$defs/Bandwidth"
+                },
+                "loaIssueTime": {
+                    "$ref": "#/$defs/LoaIssueTime"
+                },
+                "lagId": {
+                    "$ref": "#/$defs/LagId"
+                },
+                "awsDevice": {
+                    "$ref": "#/$defs/AwsDevice"
+                },
+                "jumboFrameCapable": {
+                    "$ref": "#/$defs/JumboFrameCapable"
+                },
+                "awsDeviceV2": {
+                    "$ref": "#/$defs/AwsDeviceV2"
+                },
+                "awsLogicalDeviceId": {
+                    "$ref": "#/$defs/AwsLogicalDeviceId"
+                },
+                "hasLogicalRedundancy": {
+                    "$ref": "#/$defs/HasLogicalRedundancy"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "providerName": {
+                    "$ref": "#/$defs/ProviderName"
+                }
+            }
+        },
+        "InterconnectName": {
+            "type": "string"
+        },
+        "InterconnectState": {
+            "enum": [
+                "requested",
+                "pending",
+                "available",
+                "down",
+                "deleting",
+                "deleted",
+                "unknown"
+            ]
+        },
+        "CreateInterconnectRequest": {
+            "type": "object",
+            "properties": {
+                "interconnectName": {
+                    "$ref": "#/$defs/InterconnectName"
+                },
+                "bandwidth": {
+                    "$ref": "#/$defs/Bandwidth"
+                },
+                "location": {
+                    "$ref": "#/$defs/LocationCode"
+                },
+                "lagId": {
+                    "$ref": "#/$defs/LagId"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "providerName": {
+                    "$ref": "#/$defs/ProviderName"
+                }
+            }
+        },
+        "Lag": {
+            "type": "object",
+            "properties": {
+                "connectionsBandwidth": {
+                    "$ref": "#/$defs/Bandwidth"
+                },
+                "numberOfConnections": {
+                    "$ref": "#/$defs/Count"
+                },
+                "lagId": {
+                    "$ref": "#/$defs/LagId"
+                },
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "lagName": {
+                    "$ref": "#/$defs/LagName"
+                },
+                "lagState": {
+                    "$ref": "#/$defs/LagState"
+                },
+                "location": {
+                    "$ref": "#/$defs/LocationCode"
+                },
+                "region": {
+                    "$ref": "#/$defs/Region"
+                },
+                "minimumLinks": {
+                    "$ref": "#/$defs/Count"
+                },
+                "awsDevice": {
+                    "$ref": "#/$defs/AwsDevice"
+                },
+                "awsDeviceV2": {
+                    "$ref": "#/$defs/AwsDeviceV2"
+                },
+                "awsLogicalDeviceId": {
+                    "$ref": "#/$defs/AwsLogicalDeviceId"
+                },
+                "connections": {
+                    "$ref": "#/$defs/ConnectionList"
+                },
+                "allowsHostedConnections": {
+                    "$ref": "#/$defs/BooleanFlag"
+                },
+                "jumboFrameCapable": {
+                    "$ref": "#/$defs/JumboFrameCapable"
+                },
+                "hasLogicalRedundancy": {
+                    "$ref": "#/$defs/HasLogicalRedundancy"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "providerName": {
+                    "$ref": "#/$defs/ProviderName"
+                },
+                "macSecCapable": {
+                    "$ref": "#/$defs/MacSecCapable"
+                },
+                "encryptionMode": {
+                    "$ref": "#/$defs/EncryptionMode"
+                },
+                "macSecKeys": {
+                    "$ref": "#/$defs/MacSecKeyList"
+                }
+            }
+        },
+        "Count": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LagName": {
+            "type": "string"
+        },
+        "LagState": {
+            "enum": [
+                "requested",
+                "pending",
+                "available",
+                "down",
+                "deleting",
+                "deleted",
+                "unknown"
+            ]
+        },
+        "ConnectionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Connection"
+            }
+        },
+        "BooleanFlag": {
+            "type": "boolean"
+        },
+        "CreateLagRequest": {
+            "type": "object",
+            "properties": {
+                "numberOfConnections": {
+                    "$ref": "#/$defs/Count"
+                },
+                "location": {
+                    "$ref": "#/$defs/LocationCode"
+                },
+                "connectionsBandwidth": {
+                    "$ref": "#/$defs/Bandwidth"
+                },
+                "lagName": {
+                    "$ref": "#/$defs/LagName"
+                },
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "childConnectionTags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "providerName": {
+                    "$ref": "#/$defs/ProviderName"
+                },
+                "requestMACSec": {
+                    "$ref": "#/$defs/RequestMACSec"
+                }
+            }
+        },
+        "CreatePrivateVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "newPrivateVirtualInterface": {
+                    "$ref": "#/$defs/NewPrivateVirtualInterface"
+                }
+            }
+        },
+        "NewPrivateVirtualInterface": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceName": {
+                    "$ref": "#/$defs/VirtualInterfaceName"
+                },
+                "vlan": {
+                    "$ref": "#/$defs/VLAN"
+                },
+                "asn": {
+                    "$ref": "#/$defs/ASN"
+                },
+                "mtu": {
+                    "$ref": "#/$defs/MTU"
+                },
+                "authKey": {
+                    "$ref": "#/$defs/BGPAuthKey"
+                },
+                "amazonAddress": {
+                    "$ref": "#/$defs/AmazonAddress"
+                },
+                "customerAddress": {
+                    "$ref": "#/$defs/CustomerAddress"
+                },
+                "addressFamily": {
+                    "$ref": "#/$defs/AddressFamily"
+                },
+                "virtualGatewayId": {
+                    "$ref": "#/$defs/VirtualGatewayId"
+                },
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "enableSiteLink": {
+                    "$ref": "#/$defs/EnableSiteLink"
+                }
+            }
+        },
+        "EnableSiteLink": {
+            "type": "boolean"
+        },
+        "CreatePublicVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "newPublicVirtualInterface": {
+                    "$ref": "#/$defs/NewPublicVirtualInterface"
+                }
+            }
+        },
+        "NewPublicVirtualInterface": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceName": {
+                    "$ref": "#/$defs/VirtualInterfaceName"
+                },
+                "vlan": {
+                    "$ref": "#/$defs/VLAN"
+                },
+                "asn": {
+                    "$ref": "#/$defs/ASN"
+                },
+                "authKey": {
+                    "$ref": "#/$defs/BGPAuthKey"
+                },
+                "amazonAddress": {
+                    "$ref": "#/$defs/AmazonAddress"
+                },
+                "customerAddress": {
+                    "$ref": "#/$defs/CustomerAddress"
+                },
+                "addressFamily": {
+                    "$ref": "#/$defs/AddressFamily"
+                },
+                "routeFilterPrefixes": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CreateTransitVirtualInterfaceResult": {
+            "type": "object",
+            "properties": {
+                "virtualInterface": {
+                    "$ref": "#/$defs/VirtualInterface"
+                }
+            }
+        },
+        "CreateTransitVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "newTransitVirtualInterface": {
+                    "$ref": "#/$defs/NewTransitVirtualInterface"
+                }
+            }
+        },
+        "NewTransitVirtualInterface": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceName": {
+                    "$ref": "#/$defs/VirtualInterfaceName"
+                },
+                "vlan": {
+                    "$ref": "#/$defs/VLAN"
+                },
+                "asn": {
+                    "$ref": "#/$defs/ASN"
+                },
+                "mtu": {
+                    "$ref": "#/$defs/MTU"
+                },
+                "authKey": {
+                    "$ref": "#/$defs/BGPAuthKey"
+                },
+                "amazonAddress": {
+                    "$ref": "#/$defs/AmazonAddress"
+                },
+                "customerAddress": {
+                    "$ref": "#/$defs/CustomerAddress"
+                },
+                "addressFamily": {
+                    "$ref": "#/$defs/AddressFamily"
+                },
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "enableSiteLink": {
+                    "$ref": "#/$defs/EnableSiteLink"
+                }
+            }
+        },
+        "DeleteBGPPeerResponse": {
+            "type": "object",
+            "properties": {
+                "virtualInterface": {
+                    "$ref": "#/$defs/VirtualInterface"
+                }
+            }
+        },
+        "DeleteBGPPeerRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "asn": {
+                    "$ref": "#/$defs/ASN"
+                },
+                "customerAddress": {
+                    "$ref": "#/$defs/CustomerAddress"
+                },
+                "bgpPeerId": {
+                    "$ref": "#/$defs/BGPPeerId"
+                }
+            }
+        },
+        "DeleteConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                }
+            }
+        },
+        "DeleteDirectConnectGatewayResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGateway": {
+                    "$ref": "#/$defs/DirectConnectGateway"
+                }
+            }
+        },
+        "DeleteDirectConnectGatewayRequest": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                }
+            }
+        },
+        "DeleteDirectConnectGatewayAssociationResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayAssociation": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociation"
+                }
+            }
+        },
+        "DeleteDirectConnectGatewayAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "associationId": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationId"
+                },
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "virtualGatewayId": {
+                    "$ref": "#/$defs/VirtualGatewayId"
+                }
+            }
+        },
+        "DeleteDirectConnectGatewayAssociationProposalResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayAssociationProposal": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationProposal"
+                }
+            }
+        },
+        "DeleteDirectConnectGatewayAssociationProposalRequest": {
+            "type": "object",
+            "properties": {
+                "proposalId": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationProposalId"
+                }
+            }
+        },
+        "DeleteInterconnectResponse": {
+            "type": "object",
+            "properties": {
+                "interconnectState": {
+                    "$ref": "#/$defs/InterconnectState"
+                }
+            }
+        },
+        "DeleteInterconnectRequest": {
+            "type": "object",
+            "properties": {
+                "interconnectId": {
+                    "$ref": "#/$defs/InterconnectId"
+                }
+            }
+        },
+        "DeleteLagRequest": {
+            "type": "object",
+            "properties": {
+                "lagId": {
+                    "$ref": "#/$defs/LagId"
+                }
+            }
+        },
+        "DeleteVirtualInterfaceResponse": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceState": {
+                    "$ref": "#/$defs/VirtualInterfaceState"
+                }
+            }
+        },
+        "DeleteVirtualInterfaceRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                }
+            }
+        },
+        "DescribeConnectionLoaResponse": {
+            "type": "object",
+            "properties": {
+                "loa": {
+                    "$ref": "#/$defs/Loa"
+                }
+            }
+        },
+        "Loa": {
+            "type": "object",
+            "properties": {
+                "loaContent": {
+                    "$ref": "#/$defs/LoaContent"
+                },
+                "loaContentType": {
+                    "$ref": "#/$defs/LoaContentType"
+                }
+            }
+        },
+        "LoaContent": {
+            "type": "string",
+            "format": "binary"
+        },
+        "LoaContentType": {
+            "enum": [
+                "PDF"
+            ]
+        },
+        "DescribeConnectionLoaRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "providerName": {
+                    "$ref": "#/$defs/ProviderName"
+                },
+                "loaContentType": {
+                    "$ref": "#/$defs/LoaContentType"
+                }
+            }
+        },
+        "Connections": {
+            "type": "object",
+            "properties": {
+                "connections": {
+                    "$ref": "#/$defs/ConnectionList"
+                }
+            }
+        },
+        "DescribeConnectionsRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                }
+            }
+        },
+        "DescribeConnectionsOnInterconnectRequest": {
+            "type": "object",
+            "properties": {
+                "interconnectId": {
+                    "$ref": "#/$defs/InterconnectId"
+                }
+            }
+        },
+        "DescribeCustomerMetadataResponse": {
+            "type": "object",
+            "properties": {
+                "agreements": {
+                    "$ref": "#/$defs/AgreementList"
+                },
+                "nniPartnerType": {
+                    "$ref": "#/$defs/NniPartnerType"
+                }
+            }
+        },
+        "AgreementList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CustomerAgreement"
+            }
+        },
+        "CustomerAgreement": {
+            "type": "object",
+            "properties": {
+                "agreementName": {
+                    "$ref": "#/$defs/AgreementName"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "NniPartnerType": {
+            "enum": [
+                "V1",
+                "V2",
+                "NonPartner"
+            ]
+        },
+        "DescribeDirectConnectGatewayAssociationProposalsResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayAssociationProposals": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationProposalList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "DirectConnectGatewayAssociationProposalList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DirectConnectGatewayAssociationProposal"
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "DescribeDirectConnectGatewayAssociationProposalsRequest": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "proposalId": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationProposalId"
+                },
+                "associatedGatewayId": {
+                    "$ref": "#/$defs/AssociatedGatewayId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultSetSize"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "AssociatedGatewayId": {
+            "type": "string"
+        },
+        "MaxResultSetSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeDirectConnectGatewayAssociationsResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayAssociations": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "DirectConnectGatewayAssociationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DirectConnectGatewayAssociation"
+            }
+        },
+        "DescribeDirectConnectGatewayAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "associationId": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationId"
+                },
+                "associatedGatewayId": {
+                    "$ref": "#/$defs/AssociatedGatewayId"
+                },
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultSetSize"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "virtualGatewayId": {
+                    "$ref": "#/$defs/VirtualGatewayId"
+                }
+            }
+        },
+        "DescribeDirectConnectGatewayAttachmentsResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayAttachments": {
+                    "$ref": "#/$defs/DirectConnectGatewayAttachmentList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "DirectConnectGatewayAttachmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DirectConnectGatewayAttachment"
+            }
+        },
+        "DirectConnectGatewayAttachment": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "virtualInterfaceRegion": {
+                    "$ref": "#/$defs/VirtualInterfaceRegion"
+                },
+                "virtualInterfaceOwnerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "attachmentState": {
+                    "$ref": "#/$defs/DirectConnectGatewayAttachmentState"
+                },
+                "attachmentType": {
+                    "$ref": "#/$defs/DirectConnectGatewayAttachmentType"
+                },
+                "stateChangeError": {
+                    "$ref": "#/$defs/StateChangeError"
+                }
+            }
+        },
+        "VirtualInterfaceRegion": {
+            "type": "string"
+        },
+        "DirectConnectGatewayAttachmentState": {
+            "enum": [
+                "attaching",
+                "attached",
+                "detaching",
+                "detached"
+            ]
+        },
+        "DirectConnectGatewayAttachmentType": {
+            "enum": [
+                "TransitVirtualInterface",
+                "PrivateVirtualInterface"
+            ]
+        },
+        "DescribeDirectConnectGatewayAttachmentsRequest": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultSetSize"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "DescribeDirectConnectGatewaysResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGateways": {
+                    "$ref": "#/$defs/DirectConnectGatewayList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "DirectConnectGatewayList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DirectConnectGateway"
+            }
+        },
+        "DescribeDirectConnectGatewaysRequest": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultSetSize"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "DescribeHostedConnectionsRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                }
+            }
+        },
+        "DescribeInterconnectLoaResponse": {
+            "type": "object",
+            "properties": {
+                "loa": {
+                    "$ref": "#/$defs/Loa"
+                }
+            }
+        },
+        "DescribeInterconnectLoaRequest": {
+            "type": "object",
+            "properties": {
+                "interconnectId": {
+                    "$ref": "#/$defs/InterconnectId"
+                },
+                "providerName": {
+                    "$ref": "#/$defs/ProviderName"
+                },
+                "loaContentType": {
+                    "$ref": "#/$defs/LoaContentType"
+                }
+            }
+        },
+        "Interconnects": {
+            "type": "object",
+            "properties": {
+                "interconnects": {
+                    "$ref": "#/$defs/InterconnectList"
+                }
+            }
+        },
+        "InterconnectList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Interconnect"
+            }
+        },
+        "DescribeInterconnectsRequest": {
+            "type": "object",
+            "properties": {
+                "interconnectId": {
+                    "$ref": "#/$defs/InterconnectId"
+                }
+            }
+        },
+        "Lags": {
+            "type": "object",
+            "properties": {
+                "lags": {
+                    "$ref": "#/$defs/LagList"
+                }
+            }
+        },
+        "LagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Lag"
+            }
+        },
+        "DescribeLagsRequest": {
+            "type": "object",
+            "properties": {
+                "lagId": {
+                    "$ref": "#/$defs/LagId"
+                }
+            }
+        },
+        "DescribeLoaRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "providerName": {
+                    "$ref": "#/$defs/ProviderName"
+                },
+                "loaContentType": {
+                    "$ref": "#/$defs/LoaContentType"
+                }
+            }
+        },
+        "Locations": {
+            "type": "object",
+            "properties": {
+                "locations": {
+                    "$ref": "#/$defs/LocationList"
+                }
+            }
+        },
+        "LocationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Location"
+            }
+        },
+        "Location": {
+            "type": "object",
+            "properties": {
+                "locationCode": {
+                    "$ref": "#/$defs/LocationCode"
+                },
+                "locationName": {
+                    "$ref": "#/$defs/LocationName"
+                },
+                "region": {
+                    "$ref": "#/$defs/Region"
+                },
+                "availablePortSpeeds": {
+                    "$ref": "#/$defs/AvailablePortSpeeds"
+                },
+                "availableProviders": {
+                    "$ref": "#/$defs/ProviderList"
+                },
+                "availableMacSecPortSpeeds": {
+                    "$ref": "#/$defs/AvailableMacSecPortSpeeds"
+                }
+            }
+        },
+        "LocationName": {
+            "type": "string"
+        },
+        "AvailablePortSpeeds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PortSpeed"
+            }
+        },
+        "PortSpeed": {
+            "type": "string"
+        },
+        "ProviderList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProviderName"
+            }
+        },
+        "AvailableMacSecPortSpeeds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PortSpeed"
+            }
+        },
+        "DescribeRouterConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "customerRouterConfig": {
+                    "$ref": "#/$defs/RouterConfig"
+                },
+                "router": {
+                    "$ref": "#/$defs/RouterType"
+                },
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "virtualInterfaceName": {
+                    "$ref": "#/$defs/VirtualInterfaceName"
+                }
+            }
+        },
+        "RouterType": {
+            "type": "object",
+            "properties": {
+                "vendor": {
+                    "$ref": "#/$defs/Vendor"
+                },
+                "platform": {
+                    "$ref": "#/$defs/Platform"
+                },
+                "software": {
+                    "$ref": "#/$defs/Software"
+                },
+                "xsltTemplateName": {
+                    "$ref": "#/$defs/XsltTemplateName"
+                },
+                "xsltTemplateNameForMacSec": {
+                    "$ref": "#/$defs/XsltTemplateNameForMacSec"
+                },
+                "routerTypeIdentifier": {
+                    "$ref": "#/$defs/RouterTypeIdentifier"
+                }
+            }
+        },
+        "Vendor": {
+            "type": "string"
+        },
+        "Platform": {
+            "type": "string"
+        },
+        "Software": {
+            "type": "string"
+        },
+        "XsltTemplateName": {
+            "type": "string"
+        },
+        "XsltTemplateNameForMacSec": {
+            "type": "string"
+        },
+        "RouterTypeIdentifier": {
+            "type": "string"
+        },
+        "DescribeRouterConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "routerTypeIdentifier": {
+                    "$ref": "#/$defs/RouterTypeIdentifier"
+                }
+            }
+        },
+        "DescribeTagsResponse": {
+            "type": "object",
+            "properties": {
+                "resourceTags": {
+                    "$ref": "#/$defs/ResourceTagList"
+                }
+            }
+        },
+        "ResourceTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTag"
+            }
+        },
+        "ResourceTag": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "DescribeTagsRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArns": {
+                    "$ref": "#/$defs/ResourceArnList"
+                }
+            }
+        },
+        "ResourceArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceArn"
+            }
+        },
+        "VirtualGateways": {
+            "type": "object",
+            "properties": {
+                "virtualGateways": {
+                    "$ref": "#/$defs/VirtualGatewayList"
+                }
+            }
+        },
+        "VirtualGatewayList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VirtualGateway"
+            }
+        },
+        "VirtualGateway": {
+            "type": "object",
+            "properties": {
+                "virtualGatewayId": {
+                    "$ref": "#/$defs/VirtualGatewayId"
+                },
+                "virtualGatewayState": {
+                    "$ref": "#/$defs/VirtualGatewayState"
+                }
+            }
+        },
+        "VirtualGatewayState": {
+            "type": "string"
+        },
+        "VirtualInterfaces": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaces": {
+                    "$ref": "#/$defs/VirtualInterfaceList"
+                }
+            }
+        },
+        "VirtualInterfaceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VirtualInterface"
+            }
+        },
+        "DescribeVirtualInterfacesRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                }
+            }
+        },
+        "DisassociateConnectionFromLagRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "lagId": {
+                    "$ref": "#/$defs/LagId"
+                }
+            }
+        },
+        "DisassociateMacSecKeyResponse": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "macSecKeys": {
+                    "$ref": "#/$defs/MacSecKeyList"
+                }
+            }
+        },
+        "DisassociateMacSecKeyRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "secretARN": {
+                    "$ref": "#/$defs/SecretARN"
+                }
+            }
+        },
+        "ListVirtualInterfaceTestHistoryResponse": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceTestHistory": {
+                    "$ref": "#/$defs/VirtualInterfaceTestHistoryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "VirtualInterfaceTestHistoryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VirtualInterfaceTestHistory"
+            }
+        },
+        "VirtualInterfaceTestHistory": {
+            "type": "object",
+            "properties": {
+                "testId": {
+                    "$ref": "#/$defs/TestId"
+                },
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "bgpPeers": {
+                    "$ref": "#/$defs/BGPPeerIdList"
+                },
+                "status": {
+                    "$ref": "#/$defs/FailureTestHistoryStatus"
+                },
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "testDurationInMinutes": {
+                    "$ref": "#/$defs/TestDuration"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/StartTime"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/EndTime"
+                }
+            }
+        },
+        "TestId": {
+            "type": "string"
+        },
+        "BGPPeerIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BGPPeerId"
+            }
+        },
+        "FailureTestHistoryStatus": {
+            "type": "string"
+        },
+        "TestDuration": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "StartTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "EndTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ListVirtualInterfaceTestHistoryRequest": {
+            "type": "object",
+            "properties": {
+                "testId": {
+                    "$ref": "#/$defs/TestId"
+                },
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "bgpPeers": {
+                    "$ref": "#/$defs/BGPPeerIdList"
+                },
+                "status": {
+                    "$ref": "#/$defs/FailureTestHistoryStatus"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultSetSize"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "StartBgpFailoverTestResponse": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceTest": {
+                    "$ref": "#/$defs/VirtualInterfaceTestHistory"
+                }
+            }
+        },
+        "StartBgpFailoverTestRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "bgpPeers": {
+                    "$ref": "#/$defs/BGPPeerIdList"
+                },
+                "testDurationInMinutes": {
+                    "$ref": "#/$defs/TestDuration"
+                }
+            }
+        },
+        "StopBgpFailoverTestResponse": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceTest": {
+                    "$ref": "#/$defs/VirtualInterfaceTestHistory"
+                }
+            }
+        },
+        "StopBgpFailoverTestRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "connectionName": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "encryptionMode": {
+                    "$ref": "#/$defs/EncryptionMode"
+                }
+            }
+        },
+        "UpdateDirectConnectGatewayResponse": {
+            "type": "object",
+            "properties": {
+                "directConnectGateway": {
+                    "$ref": "#/$defs/DirectConnectGateway"
+                }
+            }
+        },
+        "UpdateDirectConnectGatewayRequest": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayId": {
+                    "$ref": "#/$defs/DirectConnectGatewayId"
+                },
+                "newDirectConnectGatewayName": {
+                    "$ref": "#/$defs/DirectConnectGatewayName"
+                }
+            }
+        },
+        "UpdateDirectConnectGatewayAssociationResult": {
+            "type": "object",
+            "properties": {
+                "directConnectGatewayAssociation": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociation"
+                }
+            }
+        },
+        "UpdateDirectConnectGatewayAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "associationId": {
+                    "$ref": "#/$defs/DirectConnectGatewayAssociationId"
+                },
+                "addAllowedPrefixesToDirectConnectGateway": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                },
+                "removeAllowedPrefixesToDirectConnectGateway": {
+                    "$ref": "#/$defs/RouteFilterPrefixList"
+                }
+            }
+        },
+        "UpdateLagRequest": {
+            "type": "object",
+            "properties": {
+                "lagId": {
+                    "$ref": "#/$defs/LagId"
+                },
+                "lagName": {
+                    "$ref": "#/$defs/LagName"
+                },
+                "minimumLinks": {
+                    "$ref": "#/$defs/Count"
+                },
+                "encryptionMode": {
+                    "$ref": "#/$defs/EncryptionMode"
+                }
+            }
+        },
+        "UpdateVirtualInterfaceAttributesRequest": {
+            "type": "object",
+            "properties": {
+                "virtualInterfaceId": {
+                    "$ref": "#/$defs/VirtualInterfaceId"
+                },
+                "mtu": {
+                    "$ref": "#/$defs/MTU"
+                },
+                "enableSiteLink": {
+                    "$ref": "#/$defs/EnableSiteLink"
+                },
+                "virtualInterfaceName": {
+                    "$ref": "#/$defs/VirtualInterfaceName"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://directconnect-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://directconnect-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://directconnect.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://directconnect.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,3652 @@
+{
+    "name": "firehose",
+    "commands": [
+        {
+            "name": "CreateDeliveryStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDeliveryStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDeliveryStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDeliveryStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDeliveryStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDeliveryStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDeliveryStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDeliveryStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDeliveryStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDeliveryStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDeliveryStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDeliveryStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeliveryStreams",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeliveryStreams"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDeliveryStreamsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeliveryStreamsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForDeliveryStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForDeliveryStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForDeliveryStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForDeliveryStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutRecord",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutRecord"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutRecordOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutRecordInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutRecordBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutRecordBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutRecordBatchOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutRecordBatchInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDeliveryStreamEncryption",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartDeliveryStreamEncryption"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDeliveryStreamEncryptionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDeliveryStreamEncryptionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopDeliveryStreamEncryption",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopDeliveryStreamEncryption"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopDeliveryStreamEncryptionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopDeliveryStreamEncryptionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagDeliveryStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagDeliveryStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagDeliveryStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagDeliveryStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagDeliveryStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagDeliveryStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagDeliveryStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagDeliveryStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDestination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDestinationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDestinationInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateDeliveryStreamOutput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamARN": {
+                    "$ref": "#/$defs/DeliveryStreamARN"
+                }
+            }
+        },
+        "DeliveryStreamARN": {
+            "type": "string"
+        },
+        "CreateDeliveryStreamInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "DeliveryStreamType": {
+                    "$ref": "#/$defs/DeliveryStreamType"
+                },
+                "KinesisStreamSourceConfiguration": {
+                    "$ref": "#/$defs/KinesisStreamSourceConfiguration"
+                },
+                "DeliveryStreamEncryptionConfigurationInput": {
+                    "$ref": "#/$defs/DeliveryStreamEncryptionConfigurationInput"
+                },
+                "S3DestinationConfiguration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "ExtendedS3DestinationConfiguration": {
+                    "$ref": "#/$defs/ExtendedS3DestinationConfiguration"
+                },
+                "RedshiftDestinationConfiguration": {
+                    "$ref": "#/$defs/RedshiftDestinationConfiguration"
+                },
+                "ElasticsearchDestinationConfiguration": {
+                    "$ref": "#/$defs/ElasticsearchDestinationConfiguration"
+                },
+                "AmazonopensearchserviceDestinationConfiguration": {
+                    "$ref": "#/$defs/AmazonopensearchserviceDestinationConfiguration"
+                },
+                "SplunkDestinationConfiguration": {
+                    "$ref": "#/$defs/SplunkDestinationConfiguration"
+                },
+                "HttpEndpointDestinationConfiguration": {
+                    "$ref": "#/$defs/HttpEndpointDestinationConfiguration"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagDeliveryStreamInputTagList"
+                },
+                "AmazonOpenSearchServerlessDestinationConfiguration": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessDestinationConfiguration"
+                },
+                "MSKSourceConfiguration": {
+                    "$ref": "#/$defs/MSKSourceConfiguration"
+                },
+                "SnowflakeDestinationConfiguration": {
+                    "$ref": "#/$defs/SnowflakeDestinationConfiguration"
+                },
+                "IcebergDestinationConfiguration": {
+                    "$ref": "#/$defs/IcebergDestinationConfiguration"
+                }
+            }
+        },
+        "DeliveryStreamName": {
+            "type": "string"
+        },
+        "DeliveryStreamType": {
+            "enum": [
+                "DirectPut",
+                "KinesisStreamAsSource",
+                "MSKAsSource"
+            ]
+        },
+        "KinesisStreamSourceConfiguration": {
+            "type": "object",
+            "properties": {
+                "KinesisStreamARN": {
+                    "$ref": "#/$defs/KinesisStreamARN"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                }
+            }
+        },
+        "KinesisStreamARN": {
+            "type": "string"
+        },
+        "RoleARN": {
+            "type": "string"
+        },
+        "DeliveryStreamEncryptionConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "KeyARN": {
+                    "$ref": "#/$defs/AWSKMSKeyARN"
+                },
+                "KeyType": {
+                    "$ref": "#/$defs/KeyType"
+                }
+            }
+        },
+        "AWSKMSKeyARN": {
+            "type": "string"
+        },
+        "KeyType": {
+            "enum": [
+                "AWS_OWNED_CMK",
+                "CUSTOMER_MANAGED_CMK"
+            ]
+        },
+        "S3DestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "BucketARN": {
+                    "$ref": "#/$defs/BucketARN"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/Prefix"
+                },
+                "ErrorOutputPrefix": {
+                    "$ref": "#/$defs/ErrorOutputPrefix"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/BufferingHints"
+                },
+                "CompressionFormat": {
+                    "$ref": "#/$defs/CompressionFormat"
+                },
+                "EncryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                }
+            }
+        },
+        "BucketARN": {
+            "type": "string"
+        },
+        "Prefix": {
+            "type": "string"
+        },
+        "ErrorOutputPrefix": {
+            "type": "string"
+        },
+        "BufferingHints": {
+            "type": "object",
+            "properties": {
+                "SizeInMBs": {
+                    "$ref": "#/$defs/SizeInMBs"
+                },
+                "IntervalInSeconds": {
+                    "$ref": "#/$defs/IntervalInSeconds"
+                }
+            }
+        },
+        "SizeInMBs": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "IntervalInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CompressionFormat": {
+            "enum": [
+                "UNCOMPRESSED",
+                "GZIP",
+                "ZIP",
+                "SNAPPY",
+                "HADOOP_SNAPPY"
+            ]
+        },
+        "EncryptionConfiguration": {
+            "type": "object",
+            "properties": {
+                "NoEncryptionConfig": {
+                    "$ref": "#/$defs/NoEncryptionConfig"
+                },
+                "KMSEncryptionConfig": {
+                    "$ref": "#/$defs/KMSEncryptionConfig"
+                }
+            }
+        },
+        "NoEncryptionConfig": {
+            "enum": [
+                "NoEncryption"
+            ]
+        },
+        "KMSEncryptionConfig": {
+            "type": "object",
+            "properties": {
+                "AWSKMSKeyARN": {
+                    "$ref": "#/$defs/AWSKMSKeyARN"
+                }
+            }
+        },
+        "CloudWatchLoggingOptions": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "LogGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "LogStreamName": {
+                    "$ref": "#/$defs/LogStreamName"
+                }
+            }
+        },
+        "BooleanObject": {
+            "type": "boolean"
+        },
+        "LogGroupName": {
+            "type": "string"
+        },
+        "LogStreamName": {
+            "type": "string"
+        },
+        "ExtendedS3DestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "BucketARN": {
+                    "$ref": "#/$defs/BucketARN"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/Prefix"
+                },
+                "ErrorOutputPrefix": {
+                    "$ref": "#/$defs/ErrorOutputPrefix"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/BufferingHints"
+                },
+                "CompressionFormat": {
+                    "$ref": "#/$defs/CompressionFormat"
+                },
+                "EncryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/S3BackupMode"
+                },
+                "S3BackupConfiguration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "DataFormatConversionConfiguration": {
+                    "$ref": "#/$defs/DataFormatConversionConfiguration"
+                },
+                "DynamicPartitioningConfiguration": {
+                    "$ref": "#/$defs/DynamicPartitioningConfiguration"
+                },
+                "FileExtension": {
+                    "$ref": "#/$defs/FileExtension"
+                },
+                "CustomTimeZone": {
+                    "$ref": "#/$defs/CustomTimeZone"
+                }
+            }
+        },
+        "ProcessingConfiguration": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "Processors": {
+                    "$ref": "#/$defs/ProcessorList"
+                }
+            }
+        },
+        "ProcessorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Processor"
+            }
+        },
+        "Processor": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/ProcessorType"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ProcessorParameterList"
+                }
+            }
+        },
+        "ProcessorType": {
+            "enum": [
+                "RecordDeAggregation",
+                "Decompression",
+                "CloudWatchLogProcessing",
+                "Lambda",
+                "MetadataExtraction",
+                "AppendDelimiterToRecord"
+            ]
+        },
+        "ProcessorParameterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProcessorParameter"
+            }
+        },
+        "ProcessorParameter": {
+            "type": "object",
+            "properties": {
+                "ParameterName": {
+                    "$ref": "#/$defs/ProcessorParameterName"
+                },
+                "ParameterValue": {
+                    "$ref": "#/$defs/ProcessorParameterValue"
+                }
+            }
+        },
+        "ProcessorParameterName": {
+            "enum": [
+                "LAMBDA_ARN",
+                "LAMBDA_NUMBER_OF_RETRIES",
+                "METADATA_EXTRACTION_QUERY",
+                "JSON_PARSING_ENGINE",
+                "ROLE_ARN",
+                "BUFFER_SIZE_IN_MB",
+                "BUFFER_INTERVAL_IN_SECONDS",
+                "SUB_RECORD_TYPE",
+                "Delimiter",
+                "COMPRESSION_FORMAT",
+                "DATA_MESSAGE_EXTRACTION"
+            ]
+        },
+        "ProcessorParameterValue": {
+            "type": "string"
+        },
+        "S3BackupMode": {
+            "enum": [
+                "Disabled",
+                "Enabled"
+            ]
+        },
+        "DataFormatConversionConfiguration": {
+            "type": "object",
+            "properties": {
+                "SchemaConfiguration": {
+                    "$ref": "#/$defs/SchemaConfiguration"
+                },
+                "InputFormatConfiguration": {
+                    "$ref": "#/$defs/InputFormatConfiguration"
+                },
+                "OutputFormatConfiguration": {
+                    "$ref": "#/$defs/OutputFormatConfiguration"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "SchemaConfiguration": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                },
+                "CatalogId": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                },
+                "DatabaseName": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                },
+                "Region": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                },
+                "VersionId": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                }
+            }
+        },
+        "NonEmptyStringWithoutWhitespace": {
+            "type": "string"
+        },
+        "InputFormatConfiguration": {
+            "type": "object",
+            "properties": {
+                "Deserializer": {
+                    "$ref": "#/$defs/Deserializer"
+                }
+            }
+        },
+        "Deserializer": {
+            "type": "object",
+            "properties": {
+                "OpenXJsonSerDe": {
+                    "$ref": "#/$defs/OpenXJsonSerDe"
+                },
+                "HiveJsonSerDe": {
+                    "$ref": "#/$defs/HiveJsonSerDe"
+                }
+            }
+        },
+        "OpenXJsonSerDe": {
+            "type": "object",
+            "properties": {
+                "ConvertDotsInJsonKeysToUnderscores": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "CaseInsensitive": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "ColumnToJsonKeyMappings": {
+                    "$ref": "#/$defs/ColumnToJsonKeyMappings"
+                }
+            }
+        },
+        "ColumnToJsonKeyMappings": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "NonEmptyString": {
+            "type": "string"
+        },
+        "HiveJsonSerDe": {
+            "type": "object",
+            "properties": {
+                "TimestampFormats": {
+                    "$ref": "#/$defs/ListOfNonEmptyStrings"
+                }
+            }
+        },
+        "ListOfNonEmptyStrings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "OutputFormatConfiguration": {
+            "type": "object",
+            "properties": {
+                "Serializer": {
+                    "$ref": "#/$defs/Serializer"
+                }
+            }
+        },
+        "Serializer": {
+            "type": "object",
+            "properties": {
+                "ParquetSerDe": {
+                    "$ref": "#/$defs/ParquetSerDe"
+                },
+                "OrcSerDe": {
+                    "$ref": "#/$defs/OrcSerDe"
+                }
+            }
+        },
+        "ParquetSerDe": {
+            "type": "object",
+            "properties": {
+                "BlockSizeBytes": {
+                    "$ref": "#/$defs/BlockSizeBytes"
+                },
+                "PageSizeBytes": {
+                    "$ref": "#/$defs/ParquetPageSizeBytes"
+                },
+                "Compression": {
+                    "$ref": "#/$defs/ParquetCompression"
+                },
+                "EnableDictionaryCompression": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "MaxPaddingBytes": {
+                    "$ref": "#/$defs/NonNegativeIntegerObject"
+                },
+                "WriterVersion": {
+                    "$ref": "#/$defs/ParquetWriterVersion"
+                }
+            }
+        },
+        "BlockSizeBytes": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ParquetPageSizeBytes": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ParquetCompression": {
+            "enum": [
+                "UNCOMPRESSED",
+                "GZIP",
+                "SNAPPY"
+            ]
+        },
+        "NonNegativeIntegerObject": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ParquetWriterVersion": {
+            "enum": [
+                "V1",
+                "V2"
+            ]
+        },
+        "OrcSerDe": {
+            "type": "object",
+            "properties": {
+                "StripeSizeBytes": {
+                    "$ref": "#/$defs/OrcStripeSizeBytes"
+                },
+                "BlockSizeBytes": {
+                    "$ref": "#/$defs/BlockSizeBytes"
+                },
+                "RowIndexStride": {
+                    "$ref": "#/$defs/OrcRowIndexStride"
+                },
+                "EnablePadding": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "PaddingTolerance": {
+                    "$ref": "#/$defs/Proportion"
+                },
+                "Compression": {
+                    "$ref": "#/$defs/OrcCompression"
+                },
+                "BloomFilterColumns": {
+                    "$ref": "#/$defs/ListOfNonEmptyStringsWithoutWhitespace"
+                },
+                "BloomFilterFalsePositiveProbability": {
+                    "$ref": "#/$defs/Proportion"
+                },
+                "DictionaryKeyThreshold": {
+                    "$ref": "#/$defs/Proportion"
+                },
+                "FormatVersion": {
+                    "$ref": "#/$defs/OrcFormatVersion"
+                }
+            }
+        },
+        "OrcStripeSizeBytes": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OrcRowIndexStride": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Proportion": {
+            "type": "number",
+            "format": "double"
+        },
+        "OrcCompression": {
+            "enum": [
+                "NONE",
+                "ZLIB",
+                "SNAPPY"
+            ]
+        },
+        "ListOfNonEmptyStringsWithoutWhitespace": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+            }
+        },
+        "OrcFormatVersion": {
+            "enum": [
+                "V0_11",
+                "V0_12"
+            ]
+        },
+        "DynamicPartitioningConfiguration": {
+            "type": "object",
+            "properties": {
+                "RetryOptions": {
+                    "$ref": "#/$defs/RetryOptions"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "RetryOptions": {
+            "type": "object",
+            "properties": {
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/RetryDurationInSeconds"
+                }
+            }
+        },
+        "RetryDurationInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FileExtension": {
+            "type": "string"
+        },
+        "CustomTimeZone": {
+            "type": "string"
+        },
+        "RedshiftDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "ClusterJDBCURL": {
+                    "$ref": "#/$defs/ClusterJDBCURL"
+                },
+                "CopyCommand": {
+                    "$ref": "#/$defs/CopyCommand"
+                },
+                "Username": {
+                    "$ref": "#/$defs/Username"
+                },
+                "Password": {
+                    "$ref": "#/$defs/Password"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/RedshiftRetryOptions"
+                },
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/RedshiftS3BackupMode"
+                },
+                "S3BackupConfiguration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                }
+            }
+        },
+        "ClusterJDBCURL": {
+            "type": "string"
+        },
+        "CopyCommand": {
+            "type": "object",
+            "properties": {
+                "DataTableName": {
+                    "$ref": "#/$defs/DataTableName"
+                },
+                "DataTableColumns": {
+                    "$ref": "#/$defs/DataTableColumns"
+                },
+                "CopyOptions": {
+                    "$ref": "#/$defs/CopyOptions"
+                }
+            }
+        },
+        "DataTableName": {
+            "type": "string"
+        },
+        "DataTableColumns": {
+            "type": "string"
+        },
+        "CopyOptions": {
+            "type": "string"
+        },
+        "Username": {
+            "type": "string"
+        },
+        "Password": {
+            "type": "string"
+        },
+        "RedshiftRetryOptions": {
+            "type": "object",
+            "properties": {
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/RedshiftRetryDurationInSeconds"
+                }
+            }
+        },
+        "RedshiftRetryDurationInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RedshiftS3BackupMode": {
+            "enum": [
+                "Disabled",
+                "Enabled"
+            ]
+        },
+        "SecretsManagerConfiguration": {
+            "type": "object",
+            "properties": {
+                "SecretARN": {
+                    "$ref": "#/$defs/SecretARN"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "SecretARN": {
+            "type": "string"
+        },
+        "ElasticsearchDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "DomainARN": {
+                    "$ref": "#/$defs/ElasticsearchDomainARN"
+                },
+                "ClusterEndpoint": {
+                    "$ref": "#/$defs/ElasticsearchClusterEndpoint"
+                },
+                "IndexName": {
+                    "$ref": "#/$defs/ElasticsearchIndexName"
+                },
+                "TypeName": {
+                    "$ref": "#/$defs/ElasticsearchTypeName"
+                },
+                "IndexRotationPeriod": {
+                    "$ref": "#/$defs/ElasticsearchIndexRotationPeriod"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/ElasticsearchBufferingHints"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/ElasticsearchRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/ElasticsearchS3BackupMode"
+                },
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "VpcConfiguration": {
+                    "$ref": "#/$defs/VpcConfiguration"
+                },
+                "DocumentIdOptions": {
+                    "$ref": "#/$defs/DocumentIdOptions"
+                }
+            }
+        },
+        "ElasticsearchDomainARN": {
+            "type": "string"
+        },
+        "ElasticsearchClusterEndpoint": {
+            "type": "string"
+        },
+        "ElasticsearchIndexName": {
+            "type": "string"
+        },
+        "ElasticsearchTypeName": {
+            "type": "string"
+        },
+        "ElasticsearchIndexRotationPeriod": {
+            "enum": [
+                "NoRotation",
+                "OneHour",
+                "OneDay",
+                "OneWeek",
+                "OneMonth"
+            ]
+        },
+        "ElasticsearchBufferingHints": {
+            "type": "object",
+            "properties": {
+                "IntervalInSeconds": {
+                    "$ref": "#/$defs/ElasticsearchBufferingIntervalInSeconds"
+                },
+                "SizeInMBs": {
+                    "$ref": "#/$defs/ElasticsearchBufferingSizeInMBs"
+                }
+            }
+        },
+        "ElasticsearchBufferingIntervalInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ElasticsearchBufferingSizeInMBs": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ElasticsearchRetryOptions": {
+            "type": "object",
+            "properties": {
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/ElasticsearchRetryDurationInSeconds"
+                }
+            }
+        },
+        "ElasticsearchRetryDurationInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ElasticsearchS3BackupMode": {
+            "enum": [
+                "FailedDocumentsOnly",
+                "AllDocuments"
+            ]
+        },
+        "VpcConfiguration": {
+            "type": "object",
+            "properties": {
+                "SubnetIds": {
+                    "$ref": "#/$defs/SubnetIdList"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/SecurityGroupIdList"
+                }
+            }
+        },
+        "SubnetIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+            }
+        },
+        "SecurityGroupIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+            }
+        },
+        "DocumentIdOptions": {
+            "type": "object",
+            "properties": {
+                "DefaultDocumentIdFormat": {
+                    "$ref": "#/$defs/DefaultDocumentIdFormat"
+                }
+            }
+        },
+        "DefaultDocumentIdFormat": {
+            "enum": [
+                "FIREHOSE_DEFAULT",
+                "NO_DOCUMENT_ID"
+            ]
+        },
+        "AmazonopensearchserviceDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "DomainARN": {
+                    "$ref": "#/$defs/AmazonopensearchserviceDomainARN"
+                },
+                "ClusterEndpoint": {
+                    "$ref": "#/$defs/AmazonopensearchserviceClusterEndpoint"
+                },
+                "IndexName": {
+                    "$ref": "#/$defs/AmazonopensearchserviceIndexName"
+                },
+                "TypeName": {
+                    "$ref": "#/$defs/AmazonopensearchserviceTypeName"
+                },
+                "IndexRotationPeriod": {
+                    "$ref": "#/$defs/AmazonopensearchserviceIndexRotationPeriod"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/AmazonopensearchserviceBufferingHints"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/AmazonopensearchserviceRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/AmazonopensearchserviceS3BackupMode"
+                },
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "VpcConfiguration": {
+                    "$ref": "#/$defs/VpcConfiguration"
+                },
+                "DocumentIdOptions": {
+                    "$ref": "#/$defs/DocumentIdOptions"
+                }
+            }
+        },
+        "AmazonopensearchserviceDomainARN": {
+            "type": "string"
+        },
+        "AmazonopensearchserviceClusterEndpoint": {
+            "type": "string"
+        },
+        "AmazonopensearchserviceIndexName": {
+            "type": "string"
+        },
+        "AmazonopensearchserviceTypeName": {
+            "type": "string"
+        },
+        "AmazonopensearchserviceIndexRotationPeriod": {
+            "enum": [
+                "NoRotation",
+                "OneHour",
+                "OneDay",
+                "OneWeek",
+                "OneMonth"
+            ]
+        },
+        "AmazonopensearchserviceBufferingHints": {
+            "type": "object",
+            "properties": {
+                "IntervalInSeconds": {
+                    "$ref": "#/$defs/AmazonopensearchserviceBufferingIntervalInSeconds"
+                },
+                "SizeInMBs": {
+                    "$ref": "#/$defs/AmazonopensearchserviceBufferingSizeInMBs"
+                }
+            }
+        },
+        "AmazonopensearchserviceBufferingIntervalInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AmazonopensearchserviceBufferingSizeInMBs": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AmazonopensearchserviceRetryOptions": {
+            "type": "object",
+            "properties": {
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/AmazonopensearchserviceRetryDurationInSeconds"
+                }
+            }
+        },
+        "AmazonopensearchserviceRetryDurationInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AmazonopensearchserviceS3BackupMode": {
+            "enum": [
+                "FailedDocumentsOnly",
+                "AllDocuments"
+            ]
+        },
+        "SplunkDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "HECEndpoint": {
+                    "$ref": "#/$defs/HECEndpoint"
+                },
+                "HECEndpointType": {
+                    "$ref": "#/$defs/HECEndpointType"
+                },
+                "HECToken": {
+                    "$ref": "#/$defs/HECToken"
+                },
+                "HECAcknowledgmentTimeoutInSeconds": {
+                    "$ref": "#/$defs/HECAcknowledgmentTimeoutInSeconds"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/SplunkRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/SplunkS3BackupMode"
+                },
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/SplunkBufferingHints"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                }
+            }
+        },
+        "HECEndpoint": {
+            "type": "string"
+        },
+        "HECEndpointType": {
+            "enum": [
+                "Raw",
+                "Event"
+            ]
+        },
+        "HECToken": {
+            "type": "string"
+        },
+        "HECAcknowledgmentTimeoutInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SplunkRetryOptions": {
+            "type": "object",
+            "properties": {
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/SplunkRetryDurationInSeconds"
+                }
+            }
+        },
+        "SplunkRetryDurationInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SplunkS3BackupMode": {
+            "enum": [
+                "FailedEventsOnly",
+                "AllEvents"
+            ]
+        },
+        "SplunkBufferingHints": {
+            "type": "object",
+            "properties": {
+                "IntervalInSeconds": {
+                    "$ref": "#/$defs/SplunkBufferingIntervalInSeconds"
+                },
+                "SizeInMBs": {
+                    "$ref": "#/$defs/SplunkBufferingSizeInMBs"
+                }
+            }
+        },
+        "SplunkBufferingIntervalInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SplunkBufferingSizeInMBs": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HttpEndpointDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "EndpointConfiguration": {
+                    "$ref": "#/$defs/HttpEndpointConfiguration"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/HttpEndpointBufferingHints"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "RequestConfiguration": {
+                    "$ref": "#/$defs/HttpEndpointRequestConfiguration"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/HttpEndpointRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/HttpEndpointS3BackupMode"
+                },
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                }
+            }
+        },
+        "HttpEndpointConfiguration": {
+            "type": "object",
+            "properties": {
+                "Url": {
+                    "$ref": "#/$defs/HttpEndpointUrl"
+                },
+                "Name": {
+                    "$ref": "#/$defs/HttpEndpointName"
+                },
+                "AccessKey": {
+                    "$ref": "#/$defs/HttpEndpointAccessKey"
+                }
+            }
+        },
+        "HttpEndpointUrl": {
+            "type": "string"
+        },
+        "HttpEndpointName": {
+            "type": "string"
+        },
+        "HttpEndpointAccessKey": {
+            "type": "string"
+        },
+        "HttpEndpointBufferingHints": {
+            "type": "object",
+            "properties": {
+                "SizeInMBs": {
+                    "$ref": "#/$defs/HttpEndpointBufferingSizeInMBs"
+                },
+                "IntervalInSeconds": {
+                    "$ref": "#/$defs/HttpEndpointBufferingIntervalInSeconds"
+                }
+            }
+        },
+        "HttpEndpointBufferingSizeInMBs": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HttpEndpointBufferingIntervalInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HttpEndpointRequestConfiguration": {
+            "type": "object",
+            "properties": {
+                "ContentEncoding": {
+                    "$ref": "#/$defs/ContentEncoding"
+                },
+                "CommonAttributes": {
+                    "$ref": "#/$defs/HttpEndpointCommonAttributesList"
+                }
+            }
+        },
+        "ContentEncoding": {
+            "enum": [
+                "NONE",
+                "GZIP"
+            ]
+        },
+        "HttpEndpointCommonAttributesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HttpEndpointCommonAttribute"
+            }
+        },
+        "HttpEndpointCommonAttribute": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/HttpEndpointAttributeName"
+                },
+                "AttributeValue": {
+                    "$ref": "#/$defs/HttpEndpointAttributeValue"
+                }
+            }
+        },
+        "HttpEndpointAttributeName": {
+            "type": "string"
+        },
+        "HttpEndpointAttributeValue": {
+            "type": "string"
+        },
+        "HttpEndpointRetryOptions": {
+            "type": "object",
+            "properties": {
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/HttpEndpointRetryDurationInSeconds"
+                }
+            }
+        },
+        "HttpEndpointRetryDurationInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HttpEndpointS3BackupMode": {
+            "enum": [
+                "FailedDataOnly",
+                "AllData"
+            ]
+        },
+        "TagDeliveryStreamInputTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "AmazonOpenSearchServerlessDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "CollectionEndpoint": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessCollectionEndpoint"
+                },
+                "IndexName": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessIndexName"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessBufferingHints"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessS3BackupMode"
+                },
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "VpcConfiguration": {
+                    "$ref": "#/$defs/VpcConfiguration"
+                }
+            }
+        },
+        "AmazonOpenSearchServerlessCollectionEndpoint": {
+            "type": "string"
+        },
+        "AmazonOpenSearchServerlessIndexName": {
+            "type": "string"
+        },
+        "AmazonOpenSearchServerlessBufferingHints": {
+            "type": "object",
+            "properties": {
+                "IntervalInSeconds": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessBufferingIntervalInSeconds"
+                },
+                "SizeInMBs": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessBufferingSizeInMBs"
+                }
+            }
+        },
+        "AmazonOpenSearchServerlessBufferingIntervalInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AmazonOpenSearchServerlessBufferingSizeInMBs": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AmazonOpenSearchServerlessRetryOptions": {
+            "type": "object",
+            "properties": {
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessRetryDurationInSeconds"
+                }
+            }
+        },
+        "AmazonOpenSearchServerlessRetryDurationInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AmazonOpenSearchServerlessS3BackupMode": {
+            "enum": [
+                "FailedDocumentsOnly",
+                "AllDocuments"
+            ]
+        },
+        "MSKSourceConfiguration": {
+            "type": "object",
+            "properties": {
+                "MSKClusterARN": {
+                    "$ref": "#/$defs/MSKClusterARN"
+                },
+                "TopicName": {
+                    "$ref": "#/$defs/TopicName"
+                },
+                "AuthenticationConfiguration": {
+                    "$ref": "#/$defs/AuthenticationConfiguration"
+                },
+                "ReadFromTimestamp": {
+                    "$ref": "#/$defs/ReadFromTimestamp"
+                }
+            }
+        },
+        "MSKClusterARN": {
+            "type": "string"
+        },
+        "TopicName": {
+            "type": "string"
+        },
+        "AuthenticationConfiguration": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "Connectivity": {
+                    "$ref": "#/$defs/Connectivity"
+                }
+            }
+        },
+        "Connectivity": {
+            "enum": [
+                "PUBLIC",
+                "PRIVATE"
+            ]
+        },
+        "ReadFromTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "SnowflakeDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "AccountUrl": {
+                    "$ref": "#/$defs/SnowflakeAccountUrl"
+                },
+                "PrivateKey": {
+                    "$ref": "#/$defs/SnowflakePrivateKey"
+                },
+                "KeyPassphrase": {
+                    "$ref": "#/$defs/SnowflakeKeyPassphrase"
+                },
+                "User": {
+                    "$ref": "#/$defs/SnowflakeUser"
+                },
+                "Database": {
+                    "$ref": "#/$defs/SnowflakeDatabase"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/SnowflakeSchema"
+                },
+                "Table": {
+                    "$ref": "#/$defs/SnowflakeTable"
+                },
+                "SnowflakeRoleConfiguration": {
+                    "$ref": "#/$defs/SnowflakeRoleConfiguration"
+                },
+                "DataLoadingOption": {
+                    "$ref": "#/$defs/SnowflakeDataLoadingOption"
+                },
+                "MetaDataColumnName": {
+                    "$ref": "#/$defs/SnowflakeMetaDataColumnName"
+                },
+                "ContentColumnName": {
+                    "$ref": "#/$defs/SnowflakeContentColumnName"
+                },
+                "SnowflakeVpcConfiguration": {
+                    "$ref": "#/$defs/SnowflakeVpcConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/SnowflakeRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/SnowflakeS3BackupMode"
+                },
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/SnowflakeBufferingHints"
+                }
+            }
+        },
+        "SnowflakeAccountUrl": {
+            "type": "string"
+        },
+        "SnowflakePrivateKey": {
+            "type": "string"
+        },
+        "SnowflakeKeyPassphrase": {
+            "type": "string"
+        },
+        "SnowflakeUser": {
+            "type": "string"
+        },
+        "SnowflakeDatabase": {
+            "type": "string"
+        },
+        "SnowflakeSchema": {
+            "type": "string"
+        },
+        "SnowflakeTable": {
+            "type": "string"
+        },
+        "SnowflakeRoleConfiguration": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "SnowflakeRole": {
+                    "$ref": "#/$defs/SnowflakeRole"
+                }
+            }
+        },
+        "SnowflakeRole": {
+            "type": "string"
+        },
+        "SnowflakeDataLoadingOption": {
+            "enum": [
+                "JSON_MAPPING",
+                "VARIANT_CONTENT_MAPPING",
+                "VARIANT_CONTENT_AND_METADATA_MAPPING"
+            ]
+        },
+        "SnowflakeMetaDataColumnName": {
+            "type": "string"
+        },
+        "SnowflakeContentColumnName": {
+            "type": "string"
+        },
+        "SnowflakeVpcConfiguration": {
+            "type": "object",
+            "properties": {
+                "PrivateLinkVpceId": {
+                    "$ref": "#/$defs/SnowflakePrivateLinkVpceId"
+                }
+            }
+        },
+        "SnowflakePrivateLinkVpceId": {
+            "type": "string"
+        },
+        "SnowflakeRetryOptions": {
+            "type": "object",
+            "properties": {
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/SnowflakeRetryDurationInSeconds"
+                }
+            }
+        },
+        "SnowflakeRetryDurationInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SnowflakeS3BackupMode": {
+            "enum": [
+                "FailedDataOnly",
+                "AllData"
+            ]
+        },
+        "SnowflakeBufferingHints": {
+            "type": "object",
+            "properties": {
+                "SizeInMBs": {
+                    "$ref": "#/$defs/SnowflakeBufferingSizeInMBs"
+                },
+                "IntervalInSeconds": {
+                    "$ref": "#/$defs/SnowflakeBufferingIntervalInSeconds"
+                }
+            }
+        },
+        "SnowflakeBufferingSizeInMBs": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SnowflakeBufferingIntervalInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "IcebergDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "DestinationTableConfigurationList": {
+                    "$ref": "#/$defs/DestinationTableConfigurationList"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/BufferingHints"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/IcebergS3BackupMode"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/RetryOptions"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "CatalogConfiguration": {
+                    "$ref": "#/$defs/CatalogConfiguration"
+                },
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                }
+            }
+        },
+        "DestinationTableConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DestinationTableConfiguration"
+            }
+        },
+        "DestinationTableConfiguration": {
+            "type": "object",
+            "properties": {
+                "DestinationTableName": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                },
+                "DestinationDatabaseName": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                },
+                "UniqueKeys": {
+                    "$ref": "#/$defs/ListOfNonEmptyStringsWithoutWhitespace"
+                },
+                "S3ErrorOutputPrefix": {
+                    "$ref": "#/$defs/ErrorOutputPrefix"
+                }
+            }
+        },
+        "IcebergS3BackupMode": {
+            "enum": [
+                "FailedDataOnly",
+                "AllData"
+            ]
+        },
+        "CatalogConfiguration": {
+            "type": "object",
+            "properties": {
+                "CatalogARN": {
+                    "$ref": "#/$defs/GlueDataCatalogARN"
+                }
+            }
+        },
+        "GlueDataCatalogARN": {
+            "type": "string"
+        },
+        "DeleteDeliveryStreamOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteDeliveryStreamInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "AllowForceDelete": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "DescribeDeliveryStreamOutput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamDescription": {
+                    "$ref": "#/$defs/DeliveryStreamDescription"
+                }
+            }
+        },
+        "DeliveryStreamDescription": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "DeliveryStreamARN": {
+                    "$ref": "#/$defs/DeliveryStreamARN"
+                },
+                "DeliveryStreamStatus": {
+                    "$ref": "#/$defs/DeliveryStreamStatus"
+                },
+                "FailureDescription": {
+                    "$ref": "#/$defs/FailureDescription"
+                },
+                "DeliveryStreamEncryptionConfiguration": {
+                    "$ref": "#/$defs/DeliveryStreamEncryptionConfiguration"
+                },
+                "DeliveryStreamType": {
+                    "$ref": "#/$defs/DeliveryStreamType"
+                },
+                "VersionId": {
+                    "$ref": "#/$defs/DeliveryStreamVersionId"
+                },
+                "CreateTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdateTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Source": {
+                    "$ref": "#/$defs/SourceDescription"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/DestinationDescriptionList"
+                },
+                "HasMoreDestinations": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "DeliveryStreamStatus": {
+            "enum": [
+                "CREATING",
+                "CREATING_FAILED",
+                "DELETING",
+                "DELETING_FAILED",
+                "ACTIVE"
+            ]
+        },
+        "FailureDescription": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/DeliveryStreamFailureType"
+                },
+                "Details": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "DeliveryStreamFailureType": {
+            "enum": [
+                "RETIRE_KMS_GRANT_FAILED",
+                "CREATE_KMS_GRANT_FAILED",
+                "KMS_ACCESS_DENIED",
+                "DISABLED_KMS_KEY",
+                "INVALID_KMS_KEY",
+                "KMS_KEY_NOT_FOUND",
+                "KMS_OPT_IN_REQUIRED",
+                "CREATE_ENI_FAILED",
+                "DELETE_ENI_FAILED",
+                "SUBNET_NOT_FOUND",
+                "SECURITY_GROUP_NOT_FOUND",
+                "ENI_ACCESS_DENIED",
+                "SUBNET_ACCESS_DENIED",
+                "SECURITY_GROUP_ACCESS_DENIED",
+                "UNKNOWN_ERROR"
+            ]
+        },
+        "DeliveryStreamEncryptionConfiguration": {
+            "type": "object",
+            "properties": {
+                "KeyARN": {
+                    "$ref": "#/$defs/AWSKMSKeyARN"
+                },
+                "KeyType": {
+                    "$ref": "#/$defs/KeyType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DeliveryStreamEncryptionStatus"
+                },
+                "FailureDescription": {
+                    "$ref": "#/$defs/FailureDescription"
+                }
+            }
+        },
+        "DeliveryStreamEncryptionStatus": {
+            "enum": [
+                "ENABLED",
+                "ENABLING",
+                "ENABLING_FAILED",
+                "DISABLED",
+                "DISABLING",
+                "DISABLING_FAILED"
+            ]
+        },
+        "DeliveryStreamVersionId": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "SourceDescription": {
+            "type": "object",
+            "properties": {
+                "KinesisStreamSourceDescription": {
+                    "$ref": "#/$defs/KinesisStreamSourceDescription"
+                },
+                "MSKSourceDescription": {
+                    "$ref": "#/$defs/MSKSourceDescription"
+                }
+            }
+        },
+        "KinesisStreamSourceDescription": {
+            "type": "object",
+            "properties": {
+                "KinesisStreamARN": {
+                    "$ref": "#/$defs/KinesisStreamARN"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "DeliveryStartTimestamp": {
+                    "$ref": "#/$defs/DeliveryStartTimestamp"
+                }
+            }
+        },
+        "DeliveryStartTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "MSKSourceDescription": {
+            "type": "object",
+            "properties": {
+                "MSKClusterARN": {
+                    "$ref": "#/$defs/MSKClusterARN"
+                },
+                "TopicName": {
+                    "$ref": "#/$defs/TopicName"
+                },
+                "AuthenticationConfiguration": {
+                    "$ref": "#/$defs/AuthenticationConfiguration"
+                },
+                "DeliveryStartTimestamp": {
+                    "$ref": "#/$defs/DeliveryStartTimestamp"
+                },
+                "ReadFromTimestamp": {
+                    "$ref": "#/$defs/ReadFromTimestamp"
+                }
+            }
+        },
+        "DestinationDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DestinationDescription"
+            }
+        },
+        "DestinationDescription": {
+            "type": "object",
+            "properties": {
+                "DestinationId": {
+                    "$ref": "#/$defs/DestinationId"
+                },
+                "S3DestinationDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                },
+                "ExtendedS3DestinationDescription": {
+                    "$ref": "#/$defs/ExtendedS3DestinationDescription"
+                },
+                "RedshiftDestinationDescription": {
+                    "$ref": "#/$defs/RedshiftDestinationDescription"
+                },
+                "ElasticsearchDestinationDescription": {
+                    "$ref": "#/$defs/ElasticsearchDestinationDescription"
+                },
+                "AmazonopensearchserviceDestinationDescription": {
+                    "$ref": "#/$defs/AmazonopensearchserviceDestinationDescription"
+                },
+                "SplunkDestinationDescription": {
+                    "$ref": "#/$defs/SplunkDestinationDescription"
+                },
+                "HttpEndpointDestinationDescription": {
+                    "$ref": "#/$defs/HttpEndpointDestinationDescription"
+                },
+                "SnowflakeDestinationDescription": {
+                    "$ref": "#/$defs/SnowflakeDestinationDescription"
+                },
+                "AmazonOpenSearchServerlessDestinationDescription": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessDestinationDescription"
+                },
+                "IcebergDestinationDescription": {
+                    "$ref": "#/$defs/IcebergDestinationDescription"
+                }
+            }
+        },
+        "DestinationId": {
+            "type": "string"
+        },
+        "S3DestinationDescription": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "BucketARN": {
+                    "$ref": "#/$defs/BucketARN"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/Prefix"
+                },
+                "ErrorOutputPrefix": {
+                    "$ref": "#/$defs/ErrorOutputPrefix"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/BufferingHints"
+                },
+                "CompressionFormat": {
+                    "$ref": "#/$defs/CompressionFormat"
+                },
+                "EncryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                }
+            }
+        },
+        "ExtendedS3DestinationDescription": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "BucketARN": {
+                    "$ref": "#/$defs/BucketARN"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/Prefix"
+                },
+                "ErrorOutputPrefix": {
+                    "$ref": "#/$defs/ErrorOutputPrefix"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/BufferingHints"
+                },
+                "CompressionFormat": {
+                    "$ref": "#/$defs/CompressionFormat"
+                },
+                "EncryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/S3BackupMode"
+                },
+                "S3BackupDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                },
+                "DataFormatConversionConfiguration": {
+                    "$ref": "#/$defs/DataFormatConversionConfiguration"
+                },
+                "DynamicPartitioningConfiguration": {
+                    "$ref": "#/$defs/DynamicPartitioningConfiguration"
+                },
+                "FileExtension": {
+                    "$ref": "#/$defs/FileExtension"
+                },
+                "CustomTimeZone": {
+                    "$ref": "#/$defs/CustomTimeZone"
+                }
+            }
+        },
+        "RedshiftDestinationDescription": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "ClusterJDBCURL": {
+                    "$ref": "#/$defs/ClusterJDBCURL"
+                },
+                "CopyCommand": {
+                    "$ref": "#/$defs/CopyCommand"
+                },
+                "Username": {
+                    "$ref": "#/$defs/Username"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/RedshiftRetryOptions"
+                },
+                "S3DestinationDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/RedshiftS3BackupMode"
+                },
+                "S3BackupDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                }
+            }
+        },
+        "ElasticsearchDestinationDescription": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "DomainARN": {
+                    "$ref": "#/$defs/ElasticsearchDomainARN"
+                },
+                "ClusterEndpoint": {
+                    "$ref": "#/$defs/ElasticsearchClusterEndpoint"
+                },
+                "IndexName": {
+                    "$ref": "#/$defs/ElasticsearchIndexName"
+                },
+                "TypeName": {
+                    "$ref": "#/$defs/ElasticsearchTypeName"
+                },
+                "IndexRotationPeriod": {
+                    "$ref": "#/$defs/ElasticsearchIndexRotationPeriod"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/ElasticsearchBufferingHints"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/ElasticsearchRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/ElasticsearchS3BackupMode"
+                },
+                "S3DestinationDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "VpcConfigurationDescription": {
+                    "$ref": "#/$defs/VpcConfigurationDescription"
+                },
+                "DocumentIdOptions": {
+                    "$ref": "#/$defs/DocumentIdOptions"
+                }
+            }
+        },
+        "VpcConfigurationDescription": {
+            "type": "object",
+            "properties": {
+                "SubnetIds": {
+                    "$ref": "#/$defs/SubnetIdList"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/SecurityGroupIdList"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                }
+            }
+        },
+        "AmazonopensearchserviceDestinationDescription": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "DomainARN": {
+                    "$ref": "#/$defs/AmazonopensearchserviceDomainARN"
+                },
+                "ClusterEndpoint": {
+                    "$ref": "#/$defs/AmazonopensearchserviceClusterEndpoint"
+                },
+                "IndexName": {
+                    "$ref": "#/$defs/AmazonopensearchserviceIndexName"
+                },
+                "TypeName": {
+                    "$ref": "#/$defs/AmazonopensearchserviceTypeName"
+                },
+                "IndexRotationPeriod": {
+                    "$ref": "#/$defs/AmazonopensearchserviceIndexRotationPeriod"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/AmazonopensearchserviceBufferingHints"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/AmazonopensearchserviceRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/AmazonopensearchserviceS3BackupMode"
+                },
+                "S3DestinationDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "VpcConfigurationDescription": {
+                    "$ref": "#/$defs/VpcConfigurationDescription"
+                },
+                "DocumentIdOptions": {
+                    "$ref": "#/$defs/DocumentIdOptions"
+                }
+            }
+        },
+        "SplunkDestinationDescription": {
+            "type": "object",
+            "properties": {
+                "HECEndpoint": {
+                    "$ref": "#/$defs/HECEndpoint"
+                },
+                "HECEndpointType": {
+                    "$ref": "#/$defs/HECEndpointType"
+                },
+                "HECToken": {
+                    "$ref": "#/$defs/HECToken"
+                },
+                "HECAcknowledgmentTimeoutInSeconds": {
+                    "$ref": "#/$defs/HECAcknowledgmentTimeoutInSeconds"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/SplunkRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/SplunkS3BackupMode"
+                },
+                "S3DestinationDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/SplunkBufferingHints"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                }
+            }
+        },
+        "HttpEndpointDestinationDescription": {
+            "type": "object",
+            "properties": {
+                "EndpointConfiguration": {
+                    "$ref": "#/$defs/HttpEndpointDescription"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/HttpEndpointBufferingHints"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "RequestConfiguration": {
+                    "$ref": "#/$defs/HttpEndpointRequestConfiguration"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/HttpEndpointRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/HttpEndpointS3BackupMode"
+                },
+                "S3DestinationDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                }
+            }
+        },
+        "HttpEndpointDescription": {
+            "type": "object",
+            "properties": {
+                "Url": {
+                    "$ref": "#/$defs/HttpEndpointUrl"
+                },
+                "Name": {
+                    "$ref": "#/$defs/HttpEndpointName"
+                }
+            }
+        },
+        "SnowflakeDestinationDescription": {
+            "type": "object",
+            "properties": {
+                "AccountUrl": {
+                    "$ref": "#/$defs/SnowflakeAccountUrl"
+                },
+                "User": {
+                    "$ref": "#/$defs/SnowflakeUser"
+                },
+                "Database": {
+                    "$ref": "#/$defs/SnowflakeDatabase"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/SnowflakeSchema"
+                },
+                "Table": {
+                    "$ref": "#/$defs/SnowflakeTable"
+                },
+                "SnowflakeRoleConfiguration": {
+                    "$ref": "#/$defs/SnowflakeRoleConfiguration"
+                },
+                "DataLoadingOption": {
+                    "$ref": "#/$defs/SnowflakeDataLoadingOption"
+                },
+                "MetaDataColumnName": {
+                    "$ref": "#/$defs/SnowflakeMetaDataColumnName"
+                },
+                "ContentColumnName": {
+                    "$ref": "#/$defs/SnowflakeContentColumnName"
+                },
+                "SnowflakeVpcConfiguration": {
+                    "$ref": "#/$defs/SnowflakeVpcConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/SnowflakeRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/SnowflakeS3BackupMode"
+                },
+                "S3DestinationDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/SnowflakeBufferingHints"
+                }
+            }
+        },
+        "AmazonOpenSearchServerlessDestinationDescription": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "CollectionEndpoint": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessCollectionEndpoint"
+                },
+                "IndexName": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessIndexName"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessBufferingHints"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessS3BackupMode"
+                },
+                "S3DestinationDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "VpcConfigurationDescription": {
+                    "$ref": "#/$defs/VpcConfigurationDescription"
+                }
+            }
+        },
+        "IcebergDestinationDescription": {
+            "type": "object",
+            "properties": {
+                "DestinationTableConfigurationList": {
+                    "$ref": "#/$defs/DestinationTableConfigurationList"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/BufferingHints"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/IcebergS3BackupMode"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/RetryOptions"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "CatalogConfiguration": {
+                    "$ref": "#/$defs/CatalogConfiguration"
+                },
+                "S3DestinationDescription": {
+                    "$ref": "#/$defs/S3DestinationDescription"
+                }
+            }
+        },
+        "DescribeDeliveryStreamInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/DescribeDeliveryStreamInputLimit"
+                },
+                "ExclusiveStartDestinationId": {
+                    "$ref": "#/$defs/DestinationId"
+                }
+            }
+        },
+        "DescribeDeliveryStreamInputLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDeliveryStreamsOutput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamNames": {
+                    "$ref": "#/$defs/DeliveryStreamNameList"
+                },
+                "HasMoreDeliveryStreams": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "DeliveryStreamNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeliveryStreamName"
+            }
+        },
+        "ListDeliveryStreamsInput": {
+            "type": "object",
+            "properties": {
+                "Limit": {
+                    "$ref": "#/$defs/ListDeliveryStreamsInputLimit"
+                },
+                "DeliveryStreamType": {
+                    "$ref": "#/$defs/DeliveryStreamType"
+                },
+                "ExclusiveStartDeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                }
+            }
+        },
+        "ListDeliveryStreamsInputLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForDeliveryStreamOutput": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/ListTagsForDeliveryStreamOutputTagList"
+                },
+                "HasMoreTags": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "ListTagsForDeliveryStreamOutputTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "ListTagsForDeliveryStreamInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "ExclusiveStartTagKey": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/ListTagsForDeliveryStreamInputLimit"
+                }
+            }
+        },
+        "ListTagsForDeliveryStreamInputLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PutRecordOutput": {
+            "type": "object",
+            "properties": {
+                "RecordId": {
+                    "$ref": "#/$defs/PutResponseRecordId"
+                },
+                "Encrypted": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "PutResponseRecordId": {
+            "type": "string"
+        },
+        "PutRecordInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "Record": {
+                    "$ref": "#/$defs/Record"
+                }
+            }
+        },
+        "Record": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/$defs/Data"
+                }
+            }
+        },
+        "Data": {
+            "type": "string",
+            "format": "binary"
+        },
+        "PutRecordBatchOutput": {
+            "type": "object",
+            "properties": {
+                "FailedPutCount": {
+                    "$ref": "#/$defs/NonNegativeIntegerObject"
+                },
+                "Encrypted": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "RequestResponses": {
+                    "$ref": "#/$defs/PutRecordBatchResponseEntryList"
+                }
+            }
+        },
+        "PutRecordBatchResponseEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PutRecordBatchResponseEntry"
+            }
+        },
+        "PutRecordBatchResponseEntry": {
+            "type": "object",
+            "properties": {
+                "RecordId": {
+                    "$ref": "#/$defs/PutResponseRecordId"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ErrorCode": {
+            "type": "string"
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "PutRecordBatchInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "Records": {
+                    "$ref": "#/$defs/PutRecordBatchRequestEntryList"
+                }
+            }
+        },
+        "PutRecordBatchRequestEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Record"
+            }
+        },
+        "StartDeliveryStreamEncryptionOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartDeliveryStreamEncryptionInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "DeliveryStreamEncryptionConfigurationInput": {
+                    "$ref": "#/$defs/DeliveryStreamEncryptionConfigurationInput"
+                }
+            }
+        },
+        "StopDeliveryStreamEncryptionOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopDeliveryStreamEncryptionInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                }
+            }
+        },
+        "TagDeliveryStreamOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagDeliveryStreamInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagDeliveryStreamInputTagList"
+                }
+            }
+        },
+        "UntagDeliveryStreamOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagDeliveryStreamInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateDestinationOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateDestinationInput": {
+            "type": "object",
+            "properties": {
+                "DeliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                },
+                "CurrentDeliveryStreamVersionId": {
+                    "$ref": "#/$defs/DeliveryStreamVersionId"
+                },
+                "DestinationId": {
+                    "$ref": "#/$defs/DestinationId"
+                },
+                "S3DestinationUpdate": {
+                    "$ref": "#/$defs/S3DestinationUpdate"
+                },
+                "ExtendedS3DestinationUpdate": {
+                    "$ref": "#/$defs/ExtendedS3DestinationUpdate"
+                },
+                "RedshiftDestinationUpdate": {
+                    "$ref": "#/$defs/RedshiftDestinationUpdate"
+                },
+                "ElasticsearchDestinationUpdate": {
+                    "$ref": "#/$defs/ElasticsearchDestinationUpdate"
+                },
+                "AmazonopensearchserviceDestinationUpdate": {
+                    "$ref": "#/$defs/AmazonopensearchserviceDestinationUpdate"
+                },
+                "SplunkDestinationUpdate": {
+                    "$ref": "#/$defs/SplunkDestinationUpdate"
+                },
+                "HttpEndpointDestinationUpdate": {
+                    "$ref": "#/$defs/HttpEndpointDestinationUpdate"
+                },
+                "AmazonOpenSearchServerlessDestinationUpdate": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessDestinationUpdate"
+                },
+                "SnowflakeDestinationUpdate": {
+                    "$ref": "#/$defs/SnowflakeDestinationUpdate"
+                },
+                "IcebergDestinationUpdate": {
+                    "$ref": "#/$defs/IcebergDestinationUpdate"
+                }
+            }
+        },
+        "S3DestinationUpdate": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "BucketARN": {
+                    "$ref": "#/$defs/BucketARN"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/Prefix"
+                },
+                "ErrorOutputPrefix": {
+                    "$ref": "#/$defs/ErrorOutputPrefix"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/BufferingHints"
+                },
+                "CompressionFormat": {
+                    "$ref": "#/$defs/CompressionFormat"
+                },
+                "EncryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                }
+            }
+        },
+        "ExtendedS3DestinationUpdate": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "BucketARN": {
+                    "$ref": "#/$defs/BucketARN"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/Prefix"
+                },
+                "ErrorOutputPrefix": {
+                    "$ref": "#/$defs/ErrorOutputPrefix"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/BufferingHints"
+                },
+                "CompressionFormat": {
+                    "$ref": "#/$defs/CompressionFormat"
+                },
+                "EncryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/S3BackupMode"
+                },
+                "S3BackupUpdate": {
+                    "$ref": "#/$defs/S3DestinationUpdate"
+                },
+                "DataFormatConversionConfiguration": {
+                    "$ref": "#/$defs/DataFormatConversionConfiguration"
+                },
+                "DynamicPartitioningConfiguration": {
+                    "$ref": "#/$defs/DynamicPartitioningConfiguration"
+                },
+                "FileExtension": {
+                    "$ref": "#/$defs/FileExtension"
+                },
+                "CustomTimeZone": {
+                    "$ref": "#/$defs/CustomTimeZone"
+                }
+            }
+        },
+        "RedshiftDestinationUpdate": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "ClusterJDBCURL": {
+                    "$ref": "#/$defs/ClusterJDBCURL"
+                },
+                "CopyCommand": {
+                    "$ref": "#/$defs/CopyCommand"
+                },
+                "Username": {
+                    "$ref": "#/$defs/Username"
+                },
+                "Password": {
+                    "$ref": "#/$defs/Password"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/RedshiftRetryOptions"
+                },
+                "S3Update": {
+                    "$ref": "#/$defs/S3DestinationUpdate"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/RedshiftS3BackupMode"
+                },
+                "S3BackupUpdate": {
+                    "$ref": "#/$defs/S3DestinationUpdate"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                }
+            }
+        },
+        "ElasticsearchDestinationUpdate": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "DomainARN": {
+                    "$ref": "#/$defs/ElasticsearchDomainARN"
+                },
+                "ClusterEndpoint": {
+                    "$ref": "#/$defs/ElasticsearchClusterEndpoint"
+                },
+                "IndexName": {
+                    "$ref": "#/$defs/ElasticsearchIndexName"
+                },
+                "TypeName": {
+                    "$ref": "#/$defs/ElasticsearchTypeName"
+                },
+                "IndexRotationPeriod": {
+                    "$ref": "#/$defs/ElasticsearchIndexRotationPeriod"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/ElasticsearchBufferingHints"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/ElasticsearchRetryOptions"
+                },
+                "S3Update": {
+                    "$ref": "#/$defs/S3DestinationUpdate"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "DocumentIdOptions": {
+                    "$ref": "#/$defs/DocumentIdOptions"
+                }
+            }
+        },
+        "AmazonopensearchserviceDestinationUpdate": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "DomainARN": {
+                    "$ref": "#/$defs/AmazonopensearchserviceDomainARN"
+                },
+                "ClusterEndpoint": {
+                    "$ref": "#/$defs/AmazonopensearchserviceClusterEndpoint"
+                },
+                "IndexName": {
+                    "$ref": "#/$defs/AmazonopensearchserviceIndexName"
+                },
+                "TypeName": {
+                    "$ref": "#/$defs/AmazonopensearchserviceTypeName"
+                },
+                "IndexRotationPeriod": {
+                    "$ref": "#/$defs/AmazonopensearchserviceIndexRotationPeriod"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/AmazonopensearchserviceBufferingHints"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/AmazonopensearchserviceRetryOptions"
+                },
+                "S3Update": {
+                    "$ref": "#/$defs/S3DestinationUpdate"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "DocumentIdOptions": {
+                    "$ref": "#/$defs/DocumentIdOptions"
+                }
+            }
+        },
+        "SplunkDestinationUpdate": {
+            "type": "object",
+            "properties": {
+                "HECEndpoint": {
+                    "$ref": "#/$defs/HECEndpoint"
+                },
+                "HECEndpointType": {
+                    "$ref": "#/$defs/HECEndpointType"
+                },
+                "HECToken": {
+                    "$ref": "#/$defs/HECToken"
+                },
+                "HECAcknowledgmentTimeoutInSeconds": {
+                    "$ref": "#/$defs/HECAcknowledgmentTimeoutInSeconds"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/SplunkRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/SplunkS3BackupMode"
+                },
+                "S3Update": {
+                    "$ref": "#/$defs/S3DestinationUpdate"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/SplunkBufferingHints"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                }
+            }
+        },
+        "HttpEndpointDestinationUpdate": {
+            "type": "object",
+            "properties": {
+                "EndpointConfiguration": {
+                    "$ref": "#/$defs/HttpEndpointConfiguration"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/HttpEndpointBufferingHints"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "RequestConfiguration": {
+                    "$ref": "#/$defs/HttpEndpointRequestConfiguration"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/HttpEndpointRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/HttpEndpointS3BackupMode"
+                },
+                "S3Update": {
+                    "$ref": "#/$defs/S3DestinationUpdate"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                }
+            }
+        },
+        "AmazonOpenSearchServerlessDestinationUpdate": {
+            "type": "object",
+            "properties": {
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "CollectionEndpoint": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessCollectionEndpoint"
+                },
+                "IndexName": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessIndexName"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessBufferingHints"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/AmazonOpenSearchServerlessRetryOptions"
+                },
+                "S3Update": {
+                    "$ref": "#/$defs/S3DestinationUpdate"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                }
+            }
+        },
+        "SnowflakeDestinationUpdate": {
+            "type": "object",
+            "properties": {
+                "AccountUrl": {
+                    "$ref": "#/$defs/SnowflakeAccountUrl"
+                },
+                "PrivateKey": {
+                    "$ref": "#/$defs/SnowflakePrivateKey"
+                },
+                "KeyPassphrase": {
+                    "$ref": "#/$defs/SnowflakeKeyPassphrase"
+                },
+                "User": {
+                    "$ref": "#/$defs/SnowflakeUser"
+                },
+                "Database": {
+                    "$ref": "#/$defs/SnowflakeDatabase"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/SnowflakeSchema"
+                },
+                "Table": {
+                    "$ref": "#/$defs/SnowflakeTable"
+                },
+                "SnowflakeRoleConfiguration": {
+                    "$ref": "#/$defs/SnowflakeRoleConfiguration"
+                },
+                "DataLoadingOption": {
+                    "$ref": "#/$defs/SnowflakeDataLoadingOption"
+                },
+                "MetaDataColumnName": {
+                    "$ref": "#/$defs/SnowflakeMetaDataColumnName"
+                },
+                "ContentColumnName": {
+                    "$ref": "#/$defs/SnowflakeContentColumnName"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/SnowflakeRetryOptions"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/SnowflakeS3BackupMode"
+                },
+                "S3Update": {
+                    "$ref": "#/$defs/S3DestinationUpdate"
+                },
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/SnowflakeBufferingHints"
+                }
+            }
+        },
+        "IcebergDestinationUpdate": {
+            "type": "object",
+            "properties": {
+                "DestinationTableConfigurationList": {
+                    "$ref": "#/$defs/DestinationTableConfigurationList"
+                },
+                "BufferingHints": {
+                    "$ref": "#/$defs/BufferingHints"
+                },
+                "CloudWatchLoggingOptions": {
+                    "$ref": "#/$defs/CloudWatchLoggingOptions"
+                },
+                "ProcessingConfiguration": {
+                    "$ref": "#/$defs/ProcessingConfiguration"
+                },
+                "S3BackupMode": {
+                    "$ref": "#/$defs/IcebergS3BackupMode"
+                },
+                "RetryOptions": {
+                    "$ref": "#/$defs/RetryOptions"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/RoleARN"
+                },
+                "CatalogConfiguration": {
+                    "$ref": "#/$defs/CatalogConfiguration"
+                },
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://firehose-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://firehose-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://firehose.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://firehose.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

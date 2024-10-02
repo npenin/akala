@@ -1,0 +1,1054 @@
+{
+    "name": "kinesisvideo",
+    "commands": [
+        {
+            "name": "GetClip",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetClip"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetClipOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetClipInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDASHStreamingSessionURL",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDASHStreamingSessionURL"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDASHStreamingSessionURLOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDASHStreamingSessionURLInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetHLSStreamingSessionURL",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetHLSStreamingSessionURL"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetHLSStreamingSessionURLOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetHLSStreamingSessionURLInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetImages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetImages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetImagesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetImagesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMediaForFragmentList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMediaForFragmentList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMediaForFragmentListOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMediaForFragmentListInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFragments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFragments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFragmentsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFragmentsInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetClipOutput": {
+            "type": "object",
+            "properties": {
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "Payload": {
+                    "$ref": "#/$defs/Payload"
+                }
+            }
+        },
+        "ContentType": {
+            "type": "string"
+        },
+        "Payload": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetClipInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "ClipFragmentSelector": {
+                    "$ref": "#/$defs/ClipFragmentSelector"
+                }
+            }
+        },
+        "StreamName": {
+            "type": "string"
+        },
+        "ResourceARN": {
+            "type": "string"
+        },
+        "ClipFragmentSelector": {
+            "type": "object",
+            "properties": {
+                "FragmentSelectorType": {
+                    "$ref": "#/$defs/ClipFragmentSelectorType"
+                },
+                "TimestampRange": {
+                    "$ref": "#/$defs/ClipTimestampRange"
+                }
+            }
+        },
+        "ClipFragmentSelectorType": {
+            "enum": [
+                "PRODUCER_TIMESTAMP",
+                "SERVER_TIMESTAMP"
+            ]
+        },
+        "ClipTimestampRange": {
+            "type": "object",
+            "properties": {
+                "StartTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetDASHStreamingSessionURLOutput": {
+            "type": "object",
+            "properties": {
+                "DASHStreamingSessionURL": {
+                    "$ref": "#/$defs/DASHStreamingSessionURL"
+                }
+            }
+        },
+        "DASHStreamingSessionURL": {
+            "type": "string"
+        },
+        "GetDASHStreamingSessionURLInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "PlaybackMode": {
+                    "$ref": "#/$defs/DASHPlaybackMode"
+                },
+                "DisplayFragmentTimestamp": {
+                    "$ref": "#/$defs/DASHDisplayFragmentTimestamp"
+                },
+                "DisplayFragmentNumber": {
+                    "$ref": "#/$defs/DASHDisplayFragmentNumber"
+                },
+                "DASHFragmentSelector": {
+                    "$ref": "#/$defs/DASHFragmentSelector"
+                },
+                "Expires": {
+                    "$ref": "#/$defs/Expires"
+                },
+                "MaxManifestFragmentResults": {
+                    "$ref": "#/$defs/DASHMaxResults"
+                }
+            }
+        },
+        "DASHPlaybackMode": {
+            "enum": [
+                "LIVE",
+                "LIVE_REPLAY",
+                "ON_DEMAND"
+            ]
+        },
+        "DASHDisplayFragmentTimestamp": {
+            "enum": [
+                "ALWAYS",
+                "NEVER"
+            ]
+        },
+        "DASHDisplayFragmentNumber": {
+            "enum": [
+                "ALWAYS",
+                "NEVER"
+            ]
+        },
+        "DASHFragmentSelector": {
+            "type": "object",
+            "properties": {
+                "FragmentSelectorType": {
+                    "$ref": "#/$defs/DASHFragmentSelectorType"
+                },
+                "TimestampRange": {
+                    "$ref": "#/$defs/DASHTimestampRange"
+                }
+            }
+        },
+        "DASHFragmentSelectorType": {
+            "enum": [
+                "PRODUCER_TIMESTAMP",
+                "SERVER_TIMESTAMP"
+            ]
+        },
+        "DASHTimestampRange": {
+            "type": "object",
+            "properties": {
+                "StartTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Expires": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DASHMaxResults": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GetHLSStreamingSessionURLOutput": {
+            "type": "object",
+            "properties": {
+                "HLSStreamingSessionURL": {
+                    "$ref": "#/$defs/HLSStreamingSessionURL"
+                }
+            }
+        },
+        "HLSStreamingSessionURL": {
+            "type": "string"
+        },
+        "GetHLSStreamingSessionURLInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "PlaybackMode": {
+                    "$ref": "#/$defs/HLSPlaybackMode"
+                },
+                "HLSFragmentSelector": {
+                    "$ref": "#/$defs/HLSFragmentSelector"
+                },
+                "ContainerFormat": {
+                    "$ref": "#/$defs/ContainerFormat"
+                },
+                "DiscontinuityMode": {
+                    "$ref": "#/$defs/HLSDiscontinuityMode"
+                },
+                "DisplayFragmentTimestamp": {
+                    "$ref": "#/$defs/HLSDisplayFragmentTimestamp"
+                },
+                "Expires": {
+                    "$ref": "#/$defs/Expires"
+                },
+                "MaxMediaPlaylistFragmentResults": {
+                    "$ref": "#/$defs/HLSMaxResults"
+                }
+            }
+        },
+        "HLSPlaybackMode": {
+            "enum": [
+                "LIVE",
+                "LIVE_REPLAY",
+                "ON_DEMAND"
+            ]
+        },
+        "HLSFragmentSelector": {
+            "type": "object",
+            "properties": {
+                "FragmentSelectorType": {
+                    "$ref": "#/$defs/HLSFragmentSelectorType"
+                },
+                "TimestampRange": {
+                    "$ref": "#/$defs/HLSTimestampRange"
+                }
+            }
+        },
+        "HLSFragmentSelectorType": {
+            "enum": [
+                "PRODUCER_TIMESTAMP",
+                "SERVER_TIMESTAMP"
+            ]
+        },
+        "HLSTimestampRange": {
+            "type": "object",
+            "properties": {
+                "StartTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ContainerFormat": {
+            "enum": [
+                "FRAGMENTED_MP4",
+                "MPEG_TS"
+            ]
+        },
+        "HLSDiscontinuityMode": {
+            "enum": [
+                "ALWAYS",
+                "NEVER",
+                "ON_DISCONTINUITY"
+            ]
+        },
+        "HLSDisplayFragmentTimestamp": {
+            "enum": [
+                "ALWAYS",
+                "NEVER"
+            ]
+        },
+        "HLSMaxResults": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GetImagesOutput": {
+            "type": "object",
+            "properties": {
+                "Images": {
+                    "$ref": "#/$defs/Images"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Images": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Image"
+            }
+        },
+        "Image": {
+            "type": "object",
+            "properties": {
+                "TimeStamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Error": {
+                    "$ref": "#/$defs/ImageError"
+                },
+                "ImageContent": {
+                    "$ref": "#/$defs/ImageContent"
+                }
+            }
+        },
+        "ImageError": {
+            "enum": [
+                "NO_MEDIA",
+                "MEDIA_ERROR"
+            ]
+        },
+        "ImageContent": {
+            "type": "string"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "GetImagesInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "ImageSelectorType": {
+                    "$ref": "#/$defs/ImageSelectorType"
+                },
+                "StartTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SamplingInterval": {
+                    "$ref": "#/$defs/SamplingInterval"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                },
+                "FormatConfig": {
+                    "$ref": "#/$defs/FormatConfig"
+                },
+                "WidthPixels": {
+                    "$ref": "#/$defs/WidthPixels"
+                },
+                "HeightPixels": {
+                    "$ref": "#/$defs/HeightPixels"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/GetImagesMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ImageSelectorType": {
+            "enum": [
+                "PRODUCER_TIMESTAMP",
+                "SERVER_TIMESTAMP"
+            ]
+        },
+        "SamplingInterval": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Format": {
+            "enum": [
+                "JPEG",
+                "PNG"
+            ]
+        },
+        "FormatConfig": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FormatConfigValue"
+            }
+        },
+        "FormatConfigValue": {
+            "type": "string"
+        },
+        "WidthPixels": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HeightPixels": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetImagesMaxResults": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GetMediaForFragmentListOutput": {
+            "type": "object",
+            "properties": {
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "Payload": {
+                    "$ref": "#/$defs/Payload"
+                }
+            }
+        },
+        "GetMediaForFragmentListInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "Fragments": {
+                    "$ref": "#/$defs/FragmentNumberList"
+                }
+            }
+        },
+        "FragmentNumberList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FragmentNumberString"
+            }
+        },
+        "FragmentNumberString": {
+            "type": "string"
+        },
+        "ListFragmentsOutput": {
+            "type": "object",
+            "properties": {
+                "Fragments": {
+                    "$ref": "#/$defs/FragmentList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FragmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Fragment"
+            }
+        },
+        "Fragment": {
+            "type": "object",
+            "properties": {
+                "FragmentNumber": {
+                    "$ref": "#/$defs/FragmentNumberString"
+                },
+                "FragmentSizeInBytes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "ProducerTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ServerTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FragmentLengthInMilliseconds": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ListFragmentsInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListFragmentsMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "FragmentSelector": {
+                    "$ref": "#/$defs/FragmentSelector"
+                }
+            }
+        },
+        "ListFragmentsMaxResults": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "FragmentSelector": {
+            "type": "object",
+            "properties": {
+                "FragmentSelectorType": {
+                    "$ref": "#/$defs/FragmentSelectorType"
+                },
+                "TimestampRange": {
+                    "$ref": "#/$defs/TimestampRange"
+                }
+            }
+        },
+        "FragmentSelectorType": {
+            "enum": [
+                "PRODUCER_TIMESTAMP",
+                "SERVER_TIMESTAMP"
+            ]
+        },
+        "TimestampRange": {
+            "type": "object",
+            "properties": {
+                "StartTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kinesisvideo-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kinesisvideo-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kinesisvideo.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://kinesisvideo.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

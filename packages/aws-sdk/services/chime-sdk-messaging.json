@@ -1,0 +1,4034 @@
+{
+    "name": "chime",
+    "commands": [
+        {
+            "name": "AssociateChannelFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateChannelFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateChannelFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchCreateChannelMembership",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchCreateChannelMembership"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchCreateChannelMembershipResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchCreateChannelMembershipRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ChannelFlowCallback",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ChannelFlowCallback"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ChannelFlowCallbackResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ChannelFlowCallbackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateChannelBan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateChannelBan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateChannelBanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateChannelBanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateChannelFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateChannelFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateChannelFlowResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateChannelFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateChannelMembership",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateChannelMembership"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateChannelMembershipResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateChannelMembershipRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateChannelModerator",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateChannelModerator"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateChannelModeratorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateChannelModeratorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChannelBan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteChannelBan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChannelBanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChannelFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteChannelFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChannelFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChannelMembership",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteChannelMembership"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChannelMembershipRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChannelMessage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteChannelMessage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChannelMessageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChannelModerator",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteChannelModerator"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChannelModeratorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMessagingStreamingConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMessagingStreamingConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMessagingStreamingConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeChannelBan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeChannelBan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeChannelBanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeChannelBanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeChannelFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeChannelFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeChannelFlowResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeChannelFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeChannelMembership",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeChannelMembership"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeChannelMembershipResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeChannelMembershipRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeChannelMembershipForAppInstanceUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeChannelMembershipForAppInstanceUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeChannelMembershipForAppInstanceUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeChannelMembershipForAppInstanceUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeChannelModeratedByAppInstanceUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeChannelModeratedByAppInstanceUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeChannelModeratedByAppInstanceUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeChannelModeratedByAppInstanceUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeChannelModerator",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeChannelModerator"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeChannelModeratorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeChannelModeratorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateChannelFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateChannelFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateChannelFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetChannelMembershipPreferences",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetChannelMembershipPreferences"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetChannelMembershipPreferencesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetChannelMembershipPreferencesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetChannelMessage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetChannelMessage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetChannelMessageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetChannelMessageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetChannelMessageStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetChannelMessageStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetChannelMessageStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetChannelMessageStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMessagingSessionEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMessagingSessionEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMessagingSessionEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMessagingSessionEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMessagingStreamingConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMessagingStreamingConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMessagingStreamingConfigurationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMessagingStreamingConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannelBans",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannelBans"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelBansResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelBansRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannelFlows",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannelFlows"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelFlowsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelFlowsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannelMemberships",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannelMemberships"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelMembershipsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelMembershipsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannelMembershipsForAppInstanceUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannelMembershipsForAppInstanceUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelMembershipsForAppInstanceUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelMembershipsForAppInstanceUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannelMessages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannelMessages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelMessagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelMessagesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannelModerators",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannelModerators"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelModeratorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelModeratorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannelsAssociatedWithChannelFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannelsAssociatedWithChannelFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelsAssociatedWithChannelFlowResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelsAssociatedWithChannelFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannelsModeratedByAppInstanceUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannelsModeratedByAppInstanceUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelsModeratedByAppInstanceUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelsModeratedByAppInstanceUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSubChannels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSubChannels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSubChannelsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSubChannelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutChannelExpirationSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutChannelExpirationSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutChannelExpirationSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutChannelExpirationSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutChannelMembershipPreferences",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutChannelMembershipPreferences"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutChannelMembershipPreferencesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutChannelMembershipPreferencesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutMessagingStreamingConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutMessagingStreamingConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutMessagingStreamingConfigurationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutMessagingStreamingConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RedactChannelMessage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RedactChannelMessage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RedactChannelMessageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RedactChannelMessageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchChannels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SearchChannels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchChannelsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchChannelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SendChannelMessage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendChannelMessage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendChannelMessageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendChannelMessageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateChannelFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateChannelFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateChannelFlowResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateChannelFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateChannelMessage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateChannelMessage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateChannelMessageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateChannelMessageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateChannelReadMarker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateChannelReadMarker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateChannelReadMarkerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateChannelReadMarkerRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssociateChannelFlowRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "ChimeArn": {
+            "type": "string"
+        },
+        "BatchCreateChannelMembershipResponse": {
+            "type": "object",
+            "properties": {
+                "BatchChannelMemberships": {
+                    "$ref": "#/$defs/BatchChannelMemberships"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/BatchCreateChannelMembershipErrors"
+                }
+            }
+        },
+        "BatchChannelMemberships": {
+            "type": "object",
+            "properties": {
+                "InvitedBy": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ChannelMembershipType"
+                },
+                "Members": {
+                    "$ref": "#/$defs/Members"
+                },
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "Identity": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "ResourceName": {
+            "type": "string"
+        },
+        "ChannelMembershipType": {
+            "enum": [
+                "DEFAULT",
+                "HIDDEN"
+            ]
+        },
+        "Members": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Identity"
+            }
+        },
+        "SubChannelId": {
+            "type": "string"
+        },
+        "BatchCreateChannelMembershipErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchCreateChannelMembershipError"
+            }
+        },
+        "BatchCreateChannelMembershipError": {
+            "type": "object",
+            "properties": {
+                "MemberArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ErrorCode": {
+            "enum": [
+                "BadRequest",
+                "Conflict",
+                "Forbidden",
+                "NotFound",
+                "PreconditionFailed",
+                "ResourceLimitExceeded",
+                "ServiceFailure",
+                "AccessDenied",
+                "ServiceUnavailable",
+                "Throttled",
+                "Throttling",
+                "Unauthorized",
+                "Unprocessable",
+                "VoiceConnectorGroupAssociationsExist",
+                "PhoneNumberAssociationsExist"
+            ]
+        },
+        "String": {
+            "type": "string"
+        },
+        "BatchCreateChannelMembershipRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ChannelMembershipType"
+                },
+                "MemberArns": {
+                    "$ref": "#/$defs/MemberArns"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "MemberArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChimeArn"
+            }
+        },
+        "ChannelFlowCallbackResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "CallbackId": {
+                    "$ref": "#/$defs/CallbackIdType"
+                }
+            }
+        },
+        "CallbackIdType": {
+            "type": "string"
+        },
+        "ChannelFlowCallbackRequest": {
+            "type": "object",
+            "properties": {
+                "CallbackId": {
+                    "$ref": "#/$defs/CallbackIdType"
+                },
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "DeleteResource": {
+                    "$ref": "#/$defs/NonNullableBoolean"
+                },
+                "ChannelMessage": {
+                    "$ref": "#/$defs/ChannelMessageCallback"
+                }
+            }
+        },
+        "NonNullableBoolean": {
+            "type": "boolean"
+        },
+        "ChannelMessageCallback": {
+            "type": "object",
+            "properties": {
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "Content": {
+                    "$ref": "#/$defs/NonEmptyContent"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "PushNotification": {
+                    "$ref": "#/$defs/PushNotificationConfiguration"
+                },
+                "MessageAttributes": {
+                    "$ref": "#/$defs/MessageAttributeMap"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                }
+            }
+        },
+        "MessageId": {
+            "type": "string"
+        },
+        "NonEmptyContent": {
+            "type": "string"
+        },
+        "Metadata": {
+            "type": "string"
+        },
+        "PushNotificationConfiguration": {
+            "type": "object",
+            "properties": {
+                "Title": {
+                    "$ref": "#/$defs/PushNotificationTitle"
+                },
+                "Body": {
+                    "$ref": "#/$defs/PushNotificationBody"
+                },
+                "Type": {
+                    "$ref": "#/$defs/PushNotificationType"
+                }
+            }
+        },
+        "PushNotificationTitle": {
+            "type": "string"
+        },
+        "PushNotificationBody": {
+            "type": "string"
+        },
+        "PushNotificationType": {
+            "enum": [
+                "DEFAULT",
+                "VOIP"
+            ]
+        },
+        "MessageAttributeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/MessageAttributeValue"
+            }
+        },
+        "MessageAttributeValue": {
+            "type": "object",
+            "properties": {
+                "StringValues": {
+                    "$ref": "#/$defs/MessageAttributeStringValues"
+                }
+            }
+        },
+        "MessageAttributeStringValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MessageAttributeStringValue"
+            }
+        },
+        "MessageAttributeStringValue": {
+            "type": "string"
+        },
+        "ContentType": {
+            "type": "string"
+        },
+        "CreateChannelResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "CreateChannelRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/ChannelMode"
+                },
+                "Privacy": {
+                    "$ref": "#/$defs/ChannelPrivacy"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChannelId": {
+                    "$ref": "#/$defs/ChannelId"
+                },
+                "MemberArns": {
+                    "$ref": "#/$defs/ChannelMemberArns"
+                },
+                "ModeratorArns": {
+                    "$ref": "#/$defs/ChannelModeratorArns"
+                },
+                "ElasticChannelConfiguration": {
+                    "$ref": "#/$defs/ElasticChannelConfiguration"
+                },
+                "ExpirationSettings": {
+                    "$ref": "#/$defs/ExpirationSettings"
+                }
+            }
+        },
+        "NonEmptyResourceName": {
+            "type": "string"
+        },
+        "ChannelMode": {
+            "enum": [
+                "UNRESTRICTED",
+                "RESTRICTED"
+            ]
+        },
+        "ChannelPrivacy": {
+            "enum": [
+                "PUBLIC",
+                "PRIVATE"
+            ]
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ChannelId": {
+            "type": "string"
+        },
+        "ChannelMemberArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChimeArn"
+            }
+        },
+        "ChannelModeratorArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChimeArn"
+            }
+        },
+        "ElasticChannelConfiguration": {
+            "type": "object",
+            "properties": {
+                "MaximumSubChannels": {
+                    "$ref": "#/$defs/MaximumSubChannels"
+                },
+                "TargetMembershipsPerSubChannel": {
+                    "$ref": "#/$defs/TargetMembershipsPerSubChannel"
+                },
+                "MinimumMembershipPercentage": {
+                    "$ref": "#/$defs/MinimumMembershipPercentage"
+                }
+            }
+        },
+        "MaximumSubChannels": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TargetMembershipsPerSubChannel": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MinimumMembershipPercentage": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ExpirationSettings": {
+            "type": "object",
+            "properties": {
+                "ExpirationDays": {
+                    "$ref": "#/$defs/ExpirationDays"
+                },
+                "ExpirationCriterion": {
+                    "$ref": "#/$defs/ExpirationCriterion"
+                }
+            }
+        },
+        "ExpirationDays": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ExpirationCriterion": {
+            "enum": [
+                "CREATED_TIMESTAMP",
+                "LAST_MESSAGE_TIMESTAMP"
+            ]
+        },
+        "CreateChannelBanResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Member": {
+                    "$ref": "#/$defs/Identity"
+                }
+            }
+        },
+        "CreateChannelBanRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MemberArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "CreateChannelFlowResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "CreateChannelFlowRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Processors": {
+                    "$ref": "#/$defs/ProcessorList"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                }
+            }
+        },
+        "ProcessorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Processor"
+            }
+        },
+        "Processor": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/ProcessorConfiguration"
+                },
+                "ExecutionOrder": {
+                    "$ref": "#/$defs/ChannelFlowExecutionOrder"
+                },
+                "FallbackAction": {
+                    "$ref": "#/$defs/FallbackAction"
+                }
+            }
+        },
+        "ProcessorConfiguration": {
+            "type": "object",
+            "properties": {
+                "Lambda": {
+                    "$ref": "#/$defs/LambdaConfiguration"
+                }
+            }
+        },
+        "LambdaConfiguration": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/LambdaFunctionArn"
+                },
+                "InvocationType": {
+                    "$ref": "#/$defs/InvocationType"
+                }
+            }
+        },
+        "LambdaFunctionArn": {
+            "type": "string"
+        },
+        "InvocationType": {
+            "enum": [
+                "ASYNC"
+            ]
+        },
+        "ChannelFlowExecutionOrder": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FallbackAction": {
+            "enum": [
+                "CONTINUE",
+                "ABORT"
+            ]
+        },
+        "CreateChannelMembershipResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Member": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "CreateChannelMembershipRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MemberArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ChannelMembershipType"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "CreateChannelModeratorResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChannelModerator": {
+                    "$ref": "#/$defs/Identity"
+                }
+            }
+        },
+        "CreateChannelModeratorRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChannelModeratorArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DeleteChannelRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DeleteChannelBanRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MemberArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DeleteChannelFlowRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DeleteChannelMembershipRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MemberArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "DeleteChannelMessageRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "DeleteChannelModeratorRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChannelModeratorArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DeleteMessagingStreamingConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DescribeChannelResponse": {
+            "type": "object",
+            "properties": {
+                "Channel": {
+                    "$ref": "#/$defs/Channel"
+                }
+            }
+        },
+        "Channel": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/ChannelMode"
+                },
+                "Privacy": {
+                    "$ref": "#/$defs/ChannelPrivacy"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "CreatedBy": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastMessageTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ElasticChannelConfiguration": {
+                    "$ref": "#/$defs/ElasticChannelConfiguration"
+                },
+                "ExpirationSettings": {
+                    "$ref": "#/$defs/ExpirationSettings"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeChannelRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DescribeChannelBanResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelBan": {
+                    "$ref": "#/$defs/ChannelBan"
+                }
+            }
+        },
+        "ChannelBan": {
+            "type": "object",
+            "properties": {
+                "Member": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatedBy": {
+                    "$ref": "#/$defs/Identity"
+                }
+            }
+        },
+        "DescribeChannelBanRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MemberArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DescribeChannelFlowResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelFlow": {
+                    "$ref": "#/$defs/ChannelFlow"
+                }
+            }
+        },
+        "ChannelFlow": {
+            "type": "object",
+            "properties": {
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Processors": {
+                    "$ref": "#/$defs/ProcessorList"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeChannelFlowRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DescribeChannelMembershipResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelMembership": {
+                    "$ref": "#/$defs/ChannelMembership"
+                }
+            }
+        },
+        "ChannelMembership": {
+            "type": "object",
+            "properties": {
+                "InvitedBy": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ChannelMembershipType"
+                },
+                "Member": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "DescribeChannelMembershipRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MemberArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "DescribeChannelMembershipForAppInstanceUserResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelMembership": {
+                    "$ref": "#/$defs/ChannelMembershipForAppInstanceUserSummary"
+                }
+            }
+        },
+        "ChannelMembershipForAppInstanceUserSummary": {
+            "type": "object",
+            "properties": {
+                "ChannelSummary": {
+                    "$ref": "#/$defs/ChannelSummary"
+                },
+                "AppInstanceUserMembershipSummary": {
+                    "$ref": "#/$defs/AppInstanceUserMembershipSummary"
+                }
+            }
+        },
+        "ChannelSummary": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/ChannelMode"
+                },
+                "Privacy": {
+                    "$ref": "#/$defs/ChannelPrivacy"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "LastMessageTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "AppInstanceUserMembershipSummary": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/ChannelMembershipType"
+                },
+                "ReadMarkerTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "DescribeChannelMembershipForAppInstanceUserRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DescribeChannelModeratedByAppInstanceUserResponse": {
+            "type": "object",
+            "properties": {
+                "Channel": {
+                    "$ref": "#/$defs/ChannelModeratedByAppInstanceUserSummary"
+                }
+            }
+        },
+        "ChannelModeratedByAppInstanceUserSummary": {
+            "type": "object",
+            "properties": {
+                "ChannelSummary": {
+                    "$ref": "#/$defs/ChannelSummary"
+                }
+            }
+        },
+        "DescribeChannelModeratedByAppInstanceUserRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DescribeChannelModeratorResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelModerator": {
+                    "$ref": "#/$defs/ChannelModerator"
+                }
+            }
+        },
+        "ChannelModerator": {
+            "type": "object",
+            "properties": {
+                "Moderator": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatedBy": {
+                    "$ref": "#/$defs/Identity"
+                }
+            }
+        },
+        "DescribeChannelModeratorRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChannelModeratorArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DisassociateChannelFlowRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "GetChannelMembershipPreferencesResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Member": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "Preferences": {
+                    "$ref": "#/$defs/ChannelMembershipPreferences"
+                }
+            }
+        },
+        "ChannelMembershipPreferences": {
+            "type": "object",
+            "properties": {
+                "PushNotifications": {
+                    "$ref": "#/$defs/PushNotificationPreferences"
+                }
+            }
+        },
+        "PushNotificationPreferences": {
+            "type": "object",
+            "properties": {
+                "AllowNotifications": {
+                    "$ref": "#/$defs/AllowNotifications"
+                },
+                "FilterRule": {
+                    "$ref": "#/$defs/FilterRule"
+                }
+            }
+        },
+        "AllowNotifications": {
+            "enum": [
+                "ALL",
+                "NONE",
+                "FILTERED"
+            ]
+        },
+        "FilterRule": {
+            "type": "string"
+        },
+        "GetChannelMembershipPreferencesRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MemberArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "GetChannelMessageResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelMessage": {
+                    "$ref": "#/$defs/ChannelMessage"
+                }
+            }
+        },
+        "ChannelMessage": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "Content": {
+                    "$ref": "#/$defs/Content"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ChannelMessageType"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastEditedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Sender": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "Redacted": {
+                    "$ref": "#/$defs/NonNullableBoolean"
+                },
+                "Persistence": {
+                    "$ref": "#/$defs/ChannelMessagePersistenceType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ChannelMessageStatusStructure"
+                },
+                "MessageAttributes": {
+                    "$ref": "#/$defs/MessageAttributeMap"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "Target": {
+                    "$ref": "#/$defs/TargetList"
+                }
+            }
+        },
+        "Content": {
+            "type": "string"
+        },
+        "ChannelMessageType": {
+            "enum": [
+                "STANDARD",
+                "CONTROL"
+            ]
+        },
+        "ChannelMessagePersistenceType": {
+            "enum": [
+                "PERSISTENT",
+                "NON_PERSISTENT"
+            ]
+        },
+        "ChannelMessageStatusStructure": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/ChannelMessageStatus"
+                },
+                "Detail": {
+                    "$ref": "#/$defs/StatusDetail"
+                }
+            }
+        },
+        "ChannelMessageStatus": {
+            "enum": [
+                "SENT",
+                "PENDING",
+                "FAILED",
+                "DENIED"
+            ]
+        },
+        "StatusDetail": {
+            "type": "string"
+        },
+        "TargetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Target"
+            }
+        },
+        "Target": {
+            "type": "object",
+            "properties": {
+                "MemberArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "GetChannelMessageRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "GetChannelMessageStatusResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/ChannelMessageStatusStructure"
+                }
+            }
+        },
+        "GetChannelMessageStatusRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "GetMessagingSessionEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "Endpoint": {
+                    "$ref": "#/$defs/MessagingSessionEndpoint"
+                }
+            }
+        },
+        "MessagingSessionEndpoint": {
+            "type": "object",
+            "properties": {
+                "Url": {
+                    "$ref": "#/$defs/UrlType"
+                }
+            }
+        },
+        "UrlType": {
+            "type": "string"
+        },
+        "GetMessagingSessionEndpointRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetMessagingStreamingConfigurationsResponse": {
+            "type": "object",
+            "properties": {
+                "StreamingConfigurations": {
+                    "$ref": "#/$defs/StreamingConfigurationList"
+                }
+            }
+        },
+        "StreamingConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StreamingConfiguration"
+            }
+        },
+        "StreamingConfiguration": {
+            "type": "object",
+            "properties": {
+                "DataType": {
+                    "$ref": "#/$defs/MessagingDataType"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "MessagingDataType": {
+            "enum": [
+                "Channel",
+                "ChannelMessage"
+            ]
+        },
+        "GetMessagingStreamingConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "ListChannelBansResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChannelBans": {
+                    "$ref": "#/$defs/ChannelBanSummaryList"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ChannelBanSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelBanSummary"
+            }
+        },
+        "ChannelBanSummary": {
+            "type": "object",
+            "properties": {
+                "Member": {
+                    "$ref": "#/$defs/Identity"
+                }
+            }
+        },
+        "ListChannelBansRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListChannelFlowsResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelFlows": {
+                    "$ref": "#/$defs/ChannelFlowSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ChannelFlowSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelFlowSummary"
+            }
+        },
+        "ChannelFlowSummary": {
+            "type": "object",
+            "properties": {
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "Processors": {
+                    "$ref": "#/$defs/ProcessorList"
+                }
+            }
+        },
+        "ListChannelFlowsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListChannelMembershipsResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChannelMemberships": {
+                    "$ref": "#/$defs/ChannelMembershipSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ChannelMembershipSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelMembershipSummary"
+            }
+        },
+        "ChannelMembershipSummary": {
+            "type": "object",
+            "properties": {
+                "Member": {
+                    "$ref": "#/$defs/Identity"
+                }
+            }
+        },
+        "ListChannelMembershipsRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ChannelMembershipType"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "ListChannelMembershipsForAppInstanceUserResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelMemberships": {
+                    "$ref": "#/$defs/ChannelMembershipForAppInstanceUserSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ChannelMembershipForAppInstanceUserSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelMembershipForAppInstanceUserSummary"
+            }
+        },
+        "ListChannelMembershipsForAppInstanceUserRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "ListChannelMessagesResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChannelMessages": {
+                    "$ref": "#/$defs/ChannelMessageSummaryList"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "ChannelMessageSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelMessageSummary"
+            }
+        },
+        "ChannelMessageSummary": {
+            "type": "object",
+            "properties": {
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "Content": {
+                    "$ref": "#/$defs/Content"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ChannelMessageType"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastEditedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Sender": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "Redacted": {
+                    "$ref": "#/$defs/NonNullableBoolean"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ChannelMessageStatusStructure"
+                },
+                "MessageAttributes": {
+                    "$ref": "#/$defs/MessageAttributeMap"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "Target": {
+                    "$ref": "#/$defs/TargetList"
+                }
+            }
+        },
+        "ListChannelMessagesRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "NotBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "NotAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "SortOrder": {
+            "enum": [
+                "ASCENDING",
+                "DESCENDING"
+            ]
+        },
+        "ListChannelModeratorsResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChannelModerators": {
+                    "$ref": "#/$defs/ChannelModeratorSummaryList"
+                }
+            }
+        },
+        "ChannelModeratorSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelModeratorSummary"
+            }
+        },
+        "ChannelModeratorSummary": {
+            "type": "object",
+            "properties": {
+                "Moderator": {
+                    "$ref": "#/$defs/Identity"
+                }
+            }
+        },
+        "ListChannelModeratorsRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "ListChannelsResponse": {
+            "type": "object",
+            "properties": {
+                "Channels": {
+                    "$ref": "#/$defs/ChannelSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ChannelSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelSummary"
+            }
+        },
+        "ListChannelsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Privacy": {
+                    "$ref": "#/$defs/ChannelPrivacy"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "ListChannelsAssociatedWithChannelFlowResponse": {
+            "type": "object",
+            "properties": {
+                "Channels": {
+                    "$ref": "#/$defs/ChannelAssociatedWithFlowSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ChannelAssociatedWithFlowSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelAssociatedWithFlowSummary"
+            }
+        },
+        "ChannelAssociatedWithFlowSummary": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/ChannelMode"
+                },
+                "Privacy": {
+                    "$ref": "#/$defs/ChannelPrivacy"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                }
+            }
+        },
+        "ListChannelsAssociatedWithChannelFlowRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListChannelsModeratedByAppInstanceUserResponse": {
+            "type": "object",
+            "properties": {
+                "Channels": {
+                    "$ref": "#/$defs/ChannelModeratedByAppInstanceUserSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ChannelModeratedByAppInstanceUserSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelModeratedByAppInstanceUserSummary"
+            }
+        },
+        "ListChannelsModeratedByAppInstanceUserRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "ListSubChannelsResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannels": {
+                    "$ref": "#/$defs/SubChannelSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SubChannelSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubChannelSummary"
+            }
+        },
+        "SubChannelSummary": {
+            "type": "object",
+            "properties": {
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                },
+                "MembershipCount": {
+                    "$ref": "#/$defs/MembershipCount"
+                }
+            }
+        },
+        "MembershipCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListSubChannelsRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "PutChannelExpirationSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ExpirationSettings": {
+                    "$ref": "#/$defs/ExpirationSettings"
+                }
+            }
+        },
+        "PutChannelExpirationSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ExpirationSettings": {
+                    "$ref": "#/$defs/ExpirationSettings"
+                }
+            }
+        },
+        "PutChannelMembershipPreferencesResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Member": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "Preferences": {
+                    "$ref": "#/$defs/ChannelMembershipPreferences"
+                }
+            }
+        },
+        "PutChannelMembershipPreferencesRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MemberArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Preferences": {
+                    "$ref": "#/$defs/ChannelMembershipPreferences"
+                }
+            }
+        },
+        "PutMessagingStreamingConfigurationsResponse": {
+            "type": "object",
+            "properties": {
+                "StreamingConfigurations": {
+                    "$ref": "#/$defs/StreamingConfigurationList"
+                }
+            }
+        },
+        "PutMessagingStreamingConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "StreamingConfigurations": {
+                    "$ref": "#/$defs/StreamingConfigurationList"
+                }
+            }
+        },
+        "RedactChannelMessageResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "RedactChannelMessageRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "SearchChannelsResponse": {
+            "type": "object",
+            "properties": {
+                "Channels": {
+                    "$ref": "#/$defs/ChannelSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SearchChannelsRequest": {
+            "type": "object",
+            "properties": {
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Fields": {
+                    "$ref": "#/$defs/SearchFields"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SearchFields": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchField"
+            }
+        },
+        "SearchField": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/SearchFieldKey"
+                },
+                "Values": {
+                    "$ref": "#/$defs/SearchFieldValues"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/SearchFieldOperator"
+                }
+            }
+        },
+        "SearchFieldKey": {
+            "enum": [
+                "MEMBERS"
+            ]
+        },
+        "SearchFieldValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchFieldValue"
+            }
+        },
+        "SearchFieldValue": {
+            "type": "string"
+        },
+        "SearchFieldOperator": {
+            "enum": [
+                "EQUALS",
+                "INCLUDES"
+            ]
+        },
+        "SendChannelMessageResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ChannelMessageStatusStructure"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "SendChannelMessageRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Content": {
+                    "$ref": "#/$defs/NonEmptyContent"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ChannelMessageType"
+                },
+                "Persistence": {
+                    "$ref": "#/$defs/ChannelMessagePersistenceType"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "PushNotification": {
+                    "$ref": "#/$defs/PushNotificationConfiguration"
+                },
+                "MessageAttributes": {
+                    "$ref": "#/$defs/MessageAttributeMap"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "Target": {
+                    "$ref": "#/$defs/TargetList"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateChannelResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "UpdateChannelRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/ChannelMode"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "UpdateChannelFlowResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "UpdateChannelFlowRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelFlowArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Processors": {
+                    "$ref": "#/$defs/ProcessorList"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                }
+            }
+        },
+        "UpdateChannelMessageResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ChannelMessageStatusStructure"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                }
+            }
+        },
+        "UpdateChannelMessageRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "Content": {
+                    "$ref": "#/$defs/NonEmptyContent"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "SubChannelId": {
+                    "$ref": "#/$defs/SubChannelId"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                }
+            }
+        },
+        "UpdateChannelReadMarkerResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "UpdateChannelReadMarkerRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ChimeBearer": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://messaging-chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://messaging-chime-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://messaging-chime.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://messaging-chime.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

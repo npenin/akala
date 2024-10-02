@@ -1,0 +1,2942 @@
+{
+    "name": "textract",
+    "commands": [
+        {
+            "name": "AnalyzeDocument",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AnalyzeDocument"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AnalyzeDocumentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AnalyzeDocumentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AnalyzeExpense",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AnalyzeExpense"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AnalyzeExpenseResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AnalyzeExpenseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AnalyzeID",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AnalyzeID"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AnalyzeIDResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AnalyzeIDRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAdapter",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAdapter"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAdapterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAdapterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAdapterVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAdapterVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAdapterVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAdapterVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAdapter",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAdapter"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteAdapterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAdapterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAdapterVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAdapterVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteAdapterVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAdapterVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DetectDocumentText",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DetectDocumentText"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DetectDocumentTextResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DetectDocumentTextRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAdapter",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAdapter"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAdapterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAdapterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAdapterVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAdapterVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAdapterVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAdapterVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDocumentAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDocumentAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDocumentAnalysisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDocumentAnalysisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDocumentTextDetection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDocumentTextDetection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDocumentTextDetectionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDocumentTextDetectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetExpenseAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetExpenseAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetExpenseAnalysisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetExpenseAnalysisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLendingAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLendingAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLendingAnalysisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLendingAnalysisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLendingAnalysisSummary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLendingAnalysisSummary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLendingAnalysisSummaryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLendingAnalysisSummaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAdapters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAdapters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAdaptersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAdaptersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAdapterVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAdapterVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAdapterVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAdapterVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDocumentAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartDocumentAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDocumentAnalysisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDocumentAnalysisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDocumentTextDetection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartDocumentTextDetection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDocumentTextDetectionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDocumentTextDetectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartExpenseAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartExpenseAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartExpenseAnalysisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartExpenseAnalysisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartLendingAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartLendingAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartLendingAnalysisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartLendingAnalysisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAdapter",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAdapter"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAdapterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAdapterRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AnalyzeDocumentResponse": {
+            "type": "object",
+            "properties": {
+                "DocumentMetadata": {
+                    "$ref": "#/$defs/DocumentMetadata"
+                },
+                "Blocks": {
+                    "$ref": "#/$defs/BlockList"
+                },
+                "HumanLoopActivationOutput": {
+                    "$ref": "#/$defs/HumanLoopActivationOutput"
+                },
+                "AnalyzeDocumentModelVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DocumentMetadata": {
+            "type": "object",
+            "properties": {
+                "Pages": {
+                    "$ref": "#/$defs/UInteger"
+                }
+            }
+        },
+        "UInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BlockList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Block"
+            }
+        },
+        "Block": {
+            "type": "object",
+            "properties": {
+                "BlockType": {
+                    "$ref": "#/$defs/BlockType"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Percent"
+                },
+                "Text": {
+                    "$ref": "#/$defs/String"
+                },
+                "TextType": {
+                    "$ref": "#/$defs/TextType"
+                },
+                "RowIndex": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "ColumnIndex": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "RowSpan": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "ColumnSpan": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "Geometry": {
+                    "$ref": "#/$defs/Geometry"
+                },
+                "Id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Relationships": {
+                    "$ref": "#/$defs/RelationshipList"
+                },
+                "EntityTypes": {
+                    "$ref": "#/$defs/EntityTypes"
+                },
+                "SelectionStatus": {
+                    "$ref": "#/$defs/SelectionStatus"
+                },
+                "Page": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "Query": {
+                    "$ref": "#/$defs/Query"
+                }
+            }
+        },
+        "BlockType": {
+            "enum": [
+                "KEY_VALUE_SET",
+                "PAGE",
+                "LINE",
+                "WORD",
+                "TABLE",
+                "CELL",
+                "SELECTION_ELEMENT",
+                "MERGED_CELL",
+                "TITLE",
+                "QUERY",
+                "QUERY_RESULT",
+                "SIGNATURE",
+                "TABLE_TITLE",
+                "TABLE_FOOTER",
+                "LAYOUT_TEXT",
+                "LAYOUT_TITLE",
+                "LAYOUT_HEADER",
+                "LAYOUT_FOOTER",
+                "LAYOUT_SECTION_HEADER",
+                "LAYOUT_PAGE_NUMBER",
+                "LAYOUT_LIST",
+                "LAYOUT_FIGURE",
+                "LAYOUT_TABLE",
+                "LAYOUT_KEY_VALUE"
+            ]
+        },
+        "Percent": {
+            "type": "number",
+            "format": "float"
+        },
+        "String": {
+            "type": "string"
+        },
+        "TextType": {
+            "enum": [
+                "HANDWRITING",
+                "PRINTED"
+            ]
+        },
+        "Geometry": {
+            "type": "object",
+            "properties": {
+                "BoundingBox": {
+                    "$ref": "#/$defs/BoundingBox"
+                },
+                "Polygon": {
+                    "$ref": "#/$defs/Polygon"
+                }
+            }
+        },
+        "BoundingBox": {
+            "type": "object",
+            "properties": {
+                "Width": {
+                    "$ref": "#/$defs/Float"
+                },
+                "Height": {
+                    "$ref": "#/$defs/Float"
+                },
+                "Left": {
+                    "$ref": "#/$defs/Float"
+                },
+                "Top": {
+                    "$ref": "#/$defs/Float"
+                }
+            }
+        },
+        "Float": {
+            "type": "number",
+            "format": "float"
+        },
+        "Polygon": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Point"
+            }
+        },
+        "Point": {
+            "type": "object",
+            "properties": {
+                "X": {
+                    "$ref": "#/$defs/Float"
+                },
+                "Y": {
+                    "$ref": "#/$defs/Float"
+                }
+            }
+        },
+        "NonEmptyString": {
+            "type": "string"
+        },
+        "RelationshipList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Relationship"
+            }
+        },
+        "Relationship": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/RelationshipType"
+                },
+                "Ids": {
+                    "$ref": "#/$defs/IdList"
+                }
+            }
+        },
+        "RelationshipType": {
+            "enum": [
+                "VALUE",
+                "CHILD",
+                "COMPLEX_FEATURES",
+                "MERGED_CELL",
+                "TITLE",
+                "ANSWER",
+                "TABLE",
+                "TABLE_TITLE",
+                "TABLE_FOOTER"
+            ]
+        },
+        "IdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "EntityTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntityType"
+            }
+        },
+        "EntityType": {
+            "enum": [
+                "KEY",
+                "VALUE",
+                "COLUMN_HEADER",
+                "TABLE_TITLE",
+                "TABLE_FOOTER",
+                "TABLE_SECTION_TITLE",
+                "TABLE_SUMMARY",
+                "STRUCTURED_TABLE",
+                "SEMI_STRUCTURED_TABLE"
+            ]
+        },
+        "SelectionStatus": {
+            "enum": [
+                "SELECTED",
+                "NOT_SELECTED"
+            ]
+        },
+        "Query": {
+            "type": "object",
+            "properties": {
+                "Text": {
+                    "$ref": "#/$defs/QueryInput"
+                },
+                "Alias": {
+                    "$ref": "#/$defs/QueryInput"
+                },
+                "Pages": {
+                    "$ref": "#/$defs/QueryPages"
+                }
+            }
+        },
+        "QueryInput": {
+            "type": "string"
+        },
+        "QueryPages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueryPage"
+            }
+        },
+        "QueryPage": {
+            "type": "string"
+        },
+        "HumanLoopActivationOutput": {
+            "type": "object",
+            "properties": {
+                "HumanLoopArn": {
+                    "$ref": "#/$defs/HumanLoopArn"
+                },
+                "HumanLoopActivationReasons": {
+                    "$ref": "#/$defs/HumanLoopActivationReasons"
+                },
+                "HumanLoopActivationConditionsEvaluationResults": {
+                    "$ref": "#/$defs/SynthesizedJsonHumanLoopActivationConditionsEvaluationResults"
+                }
+            }
+        },
+        "HumanLoopArn": {
+            "type": "string"
+        },
+        "HumanLoopActivationReasons": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HumanLoopActivationReason"
+            }
+        },
+        "HumanLoopActivationReason": {
+            "type": "string"
+        },
+        "SynthesizedJsonHumanLoopActivationConditionsEvaluationResults": {
+            "type": "string"
+        },
+        "AnalyzeDocumentRequest": {
+            "type": "object",
+            "properties": {
+                "Document": {
+                    "$ref": "#/$defs/Document"
+                },
+                "FeatureTypes": {
+                    "$ref": "#/$defs/FeatureTypes"
+                },
+                "HumanLoopConfig": {
+                    "$ref": "#/$defs/HumanLoopConfig"
+                },
+                "QueriesConfig": {
+                    "$ref": "#/$defs/QueriesConfig"
+                },
+                "AdaptersConfig": {
+                    "$ref": "#/$defs/AdaptersConfig"
+                }
+            }
+        },
+        "Document": {
+            "type": "object",
+            "properties": {
+                "Bytes": {
+                    "$ref": "#/$defs/ImageBlob"
+                },
+                "S3Object": {
+                    "$ref": "#/$defs/S3Object"
+                }
+            }
+        },
+        "ImageBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "S3Object": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "Name": {
+                    "$ref": "#/$defs/S3ObjectName"
+                },
+                "Version": {
+                    "$ref": "#/$defs/S3ObjectVersion"
+                }
+            }
+        },
+        "S3Bucket": {
+            "type": "string"
+        },
+        "S3ObjectName": {
+            "type": "string"
+        },
+        "S3ObjectVersion": {
+            "type": "string"
+        },
+        "FeatureTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FeatureType"
+            }
+        },
+        "FeatureType": {
+            "enum": [
+                "TABLES",
+                "FORMS",
+                "QUERIES",
+                "SIGNATURES",
+                "LAYOUT"
+            ]
+        },
+        "HumanLoopConfig": {
+            "type": "object",
+            "properties": {
+                "HumanLoopName": {
+                    "$ref": "#/$defs/HumanLoopName"
+                },
+                "FlowDefinitionArn": {
+                    "$ref": "#/$defs/FlowDefinitionArn"
+                },
+                "DataAttributes": {
+                    "$ref": "#/$defs/HumanLoopDataAttributes"
+                }
+            }
+        },
+        "HumanLoopName": {
+            "type": "string"
+        },
+        "FlowDefinitionArn": {
+            "type": "string"
+        },
+        "HumanLoopDataAttributes": {
+            "type": "object",
+            "properties": {
+                "ContentClassifiers": {
+                    "$ref": "#/$defs/ContentClassifiers"
+                }
+            }
+        },
+        "ContentClassifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContentClassifier"
+            }
+        },
+        "ContentClassifier": {
+            "enum": [
+                "FREE_OF_PERSONALLY_IDENTIFIABLE_INFORMATION",
+                "FREE_OF_ADULT_CONTENT"
+            ]
+        },
+        "QueriesConfig": {
+            "type": "object",
+            "properties": {
+                "Queries": {
+                    "$ref": "#/$defs/Queries"
+                }
+            }
+        },
+        "Queries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Query"
+            }
+        },
+        "AdaptersConfig": {
+            "type": "object",
+            "properties": {
+                "Adapters": {
+                    "$ref": "#/$defs/Adapters"
+                }
+            }
+        },
+        "Adapters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Adapter"
+            }
+        },
+        "Adapter": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "Pages": {
+                    "$ref": "#/$defs/AdapterPages"
+                },
+                "Version": {
+                    "$ref": "#/$defs/AdapterVersion"
+                }
+            }
+        },
+        "AdapterId": {
+            "type": "string"
+        },
+        "AdapterPages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdapterPage"
+            }
+        },
+        "AdapterPage": {
+            "type": "string"
+        },
+        "AdapterVersion": {
+            "type": "string"
+        },
+        "AnalyzeExpenseResponse": {
+            "type": "object",
+            "properties": {
+                "DocumentMetadata": {
+                    "$ref": "#/$defs/DocumentMetadata"
+                },
+                "ExpenseDocuments": {
+                    "$ref": "#/$defs/ExpenseDocumentList"
+                }
+            }
+        },
+        "ExpenseDocumentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExpenseDocument"
+            }
+        },
+        "ExpenseDocument": {
+            "type": "object",
+            "properties": {
+                "ExpenseIndex": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "SummaryFields": {
+                    "$ref": "#/$defs/ExpenseFieldList"
+                },
+                "LineItemGroups": {
+                    "$ref": "#/$defs/LineItemGroupList"
+                },
+                "Blocks": {
+                    "$ref": "#/$defs/BlockList"
+                }
+            }
+        },
+        "ExpenseFieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExpenseField"
+            }
+        },
+        "ExpenseField": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/ExpenseType"
+                },
+                "LabelDetection": {
+                    "$ref": "#/$defs/ExpenseDetection"
+                },
+                "ValueDetection": {
+                    "$ref": "#/$defs/ExpenseDetection"
+                },
+                "PageNumber": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "Currency": {
+                    "$ref": "#/$defs/ExpenseCurrency"
+                },
+                "GroupProperties": {
+                    "$ref": "#/$defs/ExpenseGroupPropertyList"
+                }
+            }
+        },
+        "ExpenseType": {
+            "type": "object",
+            "properties": {
+                "Text": {
+                    "$ref": "#/$defs/String"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Percent"
+                }
+            }
+        },
+        "ExpenseDetection": {
+            "type": "object",
+            "properties": {
+                "Text": {
+                    "$ref": "#/$defs/String"
+                },
+                "Geometry": {
+                    "$ref": "#/$defs/Geometry"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Percent"
+                }
+            }
+        },
+        "ExpenseCurrency": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/String"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Percent"
+                }
+            }
+        },
+        "ExpenseGroupPropertyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExpenseGroupProperty"
+            }
+        },
+        "ExpenseGroupProperty": {
+            "type": "object",
+            "properties": {
+                "Types": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "Id": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "LineItemGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LineItemGroup"
+            }
+        },
+        "LineItemGroup": {
+            "type": "object",
+            "properties": {
+                "LineItemGroupIndex": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "LineItems": {
+                    "$ref": "#/$defs/LineItemList"
+                }
+            }
+        },
+        "LineItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LineItemFields"
+            }
+        },
+        "LineItemFields": {
+            "type": "object",
+            "properties": {
+                "LineItemExpenseFields": {
+                    "$ref": "#/$defs/ExpenseFieldList"
+                }
+            }
+        },
+        "AnalyzeExpenseRequest": {
+            "type": "object",
+            "properties": {
+                "Document": {
+                    "$ref": "#/$defs/Document"
+                }
+            }
+        },
+        "AnalyzeIDResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityDocuments": {
+                    "$ref": "#/$defs/IdentityDocumentList"
+                },
+                "DocumentMetadata": {
+                    "$ref": "#/$defs/DocumentMetadata"
+                },
+                "AnalyzeIDModelVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "IdentityDocumentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdentityDocument"
+            }
+        },
+        "IdentityDocument": {
+            "type": "object",
+            "properties": {
+                "DocumentIndex": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "IdentityDocumentFields": {
+                    "$ref": "#/$defs/IdentityDocumentFieldList"
+                },
+                "Blocks": {
+                    "$ref": "#/$defs/BlockList"
+                }
+            }
+        },
+        "IdentityDocumentFieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdentityDocumentField"
+            }
+        },
+        "IdentityDocumentField": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/AnalyzeIDDetections"
+                },
+                "ValueDetection": {
+                    "$ref": "#/$defs/AnalyzeIDDetections"
+                }
+            }
+        },
+        "AnalyzeIDDetections": {
+            "type": "object",
+            "properties": {
+                "Text": {
+                    "$ref": "#/$defs/String"
+                },
+                "NormalizedValue": {
+                    "$ref": "#/$defs/NormalizedValue"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Percent"
+                }
+            }
+        },
+        "NormalizedValue": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/String"
+                },
+                "ValueType": {
+                    "$ref": "#/$defs/ValueType"
+                }
+            }
+        },
+        "ValueType": {
+            "enum": [
+                "DATE"
+            ]
+        },
+        "AnalyzeIDRequest": {
+            "type": "object",
+            "properties": {
+                "DocumentPages": {
+                    "$ref": "#/$defs/DocumentPages"
+                }
+            }
+        },
+        "DocumentPages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Document"
+            }
+        },
+        "CreateAdapterResponse": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                }
+            }
+        },
+        "CreateAdapterRequest": {
+            "type": "object",
+            "properties": {
+                "AdapterName": {
+                    "$ref": "#/$defs/AdapterName"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "Description": {
+                    "$ref": "#/$defs/AdapterDescription"
+                },
+                "FeatureTypes": {
+                    "$ref": "#/$defs/FeatureTypes"
+                },
+                "AutoUpdate": {
+                    "$ref": "#/$defs/AutoUpdate"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "AdapterName": {
+            "type": "string"
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "AdapterDescription": {
+            "type": "string"
+        },
+        "AutoUpdate": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateAdapterVersionResponse": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "AdapterVersion": {
+                    "$ref": "#/$defs/AdapterVersion"
+                }
+            }
+        },
+        "CreateAdapterVersionRequest": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "DatasetConfig": {
+                    "$ref": "#/$defs/AdapterVersionDatasetConfig"
+                },
+                "KMSKeyId": {
+                    "$ref": "#/$defs/KMSKeyId"
+                },
+                "OutputConfig": {
+                    "$ref": "#/$defs/OutputConfig"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "AdapterVersionDatasetConfig": {
+            "type": "object",
+            "properties": {
+                "ManifestS3Object": {
+                    "$ref": "#/$defs/S3Object"
+                }
+            }
+        },
+        "KMSKeyId": {
+            "type": "string"
+        },
+        "OutputConfig": {
+            "type": "object",
+            "properties": {
+                "S3Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "S3Prefix": {
+                    "$ref": "#/$defs/S3ObjectName"
+                }
+            }
+        },
+        "DeleteAdapterResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteAdapterRequest": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                }
+            }
+        },
+        "DeleteAdapterVersionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteAdapterVersionRequest": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "AdapterVersion": {
+                    "$ref": "#/$defs/AdapterVersion"
+                }
+            }
+        },
+        "DetectDocumentTextResponse": {
+            "type": "object",
+            "properties": {
+                "DocumentMetadata": {
+                    "$ref": "#/$defs/DocumentMetadata"
+                },
+                "Blocks": {
+                    "$ref": "#/$defs/BlockList"
+                },
+                "DetectDocumentTextModelVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DetectDocumentTextRequest": {
+            "type": "object",
+            "properties": {
+                "Document": {
+                    "$ref": "#/$defs/Document"
+                }
+            }
+        },
+        "GetAdapterResponse": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "AdapterName": {
+                    "$ref": "#/$defs/AdapterName"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "Description": {
+                    "$ref": "#/$defs/AdapterDescription"
+                },
+                "FeatureTypes": {
+                    "$ref": "#/$defs/FeatureTypes"
+                },
+                "AutoUpdate": {
+                    "$ref": "#/$defs/AutoUpdate"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "DateTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetAdapterRequest": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                }
+            }
+        },
+        "GetAdapterVersionResponse": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "AdapterVersion": {
+                    "$ref": "#/$defs/AdapterVersion"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "FeatureTypes": {
+                    "$ref": "#/$defs/FeatureTypes"
+                },
+                "Status": {
+                    "$ref": "#/$defs/AdapterVersionStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/AdapterVersionStatusMessage"
+                },
+                "DatasetConfig": {
+                    "$ref": "#/$defs/AdapterVersionDatasetConfig"
+                },
+                "KMSKeyId": {
+                    "$ref": "#/$defs/KMSKeyId"
+                },
+                "OutputConfig": {
+                    "$ref": "#/$defs/OutputConfig"
+                },
+                "EvaluationMetrics": {
+                    "$ref": "#/$defs/AdapterVersionEvaluationMetrics"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "AdapterVersionStatus": {
+            "enum": [
+                "ACTIVE",
+                "AT_RISK",
+                "DEPRECATED",
+                "CREATION_ERROR",
+                "CREATION_IN_PROGRESS"
+            ]
+        },
+        "AdapterVersionStatusMessage": {
+            "type": "string"
+        },
+        "AdapterVersionEvaluationMetrics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdapterVersionEvaluationMetric"
+            }
+        },
+        "AdapterVersionEvaluationMetric": {
+            "type": "object",
+            "properties": {
+                "Baseline": {
+                    "$ref": "#/$defs/EvaluationMetric"
+                },
+                "AdapterVersion": {
+                    "$ref": "#/$defs/EvaluationMetric"
+                },
+                "FeatureType": {
+                    "$ref": "#/$defs/FeatureType"
+                }
+            }
+        },
+        "EvaluationMetric": {
+            "type": "object",
+            "properties": {
+                "F1Score": {
+                    "$ref": "#/$defs/Float"
+                },
+                "Precision": {
+                    "$ref": "#/$defs/Float"
+                },
+                "Recall": {
+                    "$ref": "#/$defs/Float"
+                }
+            }
+        },
+        "GetAdapterVersionRequest": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "AdapterVersion": {
+                    "$ref": "#/$defs/AdapterVersion"
+                }
+            }
+        },
+        "GetDocumentAnalysisResponse": {
+            "type": "object",
+            "properties": {
+                "DocumentMetadata": {
+                    "$ref": "#/$defs/DocumentMetadata"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "Blocks": {
+                    "$ref": "#/$defs/BlockList"
+                },
+                "Warnings": {
+                    "$ref": "#/$defs/Warnings"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/StatusMessage"
+                },
+                "AnalyzeDocumentModelVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "JobStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "SUCCEEDED",
+                "FAILED",
+                "PARTIAL_SUCCESS"
+            ]
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "Warnings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Warning"
+            }
+        },
+        "Warning": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "Pages": {
+                    "$ref": "#/$defs/Pages"
+                }
+            }
+        },
+        "ErrorCode": {
+            "type": "string"
+        },
+        "Pages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UInteger"
+            }
+        },
+        "StatusMessage": {
+            "type": "string"
+        },
+        "GetDocumentAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "JobId": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetDocumentTextDetectionResponse": {
+            "type": "object",
+            "properties": {
+                "DocumentMetadata": {
+                    "$ref": "#/$defs/DocumentMetadata"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "Blocks": {
+                    "$ref": "#/$defs/BlockList"
+                },
+                "Warnings": {
+                    "$ref": "#/$defs/Warnings"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/StatusMessage"
+                },
+                "DetectDocumentTextModelVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetDocumentTextDetectionRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "GetExpenseAnalysisResponse": {
+            "type": "object",
+            "properties": {
+                "DocumentMetadata": {
+                    "$ref": "#/$defs/DocumentMetadata"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "ExpenseDocuments": {
+                    "$ref": "#/$defs/ExpenseDocumentList"
+                },
+                "Warnings": {
+                    "$ref": "#/$defs/Warnings"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/StatusMessage"
+                },
+                "AnalyzeExpenseModelVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetExpenseAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "GetLendingAnalysisResponse": {
+            "type": "object",
+            "properties": {
+                "DocumentMetadata": {
+                    "$ref": "#/$defs/DocumentMetadata"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "Results": {
+                    "$ref": "#/$defs/LendingResultList"
+                },
+                "Warnings": {
+                    "$ref": "#/$defs/Warnings"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/StatusMessage"
+                },
+                "AnalyzeLendingModelVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LendingResultList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LendingResult"
+            }
+        },
+        "LendingResult": {
+            "type": "object",
+            "properties": {
+                "Page": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "PageClassification": {
+                    "$ref": "#/$defs/PageClassification"
+                },
+                "Extractions": {
+                    "$ref": "#/$defs/ExtractionList"
+                }
+            }
+        },
+        "PageClassification": {
+            "type": "object",
+            "properties": {
+                "PageType": {
+                    "$ref": "#/$defs/PredictionList"
+                },
+                "PageNumber": {
+                    "$ref": "#/$defs/PredictionList"
+                }
+            }
+        },
+        "PredictionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Prediction"
+            }
+        },
+        "Prediction": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Percent"
+                }
+            }
+        },
+        "ExtractionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Extraction"
+            }
+        },
+        "Extraction": {
+            "type": "object",
+            "properties": {
+                "LendingDocument": {
+                    "$ref": "#/$defs/LendingDocument"
+                },
+                "ExpenseDocument": {
+                    "$ref": "#/$defs/ExpenseDocument"
+                },
+                "IdentityDocument": {
+                    "$ref": "#/$defs/IdentityDocument"
+                }
+            }
+        },
+        "LendingDocument": {
+            "type": "object",
+            "properties": {
+                "LendingFields": {
+                    "$ref": "#/$defs/LendingFieldList"
+                },
+                "SignatureDetections": {
+                    "$ref": "#/$defs/SignatureDetectionList"
+                }
+            }
+        },
+        "LendingFieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LendingField"
+            }
+        },
+        "LendingField": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "KeyDetection": {
+                    "$ref": "#/$defs/LendingDetection"
+                },
+                "ValueDetections": {
+                    "$ref": "#/$defs/LendingDetectionList"
+                }
+            }
+        },
+        "LendingDetection": {
+            "type": "object",
+            "properties": {
+                "Text": {
+                    "$ref": "#/$defs/String"
+                },
+                "SelectionStatus": {
+                    "$ref": "#/$defs/SelectionStatus"
+                },
+                "Geometry": {
+                    "$ref": "#/$defs/Geometry"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Percent"
+                }
+            }
+        },
+        "LendingDetectionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LendingDetection"
+            }
+        },
+        "SignatureDetectionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SignatureDetection"
+            }
+        },
+        "SignatureDetection": {
+            "type": "object",
+            "properties": {
+                "Confidence": {
+                    "$ref": "#/$defs/Percent"
+                },
+                "Geometry": {
+                    "$ref": "#/$defs/Geometry"
+                }
+            }
+        },
+        "GetLendingAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "GetLendingAnalysisSummaryResponse": {
+            "type": "object",
+            "properties": {
+                "DocumentMetadata": {
+                    "$ref": "#/$defs/DocumentMetadata"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "Summary": {
+                    "$ref": "#/$defs/LendingSummary"
+                },
+                "Warnings": {
+                    "$ref": "#/$defs/Warnings"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/StatusMessage"
+                },
+                "AnalyzeLendingModelVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LendingSummary": {
+            "type": "object",
+            "properties": {
+                "DocumentGroups": {
+                    "$ref": "#/$defs/DocumentGroupList"
+                },
+                "UndetectedDocumentTypes": {
+                    "$ref": "#/$defs/UndetectedDocumentTypeList"
+                }
+            }
+        },
+        "DocumentGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DocumentGroup"
+            }
+        },
+        "DocumentGroup": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "SplitDocuments": {
+                    "$ref": "#/$defs/SplitDocumentList"
+                },
+                "DetectedSignatures": {
+                    "$ref": "#/$defs/DetectedSignatureList"
+                },
+                "UndetectedSignatures": {
+                    "$ref": "#/$defs/UndetectedSignatureList"
+                }
+            }
+        },
+        "SplitDocumentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SplitDocument"
+            }
+        },
+        "SplitDocument": {
+            "type": "object",
+            "properties": {
+                "Index": {
+                    "$ref": "#/$defs/UInteger"
+                },
+                "Pages": {
+                    "$ref": "#/$defs/PageList"
+                }
+            }
+        },
+        "PageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UInteger"
+            }
+        },
+        "DetectedSignatureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DetectedSignature"
+            }
+        },
+        "DetectedSignature": {
+            "type": "object",
+            "properties": {
+                "Page": {
+                    "$ref": "#/$defs/UInteger"
+                }
+            }
+        },
+        "UndetectedSignatureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UndetectedSignature"
+            }
+        },
+        "UndetectedSignature": {
+            "type": "object",
+            "properties": {
+                "Page": {
+                    "$ref": "#/$defs/UInteger"
+                }
+            }
+        },
+        "UndetectedDocumentTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "GetLendingAnalysisSummaryRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "ListAdaptersResponse": {
+            "type": "object",
+            "properties": {
+                "Adapters": {
+                    "$ref": "#/$defs/AdapterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "AdapterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdapterOverview"
+            }
+        },
+        "AdapterOverview": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "AdapterName": {
+                    "$ref": "#/$defs/AdapterName"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "FeatureTypes": {
+                    "$ref": "#/$defs/FeatureTypes"
+                }
+            }
+        },
+        "ListAdaptersRequest": {
+            "type": "object",
+            "properties": {
+                "AfterCreationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "BeforeCreationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListAdapterVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "AdapterVersions": {
+                    "$ref": "#/$defs/AdapterVersionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "AdapterVersionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdapterVersionOverview"
+            }
+        },
+        "AdapterVersionOverview": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "AdapterVersion": {
+                    "$ref": "#/$defs/AdapterVersion"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "FeatureTypes": {
+                    "$ref": "#/$defs/FeatureTypes"
+                },
+                "Status": {
+                    "$ref": "#/$defs/AdapterVersionStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/AdapterVersionStatusMessage"
+                }
+            }
+        },
+        "ListAdapterVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "AfterCreationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "BeforeCreationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "StartDocumentAnalysisResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "StartDocumentAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "DocumentLocation": {
+                    "$ref": "#/$defs/DocumentLocation"
+                },
+                "FeatureTypes": {
+                    "$ref": "#/$defs/FeatureTypes"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "JobTag": {
+                    "$ref": "#/$defs/JobTag"
+                },
+                "NotificationChannel": {
+                    "$ref": "#/$defs/NotificationChannel"
+                },
+                "OutputConfig": {
+                    "$ref": "#/$defs/OutputConfig"
+                },
+                "KMSKeyId": {
+                    "$ref": "#/$defs/KMSKeyId"
+                },
+                "QueriesConfig": {
+                    "$ref": "#/$defs/QueriesConfig"
+                },
+                "AdaptersConfig": {
+                    "$ref": "#/$defs/AdaptersConfig"
+                }
+            }
+        },
+        "DocumentLocation": {
+            "type": "object",
+            "properties": {
+                "S3Object": {
+                    "$ref": "#/$defs/S3Object"
+                }
+            }
+        },
+        "JobTag": {
+            "type": "string"
+        },
+        "NotificationChannel": {
+            "type": "object",
+            "properties": {
+                "SNSTopicArn": {
+                    "$ref": "#/$defs/SNSTopicArn"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                }
+            }
+        },
+        "SNSTopicArn": {
+            "type": "string"
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "StartDocumentTextDetectionResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "StartDocumentTextDetectionRequest": {
+            "type": "object",
+            "properties": {
+                "DocumentLocation": {
+                    "$ref": "#/$defs/DocumentLocation"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "JobTag": {
+                    "$ref": "#/$defs/JobTag"
+                },
+                "NotificationChannel": {
+                    "$ref": "#/$defs/NotificationChannel"
+                },
+                "OutputConfig": {
+                    "$ref": "#/$defs/OutputConfig"
+                },
+                "KMSKeyId": {
+                    "$ref": "#/$defs/KMSKeyId"
+                }
+            }
+        },
+        "StartExpenseAnalysisResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "StartExpenseAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "DocumentLocation": {
+                    "$ref": "#/$defs/DocumentLocation"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "JobTag": {
+                    "$ref": "#/$defs/JobTag"
+                },
+                "NotificationChannel": {
+                    "$ref": "#/$defs/NotificationChannel"
+                },
+                "OutputConfig": {
+                    "$ref": "#/$defs/OutputConfig"
+                },
+                "KMSKeyId": {
+                    "$ref": "#/$defs/KMSKeyId"
+                }
+            }
+        },
+        "StartLendingAnalysisResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "StartLendingAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "DocumentLocation": {
+                    "$ref": "#/$defs/DocumentLocation"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "JobTag": {
+                    "$ref": "#/$defs/JobTag"
+                },
+                "NotificationChannel": {
+                    "$ref": "#/$defs/NotificationChannel"
+                },
+                "OutputConfig": {
+                    "$ref": "#/$defs/OutputConfig"
+                },
+                "KMSKeyId": {
+                    "$ref": "#/$defs/KMSKeyId"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateAdapterResponse": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "AdapterName": {
+                    "$ref": "#/$defs/AdapterName"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "Description": {
+                    "$ref": "#/$defs/AdapterDescription"
+                },
+                "FeatureTypes": {
+                    "$ref": "#/$defs/FeatureTypes"
+                },
+                "AutoUpdate": {
+                    "$ref": "#/$defs/AutoUpdate"
+                }
+            }
+        },
+        "UpdateAdapterRequest": {
+            "type": "object",
+            "properties": {
+                "AdapterId": {
+                    "$ref": "#/$defs/AdapterId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/AdapterDescription"
+                },
+                "AdapterName": {
+                    "$ref": "#/$defs/AdapterName"
+                },
+                "AutoUpdate": {
+                    "$ref": "#/$defs/AutoUpdate"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://textract-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://textract-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://textract.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://textract.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,1635 @@
+{
+    "name": "trustedadvisor",
+    "commands": [
+        {
+            "name": "BatchUpdateRecommendationResourceExclusion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchUpdateRecommendationResourceExclusion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchUpdateRecommendationResourceExclusionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchUpdateRecommendationResourceExclusionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetOrganizationRecommendation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetOrganizationRecommendation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetOrganizationRecommendationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetOrganizationRecommendationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRecommendation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRecommendation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRecommendationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRecommendationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChecks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChecks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChecksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChecksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOrganizationRecommendationAccounts",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOrganizationRecommendationAccounts"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOrganizationRecommendationAccountsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOrganizationRecommendationAccountsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOrganizationRecommendationResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOrganizationRecommendationResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOrganizationRecommendationResourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOrganizationRecommendationResourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOrganizationRecommendations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOrganizationRecommendations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOrganizationRecommendationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOrganizationRecommendationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRecommendationResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRecommendationResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRecommendationResourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRecommendationResourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRecommendations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRecommendations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRecommendationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRecommendationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateOrganizationRecommendationLifecycle",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateOrganizationRecommendationLifecycle"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateOrganizationRecommendationLifecycleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRecommendationLifecycle",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRecommendationLifecycle"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRecommendationLifecycleRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchUpdateRecommendationResourceExclusionResponse": {
+            "type": "object",
+            "properties": {
+                "batchUpdateRecommendationResourceExclusionErrors": {
+                    "$ref": "#/$defs/UpdateRecommendationResourceExclusionErrorList"
+                }
+            }
+        },
+        "UpdateRecommendationResourceExclusionErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UpdateRecommendationResourceExclusionError"
+            }
+        },
+        "UpdateRecommendationResourceExclusionError": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RecommendationResourceArn"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RecommendationResourceArn": {
+            "type": "string"
+        },
+        "BatchUpdateRecommendationResourceExclusionRequest": {
+            "type": "object",
+            "properties": {
+                "recommendationResourceExclusions": {
+                    "$ref": "#/$defs/RecommendationResourceExclusionList"
+                }
+            }
+        },
+        "RecommendationResourceExclusionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationResourceExclusion"
+            }
+        },
+        "RecommendationResourceExclusion": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RecommendationResourceArn"
+                },
+                "isExcluded": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "GetOrganizationRecommendationResponse": {
+            "type": "object",
+            "properties": {
+                "organizationRecommendation": {
+                    "$ref": "#/$defs/OrganizationRecommendation"
+                }
+            }
+        },
+        "OrganizationRecommendation": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "type": {
+                    "$ref": "#/$defs/RecommendationType"
+                },
+                "checkArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/RecommendationStatus"
+                },
+                "lifecycleStage": {
+                    "$ref": "#/$defs/RecommendationLifecycleStage"
+                },
+                "pillars": {
+                    "$ref": "#/$defs/RecommendationPillarList"
+                },
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
+                },
+                "awsServices": {
+                    "$ref": "#/$defs/RecommendationAwsServiceList"
+                },
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourcesAggregates": {
+                    "$ref": "#/$defs/RecommendationResourcesAggregates"
+                },
+                "pillarSpecificAggregates": {
+                    "$ref": "#/$defs/RecommendationPillarSpecificAggregates"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "arn": {
+                    "$ref": "#/$defs/OrganizationRecommendationArn"
+                },
+                "description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "updatedOnBehalfOf": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "updatedOnBehalfOfJobTitle": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "updateReason": {
+                    "$ref": "#/$defs/RecommendationUpdateReason"
+                },
+                "updateReasonCode": {
+                    "$ref": "#/$defs/UpdateRecommendationLifecycleStageReasonCode"
+                },
+                "resolvedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "RecommendationType": {
+            "enum": [
+                "STANDARD",
+                "PRIORITY"
+            ]
+        },
+        "RecommendationStatus": {
+            "enum": [
+                "OK",
+                "WARNING",
+                "ERROR"
+            ]
+        },
+        "RecommendationLifecycleStage": {
+            "enum": [
+                "IN_PROGRESS",
+                "PENDING_RESPONSE",
+                "DISMISSED",
+                "RESOLVED"
+            ]
+        },
+        "RecommendationPillarList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationPillar"
+            }
+        },
+        "RecommendationPillar": {
+            "enum": [
+                "COST_OPTIMIZING",
+                "PERFORMANCE",
+                "SECURITY",
+                "SERVICE_LIMITS",
+                "FAULT_TOLERANCE",
+                "OPERATIONAL_EXCELLENCE"
+            ]
+        },
+        "RecommendationSource": {
+            "enum": [
+                "AWS_CONFIG",
+                "COMPUTE_OPTIMIZER",
+                "COST_EXPLORER",
+                "LSE",
+                "MANUAL",
+                "PSE",
+                "RDS",
+                "RESILIENCE",
+                "RESILIENCE_HUB",
+                "SECURITY_HUB",
+                "STIR",
+                "TA_CHECK",
+                "WELL_ARCHITECTED"
+            ]
+        },
+        "RecommendationAwsServiceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationAwsService"
+            }
+        },
+        "RecommendationAwsService": {
+            "type": "string"
+        },
+        "RecommendationResourcesAggregates": {
+            "type": "object",
+            "properties": {
+                "okCount": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "warningCount": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "errorCount": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                }
+            }
+        },
+        "RecommendationPillarSpecificAggregates": {
+            "type": "object",
+            "properties": {
+                "costOptimizing": {
+                    "$ref": "#/$defs/RecommendationCostOptimizingAggregates"
+                }
+            }
+        },
+        "RecommendationCostOptimizingAggregates": {
+            "type": "object",
+            "properties": {
+                "estimatedMonthlySavings": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "estimatedPercentMonthlySavings": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                }
+            }
+        },
+        "OrganizationRecommendationArn": {
+            "type": "string"
+        },
+        "RecommendationUpdateReason": {
+            "type": "string"
+        },
+        "UpdateRecommendationLifecycleStageReasonCode": {
+            "enum": [
+                "NON_CRITICAL_ACCOUNT",
+                "TEMPORARY_ACCOUNT",
+                "VALID_BUSINESS_CASE",
+                "OTHER_METHODS_AVAILABLE",
+                "LOW_PRIORITY",
+                "NOT_APPLICABLE",
+                "OTHER"
+            ]
+        },
+        "GetOrganizationRecommendationRequest": {
+            "type": "object",
+            "properties": {
+                "organizationRecommendationIdentifier": {
+                    "$ref": "#/$defs/OrganizationRecommendationIdentifier"
+                }
+            }
+        },
+        "OrganizationRecommendationIdentifier": {
+            "type": "string"
+        },
+        "GetRecommendationResponse": {
+            "type": "object",
+            "properties": {
+                "recommendation": {
+                    "$ref": "#/$defs/Recommendation"
+                }
+            }
+        },
+        "Recommendation": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "type": {
+                    "$ref": "#/$defs/RecommendationType"
+                },
+                "checkArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/RecommendationStatus"
+                },
+                "lifecycleStage": {
+                    "$ref": "#/$defs/RecommendationLifecycleStage"
+                },
+                "pillars": {
+                    "$ref": "#/$defs/RecommendationPillarList"
+                },
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
+                },
+                "awsServices": {
+                    "$ref": "#/$defs/RecommendationAwsServiceList"
+                },
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourcesAggregates": {
+                    "$ref": "#/$defs/RecommendationResourcesAggregates"
+                },
+                "pillarSpecificAggregates": {
+                    "$ref": "#/$defs/RecommendationPillarSpecificAggregates"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "arn": {
+                    "$ref": "#/$defs/AccountRecommendationArn"
+                },
+                "description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "updatedOnBehalfOf": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "updatedOnBehalfOfJobTitle": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "updateReason": {
+                    "$ref": "#/$defs/RecommendationUpdateReason"
+                },
+                "updateReasonCode": {
+                    "$ref": "#/$defs/UpdateRecommendationLifecycleStageReasonCode"
+                },
+                "resolvedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "AccountRecommendationArn": {
+            "type": "string"
+        },
+        "GetRecommendationRequest": {
+            "type": "object",
+            "properties": {
+                "recommendationIdentifier": {
+                    "$ref": "#/$defs/AccountRecommendationIdentifier"
+                }
+            }
+        },
+        "AccountRecommendationIdentifier": {
+            "type": "string"
+        },
+        "ListChecksResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "checkSummaries": {
+                    "$ref": "#/$defs/CheckSummaryList"
+                }
+            }
+        },
+        "CheckSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CheckSummary"
+            }
+        },
+        "CheckSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "arn": {
+                    "$ref": "#/$defs/CheckArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "pillars": {
+                    "$ref": "#/$defs/RecommendationPillarList"
+                },
+                "awsServices": {
+                    "$ref": "#/$defs/RecommendationAwsServiceList"
+                },
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/StringMap"
+                }
+            }
+        },
+        "CheckArn": {
+            "type": "string"
+        },
+        "StringMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListChecksRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "pillar": {
+                    "$ref": "#/$defs/RecommendationPillar"
+                },
+                "awsService": {
+                    "$ref": "#/$defs/RecommendationAwsService"
+                },
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
+                },
+                "language": {
+                    "$ref": "#/$defs/RecommendationLanguage"
+                }
+            }
+        },
+        "RecommendationLanguage": {
+            "enum": [
+                "ENGLISH",
+                "JAPANESE",
+                "CHINESE",
+                "FRENCH",
+                "GERMAN",
+                "KOREAN",
+                "TRADITIONAL_CHINESE",
+                "ITALIAN",
+                "SPANISH",
+                "BRAZILIAN_PORTUGUESE",
+                "BAHASA_INDONESIA"
+            ]
+        },
+        "ListOrganizationRecommendationAccountsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "accountRecommendationLifecycleSummaries": {
+                    "$ref": "#/$defs/AccountRecommendationLifecycleSummaryList"
+                }
+            }
+        },
+        "AccountRecommendationLifecycleSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountRecommendationLifecycleSummary"
+            }
+        },
+        "AccountRecommendationLifecycleSummary": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "accountRecommendationArn": {
+                    "$ref": "#/$defs/AccountRecommendationArn"
+                },
+                "lifecycleStage": {
+                    "$ref": "#/$defs/RecommendationLifecycleStage"
+                },
+                "updatedOnBehalfOf": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "updatedOnBehalfOfJobTitle": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "updateReason": {
+                    "$ref": "#/$defs/RecommendationUpdateReason"
+                },
+                "updateReasonCode": {
+                    "$ref": "#/$defs/UpdateRecommendationLifecycleStageReasonCode"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "ListOrganizationRecommendationAccountsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "organizationRecommendationIdentifier": {
+                    "$ref": "#/$defs/OrganizationRecommendationIdentifier"
+                },
+                "affectedAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "ListOrganizationRecommendationResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "organizationRecommendationResourceSummaries": {
+                    "$ref": "#/$defs/OrganizationRecommendationResourceSummaryList"
+                }
+            }
+        },
+        "OrganizationRecommendationResourceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OrganizationRecommendationResourceSummary"
+            }
+        },
+        "OrganizationRecommendationResourceSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "arn": {
+                    "$ref": "#/$defs/RecommendationResourceArn"
+                },
+                "awsResourceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "regionCode": {
+                    "$ref": "#/$defs/RecommendationRegionCode"
+                },
+                "status": {
+                    "$ref": "#/$defs/ResourceStatus"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "exclusionStatus": {
+                    "$ref": "#/$defs/ExclusionStatus"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "recommendationArn": {
+                    "$ref": "#/$defs/OrganizationRecommendationArn"
+                }
+            }
+        },
+        "RecommendationRegionCode": {
+            "type": "string"
+        },
+        "ResourceStatus": {
+            "enum": [
+                "OK",
+                "WARNING",
+                "ERROR"
+            ]
+        },
+        "ExclusionStatus": {
+            "enum": [
+                "EXCLUDED",
+                "INCLUDED"
+            ]
+        },
+        "ListOrganizationRecommendationResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "status": {
+                    "$ref": "#/$defs/ResourceStatus"
+                },
+                "exclusionStatus": {
+                    "$ref": "#/$defs/ExclusionStatus"
+                },
+                "regionCode": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "organizationRecommendationIdentifier": {
+                    "$ref": "#/$defs/OrganizationRecommendationIdentifier"
+                },
+                "affectedAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "ListOrganizationRecommendationsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "organizationRecommendationSummaries": {
+                    "$ref": "#/$defs/OrganizationRecommendationSummaryList"
+                }
+            }
+        },
+        "OrganizationRecommendationSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OrganizationRecommendationSummary"
+            }
+        },
+        "OrganizationRecommendationSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "type": {
+                    "$ref": "#/$defs/RecommendationType"
+                },
+                "checkArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/RecommendationStatus"
+                },
+                "lifecycleStage": {
+                    "$ref": "#/$defs/RecommendationLifecycleStage"
+                },
+                "pillars": {
+                    "$ref": "#/$defs/RecommendationPillarList"
+                },
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
+                },
+                "awsServices": {
+                    "$ref": "#/$defs/RecommendationAwsServiceList"
+                },
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourcesAggregates": {
+                    "$ref": "#/$defs/RecommendationResourcesAggregates"
+                },
+                "pillarSpecificAggregates": {
+                    "$ref": "#/$defs/RecommendationPillarSpecificAggregates"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "arn": {
+                    "$ref": "#/$defs/OrganizationRecommendationArn"
+                }
+            }
+        },
+        "ListOrganizationRecommendationsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "type": {
+                    "$ref": "#/$defs/RecommendationType"
+                },
+                "status": {
+                    "$ref": "#/$defs/RecommendationStatus"
+                },
+                "pillar": {
+                    "$ref": "#/$defs/RecommendationPillar"
+                },
+                "awsService": {
+                    "$ref": "#/$defs/RecommendationAwsService"
+                },
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
+                },
+                "checkIdentifier": {
+                    "$ref": "#/$defs/CheckIdentifier"
+                },
+                "afterLastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "beforeLastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "CheckIdentifier": {
+            "type": "string"
+        },
+        "ListRecommendationResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "recommendationResourceSummaries": {
+                    "$ref": "#/$defs/RecommendationResourceSummaryList"
+                }
+            }
+        },
+        "RecommendationResourceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationResourceSummary"
+            }
+        },
+        "RecommendationResourceSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "arn": {
+                    "$ref": "#/$defs/RecommendationResourceArn"
+                },
+                "awsResourceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "regionCode": {
+                    "$ref": "#/$defs/RecommendationRegionCode"
+                },
+                "status": {
+                    "$ref": "#/$defs/ResourceStatus"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "exclusionStatus": {
+                    "$ref": "#/$defs/ExclusionStatus"
+                },
+                "recommendationArn": {
+                    "$ref": "#/$defs/AccountRecommendationArn"
+                }
+            }
+        },
+        "ListRecommendationResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "status": {
+                    "$ref": "#/$defs/ResourceStatus"
+                },
+                "exclusionStatus": {
+                    "$ref": "#/$defs/ExclusionStatus"
+                },
+                "regionCode": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "recommendationIdentifier": {
+                    "$ref": "#/$defs/AccountRecommendationIdentifier"
+                }
+            }
+        },
+        "ListRecommendationsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "recommendationSummaries": {
+                    "$ref": "#/$defs/RecommendationSummaryList"
+                }
+            }
+        },
+        "RecommendationSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationSummary"
+            }
+        },
+        "RecommendationSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "type": {
+                    "$ref": "#/$defs/RecommendationType"
+                },
+                "checkArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/RecommendationStatus"
+                },
+                "lifecycleStage": {
+                    "$ref": "#/$defs/RecommendationLifecycleStage"
+                },
+                "pillars": {
+                    "$ref": "#/$defs/RecommendationPillarList"
+                },
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
+                },
+                "awsServices": {
+                    "$ref": "#/$defs/RecommendationAwsServiceList"
+                },
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourcesAggregates": {
+                    "$ref": "#/$defs/RecommendationResourcesAggregates"
+                },
+                "pillarSpecificAggregates": {
+                    "$ref": "#/$defs/RecommendationPillarSpecificAggregates"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "arn": {
+                    "$ref": "#/$defs/AccountRecommendationArn"
+                }
+            }
+        },
+        "ListRecommendationsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "type": {
+                    "$ref": "#/$defs/RecommendationType"
+                },
+                "status": {
+                    "$ref": "#/$defs/RecommendationStatus"
+                },
+                "pillar": {
+                    "$ref": "#/$defs/RecommendationPillar"
+                },
+                "awsService": {
+                    "$ref": "#/$defs/RecommendationAwsService"
+                },
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
+                },
+                "checkIdentifier": {
+                    "$ref": "#/$defs/CheckIdentifier"
+                },
+                "afterLastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "beforeLastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "UpdateOrganizationRecommendationLifecycleRequest": {
+            "type": "object",
+            "properties": {
+                "lifecycleStage": {
+                    "$ref": "#/$defs/UpdateRecommendationLifecycleStage"
+                },
+                "updateReason": {
+                    "$ref": "#/$defs/RecommendationUpdateReason"
+                },
+                "updateReasonCode": {
+                    "$ref": "#/$defs/UpdateRecommendationLifecycleStageReasonCode"
+                },
+                "organizationRecommendationIdentifier": {
+                    "$ref": "#/$defs/OrganizationRecommendationIdentifier"
+                }
+            }
+        },
+        "UpdateRecommendationLifecycleStage": {
+            "enum": [
+                "PENDING_RESPONSE",
+                "IN_PROGRESS",
+                "DISMISSED",
+                "RESOLVED"
+            ]
+        },
+        "UpdateRecommendationLifecycleRequest": {
+            "type": "object",
+            "properties": {
+                "lifecycleStage": {
+                    "$ref": "#/$defs/UpdateRecommendationLifecycleStage"
+                },
+                "updateReason": {
+                    "$ref": "#/$defs/RecommendationUpdateReason"
+                },
+                "updateReasonCode": {
+                    "$ref": "#/$defs/UpdateRecommendationLifecycleStageReasonCode"
+                },
+                "recommendationIdentifier": {
+                    "$ref": "#/$defs/AccountRecommendationIdentifier"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://trustedadvisor-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://trustedadvisor-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://trustedadvisor.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://trustedadvisor.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

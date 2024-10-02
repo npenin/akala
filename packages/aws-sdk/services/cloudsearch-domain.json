@@ -1,0 +1,855 @@
+{
+    "name": "cloudsearch",
+    "commands": [
+        {
+            "name": "Search",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Search"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Suggest",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Suggest"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SuggestResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SuggestRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UploadDocuments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UploadDocuments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UploadDocumentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UploadDocumentsRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "SearchResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/SearchStatus"
+                },
+                "hits": {
+                    "$ref": "#/$defs/Hits"
+                },
+                "facets": {
+                    "$ref": "#/$defs/Facets"
+                },
+                "stats": {
+                    "$ref": "#/$defs/Stats"
+                }
+            }
+        },
+        "SearchStatus": {
+            "type": "object",
+            "properties": {
+                "timems": {
+                    "$ref": "#/$defs/Long"
+                },
+                "rid": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "String": {
+            "type": "string"
+        },
+        "Hits": {
+            "type": "object",
+            "properties": {
+                "found": {
+                    "$ref": "#/$defs/Long"
+                },
+                "start": {
+                    "$ref": "#/$defs/Long"
+                },
+                "cursor": {
+                    "$ref": "#/$defs/String"
+                },
+                "hit": {
+                    "$ref": "#/$defs/HitList"
+                }
+            }
+        },
+        "HitList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Hit"
+            }
+        },
+        "Hit": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/String"
+                },
+                "fields": {
+                    "$ref": "#/$defs/Fields"
+                },
+                "exprs": {
+                    "$ref": "#/$defs/Exprs"
+                },
+                "highlights": {
+                    "$ref": "#/$defs/Highlights"
+                }
+            }
+        },
+        "Fields": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FieldValue"
+            }
+        },
+        "FieldValue": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Exprs": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Highlights": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Facets": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/BucketInfo"
+            }
+        },
+        "BucketInfo": {
+            "type": "object",
+            "properties": {
+                "buckets": {
+                    "$ref": "#/$defs/BucketList"
+                }
+            }
+        },
+        "BucketList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Bucket"
+            }
+        },
+        "Bucket": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/String"
+                },
+                "count": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "Stats": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FieldStats"
+            }
+        },
+        "FieldStats": {
+            "type": "object",
+            "properties": {
+                "min": {
+                    "$ref": "#/$defs/String"
+                },
+                "max": {
+                    "$ref": "#/$defs/String"
+                },
+                "count": {
+                    "$ref": "#/$defs/Long"
+                },
+                "missing": {
+                    "$ref": "#/$defs/Long"
+                },
+                "sum": {
+                    "$ref": "#/$defs/Double"
+                },
+                "sumOfSquares": {
+                    "$ref": "#/$defs/Double"
+                },
+                "mean": {
+                    "$ref": "#/$defs/String"
+                },
+                "stddev": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "SearchRequest": {
+            "type": "object",
+            "properties": {
+                "cursor": {
+                    "$ref": "#/$defs/Cursor"
+                },
+                "expr": {
+                    "$ref": "#/$defs/Expr"
+                },
+                "facet": {
+                    "$ref": "#/$defs/Facet"
+                },
+                "filterQuery": {
+                    "$ref": "#/$defs/FilterQuery"
+                },
+                "highlight": {
+                    "$ref": "#/$defs/Highlight"
+                },
+                "partial": {
+                    "$ref": "#/$defs/Partial"
+                },
+                "query": {
+                    "$ref": "#/$defs/Query"
+                },
+                "queryOptions": {
+                    "$ref": "#/$defs/QueryOptions"
+                },
+                "queryParser": {
+                    "$ref": "#/$defs/QueryParser"
+                },
+                "return": {
+                    "$ref": "#/$defs/Return"
+                },
+                "size": {
+                    "$ref": "#/$defs/Size"
+                },
+                "sort": {
+                    "$ref": "#/$defs/Sort"
+                },
+                "start": {
+                    "$ref": "#/$defs/Start"
+                },
+                "stats": {
+                    "$ref": "#/$defs/Stat"
+                }
+            }
+        },
+        "Cursor": {
+            "type": "string"
+        },
+        "Expr": {
+            "type": "string"
+        },
+        "Facet": {
+            "type": "string"
+        },
+        "FilterQuery": {
+            "type": "string"
+        },
+        "Highlight": {
+            "type": "string"
+        },
+        "Partial": {
+            "type": "boolean"
+        },
+        "Query": {
+            "type": "string"
+        },
+        "QueryOptions": {
+            "type": "string"
+        },
+        "QueryParser": {
+            "enum": [
+                "simple",
+                "structured",
+                "lucene",
+                "dismax"
+            ]
+        },
+        "Return": {
+            "type": "string"
+        },
+        "Size": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Sort": {
+            "type": "string"
+        },
+        "Start": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Stat": {
+            "type": "string"
+        },
+        "SuggestResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/SuggestStatus"
+                },
+                "suggest": {
+                    "$ref": "#/$defs/SuggestModel"
+                }
+            }
+        },
+        "SuggestStatus": {
+            "type": "object",
+            "properties": {
+                "timems": {
+                    "$ref": "#/$defs/Long"
+                },
+                "rid": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SuggestModel": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "$ref": "#/$defs/String"
+                },
+                "found": {
+                    "$ref": "#/$defs/Long"
+                },
+                "suggestions": {
+                    "$ref": "#/$defs/Suggestions"
+                }
+            }
+        },
+        "Suggestions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SuggestionMatch"
+            }
+        },
+        "SuggestionMatch": {
+            "type": "object",
+            "properties": {
+                "suggestion": {
+                    "$ref": "#/$defs/String"
+                },
+                "score": {
+                    "$ref": "#/$defs/Long"
+                },
+                "id": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SuggestRequest": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "$ref": "#/$defs/Query"
+                },
+                "suggester": {
+                    "$ref": "#/$defs/Suggester"
+                },
+                "size": {
+                    "$ref": "#/$defs/SuggestionsSize"
+                }
+            }
+        },
+        "Suggester": {
+            "type": "string"
+        },
+        "SuggestionsSize": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "UploadDocumentsResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/String"
+                },
+                "adds": {
+                    "$ref": "#/$defs/Adds"
+                },
+                "deletes": {
+                    "$ref": "#/$defs/Deletes"
+                },
+                "warnings": {
+                    "$ref": "#/$defs/DocumentServiceWarnings"
+                }
+            }
+        },
+        "Adds": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Deletes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DocumentServiceWarnings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DocumentServiceWarning"
+            }
+        },
+        "DocumentServiceWarning": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UploadDocumentsRequest": {
+            "type": "object",
+            "properties": {
+                "documents": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/ContentType"
+                }
+            }
+        },
+        "Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ContentType": {
+            "enum": [
+                "application_json",
+                "application_xml"
+            ]
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloudsearchdomain-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloudsearchdomain-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloudsearchdomain.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://cloudsearchdomain.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

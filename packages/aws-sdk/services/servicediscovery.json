@@ -1,0 +1,2586 @@
+{
+    "name": "servicediscovery",
+    "commands": [
+        {
+            "name": "CreateHttpNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateHttpNamespace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateHttpNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateHttpNamespaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePrivateDnsNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePrivateDnsNamespace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePrivateDnsNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePrivateDnsNamespaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePublicDnsNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePublicDnsNamespace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePublicDnsNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePublicDnsNamespaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateService",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateService"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateServiceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateServiceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteNamespace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteNamespaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteService",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteService"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteServiceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteServiceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterInstanceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DiscoverInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DiscoverInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DiscoverInstancesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DiscoverInstancesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DiscoverInstancesRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DiscoverInstancesRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DiscoverInstancesRevisionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DiscoverInstancesRevisionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetInstanceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetInstancesHealthStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetInstancesHealthStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetInstancesHealthStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetInstancesHealthStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetNamespace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetNamespaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetOperation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetOperation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetOperationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetOperationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetService",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetService"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetServiceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetServiceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListInstancesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListInstancesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListNamespaces",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListNamespaces"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListNamespacesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListNamespacesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOperations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOperations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOperationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOperationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListServices",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListServices"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListServicesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListServicesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterInstanceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateHttpNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateHttpNamespace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateHttpNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateHttpNamespaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateInstanceCustomHealthStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateInstanceCustomHealthStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateInstanceCustomHealthStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePrivateDnsNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePrivateDnsNamespace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePrivateDnsNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePrivateDnsNamespaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePublicDnsNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePublicDnsNamespace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePublicDnsNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePublicDnsNamespaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateService",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateService"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateServiceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateServiceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateHttpNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "OperationId": {
+            "type": "string"
+        },
+        "CreateHttpNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NamespaceNameHttp"
+                },
+                "CreatorRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "NamespaceNameHttp": {
+            "type": "string"
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "ResourceDescription": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreatePrivateDnsNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "CreatePrivateDnsNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NamespaceNamePrivate"
+                },
+                "CreatorRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "Vpc": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "Properties": {
+                    "$ref": "#/$defs/PrivateDnsNamespaceProperties"
+                }
+            }
+        },
+        "NamespaceNamePrivate": {
+            "type": "string"
+        },
+        "PrivateDnsNamespaceProperties": {
+            "type": "object",
+            "properties": {
+                "DnsProperties": {
+                    "$ref": "#/$defs/PrivateDnsPropertiesMutable"
+                }
+            }
+        },
+        "PrivateDnsPropertiesMutable": {
+            "type": "object",
+            "properties": {
+                "SOA": {
+                    "$ref": "#/$defs/SOA"
+                }
+            }
+        },
+        "SOA": {
+            "type": "object",
+            "properties": {
+                "TTL": {
+                    "$ref": "#/$defs/RecordTTL"
+                }
+            }
+        },
+        "RecordTTL": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CreatePublicDnsNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "CreatePublicDnsNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NamespaceNamePublic"
+                },
+                "CreatorRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "Properties": {
+                    "$ref": "#/$defs/PublicDnsNamespaceProperties"
+                }
+            }
+        },
+        "NamespaceNamePublic": {
+            "type": "string"
+        },
+        "PublicDnsNamespaceProperties": {
+            "type": "object",
+            "properties": {
+                "DnsProperties": {
+                    "$ref": "#/$defs/PublicDnsPropertiesMutable"
+                }
+            }
+        },
+        "PublicDnsPropertiesMutable": {
+            "type": "object",
+            "properties": {
+                "SOA": {
+                    "$ref": "#/$defs/SOA"
+                }
+            }
+        },
+        "CreateServiceResponse": {
+            "type": "object",
+            "properties": {
+                "Service": {
+                    "$ref": "#/$defs/Service"
+                }
+            }
+        },
+        "Service": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ServiceName"
+                },
+                "NamespaceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "InstanceCount": {
+                    "$ref": "#/$defs/ResourceCount"
+                },
+                "DnsConfig": {
+                    "$ref": "#/$defs/DnsConfig"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ServiceType"
+                },
+                "HealthCheckConfig": {
+                    "$ref": "#/$defs/HealthCheckConfig"
+                },
+                "HealthCheckCustomConfig": {
+                    "$ref": "#/$defs/HealthCheckCustomConfig"
+                },
+                "CreateDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatorRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "ServiceName": {
+            "type": "string"
+        },
+        "ResourceCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DnsConfig": {
+            "type": "object",
+            "properties": {
+                "NamespaceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "RoutingPolicy": {
+                    "$ref": "#/$defs/RoutingPolicy"
+                },
+                "DnsRecords": {
+                    "$ref": "#/$defs/DnsRecordList"
+                }
+            }
+        },
+        "RoutingPolicy": {
+            "enum": [
+                "MULTIVALUE",
+                "WEIGHTED"
+            ]
+        },
+        "DnsRecordList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DnsRecord"
+            }
+        },
+        "DnsRecord": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/RecordType"
+                },
+                "TTL": {
+                    "$ref": "#/$defs/RecordTTL"
+                }
+            }
+        },
+        "RecordType": {
+            "enum": [
+                "SRV",
+                "A",
+                "AAAA",
+                "CNAME"
+            ]
+        },
+        "ServiceType": {
+            "enum": [
+                "HTTP",
+                "DNS_HTTP",
+                "DNS"
+            ]
+        },
+        "HealthCheckConfig": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/HealthCheckType"
+                },
+                "ResourcePath": {
+                    "$ref": "#/$defs/ResourcePath"
+                },
+                "FailureThreshold": {
+                    "$ref": "#/$defs/FailureThreshold"
+                }
+            }
+        },
+        "HealthCheckType": {
+            "enum": [
+                "HTTP",
+                "HTTPS",
+                "TCP"
+            ]
+        },
+        "ResourcePath": {
+            "type": "string"
+        },
+        "FailureThreshold": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HealthCheckCustomConfig": {
+            "type": "object",
+            "properties": {
+                "FailureThreshold": {
+                    "$ref": "#/$defs/FailureThreshold"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateServiceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ServiceName"
+                },
+                "NamespaceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "CreatorRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "DnsConfig": {
+                    "$ref": "#/$defs/DnsConfig"
+                },
+                "HealthCheckConfig": {
+                    "$ref": "#/$defs/HealthCheckConfig"
+                },
+                "HealthCheckCustomConfig": {
+                    "$ref": "#/$defs/HealthCheckCustomConfig"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ServiceTypeOption"
+                }
+            }
+        },
+        "ServiceTypeOption": {
+            "enum": [
+                "HTTP"
+            ]
+        },
+        "DeleteNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "DeleteNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DeleteServiceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteServiceRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DeregisterInstanceResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "DeregisterInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DiscoverInstancesResponse": {
+            "type": "object",
+            "properties": {
+                "Instances": {
+                    "$ref": "#/$defs/HttpInstanceSummaryList"
+                },
+                "InstancesRevision": {
+                    "$ref": "#/$defs/Revision"
+                }
+            }
+        },
+        "HttpInstanceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HttpInstanceSummary"
+            }
+        },
+        "HttpInstanceSummary": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "NamespaceName": {
+                    "$ref": "#/$defs/NamespaceNameHttp"
+                },
+                "ServiceName": {
+                    "$ref": "#/$defs/ServiceName"
+                },
+                "HealthStatus": {
+                    "$ref": "#/$defs/HealthStatus"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
+            }
+        },
+        "HealthStatus": {
+            "enum": [
+                "HEALTHY",
+                "UNHEALTHY",
+                "UNKNOWN"
+            ]
+        },
+        "Attributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AttrValue"
+            }
+        },
+        "AttrValue": {
+            "type": "string"
+        },
+        "Revision": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DiscoverInstancesRequest": {
+            "type": "object",
+            "properties": {
+                "NamespaceName": {
+                    "$ref": "#/$defs/NamespaceName"
+                },
+                "ServiceName": {
+                    "$ref": "#/$defs/ServiceName"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/DiscoverMaxResults"
+                },
+                "QueryParameters": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "OptionalParameters": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "HealthStatus": {
+                    "$ref": "#/$defs/HealthStatusFilter"
+                }
+            }
+        },
+        "NamespaceName": {
+            "type": "string"
+        },
+        "DiscoverMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HealthStatusFilter": {
+            "enum": [
+                "HEALTHY",
+                "UNHEALTHY",
+                "ALL",
+                "HEALTHY_OR_ELSE_ALL"
+            ]
+        },
+        "DiscoverInstancesRevisionResponse": {
+            "type": "object",
+            "properties": {
+                "InstancesRevision": {
+                    "$ref": "#/$defs/Revision"
+                }
+            }
+        },
+        "DiscoverInstancesRevisionRequest": {
+            "type": "object",
+            "properties": {
+                "NamespaceName": {
+                    "$ref": "#/$defs/NamespaceName"
+                },
+                "ServiceName": {
+                    "$ref": "#/$defs/ServiceName"
+                }
+            }
+        },
+        "GetInstanceResponse": {
+            "type": "object",
+            "properties": {
+                "Instance": {
+                    "$ref": "#/$defs/Instance"
+                }
+            }
+        },
+        "Instance": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "CreatorRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
+            }
+        },
+        "GetInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "GetInstancesHealthStatusResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/InstanceHealthStatusMap"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "InstanceHealthStatusMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/HealthStatus"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "GetInstancesHealthStatusRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Instances": {
+                    "$ref": "#/$defs/InstanceIdList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "InstanceIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceId"
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                }
+            }
+        },
+        "Namespace": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NamespaceName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/NamespaceType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "ServiceCount": {
+                    "$ref": "#/$defs/ResourceCount"
+                },
+                "Properties": {
+                    "$ref": "#/$defs/NamespaceProperties"
+                },
+                "CreateDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatorRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "NamespaceType": {
+            "enum": [
+                "DNS_PUBLIC",
+                "DNS_PRIVATE",
+                "HTTP"
+            ]
+        },
+        "NamespaceProperties": {
+            "type": "object",
+            "properties": {
+                "DnsProperties": {
+                    "$ref": "#/$defs/DnsProperties"
+                },
+                "HttpProperties": {
+                    "$ref": "#/$defs/HttpProperties"
+                }
+            }
+        },
+        "DnsProperties": {
+            "type": "object",
+            "properties": {
+                "HostedZoneId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "SOA": {
+                    "$ref": "#/$defs/SOA"
+                }
+            }
+        },
+        "HttpProperties": {
+            "type": "object",
+            "properties": {
+                "HttpName": {
+                    "$ref": "#/$defs/NamespaceName"
+                }
+            }
+        },
+        "GetNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "GetOperationResponse": {
+            "type": "object",
+            "properties": {
+                "Operation": {
+                    "$ref": "#/$defs/Operation"
+                }
+            }
+        },
+        "Operation": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/OperationId"
+                },
+                "Type": {
+                    "$ref": "#/$defs/OperationType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/OperationStatus"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/Message"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/Code"
+                },
+                "CreateDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdateDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Targets": {
+                    "$ref": "#/$defs/OperationTargetsMap"
+                }
+            }
+        },
+        "OperationType": {
+            "enum": [
+                "CREATE_NAMESPACE",
+                "DELETE_NAMESPACE",
+                "UPDATE_NAMESPACE",
+                "UPDATE_SERVICE",
+                "REGISTER_INSTANCE",
+                "DEREGISTER_INSTANCE"
+            ]
+        },
+        "OperationStatus": {
+            "enum": [
+                "SUBMITTED",
+                "PENDING",
+                "SUCCESS",
+                "FAIL"
+            ]
+        },
+        "Message": {
+            "type": "string"
+        },
+        "Code": {
+            "type": "string"
+        },
+        "OperationTargetsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ResourceId"
+            }
+        },
+        "GetOperationRequest": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "GetServiceResponse": {
+            "type": "object",
+            "properties": {
+                "Service": {
+                    "$ref": "#/$defs/Service"
+                }
+            }
+        },
+        "GetServiceRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "ListInstancesResponse": {
+            "type": "object",
+            "properties": {
+                "Instances": {
+                    "$ref": "#/$defs/InstanceSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "InstanceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceSummary"
+            }
+        },
+        "InstanceSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
+            }
+        },
+        "ListInstancesRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListNamespacesResponse": {
+            "type": "object",
+            "properties": {
+                "Namespaces": {
+                    "$ref": "#/$defs/NamespaceSummariesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "NamespaceSummariesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NamespaceSummary"
+            }
+        },
+        "NamespaceSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NamespaceName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/NamespaceType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "ServiceCount": {
+                    "$ref": "#/$defs/ResourceCount"
+                },
+                "Properties": {
+                    "$ref": "#/$defs/NamespaceProperties"
+                },
+                "CreateDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListNamespacesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/NamespaceFilters"
+                }
+            }
+        },
+        "NamespaceFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NamespaceFilter"
+            }
+        },
+        "NamespaceFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NamespaceFilterName"
+                },
+                "Values": {
+                    "$ref": "#/$defs/FilterValues"
+                },
+                "Condition": {
+                    "$ref": "#/$defs/FilterCondition"
+                }
+            }
+        },
+        "NamespaceFilterName": {
+            "enum": [
+                "TYPE",
+                "NAME",
+                "HTTP_NAME"
+            ]
+        },
+        "FilterValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterValue"
+            }
+        },
+        "FilterValue": {
+            "type": "string"
+        },
+        "FilterCondition": {
+            "enum": [
+                "EQ",
+                "IN",
+                "BETWEEN",
+                "BEGINS_WITH"
+            ]
+        },
+        "ListOperationsResponse": {
+            "type": "object",
+            "properties": {
+                "Operations": {
+                    "$ref": "#/$defs/OperationSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "OperationSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperationSummary"
+            }
+        },
+        "OperationSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/OperationId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/OperationStatus"
+                }
+            }
+        },
+        "ListOperationsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/OperationFilters"
+                }
+            }
+        },
+        "OperationFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperationFilter"
+            }
+        },
+        "OperationFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/OperationFilterName"
+                },
+                "Values": {
+                    "$ref": "#/$defs/FilterValues"
+                },
+                "Condition": {
+                    "$ref": "#/$defs/FilterCondition"
+                }
+            }
+        },
+        "OperationFilterName": {
+            "enum": [
+                "NAMESPACE_ID",
+                "SERVICE_ID",
+                "STATUS",
+                "TYPE",
+                "UPDATE_DATE"
+            ]
+        },
+        "ListServicesResponse": {
+            "type": "object",
+            "properties": {
+                "Services": {
+                    "$ref": "#/$defs/ServiceSummariesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ServiceSummariesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceSummary"
+            }
+        },
+        "ServiceSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ServiceName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ServiceType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "InstanceCount": {
+                    "$ref": "#/$defs/ResourceCount"
+                },
+                "DnsConfig": {
+                    "$ref": "#/$defs/DnsConfig"
+                },
+                "HealthCheckConfig": {
+                    "$ref": "#/$defs/HealthCheckConfig"
+                },
+                "HealthCheckCustomConfig": {
+                    "$ref": "#/$defs/HealthCheckCustomConfig"
+                },
+                "CreateDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListServicesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/ServiceFilters"
+                }
+            }
+        },
+        "ServiceFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceFilter"
+            }
+        },
+        "ServiceFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ServiceFilterName"
+                },
+                "Values": {
+                    "$ref": "#/$defs/FilterValues"
+                },
+                "Condition": {
+                    "$ref": "#/$defs/FilterCondition"
+                }
+            }
+        },
+        "ServiceFilterName": {
+            "enum": [
+                "NAMESPACE_ID"
+            ]
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "RegisterInstanceResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "RegisterInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "CreatorRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
+            }
+        },
+        "InstanceId": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateHttpNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "UpdateHttpNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "UpdaterRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/HttpNamespaceChange"
+                }
+            }
+        },
+        "HttpNamespaceChange": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                }
+            }
+        },
+        "UpdateInstanceCustomHealthStatusRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/CustomHealthStatus"
+                }
+            }
+        },
+        "CustomHealthStatus": {
+            "enum": [
+                "HEALTHY",
+                "UNHEALTHY"
+            ]
+        },
+        "UpdatePrivateDnsNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "UpdatePrivateDnsNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "UpdaterRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/PrivateDnsNamespaceChange"
+                }
+            }
+        },
+        "PrivateDnsNamespaceChange": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "Properties": {
+                    "$ref": "#/$defs/PrivateDnsNamespacePropertiesChange"
+                }
+            }
+        },
+        "PrivateDnsNamespacePropertiesChange": {
+            "type": "object",
+            "properties": {
+                "DnsProperties": {
+                    "$ref": "#/$defs/PrivateDnsPropertiesMutableChange"
+                }
+            }
+        },
+        "PrivateDnsPropertiesMutableChange": {
+            "type": "object",
+            "properties": {
+                "SOA": {
+                    "$ref": "#/$defs/SOAChange"
+                }
+            }
+        },
+        "SOAChange": {
+            "type": "object",
+            "properties": {
+                "TTL": {
+                    "$ref": "#/$defs/RecordTTL"
+                }
+            }
+        },
+        "UpdatePublicDnsNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "UpdatePublicDnsNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "UpdaterRequestId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/PublicDnsNamespaceChange"
+                }
+            }
+        },
+        "PublicDnsNamespaceChange": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "Properties": {
+                    "$ref": "#/$defs/PublicDnsNamespacePropertiesChange"
+                }
+            }
+        },
+        "PublicDnsNamespacePropertiesChange": {
+            "type": "object",
+            "properties": {
+                "DnsProperties": {
+                    "$ref": "#/$defs/PublicDnsPropertiesMutableChange"
+                }
+            }
+        },
+        "PublicDnsPropertiesMutableChange": {
+            "type": "object",
+            "properties": {
+                "SOA": {
+                    "$ref": "#/$defs/SOAChange"
+                }
+            }
+        },
+        "UpdateServiceResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "UpdateServiceRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Service": {
+                    "$ref": "#/$defs/ServiceChange"
+                }
+            }
+        },
+        "ServiceChange": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "DnsConfig": {
+                    "$ref": "#/$defs/DnsConfigChange"
+                },
+                "HealthCheckConfig": {
+                    "$ref": "#/$defs/HealthCheckConfig"
+                }
+            }
+        },
+        "DnsConfigChange": {
+            "type": "object",
+            "properties": {
+                "DnsRecords": {
+                    "$ref": "#/$defs/DnsRecordList"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://servicediscovery-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://servicediscovery-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            "aws",
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://servicediscovery.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            "aws-cn",
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://servicediscovery.{Region}.amazonaws.com.cn",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            "aws-us-gov",
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://servicediscovery.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://servicediscovery.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://servicediscovery.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

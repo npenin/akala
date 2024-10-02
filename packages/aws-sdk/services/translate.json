@@ -1,0 +1,1978 @@
+{
+    "name": "translate",
+    "commands": [
+        {
+            "name": "CreateParallelData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateParallelData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateParallelDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateParallelDataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteParallelData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteParallelData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteParallelDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteParallelDataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTerminology",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTerminology"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTerminologyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTextTranslationJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTextTranslationJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTextTranslationJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTextTranslationJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetParallelData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetParallelData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetParallelDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetParallelDataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTerminology",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTerminology"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTerminologyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTerminologyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportTerminology",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportTerminology"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportTerminologyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportTerminologyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLanguages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLanguages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLanguagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLanguagesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListParallelData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListParallelData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListParallelDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListParallelDataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTerminologies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTerminologies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTerminologiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTerminologiesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTextTranslationJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTextTranslationJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTextTranslationJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTextTranslationJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartTextTranslationJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartTextTranslationJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartTextTranslationJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartTextTranslationJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopTextTranslationJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopTextTranslationJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopTextTranslationJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopTextTranslationJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TranslateDocument",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TranslateDocument"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TranslateDocumentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TranslateDocumentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TranslateText",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TranslateText"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TranslateTextResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TranslateTextRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateParallelData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateParallelData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateParallelDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateParallelDataRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateParallelDataResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ParallelDataStatus"
+                }
+            }
+        },
+        "ResourceName": {
+            "type": "string"
+        },
+        "ParallelDataStatus": {
+            "enum": [
+                "CREATING",
+                "UPDATING",
+                "ACTIVE",
+                "DELETING",
+                "FAILED"
+            ]
+        },
+        "CreateParallelDataRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ParallelDataConfig": {
+                    "$ref": "#/$defs/ParallelDataConfig"
+                },
+                "EncryptionKey": {
+                    "$ref": "#/$defs/EncryptionKey"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "Description": {
+            "type": "string"
+        },
+        "ParallelDataConfig": {
+            "type": "object",
+            "properties": {
+                "S3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                },
+                "Format": {
+                    "$ref": "#/$defs/ParallelDataFormat"
+                }
+            }
+        },
+        "S3Uri": {
+            "type": "string"
+        },
+        "ParallelDataFormat": {
+            "enum": [
+                "TSV",
+                "CSV",
+                "TMX"
+            ]
+        },
+        "EncryptionKey": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/EncryptionKeyType"
+                },
+                "Id": {
+                    "$ref": "#/$defs/EncryptionKeyID"
+                }
+            }
+        },
+        "EncryptionKeyType": {
+            "enum": [
+                "KMS"
+            ]
+        },
+        "EncryptionKeyID": {
+            "type": "string"
+        },
+        "ClientTokenString": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "DeleteParallelDataResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ParallelDataStatus"
+                }
+            }
+        },
+        "DeleteParallelDataRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "DeleteTerminologyRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "DescribeTextTranslationJobResponse": {
+            "type": "object",
+            "properties": {
+                "TextTranslationJobProperties": {
+                    "$ref": "#/$defs/TextTranslationJobProperties"
+                }
+            }
+        },
+        "TextTranslationJobProperties": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "JobDetails": {
+                    "$ref": "#/$defs/JobDetails"
+                },
+                "SourceLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "TargetLanguageCodes": {
+                    "$ref": "#/$defs/TargetLanguageCodeStringList"
+                },
+                "TerminologyNames": {
+                    "$ref": "#/$defs/ResourceNameList"
+                },
+                "ParallelDataNames": {
+                    "$ref": "#/$defs/ResourceNameList"
+                },
+                "Message": {
+                    "$ref": "#/$defs/UnboundedLengthString"
+                },
+                "SubmittedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "InputDataConfig": {
+                    "$ref": "#/$defs/InputDataConfig"
+                },
+                "OutputDataConfig": {
+                    "$ref": "#/$defs/OutputDataConfig"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "Settings": {
+                    "$ref": "#/$defs/TranslationSettings"
+                }
+            }
+        },
+        "JobId": {
+            "type": "string"
+        },
+        "JobName": {
+            "type": "string"
+        },
+        "JobStatus": {
+            "enum": [
+                "SUBMITTED",
+                "IN_PROGRESS",
+                "COMPLETED",
+                "COMPLETED_WITH_ERROR",
+                "FAILED",
+                "STOP_REQUESTED",
+                "STOPPED"
+            ]
+        },
+        "JobDetails": {
+            "type": "object",
+            "properties": {
+                "TranslatedDocumentsCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "DocumentsWithErrorsCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "InputDocumentsCount": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LanguageCodeString": {
+            "type": "string"
+        },
+        "TargetLanguageCodeStringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LanguageCodeString"
+            }
+        },
+        "ResourceNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceName"
+            }
+        },
+        "UnboundedLengthString": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "InputDataConfig": {
+            "type": "object",
+            "properties": {
+                "S3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                }
+            }
+        },
+        "ContentType": {
+            "type": "string"
+        },
+        "OutputDataConfig": {
+            "type": "object",
+            "properties": {
+                "S3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                },
+                "EncryptionKey": {
+                    "$ref": "#/$defs/EncryptionKey"
+                }
+            }
+        },
+        "IamRoleArn": {
+            "type": "string"
+        },
+        "TranslationSettings": {
+            "type": "object",
+            "properties": {
+                "Formality": {
+                    "$ref": "#/$defs/Formality"
+                },
+                "Profanity": {
+                    "$ref": "#/$defs/Profanity"
+                },
+                "Brevity": {
+                    "$ref": "#/$defs/Brevity"
+                }
+            }
+        },
+        "Formality": {
+            "enum": [
+                "FORMAL",
+                "INFORMAL"
+            ]
+        },
+        "Profanity": {
+            "enum": [
+                "MASK"
+            ]
+        },
+        "Brevity": {
+            "enum": [
+                "ON"
+            ]
+        },
+        "DescribeTextTranslationJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "GetParallelDataResponse": {
+            "type": "object",
+            "properties": {
+                "ParallelDataProperties": {
+                    "$ref": "#/$defs/ParallelDataProperties"
+                },
+                "DataLocation": {
+                    "$ref": "#/$defs/ParallelDataDataLocation"
+                },
+                "AuxiliaryDataLocation": {
+                    "$ref": "#/$defs/ParallelDataDataLocation"
+                },
+                "LatestUpdateAttemptAuxiliaryDataLocation": {
+                    "$ref": "#/$defs/ParallelDataDataLocation"
+                }
+            }
+        },
+        "ParallelDataProperties": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/ParallelDataArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ParallelDataStatus"
+                },
+                "SourceLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "TargetLanguageCodes": {
+                    "$ref": "#/$defs/LanguageCodeStringList"
+                },
+                "ParallelDataConfig": {
+                    "$ref": "#/$defs/ParallelDataConfig"
+                },
+                "Message": {
+                    "$ref": "#/$defs/UnboundedLengthString"
+                },
+                "ImportedDataSize": {
+                    "$ref": "#/$defs/Long"
+                },
+                "ImportedRecordCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "FailedRecordCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "SkippedRecordCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "EncryptionKey": {
+                    "$ref": "#/$defs/EncryptionKey"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LatestUpdateAttemptStatus": {
+                    "$ref": "#/$defs/ParallelDataStatus"
+                },
+                "LatestUpdateAttemptAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ParallelDataArn": {
+            "type": "string"
+        },
+        "LanguageCodeStringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LanguageCodeString"
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ParallelDataDataLocation": {
+            "type": "object",
+            "properties": {
+                "RepositoryType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Location": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "GetParallelDataRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "GetTerminologyResponse": {
+            "type": "object",
+            "properties": {
+                "TerminologyProperties": {
+                    "$ref": "#/$defs/TerminologyProperties"
+                },
+                "TerminologyDataLocation": {
+                    "$ref": "#/$defs/TerminologyDataLocation"
+                },
+                "AuxiliaryDataLocation": {
+                    "$ref": "#/$defs/TerminologyDataLocation"
+                }
+            }
+        },
+        "TerminologyProperties": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/TerminologyArn"
+                },
+                "SourceLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "TargetLanguageCodes": {
+                    "$ref": "#/$defs/LanguageCodeStringList"
+                },
+                "EncryptionKey": {
+                    "$ref": "#/$defs/EncryptionKey"
+                },
+                "SizeBytes": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "TermCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Directionality": {
+                    "$ref": "#/$defs/Directionality"
+                },
+                "Message": {
+                    "$ref": "#/$defs/UnboundedLengthString"
+                },
+                "SkippedTermCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Format": {
+                    "$ref": "#/$defs/TerminologyDataFormat"
+                }
+            }
+        },
+        "TerminologyArn": {
+            "type": "string"
+        },
+        "Directionality": {
+            "enum": [
+                "UNI",
+                "MULTI"
+            ]
+        },
+        "TerminologyDataFormat": {
+            "enum": [
+                "CSV",
+                "TMX",
+                "TSV"
+            ]
+        },
+        "TerminologyDataLocation": {
+            "type": "object",
+            "properties": {
+                "RepositoryType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Location": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetTerminologyRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TerminologyDataFormat": {
+                    "$ref": "#/$defs/TerminologyDataFormat"
+                }
+            }
+        },
+        "ImportTerminologyResponse": {
+            "type": "object",
+            "properties": {
+                "TerminologyProperties": {
+                    "$ref": "#/$defs/TerminologyProperties"
+                },
+                "AuxiliaryDataLocation": {
+                    "$ref": "#/$defs/TerminologyDataLocation"
+                }
+            }
+        },
+        "ImportTerminologyRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "MergeStrategy": {
+                    "$ref": "#/$defs/MergeStrategy"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "TerminologyData": {
+                    "$ref": "#/$defs/TerminologyData"
+                },
+                "EncryptionKey": {
+                    "$ref": "#/$defs/EncryptionKey"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "MergeStrategy": {
+            "enum": [
+                "OVERWRITE"
+            ]
+        },
+        "TerminologyData": {
+            "type": "object",
+            "properties": {
+                "File": {
+                    "$ref": "#/$defs/TerminologyFile"
+                },
+                "Format": {
+                    "$ref": "#/$defs/TerminologyDataFormat"
+                },
+                "Directionality": {
+                    "$ref": "#/$defs/Directionality"
+                }
+            }
+        },
+        "TerminologyFile": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ListLanguagesResponse": {
+            "type": "object",
+            "properties": {
+                "Languages": {
+                    "$ref": "#/$defs/LanguagesList"
+                },
+                "DisplayLanguageCode": {
+                    "$ref": "#/$defs/DisplayLanguageCode"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "LanguagesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Language"
+            }
+        },
+        "Language": {
+            "type": "object",
+            "properties": {
+                "LanguageName": {
+                    "$ref": "#/$defs/LocalizedNameString"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                }
+            }
+        },
+        "LocalizedNameString": {
+            "type": "string"
+        },
+        "DisplayLanguageCode": {
+            "enum": [
+                "DE",
+                "EN",
+                "ES",
+                "FR",
+                "IT",
+                "JA",
+                "KO",
+                "PT",
+                "ZH",
+                "ZH_TW"
+            ]
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListLanguagesRequest": {
+            "type": "object",
+            "properties": {
+                "DisplayLanguageCode": {
+                    "$ref": "#/$defs/DisplayLanguageCode"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsInteger"
+                }
+            }
+        },
+        "MaxResultsInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListParallelDataResponse": {
+            "type": "object",
+            "properties": {
+                "ParallelDataPropertiesList": {
+                    "$ref": "#/$defs/ParallelDataPropertiesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ParallelDataPropertiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ParallelDataProperties"
+            }
+        },
+        "ListParallelDataRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsInteger"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "ListTerminologiesResponse": {
+            "type": "object",
+            "properties": {
+                "TerminologyPropertiesList": {
+                    "$ref": "#/$defs/TerminologyPropertiesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TerminologyPropertiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TerminologyProperties"
+            }
+        },
+        "ListTerminologiesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsInteger"
+                }
+            }
+        },
+        "ListTextTranslationJobsResponse": {
+            "type": "object",
+            "properties": {
+                "TextTranslationJobPropertiesList": {
+                    "$ref": "#/$defs/TextTranslationJobPropertiesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TextTranslationJobPropertiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TextTranslationJobProperties"
+            }
+        },
+        "ListTextTranslationJobsRequest": {
+            "type": "object",
+            "properties": {
+                "Filter": {
+                    "$ref": "#/$defs/TextTranslationJobFilter"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsInteger"
+                }
+            }
+        },
+        "TextTranslationJobFilter": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "SubmittedBeforeTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SubmittedAfterTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "StartTextTranslationJobResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                }
+            }
+        },
+        "StartTextTranslationJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "InputDataConfig": {
+                    "$ref": "#/$defs/InputDataConfig"
+                },
+                "OutputDataConfig": {
+                    "$ref": "#/$defs/OutputDataConfig"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "SourceLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "TargetLanguageCodes": {
+                    "$ref": "#/$defs/TargetLanguageCodeStringList"
+                },
+                "TerminologyNames": {
+                    "$ref": "#/$defs/ResourceNameList"
+                },
+                "ParallelDataNames": {
+                    "$ref": "#/$defs/ResourceNameList"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                },
+                "Settings": {
+                    "$ref": "#/$defs/TranslationSettings"
+                }
+            }
+        },
+        "StopTextTranslationJobResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                }
+            }
+        },
+        "StopTextTranslationJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TranslateDocumentResponse": {
+            "type": "object",
+            "properties": {
+                "TranslatedDocument": {
+                    "$ref": "#/$defs/TranslatedDocument"
+                },
+                "SourceLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "TargetLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "AppliedTerminologies": {
+                    "$ref": "#/$defs/AppliedTerminologyList"
+                },
+                "AppliedSettings": {
+                    "$ref": "#/$defs/TranslationSettings"
+                }
+            }
+        },
+        "TranslatedDocument": {
+            "type": "object",
+            "properties": {
+                "Content": {
+                    "$ref": "#/$defs/TranslatedDocumentContent"
+                }
+            }
+        },
+        "TranslatedDocumentContent": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AppliedTerminologyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AppliedTerminology"
+            }
+        },
+        "AppliedTerminology": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Terms": {
+                    "$ref": "#/$defs/TermList"
+                }
+            }
+        },
+        "TermList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Term"
+            }
+        },
+        "Term": {
+            "type": "object",
+            "properties": {
+                "SourceText": {
+                    "$ref": "#/$defs/String"
+                },
+                "TargetText": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TranslateDocumentRequest": {
+            "type": "object",
+            "properties": {
+                "Document": {
+                    "$ref": "#/$defs/Document"
+                },
+                "TerminologyNames": {
+                    "$ref": "#/$defs/ResourceNameList"
+                },
+                "SourceLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "TargetLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "Settings": {
+                    "$ref": "#/$defs/TranslationSettings"
+                }
+            }
+        },
+        "Document": {
+            "type": "object",
+            "properties": {
+                "Content": {
+                    "$ref": "#/$defs/DocumentContent"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                }
+            }
+        },
+        "DocumentContent": {
+            "type": "string",
+            "format": "binary"
+        },
+        "TranslateTextResponse": {
+            "type": "object",
+            "properties": {
+                "TranslatedText": {
+                    "$ref": "#/$defs/TranslatedTextString"
+                },
+                "SourceLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "TargetLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "AppliedTerminologies": {
+                    "$ref": "#/$defs/AppliedTerminologyList"
+                },
+                "AppliedSettings": {
+                    "$ref": "#/$defs/TranslationSettings"
+                }
+            }
+        },
+        "TranslatedTextString": {
+            "type": "string"
+        },
+        "TranslateTextRequest": {
+            "type": "object",
+            "properties": {
+                "Text": {
+                    "$ref": "#/$defs/BoundedLengthString"
+                },
+                "TerminologyNames": {
+                    "$ref": "#/$defs/ResourceNameList"
+                },
+                "SourceLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "TargetLanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                },
+                "Settings": {
+                    "$ref": "#/$defs/TranslationSettings"
+                }
+            }
+        },
+        "BoundedLengthString": {
+            "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateParallelDataResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ParallelDataStatus"
+                },
+                "LatestUpdateAttemptStatus": {
+                    "$ref": "#/$defs/ParallelDataStatus"
+                },
+                "LatestUpdateAttemptAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateParallelDataRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ParallelDataConfig": {
+                    "$ref": "#/$defs/ParallelDataConfig"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://translate-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://translate-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://translate.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://translate.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

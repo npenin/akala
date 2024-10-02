@@ -1,0 +1,3080 @@
+{
+    "name": "route53domains",
+    "commands": [
+        {
+            "name": "AcceptDomainTransferFromAnotherAwsAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AcceptDomainTransferFromAnotherAwsAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AcceptDomainTransferFromAnotherAwsAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AcceptDomainTransferFromAnotherAwsAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateDelegationSignerToDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateDelegationSignerToDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateDelegationSignerToDomainResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateDelegationSignerToDomainRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelDomainTransferToAnotherAwsAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelDomainTransferToAnotherAwsAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelDomainTransferToAnotherAwsAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelDomainTransferToAnotherAwsAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckDomainAvailability",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CheckDomainAvailability"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CheckDomainAvailabilityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CheckDomainAvailabilityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckDomainTransferability",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CheckDomainTransferability"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CheckDomainTransferabilityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CheckDomainTransferabilityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDomainResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDomainRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTagsForDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTagsForDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteTagsForDomainResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTagsForDomainRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableDomainAutoRenew",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableDomainAutoRenew"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisableDomainAutoRenewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableDomainAutoRenewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableDomainTransferLock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableDomainTransferLock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisableDomainTransferLockResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableDomainTransferLockRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateDelegationSignerFromDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateDelegationSignerFromDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateDelegationSignerFromDomainResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateDelegationSignerFromDomainRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableDomainAutoRenew",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableDomainAutoRenew"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnableDomainAutoRenewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableDomainAutoRenewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableDomainTransferLock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableDomainTransferLock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnableDomainTransferLockResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableDomainTransferLockRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetContactReachabilityStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetContactReachabilityStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetContactReachabilityStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetContactReachabilityStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDomainDetail",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDomainDetail"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDomainDetailResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDomainDetailRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDomainSuggestions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDomainSuggestions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDomainSuggestionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDomainSuggestionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetOperationDetail",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetOperationDetail"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetOperationDetailResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetOperationDetailRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDomains",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDomains"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDomainsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDomainsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOperations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOperations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOperationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOperationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPrices",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPrices"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPricesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPricesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForDomainResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForDomainRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PushDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PushDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PushDomainRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterDomainResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterDomainRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RejectDomainTransferFromAnotherAwsAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RejectDomainTransferFromAnotherAwsAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RejectDomainTransferFromAnotherAwsAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RejectDomainTransferFromAnotherAwsAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RenewDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RenewDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RenewDomainResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RenewDomainRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ResendContactReachabilityEmail",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ResendContactReachabilityEmail"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ResendContactReachabilityEmailResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ResendContactReachabilityEmailRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ResendOperationAuthorization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ResendOperationAuthorization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ResendOperationAuthorizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RetrieveDomainAuthCode",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RetrieveDomainAuthCode"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RetrieveDomainAuthCodeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RetrieveDomainAuthCodeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TransferDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TransferDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TransferDomainResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TransferDomainRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TransferDomainToAnotherAwsAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TransferDomainToAnotherAwsAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TransferDomainToAnotherAwsAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TransferDomainToAnotherAwsAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDomainContact",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDomainContact"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDomainContactResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDomainContactRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDomainContactPrivacy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDomainContactPrivacy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDomainContactPrivacyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDomainContactPrivacyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDomainNameservers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDomainNameservers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDomainNameserversResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDomainNameserversRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateTagsForDomain",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateTagsForDomain"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateTagsForDomainResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateTagsForDomainRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ViewBilling",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ViewBilling"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ViewBillingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ViewBillingRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AcceptDomainTransferFromAnotherAwsAccountResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "OperationId": {
+            "type": "string"
+        },
+        "AcceptDomainTransferFromAnotherAwsAccountRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "Password": {
+                    "$ref": "#/$defs/Password"
+                }
+            }
+        },
+        "DomainName": {
+            "type": "string"
+        },
+        "Password": {
+            "type": "string"
+        },
+        "AssociateDelegationSignerToDomainResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "AssociateDelegationSignerToDomainRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "SigningAttributes": {
+                    "$ref": "#/$defs/DnssecSigningAttributes"
+                }
+            }
+        },
+        "DnssecSigningAttributes": {
+            "type": "object",
+            "properties": {
+                "Algorithm": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Flags": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "PublicKey": {
+                    "$ref": "#/$defs/DnssecPublicKey"
+                }
+            }
+        },
+        "NullableInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DnssecPublicKey": {
+            "type": "string"
+        },
+        "CancelDomainTransferToAnotherAwsAccountResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "CancelDomainTransferToAnotherAwsAccountRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "CheckDomainAvailabilityResponse": {
+            "type": "object",
+            "properties": {
+                "Availability": {
+                    "$ref": "#/$defs/DomainAvailability"
+                }
+            }
+        },
+        "DomainAvailability": {
+            "enum": [
+                "AVAILABLE",
+                "AVAILABLE_RESERVED",
+                "AVAILABLE_PREORDER",
+                "UNAVAILABLE",
+                "UNAVAILABLE_PREMIUM",
+                "UNAVAILABLE_RESTRICTED",
+                "RESERVED",
+                "DONT_KNOW",
+                "INVALID_NAME_FOR_TLD",
+                "PENDING"
+            ]
+        },
+        "CheckDomainAvailabilityRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "IdnLangCode": {
+                    "$ref": "#/$defs/LangCode"
+                }
+            }
+        },
+        "LangCode": {
+            "type": "string"
+        },
+        "CheckDomainTransferabilityResponse": {
+            "type": "object",
+            "properties": {
+                "Transferability": {
+                    "$ref": "#/$defs/DomainTransferability"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "DomainTransferability": {
+            "type": "object",
+            "properties": {
+                "Transferable": {
+                    "$ref": "#/$defs/Transferable"
+                }
+            }
+        },
+        "Transferable": {
+            "enum": [
+                "TRANSFERABLE",
+                "UNTRANSFERABLE",
+                "DONT_KNOW",
+                "DOMAIN_IN_OWN_ACCOUNT",
+                "DOMAIN_IN_ANOTHER_ACCOUNT",
+                "PREMIUM_DOMAIN"
+            ]
+        },
+        "Message": {
+            "type": "string"
+        },
+        "CheckDomainTransferabilityRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "AuthCode": {
+                    "$ref": "#/$defs/DomainAuthCode"
+                }
+            }
+        },
+        "DomainAuthCode": {
+            "type": "string"
+        },
+        "DeleteDomainResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "DeleteDomainRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "DeleteTagsForDomainResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteTagsForDomainRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "TagsToDelete": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "DisableDomainAutoRenewResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisableDomainAutoRenewRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "DisableDomainTransferLockResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "DisableDomainTransferLockRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "DisassociateDelegationSignerFromDomainResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "DisassociateDelegationSignerFromDomainRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "Id": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "EnableDomainAutoRenewResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "EnableDomainAutoRenewRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "EnableDomainTransferLockResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "EnableDomainTransferLockRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "GetContactReachabilityStatusResponse": {
+            "type": "object",
+            "properties": {
+                "domainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "status": {
+                    "$ref": "#/$defs/ReachabilityStatus"
+                }
+            }
+        },
+        "ReachabilityStatus": {
+            "enum": [
+                "PENDING",
+                "DONE",
+                "EXPIRED"
+            ]
+        },
+        "GetContactReachabilityStatusRequest": {
+            "type": "object",
+            "properties": {
+                "domainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "GetDomainDetailResponse": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "Nameservers": {
+                    "$ref": "#/$defs/NameserverList"
+                },
+                "AutoRenew": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AdminContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "RegistrantContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "TechContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "AdminPrivacy": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RegistrantPrivacy": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "TechPrivacy": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RegistrarName": {
+                    "$ref": "#/$defs/RegistrarName"
+                },
+                "WhoIsServer": {
+                    "$ref": "#/$defs/RegistrarWhoIsServer"
+                },
+                "RegistrarUrl": {
+                    "$ref": "#/$defs/RegistrarUrl"
+                },
+                "AbuseContactEmail": {
+                    "$ref": "#/$defs/Email"
+                },
+                "AbuseContactPhone": {
+                    "$ref": "#/$defs/ContactNumber"
+                },
+                "RegistryDomainId": {
+                    "$ref": "#/$defs/RegistryDomainId"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExpirationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Reseller": {
+                    "$ref": "#/$defs/Reseller"
+                },
+                "DnsSec": {
+                    "$ref": "#/$defs/DNSSec"
+                },
+                "StatusList": {
+                    "$ref": "#/$defs/DomainStatusList"
+                },
+                "DnssecKeys": {
+                    "$ref": "#/$defs/DnssecKeyList"
+                },
+                "BillingContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "BillingPrivacy": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "NameserverList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Nameserver"
+            }
+        },
+        "Nameserver": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/HostName"
+                },
+                "GlueIps": {
+                    "$ref": "#/$defs/GlueIpList"
+                }
+            }
+        },
+        "HostName": {
+            "type": "string"
+        },
+        "GlueIpList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GlueIp"
+            }
+        },
+        "GlueIp": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "ContactDetail": {
+            "type": "object",
+            "properties": {
+                "FirstName": {
+                    "$ref": "#/$defs/ContactName"
+                },
+                "LastName": {
+                    "$ref": "#/$defs/ContactName"
+                },
+                "ContactType": {
+                    "$ref": "#/$defs/ContactType"
+                },
+                "OrganizationName": {
+                    "$ref": "#/$defs/ContactName"
+                },
+                "AddressLine1": {
+                    "$ref": "#/$defs/AddressLine"
+                },
+                "AddressLine2": {
+                    "$ref": "#/$defs/AddressLine"
+                },
+                "City": {
+                    "$ref": "#/$defs/City"
+                },
+                "State": {
+                    "$ref": "#/$defs/State"
+                },
+                "CountryCode": {
+                    "$ref": "#/$defs/CountryCode"
+                },
+                "ZipCode": {
+                    "$ref": "#/$defs/ZipCode"
+                },
+                "PhoneNumber": {
+                    "$ref": "#/$defs/ContactNumber"
+                },
+                "Email": {
+                    "$ref": "#/$defs/Email"
+                },
+                "Fax": {
+                    "$ref": "#/$defs/ContactNumber"
+                },
+                "ExtraParams": {
+                    "$ref": "#/$defs/ExtraParamList"
+                }
+            }
+        },
+        "ContactName": {
+            "type": "string"
+        },
+        "ContactType": {
+            "enum": [
+                "PERSON",
+                "COMPANY",
+                "ASSOCIATION",
+                "PUBLIC_BODY",
+                "RESELLER"
+            ]
+        },
+        "AddressLine": {
+            "type": "string"
+        },
+        "City": {
+            "type": "string"
+        },
+        "State": {
+            "type": "string"
+        },
+        "CountryCode": {
+            "enum": [
+                "AC",
+                "AD",
+                "AE",
+                "AF",
+                "AG",
+                "AI",
+                "AL",
+                "AM",
+                "AN",
+                "AO",
+                "AQ",
+                "AR",
+                "AS",
+                "AT",
+                "AU",
+                "AW",
+                "AX",
+                "AZ",
+                "BA",
+                "BB",
+                "BD",
+                "BE",
+                "BF",
+                "BG",
+                "BH",
+                "BI",
+                "BJ",
+                "BL",
+                "BM",
+                "BN",
+                "BO",
+                "BQ",
+                "BR",
+                "BS",
+                "BT",
+                "BV",
+                "BW",
+                "BY",
+                "BZ",
+                "CA",
+                "CC",
+                "CD",
+                "CF",
+                "CG",
+                "CH",
+                "CI",
+                "CK",
+                "CL",
+                "CM",
+                "CN",
+                "CO",
+                "CR",
+                "CU",
+                "CV",
+                "CW",
+                "CX",
+                "CY",
+                "CZ",
+                "DE",
+                "DJ",
+                "DK",
+                "DM",
+                "DO",
+                "DZ",
+                "EC",
+                "EE",
+                "EG",
+                "EH",
+                "ER",
+                "ES",
+                "ET",
+                "FI",
+                "FJ",
+                "FK",
+                "FM",
+                "FO",
+                "FR",
+                "GA",
+                "GB",
+                "GD",
+                "GE",
+                "GF",
+                "GG",
+                "GH",
+                "GI",
+                "GL",
+                "GM",
+                "GN",
+                "GP",
+                "GQ",
+                "GR",
+                "GS",
+                "GT",
+                "GU",
+                "GW",
+                "GY",
+                "HK",
+                "HM",
+                "HN",
+                "HR",
+                "HT",
+                "HU",
+                "ID",
+                "IE",
+                "IL",
+                "IM",
+                "IN",
+                "IO",
+                "IQ",
+                "IR",
+                "IS",
+                "IT",
+                "JE",
+                "JM",
+                "JO",
+                "JP",
+                "KE",
+                "KG",
+                "KH",
+                "KI",
+                "KM",
+                "KN",
+                "KP",
+                "KR",
+                "KW",
+                "KY",
+                "KZ",
+                "LA",
+                "LB",
+                "LC",
+                "LI",
+                "LK",
+                "LR",
+                "LS",
+                "LT",
+                "LU",
+                "LV",
+                "LY",
+                "MA",
+                "MC",
+                "MD",
+                "ME",
+                "MF",
+                "MG",
+                "MH",
+                "MK",
+                "ML",
+                "MM",
+                "MN",
+                "MO",
+                "MP",
+                "MQ",
+                "MR",
+                "MS",
+                "MT",
+                "MU",
+                "MV",
+                "MW",
+                "MX",
+                "MY",
+                "MZ",
+                "NA",
+                "NC",
+                "NE",
+                "NF",
+                "NG",
+                "NI",
+                "NL",
+                "NO",
+                "NP",
+                "NR",
+                "NU",
+                "NZ",
+                "OM",
+                "PA",
+                "PE",
+                "PF",
+                "PG",
+                "PH",
+                "PK",
+                "PL",
+                "PM",
+                "PN",
+                "PR",
+                "PS",
+                "PT",
+                "PW",
+                "PY",
+                "QA",
+                "RE",
+                "RO",
+                "RS",
+                "RU",
+                "RW",
+                "SA",
+                "SB",
+                "SC",
+                "SD",
+                "SE",
+                "SG",
+                "SH",
+                "SI",
+                "SJ",
+                "SK",
+                "SL",
+                "SM",
+                "SN",
+                "SO",
+                "SR",
+                "SS",
+                "ST",
+                "SV",
+                "SX",
+                "SY",
+                "SZ",
+                "TC",
+                "TD",
+                "TF",
+                "TG",
+                "TH",
+                "TJ",
+                "TK",
+                "TL",
+                "TM",
+                "TN",
+                "TO",
+                "TP",
+                "TR",
+                "TT",
+                "TV",
+                "TW",
+                "TZ",
+                "UA",
+                "UG",
+                "US",
+                "UY",
+                "UZ",
+                "VA",
+                "VC",
+                "VE",
+                "VG",
+                "VI",
+                "VN",
+                "VU",
+                "WF",
+                "WS",
+                "YE",
+                "YT",
+                "ZA",
+                "ZM",
+                "ZW"
+            ]
+        },
+        "ZipCode": {
+            "type": "string"
+        },
+        "ContactNumber": {
+            "type": "string"
+        },
+        "Email": {
+            "type": "string"
+        },
+        "ExtraParamList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExtraParam"
+            }
+        },
+        "ExtraParam": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ExtraParamName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/ExtraParamValue"
+                }
+            }
+        },
+        "ExtraParamName": {
+            "enum": [
+                "DUNS_NUMBER",
+                "BRAND_NUMBER",
+                "BIRTH_DEPARTMENT",
+                "BIRTH_DATE_IN_YYYY_MM_DD",
+                "BIRTH_COUNTRY",
+                "BIRTH_CITY",
+                "DOCUMENT_NUMBER",
+                "AU_ID_NUMBER",
+                "AU_ID_TYPE",
+                "CA_LEGAL_TYPE",
+                "CA_BUSINESS_ENTITY_TYPE",
+                "CA_LEGAL_REPRESENTATIVE",
+                "CA_LEGAL_REPRESENTATIVE_CAPACITY",
+                "ES_IDENTIFICATION",
+                "ES_IDENTIFICATION_TYPE",
+                "ES_LEGAL_FORM",
+                "FI_BUSINESS_NUMBER",
+                "ONWER_FI_ID_NUMBER",
+                "FI_NATIONALITY",
+                "FI_ORGANIZATION_TYPE",
+                "IT_NATIONALITY",
+                "IT_PIN",
+                "IT_REGISTRANT_ENTITY_TYPE",
+                "RU_PASSPORT_DATA",
+                "SE_ID_NUMBER",
+                "SG_ID_NUMBER",
+                "VAT_NUMBER",
+                "UK_CONTACT_TYPE",
+                "UK_COMPANY_NUMBER",
+                "EU_COUNTRY_OF_CITIZENSHIP",
+                "AU_PRIORITY_TOKEN"
+            ]
+        },
+        "ExtraParamValue": {
+            "type": "string"
+        },
+        "RegistrarName": {
+            "type": "string"
+        },
+        "RegistrarWhoIsServer": {
+            "type": "string"
+        },
+        "RegistrarUrl": {
+            "type": "string"
+        },
+        "RegistryDomainId": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Reseller": {
+            "type": "string"
+        },
+        "DNSSec": {
+            "type": "string"
+        },
+        "DomainStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DomainStatus"
+            }
+        },
+        "DomainStatus": {
+            "type": "string"
+        },
+        "DnssecKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DnssecKey"
+            }
+        },
+        "DnssecKey": {
+            "type": "object",
+            "properties": {
+                "Algorithm": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Flags": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "PublicKey": {
+                    "$ref": "#/$defs/DnssecPublicKey"
+                },
+                "DigestType": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Digest": {
+                    "$ref": "#/$defs/String"
+                },
+                "KeyTag": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Id": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetDomainDetailRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "GetDomainSuggestionsResponse": {
+            "type": "object",
+            "properties": {
+                "SuggestionsList": {
+                    "$ref": "#/$defs/DomainSuggestionsList"
+                }
+            }
+        },
+        "DomainSuggestionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DomainSuggestion"
+            }
+        },
+        "DomainSuggestion": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "Availability": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetDomainSuggestionsRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "SuggestionCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "OnlyAvailable": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetOperationDetailResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/OperationStatus"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/OperationType"
+                },
+                "SubmittedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "StatusFlag": {
+                    "$ref": "#/$defs/StatusFlag"
+                }
+            }
+        },
+        "OperationStatus": {
+            "enum": [
+                "SUBMITTED",
+                "IN_PROGRESS",
+                "ERROR",
+                "SUCCESSFUL",
+                "FAILED"
+            ]
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "OperationType": {
+            "enum": [
+                "REGISTER_DOMAIN",
+                "DELETE_DOMAIN",
+                "TRANSFER_IN_DOMAIN",
+                "UPDATE_DOMAIN_CONTACT",
+                "UPDATE_NAMESERVER",
+                "CHANGE_PRIVACY_PROTECTION",
+                "DOMAIN_LOCK",
+                "ENABLE_AUTORENEW",
+                "DISABLE_AUTORENEW",
+                "ADD_DNSSEC",
+                "REMOVE_DNSSEC",
+                "EXPIRE_DOMAIN",
+                "TRANSFER_OUT_DOMAIN",
+                "CHANGE_DOMAIN_OWNER",
+                "RENEW_DOMAIN",
+                "PUSH_DOMAIN",
+                "INTERNAL_TRANSFER_OUT_DOMAIN",
+                "INTERNAL_TRANSFER_IN_DOMAIN",
+                "RELEASE_TO_GANDI",
+                "TRANSFER_ON_RENEW"
+            ]
+        },
+        "StatusFlag": {
+            "enum": [
+                "PENDING_ACCEPTANCE",
+                "PENDING_CUSTOMER_ACTION",
+                "PENDING_AUTHORIZATION",
+                "PENDING_PAYMENT_VERIFICATION",
+                "PENDING_SUPPORT_CASE"
+            ]
+        },
+        "GetOperationDetailRequest": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "ListDomainsResponse": {
+            "type": "object",
+            "properties": {
+                "Domains": {
+                    "$ref": "#/$defs/DomainSummaryList"
+                },
+                "NextPageMarker": {
+                    "$ref": "#/$defs/PageMarker"
+                }
+            }
+        },
+        "DomainSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DomainSummary"
+            }
+        },
+        "DomainSummary": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "AutoRenew": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "TransferLock": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Expiry": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PageMarker": {
+            "type": "string"
+        },
+        "ListDomainsRequest": {
+            "type": "object",
+            "properties": {
+                "FilterConditions": {
+                    "$ref": "#/$defs/FilterConditions"
+                },
+                "SortCondition": {
+                    "$ref": "#/$defs/SortCondition"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/PageMarker"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/PageMaxItems"
+                }
+            }
+        },
+        "FilterConditions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterCondition"
+            }
+        },
+        "FilterCondition": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ListDomainsAttributeName"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/Operator"
+                },
+                "Values": {
+                    "$ref": "#/$defs/Values"
+                }
+            }
+        },
+        "ListDomainsAttributeName": {
+            "enum": [
+                "DomainName",
+                "Expiry"
+            ]
+        },
+        "Operator": {
+            "enum": [
+                "LE",
+                "GE",
+                "BEGINS_WITH"
+            ]
+        },
+        "Values": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "Value": {
+            "type": "string"
+        },
+        "SortCondition": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ListDomainsAttributeName"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "SortOrder": {
+            "enum": [
+                "ASC",
+                "DESC"
+            ]
+        },
+        "PageMaxItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListOperationsResponse": {
+            "type": "object",
+            "properties": {
+                "Operations": {
+                    "$ref": "#/$defs/OperationSummaryList"
+                },
+                "NextPageMarker": {
+                    "$ref": "#/$defs/PageMarker"
+                }
+            }
+        },
+        "OperationSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperationSummary"
+            }
+        },
+        "OperationSummary": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/OperationStatus"
+                },
+                "Type": {
+                    "$ref": "#/$defs/OperationType"
+                },
+                "SubmittedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "StatusFlag": {
+                    "$ref": "#/$defs/StatusFlag"
+                },
+                "LastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListOperationsRequest": {
+            "type": "object",
+            "properties": {
+                "SubmittedSince": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/PageMarker"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/PageMaxItems"
+                },
+                "Status": {
+                    "$ref": "#/$defs/OperationStatusList"
+                },
+                "Type": {
+                    "$ref": "#/$defs/OperationTypeList"
+                },
+                "SortBy": {
+                    "$ref": "#/$defs/ListOperationsSortAttributeName"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "OperationStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperationStatus"
+            }
+        },
+        "OperationTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperationType"
+            }
+        },
+        "ListOperationsSortAttributeName": {
+            "enum": [
+                "SubmittedDate"
+            ]
+        },
+        "ListPricesResponse": {
+            "type": "object",
+            "properties": {
+                "Prices": {
+                    "$ref": "#/$defs/DomainPriceList"
+                },
+                "NextPageMarker": {
+                    "$ref": "#/$defs/PageMarker"
+                }
+            }
+        },
+        "DomainPriceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DomainPrice"
+            }
+        },
+        "DomainPrice": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DomainPriceName"
+                },
+                "RegistrationPrice": {
+                    "$ref": "#/$defs/PriceWithCurrency"
+                },
+                "TransferPrice": {
+                    "$ref": "#/$defs/PriceWithCurrency"
+                },
+                "RenewalPrice": {
+                    "$ref": "#/$defs/PriceWithCurrency"
+                },
+                "ChangeOwnershipPrice": {
+                    "$ref": "#/$defs/PriceWithCurrency"
+                },
+                "RestorationPrice": {
+                    "$ref": "#/$defs/PriceWithCurrency"
+                }
+            }
+        },
+        "DomainPriceName": {
+            "type": "string"
+        },
+        "PriceWithCurrency": {
+            "type": "object",
+            "properties": {
+                "Price": {
+                    "$ref": "#/$defs/Price"
+                },
+                "Currency": {
+                    "$ref": "#/$defs/Currency"
+                }
+            }
+        },
+        "Price": {
+            "type": "number",
+            "format": "double"
+        },
+        "Currency": {
+            "type": "string"
+        },
+        "ListPricesRequest": {
+            "type": "object",
+            "properties": {
+                "Tld": {
+                    "$ref": "#/$defs/TldName"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/PageMarker"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/ListPricesPageMaxItems"
+                }
+            }
+        },
+        "TldName": {
+            "type": "string"
+        },
+        "ListPricesPageMaxItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForDomainResponse": {
+            "type": "object",
+            "properties": {
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForDomainRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "PushDomainRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "Target": {
+                    "$ref": "#/$defs/Label"
+                }
+            }
+        },
+        "Label": {
+            "type": "string"
+        },
+        "RegisterDomainResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "RegisterDomainRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "IdnLangCode": {
+                    "$ref": "#/$defs/LangCode"
+                },
+                "DurationInYears": {
+                    "$ref": "#/$defs/DurationInYears"
+                },
+                "AutoRenew": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AdminContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "RegistrantContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "TechContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "PrivacyProtectAdminContact": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PrivacyProtectRegistrantContact": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PrivacyProtectTechContact": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "BillingContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "PrivacyProtectBillingContact": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DurationInYears": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RejectDomainTransferFromAnotherAwsAccountResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "RejectDomainTransferFromAnotherAwsAccountRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "RenewDomainResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "RenewDomainRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "DurationInYears": {
+                    "$ref": "#/$defs/DurationInYears"
+                },
+                "CurrentExpiryYear": {
+                    "$ref": "#/$defs/CurrentExpiryYear"
+                }
+            }
+        },
+        "CurrentExpiryYear": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ResendContactReachabilityEmailResponse": {
+            "type": "object",
+            "properties": {
+                "domainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "emailAddress": {
+                    "$ref": "#/$defs/Email"
+                },
+                "isAlreadyVerified": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ResendContactReachabilityEmailRequest": {
+            "type": "object",
+            "properties": {
+                "domainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "ResendOperationAuthorizationRequest": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "RetrieveDomainAuthCodeResponse": {
+            "type": "object",
+            "properties": {
+                "AuthCode": {
+                    "$ref": "#/$defs/DomainAuthCode"
+                }
+            }
+        },
+        "RetrieveDomainAuthCodeRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "TransferDomainResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "TransferDomainRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "IdnLangCode": {
+                    "$ref": "#/$defs/LangCode"
+                },
+                "DurationInYears": {
+                    "$ref": "#/$defs/DurationInYears"
+                },
+                "Nameservers": {
+                    "$ref": "#/$defs/NameserverList"
+                },
+                "AuthCode": {
+                    "$ref": "#/$defs/DomainAuthCode"
+                },
+                "AutoRenew": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AdminContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "RegistrantContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "TechContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "PrivacyProtectAdminContact": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PrivacyProtectRegistrantContact": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PrivacyProtectTechContact": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "BillingContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "PrivacyProtectBillingContact": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "TransferDomainToAnotherAwsAccountResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                },
+                "Password": {
+                    "$ref": "#/$defs/Password"
+                }
+            }
+        },
+        "TransferDomainToAnotherAwsAccountRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "UpdateDomainContactResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "UpdateDomainContactRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "AdminContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "RegistrantContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "TechContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                },
+                "Consent": {
+                    "$ref": "#/$defs/Consent"
+                },
+                "BillingContact": {
+                    "$ref": "#/$defs/ContactDetail"
+                }
+            }
+        },
+        "Consent": {
+            "type": "object",
+            "properties": {
+                "MaxPrice": {
+                    "$ref": "#/$defs/Price"
+                },
+                "Currency": {
+                    "$ref": "#/$defs/Currency"
+                }
+            }
+        },
+        "UpdateDomainContactPrivacyResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "UpdateDomainContactPrivacyRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "AdminPrivacy": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RegistrantPrivacy": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "TechPrivacy": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "BillingPrivacy": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "UpdateDomainNameserversResponse": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "UpdateDomainNameserversRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "FIAuthKey": {
+                    "$ref": "#/$defs/FIAuthKey"
+                },
+                "Nameservers": {
+                    "$ref": "#/$defs/NameserverList"
+                }
+            }
+        },
+        "FIAuthKey": {
+            "type": "string"
+        },
+        "UpdateTagsForDomainResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateTagsForDomainRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "TagsToUpdate": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ViewBillingResponse": {
+            "type": "object",
+            "properties": {
+                "NextPageMarker": {
+                    "$ref": "#/$defs/PageMarker"
+                },
+                "BillingRecords": {
+                    "$ref": "#/$defs/BillingRecords"
+                }
+            }
+        },
+        "BillingRecords": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BillingRecord"
+            }
+        },
+        "BillingRecord": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "Operation": {
+                    "$ref": "#/$defs/OperationType"
+                },
+                "InvoiceId": {
+                    "$ref": "#/$defs/InvoiceId"
+                },
+                "BillDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Price": {
+                    "$ref": "#/$defs/Price"
+                }
+            }
+        },
+        "InvoiceId": {
+            "type": "string"
+        },
+        "ViewBillingRequest": {
+            "type": "object",
+            "properties": {
+                "Start": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "End": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/PageMarker"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/PageMaxItems"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://route53domains-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://route53domains-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://route53domains.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://route53domains.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

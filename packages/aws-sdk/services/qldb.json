@@ -1,0 +1,1710 @@
+{
+    "name": "qldb",
+    "commands": [
+        {
+            "name": "CancelJournalKinesisStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelJournalKinesisStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelJournalKinesisStreamResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelJournalKinesisStreamRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLedger",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLedger"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLedgerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLedgerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLedger",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLedger"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLedgerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeJournalKinesisStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeJournalKinesisStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeJournalKinesisStreamResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeJournalKinesisStreamRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeJournalS3Export",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeJournalS3Export"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeJournalS3ExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeJournalS3ExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLedger",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLedger"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLedgerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLedgerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExportJournalToS3",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ExportJournalToS3"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExportJournalToS3Response"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExportJournalToS3Request"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBlock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBlock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBlockResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBlockRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDigest",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDigest"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDigestResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDigestRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRevisionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRevisionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJournalKinesisStreamsForLedger",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListJournalKinesisStreamsForLedger"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJournalKinesisStreamsForLedgerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJournalKinesisStreamsForLedgerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJournalS3Exports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListJournalS3Exports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJournalS3ExportsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJournalS3ExportsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJournalS3ExportsForLedger",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListJournalS3ExportsForLedger"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJournalS3ExportsForLedgerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJournalS3ExportsForLedgerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLedgers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLedgers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLedgersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLedgersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StreamJournalToKinesis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StreamJournalToKinesis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StreamJournalToKinesisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StreamJournalToKinesisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLedger",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLedger"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLedgerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLedgerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLedgerPermissionsMode",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLedgerPermissionsMode"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLedgerPermissionsModeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLedgerPermissionsModeRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CancelJournalKinesisStreamResponse": {
+            "type": "object",
+            "properties": {
+                "StreamId": {
+                    "$ref": "#/$defs/UniqueId"
+                }
+            }
+        },
+        "UniqueId": {
+            "type": "string"
+        },
+        "CancelJournalKinesisStreamRequest": {
+            "type": "object",
+            "properties": {
+                "LedgerName": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "StreamId": {
+                    "$ref": "#/$defs/UniqueId"
+                }
+            }
+        },
+        "LedgerName": {
+            "type": "string"
+        },
+        "CreateLedgerResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "State": {
+                    "$ref": "#/$defs/LedgerState"
+                },
+                "CreationDateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "PermissionsMode": {
+                    "$ref": "#/$defs/PermissionsMode"
+                },
+                "DeletionProtection": {
+                    "$ref": "#/$defs/DeletionProtection"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "LedgerState": {
+            "enum": [
+                "CREATING",
+                "ACTIVE",
+                "DELETING",
+                "DELETED"
+            ]
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "PermissionsMode": {
+            "enum": [
+                "ALLOW_ALL",
+                "STANDARD"
+            ]
+        },
+        "DeletionProtection": {
+            "type": "boolean"
+        },
+        "CreateLedgerRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "PermissionsMode": {
+                    "$ref": "#/$defs/PermissionsMode"
+                },
+                "DeletionProtection": {
+                    "$ref": "#/$defs/DeletionProtection"
+                },
+                "KmsKey": {
+                    "$ref": "#/$defs/KmsKey"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "KmsKey": {
+            "type": "string"
+        },
+        "DeleteLedgerRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                }
+            }
+        },
+        "DescribeJournalKinesisStreamResponse": {
+            "type": "object",
+            "properties": {
+                "Stream": {
+                    "$ref": "#/$defs/JournalKinesisStreamDescription"
+                }
+            }
+        },
+        "JournalKinesisStreamDescription": {
+            "type": "object",
+            "properties": {
+                "LedgerName": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "InclusiveStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExclusiveEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "StreamId": {
+                    "$ref": "#/$defs/UniqueId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StreamStatus"
+                },
+                "KinesisConfiguration": {
+                    "$ref": "#/$defs/KinesisConfiguration"
+                },
+                "ErrorCause": {
+                    "$ref": "#/$defs/ErrorCause"
+                },
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                }
+            }
+        },
+        "StreamStatus": {
+            "enum": [
+                "ACTIVE",
+                "COMPLETED",
+                "CANCELED",
+                "FAILED",
+                "IMPAIRED"
+            ]
+        },
+        "KinesisConfiguration": {
+            "type": "object",
+            "properties": {
+                "StreamArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AggregationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "ErrorCause": {
+            "enum": [
+                "KINESIS_STREAM_NOT_FOUND",
+                "IAM_PERMISSION_REVOKED"
+            ]
+        },
+        "StreamName": {
+            "type": "string"
+        },
+        "DescribeJournalKinesisStreamRequest": {
+            "type": "object",
+            "properties": {
+                "LedgerName": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "StreamId": {
+                    "$ref": "#/$defs/UniqueId"
+                }
+            }
+        },
+        "DescribeJournalS3ExportResponse": {
+            "type": "object",
+            "properties": {
+                "ExportDescription": {
+                    "$ref": "#/$defs/JournalS3ExportDescription"
+                }
+            }
+        },
+        "JournalS3ExportDescription": {
+            "type": "object",
+            "properties": {
+                "LedgerName": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "ExportId": {
+                    "$ref": "#/$defs/UniqueId"
+                },
+                "ExportCreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ExportStatus"
+                },
+                "InclusiveStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExclusiveEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "S3ExportConfiguration": {
+                    "$ref": "#/$defs/S3ExportConfiguration"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "OutputFormat": {
+                    "$ref": "#/$defs/OutputFormat"
+                }
+            }
+        },
+        "ExportStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETED",
+                "CANCELLED"
+            ]
+        },
+        "S3ExportConfiguration": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/S3Prefix"
+                },
+                "EncryptionConfiguration": {
+                    "$ref": "#/$defs/S3EncryptionConfiguration"
+                }
+            }
+        },
+        "S3Bucket": {
+            "type": "string"
+        },
+        "S3Prefix": {
+            "type": "string"
+        },
+        "S3EncryptionConfiguration": {
+            "type": "object",
+            "properties": {
+                "ObjectEncryptionType": {
+                    "$ref": "#/$defs/S3ObjectEncryptionType"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "S3ObjectEncryptionType": {
+            "enum": [
+                "SSE_KMS",
+                "SSE_S3",
+                "NO_ENCRYPTION"
+            ]
+        },
+        "OutputFormat": {
+            "enum": [
+                "ION_BINARY",
+                "ION_TEXT",
+                "JSON"
+            ]
+        },
+        "DescribeJournalS3ExportRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "ExportId": {
+                    "$ref": "#/$defs/UniqueId"
+                }
+            }
+        },
+        "DescribeLedgerResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "State": {
+                    "$ref": "#/$defs/LedgerState"
+                },
+                "CreationDateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "PermissionsMode": {
+                    "$ref": "#/$defs/PermissionsMode"
+                },
+                "DeletionProtection": {
+                    "$ref": "#/$defs/DeletionProtection"
+                },
+                "EncryptionDescription": {
+                    "$ref": "#/$defs/LedgerEncryptionDescription"
+                }
+            }
+        },
+        "LedgerEncryptionDescription": {
+            "type": "object",
+            "properties": {
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "EncryptionStatus": {
+                    "$ref": "#/$defs/EncryptionStatus"
+                },
+                "InaccessibleKmsKeyDateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "EncryptionStatus": {
+            "enum": [
+                "ENABLED",
+                "UPDATING",
+                "KMS_KEY_INACCESSIBLE"
+            ]
+        },
+        "DescribeLedgerRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                }
+            }
+        },
+        "ExportJournalToS3Response": {
+            "type": "object",
+            "properties": {
+                "ExportId": {
+                    "$ref": "#/$defs/UniqueId"
+                }
+            }
+        },
+        "ExportJournalToS3Request": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "InclusiveStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExclusiveEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "S3ExportConfiguration": {
+                    "$ref": "#/$defs/S3ExportConfiguration"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "OutputFormat": {
+                    "$ref": "#/$defs/OutputFormat"
+                }
+            }
+        },
+        "GetBlockResponse": {
+            "type": "object",
+            "properties": {
+                "Block": {
+                    "$ref": "#/$defs/ValueHolder"
+                },
+                "Proof": {
+                    "$ref": "#/$defs/ValueHolder"
+                }
+            }
+        },
+        "ValueHolder": {
+            "type": "object",
+            "properties": {
+                "IonText": {
+                    "$ref": "#/$defs/IonText"
+                }
+            }
+        },
+        "IonText": {
+            "type": "string"
+        },
+        "GetBlockRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "BlockAddress": {
+                    "$ref": "#/$defs/ValueHolder"
+                },
+                "DigestTipAddress": {
+                    "$ref": "#/$defs/ValueHolder"
+                }
+            }
+        },
+        "GetDigestResponse": {
+            "type": "object",
+            "properties": {
+                "Digest": {
+                    "$ref": "#/$defs/Digest"
+                },
+                "DigestTipAddress": {
+                    "$ref": "#/$defs/ValueHolder"
+                }
+            }
+        },
+        "Digest": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetDigestRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                }
+            }
+        },
+        "GetRevisionResponse": {
+            "type": "object",
+            "properties": {
+                "Proof": {
+                    "$ref": "#/$defs/ValueHolder"
+                },
+                "Revision": {
+                    "$ref": "#/$defs/ValueHolder"
+                }
+            }
+        },
+        "GetRevisionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "BlockAddress": {
+                    "$ref": "#/$defs/ValueHolder"
+                },
+                "DocumentId": {
+                    "$ref": "#/$defs/UniqueId"
+                },
+                "DigestTipAddress": {
+                    "$ref": "#/$defs/ValueHolder"
+                }
+            }
+        },
+        "ListJournalKinesisStreamsForLedgerResponse": {
+            "type": "object",
+            "properties": {
+                "Streams": {
+                    "$ref": "#/$defs/JournalKinesisStreamDescriptionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "JournalKinesisStreamDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JournalKinesisStreamDescription"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListJournalKinesisStreamsForLedgerRequest": {
+            "type": "object",
+            "properties": {
+                "LedgerName": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListJournalS3ExportsResponse": {
+            "type": "object",
+            "properties": {
+                "JournalS3Exports": {
+                    "$ref": "#/$defs/JournalS3ExportList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "JournalS3ExportList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JournalS3ExportDescription"
+            }
+        },
+        "ListJournalS3ExportsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListJournalS3ExportsForLedgerResponse": {
+            "type": "object",
+            "properties": {
+                "JournalS3Exports": {
+                    "$ref": "#/$defs/JournalS3ExportList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListJournalS3ExportsForLedgerRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListLedgersResponse": {
+            "type": "object",
+            "properties": {
+                "Ledgers": {
+                    "$ref": "#/$defs/LedgerList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "LedgerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LedgerSummary"
+            }
+        },
+        "LedgerSummary": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "State": {
+                    "$ref": "#/$defs/LedgerState"
+                },
+                "CreationDateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListLedgersRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "StreamJournalToKinesisResponse": {
+            "type": "object",
+            "properties": {
+                "StreamId": {
+                    "$ref": "#/$defs/UniqueId"
+                }
+            }
+        },
+        "StreamJournalToKinesisRequest": {
+            "type": "object",
+            "properties": {
+                "LedgerName": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "InclusiveStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExclusiveEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "KinesisConfiguration": {
+                    "$ref": "#/$defs/KinesisConfiguration"
+                },
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateLedgerResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "State": {
+                    "$ref": "#/$defs/LedgerState"
+                },
+                "CreationDateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DeletionProtection": {
+                    "$ref": "#/$defs/DeletionProtection"
+                },
+                "EncryptionDescription": {
+                    "$ref": "#/$defs/LedgerEncryptionDescription"
+                }
+            }
+        },
+        "UpdateLedgerRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "DeletionProtection": {
+                    "$ref": "#/$defs/DeletionProtection"
+                },
+                "KmsKey": {
+                    "$ref": "#/$defs/KmsKey"
+                }
+            }
+        },
+        "UpdateLedgerPermissionsModeResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "PermissionsMode": {
+                    "$ref": "#/$defs/PermissionsMode"
+                }
+            }
+        },
+        "UpdateLedgerPermissionsModeRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "PermissionsMode": {
+                    "$ref": "#/$defs/PermissionsMode"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://qldb-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://qldb-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://qldb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://qldb.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

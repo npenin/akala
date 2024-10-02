@@ -1,0 +1,1663 @@
+{
+    "name": "chime",
+    "commands": [
+        {
+            "name": "BatchCreateAttendee",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchCreateAttendee"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchCreateAttendeeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchCreateAttendeeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchUpdateAttendeeCapabilitiesExcept",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchUpdateAttendeeCapabilitiesExcept"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchUpdateAttendeeCapabilitiesExceptRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAttendee",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAttendee"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAttendeeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAttendeeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateMeeting",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateMeeting"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateMeetingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateMeetingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateMeetingWithAttendees",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateMeetingWithAttendees"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateMeetingWithAttendeesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateMeetingWithAttendeesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAttendee",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAttendee"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAttendeeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMeeting",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMeeting"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMeetingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAttendee",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAttendee"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAttendeeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAttendeeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMeeting",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMeeting"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMeetingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMeetingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAttendees",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAttendees"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAttendeesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAttendeesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartMeetingTranscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartMeetingTranscription"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartMeetingTranscriptionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopMeetingTranscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopMeetingTranscription"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopMeetingTranscriptionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAttendeeCapabilities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAttendeeCapabilities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAttendeeCapabilitiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAttendeeCapabilitiesRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchCreateAttendeeResponse": {
+            "type": "object",
+            "properties": {
+                "Attendees": {
+                    "$ref": "#/$defs/AttendeeList"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/BatchCreateAttendeeErrorList"
+                }
+            }
+        },
+        "AttendeeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Attendee"
+            }
+        },
+        "Attendee": {
+            "type": "object",
+            "properties": {
+                "ExternalUserId": {
+                    "$ref": "#/$defs/ExternalUserId"
+                },
+                "AttendeeId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "JoinToken": {
+                    "$ref": "#/$defs/JoinTokenString"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/AttendeeCapabilities"
+                }
+            }
+        },
+        "ExternalUserId": {
+            "type": "string"
+        },
+        "GuidString": {
+            "type": "string"
+        },
+        "JoinTokenString": {
+            "type": "string"
+        },
+        "AttendeeCapabilities": {
+            "type": "object",
+            "properties": {
+                "Audio": {
+                    "$ref": "#/$defs/MediaCapabilities"
+                },
+                "Video": {
+                    "$ref": "#/$defs/MediaCapabilities"
+                },
+                "Content": {
+                    "$ref": "#/$defs/MediaCapabilities"
+                }
+            }
+        },
+        "MediaCapabilities": {
+            "enum": [
+                "SEND_RECEIVE",
+                "SEND",
+                "RECEIVE",
+                "NONE"
+            ]
+        },
+        "BatchCreateAttendeeErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateAttendeeError"
+            }
+        },
+        "CreateAttendeeError": {
+            "type": "object",
+            "properties": {
+                "ExternalUserId": {
+                    "$ref": "#/$defs/ExternalUserId"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "BatchCreateAttendeeRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "Attendees": {
+                    "$ref": "#/$defs/CreateAttendeeRequestItemList"
+                }
+            }
+        },
+        "CreateAttendeeRequestItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateAttendeeRequestItem"
+            }
+        },
+        "CreateAttendeeRequestItem": {
+            "type": "object",
+            "properties": {
+                "ExternalUserId": {
+                    "$ref": "#/$defs/ExternalUserId"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/AttendeeCapabilities"
+                }
+            }
+        },
+        "BatchUpdateAttendeeCapabilitiesExceptRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "ExcludedAttendeeIds": {
+                    "$ref": "#/$defs/AttendeeIdsList"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/AttendeeCapabilities"
+                }
+            }
+        },
+        "AttendeeIdsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttendeeIdItem"
+            }
+        },
+        "AttendeeIdItem": {
+            "type": "object",
+            "properties": {
+                "AttendeeId": {
+                    "$ref": "#/$defs/GuidString"
+                }
+            }
+        },
+        "CreateAttendeeResponse": {
+            "type": "object",
+            "properties": {
+                "Attendee": {
+                    "$ref": "#/$defs/Attendee"
+                }
+            }
+        },
+        "CreateAttendeeRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "ExternalUserId": {
+                    "$ref": "#/$defs/ExternalUserId"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/AttendeeCapabilities"
+                }
+            }
+        },
+        "CreateMeetingResponse": {
+            "type": "object",
+            "properties": {
+                "Meeting": {
+                    "$ref": "#/$defs/Meeting"
+                }
+            }
+        },
+        "Meeting": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "MeetingHostId": {
+                    "$ref": "#/$defs/ExternalUserId"
+                },
+                "ExternalMeetingId": {
+                    "$ref": "#/$defs/ExternalMeetingId"
+                },
+                "MediaRegion": {
+                    "$ref": "#/$defs/MediaRegion"
+                },
+                "MediaPlacement": {
+                    "$ref": "#/$defs/MediaPlacement"
+                },
+                "MeetingFeatures": {
+                    "$ref": "#/$defs/MeetingFeaturesConfiguration"
+                },
+                "PrimaryMeetingId": {
+                    "$ref": "#/$defs/PrimaryMeetingId"
+                },
+                "TenantIds": {
+                    "$ref": "#/$defs/TenantIdList"
+                },
+                "MeetingArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "ExternalMeetingId": {
+            "type": "string"
+        },
+        "MediaRegion": {
+            "type": "string"
+        },
+        "MediaPlacement": {
+            "type": "object",
+            "properties": {
+                "AudioHostUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "AudioFallbackUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "SignalingUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "TurnControlUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "ScreenDataUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "ScreenViewingUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "ScreenSharingUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventIngestionUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "MeetingFeaturesConfiguration": {
+            "type": "object",
+            "properties": {
+                "Audio": {
+                    "$ref": "#/$defs/AudioFeatures"
+                },
+                "Video": {
+                    "$ref": "#/$defs/VideoFeatures"
+                },
+                "Content": {
+                    "$ref": "#/$defs/ContentFeatures"
+                },
+                "Attendee": {
+                    "$ref": "#/$defs/AttendeeFeatures"
+                }
+            }
+        },
+        "AudioFeatures": {
+            "type": "object",
+            "properties": {
+                "EchoReduction": {
+                    "$ref": "#/$defs/MeetingFeatureStatus"
+                }
+            }
+        },
+        "MeetingFeatureStatus": {
+            "enum": [
+                "AVAILABLE",
+                "UNAVAILABLE"
+            ]
+        },
+        "VideoFeatures": {
+            "type": "object",
+            "properties": {
+                "MaxResolution": {
+                    "$ref": "#/$defs/VideoResolution"
+                }
+            }
+        },
+        "VideoResolution": {
+            "enum": [
+                "NONE",
+                "HD",
+                "FHD"
+            ]
+        },
+        "ContentFeatures": {
+            "type": "object",
+            "properties": {
+                "MaxResolution": {
+                    "$ref": "#/$defs/ContentResolution"
+                }
+            }
+        },
+        "ContentResolution": {
+            "enum": [
+                "NONE",
+                "FHD",
+                "UHD"
+            ]
+        },
+        "AttendeeFeatures": {
+            "type": "object",
+            "properties": {
+                "MaxCount": {
+                    "$ref": "#/$defs/AttendeeMax"
+                }
+            }
+        },
+        "AttendeeMax": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PrimaryMeetingId": {
+            "type": "string"
+        },
+        "TenantIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TenantId"
+            }
+        },
+        "TenantId": {
+            "type": "string"
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "CreateMeetingRequest": {
+            "type": "object",
+            "properties": {
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "MediaRegion": {
+                    "$ref": "#/$defs/MediaRegion"
+                },
+                "MeetingHostId": {
+                    "$ref": "#/$defs/ExternalUserId"
+                },
+                "ExternalMeetingId": {
+                    "$ref": "#/$defs/ExternalMeetingId"
+                },
+                "NotificationsConfiguration": {
+                    "$ref": "#/$defs/NotificationsConfiguration"
+                },
+                "MeetingFeatures": {
+                    "$ref": "#/$defs/MeetingFeaturesConfiguration"
+                },
+                "PrimaryMeetingId": {
+                    "$ref": "#/$defs/PrimaryMeetingId"
+                },
+                "TenantIds": {
+                    "$ref": "#/$defs/TenantIdList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "NotificationsConfiguration": {
+            "type": "object",
+            "properties": {
+                "LambdaFunctionArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "SnsTopicArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "SqsQueueArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateMeetingWithAttendeesResponse": {
+            "type": "object",
+            "properties": {
+                "Meeting": {
+                    "$ref": "#/$defs/Meeting"
+                },
+                "Attendees": {
+                    "$ref": "#/$defs/AttendeeList"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/BatchCreateAttendeeErrorList"
+                }
+            }
+        },
+        "CreateMeetingWithAttendeesRequest": {
+            "type": "object",
+            "properties": {
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "MediaRegion": {
+                    "$ref": "#/$defs/MediaRegion"
+                },
+                "MeetingHostId": {
+                    "$ref": "#/$defs/ExternalUserId"
+                },
+                "ExternalMeetingId": {
+                    "$ref": "#/$defs/ExternalMeetingId"
+                },
+                "MeetingFeatures": {
+                    "$ref": "#/$defs/MeetingFeaturesConfiguration"
+                },
+                "NotificationsConfiguration": {
+                    "$ref": "#/$defs/NotificationsConfiguration"
+                },
+                "Attendees": {
+                    "$ref": "#/$defs/CreateMeetingWithAttendeesRequestItemList"
+                },
+                "PrimaryMeetingId": {
+                    "$ref": "#/$defs/PrimaryMeetingId"
+                },
+                "TenantIds": {
+                    "$ref": "#/$defs/TenantIdList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CreateMeetingWithAttendeesRequestItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateAttendeeRequestItem"
+            }
+        },
+        "DeleteAttendeeRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "AttendeeId": {
+                    "$ref": "#/$defs/GuidString"
+                }
+            }
+        },
+        "DeleteMeetingRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                }
+            }
+        },
+        "GetAttendeeResponse": {
+            "type": "object",
+            "properties": {
+                "Attendee": {
+                    "$ref": "#/$defs/Attendee"
+                }
+            }
+        },
+        "GetAttendeeRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "AttendeeId": {
+                    "$ref": "#/$defs/GuidString"
+                }
+            }
+        },
+        "GetMeetingResponse": {
+            "type": "object",
+            "properties": {
+                "Meeting": {
+                    "$ref": "#/$defs/Meeting"
+                }
+            }
+        },
+        "GetMeetingRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                }
+            }
+        },
+        "ListAttendeesResponse": {
+            "type": "object",
+            "properties": {
+                "Attendees": {
+                    "$ref": "#/$defs/AttendeeList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListAttendeesRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultMax"
+                }
+            }
+        },
+        "ResultMax": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "StartMeetingTranscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "TranscriptionConfiguration": {
+                    "$ref": "#/$defs/TranscriptionConfiguration"
+                }
+            }
+        },
+        "TranscriptionConfiguration": {
+            "type": "object",
+            "properties": {
+                "EngineTranscribeSettings": {
+                    "$ref": "#/$defs/EngineTranscribeSettings"
+                },
+                "EngineTranscribeMedicalSettings": {
+                    "$ref": "#/$defs/EngineTranscribeMedicalSettings"
+                }
+            }
+        },
+        "EngineTranscribeSettings": {
+            "type": "object",
+            "properties": {
+                "LanguageCode": {
+                    "$ref": "#/$defs/TranscribeLanguageCode"
+                },
+                "VocabularyFilterMethod": {
+                    "$ref": "#/$defs/TranscribeVocabularyFilterMethod"
+                },
+                "VocabularyFilterName": {
+                    "$ref": "#/$defs/String"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/TranscribeRegion"
+                },
+                "EnablePartialResultsStabilization": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PartialResultsStability": {
+                    "$ref": "#/$defs/TranscribePartialResultsStability"
+                },
+                "ContentIdentificationType": {
+                    "$ref": "#/$defs/TranscribeContentIdentificationType"
+                },
+                "ContentRedactionType": {
+                    "$ref": "#/$defs/TranscribeContentRedactionType"
+                },
+                "PiiEntityTypes": {
+                    "$ref": "#/$defs/TranscribePiiEntityTypes"
+                },
+                "LanguageModelName": {
+                    "$ref": "#/$defs/TranscribeLanguageModelName"
+                },
+                "IdentifyLanguage": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "LanguageOptions": {
+                    "$ref": "#/$defs/TranscribeLanguageOptions"
+                },
+                "PreferredLanguage": {
+                    "$ref": "#/$defs/TranscribeLanguageCode"
+                },
+                "VocabularyNames": {
+                    "$ref": "#/$defs/TranscribeVocabularyNamesOrFilterNamesString"
+                },
+                "VocabularyFilterNames": {
+                    "$ref": "#/$defs/TranscribeVocabularyNamesOrFilterNamesString"
+                }
+            }
+        },
+        "TranscribeLanguageCode": {
+            "enum": [
+                "EN_US",
+                "EN_GB",
+                "ES_US",
+                "FR_CA",
+                "FR_FR",
+                "EN_AU",
+                "IT_IT",
+                "DE_DE",
+                "PT_BR",
+                "JA_JP",
+                "KO_KR",
+                "ZH_CN",
+                "TH_TH",
+                "HI_IN"
+            ]
+        },
+        "TranscribeVocabularyFilterMethod": {
+            "enum": [
+                "REMOVE",
+                "MASK",
+                "TAG"
+            ]
+        },
+        "TranscribeRegion": {
+            "enum": [
+                "US_EAST_2",
+                "US_EAST_1",
+                "US_WEST_2",
+                "AP_NORTHEAST_2",
+                "AP_SOUTHEAST_2",
+                "AP_NORTHEAST_1",
+                "CA_CENTRAL_1",
+                "EU_CENTRAL_1",
+                "EU_WEST_1",
+                "EU_WEST_2",
+                "SA_EAST_1",
+                "AUTO",
+                "US_GOV_WEST_1"
+            ]
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "TranscribePartialResultsStability": {
+            "enum": [
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ]
+        },
+        "TranscribeContentIdentificationType": {
+            "enum": [
+                "PII"
+            ]
+        },
+        "TranscribeContentRedactionType": {
+            "enum": [
+                "PII"
+            ]
+        },
+        "TranscribePiiEntityTypes": {
+            "type": "string"
+        },
+        "TranscribeLanguageModelName": {
+            "type": "string"
+        },
+        "TranscribeLanguageOptions": {
+            "type": "string"
+        },
+        "TranscribeVocabularyNamesOrFilterNamesString": {
+            "type": "string"
+        },
+        "EngineTranscribeMedicalSettings": {
+            "type": "object",
+            "properties": {
+                "LanguageCode": {
+                    "$ref": "#/$defs/TranscribeMedicalLanguageCode"
+                },
+                "Specialty": {
+                    "$ref": "#/$defs/TranscribeMedicalSpecialty"
+                },
+                "Type": {
+                    "$ref": "#/$defs/TranscribeMedicalType"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/TranscribeMedicalRegion"
+                },
+                "ContentIdentificationType": {
+                    "$ref": "#/$defs/TranscribeMedicalContentIdentificationType"
+                }
+            }
+        },
+        "TranscribeMedicalLanguageCode": {
+            "enum": [
+                "EN_US"
+            ]
+        },
+        "TranscribeMedicalSpecialty": {
+            "enum": [
+                "PRIMARYCARE",
+                "CARDIOLOGY",
+                "NEUROLOGY",
+                "ONCOLOGY",
+                "RADIOLOGY",
+                "UROLOGY"
+            ]
+        },
+        "TranscribeMedicalType": {
+            "enum": [
+                "CONVERSATION",
+                "DICTATION"
+            ]
+        },
+        "TranscribeMedicalRegion": {
+            "enum": [
+                "US_EAST_1",
+                "US_EAST_2",
+                "US_WEST_2",
+                "AP_SOUTHEAST_2",
+                "CA_CENTRAL_1",
+                "EU_WEST_1",
+                "AUTO"
+            ]
+        },
+        "TranscribeMedicalContentIdentificationType": {
+            "enum": [
+                "PHI"
+            ]
+        },
+        "StopMeetingTranscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateAttendeeCapabilitiesResponse": {
+            "type": "object",
+            "properties": {
+                "Attendee": {
+                    "$ref": "#/$defs/Attendee"
+                }
+            }
+        },
+        "UpdateAttendeeCapabilitiesRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "AttendeeId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/AttendeeCapabilities"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://meetings-chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://meetings-chime-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://meetings-chime.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://meetings-chime.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,3126 @@
+{
+    "name": "mturk-requester",
+    "commands": [
+        {
+            "name": "AcceptQualificationRequest",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AcceptQualificationRequest"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AcceptQualificationRequestResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AcceptQualificationRequestRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ApproveAssignment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ApproveAssignment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApproveAssignmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ApproveAssignmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateQualificationWithWorker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateQualificationWithWorker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateQualificationWithWorkerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateQualificationWithWorkerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAdditionalAssignmentsForHIT",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAdditionalAssignmentsForHIT"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAdditionalAssignmentsForHITResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAdditionalAssignmentsForHITRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateHIT",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateHIT"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateHITResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateHITRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateHITType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateHITType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateHITTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateHITTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateHITWithHITType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateHITWithHITType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateHITWithHITTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateHITWithHITTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateQualificationType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateQualificationType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateQualificationTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateQualificationTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateWorkerBlock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateWorkerBlock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateWorkerBlockResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateWorkerBlockRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteHIT",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteHIT"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteHITResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteHITRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteQualificationType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteQualificationType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteQualificationTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteQualificationTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteWorkerBlock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteWorkerBlock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteWorkerBlockResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteWorkerBlockRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateQualificationFromWorker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateQualificationFromWorker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateQualificationFromWorkerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateQualificationFromWorkerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccountBalance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccountBalance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAccountBalanceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAccountBalanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAssignment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAssignment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAssignmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAssignmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFileUploadURL",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFileUploadURL"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFileUploadURLResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFileUploadURLRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetHIT",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetHIT"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetHITResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetHITRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetQualificationScore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetQualificationScore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQualificationScoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQualificationScoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetQualificationType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetQualificationType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQualificationTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQualificationTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssignmentsForHIT",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAssignmentsForHIT"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssignmentsForHITResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssignmentsForHITRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBonusPayments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListBonusPayments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBonusPaymentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBonusPaymentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListHITs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListHITs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListHITsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListHITsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListHITsForQualificationType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListHITsForQualificationType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListHITsForQualificationTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListHITsForQualificationTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQualificationRequests",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListQualificationRequests"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQualificationRequestsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListQualificationRequestsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQualificationTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListQualificationTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQualificationTypesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListQualificationTypesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReviewableHITs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReviewableHITs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReviewableHITsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReviewableHITsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReviewPolicyResultsForHIT",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReviewPolicyResultsForHIT"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReviewPolicyResultsForHITResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReviewPolicyResultsForHITRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListWorkerBlocks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListWorkerBlocks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListWorkerBlocksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListWorkerBlocksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListWorkersWithQualificationType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListWorkersWithQualificationType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListWorkersWithQualificationTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListWorkersWithQualificationTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "NotifyWorkers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "NotifyWorkers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/NotifyWorkersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/NotifyWorkersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RejectAssignment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RejectAssignment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RejectAssignmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RejectAssignmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RejectQualificationRequest",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RejectQualificationRequest"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RejectQualificationRequestResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RejectQualificationRequestRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SendBonus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendBonus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendBonusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendBonusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SendTestEventNotification",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendTestEventNotification"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendTestEventNotificationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendTestEventNotificationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateExpirationForHIT",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateExpirationForHIT"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateExpirationForHITResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateExpirationForHITRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateHITReviewStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateHITReviewStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateHITReviewStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateHITReviewStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateHITTypeOfHIT",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateHITTypeOfHIT"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateHITTypeOfHITResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateHITTypeOfHITRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateNotificationSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateNotificationSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateNotificationSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateNotificationSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateQualificationType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateQualificationType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateQualificationTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateQualificationTypeRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AcceptQualificationRequestResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "AcceptQualificationRequestRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationRequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "IntegerValue": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ApproveAssignmentResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "ApproveAssignmentRequest": {
+            "type": "object",
+            "properties": {
+                "AssignmentId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "RequesterFeedback": {
+                    "$ref": "#/$defs/String"
+                },
+                "OverrideRejection": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "EntityId": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "AssociateQualificationWithWorkerResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "AssociateQualificationWithWorkerRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "IntegerValue": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "SendNotification": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "CustomerId": {
+            "type": "string"
+        },
+        "CreateAdditionalAssignmentsForHITResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateAdditionalAssignmentsForHITRequest": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "NumberOfAdditionalAssignments": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "UniqueRequestToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                }
+            }
+        },
+        "IdempotencyToken": {
+            "type": "string"
+        },
+        "CreateHITResponse": {
+            "type": "object",
+            "properties": {
+                "HIT": {
+                    "$ref": "#/$defs/HIT"
+                }
+            }
+        },
+        "HIT": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "HITTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "HITGroupId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "HITLayoutId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Title": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "Question": {
+                    "$ref": "#/$defs/String"
+                },
+                "Keywords": {
+                    "$ref": "#/$defs/String"
+                },
+                "HITStatus": {
+                    "$ref": "#/$defs/HITStatus"
+                },
+                "MaxAssignments": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Reward": {
+                    "$ref": "#/$defs/CurrencyAmount"
+                },
+                "AutoApprovalDelayInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Expiration": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "AssignmentDurationInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "RequesterAnnotation": {
+                    "$ref": "#/$defs/String"
+                },
+                "QualificationRequirements": {
+                    "$ref": "#/$defs/QualificationRequirementList"
+                },
+                "HITReviewStatus": {
+                    "$ref": "#/$defs/HITReviewStatus"
+                },
+                "NumberOfAssignmentsPending": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NumberOfAssignmentsAvailable": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NumberOfAssignmentsCompleted": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "HITStatus": {
+            "enum": [
+                "Assignable",
+                "Unassignable",
+                "Reviewable",
+                "Reviewing",
+                "Disposed"
+            ]
+        },
+        "CurrencyAmount": {
+            "type": "string"
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "QualificationRequirementList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QualificationRequirement"
+            }
+        },
+        "QualificationRequirement": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Comparator": {
+                    "$ref": "#/$defs/Comparator"
+                },
+                "IntegerValues": {
+                    "$ref": "#/$defs/IntegerList"
+                },
+                "LocaleValues": {
+                    "$ref": "#/$defs/LocaleList"
+                },
+                "RequiredToPreview": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ActionsGuarded": {
+                    "$ref": "#/$defs/HITAccessActions"
+                }
+            }
+        },
+        "Comparator": {
+            "enum": [
+                "LessThan",
+                "LessThanOrEqualTo",
+                "GreaterThan",
+                "GreaterThanOrEqualTo",
+                "EqualTo",
+                "NotEqualTo",
+                "Exists",
+                "DoesNotExist",
+                "In",
+                "NotIn"
+            ]
+        },
+        "IntegerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Integer"
+            }
+        },
+        "LocaleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Locale"
+            }
+        },
+        "Locale": {
+            "type": "object",
+            "properties": {
+                "Country": {
+                    "$ref": "#/$defs/CountryParameters"
+                },
+                "Subdivision": {
+                    "$ref": "#/$defs/CountryParameters"
+                }
+            }
+        },
+        "CountryParameters": {
+            "type": "string"
+        },
+        "HITAccessActions": {
+            "enum": [
+                "Accept",
+                "PreviewAndAccept",
+                "DiscoverPreviewAndAccept"
+            ]
+        },
+        "HITReviewStatus": {
+            "enum": [
+                "NotReviewed",
+                "MarkedForReview",
+                "ReviewedAppropriate",
+                "ReviewedInappropriate"
+            ]
+        },
+        "CreateHITRequest": {
+            "type": "object",
+            "properties": {
+                "MaxAssignments": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "AutoApprovalDelayInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "LifetimeInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "AssignmentDurationInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Reward": {
+                    "$ref": "#/$defs/CurrencyAmount"
+                },
+                "Title": {
+                    "$ref": "#/$defs/String"
+                },
+                "Keywords": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "Question": {
+                    "$ref": "#/$defs/String"
+                },
+                "RequesterAnnotation": {
+                    "$ref": "#/$defs/String"
+                },
+                "QualificationRequirements": {
+                    "$ref": "#/$defs/QualificationRequirementList"
+                },
+                "UniqueRequestToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "AssignmentReviewPolicy": {
+                    "$ref": "#/$defs/ReviewPolicy"
+                },
+                "HITReviewPolicy": {
+                    "$ref": "#/$defs/ReviewPolicy"
+                },
+                "HITLayoutId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "HITLayoutParameters": {
+                    "$ref": "#/$defs/HITLayoutParameterList"
+                }
+            }
+        },
+        "ReviewPolicy": {
+            "type": "object",
+            "properties": {
+                "PolicyName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/PolicyParameterList"
+                }
+            }
+        },
+        "PolicyParameterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyParameter"
+            }
+        },
+        "PolicyParameter": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "Values": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "MapEntries": {
+                    "$ref": "#/$defs/ParameterMapEntryList"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ParameterMapEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ParameterMapEntry"
+            }
+        },
+        "ParameterMapEntry": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "Values": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "HITLayoutParameterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HITLayoutParameter"
+            }
+        },
+        "HITLayoutParameter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateHITTypeResponse": {
+            "type": "object",
+            "properties": {
+                "HITTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                }
+            }
+        },
+        "CreateHITTypeRequest": {
+            "type": "object",
+            "properties": {
+                "AutoApprovalDelayInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "AssignmentDurationInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Reward": {
+                    "$ref": "#/$defs/CurrencyAmount"
+                },
+                "Title": {
+                    "$ref": "#/$defs/String"
+                },
+                "Keywords": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "QualificationRequirements": {
+                    "$ref": "#/$defs/QualificationRequirementList"
+                }
+            }
+        },
+        "CreateHITWithHITTypeResponse": {
+            "type": "object",
+            "properties": {
+                "HIT": {
+                    "$ref": "#/$defs/HIT"
+                }
+            }
+        },
+        "CreateHITWithHITTypeRequest": {
+            "type": "object",
+            "properties": {
+                "HITTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "MaxAssignments": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "LifetimeInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Question": {
+                    "$ref": "#/$defs/String"
+                },
+                "RequesterAnnotation": {
+                    "$ref": "#/$defs/String"
+                },
+                "UniqueRequestToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "AssignmentReviewPolicy": {
+                    "$ref": "#/$defs/ReviewPolicy"
+                },
+                "HITReviewPolicy": {
+                    "$ref": "#/$defs/ReviewPolicy"
+                },
+                "HITLayoutId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "HITLayoutParameters": {
+                    "$ref": "#/$defs/HITLayoutParameterList"
+                }
+            }
+        },
+        "CreateQualificationTypeResponse": {
+            "type": "object",
+            "properties": {
+                "QualificationType": {
+                    "$ref": "#/$defs/QualificationType"
+                }
+            }
+        },
+        "QualificationType": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "Keywords": {
+                    "$ref": "#/$defs/String"
+                },
+                "QualificationTypeStatus": {
+                    "$ref": "#/$defs/QualificationTypeStatus"
+                },
+                "Test": {
+                    "$ref": "#/$defs/String"
+                },
+                "TestDurationInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "AnswerKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "RetryDelayInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "IsRequestable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoGranted": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoGrantedValue": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "QualificationTypeStatus": {
+            "enum": [
+                "Active",
+                "Inactive"
+            ]
+        },
+        "CreateQualificationTypeRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Keywords": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "QualificationTypeStatus": {
+                    "$ref": "#/$defs/QualificationTypeStatus"
+                },
+                "RetryDelayInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Test": {
+                    "$ref": "#/$defs/String"
+                },
+                "AnswerKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "TestDurationInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "AutoGranted": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoGrantedValue": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "CreateWorkerBlockResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateWorkerBlockRequest": {
+            "type": "object",
+            "properties": {
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteHITResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteHITRequest": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                }
+            }
+        },
+        "DeleteQualificationTypeResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteQualificationTypeRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                }
+            }
+        },
+        "DeleteWorkerBlockResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteWorkerBlockRequest": {
+            "type": "object",
+            "properties": {
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DisassociateQualificationFromWorkerResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisassociateQualificationFromWorkerRequest": {
+            "type": "object",
+            "properties": {
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetAccountBalanceResponse": {
+            "type": "object",
+            "properties": {
+                "AvailableBalance": {
+                    "$ref": "#/$defs/CurrencyAmount"
+                },
+                "OnHoldBalance": {
+                    "$ref": "#/$defs/CurrencyAmount"
+                }
+            }
+        },
+        "GetAccountBalanceRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetAssignmentResponse": {
+            "type": "object",
+            "properties": {
+                "Assignment": {
+                    "$ref": "#/$defs/Assignment"
+                },
+                "HIT": {
+                    "$ref": "#/$defs/HIT"
+                }
+            }
+        },
+        "Assignment": {
+            "type": "object",
+            "properties": {
+                "AssignmentId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "AssignmentStatus": {
+                    "$ref": "#/$defs/AssignmentStatus"
+                },
+                "AutoApprovalTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "AcceptTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SubmitTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ApprovalTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RejectionTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Deadline": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Answer": {
+                    "$ref": "#/$defs/String"
+                },
+                "RequesterFeedback": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AssignmentStatus": {
+            "enum": [
+                "Submitted",
+                "Approved",
+                "Rejected"
+            ]
+        },
+        "GetAssignmentRequest": {
+            "type": "object",
+            "properties": {
+                "AssignmentId": {
+                    "$ref": "#/$defs/EntityId"
+                }
+            }
+        },
+        "GetFileUploadURLResponse": {
+            "type": "object",
+            "properties": {
+                "FileUploadURL": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetFileUploadURLRequest": {
+            "type": "object",
+            "properties": {
+                "AssignmentId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "QuestionIdentifier": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetHITResponse": {
+            "type": "object",
+            "properties": {
+                "HIT": {
+                    "$ref": "#/$defs/HIT"
+                }
+            }
+        },
+        "GetHITRequest": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                }
+            }
+        },
+        "GetQualificationScoreResponse": {
+            "type": "object",
+            "properties": {
+                "Qualification": {
+                    "$ref": "#/$defs/Qualification"
+                }
+            }
+        },
+        "Qualification": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "GrantTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "IntegerValue": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "LocaleValue": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "Status": {
+                    "$ref": "#/$defs/QualificationStatus"
+                }
+            }
+        },
+        "QualificationStatus": {
+            "enum": [
+                "Granted",
+                "Revoked"
+            ]
+        },
+        "GetQualificationScoreRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                }
+            }
+        },
+        "GetQualificationTypeResponse": {
+            "type": "object",
+            "properties": {
+                "QualificationType": {
+                    "$ref": "#/$defs/QualificationType"
+                }
+            }
+        },
+        "GetQualificationTypeRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                }
+            }
+        },
+        "ListAssignmentsForHITResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "NumResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Assignments": {
+                    "$ref": "#/$defs/AssignmentList"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "AssignmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Assignment"
+            }
+        },
+        "ListAssignmentsForHITRequest": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultSize"
+                },
+                "AssignmentStatuses": {
+                    "$ref": "#/$defs/AssignmentStatusList"
+                }
+            }
+        },
+        "ResultSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AssignmentStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssignmentStatus"
+            }
+        },
+        "ListBonusPaymentsResponse": {
+            "type": "object",
+            "properties": {
+                "NumResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "BonusPayments": {
+                    "$ref": "#/$defs/BonusPaymentList"
+                }
+            }
+        },
+        "BonusPaymentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BonusPayment"
+            }
+        },
+        "BonusPayment": {
+            "type": "object",
+            "properties": {
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "BonusAmount": {
+                    "$ref": "#/$defs/CurrencyAmount"
+                },
+                "AssignmentId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "GrantTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListBonusPaymentsRequest": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "AssignmentId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultSize"
+                }
+            }
+        },
+        "ListHITsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "NumResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "HITs": {
+                    "$ref": "#/$defs/HITList"
+                }
+            }
+        },
+        "HITList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HIT"
+            }
+        },
+        "ListHITsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultSize"
+                }
+            }
+        },
+        "ListHITsForQualificationTypeResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "NumResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "HITs": {
+                    "$ref": "#/$defs/HITList"
+                }
+            }
+        },
+        "ListHITsForQualificationTypeRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultSize"
+                }
+            }
+        },
+        "ListQualificationRequestsResponse": {
+            "type": "object",
+            "properties": {
+                "NumResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "QualificationRequests": {
+                    "$ref": "#/$defs/QualificationRequestList"
+                }
+            }
+        },
+        "QualificationRequestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QualificationRequest"
+            }
+        },
+        "QualificationRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationRequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "Test": {
+                    "$ref": "#/$defs/String"
+                },
+                "Answer": {
+                    "$ref": "#/$defs/String"
+                },
+                "SubmitTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListQualificationRequestsRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultSize"
+                }
+            }
+        },
+        "ListQualificationTypesResponse": {
+            "type": "object",
+            "properties": {
+                "NumResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "QualificationTypes": {
+                    "$ref": "#/$defs/QualificationTypeList"
+                }
+            }
+        },
+        "QualificationTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QualificationType"
+            }
+        },
+        "ListQualificationTypesRequest": {
+            "type": "object",
+            "properties": {
+                "Query": {
+                    "$ref": "#/$defs/String"
+                },
+                "MustBeRequestable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "MustBeOwnedByCaller": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultSize"
+                }
+            }
+        },
+        "ListReviewableHITsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "NumResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "HITs": {
+                    "$ref": "#/$defs/HITList"
+                }
+            }
+        },
+        "ListReviewableHITsRequest": {
+            "type": "object",
+            "properties": {
+                "HITTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ReviewableHITStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultSize"
+                }
+            }
+        },
+        "ReviewableHITStatus": {
+            "enum": [
+                "Reviewable",
+                "Reviewing"
+            ]
+        },
+        "ListReviewPolicyResultsForHITResponse": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "AssignmentReviewPolicy": {
+                    "$ref": "#/$defs/ReviewPolicy"
+                },
+                "HITReviewPolicy": {
+                    "$ref": "#/$defs/ReviewPolicy"
+                },
+                "AssignmentReviewReport": {
+                    "$ref": "#/$defs/ReviewReport"
+                },
+                "HITReviewReport": {
+                    "$ref": "#/$defs/ReviewReport"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ReviewReport": {
+            "type": "object",
+            "properties": {
+                "ReviewResults": {
+                    "$ref": "#/$defs/ReviewResultDetailList"
+                },
+                "ReviewActions": {
+                    "$ref": "#/$defs/ReviewActionDetailList"
+                }
+            }
+        },
+        "ReviewResultDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReviewResultDetail"
+            }
+        },
+        "ReviewResultDetail": {
+            "type": "object",
+            "properties": {
+                "ActionId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "SubjectId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "SubjectType": {
+                    "$ref": "#/$defs/String"
+                },
+                "QuestionId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ReviewActionDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReviewActionDetail"
+            }
+        },
+        "ReviewActionDetail": {
+            "type": "object",
+            "properties": {
+                "ActionId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "ActionName": {
+                    "$ref": "#/$defs/String"
+                },
+                "TargetId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "TargetType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ReviewActionStatus"
+                },
+                "CompleteTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Result": {
+                    "$ref": "#/$defs/String"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ReviewActionStatus": {
+            "enum": [
+                "Intended",
+                "Succeeded",
+                "Failed",
+                "Cancelled"
+            ]
+        },
+        "ListReviewPolicyResultsForHITRequest": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "PolicyLevels": {
+                    "$ref": "#/$defs/ReviewPolicyLevelList"
+                },
+                "RetrieveActions": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RetrieveResults": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultSize"
+                }
+            }
+        },
+        "ReviewPolicyLevelList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReviewPolicyLevel"
+            }
+        },
+        "ReviewPolicyLevel": {
+            "enum": [
+                "Assignment",
+                "HIT"
+            ]
+        },
+        "ListWorkerBlocksResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "NumResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "WorkerBlocks": {
+                    "$ref": "#/$defs/WorkerBlockList"
+                }
+            }
+        },
+        "WorkerBlockList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WorkerBlock"
+            }
+        },
+        "WorkerBlock": {
+            "type": "object",
+            "properties": {
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListWorkerBlocksRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultSize"
+                }
+            }
+        },
+        "ListWorkersWithQualificationTypeResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "NumResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Qualifications": {
+                    "$ref": "#/$defs/QualificationList"
+                }
+            }
+        },
+        "QualificationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Qualification"
+            }
+        },
+        "ListWorkersWithQualificationTypeRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/QualificationStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ResultSize"
+                }
+            }
+        },
+        "NotifyWorkersResponse": {
+            "type": "object",
+            "properties": {
+                "NotifyWorkersFailureStatuses": {
+                    "$ref": "#/$defs/NotifyWorkersFailureStatusList"
+                }
+            }
+        },
+        "NotifyWorkersFailureStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NotifyWorkersFailureStatus"
+            }
+        },
+        "NotifyWorkersFailureStatus": {
+            "type": "object",
+            "properties": {
+                "NotifyWorkersFailureCode": {
+                    "$ref": "#/$defs/NotifyWorkersFailureCode"
+                },
+                "NotifyWorkersFailureMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                }
+            }
+        },
+        "NotifyWorkersFailureCode": {
+            "enum": [
+                "SoftFailure",
+                "HardFailure"
+            ]
+        },
+        "NotifyWorkersRequest": {
+            "type": "object",
+            "properties": {
+                "Subject": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageText": {
+                    "$ref": "#/$defs/String"
+                },
+                "WorkerIds": {
+                    "$ref": "#/$defs/CustomerIdList"
+                }
+            }
+        },
+        "CustomerIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CustomerId"
+            }
+        },
+        "RejectAssignmentResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "RejectAssignmentRequest": {
+            "type": "object",
+            "properties": {
+                "AssignmentId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "RequesterFeedback": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RejectQualificationRequestResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "RejectQualificationRequestRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationRequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SendBonusResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "SendBonusRequest": {
+            "type": "object",
+            "properties": {
+                "WorkerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "BonusAmount": {
+                    "$ref": "#/$defs/CurrencyAmount"
+                },
+                "AssignmentId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "UniqueRequestToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                }
+            }
+        },
+        "SendTestEventNotificationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "SendTestEventNotificationRequest": {
+            "type": "object",
+            "properties": {
+                "Notification": {
+                    "$ref": "#/$defs/NotificationSpecification"
+                },
+                "TestEventType": {
+                    "$ref": "#/$defs/EventType"
+                }
+            }
+        },
+        "NotificationSpecification": {
+            "type": "object",
+            "properties": {
+                "Destination": {
+                    "$ref": "#/$defs/String"
+                },
+                "Transport": {
+                    "$ref": "#/$defs/NotificationTransport"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventTypes": {
+                    "$ref": "#/$defs/EventTypeList"
+                }
+            }
+        },
+        "NotificationTransport": {
+            "enum": [
+                "Email",
+                "SQS",
+                "SNS"
+            ]
+        },
+        "EventTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventType"
+            }
+        },
+        "EventType": {
+            "enum": [
+                "AssignmentAccepted",
+                "AssignmentAbandoned",
+                "AssignmentReturned",
+                "AssignmentSubmitted",
+                "AssignmentRejected",
+                "AssignmentApproved",
+                "HITCreated",
+                "HITExpired",
+                "HITReviewable",
+                "HITExtended",
+                "HITDisposed",
+                "Ping"
+            ]
+        },
+        "UpdateExpirationForHITResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateExpirationForHITRequest": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "ExpireAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateHITReviewStatusResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateHITReviewStatusRequest": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "Revert": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "UpdateHITTypeOfHITResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateHITTypeOfHITRequest": {
+            "type": "object",
+            "properties": {
+                "HITId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "HITTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                }
+            }
+        },
+        "UpdateNotificationSettingsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateNotificationSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "HITTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "Notification": {
+                    "$ref": "#/$defs/NotificationSpecification"
+                },
+                "Active": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "UpdateQualificationTypeResponse": {
+            "type": "object",
+            "properties": {
+                "QualificationType": {
+                    "$ref": "#/$defs/QualificationType"
+                }
+            }
+        },
+        "UpdateQualificationTypeRequest": {
+            "type": "object",
+            "properties": {
+                "QualificationTypeId": {
+                    "$ref": "#/$defs/EntityId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "QualificationTypeStatus": {
+                    "$ref": "#/$defs/QualificationTypeStatus"
+                },
+                "Test": {
+                    "$ref": "#/$defs/String"
+                },
+                "AnswerKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "TestDurationInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "RetryDelayInSeconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "AutoGranted": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoGrantedValue": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mturk-requester-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mturk-requester-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mturk-requester.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            },
+                                            "sandbox"
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://mturk-requester-sandbox.us-east-1.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://mturk-requester.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

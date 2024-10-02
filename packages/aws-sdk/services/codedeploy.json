@@ -1,0 +1,4457 @@
+{
+    "name": "codedeploy",
+    "commands": [
+        {
+            "name": "AddTagsToOnPremisesInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddTagsToOnPremisesInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddTagsToOnPremisesInstancesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetApplicationRevisions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetApplicationRevisions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetApplicationRevisionsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetApplicationRevisionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetApplications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetApplicationsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetApplicationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetDeploymentGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetDeploymentGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetDeploymentGroupsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetDeploymentGroupsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetDeploymentInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetDeploymentInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetDeploymentInstancesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetDeploymentInstancesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetDeployments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetDeployments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetDeploymentsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetDeploymentsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetDeploymentTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetDeploymentTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetDeploymentTargetsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetDeploymentTargetsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetOnPremisesInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetOnPremisesInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetOnPremisesInstancesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetOnPremisesInstancesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ContinueDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ContinueDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ContinueDeploymentInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateApplicationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDeploymentOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDeploymentInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDeploymentConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDeploymentConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDeploymentConfigOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDeploymentConfigInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDeploymentGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDeploymentGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDeploymentGroupOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDeploymentGroupInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDeploymentConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDeploymentConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDeploymentConfigInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDeploymentGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDeploymentGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDeploymentGroupOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDeploymentGroupInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteGitHubAccountToken",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteGitHubAccountToken"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteGitHubAccountTokenOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteGitHubAccountTokenInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcesByExternalId",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcesByExternalId"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteResourcesByExternalIdOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcesByExternalIdInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterOnPremisesInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterOnPremisesInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterOnPremisesInstanceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetApplicationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetApplicationRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetApplicationRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetApplicationRevisionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetApplicationRevisionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeploymentOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeploymentInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeploymentConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeploymentConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeploymentConfigOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeploymentConfigInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeploymentGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeploymentGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeploymentGroupOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeploymentGroupInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeploymentInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeploymentInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeploymentInstanceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeploymentInstanceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeploymentTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeploymentTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeploymentTargetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeploymentTargetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetOnPremisesInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetOnPremisesInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetOnPremisesInstanceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetOnPremisesInstanceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApplicationRevisions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListApplicationRevisions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApplicationRevisionsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApplicationRevisionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListApplications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApplicationsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApplicationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeploymentConfigs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeploymentConfigs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDeploymentConfigsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeploymentConfigsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeploymentGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeploymentGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDeploymentGroupsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeploymentGroupsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeploymentInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeploymentInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDeploymentInstancesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeploymentInstancesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeployments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeployments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDeploymentsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeploymentsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeploymentTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeploymentTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDeploymentTargetsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeploymentTargetsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListGitHubAccountTokenNames",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListGitHubAccountTokenNames"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGitHubAccountTokenNamesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListGitHubAccountTokenNamesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOnPremisesInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOnPremisesInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOnPremisesInstancesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOnPremisesInstancesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutLifecycleEventHookExecutionStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutLifecycleEventHookExecutionStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutLifecycleEventHookExecutionStatusOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutLifecycleEventHookExecutionStatusInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterApplicationRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterApplicationRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterApplicationRevisionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterOnPremisesInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterOnPremisesInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterOnPremisesInstanceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveTagsFromOnPremisesInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveTagsFromOnPremisesInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveTagsFromOnPremisesInstancesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SkipWaitTimeForInstanceTermination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SkipWaitTimeForInstanceTermination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SkipWaitTimeForInstanceTerminationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopDeploymentOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopDeploymentInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDeploymentGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDeploymentGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDeploymentGroupOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDeploymentGroupInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddTagsToOnPremisesInstancesInput": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "instanceNames": {
+                    "$ref": "#/$defs/InstanceNameList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "Value": {
+                    "$ref": "#/$defs/Value"
+                }
+            }
+        },
+        "Key": {
+            "type": "string"
+        },
+        "Value": {
+            "type": "string"
+        },
+        "InstanceNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceName"
+            }
+        },
+        "InstanceName": {
+            "type": "string"
+        },
+        "BatchGetApplicationRevisionsOutput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "revisions": {
+                    "$ref": "#/$defs/RevisionInfoList"
+                }
+            }
+        },
+        "ApplicationName": {
+            "type": "string"
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "RevisionInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RevisionInfo"
+            }
+        },
+        "RevisionInfo": {
+            "type": "object",
+            "properties": {
+                "revisionLocation": {
+                    "$ref": "#/$defs/RevisionLocation"
+                },
+                "genericRevisionInfo": {
+                    "$ref": "#/$defs/GenericRevisionInfo"
+                }
+            }
+        },
+        "RevisionLocation": {
+            "type": "object",
+            "properties": {
+                "revisionType": {
+                    "$ref": "#/$defs/RevisionLocationType"
+                },
+                "s3Location": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "gitHubLocation": {
+                    "$ref": "#/$defs/GitHubLocation"
+                },
+                "string": {
+                    "$ref": "#/$defs/RawString"
+                },
+                "appSpecContent": {
+                    "$ref": "#/$defs/AppSpecContent"
+                }
+            }
+        },
+        "RevisionLocationType": {
+            "enum": [
+                "S3",
+                "GitHub",
+                "String",
+                "AppSpecContent"
+            ]
+        },
+        "S3Location": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "key": {
+                    "$ref": "#/$defs/S3Key"
+                },
+                "bundleType": {
+                    "$ref": "#/$defs/BundleType"
+                },
+                "version": {
+                    "$ref": "#/$defs/VersionId"
+                },
+                "eTag": {
+                    "$ref": "#/$defs/ETag"
+                }
+            }
+        },
+        "S3Bucket": {
+            "type": "string"
+        },
+        "S3Key": {
+            "type": "string"
+        },
+        "BundleType": {
+            "enum": [
+                "Tar",
+                "TarGZip",
+                "Zip",
+                "YAML",
+                "JSON"
+            ]
+        },
+        "VersionId": {
+            "type": "string"
+        },
+        "ETag": {
+            "type": "string"
+        },
+        "GitHubLocation": {
+            "type": "object",
+            "properties": {
+                "repository": {
+                    "$ref": "#/$defs/Repository"
+                },
+                "commitId": {
+                    "$ref": "#/$defs/CommitId"
+                }
+            }
+        },
+        "Repository": {
+            "type": "string"
+        },
+        "CommitId": {
+            "type": "string"
+        },
+        "RawString": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "$ref": "#/$defs/RawStringContent"
+                },
+                "sha256": {
+                    "$ref": "#/$defs/RawStringSha256"
+                }
+            }
+        },
+        "RawStringContent": {
+            "type": "string"
+        },
+        "RawStringSha256": {
+            "type": "string"
+        },
+        "AppSpecContent": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "$ref": "#/$defs/RawStringContent"
+                },
+                "sha256": {
+                    "$ref": "#/$defs/RawStringSha256"
+                }
+            }
+        },
+        "GenericRevisionInfo": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "deploymentGroups": {
+                    "$ref": "#/$defs/DeploymentGroupsList"
+                },
+                "firstUsedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUsedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "registerTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Description": {
+            "type": "string"
+        },
+        "DeploymentGroupsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentGroupName"
+            }
+        },
+        "DeploymentGroupName": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "BatchGetApplicationRevisionsInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "revisions": {
+                    "$ref": "#/$defs/RevisionLocationList"
+                }
+            }
+        },
+        "RevisionLocationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RevisionLocation"
+            }
+        },
+        "BatchGetApplicationsOutput": {
+            "type": "object",
+            "properties": {
+                "applicationsInfo": {
+                    "$ref": "#/$defs/ApplicationsInfoList"
+                }
+            }
+        },
+        "ApplicationsInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationInfo"
+            }
+        },
+        "ApplicationInfo": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "linkedToGitHub": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "gitHubAccountName": {
+                    "$ref": "#/$defs/GitHubAccountTokenName"
+                },
+                "computePlatform": {
+                    "$ref": "#/$defs/ComputePlatform"
+                }
+            }
+        },
+        "ApplicationId": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "GitHubAccountTokenName": {
+            "type": "string"
+        },
+        "ComputePlatform": {
+            "enum": [
+                "SERVER",
+                "LAMBDA",
+                "ECS"
+            ]
+        },
+        "BatchGetApplicationsInput": {
+            "type": "object",
+            "properties": {
+                "applicationNames": {
+                    "$ref": "#/$defs/ApplicationsList"
+                }
+            }
+        },
+        "ApplicationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationName"
+            }
+        },
+        "BatchGetDeploymentGroupsOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentGroupsInfo": {
+                    "$ref": "#/$defs/DeploymentGroupInfoList"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "DeploymentGroupInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentGroupInfo"
+            }
+        },
+        "DeploymentGroupInfo": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "deploymentGroupId": {
+                    "$ref": "#/$defs/DeploymentGroupId"
+                },
+                "deploymentGroupName": {
+                    "$ref": "#/$defs/DeploymentGroupName"
+                },
+                "deploymentConfigName": {
+                    "$ref": "#/$defs/DeploymentConfigName"
+                },
+                "ec2TagFilters": {
+                    "$ref": "#/$defs/EC2TagFilterList"
+                },
+                "onPremisesInstanceTagFilters": {
+                    "$ref": "#/$defs/TagFilterList"
+                },
+                "autoScalingGroups": {
+                    "$ref": "#/$defs/AutoScalingGroupList"
+                },
+                "serviceRoleArn": {
+                    "$ref": "#/$defs/Role"
+                },
+                "targetRevision": {
+                    "$ref": "#/$defs/RevisionLocation"
+                },
+                "triggerConfigurations": {
+                    "$ref": "#/$defs/TriggerConfigList"
+                },
+                "alarmConfiguration": {
+                    "$ref": "#/$defs/AlarmConfiguration"
+                },
+                "autoRollbackConfiguration": {
+                    "$ref": "#/$defs/AutoRollbackConfiguration"
+                },
+                "deploymentStyle": {
+                    "$ref": "#/$defs/DeploymentStyle"
+                },
+                "outdatedInstancesStrategy": {
+                    "$ref": "#/$defs/OutdatedInstancesStrategy"
+                },
+                "blueGreenDeploymentConfiguration": {
+                    "$ref": "#/$defs/BlueGreenDeploymentConfiguration"
+                },
+                "loadBalancerInfo": {
+                    "$ref": "#/$defs/LoadBalancerInfo"
+                },
+                "lastSuccessfulDeployment": {
+                    "$ref": "#/$defs/LastDeploymentInfo"
+                },
+                "lastAttemptedDeployment": {
+                    "$ref": "#/$defs/LastDeploymentInfo"
+                },
+                "ec2TagSet": {
+                    "$ref": "#/$defs/EC2TagSet"
+                },
+                "onPremisesTagSet": {
+                    "$ref": "#/$defs/OnPremisesTagSet"
+                },
+                "computePlatform": {
+                    "$ref": "#/$defs/ComputePlatform"
+                },
+                "ecsServices": {
+                    "$ref": "#/$defs/ECSServiceList"
+                },
+                "terminationHookEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DeploymentGroupId": {
+            "type": "string"
+        },
+        "DeploymentConfigName": {
+            "type": "string"
+        },
+        "EC2TagFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EC2TagFilter"
+            }
+        },
+        "EC2TagFilter": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "Value": {
+                    "$ref": "#/$defs/Value"
+                },
+                "Type": {
+                    "$ref": "#/$defs/EC2TagFilterType"
+                }
+            }
+        },
+        "EC2TagFilterType": {
+            "enum": [
+                "KEY_ONLY",
+                "VALUE_ONLY",
+                "KEY_AND_VALUE"
+            ]
+        },
+        "TagFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagFilter"
+            }
+        },
+        "TagFilter": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "Value": {
+                    "$ref": "#/$defs/Value"
+                },
+                "Type": {
+                    "$ref": "#/$defs/TagFilterType"
+                }
+            }
+        },
+        "TagFilterType": {
+            "enum": [
+                "KEY_ONLY",
+                "VALUE_ONLY",
+                "KEY_AND_VALUE"
+            ]
+        },
+        "AutoScalingGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AutoScalingGroup"
+            }
+        },
+        "AutoScalingGroup": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AutoScalingGroupName"
+                },
+                "hook": {
+                    "$ref": "#/$defs/AutoScalingGroupHook"
+                },
+                "terminationHook": {
+                    "$ref": "#/$defs/AutoScalingGroupHook"
+                }
+            }
+        },
+        "AutoScalingGroupName": {
+            "type": "string"
+        },
+        "AutoScalingGroupHook": {
+            "type": "string"
+        },
+        "Role": {
+            "type": "string"
+        },
+        "TriggerConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TriggerConfig"
+            }
+        },
+        "TriggerConfig": {
+            "type": "object",
+            "properties": {
+                "triggerName": {
+                    "$ref": "#/$defs/TriggerName"
+                },
+                "triggerTargetArn": {
+                    "$ref": "#/$defs/TriggerTargetArn"
+                },
+                "triggerEvents": {
+                    "$ref": "#/$defs/TriggerEventTypeList"
+                }
+            }
+        },
+        "TriggerName": {
+            "type": "string"
+        },
+        "TriggerTargetArn": {
+            "type": "string"
+        },
+        "TriggerEventTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TriggerEventType"
+            }
+        },
+        "TriggerEventType": {
+            "enum": [
+                "DEPLOYMENT_START",
+                "DEPLOYMENT_SUCCESS",
+                "DEPLOYMENT_FAILURE",
+                "DEPLOYMENT_STOP",
+                "DEPLOYMENT_ROLLBACK",
+                "DEPLOYMENT_READY",
+                "INSTANCE_START",
+                "INSTANCE_SUCCESS",
+                "INSTANCE_FAILURE",
+                "INSTANCE_READY"
+            ]
+        },
+        "AlarmConfiguration": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ignorePollAlarmFailure": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "alarms": {
+                    "$ref": "#/$defs/AlarmList"
+                }
+            }
+        },
+        "AlarmList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Alarm"
+            }
+        },
+        "Alarm": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AlarmName"
+                }
+            }
+        },
+        "AlarmName": {
+            "type": "string"
+        },
+        "AutoRollbackConfiguration": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "events": {
+                    "$ref": "#/$defs/AutoRollbackEventsList"
+                }
+            }
+        },
+        "AutoRollbackEventsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AutoRollbackEvent"
+            }
+        },
+        "AutoRollbackEvent": {
+            "enum": [
+                "DEPLOYMENT_FAILURE",
+                "DEPLOYMENT_STOP_ON_ALARM",
+                "DEPLOYMENT_STOP_ON_REQUEST"
+            ]
+        },
+        "DeploymentStyle": {
+            "type": "object",
+            "properties": {
+                "deploymentType": {
+                    "$ref": "#/$defs/DeploymentType"
+                },
+                "deploymentOption": {
+                    "$ref": "#/$defs/DeploymentOption"
+                }
+            }
+        },
+        "DeploymentType": {
+            "enum": [
+                "IN_PLACE",
+                "BLUE_GREEN"
+            ]
+        },
+        "DeploymentOption": {
+            "enum": [
+                "WITH_TRAFFIC_CONTROL",
+                "WITHOUT_TRAFFIC_CONTROL"
+            ]
+        },
+        "OutdatedInstancesStrategy": {
+            "enum": [
+                "Update",
+                "Ignore"
+            ]
+        },
+        "BlueGreenDeploymentConfiguration": {
+            "type": "object",
+            "properties": {
+                "terminateBlueInstancesOnDeploymentSuccess": {
+                    "$ref": "#/$defs/BlueInstanceTerminationOption"
+                },
+                "deploymentReadyOption": {
+                    "$ref": "#/$defs/DeploymentReadyOption"
+                },
+                "greenFleetProvisioningOption": {
+                    "$ref": "#/$defs/GreenFleetProvisioningOption"
+                }
+            }
+        },
+        "BlueInstanceTerminationOption": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "$ref": "#/$defs/InstanceAction"
+                },
+                "terminationWaitTimeInMinutes": {
+                    "$ref": "#/$defs/Duration"
+                }
+            }
+        },
+        "InstanceAction": {
+            "enum": [
+                "TERMINATE",
+                "KEEP_ALIVE"
+            ]
+        },
+        "Duration": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DeploymentReadyOption": {
+            "type": "object",
+            "properties": {
+                "actionOnTimeout": {
+                    "$ref": "#/$defs/DeploymentReadyAction"
+                },
+                "waitTimeInMinutes": {
+                    "$ref": "#/$defs/Duration"
+                }
+            }
+        },
+        "DeploymentReadyAction": {
+            "enum": [
+                "CONTINUE_DEPLOYMENT",
+                "STOP_DEPLOYMENT"
+            ]
+        },
+        "GreenFleetProvisioningOption": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "$ref": "#/$defs/GreenFleetProvisioningAction"
+                }
+            }
+        },
+        "GreenFleetProvisioningAction": {
+            "enum": [
+                "DISCOVER_EXISTING",
+                "COPY_AUTO_SCALING_GROUP"
+            ]
+        },
+        "LoadBalancerInfo": {
+            "type": "object",
+            "properties": {
+                "elbInfoList": {
+                    "$ref": "#/$defs/ELBInfoList"
+                },
+                "targetGroupInfoList": {
+                    "$ref": "#/$defs/TargetGroupInfoList"
+                },
+                "targetGroupPairInfoList": {
+                    "$ref": "#/$defs/TargetGroupPairInfoList"
+                }
+            }
+        },
+        "ELBInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ELBInfo"
+            }
+        },
+        "ELBInfo": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ELBName"
+                }
+            }
+        },
+        "ELBName": {
+            "type": "string"
+        },
+        "TargetGroupInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetGroupInfo"
+            }
+        },
+        "TargetGroupInfo": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/TargetGroupName"
+                }
+            }
+        },
+        "TargetGroupName": {
+            "type": "string"
+        },
+        "TargetGroupPairInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetGroupPairInfo"
+            }
+        },
+        "TargetGroupPairInfo": {
+            "type": "object",
+            "properties": {
+                "targetGroups": {
+                    "$ref": "#/$defs/TargetGroupInfoList"
+                },
+                "prodTrafficRoute": {
+                    "$ref": "#/$defs/TrafficRoute"
+                },
+                "testTrafficRoute": {
+                    "$ref": "#/$defs/TrafficRoute"
+                }
+            }
+        },
+        "TrafficRoute": {
+            "type": "object",
+            "properties": {
+                "listenerArns": {
+                    "$ref": "#/$defs/ListenerArnList"
+                }
+            }
+        },
+        "ListenerArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListenerArn"
+            }
+        },
+        "ListenerArn": {
+            "type": "string"
+        },
+        "LastDeploymentInfo": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "status": {
+                    "$ref": "#/$defs/DeploymentStatus"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DeploymentId": {
+            "type": "string"
+        },
+        "DeploymentStatus": {
+            "enum": [
+                "CREATED",
+                "QUEUED",
+                "IN_PROGRESS",
+                "BAKING",
+                "SUCCEEDED",
+                "FAILED",
+                "STOPPED",
+                "READY"
+            ]
+        },
+        "EC2TagSet": {
+            "type": "object",
+            "properties": {
+                "ec2TagSetList": {
+                    "$ref": "#/$defs/EC2TagSetList"
+                }
+            }
+        },
+        "EC2TagSetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EC2TagFilterList"
+            }
+        },
+        "OnPremisesTagSet": {
+            "type": "object",
+            "properties": {
+                "onPremisesTagSetList": {
+                    "$ref": "#/$defs/OnPremisesTagSetList"
+                }
+            }
+        },
+        "OnPremisesTagSetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagFilterList"
+            }
+        },
+        "ECSServiceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ECSService"
+            }
+        },
+        "ECSService": {
+            "type": "object",
+            "properties": {
+                "serviceName": {
+                    "$ref": "#/$defs/ECSServiceName"
+                },
+                "clusterName": {
+                    "$ref": "#/$defs/ECSClusterName"
+                }
+            }
+        },
+        "ECSServiceName": {
+            "type": "string"
+        },
+        "ECSClusterName": {
+            "type": "string"
+        },
+        "BatchGetDeploymentGroupsInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "deploymentGroupNames": {
+                    "$ref": "#/$defs/DeploymentGroupsList"
+                }
+            }
+        },
+        "BatchGetDeploymentInstancesOutput": {
+            "type": "object",
+            "properties": {
+                "instancesSummary": {
+                    "$ref": "#/$defs/InstanceSummaryList"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "InstanceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceSummary"
+            }
+        },
+        "InstanceSummary": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "status": {
+                    "$ref": "#/$defs/InstanceStatus"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lifecycleEvents": {
+                    "$ref": "#/$defs/LifecycleEventList"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/InstanceType"
+                }
+            }
+        },
+        "InstanceId": {
+            "type": "string"
+        },
+        "InstanceStatus": {
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "SUCCEEDED",
+                "FAILED",
+                "SKIPPED",
+                "UNKNOWN",
+                "READY"
+            ]
+        },
+        "LifecycleEventList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LifecycleEvent"
+            }
+        },
+        "LifecycleEvent": {
+            "type": "object",
+            "properties": {
+                "lifecycleEventName": {
+                    "$ref": "#/$defs/LifecycleEventName"
+                },
+                "diagnostics": {
+                    "$ref": "#/$defs/Diagnostics"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/LifecycleEventStatus"
+                }
+            }
+        },
+        "LifecycleEventName": {
+            "type": "string"
+        },
+        "Diagnostics": {
+            "type": "object",
+            "properties": {
+                "errorCode": {
+                    "$ref": "#/$defs/LifecycleErrorCode"
+                },
+                "scriptName": {
+                    "$ref": "#/$defs/ScriptName"
+                },
+                "message": {
+                    "$ref": "#/$defs/LifecycleMessage"
+                },
+                "logTail": {
+                    "$ref": "#/$defs/LogTail"
+                }
+            }
+        },
+        "LifecycleErrorCode": {
+            "enum": [
+                "SUCCESS",
+                "SCRIPT_MISSING",
+                "SCRIPT_NOT_EXECUTABLE",
+                "SCRIPT_TIMED_OUT",
+                "SCRIPT_FAILED",
+                "UNKNOWN_ERROR"
+            ]
+        },
+        "ScriptName": {
+            "type": "string"
+        },
+        "LifecycleMessage": {
+            "type": "string"
+        },
+        "LogTail": {
+            "type": "string"
+        },
+        "LifecycleEventStatus": {
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "SUCCEEDED",
+                "FAILED",
+                "SKIPPED",
+                "UNKNOWN"
+            ]
+        },
+        "InstanceType": {
+            "enum": [
+                "BLUE",
+                "GREEN"
+            ]
+        },
+        "BatchGetDeploymentInstancesInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "instanceIds": {
+                    "$ref": "#/$defs/InstancesList"
+                }
+            }
+        },
+        "InstancesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceId"
+            }
+        },
+        "BatchGetDeploymentsOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentsInfo": {
+                    "$ref": "#/$defs/DeploymentsInfoList"
+                }
+            }
+        },
+        "DeploymentsInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentInfo"
+            }
+        },
+        "DeploymentInfo": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "deploymentGroupName": {
+                    "$ref": "#/$defs/DeploymentGroupName"
+                },
+                "deploymentConfigName": {
+                    "$ref": "#/$defs/DeploymentConfigName"
+                },
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "previousRevision": {
+                    "$ref": "#/$defs/RevisionLocation"
+                },
+                "revision": {
+                    "$ref": "#/$defs/RevisionLocation"
+                },
+                "status": {
+                    "$ref": "#/$defs/DeploymentStatus"
+                },
+                "errorInformation": {
+                    "$ref": "#/$defs/ErrorInformation"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "completeTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "deploymentOverview": {
+                    "$ref": "#/$defs/DeploymentOverview"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "creator": {
+                    "$ref": "#/$defs/DeploymentCreator"
+                },
+                "ignoreApplicationStopFailures": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "autoRollbackConfiguration": {
+                    "$ref": "#/$defs/AutoRollbackConfiguration"
+                },
+                "updateOutdatedInstancesOnly": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "rollbackInfo": {
+                    "$ref": "#/$defs/RollbackInfo"
+                },
+                "deploymentStyle": {
+                    "$ref": "#/$defs/DeploymentStyle"
+                },
+                "targetInstances": {
+                    "$ref": "#/$defs/TargetInstances"
+                },
+                "instanceTerminationWaitTimeStarted": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "blueGreenDeploymentConfiguration": {
+                    "$ref": "#/$defs/BlueGreenDeploymentConfiguration"
+                },
+                "loadBalancerInfo": {
+                    "$ref": "#/$defs/LoadBalancerInfo"
+                },
+                "additionalDeploymentStatusInfo": {
+                    "$ref": "#/$defs/AdditionalDeploymentStatusInfo"
+                },
+                "fileExistsBehavior": {
+                    "$ref": "#/$defs/FileExistsBehavior"
+                },
+                "deploymentStatusMessages": {
+                    "$ref": "#/$defs/DeploymentStatusMessageList"
+                },
+                "computePlatform": {
+                    "$ref": "#/$defs/ComputePlatform"
+                },
+                "externalId": {
+                    "$ref": "#/$defs/ExternalId"
+                },
+                "relatedDeployments": {
+                    "$ref": "#/$defs/RelatedDeployments"
+                },
+                "overrideAlarmConfiguration": {
+                    "$ref": "#/$defs/AlarmConfiguration"
+                }
+            }
+        },
+        "ErrorInformation": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ErrorCode": {
+            "enum": [
+                "AGENT_ISSUE",
+                "ALARM_ACTIVE",
+                "APPLICATION_MISSING",
+                "AUTOSCALING_VALIDATION_ERROR",
+                "AUTO_SCALING_CONFIGURATION",
+                "AUTO_SCALING_IAM_ROLE_PERMISSIONS",
+                "CODEDEPLOY_RESOURCE_CANNOT_BE_FOUND",
+                "CUSTOMER_APPLICATION_UNHEALTHY",
+                "DEPLOYMENT_GROUP_MISSING",
+                "ECS_UPDATE_ERROR",
+                "ELASTIC_LOAD_BALANCING_INVALID",
+                "ELB_INVALID_INSTANCE",
+                "HEALTH_CONSTRAINTS",
+                "HEALTH_CONSTRAINTS_INVALID",
+                "HOOK_EXECUTION_FAILURE",
+                "IAM_ROLE_MISSING",
+                "IAM_ROLE_PERMISSIONS",
+                "INTERNAL_ERROR",
+                "INVALID_ECS_SERVICE",
+                "INVALID_LAMBDA_CONFIGURATION",
+                "INVALID_LAMBDA_FUNCTION",
+                "INVALID_REVISION",
+                "MANUAL_STOP",
+                "MISSING_BLUE_GREEN_DEPLOYMENT_CONFIGURATION",
+                "MISSING_ELB_INFORMATION",
+                "MISSING_GITHUB_TOKEN",
+                "NO_EC2_SUBSCRIPTION",
+                "NO_INSTANCES",
+                "OVER_MAX_INSTANCES",
+                "RESOURCE_LIMIT_EXCEEDED",
+                "REVISION_MISSING",
+                "THROTTLED",
+                "TIMEOUT",
+                "CLOUDFORMATION_STACK_FAILURE"
+            ]
+        },
+        "DeploymentOverview": {
+            "type": "object",
+            "properties": {
+                "Pending": {
+                    "$ref": "#/$defs/InstanceCount"
+                },
+                "InProgress": {
+                    "$ref": "#/$defs/InstanceCount"
+                },
+                "Succeeded": {
+                    "$ref": "#/$defs/InstanceCount"
+                },
+                "Failed": {
+                    "$ref": "#/$defs/InstanceCount"
+                },
+                "Skipped": {
+                    "$ref": "#/$defs/InstanceCount"
+                },
+                "Ready": {
+                    "$ref": "#/$defs/InstanceCount"
+                }
+            }
+        },
+        "InstanceCount": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DeploymentCreator": {
+            "enum": [
+                "User",
+                "Autoscaling",
+                "CodeDeployRollback",
+                "CodeDeploy",
+                "CodeDeployAutoUpdate",
+                "CloudFormation",
+                "CloudFormationRollback",
+                "AutoscalingTermination"
+            ]
+        },
+        "RollbackInfo": {
+            "type": "object",
+            "properties": {
+                "rollbackDeploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "rollbackTriggeringDeploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "rollbackMessage": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "TargetInstances": {
+            "type": "object",
+            "properties": {
+                "tagFilters": {
+                    "$ref": "#/$defs/EC2TagFilterList"
+                },
+                "autoScalingGroups": {
+                    "$ref": "#/$defs/AutoScalingGroupNameList"
+                },
+                "ec2TagSet": {
+                    "$ref": "#/$defs/EC2TagSet"
+                }
+            }
+        },
+        "AutoScalingGroupNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AutoScalingGroupName"
+            }
+        },
+        "AdditionalDeploymentStatusInfo": {
+            "type": "string"
+        },
+        "FileExistsBehavior": {
+            "enum": [
+                "DISALLOW",
+                "OVERWRITE",
+                "RETAIN"
+            ]
+        },
+        "DeploymentStatusMessageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ErrorMessage"
+            }
+        },
+        "ExternalId": {
+            "type": "string"
+        },
+        "RelatedDeployments": {
+            "type": "object",
+            "properties": {
+                "autoUpdateOutdatedInstancesRootDeploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "autoUpdateOutdatedInstancesDeploymentIds": {
+                    "$ref": "#/$defs/DeploymentsList"
+                }
+            }
+        },
+        "DeploymentsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentId"
+            }
+        },
+        "BatchGetDeploymentsInput": {
+            "type": "object",
+            "properties": {
+                "deploymentIds": {
+                    "$ref": "#/$defs/DeploymentsList"
+                }
+            }
+        },
+        "BatchGetDeploymentTargetsOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentTargets": {
+                    "$ref": "#/$defs/DeploymentTargetList"
+                }
+            }
+        },
+        "DeploymentTargetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentTarget"
+            }
+        },
+        "DeploymentTarget": {
+            "type": "object",
+            "properties": {
+                "deploymentTargetType": {
+                    "$ref": "#/$defs/DeploymentTargetType"
+                },
+                "instanceTarget": {
+                    "$ref": "#/$defs/InstanceTarget"
+                },
+                "lambdaTarget": {
+                    "$ref": "#/$defs/LambdaTarget"
+                },
+                "ecsTarget": {
+                    "$ref": "#/$defs/ECSTarget"
+                },
+                "cloudFormationTarget": {
+                    "$ref": "#/$defs/CloudFormationTarget"
+                }
+            }
+        },
+        "DeploymentTargetType": {
+            "enum": [
+                "INSTANCE_TARGET",
+                "LAMBDA_TARGET",
+                "ECS_TARGET",
+                "CLOUDFORMATION_TARGET"
+            ]
+        },
+        "InstanceTarget": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "targetId": {
+                    "$ref": "#/$defs/TargetId"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "status": {
+                    "$ref": "#/$defs/TargetStatus"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Time"
+                },
+                "lifecycleEvents": {
+                    "$ref": "#/$defs/LifecycleEventList"
+                },
+                "instanceLabel": {
+                    "$ref": "#/$defs/TargetLabel"
+                }
+            }
+        },
+        "TargetId": {
+            "type": "string"
+        },
+        "TargetArn": {
+            "type": "string"
+        },
+        "TargetStatus": {
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "SUCCEEDED",
+                "FAILED",
+                "SKIPPED",
+                "UNKNOWN",
+                "READY"
+            ]
+        },
+        "Time": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "TargetLabel": {
+            "enum": [
+                "BLUE",
+                "GREEN"
+            ]
+        },
+        "LambdaTarget": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "targetId": {
+                    "$ref": "#/$defs/TargetId"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "status": {
+                    "$ref": "#/$defs/TargetStatus"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Time"
+                },
+                "lifecycleEvents": {
+                    "$ref": "#/$defs/LifecycleEventList"
+                },
+                "lambdaFunctionInfo": {
+                    "$ref": "#/$defs/LambdaFunctionInfo"
+                }
+            }
+        },
+        "LambdaFunctionInfo": {
+            "type": "object",
+            "properties": {
+                "functionName": {
+                    "$ref": "#/$defs/LambdaFunctionName"
+                },
+                "functionAlias": {
+                    "$ref": "#/$defs/LambdaFunctionAlias"
+                },
+                "currentVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "targetVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "targetVersionWeight": {
+                    "$ref": "#/$defs/TrafficWeight"
+                }
+            }
+        },
+        "LambdaFunctionName": {
+            "type": "string"
+        },
+        "LambdaFunctionAlias": {
+            "type": "string"
+        },
+        "Version": {
+            "type": "string"
+        },
+        "TrafficWeight": {
+            "type": "number",
+            "format": "double"
+        },
+        "ECSTarget": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "targetId": {
+                    "$ref": "#/$defs/TargetId"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Time"
+                },
+                "lifecycleEvents": {
+                    "$ref": "#/$defs/LifecycleEventList"
+                },
+                "status": {
+                    "$ref": "#/$defs/TargetStatus"
+                },
+                "taskSetsInfo": {
+                    "$ref": "#/$defs/ECSTaskSetList"
+                }
+            }
+        },
+        "ECSTaskSetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ECSTaskSet"
+            }
+        },
+        "ECSTaskSet": {
+            "type": "object",
+            "properties": {
+                "identifer": {
+                    "$ref": "#/$defs/ECSTaskSetIdentifier"
+                },
+                "desiredCount": {
+                    "$ref": "#/$defs/ECSTaskSetCount"
+                },
+                "pendingCount": {
+                    "$ref": "#/$defs/ECSTaskSetCount"
+                },
+                "runningCount": {
+                    "$ref": "#/$defs/ECSTaskSetCount"
+                },
+                "status": {
+                    "$ref": "#/$defs/ECSTaskSetStatus"
+                },
+                "trafficWeight": {
+                    "$ref": "#/$defs/TrafficWeight"
+                },
+                "targetGroup": {
+                    "$ref": "#/$defs/TargetGroupInfo"
+                },
+                "taskSetLabel": {
+                    "$ref": "#/$defs/TargetLabel"
+                }
+            }
+        },
+        "ECSTaskSetIdentifier": {
+            "type": "string"
+        },
+        "ECSTaskSetCount": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ECSTaskSetStatus": {
+            "type": "string"
+        },
+        "CloudFormationTarget": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "targetId": {
+                    "$ref": "#/$defs/TargetId"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Time"
+                },
+                "lifecycleEvents": {
+                    "$ref": "#/$defs/LifecycleEventList"
+                },
+                "status": {
+                    "$ref": "#/$defs/TargetStatus"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/CloudFormationResourceType"
+                },
+                "targetVersionWeight": {
+                    "$ref": "#/$defs/TrafficWeight"
+                }
+            }
+        },
+        "CloudFormationResourceType": {
+            "type": "string"
+        },
+        "BatchGetDeploymentTargetsInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "targetIds": {
+                    "$ref": "#/$defs/TargetIdList"
+                }
+            }
+        },
+        "TargetIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetId"
+            }
+        },
+        "BatchGetOnPremisesInstancesOutput": {
+            "type": "object",
+            "properties": {
+                "instanceInfos": {
+                    "$ref": "#/$defs/InstanceInfoList"
+                }
+            }
+        },
+        "InstanceInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceInfo"
+            }
+        },
+        "InstanceInfo": {
+            "type": "object",
+            "properties": {
+                "instanceName": {
+                    "$ref": "#/$defs/InstanceName"
+                },
+                "iamSessionArn": {
+                    "$ref": "#/$defs/IamSessionArn"
+                },
+                "iamUserArn": {
+                    "$ref": "#/$defs/IamUserArn"
+                },
+                "instanceArn": {
+                    "$ref": "#/$defs/InstanceArn"
+                },
+                "registerTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "deregisterTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "IamSessionArn": {
+            "type": "string"
+        },
+        "IamUserArn": {
+            "type": "string"
+        },
+        "InstanceArn": {
+            "type": "string"
+        },
+        "BatchGetOnPremisesInstancesInput": {
+            "type": "object",
+            "properties": {
+                "instanceNames": {
+                    "$ref": "#/$defs/InstanceNameList"
+                }
+            }
+        },
+        "ContinueDeploymentInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "deploymentWaitType": {
+                    "$ref": "#/$defs/DeploymentWaitType"
+                }
+            }
+        },
+        "DeploymentWaitType": {
+            "enum": [
+                "READY_WAIT",
+                "TERMINATION_WAIT"
+            ]
+        },
+        "CreateApplicationOutput": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                }
+            }
+        },
+        "CreateApplicationInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "computePlatform": {
+                    "$ref": "#/$defs/ComputePlatform"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CreateDeploymentOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                }
+            }
+        },
+        "CreateDeploymentInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "deploymentGroupName": {
+                    "$ref": "#/$defs/DeploymentGroupName"
+                },
+                "revision": {
+                    "$ref": "#/$defs/RevisionLocation"
+                },
+                "deploymentConfigName": {
+                    "$ref": "#/$defs/DeploymentConfigName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ignoreApplicationStopFailures": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "targetInstances": {
+                    "$ref": "#/$defs/TargetInstances"
+                },
+                "autoRollbackConfiguration": {
+                    "$ref": "#/$defs/AutoRollbackConfiguration"
+                },
+                "updateOutdatedInstancesOnly": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "fileExistsBehavior": {
+                    "$ref": "#/$defs/FileExistsBehavior"
+                },
+                "overrideAlarmConfiguration": {
+                    "$ref": "#/$defs/AlarmConfiguration"
+                }
+            }
+        },
+        "CreateDeploymentConfigOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentConfigId": {
+                    "$ref": "#/$defs/DeploymentConfigId"
+                }
+            }
+        },
+        "DeploymentConfigId": {
+            "type": "string"
+        },
+        "CreateDeploymentConfigInput": {
+            "type": "object",
+            "properties": {
+                "deploymentConfigName": {
+                    "$ref": "#/$defs/DeploymentConfigName"
+                },
+                "minimumHealthyHosts": {
+                    "$ref": "#/$defs/MinimumHealthyHosts"
+                },
+                "trafficRoutingConfig": {
+                    "$ref": "#/$defs/TrafficRoutingConfig"
+                },
+                "computePlatform": {
+                    "$ref": "#/$defs/ComputePlatform"
+                },
+                "zonalConfig": {
+                    "$ref": "#/$defs/ZonalConfig"
+                }
+            }
+        },
+        "MinimumHealthyHosts": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/MinimumHealthyHostsType"
+                },
+                "value": {
+                    "$ref": "#/$defs/MinimumHealthyHostsValue"
+                }
+            }
+        },
+        "MinimumHealthyHostsType": {
+            "enum": [
+                "HOST_COUNT",
+                "FLEET_PERCENT"
+            ]
+        },
+        "MinimumHealthyHostsValue": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TrafficRoutingConfig": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/TrafficRoutingType"
+                },
+                "timeBasedCanary": {
+                    "$ref": "#/$defs/TimeBasedCanary"
+                },
+                "timeBasedLinear": {
+                    "$ref": "#/$defs/TimeBasedLinear"
+                }
+            }
+        },
+        "TrafficRoutingType": {
+            "enum": [
+                "TimeBasedCanary",
+                "TimeBasedLinear",
+                "AllAtOnce"
+            ]
+        },
+        "TimeBasedCanary": {
+            "type": "object",
+            "properties": {
+                "canaryPercentage": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "canaryInterval": {
+                    "$ref": "#/$defs/WaitTimeInMins"
+                }
+            }
+        },
+        "Percentage": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "WaitTimeInMins": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TimeBasedLinear": {
+            "type": "object",
+            "properties": {
+                "linearPercentage": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "linearInterval": {
+                    "$ref": "#/$defs/WaitTimeInMins"
+                }
+            }
+        },
+        "ZonalConfig": {
+            "type": "object",
+            "properties": {
+                "firstZoneMonitorDurationInSeconds": {
+                    "$ref": "#/$defs/WaitTimeInSeconds"
+                },
+                "monitorDurationInSeconds": {
+                    "$ref": "#/$defs/WaitTimeInSeconds"
+                },
+                "minimumHealthyHostsPerZone": {
+                    "$ref": "#/$defs/MinimumHealthyHostsPerZone"
+                }
+            }
+        },
+        "WaitTimeInSeconds": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "MinimumHealthyHostsPerZone": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/MinimumHealthyHostsPerZoneType"
+                },
+                "value": {
+                    "$ref": "#/$defs/MinimumHealthyHostsPerZoneValue"
+                }
+            }
+        },
+        "MinimumHealthyHostsPerZoneType": {
+            "enum": [
+                "HOST_COUNT",
+                "FLEET_PERCENT"
+            ]
+        },
+        "MinimumHealthyHostsPerZoneValue": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CreateDeploymentGroupOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentGroupId": {
+                    "$ref": "#/$defs/DeploymentGroupId"
+                }
+            }
+        },
+        "CreateDeploymentGroupInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "deploymentGroupName": {
+                    "$ref": "#/$defs/DeploymentGroupName"
+                },
+                "deploymentConfigName": {
+                    "$ref": "#/$defs/DeploymentConfigName"
+                },
+                "ec2TagFilters": {
+                    "$ref": "#/$defs/EC2TagFilterList"
+                },
+                "onPremisesInstanceTagFilters": {
+                    "$ref": "#/$defs/TagFilterList"
+                },
+                "autoScalingGroups": {
+                    "$ref": "#/$defs/AutoScalingGroupNameList"
+                },
+                "serviceRoleArn": {
+                    "$ref": "#/$defs/Role"
+                },
+                "triggerConfigurations": {
+                    "$ref": "#/$defs/TriggerConfigList"
+                },
+                "alarmConfiguration": {
+                    "$ref": "#/$defs/AlarmConfiguration"
+                },
+                "autoRollbackConfiguration": {
+                    "$ref": "#/$defs/AutoRollbackConfiguration"
+                },
+                "outdatedInstancesStrategy": {
+                    "$ref": "#/$defs/OutdatedInstancesStrategy"
+                },
+                "deploymentStyle": {
+                    "$ref": "#/$defs/DeploymentStyle"
+                },
+                "blueGreenDeploymentConfiguration": {
+                    "$ref": "#/$defs/BlueGreenDeploymentConfiguration"
+                },
+                "loadBalancerInfo": {
+                    "$ref": "#/$defs/LoadBalancerInfo"
+                },
+                "ec2TagSet": {
+                    "$ref": "#/$defs/EC2TagSet"
+                },
+                "ecsServices": {
+                    "$ref": "#/$defs/ECSServiceList"
+                },
+                "onPremisesTagSet": {
+                    "$ref": "#/$defs/OnPremisesTagSet"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "terminationHookEnabled": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "NullableBoolean": {
+            "type": "boolean"
+        },
+        "DeleteApplicationInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                }
+            }
+        },
+        "DeleteDeploymentConfigInput": {
+            "type": "object",
+            "properties": {
+                "deploymentConfigName": {
+                    "$ref": "#/$defs/DeploymentConfigName"
+                }
+            }
+        },
+        "DeleteDeploymentGroupOutput": {
+            "type": "object",
+            "properties": {
+                "hooksNotCleanedUp": {
+                    "$ref": "#/$defs/AutoScalingGroupList"
+                }
+            }
+        },
+        "DeleteDeploymentGroupInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "deploymentGroupName": {
+                    "$ref": "#/$defs/DeploymentGroupName"
+                }
+            }
+        },
+        "DeleteGitHubAccountTokenOutput": {
+            "type": "object",
+            "properties": {
+                "tokenName": {
+                    "$ref": "#/$defs/GitHubAccountTokenName"
+                }
+            }
+        },
+        "DeleteGitHubAccountTokenInput": {
+            "type": "object",
+            "properties": {
+                "tokenName": {
+                    "$ref": "#/$defs/GitHubAccountTokenName"
+                }
+            }
+        },
+        "DeleteResourcesByExternalIdOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteResourcesByExternalIdInput": {
+            "type": "object",
+            "properties": {
+                "externalId": {
+                    "$ref": "#/$defs/ExternalId"
+                }
+            }
+        },
+        "DeregisterOnPremisesInstanceInput": {
+            "type": "object",
+            "properties": {
+                "instanceName": {
+                    "$ref": "#/$defs/InstanceName"
+                }
+            }
+        },
+        "GetApplicationOutput": {
+            "type": "object",
+            "properties": {
+                "application": {
+                    "$ref": "#/$defs/ApplicationInfo"
+                }
+            }
+        },
+        "GetApplicationInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                }
+            }
+        },
+        "GetApplicationRevisionOutput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "revision": {
+                    "$ref": "#/$defs/RevisionLocation"
+                },
+                "revisionInfo": {
+                    "$ref": "#/$defs/GenericRevisionInfo"
+                }
+            }
+        },
+        "GetApplicationRevisionInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "revision": {
+                    "$ref": "#/$defs/RevisionLocation"
+                }
+            }
+        },
+        "GetDeploymentOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentInfo": {
+                    "$ref": "#/$defs/DeploymentInfo"
+                }
+            }
+        },
+        "GetDeploymentInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                }
+            }
+        },
+        "GetDeploymentConfigOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentConfigInfo": {
+                    "$ref": "#/$defs/DeploymentConfigInfo"
+                }
+            }
+        },
+        "DeploymentConfigInfo": {
+            "type": "object",
+            "properties": {
+                "deploymentConfigId": {
+                    "$ref": "#/$defs/DeploymentConfigId"
+                },
+                "deploymentConfigName": {
+                    "$ref": "#/$defs/DeploymentConfigName"
+                },
+                "minimumHealthyHosts": {
+                    "$ref": "#/$defs/MinimumHealthyHosts"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "computePlatform": {
+                    "$ref": "#/$defs/ComputePlatform"
+                },
+                "trafficRoutingConfig": {
+                    "$ref": "#/$defs/TrafficRoutingConfig"
+                },
+                "zonalConfig": {
+                    "$ref": "#/$defs/ZonalConfig"
+                }
+            }
+        },
+        "GetDeploymentConfigInput": {
+            "type": "object",
+            "properties": {
+                "deploymentConfigName": {
+                    "$ref": "#/$defs/DeploymentConfigName"
+                }
+            }
+        },
+        "GetDeploymentGroupOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentGroupInfo": {
+                    "$ref": "#/$defs/DeploymentGroupInfo"
+                }
+            }
+        },
+        "GetDeploymentGroupInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "deploymentGroupName": {
+                    "$ref": "#/$defs/DeploymentGroupName"
+                }
+            }
+        },
+        "GetDeploymentInstanceOutput": {
+            "type": "object",
+            "properties": {
+                "instanceSummary": {
+                    "$ref": "#/$defs/InstanceSummary"
+                }
+            }
+        },
+        "GetDeploymentInstanceInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                }
+            }
+        },
+        "GetDeploymentTargetOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentTarget": {
+                    "$ref": "#/$defs/DeploymentTarget"
+                }
+            }
+        },
+        "GetDeploymentTargetInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "targetId": {
+                    "$ref": "#/$defs/TargetId"
+                }
+            }
+        },
+        "GetOnPremisesInstanceOutput": {
+            "type": "object",
+            "properties": {
+                "instanceInfo": {
+                    "$ref": "#/$defs/InstanceInfo"
+                }
+            }
+        },
+        "GetOnPremisesInstanceInput": {
+            "type": "object",
+            "properties": {
+                "instanceName": {
+                    "$ref": "#/$defs/InstanceName"
+                }
+            }
+        },
+        "ListApplicationRevisionsOutput": {
+            "type": "object",
+            "properties": {
+                "revisions": {
+                    "$ref": "#/$defs/RevisionLocationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListApplicationRevisionsInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "sortBy": {
+                    "$ref": "#/$defs/ApplicationRevisionSortBy"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "s3Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "s3KeyPrefix": {
+                    "$ref": "#/$defs/S3Key"
+                },
+                "deployed": {
+                    "$ref": "#/$defs/ListStateFilterAction"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ApplicationRevisionSortBy": {
+            "enum": [
+                "RegisterTime",
+                "FirstUsedTime",
+                "LastUsedTime"
+            ]
+        },
+        "SortOrder": {
+            "enum": [
+                "Ascending",
+                "Descending"
+            ]
+        },
+        "ListStateFilterAction": {
+            "enum": [
+                "Include",
+                "Exclude",
+                "Ignore"
+            ]
+        },
+        "ListApplicationsOutput": {
+            "type": "object",
+            "properties": {
+                "applications": {
+                    "$ref": "#/$defs/ApplicationsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListApplicationsInput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListDeploymentConfigsOutput": {
+            "type": "object",
+            "properties": {
+                "deploymentConfigsList": {
+                    "$ref": "#/$defs/DeploymentConfigsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DeploymentConfigsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentConfigName"
+            }
+        },
+        "ListDeploymentConfigsInput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListDeploymentGroupsOutput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "deploymentGroups": {
+                    "$ref": "#/$defs/DeploymentGroupsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListDeploymentGroupsInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListDeploymentInstancesOutput": {
+            "type": "object",
+            "properties": {
+                "instancesList": {
+                    "$ref": "#/$defs/InstancesList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListDeploymentInstancesInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "instanceStatusFilter": {
+                    "$ref": "#/$defs/InstanceStatusList"
+                },
+                "instanceTypeFilter": {
+                    "$ref": "#/$defs/InstanceTypeList"
+                }
+            }
+        },
+        "InstanceStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceStatus"
+            }
+        },
+        "InstanceTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceType"
+            }
+        },
+        "ListDeploymentsOutput": {
+            "type": "object",
+            "properties": {
+                "deployments": {
+                    "$ref": "#/$defs/DeploymentsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListDeploymentsInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "deploymentGroupName": {
+                    "$ref": "#/$defs/DeploymentGroupName"
+                },
+                "externalId": {
+                    "$ref": "#/$defs/ExternalId"
+                },
+                "includeOnlyStatuses": {
+                    "$ref": "#/$defs/DeploymentStatusList"
+                },
+                "createTimeRange": {
+                    "$ref": "#/$defs/TimeRange"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DeploymentStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentStatus"
+            }
+        },
+        "TimeRange": {
+            "type": "object",
+            "properties": {
+                "start": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "end": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListDeploymentTargetsOutput": {
+            "type": "object",
+            "properties": {
+                "targetIds": {
+                    "$ref": "#/$defs/TargetIdList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListDeploymentTargetsInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "targetFilters": {
+                    "$ref": "#/$defs/TargetFilters"
+                }
+            }
+        },
+        "TargetFilters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FilterValueList"
+            }
+        },
+        "FilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterValue"
+            }
+        },
+        "FilterValue": {
+            "type": "string"
+        },
+        "ListGitHubAccountTokenNamesOutput": {
+            "type": "object",
+            "properties": {
+                "tokenNameList": {
+                    "$ref": "#/$defs/GitHubAccountTokenNameList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "GitHubAccountTokenNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GitHubAccountTokenName"
+            }
+        },
+        "ListGitHubAccountTokenNamesInput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListOnPremisesInstancesOutput": {
+            "type": "object",
+            "properties": {
+                "instanceNames": {
+                    "$ref": "#/$defs/InstanceNameList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListOnPremisesInstancesInput": {
+            "type": "object",
+            "properties": {
+                "registrationStatus": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "tagFilters": {
+                    "$ref": "#/$defs/TagFilterList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RegistrationStatus": {
+            "enum": [
+                "Registered",
+                "Deregistered"
+            ]
+        },
+        "ListTagsForResourceOutput": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "PutLifecycleEventHookExecutionStatusOutput": {
+            "type": "object",
+            "properties": {
+                "lifecycleEventHookExecutionId": {
+                    "$ref": "#/$defs/LifecycleEventHookExecutionId"
+                }
+            }
+        },
+        "LifecycleEventHookExecutionId": {
+            "type": "string"
+        },
+        "PutLifecycleEventHookExecutionStatusInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "lifecycleEventHookExecutionId": {
+                    "$ref": "#/$defs/LifecycleEventHookExecutionId"
+                },
+                "status": {
+                    "$ref": "#/$defs/LifecycleEventStatus"
+                }
+            }
+        },
+        "RegisterApplicationRevisionInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "revision": {
+                    "$ref": "#/$defs/RevisionLocation"
+                }
+            }
+        },
+        "RegisterOnPremisesInstanceInput": {
+            "type": "object",
+            "properties": {
+                "instanceName": {
+                    "$ref": "#/$defs/InstanceName"
+                },
+                "iamSessionArn": {
+                    "$ref": "#/$defs/IamSessionArn"
+                },
+                "iamUserArn": {
+                    "$ref": "#/$defs/IamUserArn"
+                }
+            }
+        },
+        "RemoveTagsFromOnPremisesInstancesInput": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "instanceNames": {
+                    "$ref": "#/$defs/InstanceNameList"
+                }
+            }
+        },
+        "SkipWaitTimeForInstanceTerminationInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                }
+            }
+        },
+        "StopDeploymentOutput": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/StopStatus"
+                },
+                "statusMessage": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "StopStatus": {
+            "enum": [
+                "PENDING",
+                "SUCCEEDED"
+            ]
+        },
+        "Message": {
+            "type": "string"
+        },
+        "StopDeploymentInput": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "autoRollbackEnabled": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "TagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Key"
+            }
+        },
+        "UpdateApplicationInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "newApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                }
+            }
+        },
+        "UpdateDeploymentGroupOutput": {
+            "type": "object",
+            "properties": {
+                "hooksNotCleanedUp": {
+                    "$ref": "#/$defs/AutoScalingGroupList"
+                }
+            }
+        },
+        "UpdateDeploymentGroupInput": {
+            "type": "object",
+            "properties": {
+                "applicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "currentDeploymentGroupName": {
+                    "$ref": "#/$defs/DeploymentGroupName"
+                },
+                "newDeploymentGroupName": {
+                    "$ref": "#/$defs/DeploymentGroupName"
+                },
+                "deploymentConfigName": {
+                    "$ref": "#/$defs/DeploymentConfigName"
+                },
+                "ec2TagFilters": {
+                    "$ref": "#/$defs/EC2TagFilterList"
+                },
+                "onPremisesInstanceTagFilters": {
+                    "$ref": "#/$defs/TagFilterList"
+                },
+                "autoScalingGroups": {
+                    "$ref": "#/$defs/AutoScalingGroupNameList"
+                },
+                "serviceRoleArn": {
+                    "$ref": "#/$defs/Role"
+                },
+                "triggerConfigurations": {
+                    "$ref": "#/$defs/TriggerConfigList"
+                },
+                "alarmConfiguration": {
+                    "$ref": "#/$defs/AlarmConfiguration"
+                },
+                "autoRollbackConfiguration": {
+                    "$ref": "#/$defs/AutoRollbackConfiguration"
+                },
+                "outdatedInstancesStrategy": {
+                    "$ref": "#/$defs/OutdatedInstancesStrategy"
+                },
+                "deploymentStyle": {
+                    "$ref": "#/$defs/DeploymentStyle"
+                },
+                "blueGreenDeploymentConfiguration": {
+                    "$ref": "#/$defs/BlueGreenDeploymentConfiguration"
+                },
+                "loadBalancerInfo": {
+                    "$ref": "#/$defs/LoadBalancerInfo"
+                },
+                "ec2TagSet": {
+                    "$ref": "#/$defs/EC2TagSet"
+                },
+                "ecsServices": {
+                    "$ref": "#/$defs/ECSServiceList"
+                },
+                "onPremisesTagSet": {
+                    "$ref": "#/$defs/OnPremisesTagSet"
+                },
+                "terminationHookEnabled": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codedeploy-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codedeploy-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codedeploy.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://codedeploy.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

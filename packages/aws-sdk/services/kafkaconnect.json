@@ -1,0 +1,2080 @@
+{
+    "name": "kafkaconnect",
+    "commands": [
+        {
+            "name": "CreateConnector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateConnector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateConnectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateConnectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCustomPlugin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCustomPlugin"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCustomPluginResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCustomPluginRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateWorkerConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateWorkerConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateWorkerConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateWorkerConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConnector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteConnector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteConnectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConnectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCustomPlugin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCustomPlugin"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCustomPluginResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCustomPluginRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteWorkerConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteWorkerConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteWorkerConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteWorkerConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConnector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConnector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConnectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCustomPlugin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCustomPlugin"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCustomPluginResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCustomPluginRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeWorkerConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeWorkerConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeWorkerConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeWorkerConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConnectors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListConnectors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConnectorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConnectorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCustomPlugins",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCustomPlugins"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCustomPluginsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCustomPluginsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListWorkerConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListWorkerConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListWorkerConfigurationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListWorkerConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConnector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConnector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateConnectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConnectorRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateConnectorResponse": {
+            "type": "object",
+            "properties": {
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorState": {
+                    "$ref": "#/$defs/ConnectorState"
+                }
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
+        "ConnectorState": {
+            "type": "string"
+        },
+        "CreateConnectorRequest": {
+            "type": "object",
+            "properties": {
+                "capacity": {
+                    "$ref": "#/$defs/Capacity"
+                },
+                "connectorConfiguration": {
+                    "$ref": "#/$defs/__sensitive__mapOf__string"
+                },
+                "connectorDescription": {
+                    "$ref": "#/$defs/__stringMax1024"
+                },
+                "connectorName": {
+                    "$ref": "#/$defs/__stringMin1Max128"
+                },
+                "kafkaCluster": {
+                    "$ref": "#/$defs/KafkaCluster"
+                },
+                "kafkaClusterClientAuthentication": {
+                    "$ref": "#/$defs/KafkaClusterClientAuthentication"
+                },
+                "kafkaClusterEncryptionInTransit": {
+                    "$ref": "#/$defs/KafkaClusterEncryptionInTransit"
+                },
+                "kafkaConnectVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "logDelivery": {
+                    "$ref": "#/$defs/LogDelivery"
+                },
+                "plugins": {
+                    "$ref": "#/$defs/__listOfPlugin"
+                },
+                "serviceExecutionRoleArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfiguration": {
+                    "$ref": "#/$defs/WorkerConfiguration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Capacity": {
+            "type": "object",
+            "properties": {
+                "autoScaling": {
+                    "$ref": "#/$defs/AutoScaling"
+                },
+                "provisionedCapacity": {
+                    "$ref": "#/$defs/ProvisionedCapacity"
+                }
+            }
+        },
+        "AutoScaling": {
+            "type": "object",
+            "properties": {
+                "maxWorkerCount": {
+                    "$ref": "#/$defs/__integerMin1Max10"
+                },
+                "mcuCount": {
+                    "$ref": "#/$defs/__integerMin1Max8"
+                },
+                "minWorkerCount": {
+                    "$ref": "#/$defs/__integerMin1Max10"
+                },
+                "scaleInPolicy": {
+                    "$ref": "#/$defs/ScaleInPolicy"
+                },
+                "scaleOutPolicy": {
+                    "$ref": "#/$defs/ScaleOutPolicy"
+                }
+            }
+        },
+        "__integerMin1Max10": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "__integerMin1Max8": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ScaleInPolicy": {
+            "type": "object",
+            "properties": {
+                "cpuUtilizationPercentage": {
+                    "$ref": "#/$defs/__integerMin1Max100"
+                }
+            }
+        },
+        "__integerMin1Max100": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ScaleOutPolicy": {
+            "type": "object",
+            "properties": {
+                "cpuUtilizationPercentage": {
+                    "$ref": "#/$defs/__integerMin1Max100"
+                }
+            }
+        },
+        "ProvisionedCapacity": {
+            "type": "object",
+            "properties": {
+                "mcuCount": {
+                    "$ref": "#/$defs/__integerMin1Max8"
+                },
+                "workerCount": {
+                    "$ref": "#/$defs/__integerMin1Max10"
+                }
+            }
+        },
+        "__sensitive__mapOf__string": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "__stringMax1024": {
+            "type": "string"
+        },
+        "__stringMin1Max128": {
+            "type": "string"
+        },
+        "KafkaCluster": {
+            "type": "object",
+            "properties": {
+                "apacheKafkaCluster": {
+                    "$ref": "#/$defs/ApacheKafkaCluster"
+                }
+            }
+        },
+        "ApacheKafkaCluster": {
+            "type": "object",
+            "properties": {
+                "bootstrapServers": {
+                    "$ref": "#/$defs/__string"
+                },
+                "vpc": {
+                    "$ref": "#/$defs/Vpc"
+                }
+            }
+        },
+        "Vpc": {
+            "type": "object",
+            "properties": {
+                "securityGroups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "subnets": {
+                    "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "__listOf__string": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "KafkaClusterClientAuthentication": {
+            "type": "object",
+            "properties": {
+                "authenticationType": {
+                    "$ref": "#/$defs/KafkaClusterClientAuthenticationType"
+                }
+            }
+        },
+        "KafkaClusterClientAuthenticationType": {
+            "type": "string"
+        },
+        "KafkaClusterEncryptionInTransit": {
+            "type": "object",
+            "properties": {
+                "encryptionType": {
+                    "$ref": "#/$defs/KafkaClusterEncryptionInTransitType"
+                }
+            }
+        },
+        "KafkaClusterEncryptionInTransitType": {
+            "type": "string"
+        },
+        "LogDelivery": {
+            "type": "object",
+            "properties": {
+                "workerLogDelivery": {
+                    "$ref": "#/$defs/WorkerLogDelivery"
+                }
+            }
+        },
+        "WorkerLogDelivery": {
+            "type": "object",
+            "properties": {
+                "cloudWatchLogs": {
+                    "$ref": "#/$defs/CloudWatchLogsLogDelivery"
+                },
+                "firehose": {
+                    "$ref": "#/$defs/FirehoseLogDelivery"
+                },
+                "s3": {
+                    "$ref": "#/$defs/S3LogDelivery"
+                }
+            }
+        },
+        "CloudWatchLogsLogDelivery": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "logGroup": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__boolean": {
+            "type": "boolean"
+        },
+        "FirehoseLogDelivery": {
+            "type": "object",
+            "properties": {
+                "deliveryStream": {
+                    "$ref": "#/$defs/__string"
+                },
+                "enabled": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "S3LogDelivery": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/__string"
+                },
+                "enabled": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfPlugin": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Plugin"
+            }
+        },
+        "Plugin": {
+            "type": "object",
+            "properties": {
+                "customPlugin": {
+                    "$ref": "#/$defs/CustomPlugin"
+                }
+            }
+        },
+        "CustomPlugin": {
+            "type": "object",
+            "properties": {
+                "customPluginArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "revision": {
+                    "$ref": "#/$defs/__longMin1"
+                }
+            }
+        },
+        "__longMin1": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "WorkerConfiguration": {
+            "type": "object",
+            "properties": {
+                "revision": {
+                    "$ref": "#/$defs/__longMin1"
+                },
+                "workerConfigurationArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateCustomPluginResponse": {
+            "type": "object",
+            "properties": {
+                "customPluginArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "customPluginState": {
+                    "$ref": "#/$defs/CustomPluginState"
+                },
+                "name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "revision": {
+                    "$ref": "#/$defs/__long"
+                }
+            }
+        },
+        "CustomPluginState": {
+            "type": "string"
+        },
+        "__long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CreateCustomPluginRequest": {
+            "type": "object",
+            "properties": {
+                "contentType": {
+                    "$ref": "#/$defs/CustomPluginContentType"
+                },
+                "description": {
+                    "$ref": "#/$defs/__stringMax1024"
+                },
+                "location": {
+                    "$ref": "#/$defs/CustomPluginLocation"
+                },
+                "name": {
+                    "$ref": "#/$defs/__stringMin1Max128"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CustomPluginContentType": {
+            "type": "string"
+        },
+        "CustomPluginLocation": {
+            "type": "object",
+            "properties": {
+                "s3Location": {
+                    "$ref": "#/$defs/S3Location"
+                }
+            }
+        },
+        "S3Location": {
+            "type": "object",
+            "properties": {
+                "bucketArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "fileKey": {
+                    "$ref": "#/$defs/__string"
+                },
+                "objectVersion": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateWorkerConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "latestRevision": {
+                    "$ref": "#/$defs/WorkerConfigurationRevisionSummary"
+                },
+                "name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfigurationArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfigurationState": {
+                    "$ref": "#/$defs/WorkerConfigurationState"
+                }
+            }
+        },
+        "__timestampIso8601": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "WorkerConfigurationRevisionSummary": {
+            "type": "object",
+            "properties": {
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "revision": {
+                    "$ref": "#/$defs/__long"
+                }
+            }
+        },
+        "WorkerConfigurationState": {
+            "type": "string"
+        },
+        "CreateWorkerConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/__stringMax1024"
+                },
+                "name": {
+                    "$ref": "#/$defs/__stringMin1Max128"
+                },
+                "propertiesFileContent": {
+                    "$ref": "#/$defs/__sensitiveString"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "__sensitiveString": {
+            "type": "string"
+        },
+        "DeleteConnectorResponse": {
+            "type": "object",
+            "properties": {
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorState": {
+                    "$ref": "#/$defs/ConnectorState"
+                }
+            }
+        },
+        "DeleteConnectorRequest": {
+            "type": "object",
+            "properties": {
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "currentVersion": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteCustomPluginResponse": {
+            "type": "object",
+            "properties": {
+                "customPluginArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "customPluginState": {
+                    "$ref": "#/$defs/CustomPluginState"
+                }
+            }
+        },
+        "DeleteCustomPluginRequest": {
+            "type": "object",
+            "properties": {
+                "customPluginArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteWorkerConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "workerConfigurationArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfigurationState": {
+                    "$ref": "#/$defs/WorkerConfigurationState"
+                }
+            }
+        },
+        "DeleteWorkerConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "workerConfigurationArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeConnectorResponse": {
+            "type": "object",
+            "properties": {
+                "capacity": {
+                    "$ref": "#/$defs/CapacityDescription"
+                },
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorConfiguration": {
+                    "$ref": "#/$defs/__sensitive__mapOf__string"
+                },
+                "connectorDescription": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorState": {
+                    "$ref": "#/$defs/ConnectorState"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "currentVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "kafkaCluster": {
+                    "$ref": "#/$defs/KafkaClusterDescription"
+                },
+                "kafkaClusterClientAuthentication": {
+                    "$ref": "#/$defs/KafkaClusterClientAuthenticationDescription"
+                },
+                "kafkaClusterEncryptionInTransit": {
+                    "$ref": "#/$defs/KafkaClusterEncryptionInTransitDescription"
+                },
+                "kafkaConnectVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "logDelivery": {
+                    "$ref": "#/$defs/LogDeliveryDescription"
+                },
+                "plugins": {
+                    "$ref": "#/$defs/__listOfPluginDescription"
+                },
+                "serviceExecutionRoleArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfiguration": {
+                    "$ref": "#/$defs/WorkerConfigurationDescription"
+                },
+                "stateDescription": {
+                    "$ref": "#/$defs/StateDescription"
+                }
+            }
+        },
+        "CapacityDescription": {
+            "type": "object",
+            "properties": {
+                "autoScaling": {
+                    "$ref": "#/$defs/AutoScalingDescription"
+                },
+                "provisionedCapacity": {
+                    "$ref": "#/$defs/ProvisionedCapacityDescription"
+                }
+            }
+        },
+        "AutoScalingDescription": {
+            "type": "object",
+            "properties": {
+                "maxWorkerCount": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "mcuCount": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "minWorkerCount": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "scaleInPolicy": {
+                    "$ref": "#/$defs/ScaleInPolicyDescription"
+                },
+                "scaleOutPolicy": {
+                    "$ref": "#/$defs/ScaleOutPolicyDescription"
+                }
+            }
+        },
+        "__integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ScaleInPolicyDescription": {
+            "type": "object",
+            "properties": {
+                "cpuUtilizationPercentage": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "ScaleOutPolicyDescription": {
+            "type": "object",
+            "properties": {
+                "cpuUtilizationPercentage": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "ProvisionedCapacityDescription": {
+            "type": "object",
+            "properties": {
+                "mcuCount": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "workerCount": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "KafkaClusterDescription": {
+            "type": "object",
+            "properties": {
+                "apacheKafkaCluster": {
+                    "$ref": "#/$defs/ApacheKafkaClusterDescription"
+                }
+            }
+        },
+        "ApacheKafkaClusterDescription": {
+            "type": "object",
+            "properties": {
+                "bootstrapServers": {
+                    "$ref": "#/$defs/__string"
+                },
+                "vpc": {
+                    "$ref": "#/$defs/VpcDescription"
+                }
+            }
+        },
+        "VpcDescription": {
+            "type": "object",
+            "properties": {
+                "securityGroups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "subnets": {
+                    "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "KafkaClusterClientAuthenticationDescription": {
+            "type": "object",
+            "properties": {
+                "authenticationType": {
+                    "$ref": "#/$defs/KafkaClusterClientAuthenticationType"
+                }
+            }
+        },
+        "KafkaClusterEncryptionInTransitDescription": {
+            "type": "object",
+            "properties": {
+                "encryptionType": {
+                    "$ref": "#/$defs/KafkaClusterEncryptionInTransitType"
+                }
+            }
+        },
+        "LogDeliveryDescription": {
+            "type": "object",
+            "properties": {
+                "workerLogDelivery": {
+                    "$ref": "#/$defs/WorkerLogDeliveryDescription"
+                }
+            }
+        },
+        "WorkerLogDeliveryDescription": {
+            "type": "object",
+            "properties": {
+                "cloudWatchLogs": {
+                    "$ref": "#/$defs/CloudWatchLogsLogDeliveryDescription"
+                },
+                "firehose": {
+                    "$ref": "#/$defs/FirehoseLogDeliveryDescription"
+                },
+                "s3": {
+                    "$ref": "#/$defs/S3LogDeliveryDescription"
+                }
+            }
+        },
+        "CloudWatchLogsLogDeliveryDescription": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "logGroup": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "FirehoseLogDeliveryDescription": {
+            "type": "object",
+            "properties": {
+                "deliveryStream": {
+                    "$ref": "#/$defs/__string"
+                },
+                "enabled": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "S3LogDeliveryDescription": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/__string"
+                },
+                "enabled": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfPluginDescription": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PluginDescription"
+            }
+        },
+        "PluginDescription": {
+            "type": "object",
+            "properties": {
+                "customPlugin": {
+                    "$ref": "#/$defs/CustomPluginDescription"
+                }
+            }
+        },
+        "CustomPluginDescription": {
+            "type": "object",
+            "properties": {
+                "customPluginArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "revision": {
+                    "$ref": "#/$defs/__long"
+                }
+            }
+        },
+        "WorkerConfigurationDescription": {
+            "type": "object",
+            "properties": {
+                "revision": {
+                    "$ref": "#/$defs/__long"
+                },
+                "workerConfigurationArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "StateDescription": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "$ref": "#/$defs/__string"
+                },
+                "message": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeConnectorRequest": {
+            "type": "object",
+            "properties": {
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeCustomPluginResponse": {
+            "type": "object",
+            "properties": {
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "customPluginArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "customPluginState": {
+                    "$ref": "#/$defs/CustomPluginState"
+                },
+                "description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "latestRevision": {
+                    "$ref": "#/$defs/CustomPluginRevisionSummary"
+                },
+                "name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "stateDescription": {
+                    "$ref": "#/$defs/StateDescription"
+                }
+            }
+        },
+        "CustomPluginRevisionSummary": {
+            "type": "object",
+            "properties": {
+                "contentType": {
+                    "$ref": "#/$defs/CustomPluginContentType"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "fileDescription": {
+                    "$ref": "#/$defs/CustomPluginFileDescription"
+                },
+                "location": {
+                    "$ref": "#/$defs/CustomPluginLocationDescription"
+                },
+                "revision": {
+                    "$ref": "#/$defs/__long"
+                }
+            }
+        },
+        "CustomPluginFileDescription": {
+            "type": "object",
+            "properties": {
+                "fileMd5": {
+                    "$ref": "#/$defs/__string"
+                },
+                "fileSize": {
+                    "$ref": "#/$defs/__long"
+                }
+            }
+        },
+        "CustomPluginLocationDescription": {
+            "type": "object",
+            "properties": {
+                "s3Location": {
+                    "$ref": "#/$defs/S3LocationDescription"
+                }
+            }
+        },
+        "S3LocationDescription": {
+            "type": "object",
+            "properties": {
+                "bucketArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "fileKey": {
+                    "$ref": "#/$defs/__string"
+                },
+                "objectVersion": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeCustomPluginRequest": {
+            "type": "object",
+            "properties": {
+                "customPluginArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeWorkerConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "latestRevision": {
+                    "$ref": "#/$defs/WorkerConfigurationRevisionDescription"
+                },
+                "name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfigurationArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfigurationState": {
+                    "$ref": "#/$defs/WorkerConfigurationState"
+                }
+            }
+        },
+        "WorkerConfigurationRevisionDescription": {
+            "type": "object",
+            "properties": {
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "propertiesFileContent": {
+                    "$ref": "#/$defs/__sensitiveString"
+                },
+                "revision": {
+                    "$ref": "#/$defs/__long"
+                }
+            }
+        },
+        "DescribeWorkerConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "workerConfigurationArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListConnectorsResponse": {
+            "type": "object",
+            "properties": {
+                "connectors": {
+                    "$ref": "#/$defs/__listOfConnectorSummary"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfConnectorSummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorSummary"
+            }
+        },
+        "ConnectorSummary": {
+            "type": "object",
+            "properties": {
+                "capacity": {
+                    "$ref": "#/$defs/CapacityDescription"
+                },
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorDescription": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorState": {
+                    "$ref": "#/$defs/ConnectorState"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "currentVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "kafkaCluster": {
+                    "$ref": "#/$defs/KafkaClusterDescription"
+                },
+                "kafkaClusterClientAuthentication": {
+                    "$ref": "#/$defs/KafkaClusterClientAuthenticationDescription"
+                },
+                "kafkaClusterEncryptionInTransit": {
+                    "$ref": "#/$defs/KafkaClusterEncryptionInTransitDescription"
+                },
+                "kafkaConnectVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "logDelivery": {
+                    "$ref": "#/$defs/LogDeliveryDescription"
+                },
+                "plugins": {
+                    "$ref": "#/$defs/__listOfPluginDescription"
+                },
+                "serviceExecutionRoleArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfiguration": {
+                    "$ref": "#/$defs/WorkerConfigurationDescription"
+                }
+            }
+        },
+        "ListConnectorsRequest": {
+            "type": "object",
+            "properties": {
+                "connectorNamePrefix": {
+                    "$ref": "#/$defs/__string"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListCustomPluginsResponse": {
+            "type": "object",
+            "properties": {
+                "customPlugins": {
+                    "$ref": "#/$defs/__listOfCustomPluginSummary"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfCustomPluginSummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CustomPluginSummary"
+            }
+        },
+        "CustomPluginSummary": {
+            "type": "object",
+            "properties": {
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "customPluginArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "customPluginState": {
+                    "$ref": "#/$defs/CustomPluginState"
+                },
+                "description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "latestRevision": {
+                    "$ref": "#/$defs/CustomPluginRevisionSummary"
+                },
+                "name": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListCustomPluginsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "namePrefix": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListWorkerConfigurationsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfigurations": {
+                    "$ref": "#/$defs/__listOfWorkerConfigurationSummary"
+                }
+            }
+        },
+        "__listOfWorkerConfigurationSummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WorkerConfigurationSummary"
+            }
+        },
+        "WorkerConfigurationSummary": {
+            "type": "object",
+            "properties": {
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "latestRevision": {
+                    "$ref": "#/$defs/WorkerConfigurationRevisionSummary"
+                },
+                "name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfigurationArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "workerConfigurationState": {
+                    "$ref": "#/$defs/WorkerConfigurationState"
+                }
+            }
+        },
+        "ListWorkerConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "namePrefix": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateConnectorResponse": {
+            "type": "object",
+            "properties": {
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorState": {
+                    "$ref": "#/$defs/ConnectorState"
+                }
+            }
+        },
+        "UpdateConnectorRequest": {
+            "type": "object",
+            "properties": {
+                "capacity": {
+                    "$ref": "#/$defs/CapacityUpdate"
+                },
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "currentVersion": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CapacityUpdate": {
+            "type": "object",
+            "properties": {
+                "autoScaling": {
+                    "$ref": "#/$defs/AutoScalingUpdate"
+                },
+                "provisionedCapacity": {
+                    "$ref": "#/$defs/ProvisionedCapacityUpdate"
+                }
+            }
+        },
+        "AutoScalingUpdate": {
+            "type": "object",
+            "properties": {
+                "maxWorkerCount": {
+                    "$ref": "#/$defs/__integerMin1Max10"
+                },
+                "mcuCount": {
+                    "$ref": "#/$defs/__integerMin1Max8"
+                },
+                "minWorkerCount": {
+                    "$ref": "#/$defs/__integerMin1Max10"
+                },
+                "scaleInPolicy": {
+                    "$ref": "#/$defs/ScaleInPolicyUpdate"
+                },
+                "scaleOutPolicy": {
+                    "$ref": "#/$defs/ScaleOutPolicyUpdate"
+                }
+            }
+        },
+        "ScaleInPolicyUpdate": {
+            "type": "object",
+            "properties": {
+                "cpuUtilizationPercentage": {
+                    "$ref": "#/$defs/__integerMin1Max100"
+                }
+            }
+        },
+        "ScaleOutPolicyUpdate": {
+            "type": "object",
+            "properties": {
+                "cpuUtilizationPercentage": {
+                    "$ref": "#/$defs/__integerMin1Max100"
+                }
+            }
+        },
+        "ProvisionedCapacityUpdate": {
+            "type": "object",
+            "properties": {
+                "mcuCount": {
+                    "$ref": "#/$defs/__integerMin1Max8"
+                },
+                "workerCount": {
+                    "$ref": "#/$defs/__integerMin1Max10"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kafkaconnect-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kafkaconnect-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kafkaconnect.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://kafkaconnect.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,1190 @@
+{
+    "name": "autoscaling-plans",
+    "commands": [
+        {
+            "name": "CreateScalingPlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateScalingPlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateScalingPlanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateScalingPlanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteScalingPlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteScalingPlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteScalingPlanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteScalingPlanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeScalingPlanResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeScalingPlanResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeScalingPlanResourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeScalingPlanResourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeScalingPlans",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeScalingPlans"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeScalingPlansResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeScalingPlansRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetScalingPlanResourceForecastData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetScalingPlanResourceForecastData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetScalingPlanResourceForecastDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetScalingPlanResourceForecastDataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateScalingPlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateScalingPlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateScalingPlanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateScalingPlanRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateScalingPlanResponse": {
+            "type": "object",
+            "properties": {
+                "ScalingPlanVersion": {
+                    "$ref": "#/$defs/ScalingPlanVersion"
+                }
+            }
+        },
+        "ScalingPlanVersion": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CreateScalingPlanRequest": {
+            "type": "object",
+            "properties": {
+                "ScalingPlanName": {
+                    "$ref": "#/$defs/ScalingPlanName"
+                },
+                "ApplicationSource": {
+                    "$ref": "#/$defs/ApplicationSource"
+                },
+                "ScalingInstructions": {
+                    "$ref": "#/$defs/ScalingInstructions"
+                }
+            }
+        },
+        "ScalingPlanName": {
+            "type": "string"
+        },
+        "ApplicationSource": {
+            "type": "object",
+            "properties": {
+                "CloudFormationStackARN": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "TagFilters": {
+                    "$ref": "#/$defs/TagFilters"
+                }
+            }
+        },
+        "XmlString": {
+            "type": "string"
+        },
+        "TagFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagFilter"
+            }
+        },
+        "TagFilter": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/XmlStringMaxLen128"
+                },
+                "Values": {
+                    "$ref": "#/$defs/TagValues"
+                }
+            }
+        },
+        "XmlStringMaxLen128": {
+            "type": "string"
+        },
+        "TagValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/XmlStringMaxLen256"
+            }
+        },
+        "XmlStringMaxLen256": {
+            "type": "string"
+        },
+        "ScalingInstructions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScalingInstruction"
+            }
+        },
+        "ScalingInstruction": {
+            "type": "object",
+            "properties": {
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "MinCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
+                "MaxCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
+                "TargetTrackingConfigurations": {
+                    "$ref": "#/$defs/TargetTrackingConfigurations"
+                },
+                "PredefinedLoadMetricSpecification": {
+                    "$ref": "#/$defs/PredefinedLoadMetricSpecification"
+                },
+                "CustomizedLoadMetricSpecification": {
+                    "$ref": "#/$defs/CustomizedLoadMetricSpecification"
+                },
+                "ScheduledActionBufferTime": {
+                    "$ref": "#/$defs/ScheduledActionBufferTime"
+                },
+                "PredictiveScalingMaxCapacityBehavior": {
+                    "$ref": "#/$defs/PredictiveScalingMaxCapacityBehavior"
+                },
+                "PredictiveScalingMaxCapacityBuffer": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
+                "PredictiveScalingMode": {
+                    "$ref": "#/$defs/PredictiveScalingMode"
+                },
+                "ScalingPolicyUpdateBehavior": {
+                    "$ref": "#/$defs/ScalingPolicyUpdateBehavior"
+                },
+                "DisableDynamicScaling": {
+                    "$ref": "#/$defs/DisableDynamicScaling"
+                }
+            }
+        },
+        "ServiceNamespace": {
+            "enum": [
+                "AUTOSCALING",
+                "ECS",
+                "EC2",
+                "RDS",
+                "DYNAMODB"
+            ]
+        },
+        "ResourceIdMaxLen1600": {
+            "type": "string"
+        },
+        "ScalableDimension": {
+            "enum": [
+                "AutoScalingGroupDesiredCapacity",
+                "ECSServiceDesiredCount",
+                "EC2SpotFleetRequestTargetCapacity",
+                "RDSClusterReadReplicaCount",
+                "DynamoDBTableReadCapacityUnits",
+                "DynamoDBTableWriteCapacityUnits",
+                "DynamoDBIndexReadCapacityUnits",
+                "DynamoDBIndexWriteCapacityUnits"
+            ]
+        },
+        "ResourceCapacity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TargetTrackingConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetTrackingConfiguration"
+            }
+        },
+        "TargetTrackingConfiguration": {
+            "type": "object",
+            "properties": {
+                "PredefinedScalingMetricSpecification": {
+                    "$ref": "#/$defs/PredefinedScalingMetricSpecification"
+                },
+                "CustomizedScalingMetricSpecification": {
+                    "$ref": "#/$defs/CustomizedScalingMetricSpecification"
+                },
+                "TargetValue": {
+                    "$ref": "#/$defs/MetricScale"
+                },
+                "DisableScaleIn": {
+                    "$ref": "#/$defs/DisableScaleIn"
+                },
+                "ScaleOutCooldown": {
+                    "$ref": "#/$defs/Cooldown"
+                },
+                "ScaleInCooldown": {
+                    "$ref": "#/$defs/Cooldown"
+                },
+                "EstimatedInstanceWarmup": {
+                    "$ref": "#/$defs/Cooldown"
+                }
+            }
+        },
+        "PredefinedScalingMetricSpecification": {
+            "type": "object",
+            "properties": {
+                "PredefinedScalingMetricType": {
+                    "$ref": "#/$defs/ScalingMetricType"
+                },
+                "ResourceLabel": {
+                    "$ref": "#/$defs/ResourceLabel"
+                }
+            }
+        },
+        "ScalingMetricType": {
+            "enum": [
+                "ASGAverageCPUUtilization",
+                "ASGAverageNetworkIn",
+                "ASGAverageNetworkOut",
+                "DynamoDBReadCapacityUtilization",
+                "DynamoDBWriteCapacityUtilization",
+                "ECSServiceAverageCPUUtilization",
+                "ECSServiceAverageMemoryUtilization",
+                "ALBRequestCountPerTarget",
+                "RDSReaderAverageCPUUtilization",
+                "RDSReaderAverageDatabaseConnections",
+                "EC2SpotFleetRequestAverageCPUUtilization",
+                "EC2SpotFleetRequestAverageNetworkIn",
+                "EC2SpotFleetRequestAverageNetworkOut"
+            ]
+        },
+        "ResourceLabel": {
+            "type": "string"
+        },
+        "CustomizedScalingMetricSpecification": {
+            "type": "object",
+            "properties": {
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/MetricNamespace"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/MetricDimensions"
+                },
+                "Statistic": {
+                    "$ref": "#/$defs/MetricStatistic"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/MetricUnit"
+                }
+            }
+        },
+        "MetricName": {
+            "type": "string"
+        },
+        "MetricNamespace": {
+            "type": "string"
+        },
+        "MetricDimensions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricDimension"
+            }
+        },
+        "MetricDimension": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/MetricDimensionName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/MetricDimensionValue"
+                }
+            }
+        },
+        "MetricDimensionName": {
+            "type": "string"
+        },
+        "MetricDimensionValue": {
+            "type": "string"
+        },
+        "MetricStatistic": {
+            "enum": [
+                "Average",
+                "Minimum",
+                "Maximum",
+                "SampleCount",
+                "Sum"
+            ]
+        },
+        "MetricUnit": {
+            "type": "string"
+        },
+        "MetricScale": {
+            "type": "number",
+            "format": "double"
+        },
+        "DisableScaleIn": {
+            "type": "boolean"
+        },
+        "Cooldown": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PredefinedLoadMetricSpecification": {
+            "type": "object",
+            "properties": {
+                "PredefinedLoadMetricType": {
+                    "$ref": "#/$defs/LoadMetricType"
+                },
+                "ResourceLabel": {
+                    "$ref": "#/$defs/ResourceLabel"
+                }
+            }
+        },
+        "LoadMetricType": {
+            "enum": [
+                "ASGTotalCPUUtilization",
+                "ASGTotalNetworkIn",
+                "ASGTotalNetworkOut",
+                "ALBTargetGroupRequestCount"
+            ]
+        },
+        "CustomizedLoadMetricSpecification": {
+            "type": "object",
+            "properties": {
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/MetricNamespace"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/MetricDimensions"
+                },
+                "Statistic": {
+                    "$ref": "#/$defs/MetricStatistic"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/MetricUnit"
+                }
+            }
+        },
+        "ScheduledActionBufferTime": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PredictiveScalingMaxCapacityBehavior": {
+            "enum": [
+                "SetForecastCapacityToMaxCapacity",
+                "SetMaxCapacityToForecastCapacity",
+                "SetMaxCapacityAboveForecastCapacity"
+            ]
+        },
+        "PredictiveScalingMode": {
+            "enum": [
+                "ForecastAndScale",
+                "ForecastOnly"
+            ]
+        },
+        "ScalingPolicyUpdateBehavior": {
+            "enum": [
+                "KeepExternalPolicies",
+                "ReplaceExternalPolicies"
+            ]
+        },
+        "DisableDynamicScaling": {
+            "type": "boolean"
+        },
+        "DeleteScalingPlanResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteScalingPlanRequest": {
+            "type": "object",
+            "properties": {
+                "ScalingPlanName": {
+                    "$ref": "#/$defs/ScalingPlanName"
+                },
+                "ScalingPlanVersion": {
+                    "$ref": "#/$defs/ScalingPlanVersion"
+                }
+            }
+        },
+        "DescribeScalingPlanResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "ScalingPlanResources": {
+                    "$ref": "#/$defs/ScalingPlanResources"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ScalingPlanResources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScalingPlanResource"
+            }
+        },
+        "ScalingPlanResource": {
+            "type": "object",
+            "properties": {
+                "ScalingPlanName": {
+                    "$ref": "#/$defs/ScalingPlanName"
+                },
+                "ScalingPlanVersion": {
+                    "$ref": "#/$defs/ScalingPlanVersion"
+                },
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "ScalingPolicies": {
+                    "$ref": "#/$defs/ScalingPolicies"
+                },
+                "ScalingStatusCode": {
+                    "$ref": "#/$defs/ScalingStatusCode"
+                },
+                "ScalingStatusMessage": {
+                    "$ref": "#/$defs/XmlString"
+                }
+            }
+        },
+        "ScalingPolicies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScalingPolicy"
+            }
+        },
+        "ScalingPolicy": {
+            "type": "object",
+            "properties": {
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "PolicyType": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "TargetTrackingConfiguration": {
+                    "$ref": "#/$defs/TargetTrackingConfiguration"
+                }
+            }
+        },
+        "PolicyName": {
+            "type": "string"
+        },
+        "PolicyType": {
+            "enum": [
+                "TargetTrackingScaling"
+            ]
+        },
+        "ScalingStatusCode": {
+            "enum": [
+                "Inactive",
+                "PartiallyActive",
+                "Active"
+            ]
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeScalingPlanResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "ScalingPlanName": {
+                    "$ref": "#/$defs/ScalingPlanName"
+                },
+                "ScalingPlanVersion": {
+                    "$ref": "#/$defs/ScalingPlanVersion"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeScalingPlansResponse": {
+            "type": "object",
+            "properties": {
+                "ScalingPlans": {
+                    "$ref": "#/$defs/ScalingPlans"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ScalingPlans": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScalingPlan"
+            }
+        },
+        "ScalingPlan": {
+            "type": "object",
+            "properties": {
+                "ScalingPlanName": {
+                    "$ref": "#/$defs/ScalingPlanName"
+                },
+                "ScalingPlanVersion": {
+                    "$ref": "#/$defs/ScalingPlanVersion"
+                },
+                "ApplicationSource": {
+                    "$ref": "#/$defs/ApplicationSource"
+                },
+                "ScalingInstructions": {
+                    "$ref": "#/$defs/ScalingInstructions"
+                },
+                "StatusCode": {
+                    "$ref": "#/$defs/ScalingPlanStatusCode"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "StatusStartTime": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/TimestampType"
+                }
+            }
+        },
+        "ScalingPlanStatusCode": {
+            "enum": [
+                "Active",
+                "ActiveWithProblems",
+                "CreationInProgress",
+                "CreationFailed",
+                "DeletionInProgress",
+                "DeletionFailed",
+                "UpdateInProgress",
+                "UpdateFailed"
+            ]
+        },
+        "TimestampType": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeScalingPlansRequest": {
+            "type": "object",
+            "properties": {
+                "ScalingPlanNames": {
+                    "$ref": "#/$defs/ScalingPlanNames"
+                },
+                "ScalingPlanVersion": {
+                    "$ref": "#/$defs/ScalingPlanVersion"
+                },
+                "ApplicationSources": {
+                    "$ref": "#/$defs/ApplicationSources"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ScalingPlanNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScalingPlanName"
+            }
+        },
+        "ApplicationSources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationSource"
+            }
+        },
+        "GetScalingPlanResourceForecastDataResponse": {
+            "type": "object",
+            "properties": {
+                "Datapoints": {
+                    "$ref": "#/$defs/Datapoints"
+                }
+            }
+        },
+        "Datapoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Datapoint"
+            }
+        },
+        "Datapoint": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "Value": {
+                    "$ref": "#/$defs/MetricScale"
+                }
+            }
+        },
+        "GetScalingPlanResourceForecastDataRequest": {
+            "type": "object",
+            "properties": {
+                "ScalingPlanName": {
+                    "$ref": "#/$defs/ScalingPlanName"
+                },
+                "ScalingPlanVersion": {
+                    "$ref": "#/$defs/ScalingPlanVersion"
+                },
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "ForecastDataType": {
+                    "$ref": "#/$defs/ForecastDataType"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/TimestampType"
+                }
+            }
+        },
+        "ForecastDataType": {
+            "enum": [
+                "CapacityForecast",
+                "LoadForecast",
+                "ScheduledActionMinCapacity",
+                "ScheduledActionMaxCapacity"
+            ]
+        },
+        "UpdateScalingPlanResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateScalingPlanRequest": {
+            "type": "object",
+            "properties": {
+                "ScalingPlanName": {
+                    "$ref": "#/$defs/ScalingPlanName"
+                },
+                "ScalingPlanVersion": {
+                    "$ref": "#/$defs/ScalingPlanVersion"
+                },
+                "ApplicationSource": {
+                    "$ref": "#/$defs/ApplicationSource"
+                },
+                "ScalingInstructions": {
+                    "$ref": "#/$defs/ScalingInstructions"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://autoscaling-plans-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://autoscaling-plans-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://autoscaling-plans.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://autoscaling-plans.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

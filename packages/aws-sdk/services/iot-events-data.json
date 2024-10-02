@@ -1,0 +1,1667 @@
+{
+    "name": "ioteventsdata",
+    "commands": [
+        {
+            "name": "BatchAcknowledgeAlarm",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchAcknowledgeAlarm"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchAcknowledgeAlarmResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchAcknowledgeAlarmRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchDeleteDetector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchDeleteDetector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDeleteDetectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDeleteDetectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchDisableAlarm",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchDisableAlarm"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDisableAlarmResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDisableAlarmRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchEnableAlarm",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchEnableAlarm"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchEnableAlarmResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchEnableAlarmRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchPutMessage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchPutMessage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchPutMessageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchPutMessageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchResetAlarm",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchResetAlarm"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchResetAlarmResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchResetAlarmRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchSnoozeAlarm",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchSnoozeAlarm"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchSnoozeAlarmResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchSnoozeAlarmRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchUpdateDetector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchUpdateDetector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchUpdateDetectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchUpdateDetectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAlarm",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAlarm"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAlarmResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAlarmRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDetector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDetector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDetectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDetectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAlarms",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAlarms"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAlarmsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAlarmsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDetectors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDetectors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDetectorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDetectorsRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchAcknowledgeAlarmResponse": {
+            "type": "object",
+            "properties": {
+                "errorEntries": {
+                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
+                }
+            }
+        },
+        "BatchAlarmActionErrorEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchAlarmActionErrorEntry"
+            }
+        },
+        "BatchAlarmActionErrorEntry": {
+            "type": "object",
+            "properties": {
+                "requestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "RequestId": {
+            "type": "string"
+        },
+        "ErrorCode": {
+            "enum": [
+                "ResourceNotFoundException",
+                "InvalidRequestException",
+                "InternalFailureException",
+                "ServiceUnavailableException",
+                "ThrottlingException"
+            ]
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "BatchAcknowledgeAlarmRequest": {
+            "type": "object",
+            "properties": {
+                "acknowledgeActionRequests": {
+                    "$ref": "#/$defs/AcknowledgeAlarmActionRequests"
+                }
+            }
+        },
+        "AcknowledgeAlarmActionRequests": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AcknowledgeAlarmActionRequest"
+            }
+        },
+        "AcknowledgeAlarmActionRequest": {
+            "type": "object",
+            "properties": {
+                "requestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                },
+                "note": {
+                    "$ref": "#/$defs/Note"
+                }
+            }
+        },
+        "AlarmModelName": {
+            "type": "string"
+        },
+        "KeyValue": {
+            "type": "string"
+        },
+        "Note": {
+            "type": "string"
+        },
+        "BatchDeleteDetectorResponse": {
+            "type": "object",
+            "properties": {
+                "batchDeleteDetectorErrorEntries": {
+                    "$ref": "#/$defs/BatchDeleteDetectorErrorEntries"
+                }
+            }
+        },
+        "BatchDeleteDetectorErrorEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchDeleteDetectorErrorEntry"
+            }
+        },
+        "BatchDeleteDetectorErrorEntry": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "MessageId": {
+            "type": "string"
+        },
+        "BatchDeleteDetectorRequest": {
+            "type": "object",
+            "properties": {
+                "detectors": {
+                    "$ref": "#/$defs/DeleteDetectorRequests"
+                }
+            }
+        },
+        "DeleteDetectorRequests": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeleteDetectorRequest"
+            }
+        },
+        "DeleteDetectorRequest": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "detectorModelName": {
+                    "$ref": "#/$defs/DetectorModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                }
+            }
+        },
+        "DetectorModelName": {
+            "type": "string"
+        },
+        "BatchDisableAlarmResponse": {
+            "type": "object",
+            "properties": {
+                "errorEntries": {
+                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
+                }
+            }
+        },
+        "BatchDisableAlarmRequest": {
+            "type": "object",
+            "properties": {
+                "disableActionRequests": {
+                    "$ref": "#/$defs/DisableAlarmActionRequests"
+                }
+            }
+        },
+        "DisableAlarmActionRequests": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DisableAlarmActionRequest"
+            }
+        },
+        "DisableAlarmActionRequest": {
+            "type": "object",
+            "properties": {
+                "requestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                },
+                "note": {
+                    "$ref": "#/$defs/Note"
+                }
+            }
+        },
+        "BatchEnableAlarmResponse": {
+            "type": "object",
+            "properties": {
+                "errorEntries": {
+                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
+                }
+            }
+        },
+        "BatchEnableAlarmRequest": {
+            "type": "object",
+            "properties": {
+                "enableActionRequests": {
+                    "$ref": "#/$defs/EnableAlarmActionRequests"
+                }
+            }
+        },
+        "EnableAlarmActionRequests": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnableAlarmActionRequest"
+            }
+        },
+        "EnableAlarmActionRequest": {
+            "type": "object",
+            "properties": {
+                "requestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                },
+                "note": {
+                    "$ref": "#/$defs/Note"
+                }
+            }
+        },
+        "BatchPutMessageResponse": {
+            "type": "object",
+            "properties": {
+                "BatchPutMessageErrorEntries": {
+                    "$ref": "#/$defs/BatchPutMessageErrorEntries"
+                }
+            }
+        },
+        "BatchPutMessageErrorEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchPutMessageErrorEntry"
+            }
+        },
+        "BatchPutMessageErrorEntry": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "BatchPutMessageRequest": {
+            "type": "object",
+            "properties": {
+                "messages": {
+                    "$ref": "#/$defs/Messages"
+                }
+            }
+        },
+        "Messages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Message"
+            }
+        },
+        "Message": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "inputName": {
+                    "$ref": "#/$defs/EphemeralInputName"
+                },
+                "payload": {
+                    "$ref": "#/$defs/Payload"
+                },
+                "timestamp": {
+                    "$ref": "#/$defs/TimestampValue"
+                }
+            }
+        },
+        "EphemeralInputName": {
+            "type": "string"
+        },
+        "Payload": {
+            "type": "string",
+            "format": "binary"
+        },
+        "TimestampValue": {
+            "type": "object",
+            "properties": {
+                "timeInMillis": {
+                    "$ref": "#/$defs/EpochMilliTimestamp"
+                }
+            }
+        },
+        "EpochMilliTimestamp": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "BatchResetAlarmResponse": {
+            "type": "object",
+            "properties": {
+                "errorEntries": {
+                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
+                }
+            }
+        },
+        "BatchResetAlarmRequest": {
+            "type": "object",
+            "properties": {
+                "resetActionRequests": {
+                    "$ref": "#/$defs/ResetAlarmActionRequests"
+                }
+            }
+        },
+        "ResetAlarmActionRequests": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResetAlarmActionRequest"
+            }
+        },
+        "ResetAlarmActionRequest": {
+            "type": "object",
+            "properties": {
+                "requestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                },
+                "note": {
+                    "$ref": "#/$defs/Note"
+                }
+            }
+        },
+        "BatchSnoozeAlarmResponse": {
+            "type": "object",
+            "properties": {
+                "errorEntries": {
+                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
+                }
+            }
+        },
+        "BatchSnoozeAlarmRequest": {
+            "type": "object",
+            "properties": {
+                "snoozeActionRequests": {
+                    "$ref": "#/$defs/SnoozeAlarmActionRequests"
+                }
+            }
+        },
+        "SnoozeAlarmActionRequests": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SnoozeAlarmActionRequest"
+            }
+        },
+        "SnoozeAlarmActionRequest": {
+            "type": "object",
+            "properties": {
+                "requestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                },
+                "note": {
+                    "$ref": "#/$defs/Note"
+                },
+                "snoozeDuration": {
+                    "$ref": "#/$defs/SnoozeDuration"
+                }
+            }
+        },
+        "SnoozeDuration": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BatchUpdateDetectorResponse": {
+            "type": "object",
+            "properties": {
+                "batchUpdateDetectorErrorEntries": {
+                    "$ref": "#/$defs/BatchUpdateDetectorErrorEntries"
+                }
+            }
+        },
+        "BatchUpdateDetectorErrorEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchUpdateDetectorErrorEntry"
+            }
+        },
+        "BatchUpdateDetectorErrorEntry": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "BatchUpdateDetectorRequest": {
+            "type": "object",
+            "properties": {
+                "detectors": {
+                    "$ref": "#/$defs/UpdateDetectorRequests"
+                }
+            }
+        },
+        "UpdateDetectorRequests": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UpdateDetectorRequest"
+            }
+        },
+        "UpdateDetectorRequest": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "detectorModelName": {
+                    "$ref": "#/$defs/DetectorModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                },
+                "state": {
+                    "$ref": "#/$defs/DetectorStateDefinition"
+                }
+            }
+        },
+        "DetectorStateDefinition": {
+            "type": "object",
+            "properties": {
+                "stateName": {
+                    "$ref": "#/$defs/StateName"
+                },
+                "variables": {
+                    "$ref": "#/$defs/VariableDefinitions"
+                },
+                "timers": {
+                    "$ref": "#/$defs/TimerDefinitions"
+                }
+            }
+        },
+        "StateName": {
+            "type": "string"
+        },
+        "VariableDefinitions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VariableDefinition"
+            }
+        },
+        "VariableDefinition": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/VariableName"
+                },
+                "value": {
+                    "$ref": "#/$defs/VariableValue"
+                }
+            }
+        },
+        "VariableName": {
+            "type": "string"
+        },
+        "VariableValue": {
+            "type": "string"
+        },
+        "TimerDefinitions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TimerDefinition"
+            }
+        },
+        "TimerDefinition": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/TimerName"
+                },
+                "seconds": {
+                    "$ref": "#/$defs/Seconds"
+                }
+            }
+        },
+        "TimerName": {
+            "type": "string"
+        },
+        "Seconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeAlarmResponse": {
+            "type": "object",
+            "properties": {
+                "alarm": {
+                    "$ref": "#/$defs/Alarm"
+                }
+            }
+        },
+        "Alarm": {
+            "type": "object",
+            "properties": {
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
+                },
+                "alarmModelVersion": {
+                    "$ref": "#/$defs/AlarmModelVersion"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                },
+                "alarmState": {
+                    "$ref": "#/$defs/AlarmState"
+                },
+                "severity": {
+                    "$ref": "#/$defs/Severity"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "AlarmModelVersion": {
+            "type": "string"
+        },
+        "AlarmState": {
+            "type": "object",
+            "properties": {
+                "stateName": {
+                    "$ref": "#/$defs/AlarmStateName"
+                },
+                "ruleEvaluation": {
+                    "$ref": "#/$defs/RuleEvaluation"
+                },
+                "customerAction": {
+                    "$ref": "#/$defs/CustomerAction"
+                },
+                "systemEvent": {
+                    "$ref": "#/$defs/SystemEvent"
+                }
+            }
+        },
+        "AlarmStateName": {
+            "enum": [
+                "DISABLED",
+                "NORMAL",
+                "ACTIVE",
+                "ACKNOWLEDGED",
+                "SNOOZE_DISABLED",
+                "LATCHED"
+            ]
+        },
+        "RuleEvaluation": {
+            "type": "object",
+            "properties": {
+                "simpleRuleEvaluation": {
+                    "$ref": "#/$defs/SimpleRuleEvaluation"
+                }
+            }
+        },
+        "SimpleRuleEvaluation": {
+            "type": "object",
+            "properties": {
+                "inputPropertyValue": {
+                    "$ref": "#/$defs/InputPropertyValue"
+                },
+                "operator": {
+                    "$ref": "#/$defs/ComparisonOperator"
+                },
+                "thresholdValue": {
+                    "$ref": "#/$defs/ThresholdValue"
+                }
+            }
+        },
+        "InputPropertyValue": {
+            "type": "string"
+        },
+        "ComparisonOperator": {
+            "enum": [
+                "GREATER",
+                "GREATER_OR_EQUAL",
+                "LESS",
+                "LESS_OR_EQUAL",
+                "EQUAL",
+                "NOT_EQUAL"
+            ]
+        },
+        "ThresholdValue": {
+            "type": "string"
+        },
+        "CustomerAction": {
+            "type": "object",
+            "properties": {
+                "actionName": {
+                    "$ref": "#/$defs/CustomerActionName"
+                },
+                "snoozeActionConfiguration": {
+                    "$ref": "#/$defs/SnoozeActionConfiguration"
+                },
+                "enableActionConfiguration": {
+                    "$ref": "#/$defs/EnableActionConfiguration"
+                },
+                "disableActionConfiguration": {
+                    "$ref": "#/$defs/DisableActionConfiguration"
+                },
+                "acknowledgeActionConfiguration": {
+                    "$ref": "#/$defs/AcknowledgeActionConfiguration"
+                },
+                "resetActionConfiguration": {
+                    "$ref": "#/$defs/ResetActionConfiguration"
+                }
+            }
+        },
+        "CustomerActionName": {
+            "enum": [
+                "SNOOZE",
+                "ENABLE",
+                "DISABLE",
+                "ACKNOWLEDGE",
+                "RESET"
+            ]
+        },
+        "SnoozeActionConfiguration": {
+            "type": "object",
+            "properties": {
+                "snoozeDuration": {
+                    "$ref": "#/$defs/SnoozeDuration"
+                },
+                "note": {
+                    "$ref": "#/$defs/Note"
+                }
+            }
+        },
+        "EnableActionConfiguration": {
+            "type": "object",
+            "properties": {
+                "note": {
+                    "$ref": "#/$defs/Note"
+                }
+            }
+        },
+        "DisableActionConfiguration": {
+            "type": "object",
+            "properties": {
+                "note": {
+                    "$ref": "#/$defs/Note"
+                }
+            }
+        },
+        "AcknowledgeActionConfiguration": {
+            "type": "object",
+            "properties": {
+                "note": {
+                    "$ref": "#/$defs/Note"
+                }
+            }
+        },
+        "ResetActionConfiguration": {
+            "type": "object",
+            "properties": {
+                "note": {
+                    "$ref": "#/$defs/Note"
+                }
+            }
+        },
+        "SystemEvent": {
+            "type": "object",
+            "properties": {
+                "eventType": {
+                    "$ref": "#/$defs/EventType"
+                },
+                "stateChangeConfiguration": {
+                    "$ref": "#/$defs/StateChangeConfiguration"
+                }
+            }
+        },
+        "EventType": {
+            "enum": [
+                "STATE_CHANGE"
+            ]
+        },
+        "StateChangeConfiguration": {
+            "type": "object",
+            "properties": {
+                "triggerType": {
+                    "$ref": "#/$defs/TriggerType"
+                }
+            }
+        },
+        "TriggerType": {
+            "enum": [
+                "SNOOZE_TIMEOUT"
+            ]
+        },
+        "Severity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeAlarmRequest": {
+            "type": "object",
+            "properties": {
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                }
+            }
+        },
+        "DescribeDetectorResponse": {
+            "type": "object",
+            "properties": {
+                "detector": {
+                    "$ref": "#/$defs/Detector"
+                }
+            }
+        },
+        "Detector": {
+            "type": "object",
+            "properties": {
+                "detectorModelName": {
+                    "$ref": "#/$defs/DetectorModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                },
+                "detectorModelVersion": {
+                    "$ref": "#/$defs/DetectorModelVersion"
+                },
+                "state": {
+                    "$ref": "#/$defs/DetectorState"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DetectorModelVersion": {
+            "type": "string"
+        },
+        "DetectorState": {
+            "type": "object",
+            "properties": {
+                "stateName": {
+                    "$ref": "#/$defs/StateName"
+                },
+                "variables": {
+                    "$ref": "#/$defs/Variables"
+                },
+                "timers": {
+                    "$ref": "#/$defs/Timers"
+                }
+            }
+        },
+        "Variables": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Variable"
+            }
+        },
+        "Variable": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/VariableName"
+                },
+                "value": {
+                    "$ref": "#/$defs/VariableValue"
+                }
+            }
+        },
+        "Timers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Timer"
+            }
+        },
+        "Timer": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/TimerName"
+                },
+                "timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeDetectorRequest": {
+            "type": "object",
+            "properties": {
+                "detectorModelName": {
+                    "$ref": "#/$defs/DetectorModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                }
+            }
+        },
+        "ListAlarmsResponse": {
+            "type": "object",
+            "properties": {
+                "alarmSummaries": {
+                    "$ref": "#/$defs/AlarmSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AlarmSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AlarmSummary"
+            }
+        },
+        "AlarmSummary": {
+            "type": "object",
+            "properties": {
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
+                },
+                "alarmModelVersion": {
+                    "$ref": "#/$defs/AlarmModelVersion"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                },
+                "stateName": {
+                    "$ref": "#/$defs/AlarmStateName"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListAlarmsRequest": {
+            "type": "object",
+            "properties": {
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDetectorsResponse": {
+            "type": "object",
+            "properties": {
+                "detectorSummaries": {
+                    "$ref": "#/$defs/DetectorSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DetectorSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DetectorSummary"
+            }
+        },
+        "DetectorSummary": {
+            "type": "object",
+            "properties": {
+                "detectorModelName": {
+                    "$ref": "#/$defs/DetectorModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                },
+                "detectorModelVersion": {
+                    "$ref": "#/$defs/DetectorModelVersion"
+                },
+                "state": {
+                    "$ref": "#/$defs/DetectorStateSummary"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DetectorStateSummary": {
+            "type": "object",
+            "properties": {
+                "stateName": {
+                    "$ref": "#/$defs/StateName"
+                }
+            }
+        },
+        "ListDetectorsRequest": {
+            "type": "object",
+            "properties": {
+                "detectorModelName": {
+                    "$ref": "#/$defs/DetectorModelName"
+                },
+                "stateName": {
+                    "$ref": "#/$defs/StateName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://data.iotevents-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://data.iotevents-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://data.iotevents.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://data.iotevents.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

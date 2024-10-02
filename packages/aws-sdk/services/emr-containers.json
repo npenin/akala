@@ -1,0 +1,2517 @@
+{
+    "name": "emr-containers",
+    "commands": [
+        {
+            "name": "CancelJobRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelJobRun"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelJobRunResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelJobRunRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateJobTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateJobTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateJobTemplateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateJobTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateManagedEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateManagedEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateManagedEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateManagedEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateSecurityConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateSecurityConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSecurityConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSecurityConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateVirtualCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateVirtualCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateVirtualClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateVirtualClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteJobTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteJobTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteJobTemplateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteJobTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteManagedEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteManagedEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteManagedEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteManagedEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteVirtualCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteVirtualCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteVirtualClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteVirtualClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeJobRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeJobRun"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeJobRunResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeJobRunRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeJobTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeJobTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeJobTemplateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeJobTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeManagedEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeManagedEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeManagedEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeManagedEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeSecurityConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeSecurityConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeSecurityConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeSecurityConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeVirtualCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeVirtualCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeVirtualClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeVirtualClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetManagedEndpointSessionCredentials",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetManagedEndpointSessionCredentials"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetManagedEndpointSessionCredentialsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetManagedEndpointSessionCredentialsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJobRuns",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListJobRuns"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJobRunsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJobRunsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJobTemplates",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListJobTemplates"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJobTemplatesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJobTemplatesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListManagedEndpoints",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListManagedEndpoints"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListManagedEndpointsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListManagedEndpointsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSecurityConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSecurityConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSecurityConfigurationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSecurityConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListVirtualClusters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListVirtualClusters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListVirtualClustersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListVirtualClustersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartJobRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartJobRun"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartJobRunResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartJobRunRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CancelJobRunResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "ResourceIdString": {
+            "type": "string"
+        },
+        "CancelJobRunRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "CreateJobTemplateResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/JobTemplateArn"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "ResourceNameString": {
+            "type": "string"
+        },
+        "JobTemplateArn": {
+            "type": "string"
+        },
+        "Date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateJobTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "jobTemplateData": {
+                    "$ref": "#/$defs/JobTemplateData"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                }
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "JobTemplateData": {
+            "type": "object",
+            "properties": {
+                "executionRoleArn": {
+                    "$ref": "#/$defs/ParametricIAMRoleArn"
+                },
+                "releaseLabel": {
+                    "$ref": "#/$defs/ParametricReleaseLabel"
+                },
+                "configurationOverrides": {
+                    "$ref": "#/$defs/ParametricConfigurationOverrides"
+                },
+                "jobDriver": {
+                    "$ref": "#/$defs/JobDriver"
+                },
+                "parameterConfiguration": {
+                    "$ref": "#/$defs/TemplateParameterConfigurationMap"
+                },
+                "jobTags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ParametricIAMRoleArn": {
+            "type": "string"
+        },
+        "ParametricReleaseLabel": {
+            "type": "string"
+        },
+        "ParametricConfigurationOverrides": {
+            "type": "object",
+            "properties": {
+                "applicationConfiguration": {
+                    "$ref": "#/$defs/ConfigurationList"
+                },
+                "monitoringConfiguration": {
+                    "$ref": "#/$defs/ParametricMonitoringConfiguration"
+                }
+            }
+        },
+        "ConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Configuration"
+            }
+        },
+        "Configuration": {
+            "type": "object",
+            "properties": {
+                "classification": {
+                    "$ref": "#/$defs/String1024"
+                },
+                "properties": {
+                    "$ref": "#/$defs/SensitivePropertiesMap"
+                },
+                "configurations": {
+                    "$ref": "#/$defs/ConfigurationList"
+                }
+            }
+        },
+        "String1024": {
+            "type": "string"
+        },
+        "SensitivePropertiesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String1024"
+            }
+        },
+        "ParametricMonitoringConfiguration": {
+            "type": "object",
+            "properties": {
+                "persistentAppUI": {
+                    "$ref": "#/$defs/TemplateParameter"
+                },
+                "cloudWatchMonitoringConfiguration": {
+                    "$ref": "#/$defs/ParametricCloudWatchMonitoringConfiguration"
+                },
+                "s3MonitoringConfiguration": {
+                    "$ref": "#/$defs/ParametricS3MonitoringConfiguration"
+                }
+            }
+        },
+        "TemplateParameter": {
+            "type": "string"
+        },
+        "ParametricCloudWatchMonitoringConfiguration": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/TemplateParameter"
+                },
+                "logStreamNamePrefix": {
+                    "$ref": "#/$defs/String256"
+                }
+            }
+        },
+        "String256": {
+            "type": "string"
+        },
+        "ParametricS3MonitoringConfiguration": {
+            "type": "object",
+            "properties": {
+                "logUri": {
+                    "$ref": "#/$defs/UriString"
+                }
+            }
+        },
+        "UriString": {
+            "type": "string"
+        },
+        "JobDriver": {
+            "type": "object",
+            "properties": {
+                "sparkSubmitJobDriver": {
+                    "$ref": "#/$defs/SparkSubmitJobDriver"
+                },
+                "sparkSqlJobDriver": {
+                    "$ref": "#/$defs/SparkSqlJobDriver"
+                }
+            }
+        },
+        "SparkSubmitJobDriver": {
+            "type": "object",
+            "properties": {
+                "entryPoint": {
+                    "$ref": "#/$defs/EntryPointPath"
+                },
+                "entryPointArguments": {
+                    "$ref": "#/$defs/EntryPointArguments"
+                },
+                "sparkSubmitParameters": {
+                    "$ref": "#/$defs/SparkSubmitParameters"
+                }
+            }
+        },
+        "EntryPointPath": {
+            "type": "string"
+        },
+        "EntryPointArguments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntryPointArgument"
+            }
+        },
+        "EntryPointArgument": {
+            "type": "string"
+        },
+        "SparkSubmitParameters": {
+            "type": "string"
+        },
+        "SparkSqlJobDriver": {
+            "type": "object",
+            "properties": {
+                "entryPoint": {
+                    "$ref": "#/$defs/EntryPointPath"
+                },
+                "sparkSqlParameters": {
+                    "$ref": "#/$defs/SparkSqlParameters"
+                }
+            }
+        },
+        "SparkSqlParameters": {
+            "type": "string"
+        },
+        "TemplateParameterConfigurationMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TemplateParameterConfiguration"
+            }
+        },
+        "TemplateParameterConfiguration": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/TemplateParameterDataType"
+                },
+                "defaultValue": {
+                    "$ref": "#/$defs/String1024"
+                }
+            }
+        },
+        "TemplateParameterDataType": {
+            "enum": [
+                "NUMBER",
+                "STRING"
+            ]
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/StringEmpty256"
+            }
+        },
+        "StringEmpty256": {
+            "type": "string"
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "CreateManagedEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/EndpointArn"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "EndpointArn": {
+            "type": "string"
+        },
+        "CreateManagedEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "type": {
+                    "$ref": "#/$defs/EndpointType"
+                },
+                "releaseLabel": {
+                    "$ref": "#/$defs/ReleaseLabel"
+                },
+                "executionRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                },
+                "certificateArn": {
+                    "$ref": "#/$defs/ACMCertArn"
+                },
+                "configurationOverrides": {
+                    "$ref": "#/$defs/ConfigurationOverrides"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "EndpointType": {
+            "type": "string"
+        },
+        "ReleaseLabel": {
+            "type": "string"
+        },
+        "IAMRoleArn": {
+            "type": "string"
+        },
+        "ACMCertArn": {
+            "type": "string"
+        },
+        "ConfigurationOverrides": {
+            "type": "object",
+            "properties": {
+                "applicationConfiguration": {
+                    "$ref": "#/$defs/ConfigurationList"
+                },
+                "monitoringConfiguration": {
+                    "$ref": "#/$defs/MonitoringConfiguration"
+                }
+            }
+        },
+        "MonitoringConfiguration": {
+            "type": "object",
+            "properties": {
+                "persistentAppUI": {
+                    "$ref": "#/$defs/PersistentAppUI"
+                },
+                "cloudWatchMonitoringConfiguration": {
+                    "$ref": "#/$defs/CloudWatchMonitoringConfiguration"
+                },
+                "s3MonitoringConfiguration": {
+                    "$ref": "#/$defs/S3MonitoringConfiguration"
+                },
+                "containerLogRotationConfiguration": {
+                    "$ref": "#/$defs/ContainerLogRotationConfiguration"
+                }
+            }
+        },
+        "PersistentAppUI": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "CloudWatchMonitoringConfiguration": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "logStreamNamePrefix": {
+                    "$ref": "#/$defs/String256"
+                }
+            }
+        },
+        "LogGroupName": {
+            "type": "string"
+        },
+        "S3MonitoringConfiguration": {
+            "type": "object",
+            "properties": {
+                "logUri": {
+                    "$ref": "#/$defs/UriString"
+                }
+            }
+        },
+        "ContainerLogRotationConfiguration": {
+            "type": "object",
+            "properties": {
+                "rotationSize": {
+                    "$ref": "#/$defs/RotationSize"
+                },
+                "maxFilesToKeep": {
+                    "$ref": "#/$defs/MaxFilesToKeep"
+                }
+            }
+        },
+        "RotationSize": {
+            "type": "string"
+        },
+        "MaxFilesToKeep": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CreateSecurityConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/SecurityConfigurationArn"
+                }
+            }
+        },
+        "SecurityConfigurationArn": {
+            "type": "string"
+        },
+        "CreateSecurityConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "securityConfigurationData": {
+                    "$ref": "#/$defs/SecurityConfigurationData"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "SecurityConfigurationData": {
+            "type": "object",
+            "properties": {
+                "authorizationConfiguration": {
+                    "$ref": "#/$defs/AuthorizationConfiguration"
+                }
+            }
+        },
+        "AuthorizationConfiguration": {
+            "type": "object",
+            "properties": {
+                "lakeFormationConfiguration": {
+                    "$ref": "#/$defs/LakeFormationConfiguration"
+                },
+                "encryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfiguration"
+                }
+            }
+        },
+        "LakeFormationConfiguration": {
+            "type": "object",
+            "properties": {
+                "authorizedSessionTagValue": {
+                    "$ref": "#/$defs/SessionTagValue"
+                },
+                "secureNamespaceInfo": {
+                    "$ref": "#/$defs/SecureNamespaceInfo"
+                },
+                "queryEngineRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                }
+            }
+        },
+        "SessionTagValue": {
+            "type": "string"
+        },
+        "SecureNamespaceInfo": {
+            "type": "object",
+            "properties": {
+                "clusterId": {
+                    "$ref": "#/$defs/ClusterId"
+                },
+                "namespace": {
+                    "$ref": "#/$defs/KubernetesNamespace"
+                }
+            }
+        },
+        "ClusterId": {
+            "type": "string"
+        },
+        "KubernetesNamespace": {
+            "type": "string"
+        },
+        "EncryptionConfiguration": {
+            "type": "object",
+            "properties": {
+                "inTransitEncryptionConfiguration": {
+                    "$ref": "#/$defs/InTransitEncryptionConfiguration"
+                }
+            }
+        },
+        "InTransitEncryptionConfiguration": {
+            "type": "object",
+            "properties": {
+                "tlsCertificateConfiguration": {
+                    "$ref": "#/$defs/TLSCertificateConfiguration"
+                }
+            }
+        },
+        "TLSCertificateConfiguration": {
+            "type": "object",
+            "properties": {
+                "certificateProviderType": {
+                    "$ref": "#/$defs/CertificateProviderType"
+                },
+                "publicCertificateSecretArn": {
+                    "$ref": "#/$defs/SecretsManagerArn"
+                },
+                "privateCertificateSecretArn": {
+                    "$ref": "#/$defs/SecretsManagerArn"
+                }
+            }
+        },
+        "CertificateProviderType": {
+            "enum": [
+                "PEM"
+            ]
+        },
+        "SecretsManagerArn": {
+            "type": "string"
+        },
+        "CreateVirtualClusterResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/VirtualClusterArn"
+                }
+            }
+        },
+        "VirtualClusterArn": {
+            "type": "string"
+        },
+        "CreateVirtualClusterRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "containerProvider": {
+                    "$ref": "#/$defs/ContainerProvider"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "securityConfigurationId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "ContainerProvider": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/ContainerProviderType"
+                },
+                "id": {
+                    "$ref": "#/$defs/ClusterId"
+                },
+                "info": {
+                    "$ref": "#/$defs/ContainerInfo"
+                }
+            }
+        },
+        "ContainerProviderType": {
+            "enum": [
+                "EKS"
+            ]
+        },
+        "ContainerInfo": {
+            "type": "object",
+            "properties": {
+                "eksInfo": {
+                    "$ref": "#/$defs/EksInfo"
+                }
+            }
+        },
+        "EksInfo": {
+            "type": "object",
+            "properties": {
+                "namespace": {
+                    "$ref": "#/$defs/KubernetesNamespace"
+                }
+            }
+        },
+        "DeleteJobTemplateResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "DeleteJobTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "DeleteManagedEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "DeleteManagedEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "DeleteVirtualClusterResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "DeleteVirtualClusterRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "DescribeJobRunResponse": {
+            "type": "object",
+            "properties": {
+                "jobRun": {
+                    "$ref": "#/$defs/JobRun"
+                }
+            }
+        },
+        "JobRun": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/JobArn"
+                },
+                "state": {
+                    "$ref": "#/$defs/JobRunState"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "executionRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                },
+                "releaseLabel": {
+                    "$ref": "#/$defs/ReleaseLabel"
+                },
+                "configurationOverrides": {
+                    "$ref": "#/$defs/ConfigurationOverrides"
+                },
+                "jobDriver": {
+                    "$ref": "#/$defs/JobDriver"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/RequestIdentityUserArn"
+                },
+                "finishedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "stateDetails": {
+                    "$ref": "#/$defs/String256"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "retryPolicyConfiguration": {
+                    "$ref": "#/$defs/RetryPolicyConfiguration"
+                },
+                "retryPolicyExecution": {
+                    "$ref": "#/$defs/RetryPolicyExecution"
+                }
+            }
+        },
+        "JobArn": {
+            "type": "string"
+        },
+        "JobRunState": {
+            "enum": [
+                "PENDING",
+                "SUBMITTED",
+                "RUNNING",
+                "FAILED",
+                "CANCELLED",
+                "CANCEL_PENDING",
+                "COMPLETED"
+            ]
+        },
+        "RequestIdentityUserArn": {
+            "type": "string"
+        },
+        "FailureReason": {
+            "enum": [
+                "INTERNAL_ERROR",
+                "USER_ERROR",
+                "VALIDATION_ERROR",
+                "CLUSTER_UNAVAILABLE"
+            ]
+        },
+        "RetryPolicyConfiguration": {
+            "type": "object",
+            "properties": {
+                "maxAttempts": {
+                    "$ref": "#/$defs/JavaInteger"
+                }
+            }
+        },
+        "JavaInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RetryPolicyExecution": {
+            "type": "object",
+            "properties": {
+                "currentAttemptCount": {
+                    "$ref": "#/$defs/JavaInteger"
+                }
+            }
+        },
+        "DescribeJobRunRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "DescribeJobTemplateResponse": {
+            "type": "object",
+            "properties": {
+                "jobTemplate": {
+                    "$ref": "#/$defs/JobTemplate"
+                }
+            }
+        },
+        "JobTemplate": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/JobTemplateArn"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/RequestIdentityUserArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "jobTemplateData": {
+                    "$ref": "#/$defs/JobTemplateData"
+                },
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "decryptionError": {
+                    "$ref": "#/$defs/String2048"
+                }
+            }
+        },
+        "String2048": {
+            "type": "string"
+        },
+        "DescribeJobTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "DescribeManagedEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "endpoint": {
+                    "$ref": "#/$defs/Endpoint"
+                }
+            }
+        },
+        "Endpoint": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/EndpointArn"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "type": {
+                    "$ref": "#/$defs/EndpointType"
+                },
+                "state": {
+                    "$ref": "#/$defs/EndpointState"
+                },
+                "releaseLabel": {
+                    "$ref": "#/$defs/ReleaseLabel"
+                },
+                "executionRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                },
+                "certificateArn": {
+                    "$ref": "#/$defs/ACMCertArn"
+                },
+                "certificateAuthority": {
+                    "$ref": "#/$defs/Certificate"
+                },
+                "configurationOverrides": {
+                    "$ref": "#/$defs/ConfigurationOverrides"
+                },
+                "serverUrl": {
+                    "$ref": "#/$defs/UriString"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "securityGroup": {
+                    "$ref": "#/$defs/String256"
+                },
+                "subnetIds": {
+                    "$ref": "#/$defs/SubnetIds"
+                },
+                "stateDetails": {
+                    "$ref": "#/$defs/String256"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "EndpointState": {
+            "enum": [
+                "CREATING",
+                "ACTIVE",
+                "TERMINATING",
+                "TERMINATED",
+                "TERMINATED_WITH_ERRORS"
+            ]
+        },
+        "Certificate": {
+            "type": "object",
+            "properties": {
+                "certificateArn": {
+                    "$ref": "#/$defs/ACMCertArn"
+                },
+                "certificateData": {
+                    "$ref": "#/$defs/Base64Encoded"
+                }
+            }
+        },
+        "Base64Encoded": {
+            "type": "string"
+        },
+        "SubnetIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String256"
+            }
+        },
+        "DescribeManagedEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "DescribeSecurityConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "securityConfiguration": {
+                    "$ref": "#/$defs/SecurityConfiguration"
+                }
+            }
+        },
+        "SecurityConfiguration": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/SecurityConfigurationArn"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/RequestIdentityUserArn"
+                },
+                "securityConfigurationData": {
+                    "$ref": "#/$defs/SecurityConfigurationData"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "DescribeSecurityConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "DescribeVirtualClusterResponse": {
+            "type": "object",
+            "properties": {
+                "virtualCluster": {
+                    "$ref": "#/$defs/VirtualCluster"
+                }
+            }
+        },
+        "VirtualCluster": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/VirtualClusterArn"
+                },
+                "state": {
+                    "$ref": "#/$defs/VirtualClusterState"
+                },
+                "containerProvider": {
+                    "$ref": "#/$defs/ContainerProvider"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "securityConfigurationId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "VirtualClusterState": {
+            "enum": [
+                "RUNNING",
+                "TERMINATING",
+                "TERMINATED",
+                "ARRESTED"
+            ]
+        },
+        "DescribeVirtualClusterRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "GetManagedEndpointSessionCredentialsResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "credentials": {
+                    "$ref": "#/$defs/Credentials"
+                },
+                "expiresAt": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "Credentials": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "GetManagedEndpointSessionCredentialsRequest": {
+            "type": "object",
+            "properties": {
+                "endpointIdentifier": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "virtualClusterIdentifier": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "executionRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                },
+                "credentialType": {
+                    "$ref": "#/$defs/CredentialType"
+                },
+                "durationInSeconds": {
+                    "$ref": "#/$defs/JavaInteger"
+                },
+                "logContext": {
+                    "$ref": "#/$defs/LogContext"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "CredentialType": {
+            "type": "string"
+        },
+        "LogContext": {
+            "type": "string"
+        },
+        "ListJobRunsResponse": {
+            "type": "object",
+            "properties": {
+                "jobRuns": {
+                    "$ref": "#/$defs/JobRuns"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "JobRuns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobRun"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListJobRunsRequest": {
+            "type": "object",
+            "properties": {
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "createdBefore": {
+                    "$ref": "#/$defs/Date"
+                },
+                "createdAfter": {
+                    "$ref": "#/$defs/Date"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "states": {
+                    "$ref": "#/$defs/JobRunStates"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/JavaInteger"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "JobRunStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobRunState"
+            }
+        },
+        "ListJobTemplatesResponse": {
+            "type": "object",
+            "properties": {
+                "templates": {
+                    "$ref": "#/$defs/JobTemplates"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "JobTemplates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobTemplate"
+            }
+        },
+        "ListJobTemplatesRequest": {
+            "type": "object",
+            "properties": {
+                "createdAfter": {
+                    "$ref": "#/$defs/Date"
+                },
+                "createdBefore": {
+                    "$ref": "#/$defs/Date"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/JavaInteger"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListManagedEndpointsResponse": {
+            "type": "object",
+            "properties": {
+                "endpoints": {
+                    "$ref": "#/$defs/Endpoints"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Endpoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Endpoint"
+            }
+        },
+        "ListManagedEndpointsRequest": {
+            "type": "object",
+            "properties": {
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "createdBefore": {
+                    "$ref": "#/$defs/Date"
+                },
+                "createdAfter": {
+                    "$ref": "#/$defs/Date"
+                },
+                "types": {
+                    "$ref": "#/$defs/EndpointTypes"
+                },
+                "states": {
+                    "$ref": "#/$defs/EndpointStates"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/JavaInteger"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EndpointTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EndpointType"
+            }
+        },
+        "EndpointStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EndpointState"
+            }
+        },
+        "ListSecurityConfigurationsResponse": {
+            "type": "object",
+            "properties": {
+                "securityConfigurations": {
+                    "$ref": "#/$defs/SecurityConfigurations"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SecurityConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityConfiguration"
+            }
+        },
+        "ListSecurityConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "createdAfter": {
+                    "$ref": "#/$defs/Date"
+                },
+                "createdBefore": {
+                    "$ref": "#/$defs/Date"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/JavaInteger"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/RsiArn"
+                }
+            }
+        },
+        "RsiArn": {
+            "type": "string"
+        },
+        "ListVirtualClustersResponse": {
+            "type": "object",
+            "properties": {
+                "virtualClusters": {
+                    "$ref": "#/$defs/VirtualClusters"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "VirtualClusters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VirtualCluster"
+            }
+        },
+        "ListVirtualClustersRequest": {
+            "type": "object",
+            "properties": {
+                "containerProviderId": {
+                    "$ref": "#/$defs/String1024"
+                },
+                "containerProviderType": {
+                    "$ref": "#/$defs/ContainerProviderType"
+                },
+                "createdAfter": {
+                    "$ref": "#/$defs/Date"
+                },
+                "createdBefore": {
+                    "$ref": "#/$defs/Date"
+                },
+                "states": {
+                    "$ref": "#/$defs/VirtualClusterStates"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/JavaInteger"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "eksAccessEntryIntegrated": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "VirtualClusterStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VirtualClusterState"
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "StartJobRunResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/JobArn"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                }
+            }
+        },
+        "StartJobRunRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ResourceNameString"
+                },
+                "virtualClusterId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "executionRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                },
+                "releaseLabel": {
+                    "$ref": "#/$defs/ReleaseLabel"
+                },
+                "jobDriver": {
+                    "$ref": "#/$defs/JobDriver"
+                },
+                "configurationOverrides": {
+                    "$ref": "#/$defs/ConfigurationOverrides"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "jobTemplateId": {
+                    "$ref": "#/$defs/ResourceIdString"
+                },
+                "jobTemplateParameters": {
+                    "$ref": "#/$defs/TemplateParameterInputMap"
+                },
+                "retryPolicyConfiguration": {
+                    "$ref": "#/$defs/RetryPolicyConfiguration"
+                }
+            }
+        },
+        "TemplateParameterInputMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String1024"
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/RsiArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/RsiArn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String128"
+            }
+        },
+        "String128": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://emr-containers-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-east-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://emr-containers.us-gov-east-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-west-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://emr-containers.us-gov-west-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://emr-containers-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://emr-containers.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://emr-containers.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

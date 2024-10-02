@@ -1,0 +1,2750 @@
+{
+    "name": "sns",
+    "commands": [
+        {
+            "name": "AddPermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddPermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddPermissionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckIfPhoneNumberIsOptedOut",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CheckIfPhoneNumberIsOptedOut"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CheckIfPhoneNumberIsOptedOutResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CheckIfPhoneNumberIsOptedOutInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ConfirmSubscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ConfirmSubscription"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfirmSubscriptionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ConfirmSubscriptionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePlatformApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePlatformApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePlatformApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePlatformApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePlatformEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePlatformEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePlatformEndpointInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateSMSSandboxPhoneNumber",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateSMSSandboxPhoneNumber"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSMSSandboxPhoneNumberResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSMSSandboxPhoneNumberInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateTopic",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateTopic"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateTopicResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTopicInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEndpointInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePlatformApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePlatformApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePlatformApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSMSSandboxPhoneNumber",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSMSSandboxPhoneNumber"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSMSSandboxPhoneNumberResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSMSSandboxPhoneNumberInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTopic",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTopic"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTopicInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDataProtectionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDataProtectionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDataProtectionPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDataProtectionPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEndpointAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEndpointAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEndpointAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEndpointAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPlatformApplicationAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPlatformApplicationAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPlatformApplicationAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPlatformApplicationAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSMSAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSMSAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSMSAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSMSAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSMSSandboxAccountStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSMSSandboxAccountStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSMSSandboxAccountStatusResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSMSSandboxAccountStatusInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSubscriptionAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSubscriptionAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSubscriptionAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSubscriptionAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTopicAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTopicAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTopicAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTopicAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEndpointsByPlatformApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEndpointsByPlatformApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEndpointsByPlatformApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEndpointsByPlatformApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOriginationNumbers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOriginationNumbers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOriginationNumbersResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOriginationNumbersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPhoneNumbersOptedOut",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPhoneNumbersOptedOut"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPhoneNumbersOptedOutResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPhoneNumbersOptedOutInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPlatformApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPlatformApplications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPlatformApplicationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPlatformApplicationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSMSSandboxPhoneNumbers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSMSSandboxPhoneNumbers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSMSSandboxPhoneNumbersResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSMSSandboxPhoneNumbersInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSubscriptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSubscriptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSubscriptionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSubscriptionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSubscriptionsByTopic",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSubscriptionsByTopic"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSubscriptionsByTopicResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSubscriptionsByTopicInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTopics",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTopics"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTopicsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTopicsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "OptInPhoneNumber",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "OptInPhoneNumber"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/OptInPhoneNumberResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/OptInPhoneNumberInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Publish",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Publish"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PublishResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PublishInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PublishBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PublishBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PublishBatchResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PublishBatchInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutDataProtectionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutDataProtectionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutDataProtectionPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemovePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemovePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemovePermissionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetEndpointAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetEndpointAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetEndpointAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetPlatformApplicationAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetPlatformApplicationAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetPlatformApplicationAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetSMSAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetSMSAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SetSMSAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetSMSAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetSubscriptionAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetSubscriptionAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetSubscriptionAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetTopicAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetTopicAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetTopicAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Subscribe",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Subscribe"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SubscribeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SubscribeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Unsubscribe",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Unsubscribe"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnsubscribeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "VerifySMSSandboxPhoneNumber",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "VerifySMSSandboxPhoneNumber"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VerifySMSSandboxPhoneNumberResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/VerifySMSSandboxPhoneNumberInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddPermissionInput": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                },
+                "Label": {
+                    "$ref": "#/$defs/label"
+                },
+                "AWSAccountId": {
+                    "$ref": "#/$defs/DelegatesList"
+                },
+                "ActionName": {
+                    "$ref": "#/$defs/ActionsList"
+                }
+            }
+        },
+        "topicARN": {
+            "type": "string"
+        },
+        "label": {
+            "type": "string"
+        },
+        "DelegatesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/delegate"
+            }
+        },
+        "delegate": {
+            "type": "string"
+        },
+        "ActionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/action"
+            }
+        },
+        "action": {
+            "type": "string"
+        },
+        "CheckIfPhoneNumberIsOptedOutResponse": {
+            "type": "object",
+            "properties": {
+                "isOptedOut": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "boolean": {
+            "type": "boolean"
+        },
+        "CheckIfPhoneNumberIsOptedOutInput": {
+            "type": "object",
+            "properties": {
+                "phoneNumber": {
+                    "$ref": "#/$defs/PhoneNumber"
+                }
+            }
+        },
+        "PhoneNumber": {
+            "type": "string"
+        },
+        "ConfirmSubscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "SubscriptionArn": {
+                    "$ref": "#/$defs/subscriptionARN"
+                }
+            }
+        },
+        "subscriptionARN": {
+            "type": "string"
+        },
+        "ConfirmSubscriptionInput": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                },
+                "Token": {
+                    "$ref": "#/$defs/token"
+                },
+                "AuthenticateOnUnsubscribe": {
+                    "$ref": "#/$defs/authenticateOnUnsubscribe"
+                }
+            }
+        },
+        "token": {
+            "type": "string"
+        },
+        "authenticateOnUnsubscribe": {
+            "type": "string"
+        },
+        "CreatePlatformApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "PlatformApplicationArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "CreatePlatformApplicationInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Platform": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/MapStringToString"
+                }
+            }
+        },
+        "MapStringToString": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "CreateEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "EndpointArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreatePlatformEndpointInput": {
+            "type": "object",
+            "properties": {
+                "PlatformApplicationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Token": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomUserData": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/MapStringToString"
+                }
+            }
+        },
+        "CreateSMSSandboxPhoneNumberResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateSMSSandboxPhoneNumberInput": {
+            "type": "object",
+            "properties": {
+                "PhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumberString"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCodeString"
+                }
+            }
+        },
+        "PhoneNumberString": {
+            "type": "string"
+        },
+        "LanguageCodeString": {
+            "enum": [
+                "en_US",
+                "en_GB",
+                "es_419",
+                "es_ES",
+                "de_DE",
+                "fr_CA",
+                "fr_FR",
+                "it_IT",
+                "jp_JP",
+                "pt_BR",
+                "kr_KR",
+                "zh_CN",
+                "zh_TW"
+            ]
+        },
+        "CreateTopicResponse": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                }
+            }
+        },
+        "CreateTopicInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/topicName"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/TopicAttributesMap"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "DataProtectionPolicy": {
+                    "$ref": "#/$defs/attributeValue"
+                }
+            }
+        },
+        "topicName": {
+            "type": "string"
+        },
+        "TopicAttributesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/attributeValue"
+            }
+        },
+        "attributeValue": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "DeleteEndpointInput": {
+            "type": "object",
+            "properties": {
+                "EndpointArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeletePlatformApplicationInput": {
+            "type": "object",
+            "properties": {
+                "PlatformApplicationArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteSMSSandboxPhoneNumberResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteSMSSandboxPhoneNumberInput": {
+            "type": "object",
+            "properties": {
+                "PhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumberString"
+                }
+            }
+        },
+        "DeleteTopicInput": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                }
+            }
+        },
+        "GetDataProtectionPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "DataProtectionPolicy": {
+                    "$ref": "#/$defs/attributeValue"
+                }
+            }
+        },
+        "GetDataProtectionPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/topicARN"
+                }
+            }
+        },
+        "GetEndpointAttributesResponse": {
+            "type": "object",
+            "properties": {
+                "Attributes": {
+                    "$ref": "#/$defs/MapStringToString"
+                }
+            }
+        },
+        "GetEndpointAttributesInput": {
+            "type": "object",
+            "properties": {
+                "EndpointArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetPlatformApplicationAttributesResponse": {
+            "type": "object",
+            "properties": {
+                "Attributes": {
+                    "$ref": "#/$defs/MapStringToString"
+                }
+            }
+        },
+        "GetPlatformApplicationAttributesInput": {
+            "type": "object",
+            "properties": {
+                "PlatformApplicationArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetSMSAttributesResponse": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "$ref": "#/$defs/MapStringToString"
+                }
+            }
+        },
+        "GetSMSAttributesInput": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "$ref": "#/$defs/ListString"
+                }
+            }
+        },
+        "ListString": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "GetSMSSandboxAccountStatusResult": {
+            "type": "object",
+            "properties": {
+                "IsInSandbox": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "GetSMSSandboxAccountStatusInput": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetSubscriptionAttributesResponse": {
+            "type": "object",
+            "properties": {
+                "Attributes": {
+                    "$ref": "#/$defs/SubscriptionAttributesMap"
+                }
+            }
+        },
+        "SubscriptionAttributesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/attributeValue"
+            }
+        },
+        "GetSubscriptionAttributesInput": {
+            "type": "object",
+            "properties": {
+                "SubscriptionArn": {
+                    "$ref": "#/$defs/subscriptionARN"
+                }
+            }
+        },
+        "GetTopicAttributesResponse": {
+            "type": "object",
+            "properties": {
+                "Attributes": {
+                    "$ref": "#/$defs/TopicAttributesMap"
+                }
+            }
+        },
+        "GetTopicAttributesInput": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                }
+            }
+        },
+        "ListEndpointsByPlatformApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "Endpoints": {
+                    "$ref": "#/$defs/ListOfEndpoints"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListOfEndpoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Endpoint"
+            }
+        },
+        "Endpoint": {
+            "type": "object",
+            "properties": {
+                "EndpointArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/MapStringToString"
+                }
+            }
+        },
+        "ListEndpointsByPlatformApplicationInput": {
+            "type": "object",
+            "properties": {
+                "PlatformApplicationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListOriginationNumbersResult": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/nextToken"
+                },
+                "PhoneNumbers": {
+                    "$ref": "#/$defs/PhoneNumberInformationList"
+                }
+            }
+        },
+        "nextToken": {
+            "type": "string"
+        },
+        "PhoneNumberInformationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PhoneNumberInformation"
+            }
+        },
+        "PhoneNumberInformation": {
+            "type": "object",
+            "properties": {
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "PhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumber"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "Iso2CountryCode": {
+                    "$ref": "#/$defs/Iso2CountryCode"
+                },
+                "RouteType": {
+                    "$ref": "#/$defs/RouteType"
+                },
+                "NumberCapabilities": {
+                    "$ref": "#/$defs/NumberCapabilityList"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Iso2CountryCode": {
+            "type": "string"
+        },
+        "RouteType": {
+            "enum": [
+                "Transactional",
+                "Promotional",
+                "Premium"
+            ]
+        },
+        "NumberCapabilityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NumberCapability"
+            }
+        },
+        "NumberCapability": {
+            "enum": [
+                "SMS",
+                "MMS",
+                "VOICE"
+            ]
+        },
+        "ListOriginationNumbersRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/nextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxItemsListOriginationNumbers"
+                }
+            }
+        },
+        "MaxItemsListOriginationNumbers": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListPhoneNumbersOptedOutResponse": {
+            "type": "object",
+            "properties": {
+                "phoneNumbers": {
+                    "$ref": "#/$defs/PhoneNumberList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PhoneNumberList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PhoneNumber"
+            }
+        },
+        "ListPhoneNumbersOptedOutInput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListPlatformApplicationsResponse": {
+            "type": "object",
+            "properties": {
+                "PlatformApplications": {
+                    "$ref": "#/$defs/ListOfPlatformApplications"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListOfPlatformApplications": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlatformApplication"
+            }
+        },
+        "PlatformApplication": {
+            "type": "object",
+            "properties": {
+                "PlatformApplicationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/MapStringToString"
+                }
+            }
+        },
+        "ListPlatformApplicationsInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListSMSSandboxPhoneNumbersResult": {
+            "type": "object",
+            "properties": {
+                "PhoneNumbers": {
+                    "$ref": "#/$defs/SMSSandboxPhoneNumberList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SMSSandboxPhoneNumberList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SMSSandboxPhoneNumber"
+            }
+        },
+        "SMSSandboxPhoneNumber": {
+            "type": "object",
+            "properties": {
+                "PhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumberString"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SMSSandboxPhoneNumberVerificationStatus"
+                }
+            }
+        },
+        "SMSSandboxPhoneNumberVerificationStatus": {
+            "enum": [
+                "Pending",
+                "Verified"
+            ]
+        },
+        "ListSMSSandboxPhoneNumbersInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/nextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxItems"
+                }
+            }
+        },
+        "MaxItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListSubscriptionsResponse": {
+            "type": "object",
+            "properties": {
+                "Subscriptions": {
+                    "$ref": "#/$defs/SubscriptionsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/nextToken"
+                }
+            }
+        },
+        "SubscriptionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Subscription"
+            }
+        },
+        "Subscription": {
+            "type": "object",
+            "properties": {
+                "SubscriptionArn": {
+                    "$ref": "#/$defs/subscriptionARN"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/account"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/protocol"
+                },
+                "Endpoint": {
+                    "$ref": "#/$defs/Endpoint2"
+                },
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                }
+            }
+        },
+        "account": {
+            "type": "string"
+        },
+        "protocol": {
+            "type": "string"
+        },
+        "Endpoint2": {
+            "type": "string"
+        },
+        "ListSubscriptionsInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/nextToken"
+                }
+            }
+        },
+        "ListSubscriptionsByTopicResponse": {
+            "type": "object",
+            "properties": {
+                "Subscriptions": {
+                    "$ref": "#/$defs/SubscriptionsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/nextToken"
+                }
+            }
+        },
+        "ListSubscriptionsByTopicInput": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/nextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "ListTopicsResponse": {
+            "type": "object",
+            "properties": {
+                "Topics": {
+                    "$ref": "#/$defs/TopicsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/nextToken"
+                }
+            }
+        },
+        "TopicsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Topic"
+            }
+        },
+        "Topic": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                }
+            }
+        },
+        "ListTopicsInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/nextToken"
+                }
+            }
+        },
+        "OptInPhoneNumberResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "OptInPhoneNumberInput": {
+            "type": "object",
+            "properties": {
+                "phoneNumber": {
+                    "$ref": "#/$defs/PhoneNumber"
+                }
+            }
+        },
+        "PublishResponse": {
+            "type": "object",
+            "properties": {
+                "MessageId": {
+                    "$ref": "#/$defs/messageId"
+                },
+                "SequenceNumber": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "messageId": {
+            "type": "string"
+        },
+        "PublishInput": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                },
+                "TargetArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "PhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumber"
+                },
+                "Message": {
+                    "$ref": "#/$defs/message"
+                },
+                "Subject": {
+                    "$ref": "#/$defs/subject"
+                },
+                "MessageStructure": {
+                    "$ref": "#/$defs/messageStructure"
+                },
+                "MessageAttributes": {
+                    "$ref": "#/$defs/MessageAttributeMap"
+                },
+                "MessageDeduplicationId": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageGroupId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "message": {
+            "type": "string"
+        },
+        "subject": {
+            "type": "string"
+        },
+        "messageStructure": {
+            "type": "string"
+        },
+        "MessageAttributeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/MessageAttributeValue"
+            }
+        },
+        "MessageAttributeValue": {
+            "type": "object",
+            "properties": {
+                "DataType": {
+                    "$ref": "#/$defs/String"
+                },
+                "StringValue": {
+                    "$ref": "#/$defs/String"
+                },
+                "BinaryValue": {
+                    "$ref": "#/$defs/Binary"
+                }
+            }
+        },
+        "Binary": {
+            "type": "string",
+            "format": "binary"
+        },
+        "PublishBatchResponse": {
+            "type": "object",
+            "properties": {
+                "Successful": {
+                    "$ref": "#/$defs/PublishBatchResultEntryList"
+                },
+                "Failed": {
+                    "$ref": "#/$defs/BatchResultErrorEntryList"
+                }
+            }
+        },
+        "PublishBatchResultEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PublishBatchResultEntry"
+            }
+        },
+        "PublishBatchResultEntry": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/messageId"
+                },
+                "SequenceNumber": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BatchResultErrorEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchResultErrorEntry"
+            }
+        },
+        "BatchResultErrorEntry": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "Code": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                },
+                "SenderFault": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "PublishBatchInput": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                },
+                "PublishBatchRequestEntries": {
+                    "$ref": "#/$defs/PublishBatchRequestEntryList"
+                }
+            }
+        },
+        "PublishBatchRequestEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PublishBatchRequestEntry"
+            }
+        },
+        "PublishBatchRequestEntry": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/message"
+                },
+                "Subject": {
+                    "$ref": "#/$defs/subject"
+                },
+                "MessageStructure": {
+                    "$ref": "#/$defs/messageStructure"
+                },
+                "MessageAttributes": {
+                    "$ref": "#/$defs/MessageAttributeMap"
+                },
+                "MessageDeduplicationId": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageGroupId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PutDataProtectionPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/topicARN"
+                },
+                "DataProtectionPolicy": {
+                    "$ref": "#/$defs/attributeValue"
+                }
+            }
+        },
+        "RemovePermissionInput": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                },
+                "Label": {
+                    "$ref": "#/$defs/label"
+                }
+            }
+        },
+        "SetEndpointAttributesInput": {
+            "type": "object",
+            "properties": {
+                "EndpointArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/MapStringToString"
+                }
+            }
+        },
+        "SetPlatformApplicationAttributesInput": {
+            "type": "object",
+            "properties": {
+                "PlatformApplicationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/MapStringToString"
+                }
+            }
+        },
+        "SetSMSAttributesResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "SetSMSAttributesInput": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "$ref": "#/$defs/MapStringToString"
+                }
+            }
+        },
+        "SetSubscriptionAttributesInput": {
+            "type": "object",
+            "properties": {
+                "SubscriptionArn": {
+                    "$ref": "#/$defs/subscriptionARN"
+                },
+                "AttributeName": {
+                    "$ref": "#/$defs/attributeName"
+                },
+                "AttributeValue": {
+                    "$ref": "#/$defs/attributeValue"
+                }
+            }
+        },
+        "attributeName": {
+            "type": "string"
+        },
+        "SetTopicAttributesInput": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                },
+                "AttributeName": {
+                    "$ref": "#/$defs/attributeName"
+                },
+                "AttributeValue": {
+                    "$ref": "#/$defs/attributeValue"
+                }
+            }
+        },
+        "SubscribeResponse": {
+            "type": "object",
+            "properties": {
+                "SubscriptionArn": {
+                    "$ref": "#/$defs/subscriptionARN"
+                }
+            }
+        },
+        "SubscribeInput": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/topicARN"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/protocol"
+                },
+                "Endpoint": {
+                    "$ref": "#/$defs/Endpoint2"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/SubscriptionAttributesMap"
+                },
+                "ReturnSubscriptionArn": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UnsubscribeInput": {
+            "type": "object",
+            "properties": {
+                "SubscriptionArn": {
+                    "$ref": "#/$defs/subscriptionARN"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "VerifySMSSandboxPhoneNumberResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "VerifySMSSandboxPhoneNumberInput": {
+            "type": "object",
+            "properties": {
+                "PhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumberString"
+                },
+                "OneTimePassword": {
+                    "$ref": "#/$defs/OTPCode"
+                }
+            }
+        },
+        "OTPCode": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://sns-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-east-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://sns.us-gov-east-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-west-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://sns.us-gov-west-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://sns-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://sns.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://sns.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

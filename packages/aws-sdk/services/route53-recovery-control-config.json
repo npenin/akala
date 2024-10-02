@@ -1,0 +1,1891 @@
+{
+    "name": "route53-recovery-control-config",
+    "commands": [
+        {
+            "name": "CreateCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateControlPanel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateControlPanel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateControlPanelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateControlPanelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateRoutingControl",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRoutingControl"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRoutingControlResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRoutingControlRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateSafetyRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateSafetyRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSafetyRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSafetyRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteControlPanel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteControlPanel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteControlPanelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteControlPanelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRoutingControl",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRoutingControl"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteRoutingControlResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRoutingControlRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSafetyRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSafetyRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSafetyRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSafetyRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeControlPanel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeControlPanel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeControlPanelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeControlPanelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRoutingControl",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRoutingControl"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRoutingControlResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRoutingControlRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeSafetyRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeSafetyRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeSafetyRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeSafetyRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssociatedRoute53HealthChecks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAssociatedRoute53HealthChecks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssociatedRoute53HealthChecksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssociatedRoute53HealthChecksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListClusters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListClusters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListClustersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListClustersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListControlPanels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListControlPanels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListControlPanelsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListControlPanelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRoutingControls",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRoutingControls"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRoutingControlsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRoutingControlsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSafetyRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSafetyRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSafetyRulesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSafetyRulesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateControlPanel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateControlPanel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateControlPanelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateControlPanelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRoutingControl",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRoutingControl"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateRoutingControlResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRoutingControlRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateSafetyRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateSafetyRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateSafetyRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateSafetyRuleRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateClusterResponse": {
+            "type": "object",
+            "properties": {
+                "Cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "Cluster": {
+            "type": "object",
+            "properties": {
+                "ClusterArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "ClusterEndpoints": {
+                    "$ref": "#/$defs/__listOfClusterEndpoint"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/__stringMin12Max12PatternD12"
+                }
+            }
+        },
+        "__stringMin1Max256PatternAZaZ09": {
+            "type": "string"
+        },
+        "__listOfClusterEndpoint": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ClusterEndpoint"
+            }
+        },
+        "ClusterEndpoint": {
+            "type": "object",
+            "properties": {
+                "Endpoint": {
+                    "$ref": "#/$defs/__stringMin1Max128PatternAZaZ09"
+                },
+                "Region": {
+                    "$ref": "#/$defs/__stringMin1Max32PatternS"
+                }
+            }
+        },
+        "__stringMin1Max128PatternAZaZ09": {
+            "type": "string"
+        },
+        "__stringMin1Max32PatternS": {
+            "type": "string"
+        },
+        "__stringMin1Max64PatternS": {
+            "type": "string"
+        },
+        "Status": {
+            "enum": [
+                "PENDING",
+                "DEPLOYED",
+                "PENDING_DELETION"
+            ]
+        },
+        "__stringMin12Max12PatternD12": {
+            "type": "string"
+        },
+        "CreateClusterRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "ClusterName": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__stringMin0Max256PatternS"
+                }
+            }
+        },
+        "__mapOf__stringMin0Max256PatternS": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__stringMin0Max256PatternS"
+            }
+        },
+        "__stringMin0Max256PatternS": {
+            "type": "string"
+        },
+        "CreateControlPanelResponse": {
+            "type": "object",
+            "properties": {
+                "ControlPanel": {
+                    "$ref": "#/$defs/ControlPanel"
+                }
+            }
+        },
+        "ControlPanel": {
+            "type": "object",
+            "properties": {
+                "ClusterArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "DefaultControlPanel": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "RoutingControlCount": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/__stringMin12Max12PatternD12"
+                }
+            }
+        },
+        "__boolean": {
+            "type": "boolean"
+        },
+        "__integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CreateControlPanelRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "ClusterArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "ControlPanelName": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__stringMin0Max256PatternS"
+                }
+            }
+        },
+        "CreateRoutingControlResponse": {
+            "type": "object",
+            "properties": {
+                "RoutingControl": {
+                    "$ref": "#/$defs/RoutingControl"
+                }
+            }
+        },
+        "RoutingControl": {
+            "type": "object",
+            "properties": {
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "RoutingControlArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/__stringMin12Max12PatternD12"
+                }
+            }
+        },
+        "CreateRoutingControlRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "ClusterArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "RoutingControlName": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                }
+            }
+        },
+        "CreateSafetyRuleResponse": {
+            "type": "object",
+            "properties": {
+                "AssertionRule": {
+                    "$ref": "#/$defs/AssertionRule"
+                },
+                "GatingRule": {
+                    "$ref": "#/$defs/GatingRule"
+                }
+            }
+        },
+        "AssertionRule": {
+            "type": "object",
+            "properties": {
+                "AssertedControls": {
+                    "$ref": "#/$defs/__listOf__stringMin1Max256PatternAZaZ09"
+                },
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "RuleConfig": {
+                    "$ref": "#/$defs/RuleConfig"
+                },
+                "SafetyRuleArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "WaitPeriodMs": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/__stringMin12Max12PatternD12"
+                }
+            }
+        },
+        "__listOf__stringMin1Max256PatternAZaZ09": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+            }
+        },
+        "RuleConfig": {
+            "type": "object",
+            "properties": {
+                "Inverted": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Threshold": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "Type": {
+                    "$ref": "#/$defs/RuleType"
+                }
+            }
+        },
+        "RuleType": {
+            "enum": [
+                "ATLEAST",
+                "AND",
+                "OR"
+            ]
+        },
+        "GatingRule": {
+            "type": "object",
+            "properties": {
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "GatingControls": {
+                    "$ref": "#/$defs/__listOf__stringMin1Max256PatternAZaZ09"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "RuleConfig": {
+                    "$ref": "#/$defs/RuleConfig"
+                },
+                "SafetyRuleArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "TargetControls": {
+                    "$ref": "#/$defs/__listOf__stringMin1Max256PatternAZaZ09"
+                },
+                "WaitPeriodMs": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/__stringMin12Max12PatternD12"
+                }
+            }
+        },
+        "CreateSafetyRuleRequest": {
+            "type": "object",
+            "properties": {
+                "AssertionRule": {
+                    "$ref": "#/$defs/NewAssertionRule"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "GatingRule": {
+                    "$ref": "#/$defs/NewGatingRule"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__stringMin0Max256PatternS"
+                }
+            }
+        },
+        "NewAssertionRule": {
+            "type": "object",
+            "properties": {
+                "AssertedControls": {
+                    "$ref": "#/$defs/__listOf__stringMin1Max256PatternAZaZ09"
+                },
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "RuleConfig": {
+                    "$ref": "#/$defs/RuleConfig"
+                },
+                "WaitPeriodMs": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "NewGatingRule": {
+            "type": "object",
+            "properties": {
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "GatingControls": {
+                    "$ref": "#/$defs/__listOf__stringMin1Max256PatternAZaZ09"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "RuleConfig": {
+                    "$ref": "#/$defs/RuleConfig"
+                },
+                "TargetControls": {
+                    "$ref": "#/$defs/__listOf__stringMin1Max256PatternAZaZ09"
+                },
+                "WaitPeriodMs": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "DeleteClusterResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteClusterRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
+        "DeleteControlPanelResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteControlPanelRequest": {
+            "type": "object",
+            "properties": {
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteRoutingControlResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteRoutingControlRequest": {
+            "type": "object",
+            "properties": {
+                "RoutingControlArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteSafetyRuleResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteSafetyRuleRequest": {
+            "type": "object",
+            "properties": {
+                "SafetyRuleArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeClusterResponse": {
+            "type": "object",
+            "properties": {
+                "Cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "DescribeClusterRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeControlPanelResponse": {
+            "type": "object",
+            "properties": {
+                "ControlPanel": {
+                    "$ref": "#/$defs/ControlPanel"
+                }
+            }
+        },
+        "DescribeControlPanelRequest": {
+            "type": "object",
+            "properties": {
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeRoutingControlResponse": {
+            "type": "object",
+            "properties": {
+                "RoutingControl": {
+                    "$ref": "#/$defs/RoutingControl"
+                }
+            }
+        },
+        "DescribeRoutingControlRequest": {
+            "type": "object",
+            "properties": {
+                "RoutingControlArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeSafetyRuleResponse": {
+            "type": "object",
+            "properties": {
+                "AssertionRule": {
+                    "$ref": "#/$defs/AssertionRule"
+                },
+                "GatingRule": {
+                    "$ref": "#/$defs/GatingRule"
+                }
+            }
+        },
+        "DescribeSafetyRuleRequest": {
+            "type": "object",
+            "properties": {
+                "SafetyRuleArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/__policy"
+                }
+            }
+        },
+        "__policy": {
+            "type": "string"
+        },
+        "GetResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListAssociatedRoute53HealthChecksResponse": {
+            "type": "object",
+            "properties": {
+                "HealthCheckIds": {
+                    "$ref": "#/$defs/__listOf__stringMax36PatternS"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__stringMin1Max8096PatternS"
+                }
+            }
+        },
+        "__listOf__stringMax36PatternS": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__stringMax36PatternS"
+            }
+        },
+        "__stringMax36PatternS": {
+            "type": "string"
+        },
+        "__stringMin1Max8096PatternS": {
+            "type": "string"
+        },
+        "ListAssociatedRoute53HealthChecksRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RoutingControlArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListClustersResponse": {
+            "type": "object",
+            "properties": {
+                "Clusters": {
+                    "$ref": "#/$defs/__listOfCluster"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__stringMin1Max8096PatternS"
+                }
+            }
+        },
+        "__listOfCluster": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Cluster"
+            }
+        },
+        "ListClustersRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListControlPanelsResponse": {
+            "type": "object",
+            "properties": {
+                "ControlPanels": {
+                    "$ref": "#/$defs/__listOfControlPanel"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__stringMin1Max8096PatternS"
+                }
+            }
+        },
+        "__listOfControlPanel": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ControlPanel"
+            }
+        },
+        "ListControlPanelsRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListRoutingControlsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__stringMin1Max8096PatternS"
+                },
+                "RoutingControls": {
+                    "$ref": "#/$defs/__listOfRoutingControl"
+                }
+            }
+        },
+        "__listOfRoutingControl": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RoutingControl"
+            }
+        },
+        "ListRoutingControlsRequest": {
+            "type": "object",
+            "properties": {
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListSafetyRulesResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__stringMin1Max8096PatternS"
+                },
+                "SafetyRules": {
+                    "$ref": "#/$defs/__listOfRule"
+                }
+            }
+        },
+        "__listOfRule": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Rule"
+            }
+        },
+        "Rule": {
+            "type": "object",
+            "properties": {
+                "ASSERTION": {
+                    "$ref": "#/$defs/AssertionRule"
+                },
+                "GATING": {
+                    "$ref": "#/$defs/GatingRule"
+                }
+            }
+        },
+        "ListSafetyRulesRequest": {
+            "type": "object",
+            "properties": {
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__stringMin0Max256PatternS"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__stringMin0Max256PatternS"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "__listOf__string": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "UpdateControlPanelResponse": {
+            "type": "object",
+            "properties": {
+                "ControlPanel": {
+                    "$ref": "#/$defs/ControlPanel"
+                }
+            }
+        },
+        "UpdateControlPanelRequest": {
+            "type": "object",
+            "properties": {
+                "ControlPanelArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "ControlPanelName": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                }
+            }
+        },
+        "UpdateRoutingControlResponse": {
+            "type": "object",
+            "properties": {
+                "RoutingControl": {
+                    "$ref": "#/$defs/RoutingControl"
+                }
+            }
+        },
+        "UpdateRoutingControlRequest": {
+            "type": "object",
+            "properties": {
+                "RoutingControlArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "RoutingControlName": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                }
+            }
+        },
+        "UpdateSafetyRuleResponse": {
+            "type": "object",
+            "properties": {
+                "AssertionRule": {
+                    "$ref": "#/$defs/AssertionRule"
+                },
+                "GatingRule": {
+                    "$ref": "#/$defs/GatingRule"
+                }
+            }
+        },
+        "UpdateSafetyRuleRequest": {
+            "type": "object",
+            "properties": {
+                "AssertionRuleUpdate": {
+                    "$ref": "#/$defs/AssertionRuleUpdate"
+                },
+                "GatingRuleUpdate": {
+                    "$ref": "#/$defs/GatingRuleUpdate"
+                }
+            }
+        },
+        "AssertionRuleUpdate": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "SafetyRuleArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "WaitPeriodMs": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "GatingRuleUpdate": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/__stringMin1Max64PatternS"
+                },
+                "SafetyRuleArn": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternAZaZ09"
+                },
+                "WaitPeriodMs": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://route53-recovery-control-config-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://route53-recovery-control-config-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://route53-recovery-control-config.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            },
+                                            "aws-global"
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://route53-recovery-control-config.us-west-2.amazonaws.com",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "route53-recovery-control-config",
+                                                "signingRegion": "us-west-2"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://route53-recovery-control-config.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

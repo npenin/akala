@@ -1,0 +1,941 @@
+{
+    "name": "billingconductor",
+    "commands": [
+        {
+            "name": "GetBillingGroupCostReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBillingGroupCostReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBillingGroupCostReportOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBillingGroupCostReportInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAccountAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAccountAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAccountAssociationsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAccountAssociationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBillingGroupCostReports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListBillingGroupCostReports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBillingGroupCostReportsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBillingGroupCostReportsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetBillingGroupCostReportOutput": {
+            "type": "object",
+            "properties": {
+                "BillingGroupCostReportResults": {
+                    "$ref": "#/$defs/BillingGroupCostReportResultsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "BillingGroupCostReportResultsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BillingGroupCostReportResultElement"
+            }
+        },
+        "BillingGroupCostReportResultElement": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/BillingGroupArn"
+                },
+                "AWSCost": {
+                    "$ref": "#/$defs/AWSCost"
+                },
+                "ProformaCost": {
+                    "$ref": "#/$defs/ProformaCost"
+                },
+                "Margin": {
+                    "$ref": "#/$defs/Margin"
+                },
+                "MarginPercentage": {
+                    "$ref": "#/$defs/MarginPercentage"
+                },
+                "Currency": {
+                    "$ref": "#/$defs/Currency"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/AttributesList"
+                }
+            }
+        },
+        "BillingGroupArn": {
+            "type": "string"
+        },
+        "AWSCost": {
+            "type": "string"
+        },
+        "ProformaCost": {
+            "type": "string"
+        },
+        "Margin": {
+            "type": "string"
+        },
+        "MarginPercentage": {
+            "type": "string"
+        },
+        "Currency": {
+            "type": "string"
+        },
+        "AttributesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Attribute"
+            }
+        },
+        "Attribute": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "GetBillingGroupCostReportInput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/BillingGroupArn"
+                },
+                "BillingPeriodRange": {
+                    "$ref": "#/$defs/BillingPeriodRange"
+                },
+                "GroupBy": {
+                    "$ref": "#/$defs/GroupByAttributesList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxBillingGroupCostReportResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "BillingPeriodRange": {
+            "type": "object",
+            "properties": {
+                "InclusiveStartBillingPeriod": {
+                    "$ref": "#/$defs/BillingPeriod"
+                },
+                "ExclusiveEndBillingPeriod": {
+                    "$ref": "#/$defs/BillingPeriod"
+                }
+            }
+        },
+        "BillingPeriod": {
+            "type": "string"
+        },
+        "GroupByAttributesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GroupByAttributeName"
+            }
+        },
+        "GroupByAttributeName": {
+            "type": "string"
+        },
+        "MaxBillingGroupCostReportResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListAccountAssociationsOutput": {
+            "type": "object",
+            "properties": {
+                "LinkedAccounts": {
+                    "$ref": "#/$defs/AccountAssociationsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "AccountAssociationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountAssociationsListElement"
+            }
+        },
+        "AccountAssociationsListElement": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "BillingGroupArn": {
+                    "$ref": "#/$defs/BillingGroupArn"
+                },
+                "AccountName": {
+                    "$ref": "#/$defs/AccountName"
+                },
+                "AccountEmail": {
+                    "$ref": "#/$defs/AccountEmail"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "AccountName": {
+            "type": "string"
+        },
+        "AccountEmail": {
+            "type": "string"
+        },
+        "ListAccountAssociationsInput": {
+            "type": "object",
+            "properties": {
+                "BillingPeriod": {
+                    "$ref": "#/$defs/BillingPeriod"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/ListAccountAssociationsFilter"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ListAccountAssociationsFilter": {
+            "type": "object",
+            "properties": {
+                "Association": {
+                    "$ref": "#/$defs/Association"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "AccountIds": {
+                    "$ref": "#/$defs/AccountIdFilterList"
+                }
+            }
+        },
+        "Association": {
+            "type": "string"
+        },
+        "AccountIdFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "ListBillingGroupCostReportsOutput": {
+            "type": "object",
+            "properties": {
+                "BillingGroupCostReports": {
+                    "$ref": "#/$defs/BillingGroupCostReportList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "BillingGroupCostReportList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BillingGroupCostReportElement"
+            }
+        },
+        "BillingGroupCostReportElement": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/BillingGroupArn"
+                },
+                "AWSCost": {
+                    "$ref": "#/$defs/AWSCost"
+                },
+                "ProformaCost": {
+                    "$ref": "#/$defs/ProformaCost"
+                },
+                "Margin": {
+                    "$ref": "#/$defs/Margin"
+                },
+                "MarginPercentage": {
+                    "$ref": "#/$defs/MarginPercentage"
+                },
+                "Currency": {
+                    "$ref": "#/$defs/Currency"
+                }
+            }
+        },
+        "ListBillingGroupCostReportsInput": {
+            "type": "object",
+            "properties": {
+                "BillingPeriod": {
+                    "$ref": "#/$defs/BillingPeriod"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxBillingGroupResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/ListBillingGroupCostReportsFilter"
+                }
+            }
+        },
+        "MaxBillingGroupResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListBillingGroupCostReportsFilter": {
+            "type": "object",
+            "properties": {
+                "BillingGroupArns": {
+                    "$ref": "#/$defs/BillingGroupArnList"
+                }
+            }
+        },
+        "BillingGroupArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BillingGroupArn"
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws"
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            false
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            false
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://billingconductor.us-east-1.amazonaws.com",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "billingconductor",
+                                                "signingRegion": "us-east-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://billingconductor-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://billingconductor-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://billingconductor.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://billingconductor.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

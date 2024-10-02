@@ -1,0 +1,2409 @@
+{
+    "name": "mq",
+    "commands": [
+        {
+            "name": "CreateBroker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateBroker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateBrokerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateBrokerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBroker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteBroker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteBrokerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBrokerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeBroker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeBroker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeBrokerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeBrokerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeBrokerEngineTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeBrokerEngineTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeBrokerEngineTypesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeBrokerEngineTypesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeBrokerInstanceOptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeBrokerInstanceOptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeBrokerInstanceOptionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeBrokerInstanceOptionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConfigurationRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConfigurationRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConfigurationRevisionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConfigurationRevisionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBrokers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListBrokers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBrokersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBrokersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConfigurationRevisions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListConfigurationRevisions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConfigurationRevisionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConfigurationRevisionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConfigurationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListUsers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListUsers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListUsersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListUsersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Promote",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Promote"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PromoteResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PromoteRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RebootBroker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RebootBroker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RebootBrokerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RebootBrokerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateBroker",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateBroker"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateBrokerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateBrokerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateUserRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateBrokerResponse": {
+            "type": "object",
+            "properties": {
+                "BrokerArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
+        "CreateBrokerRequest": {
+            "type": "object",
+            "properties": {
+                "AuthenticationStrategy": {
+                    "$ref": "#/$defs/AuthenticationStrategy"
+                },
+                "AutoMinorVersionUpgrade": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "BrokerName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/ConfigurationId"
+                },
+                "CreatorRequestId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DeploymentMode": {
+                    "$ref": "#/$defs/DeploymentMode"
+                },
+                "EncryptionOptions": {
+                    "$ref": "#/$defs/EncryptionOptions"
+                },
+                "EngineType": {
+                    "$ref": "#/$defs/EngineType"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HostInstanceType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LdapServerMetadata": {
+                    "$ref": "#/$defs/LdapServerMetadataInput"
+                },
+                "Logs": {
+                    "$ref": "#/$defs/Logs"
+                },
+                "MaintenanceWindowStartTime": {
+                    "$ref": "#/$defs/WeeklyStartTime"
+                },
+                "PubliclyAccessible": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "StorageType": {
+                    "$ref": "#/$defs/BrokerStorageType"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                },
+                "Users": {
+                    "$ref": "#/$defs/__listOfUser"
+                },
+                "DataReplicationMode": {
+                    "$ref": "#/$defs/DataReplicationMode"
+                },
+                "DataReplicationPrimaryBrokerArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "AuthenticationStrategy": {
+            "enum": [
+                "SIMPLE",
+                "LDAP"
+            ]
+        },
+        "__boolean": {
+            "type": "boolean"
+        },
+        "ConfigurationId": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Revision": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "__integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DeploymentMode": {
+            "enum": [
+                "SINGLE_INSTANCE",
+                "ACTIVE_STANDBY_MULTI_AZ",
+                "CLUSTER_MULTI_AZ"
+            ]
+        },
+        "EncryptionOptions": {
+            "type": "object",
+            "properties": {
+                "KmsKeyId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "UseAwsOwnedKey": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "EngineType": {
+            "enum": [
+                "ACTIVEMQ",
+                "RABBITMQ"
+            ]
+        },
+        "LdapServerMetadataInput": {
+            "type": "object",
+            "properties": {
+                "Hosts": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "RoleBase": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RoleName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RoleSearchMatching": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RoleSearchSubtree": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "ServiceAccountPassword": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ServiceAccountUsername": {
+                    "$ref": "#/$defs/__string"
+                },
+                "UserBase": {
+                    "$ref": "#/$defs/__string"
+                },
+                "UserRoleName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "UserSearchMatching": {
+                    "$ref": "#/$defs/__string"
+                },
+                "UserSearchSubtree": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "__listOf__string": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "Logs": {
+            "type": "object",
+            "properties": {
+                "Audit": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "General": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "WeeklyStartTime": {
+            "type": "object",
+            "properties": {
+                "DayOfWeek": {
+                    "$ref": "#/$defs/DayOfWeek"
+                },
+                "TimeOfDay": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TimeZone": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DayOfWeek": {
+            "enum": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+            ]
+        },
+        "BrokerStorageType": {
+            "enum": [
+                "EBS",
+                "EFS"
+            ]
+        },
+        "__mapOf__string": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "__listOfUser": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/User"
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "ConsoleAccess": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Groups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Password": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Username": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReplicationUser": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "DataReplicationMode": {
+            "enum": [
+                "NONE",
+                "CRDR"
+            ]
+        },
+        "CreateConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "AuthenticationStrategy": {
+                    "$ref": "#/$defs/AuthenticationStrategy"
+                },
+                "Created": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LatestRevision": {
+                    "$ref": "#/$defs/ConfigurationRevision"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__timestampIso8601": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ConfigurationRevision": {
+            "type": "object",
+            "properties": {
+                "Created": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Revision": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "CreateConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "AuthenticationStrategy": {
+                    "$ref": "#/$defs/AuthenticationStrategy"
+                },
+                "EngineType": {
+                    "$ref": "#/$defs/EngineType"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "CreateTagsRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "CreateUserResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateUserRequest": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ConsoleAccess": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Groups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Password": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Username": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReplicationUser": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "DeleteBrokerResponse": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteBrokerRequest": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteTagsRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "DeleteUserResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteUserRequest": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Username": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeBrokerResponse": {
+            "type": "object",
+            "properties": {
+                "ActionsRequired": {
+                    "$ref": "#/$defs/__listOfActionRequired"
+                },
+                "AuthenticationStrategy": {
+                    "$ref": "#/$defs/AuthenticationStrategy"
+                },
+                "AutoMinorVersionUpgrade": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "BrokerArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "BrokerInstances": {
+                    "$ref": "#/$defs/__listOfBrokerInstance"
+                },
+                "BrokerName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "BrokerState": {
+                    "$ref": "#/$defs/BrokerState"
+                },
+                "Configurations": {
+                    "$ref": "#/$defs/Configurations"
+                },
+                "Created": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "DeploymentMode": {
+                    "$ref": "#/$defs/DeploymentMode"
+                },
+                "EncryptionOptions": {
+                    "$ref": "#/$defs/EncryptionOptions"
+                },
+                "EngineType": {
+                    "$ref": "#/$defs/EngineType"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HostInstanceType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LdapServerMetadata": {
+                    "$ref": "#/$defs/LdapServerMetadataOutput"
+                },
+                "Logs": {
+                    "$ref": "#/$defs/LogsSummary"
+                },
+                "MaintenanceWindowStartTime": {
+                    "$ref": "#/$defs/WeeklyStartTime"
+                },
+                "PendingAuthenticationStrategy": {
+                    "$ref": "#/$defs/AuthenticationStrategy"
+                },
+                "PendingEngineVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PendingHostInstanceType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PendingLdapServerMetadata": {
+                    "$ref": "#/$defs/LdapServerMetadataOutput"
+                },
+                "PendingSecurityGroups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "PubliclyAccessible": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "StorageType": {
+                    "$ref": "#/$defs/BrokerStorageType"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                },
+                "Users": {
+                    "$ref": "#/$defs/__listOfUserSummary"
+                },
+                "DataReplicationMetadata": {
+                    "$ref": "#/$defs/DataReplicationMetadataOutput"
+                },
+                "DataReplicationMode": {
+                    "$ref": "#/$defs/DataReplicationMode"
+                },
+                "PendingDataReplicationMetadata": {
+                    "$ref": "#/$defs/DataReplicationMetadataOutput"
+                },
+                "PendingDataReplicationMode": {
+                    "$ref": "#/$defs/DataReplicationMode"
+                }
+            }
+        },
+        "__listOfActionRequired": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionRequired"
+            }
+        },
+        "ActionRequired": {
+            "type": "object",
+            "properties": {
+                "ActionRequiredCode": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ActionRequiredInfo": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfBrokerInstance": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BrokerInstance"
+            }
+        },
+        "BrokerInstance": {
+            "type": "object",
+            "properties": {
+                "ConsoleURL": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Endpoints": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "IpAddress": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "BrokerState": {
+            "enum": [
+                "CREATION_IN_PROGRESS",
+                "CREATION_FAILED",
+                "DELETION_IN_PROGRESS",
+                "RUNNING",
+                "REBOOT_IN_PROGRESS",
+                "CRITICAL_ACTION_REQUIRED",
+                "REPLICA"
+            ]
+        },
+        "Configurations": {
+            "type": "object",
+            "properties": {
+                "Current": {
+                    "$ref": "#/$defs/ConfigurationId"
+                },
+                "History": {
+                    "$ref": "#/$defs/__listOfConfigurationId"
+                },
+                "Pending": {
+                    "$ref": "#/$defs/ConfigurationId"
+                }
+            }
+        },
+        "__listOfConfigurationId": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationId"
+            }
+        },
+        "LdapServerMetadataOutput": {
+            "type": "object",
+            "properties": {
+                "Hosts": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "RoleBase": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RoleName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RoleSearchMatching": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RoleSearchSubtree": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "ServiceAccountUsername": {
+                    "$ref": "#/$defs/__string"
+                },
+                "UserBase": {
+                    "$ref": "#/$defs/__string"
+                },
+                "UserRoleName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "UserSearchMatching": {
+                    "$ref": "#/$defs/__string"
+                },
+                "UserSearchSubtree": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "LogsSummary": {
+            "type": "object",
+            "properties": {
+                "Audit": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "AuditLogGroup": {
+                    "$ref": "#/$defs/__string"
+                },
+                "General": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "GeneralLogGroup": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Pending": {
+                    "$ref": "#/$defs/PendingLogs"
+                }
+            }
+        },
+        "PendingLogs": {
+            "type": "object",
+            "properties": {
+                "Audit": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "General": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "__listOfUserSummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UserSummary"
+            }
+        },
+        "UserSummary": {
+            "type": "object",
+            "properties": {
+                "PendingChange": {
+                    "$ref": "#/$defs/ChangeType"
+                },
+                "Username": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ChangeType": {
+            "enum": [
+                "CREATE",
+                "UPDATE",
+                "DELETE"
+            ]
+        },
+        "DataReplicationMetadataOutput": {
+            "type": "object",
+            "properties": {
+                "DataReplicationCounterpart": {
+                    "$ref": "#/$defs/DataReplicationCounterpart"
+                },
+                "DataReplicationRole": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DataReplicationCounterpart": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Region": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeBrokerRequest": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeBrokerEngineTypesResponse": {
+            "type": "object",
+            "properties": {
+                "BrokerEngineTypes": {
+                    "$ref": "#/$defs/__listOfBrokerEngineType"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/__integerMin5Max100"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfBrokerEngineType": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BrokerEngineType"
+            }
+        },
+        "BrokerEngineType": {
+            "type": "object",
+            "properties": {
+                "EngineType": {
+                    "$ref": "#/$defs/EngineType"
+                },
+                "EngineVersions": {
+                    "$ref": "#/$defs/__listOfEngineVersion"
+                }
+            }
+        },
+        "__listOfEngineVersion": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EngineVersion"
+            }
+        },
+        "EngineVersion": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__integerMin5Max100": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeBrokerEngineTypesRequest": {
+            "type": "object",
+            "properties": {
+                "EngineType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeBrokerInstanceOptionsResponse": {
+            "type": "object",
+            "properties": {
+                "BrokerInstanceOptions": {
+                    "$ref": "#/$defs/__listOfBrokerInstanceOption"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/__integerMin5Max100"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfBrokerInstanceOption": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BrokerInstanceOption"
+            }
+        },
+        "BrokerInstanceOption": {
+            "type": "object",
+            "properties": {
+                "AvailabilityZones": {
+                    "$ref": "#/$defs/__listOfAvailabilityZone"
+                },
+                "EngineType": {
+                    "$ref": "#/$defs/EngineType"
+                },
+                "HostInstanceType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "StorageType": {
+                    "$ref": "#/$defs/BrokerStorageType"
+                },
+                "SupportedDeploymentModes": {
+                    "$ref": "#/$defs/__listOfDeploymentMode"
+                },
+                "SupportedEngineVersions": {
+                    "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "__listOfAvailabilityZone": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AvailabilityZone"
+            }
+        },
+        "AvailabilityZone": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfDeploymentMode": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentMode"
+            }
+        },
+        "DescribeBrokerInstanceOptionsRequest": {
+            "type": "object",
+            "properties": {
+                "EngineType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HostInstanceType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "StorageType": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "AuthenticationStrategy": {
+                    "$ref": "#/$defs/AuthenticationStrategy"
+                },
+                "Created": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EngineType": {
+                    "$ref": "#/$defs/EngineType"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LatestRevision": {
+                    "$ref": "#/$defs/ConfigurationRevision"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "DescribeConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "ConfigurationId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeConfigurationRevisionResponse": {
+            "type": "object",
+            "properties": {
+                "ConfigurationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Created": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "Data": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeConfigurationRevisionRequest": {
+            "type": "object",
+            "properties": {
+                "ConfigurationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ConfigurationRevision": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DescribeUserResponse": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ConsoleAccess": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Groups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Pending": {
+                    "$ref": "#/$defs/UserPendingChanges"
+                },
+                "Username": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReplicationUser": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        },
+        "UserPendingChanges": {
+            "type": "object",
+            "properties": {
+                "ConsoleAccess": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Groups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "PendingChange": {
+                    "$ref": "#/$defs/ChangeType"
+                }
+            }
+        },
+        "DescribeUserRequest": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Username": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListBrokersResponse": {
+            "type": "object",
+            "properties": {
+                "BrokerSummaries": {
+                    "$ref": "#/$defs/__listOfBrokerSummary"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfBrokerSummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BrokerSummary"
+            }
+        },
+        "BrokerSummary": {
+            "type": "object",
+            "properties": {
+                "BrokerArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "BrokerName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "BrokerState": {
+                    "$ref": "#/$defs/BrokerState"
+                },
+                "Created": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "DeploymentMode": {
+                    "$ref": "#/$defs/DeploymentMode"
+                },
+                "EngineType": {
+                    "$ref": "#/$defs/EngineType"
+                },
+                "HostInstanceType": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListBrokersRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListConfigurationRevisionsResponse": {
+            "type": "object",
+            "properties": {
+                "ConfigurationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Revisions": {
+                    "$ref": "#/$defs/__listOfConfigurationRevision"
+                }
+            }
+        },
+        "__listOfConfigurationRevision": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationRevision"
+            }
+        },
+        "ListConfigurationRevisionsRequest": {
+            "type": "object",
+            "properties": {
+                "ConfigurationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListConfigurationsResponse": {
+            "type": "object",
+            "properties": {
+                "Configurations": {
+                    "$ref": "#/$defs/__listOfConfiguration"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfConfiguration": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Configuration"
+            }
+        },
+        "Configuration": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "AuthenticationStrategy": {
+                    "$ref": "#/$defs/AuthenticationStrategy"
+                },
+                "Created": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EngineType": {
+                    "$ref": "#/$defs/EngineType"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LatestRevision": {
+                    "$ref": "#/$defs/ConfigurationRevision"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "ListConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListTagsResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "ListTagsRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListUsersResponse": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/__integerMin5Max100"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Users": {
+                    "$ref": "#/$defs/__listOfUserSummary"
+                }
+            }
+        },
+        "ListUsersRequest": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "PromoteResponse": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "PromoteRequest": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/PromoteMode"
+                }
+            }
+        },
+        "PromoteMode": {
+            "enum": [
+                "SWITCHOVER",
+                "FAILOVER"
+            ]
+        },
+        "RebootBrokerResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "RebootBrokerRequest": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "UpdateBrokerResponse": {
+            "type": "object",
+            "properties": {
+                "AuthenticationStrategy": {
+                    "$ref": "#/$defs/AuthenticationStrategy"
+                },
+                "AutoMinorVersionUpgrade": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/ConfigurationId"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HostInstanceType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LdapServerMetadata": {
+                    "$ref": "#/$defs/LdapServerMetadataOutput"
+                },
+                "Logs": {
+                    "$ref": "#/$defs/Logs"
+                },
+                "MaintenanceWindowStartTime": {
+                    "$ref": "#/$defs/WeeklyStartTime"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "DataReplicationMetadata": {
+                    "$ref": "#/$defs/DataReplicationMetadataOutput"
+                },
+                "DataReplicationMode": {
+                    "$ref": "#/$defs/DataReplicationMode"
+                },
+                "PendingDataReplicationMetadata": {
+                    "$ref": "#/$defs/DataReplicationMetadataOutput"
+                },
+                "PendingDataReplicationMode": {
+                    "$ref": "#/$defs/DataReplicationMode"
+                }
+            }
+        },
+        "UpdateBrokerRequest": {
+            "type": "object",
+            "properties": {
+                "AuthenticationStrategy": {
+                    "$ref": "#/$defs/AuthenticationStrategy"
+                },
+                "AutoMinorVersionUpgrade": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/ConfigurationId"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HostInstanceType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LdapServerMetadata": {
+                    "$ref": "#/$defs/LdapServerMetadataInput"
+                },
+                "Logs": {
+                    "$ref": "#/$defs/Logs"
+                },
+                "MaintenanceWindowStartTime": {
+                    "$ref": "#/$defs/WeeklyStartTime"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "DataReplicationMode": {
+                    "$ref": "#/$defs/DataReplicationMode"
+                }
+            }
+        },
+        "UpdateConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Created": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LatestRevision": {
+                    "$ref": "#/$defs/ConfigurationRevision"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Warnings": {
+                    "$ref": "#/$defs/__listOfSanitizationWarning"
+                }
+            }
+        },
+        "__listOfSanitizationWarning": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SanitizationWarning"
+            }
+        },
+        "SanitizationWarning": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ElementName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/SanitizationWarningReason"
+                }
+            }
+        },
+        "SanitizationWarningReason": {
+            "enum": [
+                "DISALLOWED_ELEMENT_REMOVED",
+                "DISALLOWED_ATTRIBUTE_REMOVED",
+                "INVALID_ATTRIBUTE_VALUE_REMOVED"
+            ]
+        },
+        "UpdateConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "ConfigurationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Data": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "UpdateUserResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateUserRequest": {
+            "type": "object",
+            "properties": {
+                "BrokerId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ConsoleAccess": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Groups": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Password": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Username": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReplicationUser": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mq-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mq-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mq.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://mq.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

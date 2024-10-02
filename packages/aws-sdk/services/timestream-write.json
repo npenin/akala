@@ -1,0 +1,2027 @@
+{
+    "name": "timestream",
+    "commands": [
+        {
+            "name": "CreateBatchLoadTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateBatchLoadTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateBatchLoadTaskResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateBatchLoadTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDatabase",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDatabase"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDatabaseResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDatabaseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateTableResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDatabase",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDatabase"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDatabaseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeBatchLoadTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeBatchLoadTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeBatchLoadTaskResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeBatchLoadTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDatabase",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDatabase"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDatabaseResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDatabaseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEndpoints",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEndpoints"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEndpointsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEndpointsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTableResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBatchLoadTasks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListBatchLoadTasks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBatchLoadTasksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBatchLoadTasksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatabases",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDatabases"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatabasesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatabasesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTables",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTables"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTablesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTablesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ResumeBatchLoadTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ResumeBatchLoadTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ResumeBatchLoadTaskResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ResumeBatchLoadTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDatabase",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDatabase"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDatabaseResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDatabaseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateTableResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "WriteRecords",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "WriteRecords"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/WriteRecordsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/WriteRecordsRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateBatchLoadTaskResponse": {
+            "type": "object",
+            "properties": {
+                "TaskId": {
+                    "$ref": "#/$defs/BatchLoadTaskId"
+                }
+            }
+        },
+        "BatchLoadTaskId": {
+            "type": "string"
+        },
+        "CreateBatchLoadTaskRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "DataModelConfiguration": {
+                    "$ref": "#/$defs/DataModelConfiguration"
+                },
+                "DataSourceConfiguration": {
+                    "$ref": "#/$defs/DataSourceConfiguration"
+                },
+                "ReportConfiguration": {
+                    "$ref": "#/$defs/ReportConfiguration"
+                },
+                "TargetDatabaseName": {
+                    "$ref": "#/$defs/ResourceCreateAPIName"
+                },
+                "TargetTableName": {
+                    "$ref": "#/$defs/ResourceCreateAPIName"
+                },
+                "RecordVersion": {
+                    "$ref": "#/$defs/RecordVersion"
+                }
+            }
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "DataModelConfiguration": {
+            "type": "object",
+            "properties": {
+                "DataModel": {
+                    "$ref": "#/$defs/DataModel"
+                },
+                "DataModelS3Configuration": {
+                    "$ref": "#/$defs/DataModelS3Configuration"
+                }
+            }
+        },
+        "DataModel": {
+            "type": "object",
+            "properties": {
+                "TimeColumn": {
+                    "$ref": "#/$defs/StringValue256"
+                },
+                "TimeUnit": {
+                    "$ref": "#/$defs/TimeUnit"
+                },
+                "DimensionMappings": {
+                    "$ref": "#/$defs/DimensionMappings"
+                },
+                "MultiMeasureMappings": {
+                    "$ref": "#/$defs/MultiMeasureMappings"
+                },
+                "MixedMeasureMappings": {
+                    "$ref": "#/$defs/MixedMeasureMappingList"
+                },
+                "MeasureNameColumn": {
+                    "$ref": "#/$defs/StringValue256"
+                }
+            }
+        },
+        "StringValue256": {
+            "type": "string"
+        },
+        "TimeUnit": {
+            "enum": [
+                "MILLISECONDS",
+                "SECONDS",
+                "MICROSECONDS",
+                "NANOSECONDS"
+            ]
+        },
+        "DimensionMappings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DimensionMapping"
+            }
+        },
+        "DimensionMapping": {
+            "type": "object",
+            "properties": {
+                "SourceColumn": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "DestinationColumn": {
+                    "$ref": "#/$defs/SchemaName"
+                }
+            }
+        },
+        "SchemaName": {
+            "type": "string"
+        },
+        "MultiMeasureMappings": {
+            "type": "object",
+            "properties": {
+                "TargetMultiMeasureName": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "MultiMeasureAttributeMappings": {
+                    "$ref": "#/$defs/MultiMeasureAttributeMappingList"
+                }
+            }
+        },
+        "MultiMeasureAttributeMappingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MultiMeasureAttributeMapping"
+            }
+        },
+        "MultiMeasureAttributeMapping": {
+            "type": "object",
+            "properties": {
+                "SourceColumn": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "TargetMultiMeasureAttributeName": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "MeasureValueType": {
+                    "$ref": "#/$defs/ScalarMeasureValueType"
+                }
+            }
+        },
+        "ScalarMeasureValueType": {
+            "enum": [
+                "DOUBLE",
+                "BIGINT",
+                "BOOLEAN",
+                "VARCHAR",
+                "TIMESTAMP"
+            ]
+        },
+        "MixedMeasureMappingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MixedMeasureMapping"
+            }
+        },
+        "MixedMeasureMapping": {
+            "type": "object",
+            "properties": {
+                "MeasureName": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "SourceColumn": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "TargetMeasureName": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "MeasureValueType": {
+                    "$ref": "#/$defs/MeasureValueType"
+                },
+                "MultiMeasureAttributeMappings": {
+                    "$ref": "#/$defs/MultiMeasureAttributeMappingList"
+                }
+            }
+        },
+        "MeasureValueType": {
+            "enum": [
+                "DOUBLE",
+                "BIGINT",
+                "VARCHAR",
+                "BOOLEAN",
+                "TIMESTAMP",
+                "MULTI"
+            ]
+        },
+        "DataModelS3Configuration": {
+            "type": "object",
+            "properties": {
+                "BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "ObjectKey": {
+                    "$ref": "#/$defs/S3ObjectKey"
+                }
+            }
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "S3ObjectKey": {
+            "type": "string"
+        },
+        "DataSourceConfiguration": {
+            "type": "object",
+            "properties": {
+                "DataSourceS3Configuration": {
+                    "$ref": "#/$defs/DataSourceS3Configuration"
+                },
+                "CsvConfiguration": {
+                    "$ref": "#/$defs/CsvConfiguration"
+                },
+                "DataFormat": {
+                    "$ref": "#/$defs/BatchLoadDataFormat"
+                }
+            }
+        },
+        "DataSourceS3Configuration": {
+            "type": "object",
+            "properties": {
+                "BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "ObjectKeyPrefix": {
+                    "$ref": "#/$defs/S3ObjectKey"
+                }
+            }
+        },
+        "CsvConfiguration": {
+            "type": "object",
+            "properties": {
+                "ColumnSeparator": {
+                    "$ref": "#/$defs/StringValue1"
+                },
+                "EscapeChar": {
+                    "$ref": "#/$defs/StringValue1"
+                },
+                "QuoteChar": {
+                    "$ref": "#/$defs/StringValue1"
+                },
+                "NullValue": {
+                    "$ref": "#/$defs/StringValue256"
+                },
+                "TrimWhiteSpace": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "StringValue1": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "BatchLoadDataFormat": {
+            "enum": [
+                "CSV"
+            ]
+        },
+        "ReportConfiguration": {
+            "type": "object",
+            "properties": {
+                "ReportS3Configuration": {
+                    "$ref": "#/$defs/ReportS3Configuration"
+                }
+            }
+        },
+        "ReportS3Configuration": {
+            "type": "object",
+            "properties": {
+                "BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "ObjectKeyPrefix": {
+                    "$ref": "#/$defs/S3ObjectKeyPrefix"
+                },
+                "EncryptionOption": {
+                    "$ref": "#/$defs/S3EncryptionOption"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/StringValue2048"
+                }
+            }
+        },
+        "S3ObjectKeyPrefix": {
+            "type": "string"
+        },
+        "S3EncryptionOption": {
+            "enum": [
+                "SSE_S3",
+                "SSE_KMS"
+            ]
+        },
+        "StringValue2048": {
+            "type": "string"
+        },
+        "ResourceCreateAPIName": {
+            "type": "string"
+        },
+        "RecordVersion": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CreateDatabaseResponse": {
+            "type": "object",
+            "properties": {
+                "Database": {
+                    "$ref": "#/$defs/Database"
+                }
+            }
+        },
+        "Database": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TableCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/StringValue2048"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "ResourceName": {
+            "type": "string"
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateDatabaseRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceCreateAPIName"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/StringValue2048"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateTableResponse": {
+            "type": "object",
+            "properties": {
+                "Table": {
+                    "$ref": "#/$defs/Table"
+                }
+            }
+        },
+        "Table": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TableStatus": {
+                    "$ref": "#/$defs/TableStatus"
+                },
+                "RetentionProperties": {
+                    "$ref": "#/$defs/RetentionProperties"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "MagneticStoreWriteProperties": {
+                    "$ref": "#/$defs/MagneticStoreWriteProperties"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/Schema"
+                }
+            }
+        },
+        "TableStatus": {
+            "enum": [
+                "ACTIVE",
+                "DELETING",
+                "RESTORING"
+            ]
+        },
+        "RetentionProperties": {
+            "type": "object",
+            "properties": {
+                "MemoryStoreRetentionPeriodInHours": {
+                    "$ref": "#/$defs/MemoryStoreRetentionPeriodInHours"
+                },
+                "MagneticStoreRetentionPeriodInDays": {
+                    "$ref": "#/$defs/MagneticStoreRetentionPeriodInDays"
+                }
+            }
+        },
+        "MemoryStoreRetentionPeriodInHours": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "MagneticStoreRetentionPeriodInDays": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "MagneticStoreWriteProperties": {
+            "type": "object",
+            "properties": {
+                "EnableMagneticStoreWrites": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "MagneticStoreRejectedDataLocation": {
+                    "$ref": "#/$defs/MagneticStoreRejectedDataLocation"
+                }
+            }
+        },
+        "MagneticStoreRejectedDataLocation": {
+            "type": "object",
+            "properties": {
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3Configuration"
+                }
+            }
+        },
+        "S3Configuration": {
+            "type": "object",
+            "properties": {
+                "BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "ObjectKeyPrefix": {
+                    "$ref": "#/$defs/S3ObjectKeyPrefix"
+                },
+                "EncryptionOption": {
+                    "$ref": "#/$defs/S3EncryptionOption"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/StringValue2048"
+                }
+            }
+        },
+        "Schema": {
+            "type": "object",
+            "properties": {
+                "CompositePartitionKey": {
+                    "$ref": "#/$defs/PartitionKeyList"
+                }
+            }
+        },
+        "PartitionKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartitionKey"
+            }
+        },
+        "PartitionKey": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/PartitionKeyType"
+                },
+                "Name": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "EnforcementInRecord": {
+                    "$ref": "#/$defs/PartitionKeyEnforcementLevel"
+                }
+            }
+        },
+        "PartitionKeyType": {
+            "enum": [
+                "DIMENSION",
+                "MEASURE"
+            ]
+        },
+        "PartitionKeyEnforcementLevel": {
+            "enum": [
+                "REQUIRED",
+                "OPTIONAL"
+            ]
+        },
+        "CreateTableRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceCreateAPIName"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/ResourceCreateAPIName"
+                },
+                "RetentionProperties": {
+                    "$ref": "#/$defs/RetentionProperties"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "MagneticStoreWriteProperties": {
+                    "$ref": "#/$defs/MagneticStoreWriteProperties"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/Schema"
+                }
+            }
+        },
+        "DeleteDatabaseRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "DeleteTableRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "DescribeBatchLoadTaskResponse": {
+            "type": "object",
+            "properties": {
+                "BatchLoadTaskDescription": {
+                    "$ref": "#/$defs/BatchLoadTaskDescription"
+                }
+            }
+        },
+        "BatchLoadTaskDescription": {
+            "type": "object",
+            "properties": {
+                "TaskId": {
+                    "$ref": "#/$defs/BatchLoadTaskId"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/StringValue2048"
+                },
+                "DataSourceConfiguration": {
+                    "$ref": "#/$defs/DataSourceConfiguration"
+                },
+                "ProgressReport": {
+                    "$ref": "#/$defs/BatchLoadProgressReport"
+                },
+                "ReportConfiguration": {
+                    "$ref": "#/$defs/ReportConfiguration"
+                },
+                "DataModelConfiguration": {
+                    "$ref": "#/$defs/DataModelConfiguration"
+                },
+                "TargetDatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TargetTableName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TaskStatus": {
+                    "$ref": "#/$defs/BatchLoadStatus"
+                },
+                "RecordVersion": {
+                    "$ref": "#/$defs/RecordVersion"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "ResumableUntil": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "BatchLoadProgressReport": {
+            "type": "object",
+            "properties": {
+                "RecordsProcessed": {
+                    "$ref": "#/$defs/Long"
+                },
+                "RecordsIngested": {
+                    "$ref": "#/$defs/Long"
+                },
+                "ParseFailures": {
+                    "$ref": "#/$defs/Long"
+                },
+                "RecordIngestionFailures": {
+                    "$ref": "#/$defs/Long"
+                },
+                "FileFailures": {
+                    "$ref": "#/$defs/Long"
+                },
+                "BytesMetered": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "BatchLoadStatus": {
+            "enum": [
+                "CREATED",
+                "IN_PROGRESS",
+                "FAILED",
+                "SUCCEEDED",
+                "PROGRESS_STOPPED",
+                "PENDING_RESUME"
+            ]
+        },
+        "DescribeBatchLoadTaskRequest": {
+            "type": "object",
+            "properties": {
+                "TaskId": {
+                    "$ref": "#/$defs/BatchLoadTaskId"
+                }
+            }
+        },
+        "DescribeDatabaseResponse": {
+            "type": "object",
+            "properties": {
+                "Database": {
+                    "$ref": "#/$defs/Database"
+                }
+            }
+        },
+        "DescribeDatabaseRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "DescribeEndpointsResponse": {
+            "type": "object",
+            "properties": {
+                "Endpoints": {
+                    "$ref": "#/$defs/Endpoints"
+                }
+            }
+        },
+        "Endpoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Endpoint"
+            }
+        },
+        "Endpoint": {
+            "type": "object",
+            "properties": {
+                "Address": {
+                    "$ref": "#/$defs/String"
+                },
+                "CachePeriodInMinutes": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "DescribeEndpointsRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeTableResponse": {
+            "type": "object",
+            "properties": {
+                "Table": {
+                    "$ref": "#/$defs/Table"
+                }
+            }
+        },
+        "DescribeTableRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "ListBatchLoadTasksResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "BatchLoadTasks": {
+                    "$ref": "#/$defs/BatchLoadTaskList"
+                }
+            }
+        },
+        "BatchLoadTaskList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchLoadTask"
+            }
+        },
+        "BatchLoadTask": {
+            "type": "object",
+            "properties": {
+                "TaskId": {
+                    "$ref": "#/$defs/BatchLoadTaskId"
+                },
+                "TaskStatus": {
+                    "$ref": "#/$defs/BatchLoadStatus"
+                },
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "ResumableUntil": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "ListBatchLoadTasksRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageLimit"
+                },
+                "TaskStatus": {
+                    "$ref": "#/$defs/BatchLoadStatus"
+                }
+            }
+        },
+        "PageLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDatabasesResponse": {
+            "type": "object",
+            "properties": {
+                "Databases": {
+                    "$ref": "#/$defs/DatabaseList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DatabaseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Database"
+            }
+        },
+        "ListDatabasesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationLimit"
+                }
+            }
+        },
+        "PaginationLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTablesResponse": {
+            "type": "object",
+            "properties": {
+                "Tables": {
+                    "$ref": "#/$defs/TableList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TableList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Table"
+            }
+        },
+        "ListTablesRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationLimit"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "ResumeBatchLoadTaskResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "ResumeBatchLoadTaskRequest": {
+            "type": "object",
+            "properties": {
+                "TaskId": {
+                    "$ref": "#/$defs/BatchLoadTaskId"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateDatabaseResponse": {
+            "type": "object",
+            "properties": {
+                "Database": {
+                    "$ref": "#/$defs/Database"
+                }
+            }
+        },
+        "UpdateDatabaseRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/StringValue2048"
+                }
+            }
+        },
+        "UpdateTableResponse": {
+            "type": "object",
+            "properties": {
+                "Table": {
+                    "$ref": "#/$defs/Table"
+                }
+            }
+        },
+        "UpdateTableRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "RetentionProperties": {
+                    "$ref": "#/$defs/RetentionProperties"
+                },
+                "MagneticStoreWriteProperties": {
+                    "$ref": "#/$defs/MagneticStoreWriteProperties"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/Schema"
+                }
+            }
+        },
+        "WriteRecordsResponse": {
+            "type": "object",
+            "properties": {
+                "RecordsIngested": {
+                    "$ref": "#/$defs/RecordsIngested"
+                }
+            }
+        },
+        "RecordsIngested": {
+            "type": "object",
+            "properties": {
+                "Total": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "MemoryStore": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "MagneticStore": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "WriteRecordsRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "CommonAttributes": {
+                    "$ref": "#/$defs/Record"
+                },
+                "Records": {
+                    "$ref": "#/$defs/Records"
+                }
+            }
+        },
+        "Record": {
+            "type": "object",
+            "properties": {
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "MeasureName": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "MeasureValue": {
+                    "$ref": "#/$defs/StringValue2048"
+                },
+                "MeasureValueType": {
+                    "$ref": "#/$defs/MeasureValueType"
+                },
+                "Time": {
+                    "$ref": "#/$defs/StringValue256"
+                },
+                "TimeUnit": {
+                    "$ref": "#/$defs/TimeUnit"
+                },
+                "Version": {
+                    "$ref": "#/$defs/RecordVersion"
+                },
+                "MeasureValues": {
+                    "$ref": "#/$defs/MeasureValues"
+                }
+            }
+        },
+        "Dimensions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Dimension"
+            }
+        },
+        "Dimension": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/SchemaValue"
+                },
+                "DimensionValueType": {
+                    "$ref": "#/$defs/DimensionValueType"
+                }
+            }
+        },
+        "SchemaValue": {
+            "type": "string"
+        },
+        "DimensionValueType": {
+            "enum": [
+                "VARCHAR"
+            ]
+        },
+        "MeasureValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MeasureValue"
+            }
+        },
+        "MeasureValue": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/StringValue2048"
+                },
+                "Type": {
+                    "$ref": "#/$defs/MeasureValueType"
+                }
+            }
+        },
+        "Records": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Record"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ingest.timestream-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://ingest.timestream.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ingest.timestream-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ingest.timestream.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://ingest.timestream.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

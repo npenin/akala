@@ -1,0 +1,4714 @@
+{
+    "name": "events",
+    "commands": [
+        {
+            "name": "ActivateEventSource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ActivateEventSource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ActivateEventSourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelReplay",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelReplay"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelReplayResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelReplayRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateApiDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateApiDestination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateApiDestinationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApiDestinationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateArchive",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateArchive"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateArchiveResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateArchiveRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateConnectionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateEventBus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateEventBus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateEventBusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEventBusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePartnerEventSource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePartnerEventSource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePartnerEventSourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePartnerEventSourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeactivateEventSource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeactivateEventSource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeactivateEventSourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeauthorizeConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeauthorizeConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeauthorizeConnectionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeauthorizeConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteApiDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteApiDestination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteApiDestinationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteApiDestinationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteArchive",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteArchive"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteArchiveResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteArchiveRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteConnectionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEventBus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEventBus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEventBusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePartnerEventSource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePartnerEventSource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePartnerEventSourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeApiDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeApiDestination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeApiDestinationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeApiDestinationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeArchive",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeArchive"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeArchiveResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeArchiveRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConnectionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEventBus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEventBus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEventBusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEventBusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEventSource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEventSource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEventSourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEventSourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribePartnerEventSource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribePartnerEventSource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePartnerEventSourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePartnerEventSourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeReplay",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeReplay"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeReplayResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeReplayRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApiDestinations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListApiDestinations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApiDestinationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApiDestinationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListArchives",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListArchives"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListArchivesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListArchivesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConnections",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListConnections"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConnectionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConnectionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEventBuses",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEventBuses"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEventBusesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEventBusesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEventSources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEventSources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEventSourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEventSourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPartnerEventSourceAccounts",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPartnerEventSourceAccounts"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPartnerEventSourceAccountsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPartnerEventSourceAccountsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPartnerEventSources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPartnerEventSources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPartnerEventSourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPartnerEventSourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReplays",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReplays"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReplaysResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReplaysRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRuleNamesByTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRuleNamesByTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRuleNamesByTargetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRuleNamesByTargetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRulesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRulesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTargetsByRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTargetsByRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTargetsByRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTargetsByRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutEventsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutPartnerEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutPartnerEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutPartnerEventsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutPartnerEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutPermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutPermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutPermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutTargetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutTargetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemovePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemovePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemovePermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RemoveTargetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveTargetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartReplay",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartReplay"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartReplayResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartReplayRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TestEventPattern",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TestEventPattern"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TestEventPatternResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TestEventPatternRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApiDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateApiDestination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateApiDestinationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApiDestinationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateArchive",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateArchive"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateArchiveResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateArchiveRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateConnectionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConnectionRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ActivateEventSourceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventSourceName"
+                }
+            }
+        },
+        "EventSourceName": {
+            "type": "string"
+        },
+        "CancelReplayResponse": {
+            "type": "object",
+            "properties": {
+                "ReplayArn": {
+                    "$ref": "#/$defs/ReplayArn"
+                },
+                "State": {
+                    "$ref": "#/$defs/ReplayState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/ReplayStateReason"
+                }
+            }
+        },
+        "ReplayArn": {
+            "type": "string"
+        },
+        "ReplayState": {
+            "enum": [
+                "STARTING",
+                "RUNNING",
+                "CANCELLING",
+                "COMPLETED",
+                "CANCELLED",
+                "FAILED"
+            ]
+        },
+        "ReplayStateReason": {
+            "type": "string"
+        },
+        "CancelReplayRequest": {
+            "type": "object",
+            "properties": {
+                "ReplayName": {
+                    "$ref": "#/$defs/ReplayName"
+                }
+            }
+        },
+        "ReplayName": {
+            "type": "string"
+        },
+        "CreateApiDestinationResponse": {
+            "type": "object",
+            "properties": {
+                "ApiDestinationArn": {
+                    "$ref": "#/$defs/ApiDestinationArn"
+                },
+                "ApiDestinationState": {
+                    "$ref": "#/$defs/ApiDestinationState"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ApiDestinationArn": {
+            "type": "string"
+        },
+        "ApiDestinationState": {
+            "enum": [
+                "ACTIVE",
+                "INACTIVE"
+            ]
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateApiDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ApiDestinationName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ApiDestinationDescription"
+                },
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "InvocationEndpoint": {
+                    "$ref": "#/$defs/HttpsEndpoint"
+                },
+                "HttpMethod": {
+                    "$ref": "#/$defs/ApiDestinationHttpMethod"
+                },
+                "InvocationRateLimitPerSecond": {
+                    "$ref": "#/$defs/ApiDestinationInvocationRateLimitPerSecond"
+                }
+            }
+        },
+        "ApiDestinationName": {
+            "type": "string"
+        },
+        "ApiDestinationDescription": {
+            "type": "string"
+        },
+        "ConnectionArn": {
+            "type": "string"
+        },
+        "HttpsEndpoint": {
+            "type": "string"
+        },
+        "ApiDestinationHttpMethod": {
+            "enum": [
+                "POST",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PUT",
+                "PATCH",
+                "DELETE"
+            ]
+        },
+        "ApiDestinationInvocationRateLimitPerSecond": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CreateArchiveResponse": {
+            "type": "object",
+            "properties": {
+                "ArchiveArn": {
+                    "$ref": "#/$defs/ArchiveArn"
+                },
+                "State": {
+                    "$ref": "#/$defs/ArchiveState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/ArchiveStateReason"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ArchiveArn": {
+            "type": "string"
+        },
+        "ArchiveState": {
+            "enum": [
+                "ENABLED",
+                "DISABLED",
+                "CREATING",
+                "UPDATING",
+                "CREATE_FAILED",
+                "UPDATE_FAILED"
+            ]
+        },
+        "ArchiveStateReason": {
+            "type": "string"
+        },
+        "CreateArchiveRequest": {
+            "type": "object",
+            "properties": {
+                "ArchiveName": {
+                    "$ref": "#/$defs/ArchiveName"
+                },
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ArchiveDescription"
+                },
+                "EventPattern": {
+                    "$ref": "#/$defs/EventPattern"
+                },
+                "RetentionDays": {
+                    "$ref": "#/$defs/RetentionDays"
+                }
+            }
+        },
+        "ArchiveName": {
+            "type": "string"
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "ArchiveDescription": {
+            "type": "string"
+        },
+        "EventPattern": {
+            "type": "string"
+        },
+        "RetentionDays": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CreateConnectionResponse": {
+            "type": "object",
+            "properties": {
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "ConnectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ConnectionState": {
+            "enum": [
+                "CREATING",
+                "UPDATING",
+                "DELETING",
+                "AUTHORIZED",
+                "DEAUTHORIZED",
+                "AUTHORIZING",
+                "DEAUTHORIZING"
+            ]
+        },
+        "CreateConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ConnectionDescription"
+                },
+                "AuthorizationType": {
+                    "$ref": "#/$defs/ConnectionAuthorizationType"
+                },
+                "AuthParameters": {
+                    "$ref": "#/$defs/CreateConnectionAuthRequestParameters"
+                }
+            }
+        },
+        "ConnectionName": {
+            "type": "string"
+        },
+        "ConnectionDescription": {
+            "type": "string"
+        },
+        "ConnectionAuthorizationType": {
+            "enum": [
+                "BASIC",
+                "OAUTH_CLIENT_CREDENTIALS",
+                "API_KEY"
+            ]
+        },
+        "CreateConnectionAuthRequestParameters": {
+            "type": "object",
+            "properties": {
+                "BasicAuthParameters": {
+                    "$ref": "#/$defs/CreateConnectionBasicAuthRequestParameters"
+                },
+                "OAuthParameters": {
+                    "$ref": "#/$defs/CreateConnectionOAuthRequestParameters"
+                },
+                "ApiKeyAuthParameters": {
+                    "$ref": "#/$defs/CreateConnectionApiKeyAuthRequestParameters"
+                },
+                "InvocationHttpParameters": {
+                    "$ref": "#/$defs/ConnectionHttpParameters"
+                }
+            }
+        },
+        "CreateConnectionBasicAuthRequestParameters": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/AuthHeaderParameters"
+                },
+                "Password": {
+                    "$ref": "#/$defs/AuthHeaderParametersSensitive"
+                }
+            }
+        },
+        "AuthHeaderParameters": {
+            "type": "string"
+        },
+        "AuthHeaderParametersSensitive": {
+            "type": "string"
+        },
+        "CreateConnectionOAuthRequestParameters": {
+            "type": "object",
+            "properties": {
+                "ClientParameters": {
+                    "$ref": "#/$defs/CreateConnectionOAuthClientRequestParameters"
+                },
+                "AuthorizationEndpoint": {
+                    "$ref": "#/$defs/HttpsEndpoint"
+                },
+                "HttpMethod": {
+                    "$ref": "#/$defs/ConnectionOAuthHttpMethod"
+                },
+                "OAuthHttpParameters": {
+                    "$ref": "#/$defs/ConnectionHttpParameters"
+                }
+            }
+        },
+        "CreateConnectionOAuthClientRequestParameters": {
+            "type": "object",
+            "properties": {
+                "ClientID": {
+                    "$ref": "#/$defs/AuthHeaderParameters"
+                },
+                "ClientSecret": {
+                    "$ref": "#/$defs/AuthHeaderParametersSensitive"
+                }
+            }
+        },
+        "ConnectionOAuthHttpMethod": {
+            "enum": [
+                "GET",
+                "POST",
+                "PUT"
+            ]
+        },
+        "ConnectionHttpParameters": {
+            "type": "object",
+            "properties": {
+                "HeaderParameters": {
+                    "$ref": "#/$defs/ConnectionHeaderParametersList"
+                },
+                "QueryStringParameters": {
+                    "$ref": "#/$defs/ConnectionQueryStringParametersList"
+                },
+                "BodyParameters": {
+                    "$ref": "#/$defs/ConnectionBodyParametersList"
+                }
+            }
+        },
+        "ConnectionHeaderParametersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectionHeaderParameter"
+            }
+        },
+        "ConnectionHeaderParameter": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/HeaderKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/HeaderValueSensitive"
+                },
+                "IsValueSecret": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "HeaderKey": {
+            "type": "string"
+        },
+        "HeaderValueSensitive": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "ConnectionQueryStringParametersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectionQueryStringParameter"
+            }
+        },
+        "ConnectionQueryStringParameter": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/QueryStringKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/QueryStringValueSensitive"
+                },
+                "IsValueSecret": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "QueryStringKey": {
+            "type": "string"
+        },
+        "QueryStringValueSensitive": {
+            "type": "string"
+        },
+        "ConnectionBodyParametersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectionBodyParameter"
+            }
+        },
+        "ConnectionBodyParameter": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/SensitiveString"
+                },
+                "IsValueSecret": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "SensitiveString": {
+            "type": "string"
+        },
+        "CreateConnectionApiKeyAuthRequestParameters": {
+            "type": "object",
+            "properties": {
+                "ApiKeyName": {
+                    "$ref": "#/$defs/AuthHeaderParameters"
+                },
+                "ApiKeyValue": {
+                    "$ref": "#/$defs/AuthHeaderParametersSensitive"
+                }
+            }
+        },
+        "CreateEventBusResponse": {
+            "type": "object",
+            "properties": {
+                "EventBusArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateEventBusRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventBusName"
+                },
+                "EventSourceName": {
+                    "$ref": "#/$defs/EventSourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "EventBusName": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreatePartnerEventSourceResponse": {
+            "type": "object",
+            "properties": {
+                "EventSourceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreatePartnerEventSourceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventSourceName"
+                },
+                "Account": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "DeactivateEventSourceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventSourceName"
+                }
+            }
+        },
+        "DeauthorizeConnectionResponse": {
+            "type": "object",
+            "properties": {
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "ConnectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastAuthorizedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DeauthorizeConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ConnectionName"
+                }
+            }
+        },
+        "DeleteApiDestinationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteApiDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ApiDestinationName"
+                }
+            }
+        },
+        "DeleteArchiveResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteArchiveRequest": {
+            "type": "object",
+            "properties": {
+                "ArchiveName": {
+                    "$ref": "#/$defs/ArchiveName"
+                }
+            }
+        },
+        "DeleteConnectionResponse": {
+            "type": "object",
+            "properties": {
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "ConnectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastAuthorizedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DeleteConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ConnectionName"
+                }
+            }
+        },
+        "DeleteEventBusRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventBusName"
+                }
+            }
+        },
+        "DeletePartnerEventSourceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventSourceName"
+                },
+                "Account": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "DeleteRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                },
+                "Force": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "RuleName": {
+            "type": "string"
+        },
+        "EventBusNameOrArn": {
+            "type": "string"
+        },
+        "DescribeApiDestinationResponse": {
+            "type": "object",
+            "properties": {
+                "ApiDestinationArn": {
+                    "$ref": "#/$defs/ApiDestinationArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ApiDestinationName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ApiDestinationDescription"
+                },
+                "ApiDestinationState": {
+                    "$ref": "#/$defs/ApiDestinationState"
+                },
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "InvocationEndpoint": {
+                    "$ref": "#/$defs/HttpsEndpoint"
+                },
+                "HttpMethod": {
+                    "$ref": "#/$defs/ApiDestinationHttpMethod"
+                },
+                "InvocationRateLimitPerSecond": {
+                    "$ref": "#/$defs/ApiDestinationInvocationRateLimitPerSecond"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeApiDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ApiDestinationName"
+                }
+            }
+        },
+        "DescribeArchiveResponse": {
+            "type": "object",
+            "properties": {
+                "ArchiveArn": {
+                    "$ref": "#/$defs/ArchiveArn"
+                },
+                "ArchiveName": {
+                    "$ref": "#/$defs/ArchiveName"
+                },
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ArchiveDescription"
+                },
+                "EventPattern": {
+                    "$ref": "#/$defs/EventPattern"
+                },
+                "State": {
+                    "$ref": "#/$defs/ArchiveState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/ArchiveStateReason"
+                },
+                "RetentionDays": {
+                    "$ref": "#/$defs/RetentionDays"
+                },
+                "SizeBytes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "EventCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DescribeArchiveRequest": {
+            "type": "object",
+            "properties": {
+                "ArchiveName": {
+                    "$ref": "#/$defs/ArchiveName"
+                }
+            }
+        },
+        "DescribeConnectionResponse": {
+            "type": "object",
+            "properties": {
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ConnectionDescription"
+                },
+                "ConnectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/ConnectionStateReason"
+                },
+                "AuthorizationType": {
+                    "$ref": "#/$defs/ConnectionAuthorizationType"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretsManagerSecretArn"
+                },
+                "AuthParameters": {
+                    "$ref": "#/$defs/ConnectionAuthResponseParameters"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastAuthorizedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ConnectionStateReason": {
+            "type": "string"
+        },
+        "SecretsManagerSecretArn": {
+            "type": "string"
+        },
+        "ConnectionAuthResponseParameters": {
+            "type": "object",
+            "properties": {
+                "BasicAuthParameters": {
+                    "$ref": "#/$defs/ConnectionBasicAuthResponseParameters"
+                },
+                "OAuthParameters": {
+                    "$ref": "#/$defs/ConnectionOAuthResponseParameters"
+                },
+                "ApiKeyAuthParameters": {
+                    "$ref": "#/$defs/ConnectionApiKeyAuthResponseParameters"
+                },
+                "InvocationHttpParameters": {
+                    "$ref": "#/$defs/ConnectionHttpParameters"
+                }
+            }
+        },
+        "ConnectionBasicAuthResponseParameters": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/AuthHeaderParameters"
+                }
+            }
+        },
+        "ConnectionOAuthResponseParameters": {
+            "type": "object",
+            "properties": {
+                "ClientParameters": {
+                    "$ref": "#/$defs/ConnectionOAuthClientResponseParameters"
+                },
+                "AuthorizationEndpoint": {
+                    "$ref": "#/$defs/HttpsEndpoint"
+                },
+                "HttpMethod": {
+                    "$ref": "#/$defs/ConnectionOAuthHttpMethod"
+                },
+                "OAuthHttpParameters": {
+                    "$ref": "#/$defs/ConnectionHttpParameters"
+                }
+            }
+        },
+        "ConnectionOAuthClientResponseParameters": {
+            "type": "object",
+            "properties": {
+                "ClientID": {
+                    "$ref": "#/$defs/AuthHeaderParameters"
+                }
+            }
+        },
+        "ConnectionApiKeyAuthResponseParameters": {
+            "type": "object",
+            "properties": {
+                "ApiKeyName": {
+                    "$ref": "#/$defs/AuthHeaderParameters"
+                }
+            }
+        },
+        "DescribeConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ConnectionName"
+                }
+            }
+        },
+        "DescribeEventBusResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeEventBusRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                }
+            }
+        },
+        "DescribeEventSourceResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedBy": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExpirationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "State": {
+                    "$ref": "#/$defs/EventSourceState"
+                }
+            }
+        },
+        "EventSourceState": {
+            "enum": [
+                "PENDING",
+                "ACTIVE",
+                "DELETED"
+            ]
+        },
+        "DescribeEventSourceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventSourceName"
+                }
+            }
+        },
+        "DescribePartnerEventSourceResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribePartnerEventSourceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventSourceName"
+                }
+            }
+        },
+        "DescribeReplayResponse": {
+            "type": "object",
+            "properties": {
+                "ReplayName": {
+                    "$ref": "#/$defs/ReplayName"
+                },
+                "ReplayArn": {
+                    "$ref": "#/$defs/ReplayArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ReplayDescription"
+                },
+                "State": {
+                    "$ref": "#/$defs/ReplayState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/ReplayStateReason"
+                },
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/ReplayDestination"
+                },
+                "EventStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EventEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EventLastReplayedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ReplayStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ReplayEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ReplayDescription": {
+            "type": "string"
+        },
+        "ReplayDestination": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "FilterArns": {
+                    "$ref": "#/$defs/ReplayDestinationFilters"
+                }
+            }
+        },
+        "ReplayDestinationFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "DescribeReplayRequest": {
+            "type": "object",
+            "properties": {
+                "ReplayName": {
+                    "$ref": "#/$defs/ReplayName"
+                }
+            }
+        },
+        "DescribeRuleResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/RuleArn"
+                },
+                "EventPattern": {
+                    "$ref": "#/$defs/EventPattern"
+                },
+                "ScheduleExpression": {
+                    "$ref": "#/$defs/ScheduleExpression"
+                },
+                "State": {
+                    "$ref": "#/$defs/RuleState"
+                },
+                "Description": {
+                    "$ref": "#/$defs/RuleDescription"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "ManagedBy": {
+                    "$ref": "#/$defs/ManagedBy"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusName"
+                },
+                "CreatedBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                }
+            }
+        },
+        "RuleArn": {
+            "type": "string"
+        },
+        "ScheduleExpression": {
+            "type": "string"
+        },
+        "RuleState": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "RuleDescription": {
+            "type": "string"
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "ManagedBy": {
+            "type": "string"
+        },
+        "CreatedBy": {
+            "type": "string"
+        },
+        "DescribeRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                }
+            }
+        },
+        "DisableRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                }
+            }
+        },
+        "EnableRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                }
+            }
+        },
+        "ListApiDestinationsResponse": {
+            "type": "object",
+            "properties": {
+                "ApiDestinations": {
+                    "$ref": "#/$defs/ApiDestinationResponseList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ApiDestinationResponseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApiDestination"
+            }
+        },
+        "ApiDestination": {
+            "type": "object",
+            "properties": {
+                "ApiDestinationArn": {
+                    "$ref": "#/$defs/ApiDestinationArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ApiDestinationName"
+                },
+                "ApiDestinationState": {
+                    "$ref": "#/$defs/ApiDestinationState"
+                },
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "InvocationEndpoint": {
+                    "$ref": "#/$defs/HttpsEndpoint"
+                },
+                "HttpMethod": {
+                    "$ref": "#/$defs/ApiDestinationHttpMethod"
+                },
+                "InvocationRateLimitPerSecond": {
+                    "$ref": "#/$defs/ApiDestinationInvocationRateLimitPerSecond"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListApiDestinationsRequest": {
+            "type": "object",
+            "properties": {
+                "NamePrefix": {
+                    "$ref": "#/$defs/ApiDestinationName"
+                },
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "LimitMax100": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListArchivesResponse": {
+            "type": "object",
+            "properties": {
+                "Archives": {
+                    "$ref": "#/$defs/ArchiveResponseList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ArchiveResponseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Archive"
+            }
+        },
+        "Archive": {
+            "type": "object",
+            "properties": {
+                "ArchiveName": {
+                    "$ref": "#/$defs/ArchiveName"
+                },
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "State": {
+                    "$ref": "#/$defs/ArchiveState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/ArchiveStateReason"
+                },
+                "RetentionDays": {
+                    "$ref": "#/$defs/RetentionDays"
+                },
+                "SizeBytes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "EventCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListArchivesRequest": {
+            "type": "object",
+            "properties": {
+                "NamePrefix": {
+                    "$ref": "#/$defs/ArchiveName"
+                },
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "State": {
+                    "$ref": "#/$defs/ArchiveState"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "ListConnectionsResponse": {
+            "type": "object",
+            "properties": {
+                "Connections": {
+                    "$ref": "#/$defs/ConnectionResponseList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConnectionResponseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Connection"
+            }
+        },
+        "Connection": {
+            "type": "object",
+            "properties": {
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "ConnectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/ConnectionStateReason"
+                },
+                "AuthorizationType": {
+                    "$ref": "#/$defs/ConnectionAuthorizationType"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastAuthorizedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListConnectionsRequest": {
+            "type": "object",
+            "properties": {
+                "NamePrefix": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "ConnectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "ListEventBusesResponse": {
+            "type": "object",
+            "properties": {
+                "EventBuses": {
+                    "$ref": "#/$defs/EventBusList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EventBusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventBus"
+            }
+        },
+        "EventBus": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListEventBusesRequest": {
+            "type": "object",
+            "properties": {
+                "NamePrefix": {
+                    "$ref": "#/$defs/EventBusName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "ListEventSourcesResponse": {
+            "type": "object",
+            "properties": {
+                "EventSources": {
+                    "$ref": "#/$defs/EventSourceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EventSourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventSource"
+            }
+        },
+        "EventSource": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedBy": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExpirationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "State": {
+                    "$ref": "#/$defs/EventSourceState"
+                }
+            }
+        },
+        "ListEventSourcesRequest": {
+            "type": "object",
+            "properties": {
+                "NamePrefix": {
+                    "$ref": "#/$defs/EventSourceNamePrefix"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "EventSourceNamePrefix": {
+            "type": "string"
+        },
+        "ListPartnerEventSourceAccountsResponse": {
+            "type": "object",
+            "properties": {
+                "PartnerEventSourceAccounts": {
+                    "$ref": "#/$defs/PartnerEventSourceAccountList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "PartnerEventSourceAccountList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartnerEventSourceAccount"
+            }
+        },
+        "PartnerEventSourceAccount": {
+            "type": "object",
+            "properties": {
+                "Account": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExpirationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "State": {
+                    "$ref": "#/$defs/EventSourceState"
+                }
+            }
+        },
+        "ListPartnerEventSourceAccountsRequest": {
+            "type": "object",
+            "properties": {
+                "EventSourceName": {
+                    "$ref": "#/$defs/EventSourceName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "ListPartnerEventSourcesResponse": {
+            "type": "object",
+            "properties": {
+                "PartnerEventSources": {
+                    "$ref": "#/$defs/PartnerEventSourceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "PartnerEventSourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartnerEventSource"
+            }
+        },
+        "PartnerEventSource": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListPartnerEventSourcesRequest": {
+            "type": "object",
+            "properties": {
+                "NamePrefix": {
+                    "$ref": "#/$defs/PartnerEventSourceNamePrefix"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "PartnerEventSourceNamePrefix": {
+            "type": "string"
+        },
+        "ListReplaysResponse": {
+            "type": "object",
+            "properties": {
+                "Replays": {
+                    "$ref": "#/$defs/ReplayList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ReplayList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Replay"
+            }
+        },
+        "Replay": {
+            "type": "object",
+            "properties": {
+                "ReplayName": {
+                    "$ref": "#/$defs/ReplayName"
+                },
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "State": {
+                    "$ref": "#/$defs/ReplayState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/ReplayStateReason"
+                },
+                "EventStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EventEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EventLastReplayedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ReplayStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ReplayEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListReplaysRequest": {
+            "type": "object",
+            "properties": {
+                "NamePrefix": {
+                    "$ref": "#/$defs/ReplayName"
+                },
+                "State": {
+                    "$ref": "#/$defs/ReplayState"
+                },
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "ListRuleNamesByTargetResponse": {
+            "type": "object",
+            "properties": {
+                "RuleNames": {
+                    "$ref": "#/$defs/RuleNameList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RuleNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleName"
+            }
+        },
+        "ListRuleNamesByTargetRequest": {
+            "type": "object",
+            "properties": {
+                "TargetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "TargetArn": {
+            "type": "string"
+        },
+        "ListRulesResponse": {
+            "type": "object",
+            "properties": {
+                "Rules": {
+                    "$ref": "#/$defs/RuleResponseList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RuleResponseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Rule"
+            }
+        },
+        "Rule": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/RuleArn"
+                },
+                "EventPattern": {
+                    "$ref": "#/$defs/EventPattern"
+                },
+                "State": {
+                    "$ref": "#/$defs/RuleState"
+                },
+                "Description": {
+                    "$ref": "#/$defs/RuleDescription"
+                },
+                "ScheduleExpression": {
+                    "$ref": "#/$defs/ScheduleExpression"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "ManagedBy": {
+                    "$ref": "#/$defs/ManagedBy"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusName"
+                }
+            }
+        },
+        "ListRulesRequest": {
+            "type": "object",
+            "properties": {
+                "NamePrefix": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListTargetsByRuleResponse": {
+            "type": "object",
+            "properties": {
+                "Targets": {
+                    "$ref": "#/$defs/TargetList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TargetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Target"
+            }
+        },
+        "Target": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/TargetId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "Input": {
+                    "$ref": "#/$defs/TargetInput"
+                },
+                "InputPath": {
+                    "$ref": "#/$defs/TargetInputPath"
+                },
+                "InputTransformer": {
+                    "$ref": "#/$defs/InputTransformer"
+                },
+                "KinesisParameters": {
+                    "$ref": "#/$defs/KinesisParameters"
+                },
+                "RunCommandParameters": {
+                    "$ref": "#/$defs/RunCommandParameters"
+                },
+                "EcsParameters": {
+                    "$ref": "#/$defs/EcsParameters"
+                },
+                "BatchParameters": {
+                    "$ref": "#/$defs/BatchParameters"
+                },
+                "SqsParameters": {
+                    "$ref": "#/$defs/SqsParameters"
+                },
+                "HttpParameters": {
+                    "$ref": "#/$defs/HttpParameters"
+                },
+                "RedshiftDataParameters": {
+                    "$ref": "#/$defs/RedshiftDataParameters"
+                },
+                "SageMakerPipelineParameters": {
+                    "$ref": "#/$defs/SageMakerPipelineParameters"
+                },
+                "DeadLetterConfig": {
+                    "$ref": "#/$defs/DeadLetterConfig"
+                },
+                "RetryPolicy": {
+                    "$ref": "#/$defs/RetryPolicy"
+                }
+            }
+        },
+        "TargetId": {
+            "type": "string"
+        },
+        "TargetInput": {
+            "type": "string"
+        },
+        "TargetInputPath": {
+            "type": "string"
+        },
+        "InputTransformer": {
+            "type": "object",
+            "properties": {
+                "InputPathsMap": {
+                    "$ref": "#/$defs/TransformerPaths"
+                },
+                "InputTemplate": {
+                    "$ref": "#/$defs/TransformerInput"
+                }
+            }
+        },
+        "TransformerPaths": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TargetInputPath"
+            }
+        },
+        "TransformerInput": {
+            "type": "string"
+        },
+        "KinesisParameters": {
+            "type": "object",
+            "properties": {
+                "PartitionKeyPath": {
+                    "$ref": "#/$defs/TargetPartitionKeyPath"
+                }
+            }
+        },
+        "TargetPartitionKeyPath": {
+            "type": "string"
+        },
+        "RunCommandParameters": {
+            "type": "object",
+            "properties": {
+                "RunCommandTargets": {
+                    "$ref": "#/$defs/RunCommandTargets"
+                }
+            }
+        },
+        "RunCommandTargets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RunCommandTarget"
+            }
+        },
+        "RunCommandTarget": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/RunCommandTargetKey"
+                },
+                "Values": {
+                    "$ref": "#/$defs/RunCommandTargetValues"
+                }
+            }
+        },
+        "RunCommandTargetKey": {
+            "type": "string"
+        },
+        "RunCommandTargetValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RunCommandTargetValue"
+            }
+        },
+        "RunCommandTargetValue": {
+            "type": "string"
+        },
+        "EcsParameters": {
+            "type": "object",
+            "properties": {
+                "TaskDefinitionArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TaskCount": {
+                    "$ref": "#/$defs/LimitMin1"
+                },
+                "LaunchType": {
+                    "$ref": "#/$defs/LaunchType"
+                },
+                "NetworkConfiguration": {
+                    "$ref": "#/$defs/NetworkConfiguration"
+                },
+                "PlatformVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "Group": {
+                    "$ref": "#/$defs/String"
+                },
+                "CapacityProviderStrategy": {
+                    "$ref": "#/$defs/CapacityProviderStrategy"
+                },
+                "EnableECSManagedTags": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "EnableExecuteCommand": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PlacementConstraints": {
+                    "$ref": "#/$defs/PlacementConstraints"
+                },
+                "PlacementStrategy": {
+                    "$ref": "#/$defs/PlacementStrategies"
+                },
+                "PropagateTags": {
+                    "$ref": "#/$defs/PropagateTags"
+                },
+                "ReferenceId": {
+                    "$ref": "#/$defs/ReferenceId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "LimitMin1": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LaunchType": {
+            "enum": [
+                "EC2",
+                "FARGATE",
+                "EXTERNAL"
+            ]
+        },
+        "NetworkConfiguration": {
+            "type": "object",
+            "properties": {
+                "awsvpcConfiguration": {
+                    "$ref": "#/$defs/AwsVpcConfiguration"
+                }
+            }
+        },
+        "AwsVpcConfiguration": {
+            "type": "object",
+            "properties": {
+                "Subnets": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "AssignPublicIp": {
+                    "$ref": "#/$defs/AssignPublicIp"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "AssignPublicIp": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "CapacityProviderStrategy": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CapacityProviderStrategyItem"
+            }
+        },
+        "CapacityProviderStrategyItem": {
+            "type": "object",
+            "properties": {
+                "capacityProvider": {
+                    "$ref": "#/$defs/CapacityProvider"
+                },
+                "weight": {
+                    "$ref": "#/$defs/CapacityProviderStrategyItemWeight"
+                },
+                "base": {
+                    "$ref": "#/$defs/CapacityProviderStrategyItemBase"
+                }
+            }
+        },
+        "CapacityProvider": {
+            "type": "string"
+        },
+        "CapacityProviderStrategyItemWeight": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CapacityProviderStrategyItemBase": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PlacementConstraints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlacementConstraint"
+            }
+        },
+        "PlacementConstraint": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/PlacementConstraintType"
+                },
+                "expression": {
+                    "$ref": "#/$defs/PlacementConstraintExpression"
+                }
+            }
+        },
+        "PlacementConstraintType": {
+            "enum": [
+                "DISTINCT_INSTANCE",
+                "MEMBER_OF"
+            ]
+        },
+        "PlacementConstraintExpression": {
+            "type": "string"
+        },
+        "PlacementStrategies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlacementStrategy"
+            }
+        },
+        "PlacementStrategy": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/PlacementStrategyType"
+                },
+                "field": {
+                    "$ref": "#/$defs/PlacementStrategyField"
+                }
+            }
+        },
+        "PlacementStrategyType": {
+            "enum": [
+                "RANDOM",
+                "SPREAD",
+                "BINPACK"
+            ]
+        },
+        "PlacementStrategyField": {
+            "type": "string"
+        },
+        "PropagateTags": {
+            "enum": [
+                "TASK_DEFINITION"
+            ]
+        },
+        "ReferenceId": {
+            "type": "string"
+        },
+        "BatchParameters": {
+            "type": "object",
+            "properties": {
+                "JobDefinition": {
+                    "$ref": "#/$defs/String"
+                },
+                "JobName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ArrayProperties": {
+                    "$ref": "#/$defs/BatchArrayProperties"
+                },
+                "RetryStrategy": {
+                    "$ref": "#/$defs/BatchRetryStrategy"
+                }
+            }
+        },
+        "BatchArrayProperties": {
+            "type": "object",
+            "properties": {
+                "Size": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BatchRetryStrategy": {
+            "type": "object",
+            "properties": {
+                "Attempts": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "SqsParameters": {
+            "type": "object",
+            "properties": {
+                "MessageGroupId": {
+                    "$ref": "#/$defs/MessageGroupId"
+                }
+            }
+        },
+        "MessageGroupId": {
+            "type": "string"
+        },
+        "HttpParameters": {
+            "type": "object",
+            "properties": {
+                "PathParameterValues": {
+                    "$ref": "#/$defs/PathParameterList"
+                },
+                "HeaderParameters": {
+                    "$ref": "#/$defs/HeaderParametersMap"
+                },
+                "QueryStringParameters": {
+                    "$ref": "#/$defs/QueryStringParametersMap"
+                }
+            }
+        },
+        "PathParameterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PathParameter"
+            }
+        },
+        "PathParameter": {
+            "type": "string"
+        },
+        "HeaderParametersMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/HeaderValue"
+            }
+        },
+        "HeaderValue": {
+            "type": "string"
+        },
+        "QueryStringParametersMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/QueryStringValue"
+            }
+        },
+        "QueryStringValue": {
+            "type": "string"
+        },
+        "RedshiftDataParameters": {
+            "type": "object",
+            "properties": {
+                "SecretManagerArn": {
+                    "$ref": "#/$defs/RedshiftSecretManagerArn"
+                },
+                "Database": {
+                    "$ref": "#/$defs/Database"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/DbUser"
+                },
+                "Sql": {
+                    "$ref": "#/$defs/Sql"
+                },
+                "StatementName": {
+                    "$ref": "#/$defs/StatementName"
+                },
+                "WithEvent": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "RedshiftSecretManagerArn": {
+            "type": "string"
+        },
+        "Database": {
+            "type": "string"
+        },
+        "DbUser": {
+            "type": "string"
+        },
+        "Sql": {
+            "type": "string"
+        },
+        "StatementName": {
+            "type": "string"
+        },
+        "SageMakerPipelineParameters": {
+            "type": "object",
+            "properties": {
+                "PipelineParameterList": {
+                    "$ref": "#/$defs/SageMakerPipelineParameterList"
+                }
+            }
+        },
+        "SageMakerPipelineParameterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SageMakerPipelineParameter"
+            }
+        },
+        "SageMakerPipelineParameter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/SageMakerPipelineParameterName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/SageMakerPipelineParameterValue"
+                }
+            }
+        },
+        "SageMakerPipelineParameterName": {
+            "type": "string"
+        },
+        "SageMakerPipelineParameterValue": {
+            "type": "string"
+        },
+        "DeadLetterConfig": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "RetryPolicy": {
+            "type": "object",
+            "properties": {
+                "MaximumRetryAttempts": {
+                    "$ref": "#/$defs/MaximumRetryAttempts"
+                },
+                "MaximumEventAgeInSeconds": {
+                    "$ref": "#/$defs/MaximumEventAgeInSeconds"
+                }
+            }
+        },
+        "MaximumRetryAttempts": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaximumEventAgeInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTargetsByRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Rule": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitMax100"
+                }
+            }
+        },
+        "PutEventsResponse": {
+            "type": "object",
+            "properties": {
+                "FailedEntryCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Entries": {
+                    "$ref": "#/$defs/PutEventsResultEntryList"
+                }
+            }
+        },
+        "PutEventsResultEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PutEventsResultEntry"
+            }
+        },
+        "PutEventsResultEntry": {
+            "type": "object",
+            "properties": {
+                "EventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "EventId": {
+            "type": "string"
+        },
+        "ErrorCode": {
+            "type": "string"
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "PutEventsRequest": {
+            "type": "object",
+            "properties": {
+                "Entries": {
+                    "$ref": "#/$defs/PutEventsRequestEntryList"
+                }
+            }
+        },
+        "PutEventsRequestEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PutEventsRequestEntry"
+            }
+        },
+        "PutEventsRequestEntry": {
+            "type": "object",
+            "properties": {
+                "Time": {
+                    "$ref": "#/$defs/EventTime"
+                },
+                "Source": {
+                    "$ref": "#/$defs/String"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/EventResourceList"
+                },
+                "DetailType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Detail": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/NonPartnerEventBusNameOrArn"
+                },
+                "TraceHeader": {
+                    "$ref": "#/$defs/TraceHeader"
+                }
+            }
+        },
+        "EventTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "EventResourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventResource"
+            }
+        },
+        "EventResource": {
+            "type": "string"
+        },
+        "NonPartnerEventBusNameOrArn": {
+            "type": "string"
+        },
+        "TraceHeader": {
+            "type": "string"
+        },
+        "PutPartnerEventsResponse": {
+            "type": "object",
+            "properties": {
+                "FailedEntryCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Entries": {
+                    "$ref": "#/$defs/PutPartnerEventsResultEntryList"
+                }
+            }
+        },
+        "PutPartnerEventsResultEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PutPartnerEventsResultEntry"
+            }
+        },
+        "PutPartnerEventsResultEntry": {
+            "type": "object",
+            "properties": {
+                "EventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "PutPartnerEventsRequest": {
+            "type": "object",
+            "properties": {
+                "Entries": {
+                    "$ref": "#/$defs/PutPartnerEventsRequestEntryList"
+                }
+            }
+        },
+        "PutPartnerEventsRequestEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PutPartnerEventsRequestEntry"
+            }
+        },
+        "PutPartnerEventsRequestEntry": {
+            "type": "object",
+            "properties": {
+                "Time": {
+                    "$ref": "#/$defs/EventTime"
+                },
+                "Source": {
+                    "$ref": "#/$defs/EventSourceName"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/EventResourceList"
+                },
+                "DetailType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Detail": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PutPermissionRequest": {
+            "type": "object",
+            "properties": {
+                "EventBusName": {
+                    "$ref": "#/$defs/NonPartnerEventBusName"
+                },
+                "Action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "Principal": {
+                    "$ref": "#/$defs/Principal"
+                },
+                "StatementId": {
+                    "$ref": "#/$defs/StatementId"
+                },
+                "Condition": {
+                    "$ref": "#/$defs/Condition"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "NonPartnerEventBusName": {
+            "type": "string"
+        },
+        "Action": {
+            "type": "string"
+        },
+        "Principal": {
+            "type": "string"
+        },
+        "StatementId": {
+            "type": "string"
+        },
+        "Condition": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PutRuleResponse": {
+            "type": "object",
+            "properties": {
+                "RuleArn": {
+                    "$ref": "#/$defs/RuleArn"
+                }
+            }
+        },
+        "PutRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "ScheduleExpression": {
+                    "$ref": "#/$defs/ScheduleExpression"
+                },
+                "EventPattern": {
+                    "$ref": "#/$defs/EventPattern"
+                },
+                "State": {
+                    "$ref": "#/$defs/RuleState"
+                },
+                "Description": {
+                    "$ref": "#/$defs/RuleDescription"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                }
+            }
+        },
+        "PutTargetsResponse": {
+            "type": "object",
+            "properties": {
+                "FailedEntryCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "FailedEntries": {
+                    "$ref": "#/$defs/PutTargetsResultEntryList"
+                }
+            }
+        },
+        "PutTargetsResultEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PutTargetsResultEntry"
+            }
+        },
+        "PutTargetsResultEntry": {
+            "type": "object",
+            "properties": {
+                "TargetId": {
+                    "$ref": "#/$defs/TargetId"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "PutTargetsRequest": {
+            "type": "object",
+            "properties": {
+                "Rule": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                },
+                "Targets": {
+                    "$ref": "#/$defs/TargetList"
+                }
+            }
+        },
+        "RemovePermissionRequest": {
+            "type": "object",
+            "properties": {
+                "StatementId": {
+                    "$ref": "#/$defs/StatementId"
+                },
+                "RemoveAllPermissions": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/NonPartnerEventBusName"
+                }
+            }
+        },
+        "RemoveTargetsResponse": {
+            "type": "object",
+            "properties": {
+                "FailedEntryCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "FailedEntries": {
+                    "$ref": "#/$defs/RemoveTargetsResultEntryList"
+                }
+            }
+        },
+        "RemoveTargetsResultEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RemoveTargetsResultEntry"
+            }
+        },
+        "RemoveTargetsResultEntry": {
+            "type": "object",
+            "properties": {
+                "TargetId": {
+                    "$ref": "#/$defs/TargetId"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "RemoveTargetsRequest": {
+            "type": "object",
+            "properties": {
+                "Rule": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "EventBusName": {
+                    "$ref": "#/$defs/EventBusNameOrArn"
+                },
+                "Ids": {
+                    "$ref": "#/$defs/TargetIdList"
+                },
+                "Force": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "TargetIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetId"
+            }
+        },
+        "StartReplayResponse": {
+            "type": "object",
+            "properties": {
+                "ReplayArn": {
+                    "$ref": "#/$defs/ReplayArn"
+                },
+                "State": {
+                    "$ref": "#/$defs/ReplayState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/ReplayStateReason"
+                },
+                "ReplayStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "StartReplayRequest": {
+            "type": "object",
+            "properties": {
+                "ReplayName": {
+                    "$ref": "#/$defs/ReplayName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ReplayDescription"
+                },
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "EventStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EventEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/ReplayDestination"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TestEventPatternResponse": {
+            "type": "object",
+            "properties": {
+                "Result": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "TestEventPatternRequest": {
+            "type": "object",
+            "properties": {
+                "EventPattern": {
+                    "$ref": "#/$defs/EventPattern"
+                },
+                "Event": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateApiDestinationResponse": {
+            "type": "object",
+            "properties": {
+                "ApiDestinationArn": {
+                    "$ref": "#/$defs/ApiDestinationArn"
+                },
+                "ApiDestinationState": {
+                    "$ref": "#/$defs/ApiDestinationState"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateApiDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ApiDestinationName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ApiDestinationDescription"
+                },
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "InvocationEndpoint": {
+                    "$ref": "#/$defs/HttpsEndpoint"
+                },
+                "HttpMethod": {
+                    "$ref": "#/$defs/ApiDestinationHttpMethod"
+                },
+                "InvocationRateLimitPerSecond": {
+                    "$ref": "#/$defs/ApiDestinationInvocationRateLimitPerSecond"
+                }
+            }
+        },
+        "UpdateArchiveResponse": {
+            "type": "object",
+            "properties": {
+                "ArchiveArn": {
+                    "$ref": "#/$defs/ArchiveArn"
+                },
+                "State": {
+                    "$ref": "#/$defs/ArchiveState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/ArchiveStateReason"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateArchiveRequest": {
+            "type": "object",
+            "properties": {
+                "ArchiveName": {
+                    "$ref": "#/$defs/ArchiveName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ArchiveDescription"
+                },
+                "EventPattern": {
+                    "$ref": "#/$defs/EventPattern"
+                },
+                "RetentionDays": {
+                    "$ref": "#/$defs/RetentionDays"
+                }
+            }
+        },
+        "UpdateConnectionResponse": {
+            "type": "object",
+            "properties": {
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "ConnectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastAuthorizedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ConnectionDescription"
+                },
+                "AuthorizationType": {
+                    "$ref": "#/$defs/ConnectionAuthorizationType"
+                },
+                "AuthParameters": {
+                    "$ref": "#/$defs/UpdateConnectionAuthRequestParameters"
+                }
+            }
+        },
+        "UpdateConnectionAuthRequestParameters": {
+            "type": "object",
+            "properties": {
+                "BasicAuthParameters": {
+                    "$ref": "#/$defs/UpdateConnectionBasicAuthRequestParameters"
+                },
+                "OAuthParameters": {
+                    "$ref": "#/$defs/UpdateConnectionOAuthRequestParameters"
+                },
+                "ApiKeyAuthParameters": {
+                    "$ref": "#/$defs/UpdateConnectionApiKeyAuthRequestParameters"
+                },
+                "InvocationHttpParameters": {
+                    "$ref": "#/$defs/ConnectionHttpParameters"
+                }
+            }
+        },
+        "UpdateConnectionBasicAuthRequestParameters": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/AuthHeaderParameters"
+                },
+                "Password": {
+                    "$ref": "#/$defs/AuthHeaderParametersSensitive"
+                }
+            }
+        },
+        "UpdateConnectionOAuthRequestParameters": {
+            "type": "object",
+            "properties": {
+                "ClientParameters": {
+                    "$ref": "#/$defs/UpdateConnectionOAuthClientRequestParameters"
+                },
+                "AuthorizationEndpoint": {
+                    "$ref": "#/$defs/HttpsEndpoint"
+                },
+                "HttpMethod": {
+                    "$ref": "#/$defs/ConnectionOAuthHttpMethod"
+                },
+                "OAuthHttpParameters": {
+                    "$ref": "#/$defs/ConnectionHttpParameters"
+                }
+            }
+        },
+        "UpdateConnectionOAuthClientRequestParameters": {
+            "type": "object",
+            "properties": {
+                "ClientID": {
+                    "$ref": "#/$defs/AuthHeaderParameters"
+                },
+                "ClientSecret": {
+                    "$ref": "#/$defs/AuthHeaderParametersSensitive"
+                }
+            }
+        },
+        "UpdateConnectionApiKeyAuthRequestParameters": {
+            "type": "object",
+            "properties": {
+                "ApiKeyName": {
+                    "$ref": "#/$defs/AuthHeaderParameters"
+                },
+                "ApiKeyValue": {
+                    "$ref": "#/$defs/AuthHeaderParametersSensitive"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://events-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-east-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://events.us-gov-east-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-west-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://events.us-gov-west-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://events-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://events.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://events.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

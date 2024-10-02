@@ -1,0 +1,764 @@
+{
+    "name": "sagemaker",
+    "commands": [
+        {
+            "name": "InvokeEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InvokeEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvokeEndpointOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvokeEndpointInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InvokeEndpointAsync",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InvokeEndpointAsync"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvokeEndpointAsyncOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvokeEndpointAsyncInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InvokeEndpointWithResponseStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InvokeEndpointWithResponseStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvokeEndpointWithResponseStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvokeEndpointWithResponseStreamInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "InvokeEndpointOutput": {
+            "type": "object",
+            "properties": {
+                "Body": {
+                    "$ref": "#/$defs/BodyBlob"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/Header"
+                },
+                "InvokedProductionVariant": {
+                    "$ref": "#/$defs/Header"
+                },
+                "CustomAttributes": {
+                    "$ref": "#/$defs/CustomAttributesHeader"
+                },
+                "NewSessionId": {
+                    "$ref": "#/$defs/NewSessionResponseHeader"
+                },
+                "ClosedSessionId": {
+                    "$ref": "#/$defs/SessionIdHeader"
+                }
+            }
+        },
+        "BodyBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "Header": {
+            "type": "string"
+        },
+        "CustomAttributesHeader": {
+            "type": "string"
+        },
+        "NewSessionResponseHeader": {
+            "type": "string"
+        },
+        "SessionIdHeader": {
+            "type": "string"
+        },
+        "InvokeEndpointInput": {
+            "type": "object",
+            "properties": {
+                "EndpointName": {
+                    "$ref": "#/$defs/EndpointName"
+                },
+                "Body": {
+                    "$ref": "#/$defs/BodyBlob"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/Header"
+                },
+                "Accept": {
+                    "$ref": "#/$defs/Header"
+                },
+                "CustomAttributes": {
+                    "$ref": "#/$defs/CustomAttributesHeader"
+                },
+                "TargetModel": {
+                    "$ref": "#/$defs/TargetModelHeader"
+                },
+                "TargetVariant": {
+                    "$ref": "#/$defs/TargetVariantHeader"
+                },
+                "TargetContainerHostname": {
+                    "$ref": "#/$defs/TargetContainerHostnameHeader"
+                },
+                "InferenceId": {
+                    "$ref": "#/$defs/InferenceId"
+                },
+                "EnableExplanations": {
+                    "$ref": "#/$defs/EnableExplanationsHeader"
+                },
+                "InferenceComponentName": {
+                    "$ref": "#/$defs/InferenceComponentHeader"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionIdOrNewSessionConstantHeader"
+                }
+            }
+        },
+        "EndpointName": {
+            "type": "string"
+        },
+        "TargetModelHeader": {
+            "type": "string"
+        },
+        "TargetVariantHeader": {
+            "type": "string"
+        },
+        "TargetContainerHostnameHeader": {
+            "type": "string"
+        },
+        "InferenceId": {
+            "type": "string"
+        },
+        "EnableExplanationsHeader": {
+            "type": "string"
+        },
+        "InferenceComponentHeader": {
+            "type": "string"
+        },
+        "SessionIdOrNewSessionConstantHeader": {
+            "type": "string"
+        },
+        "InvokeEndpointAsyncOutput": {
+            "type": "object",
+            "properties": {
+                "InferenceId": {
+                    "$ref": "#/$defs/Header"
+                },
+                "OutputLocation": {
+                    "$ref": "#/$defs/Header"
+                },
+                "FailureLocation": {
+                    "$ref": "#/$defs/Header"
+                }
+            }
+        },
+        "InvokeEndpointAsyncInput": {
+            "type": "object",
+            "properties": {
+                "EndpointName": {
+                    "$ref": "#/$defs/EndpointName"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/Header"
+                },
+                "Accept": {
+                    "$ref": "#/$defs/Header"
+                },
+                "CustomAttributes": {
+                    "$ref": "#/$defs/CustomAttributesHeader"
+                },
+                "InferenceId": {
+                    "$ref": "#/$defs/InferenceId"
+                },
+                "InputLocation": {
+                    "$ref": "#/$defs/InputLocationHeader"
+                },
+                "RequestTTLSeconds": {
+                    "$ref": "#/$defs/RequestTTLSecondsHeader"
+                },
+                "InvocationTimeoutSeconds": {
+                    "$ref": "#/$defs/InvocationTimeoutSecondsHeader"
+                }
+            }
+        },
+        "InputLocationHeader": {
+            "type": "string"
+        },
+        "RequestTTLSecondsHeader": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "InvocationTimeoutSecondsHeader": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "InvokeEndpointWithResponseStreamOutput": {
+            "type": "object",
+            "properties": {
+                "Body": {
+                    "$ref": "#/$defs/ResponseStream"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/Header"
+                },
+                "InvokedProductionVariant": {
+                    "$ref": "#/$defs/Header"
+                },
+                "CustomAttributes": {
+                    "$ref": "#/$defs/CustomAttributesHeader"
+                }
+            }
+        },
+        "ResponseStream": {
+            "type": "object",
+            "properties": {
+                "PayloadPart": {
+                    "$ref": "#/$defs/PayloadPart"
+                },
+                "ModelStreamError": {
+                    "$ref": "#/$defs/ModelStreamError"
+                },
+                "InternalStreamFailure": {
+                    "$ref": "#/$defs/InternalStreamFailure"
+                }
+            }
+        },
+        "PayloadPart": {
+            "type": "object",
+            "properties": {
+                "Bytes": {
+                    "$ref": "#/$defs/PartBlob"
+                }
+            }
+        },
+        "PartBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ModelStreamError": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                }
+            }
+        },
+        "Message": {
+            "type": "string"
+        },
+        "ErrorCode": {
+            "type": "string"
+        },
+        "InternalStreamFailure": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "InvokeEndpointWithResponseStreamInput": {
+            "type": "object",
+            "properties": {
+                "EndpointName": {
+                    "$ref": "#/$defs/EndpointName"
+                },
+                "Body": {
+                    "$ref": "#/$defs/BodyBlob"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/Header"
+                },
+                "Accept": {
+                    "$ref": "#/$defs/Header"
+                },
+                "CustomAttributes": {
+                    "$ref": "#/$defs/CustomAttributesHeader"
+                },
+                "TargetVariant": {
+                    "$ref": "#/$defs/TargetVariantHeader"
+                },
+                "TargetContainerHostname": {
+                    "$ref": "#/$defs/TargetContainerHostnameHeader"
+                },
+                "InferenceId": {
+                    "$ref": "#/$defs/InferenceId"
+                },
+                "InferenceComponentName": {
+                    "$ref": "#/$defs/InferenceComponentHeader"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionIdHeader"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://runtime.sagemaker-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://runtime-fips.sagemaker.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://runtime.sagemaker.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://runtime.sagemaker-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://runtime.sagemaker.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://runtime.sagemaker.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

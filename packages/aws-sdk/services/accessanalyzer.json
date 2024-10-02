@@ -1,0 +1,3270 @@
+{
+    "name": "access-analyzer",
+    "commands": [
+        {
+            "name": "ApplyArchiveRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ApplyArchiveRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ApplyArchiveRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelPolicyGeneration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelPolicyGeneration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelPolicyGenerationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelPolicyGenerationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckAccessNotGranted",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CheckAccessNotGranted"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CheckAccessNotGrantedResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CheckAccessNotGrantedRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckNoNewAccess",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CheckNoNewAccess"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CheckNoNewAccessResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CheckNoNewAccessRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckNoPublicAccess",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CheckNoPublicAccess"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CheckNoPublicAccessResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CheckNoPublicAccessRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAccessPreview",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAccessPreview"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAccessPreviewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAccessPreviewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GenerateFindingRecommendation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GenerateFindingRecommendation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateFindingRecommendationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccessPreview",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccessPreview"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAccessPreviewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAccessPreviewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAnalyzedResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAnalyzedResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAnalyzedResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAnalyzedResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFinding",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFinding"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFindingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFindingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFindingRecommendation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFindingRecommendation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFindingRecommendationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFindingRecommendationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFindingV2",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFindingV2"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFindingV2Response"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFindingV2Request"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetGeneratedPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetGeneratedPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetGeneratedPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetGeneratedPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAccessPreviewFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAccessPreviewFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAccessPreviewFindingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAccessPreviewFindingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAccessPreviews",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAccessPreviews"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAccessPreviewsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAccessPreviewsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAnalyzedResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAnalyzedResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAnalyzedResourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAnalyzedResourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFindingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFindingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFindingsV2",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFindingsV2"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFindingsV2Response"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFindingsV2Request"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPolicyGenerations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPolicyGenerations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPolicyGenerationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPolicyGenerationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartPolicyGeneration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartPolicyGeneration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartPolicyGenerationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartPolicyGenerationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartResourceScan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartResourceScan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartResourceScanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateFindingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ValidatePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ValidatePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ValidatePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ValidatePolicyRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ApplyArchiveRuleRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "ruleName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "AnalyzerArn": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "CancelPolicyGenerationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CancelPolicyGenerationRequest": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "JobId": {
+            "type": "string"
+        },
+        "CheckAccessNotGrantedResponse": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/$defs/CheckAccessNotGrantedResult"
+                },
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "reasons": {
+                    "$ref": "#/$defs/ReasonSummaryList"
+                }
+            }
+        },
+        "CheckAccessNotGrantedResult": {
+            "type": "string"
+        },
+        "ReasonSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReasonSummary"
+            }
+        },
+        "ReasonSummary": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "statementIndex": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "statementId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "CheckAccessNotGrantedRequest": {
+            "type": "object",
+            "properties": {
+                "policyDocument": {
+                    "$ref": "#/$defs/AccessCheckPolicyDocument"
+                },
+                "access": {
+                    "$ref": "#/$defs/AccessList"
+                },
+                "policyType": {
+                    "$ref": "#/$defs/AccessCheckPolicyType"
+                }
+            }
+        },
+        "AccessCheckPolicyDocument": {
+            "type": "string"
+        },
+        "AccessList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Access"
+            }
+        },
+        "Access": {
+            "type": "object",
+            "properties": {
+                "actions": {
+                    "$ref": "#/$defs/ActionsList"
+                },
+                "resources": {
+                    "$ref": "#/$defs/ResourcesList"
+                }
+            }
+        },
+        "ActionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Action"
+            }
+        },
+        "Action": {
+            "type": "string"
+        },
+        "ResourcesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Resource"
+            }
+        },
+        "Resource": {
+            "type": "string"
+        },
+        "AccessCheckPolicyType": {
+            "type": "string"
+        },
+        "CheckNoNewAccessResponse": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/$defs/CheckNoNewAccessResult"
+                },
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "reasons": {
+                    "$ref": "#/$defs/ReasonSummaryList"
+                }
+            }
+        },
+        "CheckNoNewAccessResult": {
+            "type": "string"
+        },
+        "CheckNoNewAccessRequest": {
+            "type": "object",
+            "properties": {
+                "newPolicyDocument": {
+                    "$ref": "#/$defs/AccessCheckPolicyDocument"
+                },
+                "existingPolicyDocument": {
+                    "$ref": "#/$defs/AccessCheckPolicyDocument"
+                },
+                "policyType": {
+                    "$ref": "#/$defs/AccessCheckPolicyType"
+                }
+            }
+        },
+        "CheckNoPublicAccessResponse": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/$defs/CheckNoPublicAccessResult"
+                },
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "reasons": {
+                    "$ref": "#/$defs/ReasonSummaryList"
+                }
+            }
+        },
+        "CheckNoPublicAccessResult": {
+            "type": "string"
+        },
+        "CheckNoPublicAccessRequest": {
+            "type": "object",
+            "properties": {
+                "policyDocument": {
+                    "$ref": "#/$defs/AccessCheckPolicyDocument"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/AccessCheckResourceType"
+                }
+            }
+        },
+        "AccessCheckResourceType": {
+            "type": "string"
+        },
+        "CreateAccessPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/AccessPreviewId"
+                }
+            }
+        },
+        "AccessPreviewId": {
+            "type": "string"
+        },
+        "CreateAccessPreviewRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "configurations": {
+                    "$ref": "#/$defs/ConfigurationsMap"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ConfigurationsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Configuration"
+            }
+        },
+        "Configuration": {
+            "type": "object",
+            "properties": {
+                "ebsSnapshot": {
+                    "$ref": "#/$defs/EbsSnapshotConfiguration"
+                },
+                "ecrRepository": {
+                    "$ref": "#/$defs/EcrRepositoryConfiguration"
+                },
+                "iamRole": {
+                    "$ref": "#/$defs/IamRoleConfiguration"
+                },
+                "efsFileSystem": {
+                    "$ref": "#/$defs/EfsFileSystemConfiguration"
+                },
+                "kmsKey": {
+                    "$ref": "#/$defs/KmsKeyConfiguration"
+                },
+                "rdsDbClusterSnapshot": {
+                    "$ref": "#/$defs/RdsDbClusterSnapshotConfiguration"
+                },
+                "rdsDbSnapshot": {
+                    "$ref": "#/$defs/RdsDbSnapshotConfiguration"
+                },
+                "secretsManagerSecret": {
+                    "$ref": "#/$defs/SecretsManagerSecretConfiguration"
+                },
+                "s3Bucket": {
+                    "$ref": "#/$defs/S3BucketConfiguration"
+                },
+                "snsTopic": {
+                    "$ref": "#/$defs/SnsTopicConfiguration"
+                },
+                "sqsQueue": {
+                    "$ref": "#/$defs/SqsQueueConfiguration"
+                },
+                "s3ExpressDirectoryBucket": {
+                    "$ref": "#/$defs/S3ExpressDirectoryBucketConfiguration"
+                },
+                "dynamodbStream": {
+                    "$ref": "#/$defs/DynamodbStreamConfiguration"
+                },
+                "dynamodbTable": {
+                    "$ref": "#/$defs/DynamodbTableConfiguration"
+                }
+            }
+        },
+        "EbsSnapshotConfiguration": {
+            "type": "object",
+            "properties": {
+                "userIds": {
+                    "$ref": "#/$defs/EbsUserIdList"
+                },
+                "groups": {
+                    "$ref": "#/$defs/EbsGroupList"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/EbsSnapshotDataEncryptionKeyId"
+                }
+            }
+        },
+        "EbsUserIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EbsUserId"
+            }
+        },
+        "EbsUserId": {
+            "type": "string"
+        },
+        "EbsGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EbsGroup"
+            }
+        },
+        "EbsGroup": {
+            "type": "string"
+        },
+        "EbsSnapshotDataEncryptionKeyId": {
+            "type": "string"
+        },
+        "EcrRepositoryConfiguration": {
+            "type": "object",
+            "properties": {
+                "repositoryPolicy": {
+                    "$ref": "#/$defs/EcrRepositoryPolicy"
+                }
+            }
+        },
+        "EcrRepositoryPolicy": {
+            "type": "string"
+        },
+        "IamRoleConfiguration": {
+            "type": "object",
+            "properties": {
+                "trustPolicy": {
+                    "$ref": "#/$defs/IamTrustPolicy"
+                }
+            }
+        },
+        "IamTrustPolicy": {
+            "type": "string"
+        },
+        "EfsFileSystemConfiguration": {
+            "type": "object",
+            "properties": {
+                "fileSystemPolicy": {
+                    "$ref": "#/$defs/EfsFileSystemPolicy"
+                }
+            }
+        },
+        "EfsFileSystemPolicy": {
+            "type": "string"
+        },
+        "KmsKeyConfiguration": {
+            "type": "object",
+            "properties": {
+                "keyPolicies": {
+                    "$ref": "#/$defs/KmsKeyPoliciesMap"
+                },
+                "grants": {
+                    "$ref": "#/$defs/KmsGrantConfigurationsList"
+                }
+            }
+        },
+        "KmsKeyPoliciesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/KmsKeyPolicy"
+            }
+        },
+        "KmsKeyPolicy": {
+            "type": "string"
+        },
+        "KmsGrantConfigurationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KmsGrantConfiguration"
+            }
+        },
+        "KmsGrantConfiguration": {
+            "type": "object",
+            "properties": {
+                "operations": {
+                    "$ref": "#/$defs/KmsGrantOperationsList"
+                },
+                "granteePrincipal": {
+                    "$ref": "#/$defs/GranteePrincipal"
+                },
+                "retiringPrincipal": {
+                    "$ref": "#/$defs/RetiringPrincipal"
+                },
+                "constraints": {
+                    "$ref": "#/$defs/KmsGrantConstraints"
+                },
+                "issuingAccount": {
+                    "$ref": "#/$defs/IssuingAccount"
+                }
+            }
+        },
+        "KmsGrantOperationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KmsGrantOperation"
+            }
+        },
+        "KmsGrantOperation": {
+            "type": "string"
+        },
+        "GranteePrincipal": {
+            "type": "string"
+        },
+        "RetiringPrincipal": {
+            "type": "string"
+        },
+        "KmsGrantConstraints": {
+            "type": "object",
+            "properties": {
+                "encryptionContextEquals": {
+                    "$ref": "#/$defs/KmsConstraintsMap"
+                },
+                "encryptionContextSubset": {
+                    "$ref": "#/$defs/KmsConstraintsMap"
+                }
+            }
+        },
+        "KmsConstraintsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/KmsConstraintsValue"
+            }
+        },
+        "KmsConstraintsValue": {
+            "type": "string"
+        },
+        "IssuingAccount": {
+            "type": "string"
+        },
+        "RdsDbClusterSnapshotConfiguration": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "$ref": "#/$defs/RdsDbClusterSnapshotAttributesMap"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/RdsDbClusterSnapshotKmsKeyId"
+                }
+            }
+        },
+        "RdsDbClusterSnapshotAttributesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/RdsDbClusterSnapshotAttributeValue"
+            }
+        },
+        "RdsDbClusterSnapshotAttributeValue": {
+            "type": "object",
+            "properties": {
+                "accountIds": {
+                    "$ref": "#/$defs/RdsDbClusterSnapshotAccountIdsList"
+                }
+            }
+        },
+        "RdsDbClusterSnapshotAccountIdsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RdsDbClusterSnapshotAccountId"
+            }
+        },
+        "RdsDbClusterSnapshotAccountId": {
+            "type": "string"
+        },
+        "RdsDbClusterSnapshotKmsKeyId": {
+            "type": "string"
+        },
+        "RdsDbSnapshotConfiguration": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "$ref": "#/$defs/RdsDbSnapshotAttributesMap"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/RdsDbSnapshotKmsKeyId"
+                }
+            }
+        },
+        "RdsDbSnapshotAttributesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/RdsDbSnapshotAttributeValue"
+            }
+        },
+        "RdsDbSnapshotAttributeValue": {
+            "type": "object",
+            "properties": {
+                "accountIds": {
+                    "$ref": "#/$defs/RdsDbSnapshotAccountIdsList"
+                }
+            }
+        },
+        "RdsDbSnapshotAccountIdsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RdsDbSnapshotAccountId"
+            }
+        },
+        "RdsDbSnapshotAccountId": {
+            "type": "string"
+        },
+        "RdsDbSnapshotKmsKeyId": {
+            "type": "string"
+        },
+        "SecretsManagerSecretConfiguration": {
+            "type": "object",
+            "properties": {
+                "kmsKeyId": {
+                    "$ref": "#/$defs/SecretsManagerSecretKmsId"
+                },
+                "secretPolicy": {
+                    "$ref": "#/$defs/SecretsManagerSecretPolicy"
+                }
+            }
+        },
+        "SecretsManagerSecretKmsId": {
+            "type": "string"
+        },
+        "SecretsManagerSecretPolicy": {
+            "type": "string"
+        },
+        "S3BucketConfiguration": {
+            "type": "object",
+            "properties": {
+                "bucketPolicy": {
+                    "$ref": "#/$defs/S3BucketPolicy"
+                },
+                "bucketAclGrants": {
+                    "$ref": "#/$defs/S3BucketAclGrantConfigurationsList"
+                },
+                "bucketPublicAccessBlock": {
+                    "$ref": "#/$defs/S3PublicAccessBlockConfiguration"
+                },
+                "accessPoints": {
+                    "$ref": "#/$defs/S3AccessPointConfigurationsMap"
+                }
+            }
+        },
+        "S3BucketPolicy": {
+            "type": "string"
+        },
+        "S3BucketAclGrantConfigurationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/S3BucketAclGrantConfiguration"
+            }
+        },
+        "S3BucketAclGrantConfiguration": {
+            "type": "object",
+            "properties": {
+                "permission": {
+                    "$ref": "#/$defs/AclPermission"
+                },
+                "grantee": {
+                    "$ref": "#/$defs/AclGrantee"
+                }
+            }
+        },
+        "AclPermission": {
+            "type": "string"
+        },
+        "AclGrantee": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/AclCanonicalId"
+                },
+                "uri": {
+                    "$ref": "#/$defs/AclUri"
+                }
+            }
+        },
+        "AclCanonicalId": {
+            "type": "string"
+        },
+        "AclUri": {
+            "type": "string"
+        },
+        "S3PublicAccessBlockConfiguration": {
+            "type": "object",
+            "properties": {
+                "ignorePublicAcls": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "restrictPublicBuckets": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "S3AccessPointConfigurationsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/S3AccessPointConfiguration"
+            }
+        },
+        "S3AccessPointConfiguration": {
+            "type": "object",
+            "properties": {
+                "accessPointPolicy": {
+                    "$ref": "#/$defs/AccessPointPolicy"
+                },
+                "publicAccessBlock": {
+                    "$ref": "#/$defs/S3PublicAccessBlockConfiguration"
+                },
+                "networkOrigin": {
+                    "$ref": "#/$defs/NetworkOriginConfiguration"
+                }
+            }
+        },
+        "AccessPointPolicy": {
+            "type": "string"
+        },
+        "NetworkOriginConfiguration": {
+            "type": "object",
+            "properties": {
+                "vpcConfiguration": {
+                    "$ref": "#/$defs/VpcConfiguration"
+                },
+                "internetConfiguration": {
+                    "$ref": "#/$defs/InternetConfiguration"
+                }
+            }
+        },
+        "VpcConfiguration": {
+            "type": "object",
+            "properties": {
+                "vpcId": {
+                    "$ref": "#/$defs/VpcId"
+                }
+            }
+        },
+        "VpcId": {
+            "type": "string"
+        },
+        "InternetConfiguration": {
+            "type": "object",
+            "properties": {}
+        },
+        "SnsTopicConfiguration": {
+            "type": "object",
+            "properties": {
+                "topicPolicy": {
+                    "$ref": "#/$defs/SnsTopicPolicy"
+                }
+            }
+        },
+        "SnsTopicPolicy": {
+            "type": "string"
+        },
+        "SqsQueueConfiguration": {
+            "type": "object",
+            "properties": {
+                "queuePolicy": {
+                    "$ref": "#/$defs/SqsQueuePolicy"
+                }
+            }
+        },
+        "SqsQueuePolicy": {
+            "type": "string"
+        },
+        "S3ExpressDirectoryBucketConfiguration": {
+            "type": "object",
+            "properties": {
+                "bucketPolicy": {
+                    "$ref": "#/$defs/S3ExpressDirectoryBucketPolicy"
+                }
+            }
+        },
+        "S3ExpressDirectoryBucketPolicy": {
+            "type": "string"
+        },
+        "DynamodbStreamConfiguration": {
+            "type": "object",
+            "properties": {
+                "streamPolicy": {
+                    "$ref": "#/$defs/DynamodbStreamPolicy"
+                }
+            }
+        },
+        "DynamodbStreamPolicy": {
+            "type": "string"
+        },
+        "DynamodbTableConfiguration": {
+            "type": "object",
+            "properties": {
+                "tablePolicy": {
+                    "$ref": "#/$defs/DynamodbTablePolicy"
+                }
+            }
+        },
+        "DynamodbTablePolicy": {
+            "type": "string"
+        },
+        "GenerateFindingRecommendationRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetAccessPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "accessPreview": {
+                    "$ref": "#/$defs/AccessPreview"
+                }
+            }
+        },
+        "AccessPreview": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/AccessPreviewId"
+                },
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "configurations": {
+                    "$ref": "#/$defs/ConfigurationsMap"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/AccessPreviewStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/AccessPreviewStatusReason"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "AccessPreviewStatus": {
+            "type": "string"
+        },
+        "AccessPreviewStatusReason": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "$ref": "#/$defs/AccessPreviewStatusReasonCode"
+                }
+            }
+        },
+        "AccessPreviewStatusReasonCode": {
+            "type": "string"
+        },
+        "GetAccessPreviewRequest": {
+            "type": "object",
+            "properties": {
+                "accessPreviewId": {
+                    "$ref": "#/$defs/AccessPreviewId"
+                },
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                }
+            }
+        },
+        "GetAnalyzedResourceResponse": {
+            "type": "object",
+            "properties": {
+                "resource": {
+                    "$ref": "#/$defs/AnalyzedResource"
+                }
+            }
+        },
+        "AnalyzedResource": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "analyzedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "isPublic": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "actions": {
+                    "$ref": "#/$defs/ActionList"
+                },
+                "sharedVia": {
+                    "$ref": "#/$defs/SharedViaList"
+                },
+                "status": {
+                    "$ref": "#/$defs/FindingStatus"
+                },
+                "resourceOwnerAccount": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "error": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "ResourceType": {
+            "type": "string"
+        },
+        "ActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "SharedViaList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "FindingStatus": {
+            "type": "string"
+        },
+        "GetAnalyzedResourceRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "GetFindingResponse": {
+            "type": "object",
+            "properties": {
+                "finding": {
+                    "$ref": "#/$defs/Finding"
+                }
+            }
+        },
+        "Finding": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/FindingId"
+                },
+                "principal": {
+                    "$ref": "#/$defs/PrincipalMap"
+                },
+                "action": {
+                    "$ref": "#/$defs/ActionList"
+                },
+                "resource": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "isPublic": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "condition": {
+                    "$ref": "#/$defs/ConditionKeyMap"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "analyzedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/FindingStatus"
+                },
+                "resourceOwnerAccount": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "error": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sources": {
+                    "$ref": "#/$defs/FindingSourceList"
+                }
+            }
+        },
+        "FindingId": {
+            "type": "string"
+        },
+        "PrincipalMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ConditionKeyMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "FindingSourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingSource"
+            }
+        },
+        "FindingSource": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/FindingSourceType"
+                },
+                "detail": {
+                    "$ref": "#/$defs/FindingSourceDetail"
+                }
+            }
+        },
+        "FindingSourceType": {
+            "type": "string"
+        },
+        "FindingSourceDetail": {
+            "type": "object",
+            "properties": {
+                "accessPointArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "accessPointAccount": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetFindingRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/FindingId"
+                }
+            }
+        },
+        "GetFindingRecommendationResponse": {
+            "type": "object",
+            "properties": {
+                "startedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "completedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "error": {
+                    "$ref": "#/$defs/RecommendationError"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "recommendedSteps": {
+                    "$ref": "#/$defs/RecommendedStepList"
+                },
+                "recommendationType": {
+                    "$ref": "#/$defs/RecommendationType"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "RecommendationError": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RecommendedStepList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendedStep"
+            }
+        },
+        "RecommendedStep": {
+            "type": "object",
+            "properties": {
+                "unusedPermissionsRecommendedStep": {
+                    "$ref": "#/$defs/UnusedPermissionsRecommendedStep"
+                }
+            }
+        },
+        "UnusedPermissionsRecommendedStep": {
+            "type": "object",
+            "properties": {
+                "policyUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "recommendedAction": {
+                    "$ref": "#/$defs/RecommendedRemediationAction"
+                },
+                "recommendedPolicy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "existingPolicyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RecommendedRemediationAction": {
+            "type": "string"
+        },
+        "RecommendationType": {
+            "type": "string"
+        },
+        "Status": {
+            "type": "string"
+        },
+        "GetFindingRecommendationRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "GetFindingV2Response": {
+            "type": "object",
+            "properties": {
+                "analyzedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "error": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "id": {
+                    "$ref": "#/$defs/FindingId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "resource": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "resourceOwnerAccount": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/FindingStatus"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "findingDetails": {
+                    "$ref": "#/$defs/FindingDetailsList"
+                },
+                "findingType": {
+                    "$ref": "#/$defs/FindingType"
+                }
+            }
+        },
+        "FindingDetailsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingDetails"
+            }
+        },
+        "FindingDetails": {
+            "type": "object",
+            "properties": {
+                "externalAccessDetails": {
+                    "$ref": "#/$defs/ExternalAccessDetails"
+                },
+                "unusedPermissionDetails": {
+                    "$ref": "#/$defs/UnusedPermissionDetails"
+                },
+                "unusedIamUserAccessKeyDetails": {
+                    "$ref": "#/$defs/UnusedIamUserAccessKeyDetails"
+                },
+                "unusedIamRoleDetails": {
+                    "$ref": "#/$defs/UnusedIamRoleDetails"
+                },
+                "unusedIamUserPasswordDetails": {
+                    "$ref": "#/$defs/UnusedIamUserPasswordDetails"
+                }
+            }
+        },
+        "ExternalAccessDetails": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "$ref": "#/$defs/ActionList"
+                },
+                "condition": {
+                    "$ref": "#/$defs/ConditionKeyMap"
+                },
+                "isPublic": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "principal": {
+                    "$ref": "#/$defs/PrincipalMap"
+                },
+                "sources": {
+                    "$ref": "#/$defs/FindingSourceList"
+                }
+            }
+        },
+        "UnusedPermissionDetails": {
+            "type": "object",
+            "properties": {
+                "actions": {
+                    "$ref": "#/$defs/UnusedActionList"
+                },
+                "serviceNamespace": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "lastAccessed": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UnusedActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UnusedAction"
+            }
+        },
+        "UnusedAction": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "lastAccessed": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UnusedIamUserAccessKeyDetails": {
+            "type": "object",
+            "properties": {
+                "accessKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "lastAccessed": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UnusedIamRoleDetails": {
+            "type": "object",
+            "properties": {
+                "lastAccessed": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UnusedIamUserPasswordDetails": {
+            "type": "object",
+            "properties": {
+                "lastAccessed": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "FindingType": {
+            "type": "string"
+        },
+        "GetFindingV2Request": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/FindingId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "GetGeneratedPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "jobDetails": {
+                    "$ref": "#/$defs/JobDetails"
+                },
+                "generatedPolicyResult": {
+                    "$ref": "#/$defs/GeneratedPolicyResult"
+                }
+            }
+        },
+        "JobDetails": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "status": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "startedOn": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "completedOn": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "jobError": {
+                    "$ref": "#/$defs/JobError"
+                }
+            }
+        },
+        "JobStatus": {
+            "type": "string"
+        },
+        "JobError": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "$ref": "#/$defs/JobErrorCode"
+                },
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "JobErrorCode": {
+            "type": "string"
+        },
+        "GeneratedPolicyResult": {
+            "type": "object",
+            "properties": {
+                "properties": {
+                    "$ref": "#/$defs/GeneratedPolicyProperties"
+                },
+                "generatedPolicies": {
+                    "$ref": "#/$defs/GeneratedPolicyList"
+                }
+            }
+        },
+        "GeneratedPolicyProperties": {
+            "type": "object",
+            "properties": {
+                "isComplete": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "principalArn": {
+                    "$ref": "#/$defs/PrincipalArn"
+                },
+                "cloudTrailProperties": {
+                    "$ref": "#/$defs/CloudTrailProperties"
+                }
+            }
+        },
+        "PrincipalArn": {
+            "type": "string"
+        },
+        "CloudTrailProperties": {
+            "type": "object",
+            "properties": {
+                "trailProperties": {
+                    "$ref": "#/$defs/TrailPropertiesList"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "TrailPropertiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TrailProperties"
+            }
+        },
+        "TrailProperties": {
+            "type": "object",
+            "properties": {
+                "cloudTrailArn": {
+                    "$ref": "#/$defs/CloudTrailArn"
+                },
+                "regions": {
+                    "$ref": "#/$defs/RegionList"
+                },
+                "allRegions": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "CloudTrailArn": {
+            "type": "string"
+        },
+        "RegionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "GeneratedPolicyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GeneratedPolicy"
+            }
+        },
+        "GeneratedPolicy": {
+            "type": "object",
+            "properties": {
+                "policy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetGeneratedPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "includeResourcePlaceholders": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "includeServiceLevelTemplate": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "ListAccessPreviewFindingsResponse": {
+            "type": "object",
+            "properties": {
+                "findings": {
+                    "$ref": "#/$defs/AccessPreviewFindingsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "AccessPreviewFindingsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessPreviewFinding"
+            }
+        },
+        "AccessPreviewFinding": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/AccessPreviewFindingId"
+                },
+                "existingFindingId": {
+                    "$ref": "#/$defs/FindingId"
+                },
+                "existingFindingStatus": {
+                    "$ref": "#/$defs/FindingStatus"
+                },
+                "principal": {
+                    "$ref": "#/$defs/PrincipalMap"
+                },
+                "action": {
+                    "$ref": "#/$defs/ActionList"
+                },
+                "condition": {
+                    "$ref": "#/$defs/ConditionKeyMap"
+                },
+                "resource": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "isPublic": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "changeType": {
+                    "$ref": "#/$defs/FindingChangeType"
+                },
+                "status": {
+                    "$ref": "#/$defs/FindingStatus"
+                },
+                "resourceOwnerAccount": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "error": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sources": {
+                    "$ref": "#/$defs/FindingSourceList"
+                }
+            }
+        },
+        "AccessPreviewFindingId": {
+            "type": "string"
+        },
+        "FindingChangeType": {
+            "type": "string"
+        },
+        "ListAccessPreviewFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "accessPreviewId": {
+                    "$ref": "#/$defs/AccessPreviewId"
+                },
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "filter": {
+                    "$ref": "#/$defs/FilterCriteriaMap"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "FilterCriteriaMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Criterion"
+            }
+        },
+        "Criterion": {
+            "type": "object",
+            "properties": {
+                "eq": {
+                    "$ref": "#/$defs/ValueList"
+                },
+                "neq": {
+                    "$ref": "#/$defs/ValueList"
+                },
+                "contains": {
+                    "$ref": "#/$defs/ValueList"
+                },
+                "exists": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "ValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListAccessPreviewsResponse": {
+            "type": "object",
+            "properties": {
+                "accessPreviews": {
+                    "$ref": "#/$defs/AccessPreviewsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "AccessPreviewsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessPreviewSummary"
+            }
+        },
+        "AccessPreviewSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/AccessPreviewId"
+                },
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/AccessPreviewStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/AccessPreviewStatusReason"
+                }
+            }
+        },
+        "ListAccessPreviewsRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ListAnalyzedResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "analyzedResources": {
+                    "$ref": "#/$defs/AnalyzedResourcesList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "AnalyzedResourcesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnalyzedResourceSummary"
+            }
+        },
+        "AnalyzedResourceSummary": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "resourceOwnerAccount": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                }
+            }
+        },
+        "ListAnalyzedResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ListFindingsResponse": {
+            "type": "object",
+            "properties": {
+                "findings": {
+                    "$ref": "#/$defs/FindingsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "FindingsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingSummary"
+            }
+        },
+        "FindingSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/FindingId"
+                },
+                "principal": {
+                    "$ref": "#/$defs/PrincipalMap"
+                },
+                "action": {
+                    "$ref": "#/$defs/ActionList"
+                },
+                "resource": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "isPublic": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "condition": {
+                    "$ref": "#/$defs/ConditionKeyMap"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "analyzedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/FindingStatus"
+                },
+                "resourceOwnerAccount": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "error": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sources": {
+                    "$ref": "#/$defs/FindingSourceList"
+                }
+            }
+        },
+        "ListFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "filter": {
+                    "$ref": "#/$defs/FilterCriteriaMap"
+                },
+                "sort": {
+                    "$ref": "#/$defs/SortCriteria"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "SortCriteria": {
+            "type": "object",
+            "properties": {
+                "attributeName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "orderBy": {
+                    "$ref": "#/$defs/OrderBy"
+                }
+            }
+        },
+        "OrderBy": {
+            "type": "string"
+        },
+        "ListFindingsV2Response": {
+            "type": "object",
+            "properties": {
+                "findings": {
+                    "$ref": "#/$defs/FindingsListV2"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "FindingsListV2": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingSummaryV2"
+            }
+        },
+        "FindingSummaryV2": {
+            "type": "object",
+            "properties": {
+                "analyzedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "error": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "id": {
+                    "$ref": "#/$defs/FindingId"
+                },
+                "resource": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "resourceOwnerAccount": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/FindingStatus"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "findingType": {
+                    "$ref": "#/$defs/FindingType"
+                }
+            }
+        },
+        "ListFindingsV2Request": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "filter": {
+                    "$ref": "#/$defs/FilterCriteriaMap"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "sort": {
+                    "$ref": "#/$defs/SortCriteria"
+                }
+            }
+        },
+        "ListPolicyGenerationsResponse": {
+            "type": "object",
+            "properties": {
+                "policyGenerations": {
+                    "$ref": "#/$defs/PolicyGenerationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "PolicyGenerationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyGeneration"
+            }
+        },
+        "PolicyGeneration": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "principalArn": {
+                    "$ref": "#/$defs/PrincipalArn"
+                },
+                "status": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "startedOn": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "completedOn": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListPolicyGenerationsRequest": {
+            "type": "object",
+            "properties": {
+                "principalArn": {
+                    "$ref": "#/$defs/PrincipalArn"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "TagsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "StartPolicyGenerationResponse": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "StartPolicyGenerationRequest": {
+            "type": "object",
+            "properties": {
+                "policyGenerationDetails": {
+                    "$ref": "#/$defs/PolicyGenerationDetails"
+                },
+                "cloudTrailDetails": {
+                    "$ref": "#/$defs/CloudTrailDetails"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "PolicyGenerationDetails": {
+            "type": "object",
+            "properties": {
+                "principalArn": {
+                    "$ref": "#/$defs/PrincipalArn"
+                }
+            }
+        },
+        "CloudTrailDetails": {
+            "type": "object",
+            "properties": {
+                "trails": {
+                    "$ref": "#/$defs/TrailList"
+                },
+                "accessRole": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "TrailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Trail"
+            }
+        },
+        "Trail": {
+            "type": "object",
+            "properties": {
+                "cloudTrailArn": {
+                    "$ref": "#/$defs/CloudTrailArn"
+                },
+                "regions": {
+                    "$ref": "#/$defs/RegionList"
+                },
+                "allRegions": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "StartResourceScanRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "resourceOwnerAccount": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "UpdateFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                },
+                "status": {
+                    "$ref": "#/$defs/FindingStatusUpdate"
+                },
+                "ids": {
+                    "$ref": "#/$defs/FindingIdList"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "FindingStatusUpdate": {
+            "type": "string"
+        },
+        "FindingIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingId"
+            }
+        },
+        "ValidatePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "findings": {
+                    "$ref": "#/$defs/ValidatePolicyFindingList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ValidatePolicyFindingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ValidatePolicyFinding"
+            }
+        },
+        "ValidatePolicyFinding": {
+            "type": "object",
+            "properties": {
+                "findingDetails": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "findingType": {
+                    "$ref": "#/$defs/ValidatePolicyFindingType"
+                },
+                "issueCode": {
+                    "$ref": "#/$defs/IssueCode"
+                },
+                "learnMoreLink": {
+                    "$ref": "#/$defs/LearnMoreLink"
+                },
+                "locations": {
+                    "$ref": "#/$defs/LocationList"
+                }
+            }
+        },
+        "ValidatePolicyFindingType": {
+            "type": "string"
+        },
+        "IssueCode": {
+            "type": "string"
+        },
+        "LearnMoreLink": {
+            "type": "string"
+        },
+        "LocationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Location"
+            }
+        },
+        "Location": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "$ref": "#/$defs/PathElementList"
+                },
+                "span": {
+                    "$ref": "#/$defs/Span"
+                }
+            }
+        },
+        "PathElementList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PathElement"
+            }
+        },
+        "PathElement": {
+            "type": "object",
+            "properties": {
+                "index": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "key": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "substring": {
+                    "$ref": "#/$defs/Substring"
+                },
+                "value": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Substring": {
+            "type": "object",
+            "properties": {
+                "start": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "length": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "Span": {
+            "type": "object",
+            "properties": {
+                "start": {
+                    "$ref": "#/$defs/Position"
+                },
+                "end": {
+                    "$ref": "#/$defs/Position"
+                }
+            }
+        },
+        "Position": {
+            "type": "object",
+            "properties": {
+                "line": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "column": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "offset": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ValidatePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "policyDocument": {
+                    "$ref": "#/$defs/PolicyDocument"
+                },
+                "policyType": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "validatePolicyResourceType": {
+                    "$ref": "#/$defs/ValidatePolicyResourceType"
+                }
+            }
+        },
+        "Locale": {
+            "type": "string"
+        },
+        "PolicyDocument": {
+            "type": "string"
+        },
+        "PolicyType": {
+            "type": "string"
+        },
+        "ValidatePolicyResourceType": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://access-analyzer-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://access-analyzer.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://access-analyzer-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://access-analyzer.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://access-analyzer.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

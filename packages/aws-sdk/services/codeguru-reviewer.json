@@ -1,0 +1,1878 @@
+{
+    "name": "codeguru-reviewer",
+    "commands": [
+        {
+            "name": "AssociateRepository",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateRepository"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateRepositoryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateRepositoryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCodeReview",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCodeReview"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCodeReviewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCodeReviewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCodeReview",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCodeReview"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCodeReviewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCodeReviewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRecommendationFeedback",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRecommendationFeedback"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRecommendationFeedbackResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRecommendationFeedbackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRepositoryAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRepositoryAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRepositoryAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRepositoryAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateRepository",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateRepository"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateRepositoryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateRepositoryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCodeReviews",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCodeReviews"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCodeReviewsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCodeReviewsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRecommendationFeedback",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRecommendationFeedback"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRecommendationFeedbackResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRecommendationFeedbackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRecommendations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRecommendations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRecommendationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRecommendationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRepositoryAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRepositoryAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRepositoryAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRepositoryAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutRecommendationFeedback",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutRecommendationFeedback"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutRecommendationFeedbackResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutRecommendationFeedbackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssociateRepositoryResponse": {
+            "type": "object",
+            "properties": {
+                "RepositoryAssociation": {
+                    "$ref": "#/$defs/RepositoryAssociation"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "RepositoryAssociation": {
+            "type": "object",
+            "properties": {
+                "AssociationId": {
+                    "$ref": "#/$defs/AssociationId"
+                },
+                "AssociationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/Owner"
+                },
+                "ProviderType": {
+                    "$ref": "#/$defs/ProviderType"
+                },
+                "State": {
+                    "$ref": "#/$defs/RepositoryAssociationState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/StateReason"
+                },
+                "LastUpdatedTimeStamp": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "CreatedTimeStamp": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "KMSKeyDetails": {
+                    "$ref": "#/$defs/KMSKeyDetails"
+                },
+                "S3RepositoryDetails": {
+                    "$ref": "#/$defs/S3RepositoryDetails"
+                }
+            }
+        },
+        "AssociationId": {
+            "type": "string"
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "ConnectionArn": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Owner": {
+            "type": "string"
+        },
+        "ProviderType": {
+            "enum": [
+                "CODE_COMMIT",
+                "GIT_HUB",
+                "BITBUCKET",
+                "GIT_HUB_ENTERPRISE_SERVER",
+                "S3_BUCKET"
+            ]
+        },
+        "RepositoryAssociationState": {
+            "enum": [
+                "ASSOCIATED",
+                "ASSOCIATING",
+                "FAILED",
+                "DISASSOCIATING",
+                "DISASSOCIATED"
+            ]
+        },
+        "StateReason": {
+            "type": "string"
+        },
+        "TimeStamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "KMSKeyDetails": {
+            "type": "object",
+            "properties": {
+                "KMSKeyId": {
+                    "$ref": "#/$defs/KMSKeyId"
+                },
+                "EncryptionOption": {
+                    "$ref": "#/$defs/EncryptionOption"
+                }
+            }
+        },
+        "KMSKeyId": {
+            "type": "string"
+        },
+        "EncryptionOption": {
+            "enum": [
+                "AoCmk",
+                "CmCmk"
+            ]
+        },
+        "S3RepositoryDetails": {
+            "type": "object",
+            "properties": {
+                "BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "CodeArtifacts": {
+                    "$ref": "#/$defs/CodeArtifacts"
+                }
+            }
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "CodeArtifacts": {
+            "type": "object",
+            "properties": {
+                "SourceCodeArtifactsObjectKey": {
+                    "$ref": "#/$defs/SourceCodeArtifactsObjectKey"
+                },
+                "BuildArtifactsObjectKey": {
+                    "$ref": "#/$defs/BuildArtifactsObjectKey"
+                }
+            }
+        },
+        "SourceCodeArtifactsObjectKey": {
+            "type": "string"
+        },
+        "BuildArtifactsObjectKey": {
+            "type": "string"
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "AssociateRepositoryRequest": {
+            "type": "object",
+            "properties": {
+                "Repository": {
+                    "$ref": "#/$defs/Repository"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "KMSKeyDetails": {
+                    "$ref": "#/$defs/KMSKeyDetails"
+                }
+            }
+        },
+        "Repository": {
+            "type": "object",
+            "properties": {
+                "CodeCommit": {
+                    "$ref": "#/$defs/CodeCommitRepository"
+                },
+                "Bitbucket": {
+                    "$ref": "#/$defs/ThirdPartySourceRepository"
+                },
+                "GitHubEnterpriseServer": {
+                    "$ref": "#/$defs/ThirdPartySourceRepository"
+                },
+                "S3Bucket": {
+                    "$ref": "#/$defs/S3Repository"
+                }
+            }
+        },
+        "CodeCommitRepository": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                }
+            }
+        },
+        "ThirdPartySourceRepository": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/Owner"
+                }
+            }
+        },
+        "S3Repository": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                }
+            }
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "CreateCodeReviewResponse": {
+            "type": "object",
+            "properties": {
+                "CodeReview": {
+                    "$ref": "#/$defs/CodeReview"
+                }
+            }
+        },
+        "CodeReview": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "CodeReviewArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RepositoryName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/Owner"
+                },
+                "ProviderType": {
+                    "$ref": "#/$defs/ProviderType"
+                },
+                "State": {
+                    "$ref": "#/$defs/JobState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/StateReason"
+                },
+                "CreatedTimeStamp": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "LastUpdatedTimeStamp": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "PullRequestId": {
+                    "$ref": "#/$defs/PullRequestId"
+                },
+                "SourceCodeType": {
+                    "$ref": "#/$defs/SourceCodeType"
+                },
+                "AssociationArn": {
+                    "$ref": "#/$defs/AssociationArn"
+                },
+                "Metrics": {
+                    "$ref": "#/$defs/Metrics"
+                },
+                "AnalysisTypes": {
+                    "$ref": "#/$defs/AnalysisTypes"
+                },
+                "ConfigFileState": {
+                    "$ref": "#/$defs/ConfigFileState"
+                }
+            }
+        },
+        "JobState": {
+            "enum": [
+                "COMPLETED",
+                "PENDING",
+                "FAILED",
+                "DELETING"
+            ]
+        },
+        "Type": {
+            "enum": [
+                "PULL_REQUEST",
+                "REPOSITORY_ANALYSIS"
+            ]
+        },
+        "PullRequestId": {
+            "type": "string"
+        },
+        "SourceCodeType": {
+            "type": "object",
+            "properties": {
+                "CommitDiff": {
+                    "$ref": "#/$defs/CommitDiffSourceCodeType"
+                },
+                "RepositoryHead": {
+                    "$ref": "#/$defs/RepositoryHeadSourceCodeType"
+                },
+                "BranchDiff": {
+                    "$ref": "#/$defs/BranchDiffSourceCodeType"
+                },
+                "S3BucketRepository": {
+                    "$ref": "#/$defs/S3BucketRepository"
+                },
+                "RequestMetadata": {
+                    "$ref": "#/$defs/RequestMetadata"
+                }
+            }
+        },
+        "CommitDiffSourceCodeType": {
+            "type": "object",
+            "properties": {
+                "SourceCommit": {
+                    "$ref": "#/$defs/CommitId"
+                },
+                "DestinationCommit": {
+                    "$ref": "#/$defs/CommitId"
+                },
+                "MergeBaseCommit": {
+                    "$ref": "#/$defs/CommitId"
+                }
+            }
+        },
+        "CommitId": {
+            "type": "string"
+        },
+        "RepositoryHeadSourceCodeType": {
+            "type": "object",
+            "properties": {
+                "BranchName": {
+                    "$ref": "#/$defs/BranchName"
+                }
+            }
+        },
+        "BranchName": {
+            "type": "string"
+        },
+        "BranchDiffSourceCodeType": {
+            "type": "object",
+            "properties": {
+                "SourceBranchName": {
+                    "$ref": "#/$defs/BranchName"
+                },
+                "DestinationBranchName": {
+                    "$ref": "#/$defs/BranchName"
+                }
+            }
+        },
+        "S3BucketRepository": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Details": {
+                    "$ref": "#/$defs/S3RepositoryDetails"
+                }
+            }
+        },
+        "RequestMetadata": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "Requester": {
+                    "$ref": "#/$defs/Requester"
+                },
+                "EventInfo": {
+                    "$ref": "#/$defs/EventInfo"
+                },
+                "VendorName": {
+                    "$ref": "#/$defs/VendorName"
+                }
+            }
+        },
+        "RequestId": {
+            "type": "string"
+        },
+        "Requester": {
+            "type": "string"
+        },
+        "EventInfo": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventName"
+                },
+                "State": {
+                    "$ref": "#/$defs/EventState"
+                }
+            }
+        },
+        "EventName": {
+            "type": "string"
+        },
+        "EventState": {
+            "type": "string"
+        },
+        "VendorName": {
+            "enum": [
+                "GITHUB",
+                "GITLAB",
+                "NATIVE_S3"
+            ]
+        },
+        "AssociationArn": {
+            "type": "string"
+        },
+        "Metrics": {
+            "type": "object",
+            "properties": {
+                "MeteredLinesOfCodeCount": {
+                    "$ref": "#/$defs/LinesOfCodeCount"
+                },
+                "SuppressedLinesOfCodeCount": {
+                    "$ref": "#/$defs/LinesOfCodeCount"
+                },
+                "FindingsCount": {
+                    "$ref": "#/$defs/FindingsCount"
+                }
+            }
+        },
+        "LinesOfCodeCount": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "FindingsCount": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "AnalysisTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnalysisType"
+            }
+        },
+        "AnalysisType": {
+            "enum": [
+                "SECURITY",
+                "CODE_QUALITY"
+            ]
+        },
+        "ConfigFileState": {
+            "enum": [
+                "PRESENT",
+                "ABSENT",
+                "PRESENT_WITH_ERRORS"
+            ]
+        },
+        "CreateCodeReviewRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/CodeReviewName"
+                },
+                "RepositoryAssociationArn": {
+                    "$ref": "#/$defs/AssociationArn"
+                },
+                "Type": {
+                    "$ref": "#/$defs/CodeReviewType"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                }
+            }
+        },
+        "CodeReviewName": {
+            "type": "string"
+        },
+        "CodeReviewType": {
+            "type": "object",
+            "properties": {
+                "RepositoryAnalysis": {
+                    "$ref": "#/$defs/RepositoryAnalysis"
+                },
+                "AnalysisTypes": {
+                    "$ref": "#/$defs/AnalysisTypes"
+                }
+            }
+        },
+        "RepositoryAnalysis": {
+            "type": "object",
+            "properties": {
+                "RepositoryHead": {
+                    "$ref": "#/$defs/RepositoryHeadSourceCodeType"
+                },
+                "SourceCodeType": {
+                    "$ref": "#/$defs/SourceCodeType"
+                }
+            }
+        },
+        "DescribeCodeReviewResponse": {
+            "type": "object",
+            "properties": {
+                "CodeReview": {
+                    "$ref": "#/$defs/CodeReview"
+                }
+            }
+        },
+        "DescribeCodeReviewRequest": {
+            "type": "object",
+            "properties": {
+                "CodeReviewArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeRecommendationFeedbackResponse": {
+            "type": "object",
+            "properties": {
+                "RecommendationFeedback": {
+                    "$ref": "#/$defs/RecommendationFeedback"
+                }
+            }
+        },
+        "RecommendationFeedback": {
+            "type": "object",
+            "properties": {
+                "CodeReviewArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RecommendationId": {
+                    "$ref": "#/$defs/RecommendationId"
+                },
+                "Reactions": {
+                    "$ref": "#/$defs/Reactions"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "CreatedTimeStamp": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "LastUpdatedTimeStamp": {
+                    "$ref": "#/$defs/TimeStamp"
+                }
+            }
+        },
+        "RecommendationId": {
+            "type": "string"
+        },
+        "Reactions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Reaction"
+            }
+        },
+        "Reaction": {
+            "enum": [
+                "THUMBS_UP",
+                "THUMBS_DOWN"
+            ]
+        },
+        "UserId": {
+            "type": "string"
+        },
+        "DescribeRecommendationFeedbackRequest": {
+            "type": "object",
+            "properties": {
+                "CodeReviewArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RecommendationId": {
+                    "$ref": "#/$defs/RecommendationId"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/UserId"
+                }
+            }
+        },
+        "DescribeRepositoryAssociationResponse": {
+            "type": "object",
+            "properties": {
+                "RepositoryAssociation": {
+                    "$ref": "#/$defs/RepositoryAssociation"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "DescribeRepositoryAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "AssociationArn": {
+                    "$ref": "#/$defs/AssociationArn"
+                }
+            }
+        },
+        "DisassociateRepositoryResponse": {
+            "type": "object",
+            "properties": {
+                "RepositoryAssociation": {
+                    "$ref": "#/$defs/RepositoryAssociation"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "DisassociateRepositoryRequest": {
+            "type": "object",
+            "properties": {
+                "AssociationArn": {
+                    "$ref": "#/$defs/AssociationArn"
+                }
+            }
+        },
+        "ListCodeReviewsResponse": {
+            "type": "object",
+            "properties": {
+                "CodeReviewSummaries": {
+                    "$ref": "#/$defs/CodeReviewSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "CodeReviewSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CodeReviewSummary"
+            }
+        },
+        "CodeReviewSummary": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "CodeReviewArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RepositoryName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/Owner"
+                },
+                "ProviderType": {
+                    "$ref": "#/$defs/ProviderType"
+                },
+                "State": {
+                    "$ref": "#/$defs/JobState"
+                },
+                "CreatedTimeStamp": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "LastUpdatedTimeStamp": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "PullRequestId": {
+                    "$ref": "#/$defs/PullRequestId"
+                },
+                "MetricsSummary": {
+                    "$ref": "#/$defs/MetricsSummary"
+                },
+                "SourceCodeType": {
+                    "$ref": "#/$defs/SourceCodeType"
+                }
+            }
+        },
+        "MetricsSummary": {
+            "type": "object",
+            "properties": {
+                "MeteredLinesOfCodeCount": {
+                    "$ref": "#/$defs/LinesOfCodeCount"
+                },
+                "SuppressedLinesOfCodeCount": {
+                    "$ref": "#/$defs/LinesOfCodeCount"
+                },
+                "FindingsCount": {
+                    "$ref": "#/$defs/FindingsCount"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListCodeReviewsRequest": {
+            "type": "object",
+            "properties": {
+                "ProviderTypes": {
+                    "$ref": "#/$defs/ProviderTypes"
+                },
+                "States": {
+                    "$ref": "#/$defs/JobStates"
+                },
+                "RepositoryNames": {
+                    "$ref": "#/$defs/RepositoryNames"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListCodeReviewsMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ProviderTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProviderType"
+            }
+        },
+        "JobStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobState"
+            }
+        },
+        "RepositoryNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Name"
+            }
+        },
+        "ListCodeReviewsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListRecommendationFeedbackResponse": {
+            "type": "object",
+            "properties": {
+                "RecommendationFeedbackSummaries": {
+                    "$ref": "#/$defs/RecommendationFeedbackSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RecommendationFeedbackSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationFeedbackSummary"
+            }
+        },
+        "RecommendationFeedbackSummary": {
+            "type": "object",
+            "properties": {
+                "RecommendationId": {
+                    "$ref": "#/$defs/RecommendationId"
+                },
+                "Reactions": {
+                    "$ref": "#/$defs/Reactions"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/UserId"
+                }
+            }
+        },
+        "ListRecommendationFeedbackRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "CodeReviewArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "UserIds": {
+                    "$ref": "#/$defs/UserIds"
+                },
+                "RecommendationIds": {
+                    "$ref": "#/$defs/RecommendationIds"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UserIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UserId"
+            }
+        },
+        "RecommendationIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationId"
+            }
+        },
+        "ListRecommendationsResponse": {
+            "type": "object",
+            "properties": {
+                "RecommendationSummaries": {
+                    "$ref": "#/$defs/RecommendationSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RecommendationSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationSummary"
+            }
+        },
+        "RecommendationSummary": {
+            "type": "object",
+            "properties": {
+                "FilePath": {
+                    "$ref": "#/$defs/FilePath"
+                },
+                "RecommendationId": {
+                    "$ref": "#/$defs/RecommendationId"
+                },
+                "StartLine": {
+                    "$ref": "#/$defs/LineNumber"
+                },
+                "EndLine": {
+                    "$ref": "#/$defs/LineNumber"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Text"
+                },
+                "RecommendationCategory": {
+                    "$ref": "#/$defs/RecommendationCategory"
+                },
+                "RuleMetadata": {
+                    "$ref": "#/$defs/RuleMetadata"
+                },
+                "Severity": {
+                    "$ref": "#/$defs/Severity"
+                }
+            }
+        },
+        "FilePath": {
+            "type": "string"
+        },
+        "LineNumber": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Text": {
+            "type": "string"
+        },
+        "RecommendationCategory": {
+            "enum": [
+                "AWS_BEST_PRACTICES",
+                "AWS_CLOUDFORMATION_ISSUES",
+                "DUPLICATE_CODE",
+                "CODE_MAINTENANCE_ISSUES",
+                "CONCURRENCY_ISSUES",
+                "INPUT_VALIDATIONS",
+                "PYTHON_BEST_PRACTICES",
+                "JAVA_BEST_PRACTICES",
+                "RESOURCE_LEAKS",
+                "SECURITY_ISSUES",
+                "CODE_INCONSISTENCIES"
+            ]
+        },
+        "RuleMetadata": {
+            "type": "object",
+            "properties": {
+                "RuleId": {
+                    "$ref": "#/$defs/RuleId"
+                },
+                "RuleName": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "ShortDescription": {
+                    "$ref": "#/$defs/ShortDescription"
+                },
+                "LongDescription": {
+                    "$ref": "#/$defs/LongDescription"
+                },
+                "RuleTags": {
+                    "$ref": "#/$defs/RuleTags"
+                }
+            }
+        },
+        "RuleId": {
+            "type": "string"
+        },
+        "RuleName": {
+            "type": "string"
+        },
+        "ShortDescription": {
+            "type": "string"
+        },
+        "LongDescription": {
+            "type": "string"
+        },
+        "RuleTags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleTag"
+            }
+        },
+        "RuleTag": {
+            "type": "string"
+        },
+        "Severity": {
+            "enum": [
+                "INFO",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "CRITICAL"
+            ]
+        },
+        "ListRecommendationsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListRecommendationsMaxResults"
+                },
+                "CodeReviewArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListRecommendationsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListRepositoryAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "RepositoryAssociationSummaries": {
+                    "$ref": "#/$defs/RepositoryAssociationSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RepositoryAssociationSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RepositoryAssociationSummary"
+            }
+        },
+        "RepositoryAssociationSummary": {
+            "type": "object",
+            "properties": {
+                "AssociationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "LastUpdatedTimeStamp": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "AssociationId": {
+                    "$ref": "#/$defs/AssociationId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/Owner"
+                },
+                "ProviderType": {
+                    "$ref": "#/$defs/ProviderType"
+                },
+                "State": {
+                    "$ref": "#/$defs/RepositoryAssociationState"
+                }
+            }
+        },
+        "ListRepositoryAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "ProviderTypes": {
+                    "$ref": "#/$defs/ProviderTypes"
+                },
+                "States": {
+                    "$ref": "#/$defs/RepositoryAssociationStates"
+                },
+                "Names": {
+                    "$ref": "#/$defs/Names"
+                },
+                "Owners": {
+                    "$ref": "#/$defs/Owners"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RepositoryAssociationStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RepositoryAssociationState"
+            }
+        },
+        "Names": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Name"
+            }
+        },
+        "Owners": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Owner"
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AssociationArn"
+                }
+            }
+        },
+        "PutRecommendationFeedbackResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutRecommendationFeedbackRequest": {
+            "type": "object",
+            "properties": {
+                "CodeReviewArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RecommendationId": {
+                    "$ref": "#/$defs/RecommendationId"
+                },
+                "Reactions": {
+                    "$ref": "#/$defs/Reactions"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AssociationArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AssociationArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codeguru-reviewer-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codeguru-reviewer-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codeguru-reviewer.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://codeguru-reviewer.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

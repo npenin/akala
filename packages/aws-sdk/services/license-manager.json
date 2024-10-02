@@ -1,0 +1,4352 @@
+{
+    "name": "license-manager",
+    "commands": [
+        {
+            "name": "AcceptGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AcceptGrant"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AcceptGrantResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AcceptGrantRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckInLicense",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CheckInLicense"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CheckInLicenseResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CheckInLicenseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckoutBorrowLicense",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CheckoutBorrowLicense"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CheckoutBorrowLicenseResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CheckoutBorrowLicenseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckoutLicense",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CheckoutLicense"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CheckoutLicenseResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CheckoutLicenseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateGrant"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateGrantResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateGrantRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateGrantVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateGrantVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateGrantVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateGrantVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLicense",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLicense"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLicenseResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLicenseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLicenseConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLicenseConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLicenseConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLicenseConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLicenseConversionTaskForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLicenseConversionTaskForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLicenseConversionTaskForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLicenseConversionTaskForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLicenseManagerReportGenerator",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLicenseManagerReportGenerator"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLicenseManagerReportGeneratorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLicenseManagerReportGeneratorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLicenseVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLicenseVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLicenseVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLicenseVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateToken",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateToken"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateTokenResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTokenRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteGrant"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteGrantResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteGrantRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLicense",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLicense"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLicenseResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLicenseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLicenseConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLicenseConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLicenseConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLicenseConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLicenseManagerReportGenerator",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLicenseManagerReportGenerator"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLicenseManagerReportGeneratorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLicenseManagerReportGeneratorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteToken",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteToken"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteTokenResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTokenRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExtendLicenseConsumption",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ExtendLicenseConsumption"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExtendLicenseConsumptionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExtendLicenseConsumptionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccessToken",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccessToken"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAccessTokenResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAccessTokenRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetGrant"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetGrantResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetGrantRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLicense",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLicense"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLicenseResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLicenseRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLicenseConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLicenseConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLicenseConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLicenseConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLicenseConversionTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLicenseConversionTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLicenseConversionTaskResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLicenseConversionTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLicenseManagerReportGenerator",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLicenseManagerReportGenerator"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLicenseManagerReportGeneratorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLicenseManagerReportGeneratorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLicenseUsage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLicenseUsage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLicenseUsageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLicenseUsageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetServiceSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetServiceSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetServiceSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetServiceSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssociationsForLicenseConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAssociationsForLicenseConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssociationsForLicenseConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssociationsForLicenseConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDistributedGrants",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDistributedGrants"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDistributedGrantsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDistributedGrantsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFailuresForLicenseConfigurationOperations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFailuresForLicenseConfigurationOperations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFailuresForLicenseConfigurationOperationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFailuresForLicenseConfigurationOperationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLicenseConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLicenseConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLicenseConfigurationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLicenseConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLicenseConversionTasks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLicenseConversionTasks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLicenseConversionTasksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLicenseConversionTasksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLicenseManagerReportGenerators",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLicenseManagerReportGenerators"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLicenseManagerReportGeneratorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLicenseManagerReportGeneratorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLicenses",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLicenses"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLicensesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLicensesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLicenseSpecificationsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLicenseSpecificationsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLicenseSpecificationsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLicenseSpecificationsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLicenseVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLicenseVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLicenseVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLicenseVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReceivedGrants",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReceivedGrants"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReceivedGrantsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReceivedGrantsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReceivedGrantsForOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReceivedGrantsForOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReceivedGrantsForOrganizationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReceivedGrantsForOrganizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReceivedLicenses",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReceivedLicenses"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReceivedLicensesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReceivedLicensesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReceivedLicensesForOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReceivedLicensesForOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReceivedLicensesForOrganizationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReceivedLicensesForOrganizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListResourceInventory",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListResourceInventory"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListResourceInventoryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListResourceInventoryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTokens",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTokens"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTokensResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTokensRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListUsageForLicenseConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListUsageForLicenseConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListUsageForLicenseConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListUsageForLicenseConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RejectGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RejectGrant"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RejectGrantResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RejectGrantRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLicenseConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLicenseConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLicenseConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLicenseConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLicenseManagerReportGenerator",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLicenseManagerReportGenerator"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLicenseManagerReportGeneratorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLicenseManagerReportGeneratorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLicenseSpecificationsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLicenseSpecificationsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLicenseSpecificationsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLicenseSpecificationsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateServiceSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateServiceSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateServiceSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateServiceSettingsRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AcceptGrantResponse": {
+            "type": "object",
+            "properties": {
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/GrantStatus"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "GrantStatus": {
+            "enum": [
+                "PENDING_WORKFLOW",
+                "PENDING_ACCEPT",
+                "REJECTED",
+                "ACTIVE",
+                "FAILED_WORKFLOW",
+                "DELETED",
+                "PENDING_DELETE",
+                "DISABLED",
+                "WORKFLOW_COMPLETED"
+            ]
+        },
+        "String": {
+            "type": "string"
+        },
+        "AcceptGrantRequest": {
+            "type": "object",
+            "properties": {
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CheckInLicenseResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CheckInLicenseRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseConsumptionToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "Beneficiary": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CheckoutBorrowLicenseResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "LicenseConsumptionToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "EntitlementsAllowed": {
+                    "$ref": "#/$defs/EntitlementDataList"
+                },
+                "NodeId": {
+                    "$ref": "#/$defs/String"
+                },
+                "SignedToken": {
+                    "$ref": "#/$defs/SignedToken"
+                },
+                "IssuedAt": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                },
+                "Expiration": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                },
+                "CheckoutMetadata": {
+                    "$ref": "#/$defs/MetadataList"
+                }
+            }
+        },
+        "EntitlementDataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntitlementData"
+            }
+        },
+        "EntitlementData": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/EntitlementDataUnit"
+                }
+            }
+        },
+        "EntitlementDataUnit": {
+            "enum": [
+                "COUNT",
+                "NONE",
+                "SECONDS",
+                "MICROSECONDS",
+                "MILLISECONDS",
+                "BYTES",
+                "KILOBYTES",
+                "MEGABYTES",
+                "GIGABYTES",
+                "TERABYTES",
+                "BITS",
+                "KILOBITS",
+                "MEGABITS",
+                "GIGABITS",
+                "TERABITS",
+                "PERCENT",
+                "BYTES_PER_SECOND",
+                "KILOBYTES_PER_SECOND",
+                "MEGABYTES_PER_SECOND",
+                "GIGABYTES_PER_SECOND",
+                "TERABYTES_PER_SECOND",
+                "BITS_PER_SECOND",
+                "KILOBITS_PER_SECOND",
+                "MEGABITS_PER_SECOND",
+                "GIGABITS_PER_SECOND",
+                "TERABITS_PER_SECOND",
+                "COUNT_PER_SECOND"
+            ]
+        },
+        "SignedToken": {
+            "type": "string"
+        },
+        "ISO8601DateTime": {
+            "type": "string"
+        },
+        "MetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Metadata"
+            }
+        },
+        "Metadata": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CheckoutBorrowLicenseRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Entitlements": {
+                    "$ref": "#/$defs/EntitlementDataList"
+                },
+                "DigitalSignatureMethod": {
+                    "$ref": "#/$defs/DigitalSignatureMethod"
+                },
+                "NodeId": {
+                    "$ref": "#/$defs/String"
+                },
+                "CheckoutMetadata": {
+                    "$ref": "#/$defs/MetadataList"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DigitalSignatureMethod": {
+            "enum": [
+                "JWT_PS384"
+            ]
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "CheckoutLicenseResponse": {
+            "type": "object",
+            "properties": {
+                "CheckoutType": {
+                    "$ref": "#/$defs/CheckoutType"
+                },
+                "LicenseConsumptionToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "EntitlementsAllowed": {
+                    "$ref": "#/$defs/EntitlementDataList"
+                },
+                "SignedToken": {
+                    "$ref": "#/$defs/SignedToken"
+                },
+                "NodeId": {
+                    "$ref": "#/$defs/String"
+                },
+                "IssuedAt": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                },
+                "Expiration": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                },
+                "LicenseArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CheckoutType": {
+            "enum": [
+                "PROVISIONAL",
+                "PERPETUAL"
+            ]
+        },
+        "CheckoutLicenseRequest": {
+            "type": "object",
+            "properties": {
+                "ProductSKU": {
+                    "$ref": "#/$defs/String"
+                },
+                "CheckoutType": {
+                    "$ref": "#/$defs/CheckoutType"
+                },
+                "KeyFingerprint": {
+                    "$ref": "#/$defs/String"
+                },
+                "Entitlements": {
+                    "$ref": "#/$defs/EntitlementDataList"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "Beneficiary": {
+                    "$ref": "#/$defs/String"
+                },
+                "NodeId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateGrantResponse": {
+            "type": "object",
+            "properties": {
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/GrantStatus"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateGrantRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "GrantName": {
+                    "$ref": "#/$defs/String"
+                },
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Principals": {
+                    "$ref": "#/$defs/PrincipalArnList"
+                },
+                "HomeRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "AllowedOperations": {
+                    "$ref": "#/$defs/AllowedOperationList"
+                }
+            }
+        },
+        "PrincipalArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "AllowedOperationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AllowedOperation"
+            }
+        },
+        "AllowedOperation": {
+            "enum": [
+                "CREATE_GRANT",
+                "CHECKOUT_LICENSE",
+                "CHECKOUT_BORROW_LICENSE",
+                "CHECK_IN_LICENSE",
+                "EXTEND_CONSUMPTION_LICENSE",
+                "LIST_PURCHASED_LICENSES",
+                "CREATE_TOKEN"
+            ]
+        },
+        "CreateGrantVersionResponse": {
+            "type": "object",
+            "properties": {
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/GrantStatus"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateGrantVersionRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "GrantName": {
+                    "$ref": "#/$defs/String"
+                },
+                "AllowedOperations": {
+                    "$ref": "#/$defs/AllowedOperationList"
+                },
+                "Status": {
+                    "$ref": "#/$defs/GrantStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/StatusReasonMessage"
+                },
+                "SourceVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "Options": {
+                    "$ref": "#/$defs/Options"
+                }
+            }
+        },
+        "StatusReasonMessage": {
+            "type": "string"
+        },
+        "Options": {
+            "type": "object",
+            "properties": {
+                "ActivationOverrideBehavior": {
+                    "$ref": "#/$defs/ActivationOverrideBehavior"
+                }
+            }
+        },
+        "ActivationOverrideBehavior": {
+            "enum": [
+                "DISTRIBUTED_GRANTS_ONLY",
+                "ALL_GRANTS_PERMITTED_BY_ISSUER"
+            ]
+        },
+        "CreateLicenseResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/LicenseStatus"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LicenseStatus": {
+            "enum": [
+                "AVAILABLE",
+                "PENDING_AVAILABLE",
+                "DEACTIVATED",
+                "SUSPENDED",
+                "EXPIRED",
+                "PENDING_DELETE",
+                "DELETED"
+            ]
+        },
+        "CreateLicenseRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductSKU": {
+                    "$ref": "#/$defs/String"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/Issuer"
+                },
+                "HomeRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "Validity": {
+                    "$ref": "#/$defs/DatetimeRange"
+                },
+                "Entitlements": {
+                    "$ref": "#/$defs/EntitlementList"
+                },
+                "Beneficiary": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConsumptionConfiguration": {
+                    "$ref": "#/$defs/ConsumptionConfiguration"
+                },
+                "LicenseMetadata": {
+                    "$ref": "#/$defs/MetadataList"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "Issuer": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "SignKey": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DatetimeRange": {
+            "type": "object",
+            "properties": {
+                "Begin": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                },
+                "End": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                }
+            }
+        },
+        "EntitlementList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Entitlement"
+            }
+        },
+        "Entitlement": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Overage": {
+                    "$ref": "#/$defs/BoxBoolean"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/EntitlementUnit"
+                },
+                "AllowCheckIn": {
+                    "$ref": "#/$defs/BoxBoolean"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "BoxBoolean": {
+            "type": "boolean"
+        },
+        "EntitlementUnit": {
+            "enum": [
+                "COUNT",
+                "NONE",
+                "SECONDS",
+                "MICROSECONDS",
+                "MILLISECONDS",
+                "BYTES",
+                "KILOBYTES",
+                "MEGABYTES",
+                "GIGABYTES",
+                "TERABYTES",
+                "BITS",
+                "KILOBITS",
+                "MEGABITS",
+                "GIGABITS",
+                "TERABITS",
+                "PERCENT",
+                "BYTES_PER_SECOND",
+                "KILOBYTES_PER_SECOND",
+                "MEGABYTES_PER_SECOND",
+                "GIGABYTES_PER_SECOND",
+                "TERABYTES_PER_SECOND",
+                "BITS_PER_SECOND",
+                "KILOBITS_PER_SECOND",
+                "MEGABITS_PER_SECOND",
+                "GIGABITS_PER_SECOND",
+                "TERABITS_PER_SECOND",
+                "COUNT_PER_SECOND"
+            ]
+        },
+        "ConsumptionConfiguration": {
+            "type": "object",
+            "properties": {
+                "RenewType": {
+                    "$ref": "#/$defs/RenewType"
+                },
+                "ProvisionalConfiguration": {
+                    "$ref": "#/$defs/ProvisionalConfiguration"
+                },
+                "BorrowConfiguration": {
+                    "$ref": "#/$defs/BorrowConfiguration"
+                }
+            }
+        },
+        "RenewType": {
+            "enum": [
+                "NONE",
+                "WEEKLY",
+                "MONTHLY"
+            ]
+        },
+        "ProvisionalConfiguration": {
+            "type": "object",
+            "properties": {
+                "MaxTimeToLiveInMinutes": {
+                    "$ref": "#/$defs/BoxInteger"
+                }
+            }
+        },
+        "BoxInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BorrowConfiguration": {
+            "type": "object",
+            "properties": {
+                "AllowEarlyCheckIn": {
+                    "$ref": "#/$defs/BoxBoolean"
+                },
+                "MaxTimeToLiveInMinutes": {
+                    "$ref": "#/$defs/BoxInteger"
+                }
+            }
+        },
+        "CreateLicenseConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateLicenseConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "LicenseCountingType": {
+                    "$ref": "#/$defs/LicenseCountingType"
+                },
+                "LicenseCount": {
+                    "$ref": "#/$defs/BoxLong"
+                },
+                "LicenseCountHardLimit": {
+                    "$ref": "#/$defs/BoxBoolean"
+                },
+                "LicenseRules": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "DisassociateWhenNotFound": {
+                    "$ref": "#/$defs/BoxBoolean"
+                },
+                "ProductInformationList": {
+                    "$ref": "#/$defs/ProductInformationList"
+                }
+            }
+        },
+        "LicenseCountingType": {
+            "enum": [
+                "VCPU",
+                "INSTANCE",
+                "CORE",
+                "SOCKET"
+            ]
+        },
+        "BoxLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ProductInformationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProductInformation"
+            }
+        },
+        "ProductInformation": {
+            "type": "object",
+            "properties": {
+                "ResourceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductInformationFilterList": {
+                    "$ref": "#/$defs/ProductInformationFilterList"
+                }
+            }
+        },
+        "ProductInformationFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProductInformationFilter"
+            }
+        },
+        "ProductInformationFilter": {
+            "type": "object",
+            "properties": {
+                "ProductInformationFilterName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductInformationFilterValue": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "ProductInformationFilterComparator": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateLicenseConversionTaskForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseConversionTaskId": {
+                    "$ref": "#/$defs/LicenseConversionTaskId"
+                }
+            }
+        },
+        "LicenseConversionTaskId": {
+            "type": "string"
+        },
+        "CreateLicenseConversionTaskForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "SourceLicenseContext": {
+                    "$ref": "#/$defs/LicenseConversionContext"
+                },
+                "DestinationLicenseContext": {
+                    "$ref": "#/$defs/LicenseConversionContext"
+                }
+            }
+        },
+        "LicenseConversionContext": {
+            "type": "object",
+            "properties": {
+                "UsageOperation": {
+                    "$ref": "#/$defs/UsageOperation"
+                }
+            }
+        },
+        "UsageOperation": {
+            "type": "string"
+        },
+        "CreateLicenseManagerReportGeneratorResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseManagerReportGeneratorArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateLicenseManagerReportGeneratorRequest": {
+            "type": "object",
+            "properties": {
+                "ReportGeneratorName": {
+                    "$ref": "#/$defs/ReportGeneratorName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ReportTypeList"
+                },
+                "ReportContext": {
+                    "$ref": "#/$defs/ReportContext"
+                },
+                "ReportFrequency": {
+                    "$ref": "#/$defs/ReportFrequency"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ReportGeneratorName": {
+            "type": "string"
+        },
+        "ReportTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReportType"
+            }
+        },
+        "ReportType": {
+            "enum": [
+                "LICENSE_CONFIGURATION_SUMMARY_REPORT",
+                "LICENSE_CONFIGURATION_USAGE_REPORT"
+            ]
+        },
+        "ReportContext": {
+            "type": "object",
+            "properties": {
+                "licenseConfigurationArns": {
+                    "$ref": "#/$defs/ArnList"
+                }
+            }
+        },
+        "ArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "ReportFrequency": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "period": {
+                    "$ref": "#/$defs/ReportFrequencyType"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ReportFrequencyType": {
+            "enum": [
+                "DAY",
+                "WEEK",
+                "MONTH"
+            ]
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "CreateLicenseVersionResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/LicenseStatus"
+                }
+            }
+        },
+        "CreateLicenseVersionRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "LicenseName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/Issuer"
+                },
+                "HomeRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "Validity": {
+                    "$ref": "#/$defs/DatetimeRange"
+                },
+                "LicenseMetadata": {
+                    "$ref": "#/$defs/MetadataList"
+                },
+                "Entitlements": {
+                    "$ref": "#/$defs/EntitlementList"
+                },
+                "ConsumptionConfiguration": {
+                    "$ref": "#/$defs/ConsumptionConfiguration"
+                },
+                "Status": {
+                    "$ref": "#/$defs/LicenseStatus"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "SourceVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateTokenResponse": {
+            "type": "object",
+            "properties": {
+                "TokenId": {
+                    "$ref": "#/$defs/String"
+                },
+                "TokenType": {
+                    "$ref": "#/$defs/TokenType"
+                },
+                "Token": {
+                    "$ref": "#/$defs/TokenString"
+                }
+            }
+        },
+        "TokenType": {
+            "enum": [
+                "REFRESH_TOKEN"
+            ]
+        },
+        "TokenString": {
+            "type": "string"
+        },
+        "CreateTokenRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RoleArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "ExpirationInDays": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "TokenProperties": {
+                    "$ref": "#/$defs/MaxSize3StringList"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "MaxSize3StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "DeleteGrantResponse": {
+            "type": "object",
+            "properties": {
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/GrantStatus"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteGrantRequest": {
+            "type": "object",
+            "properties": {
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/StatusReasonMessage"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteLicenseResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/LicenseDeletionStatus"
+                },
+                "DeletionDate": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                }
+            }
+        },
+        "LicenseDeletionStatus": {
+            "enum": [
+                "PENDING_DELETE",
+                "DELETED"
+            ]
+        },
+        "DeleteLicenseRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "SourceVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteLicenseConfigurationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteLicenseConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteLicenseManagerReportGeneratorResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteLicenseManagerReportGeneratorRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseManagerReportGeneratorArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteTokenResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteTokenRequest": {
+            "type": "object",
+            "properties": {
+                "TokenId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ExtendLicenseConsumptionResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseConsumptionToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "Expiration": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                }
+            }
+        },
+        "ExtendLicenseConsumptionRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseConsumptionToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "GetAccessTokenResponse": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "$ref": "#/$defs/TokenString"
+                }
+            }
+        },
+        "GetAccessTokenRequest": {
+            "type": "object",
+            "properties": {
+                "Token": {
+                    "$ref": "#/$defs/TokenString"
+                },
+                "TokenProperties": {
+                    "$ref": "#/$defs/MaxSize3StringList"
+                }
+            }
+        },
+        "GetGrantResponse": {
+            "type": "object",
+            "properties": {
+                "Grant": {
+                    "$ref": "#/$defs/Grant"
+                }
+            }
+        },
+        "Grant": {
+            "type": "object",
+            "properties": {
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "GrantName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ParentArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "GranteePrincipalArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "HomeRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "GrantStatus": {
+                    "$ref": "#/$defs/GrantStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/StatusReasonMessage"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                },
+                "GrantedOperations": {
+                    "$ref": "#/$defs/AllowedOperationList"
+                },
+                "Options": {
+                    "$ref": "#/$defs/Options"
+                }
+            }
+        },
+        "GetGrantRequest": {
+            "type": "object",
+            "properties": {
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetLicenseResponse": {
+            "type": "object",
+            "properties": {
+                "License": {
+                    "$ref": "#/$defs/License"
+                }
+            }
+        },
+        "License": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "LicenseName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductSKU": {
+                    "$ref": "#/$defs/String"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/IssuerDetails"
+                },
+                "HomeRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/LicenseStatus"
+                },
+                "Validity": {
+                    "$ref": "#/$defs/DatetimeRange"
+                },
+                "Beneficiary": {
+                    "$ref": "#/$defs/String"
+                },
+                "Entitlements": {
+                    "$ref": "#/$defs/EntitlementList"
+                },
+                "ConsumptionConfiguration": {
+                    "$ref": "#/$defs/ConsumptionConfiguration"
+                },
+                "LicenseMetadata": {
+                    "$ref": "#/$defs/MetadataList"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "IssuerDetails": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "SignKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "KeyFingerprint": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetLicenseRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetLicenseConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LicenseConfigurationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "LicenseCountingType": {
+                    "$ref": "#/$defs/LicenseCountingType"
+                },
+                "LicenseRules": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "LicenseCount": {
+                    "$ref": "#/$defs/BoxLong"
+                },
+                "LicenseCountHardLimit": {
+                    "$ref": "#/$defs/BoxBoolean"
+                },
+                "ConsumedLicenses": {
+                    "$ref": "#/$defs/BoxLong"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "OwnerAccountId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConsumedLicenseSummaryList": {
+                    "$ref": "#/$defs/ConsumedLicenseSummaryList"
+                },
+                "ManagedResourceSummaryList": {
+                    "$ref": "#/$defs/ManagedResourceSummaryList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ProductInformationList": {
+                    "$ref": "#/$defs/ProductInformationList"
+                },
+                "AutomatedDiscoveryInformation": {
+                    "$ref": "#/$defs/AutomatedDiscoveryInformation"
+                },
+                "DisassociateWhenNotFound": {
+                    "$ref": "#/$defs/BoxBoolean"
+                }
+            }
+        },
+        "ConsumedLicenseSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConsumedLicenseSummary"
+            }
+        },
+        "ConsumedLicenseSummary": {
+            "type": "object",
+            "properties": {
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ConsumedLicenses": {
+                    "$ref": "#/$defs/BoxLong"
+                }
+            }
+        },
+        "ResourceType": {
+            "enum": [
+                "EC2_INSTANCE",
+                "EC2_HOST",
+                "EC2_AMI",
+                "RDS",
+                "SYSTEMS_MANAGER_MANAGED_INSTANCE"
+            ]
+        },
+        "ManagedResourceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ManagedResourceSummary"
+            }
+        },
+        "ManagedResourceSummary": {
+            "type": "object",
+            "properties": {
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "AssociationCount": {
+                    "$ref": "#/$defs/BoxLong"
+                }
+            }
+        },
+        "AutomatedDiscoveryInformation": {
+            "type": "object",
+            "properties": {
+                "LastRunTime": {
+                    "$ref": "#/$defs/DateTime"
+                }
+            }
+        },
+        "DateTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetLicenseConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetLicenseConversionTaskResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseConversionTaskId": {
+                    "$ref": "#/$defs/LicenseConversionTaskId"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "SourceLicenseContext": {
+                    "$ref": "#/$defs/LicenseConversionContext"
+                },
+                "DestinationLicenseContext": {
+                    "$ref": "#/$defs/LicenseConversionContext"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/LicenseConversionTaskStatus"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "LicenseConversionTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/DateTime"
+                }
+            }
+        },
+        "LicenseConversionTaskStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "SUCCEEDED",
+                "FAILED"
+            ]
+        },
+        "GetLicenseConversionTaskRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseConversionTaskId": {
+                    "$ref": "#/$defs/LicenseConversionTaskId"
+                }
+            }
+        },
+        "GetLicenseManagerReportGeneratorResponse": {
+            "type": "object",
+            "properties": {
+                "ReportGenerator": {
+                    "$ref": "#/$defs/ReportGenerator"
+                }
+            }
+        },
+        "ReportGenerator": {
+            "type": "object",
+            "properties": {
+                "ReportGeneratorName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReportType": {
+                    "$ref": "#/$defs/ReportTypeList"
+                },
+                "ReportContext": {
+                    "$ref": "#/$defs/ReportContext"
+                },
+                "ReportFrequency": {
+                    "$ref": "#/$defs/ReportFrequency"
+                },
+                "LicenseManagerReportGeneratorArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "LastRunStatus": {
+                    "$ref": "#/$defs/String"
+                },
+                "LastRunFailureReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "LastReportGenerationTime": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReportCreatorAccount": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3Location": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "S3Location": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/String"
+                },
+                "keyPrefix": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetLicenseManagerReportGeneratorRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseManagerReportGeneratorArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetLicenseUsageResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseUsage": {
+                    "$ref": "#/$defs/LicenseUsage"
+                }
+            }
+        },
+        "LicenseUsage": {
+            "type": "object",
+            "properties": {
+                "EntitlementUsages": {
+                    "$ref": "#/$defs/EntitlementUsageList"
+                }
+            }
+        },
+        "EntitlementUsageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntitlementUsage"
+            }
+        },
+        "EntitlementUsage": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConsumedValue": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxCount": {
+                    "$ref": "#/$defs/String"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/EntitlementDataUnit"
+                }
+            }
+        },
+        "GetLicenseUsageRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "GetServiceSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "S3BucketArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "SnsTopicArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "OrganizationConfiguration": {
+                    "$ref": "#/$defs/OrganizationConfiguration"
+                },
+                "EnableCrossAccountsDiscovery": {
+                    "$ref": "#/$defs/BoxBoolean"
+                },
+                "LicenseManagerResourceShareArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "OrganizationConfiguration": {
+            "type": "object",
+            "properties": {
+                "EnableIntegration": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "GetServiceSettingsRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "ListAssociationsForLicenseConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationAssociations": {
+                    "$ref": "#/$defs/LicenseConfigurationAssociations"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LicenseConfigurationAssociations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LicenseConfigurationAssociation"
+            }
+        },
+        "LicenseConfigurationAssociation": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceOwnerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AssociationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "AmiAssociationScope": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListAssociationsForLicenseConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListDistributedGrantsResponse": {
+            "type": "object",
+            "properties": {
+                "Grants": {
+                    "$ref": "#/$defs/GrantList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GrantList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Grant"
+            }
+        },
+        "ListDistributedGrantsRequest": {
+            "type": "object",
+            "properties": {
+                "GrantArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/FilterName"
+                },
+                "Values": {
+                    "$ref": "#/$defs/FilterValues"
+                }
+            }
+        },
+        "FilterName": {
+            "type": "string"
+        },
+        "FilterValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterValue"
+            }
+        },
+        "FilterValue": {
+            "type": "string"
+        },
+        "MaxSize100": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListFailuresForLicenseConfigurationOperationsResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseOperationFailureList": {
+                    "$ref": "#/$defs/LicenseOperationFailureList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LicenseOperationFailureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LicenseOperationFailure"
+            }
+        },
+        "LicenseOperationFailure": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "FailureTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "OperationName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceOwnerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "OperationRequestedBy": {
+                    "$ref": "#/$defs/String"
+                },
+                "MetadataList": {
+                    "$ref": "#/$defs/MetadataList"
+                }
+            }
+        },
+        "ListFailuresForLicenseConfigurationOperationsRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListLicenseConfigurationsResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurations": {
+                    "$ref": "#/$defs/LicenseConfigurations"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LicenseConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LicenseConfiguration"
+            }
+        },
+        "LicenseConfiguration": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LicenseConfigurationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "LicenseCountingType": {
+                    "$ref": "#/$defs/LicenseCountingType"
+                },
+                "LicenseRules": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "LicenseCount": {
+                    "$ref": "#/$defs/BoxLong"
+                },
+                "LicenseCountHardLimit": {
+                    "$ref": "#/$defs/BoxBoolean"
+                },
+                "DisassociateWhenNotFound": {
+                    "$ref": "#/$defs/BoxBoolean"
+                },
+                "ConsumedLicenses": {
+                    "$ref": "#/$defs/BoxLong"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "OwnerAccountId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConsumedLicenseSummaryList": {
+                    "$ref": "#/$defs/ConsumedLicenseSummaryList"
+                },
+                "ManagedResourceSummaryList": {
+                    "$ref": "#/$defs/ManagedResourceSummaryList"
+                },
+                "ProductInformationList": {
+                    "$ref": "#/$defs/ProductInformationList"
+                },
+                "AutomatedDiscoveryInformation": {
+                    "$ref": "#/$defs/AutomatedDiscoveryInformation"
+                }
+            }
+        },
+        "ListLicenseConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationArns": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "Filters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "ListLicenseConversionTasksResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseConversionTasks": {
+                    "$ref": "#/$defs/LicenseConversionTasks"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LicenseConversionTasks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LicenseConversionTask"
+            }
+        },
+        "LicenseConversionTask": {
+            "type": "object",
+            "properties": {
+                "LicenseConversionTaskId": {
+                    "$ref": "#/$defs/LicenseConversionTaskId"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "SourceLicenseContext": {
+                    "$ref": "#/$defs/LicenseConversionContext"
+                },
+                "DestinationLicenseContext": {
+                    "$ref": "#/$defs/LicenseConversionContext"
+                },
+                "Status": {
+                    "$ref": "#/$defs/LicenseConversionTaskStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "LicenseConversionTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/DateTime"
+                }
+            }
+        },
+        "ListLicenseConversionTasksRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListLicenseManagerReportGeneratorsResponse": {
+            "type": "object",
+            "properties": {
+                "ReportGenerators": {
+                    "$ref": "#/$defs/ReportGeneratorList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ReportGeneratorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReportGenerator"
+            }
+        },
+        "ListLicenseManagerReportGeneratorsRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "ListLicensesResponse": {
+            "type": "object",
+            "properties": {
+                "Licenses": {
+                    "$ref": "#/$defs/LicenseList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LicenseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/License"
+            }
+        },
+        "ListLicensesRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "ListLicenseSpecificationsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseSpecifications": {
+                    "$ref": "#/$defs/LicenseSpecifications"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LicenseSpecifications": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LicenseSpecification"
+            }
+        },
+        "LicenseSpecification": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "AmiAssociationScope": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListLicenseSpecificationsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListLicenseVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "Licenses": {
+                    "$ref": "#/$defs/LicenseList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListLicenseVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "ListReceivedGrantsResponse": {
+            "type": "object",
+            "properties": {
+                "Grants": {
+                    "$ref": "#/$defs/GrantList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListReceivedGrantsRequest": {
+            "type": "object",
+            "properties": {
+                "GrantArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "ListReceivedGrantsForOrganizationResponse": {
+            "type": "object",
+            "properties": {
+                "Grants": {
+                    "$ref": "#/$defs/GrantList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListReceivedGrantsForOrganizationRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "ListReceivedLicensesResponse": {
+            "type": "object",
+            "properties": {
+                "Licenses": {
+                    "$ref": "#/$defs/GrantedLicenseList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GrantedLicenseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GrantedLicense"
+            }
+        },
+        "GrantedLicense": {
+            "type": "object",
+            "properties": {
+                "LicenseArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "LicenseName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductSKU": {
+                    "$ref": "#/$defs/String"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/IssuerDetails"
+                },
+                "HomeRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/LicenseStatus"
+                },
+                "Validity": {
+                    "$ref": "#/$defs/DatetimeRange"
+                },
+                "Beneficiary": {
+                    "$ref": "#/$defs/String"
+                },
+                "Entitlements": {
+                    "$ref": "#/$defs/EntitlementList"
+                },
+                "ConsumptionConfiguration": {
+                    "$ref": "#/$defs/ConsumptionConfiguration"
+                },
+                "LicenseMetadata": {
+                    "$ref": "#/$defs/MetadataList"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReceivedMetadata": {
+                    "$ref": "#/$defs/ReceivedMetadata"
+                }
+            }
+        },
+        "ReceivedMetadata": {
+            "type": "object",
+            "properties": {
+                "ReceivedStatus": {
+                    "$ref": "#/$defs/ReceivedStatus"
+                },
+                "ReceivedStatusReason": {
+                    "$ref": "#/$defs/StatusReasonMessage"
+                },
+                "AllowedOperations": {
+                    "$ref": "#/$defs/AllowedOperationList"
+                }
+            }
+        },
+        "ReceivedStatus": {
+            "enum": [
+                "PENDING_WORKFLOW",
+                "PENDING_ACCEPT",
+                "REJECTED",
+                "ACTIVE",
+                "FAILED_WORKFLOW",
+                "DELETED",
+                "DISABLED",
+                "WORKFLOW_COMPLETED"
+            ]
+        },
+        "ListReceivedLicensesRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "ListReceivedLicensesForOrganizationResponse": {
+            "type": "object",
+            "properties": {
+                "Licenses": {
+                    "$ref": "#/$defs/GrantedLicenseList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListReceivedLicensesForOrganizationRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "ListResourceInventoryResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceInventoryList": {
+                    "$ref": "#/$defs/ResourceInventoryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ResourceInventoryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceInventory"
+            }
+        },
+        "ResourceInventory": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Platform": {
+                    "$ref": "#/$defs/String"
+                },
+                "PlatformVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceOwningAccountId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListResourceInventoryRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/InventoryFilterList"
+                }
+            }
+        },
+        "InventoryFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InventoryFilter"
+            }
+        },
+        "InventoryFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Condition": {
+                    "$ref": "#/$defs/InventoryFilterCondition"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "InventoryFilterCondition": {
+            "enum": [
+                "EQUALS",
+                "NOT_EQUALS",
+                "BEGINS_WITH",
+                "CONTAINS"
+            ]
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListTokensResponse": {
+            "type": "object",
+            "properties": {
+                "Tokens": {
+                    "$ref": "#/$defs/TokenList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TokenList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TokenData"
+            }
+        },
+        "TokenData": {
+            "type": "object",
+            "properties": {
+                "TokenId": {
+                    "$ref": "#/$defs/String"
+                },
+                "TokenType": {
+                    "$ref": "#/$defs/String"
+                },
+                "LicenseArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ExpirationTime": {
+                    "$ref": "#/$defs/ISO8601DateTime"
+                },
+                "TokenProperties": {
+                    "$ref": "#/$defs/MaxSize3StringList"
+                },
+                "RoleArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListTokensRequest": {
+            "type": "object",
+            "properties": {
+                "TokenIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "ListUsageForLicenseConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationUsageList": {
+                    "$ref": "#/$defs/LicenseConfigurationUsageList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LicenseConfigurationUsageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LicenseConfigurationUsage"
+            }
+        },
+        "LicenseConfigurationUsage": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceStatus": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceOwnerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AssociationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "ConsumedLicenses": {
+                    "$ref": "#/$defs/BoxLong"
+                }
+            }
+        },
+        "ListUsageForLicenseConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "RejectGrantResponse": {
+            "type": "object",
+            "properties": {
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/GrantStatus"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RejectGrantRequest": {
+            "type": "object",
+            "properties": {
+                "GrantArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "UpdateLicenseConfigurationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLicenseConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseConfigurationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "LicenseConfigurationStatus": {
+                    "$ref": "#/$defs/LicenseConfigurationStatus"
+                },
+                "LicenseRules": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "LicenseCount": {
+                    "$ref": "#/$defs/BoxLong"
+                },
+                "LicenseCountHardLimit": {
+                    "$ref": "#/$defs/BoxBoolean"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductInformationList": {
+                    "$ref": "#/$defs/ProductInformationList"
+                },
+                "DisassociateWhenNotFound": {
+                    "$ref": "#/$defs/BoxBoolean"
+                }
+            }
+        },
+        "LicenseConfigurationStatus": {
+            "enum": [
+                "AVAILABLE",
+                "DISABLED"
+            ]
+        },
+        "UpdateLicenseManagerReportGeneratorResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLicenseManagerReportGeneratorRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseManagerReportGeneratorArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReportGeneratorName": {
+                    "$ref": "#/$defs/ReportGeneratorName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ReportTypeList"
+                },
+                "ReportContext": {
+                    "$ref": "#/$defs/ReportContext"
+                },
+                "ReportFrequency": {
+                    "$ref": "#/$defs/ReportFrequency"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateLicenseSpecificationsForResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLicenseSpecificationsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "AddLicenseSpecifications": {
+                    "$ref": "#/$defs/LicenseSpecifications"
+                },
+                "RemoveLicenseSpecifications": {
+                    "$ref": "#/$defs/LicenseSpecifications"
+                }
+            }
+        },
+        "UpdateServiceSettingsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateServiceSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "S3BucketArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "SnsTopicArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "OrganizationConfiguration": {
+                    "$ref": "#/$defs/OrganizationConfiguration"
+                },
+                "EnableCrossAccountsDiscovery": {
+                    "$ref": "#/$defs/BoxBoolean"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://license-manager-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://license-manager-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://license-manager.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://license-manager.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

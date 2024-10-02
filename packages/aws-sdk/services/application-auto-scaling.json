@@ -1,0 +1,1774 @@
+{
+    "name": "application-autoscaling",
+    "commands": [
+        {
+            "name": "DeleteScalingPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteScalingPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteScalingPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteScalingPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteScheduledAction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteScheduledAction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteScheduledActionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteScheduledActionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterScalableTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterScalableTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterScalableTargetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterScalableTargetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeScalableTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeScalableTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeScalableTargetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeScalableTargetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeScalingActivities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeScalingActivities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeScalingActivitiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeScalingActivitiesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeScalingPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeScalingPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeScalingPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeScalingPoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeScheduledActions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeScheduledActions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeScheduledActionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeScheduledActionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutScalingPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutScalingPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutScalingPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutScalingPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutScheduledAction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutScheduledAction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutScheduledActionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutScheduledActionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterScalableTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterScalableTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterScalableTargetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterScalableTargetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DeleteScalingPolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteScalingPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyName": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                }
+            }
+        },
+        "ResourceIdMaxLen1600": {
+            "type": "string"
+        },
+        "ServiceNamespace": {
+            "enum": [
+                "ECS",
+                "EMR",
+                "EC2",
+                "APPSTREAM",
+                "DYNAMODB",
+                "RDS",
+                "SAGEMAKER",
+                "CUSTOM_RESOURCE",
+                "COMPREHEND",
+                "LAMBDA",
+                "CASSANDRA",
+                "KAFKA",
+                "ELASTICACHE",
+                "NEPTUNE",
+                "WORKSPACES"
+            ]
+        },
+        "ScalableDimension": {
+            "enum": [
+                "ECSServiceDesiredCount",
+                "EC2SpotFleetRequestTargetCapacity",
+                "EMRInstanceGroupInstanceCount",
+                "AppstreamFleetDesiredCapacity",
+                "DynamoDBTableReadCapacityUnits",
+                "DynamoDBTableWriteCapacityUnits",
+                "DynamoDBIndexReadCapacityUnits",
+                "DynamoDBIndexWriteCapacityUnits",
+                "RDSClusterReadReplicaCount",
+                "SageMakerVariantDesiredInstanceCount",
+                "CustomResourceScalableDimension",
+                "ComprehendDocClassifierEndpointInferenceUnits",
+                "ComprehendEntityRecognizerEndpointInferenceUnits",
+                "LambdaFunctionProvisionedConcurrency",
+                "CassandraTableReadCapacityUnits",
+                "CassandraTableWriteCapacityUnits",
+                "KafkaBrokerStorageVolumeSize",
+                "ElastiCacheReplicationGroupNodeGroups",
+                "ElastiCacheReplicationGroupReplicas",
+                "NeptuneClusterReadReplicaCount",
+                "SageMakerVariantDesiredProvisionedConcurrency",
+                "SageMakerInferenceComponentDesiredCopyCount",
+                "WorkSpacesWorkSpacesPoolDesiredUserSessions"
+            ]
+        },
+        "DeleteScheduledActionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteScheduledActionRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ScheduledActionName": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                }
+            }
+        },
+        "DeregisterScalableTargetResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeregisterScalableTargetRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                }
+            }
+        },
+        "DescribeScalableTargetsResponse": {
+            "type": "object",
+            "properties": {
+                "ScalableTargets": {
+                    "$ref": "#/$defs/ScalableTargets"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/XmlString"
+                }
+            }
+        },
+        "ScalableTargets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScalableTarget"
+            }
+        },
+        "ScalableTarget": {
+            "type": "object",
+            "properties": {
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "MinCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
+                "MaxCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "SuspendedState": {
+                    "$ref": "#/$defs/SuspendedState"
+                },
+                "ScalableTargetARN": {
+                    "$ref": "#/$defs/XmlString"
+                }
+            }
+        },
+        "ResourceCapacity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TimestampType": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "SuspendedState": {
+            "type": "object",
+            "properties": {
+                "DynamicScalingInSuspended": {
+                    "$ref": "#/$defs/ScalingSuspended"
+                },
+                "DynamicScalingOutSuspended": {
+                    "$ref": "#/$defs/ScalingSuspended"
+                },
+                "ScheduledScalingSuspended": {
+                    "$ref": "#/$defs/ScalingSuspended"
+                }
+            }
+        },
+        "ScalingSuspended": {
+            "type": "boolean"
+        },
+        "XmlString": {
+            "type": "string"
+        },
+        "DescribeScalableTargetsRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceIds": {
+                    "$ref": "#/$defs/ResourceIdsMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/XmlString"
+                }
+            }
+        },
+        "ResourceIdsMaxLen1600": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceIdMaxLen1600"
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeScalingActivitiesResponse": {
+            "type": "object",
+            "properties": {
+                "ScalingActivities": {
+                    "$ref": "#/$defs/ScalingActivities"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/XmlString"
+                }
+            }
+        },
+        "ScalingActivities": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScalingActivity"
+            }
+        },
+        "ScalingActivity": {
+            "type": "object",
+            "properties": {
+                "ActivityId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "Description": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "Cause": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "StatusCode": {
+                    "$ref": "#/$defs/ScalingActivityStatusCode"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "Details": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "NotScaledReasons": {
+                    "$ref": "#/$defs/NotScaledReasons"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "ScalingActivityStatusCode": {
+            "enum": [
+                "Pending",
+                "InProgress",
+                "Successful",
+                "Overridden",
+                "Unfulfilled",
+                "Failed"
+            ]
+        },
+        "NotScaledReasons": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NotScaledReason"
+            }
+        },
+        "NotScaledReason": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "MaxCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
+                "MinCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
+                "CurrentCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                }
+            }
+        },
+        "DescribeScalingActivitiesRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "IncludeNotScaledActivities": {
+                    "$ref": "#/$defs/IncludeNotScaledActivities"
+                }
+            }
+        },
+        "IncludeNotScaledActivities": {
+            "type": "boolean"
+        },
+        "DescribeScalingPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "ScalingPolicies": {
+                    "$ref": "#/$defs/ScalingPolicies"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/XmlString"
+                }
+            }
+        },
+        "ScalingPolicies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScalingPolicy"
+            }
+        },
+        "ScalingPolicy": {
+            "type": "object",
+            "properties": {
+                "PolicyARN": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "PolicyType": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "StepScalingPolicyConfiguration": {
+                    "$ref": "#/$defs/StepScalingPolicyConfiguration"
+                },
+                "TargetTrackingScalingPolicyConfiguration": {
+                    "$ref": "#/$defs/TargetTrackingScalingPolicyConfiguration"
+                },
+                "Alarms": {
+                    "$ref": "#/$defs/Alarms"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/TimestampType"
+                }
+            }
+        },
+        "PolicyName": {
+            "type": "string"
+        },
+        "PolicyType": {
+            "enum": [
+                "StepScaling",
+                "TargetTrackingScaling"
+            ]
+        },
+        "StepScalingPolicyConfiguration": {
+            "type": "object",
+            "properties": {
+                "AdjustmentType": {
+                    "$ref": "#/$defs/AdjustmentType"
+                },
+                "StepAdjustments": {
+                    "$ref": "#/$defs/StepAdjustments"
+                },
+                "MinAdjustmentMagnitude": {
+                    "$ref": "#/$defs/MinAdjustmentMagnitude"
+                },
+                "Cooldown": {
+                    "$ref": "#/$defs/Cooldown"
+                },
+                "MetricAggregationType": {
+                    "$ref": "#/$defs/MetricAggregationType"
+                }
+            }
+        },
+        "AdjustmentType": {
+            "enum": [
+                "ChangeInCapacity",
+                "PercentChangeInCapacity",
+                "ExactCapacity"
+            ]
+        },
+        "StepAdjustments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StepAdjustment"
+            }
+        },
+        "StepAdjustment": {
+            "type": "object",
+            "properties": {
+                "MetricIntervalLowerBound": {
+                    "$ref": "#/$defs/MetricScale"
+                },
+                "MetricIntervalUpperBound": {
+                    "$ref": "#/$defs/MetricScale"
+                },
+                "ScalingAdjustment": {
+                    "$ref": "#/$defs/ScalingAdjustment"
+                }
+            }
+        },
+        "MetricScale": {
+            "type": "number",
+            "format": "double"
+        },
+        "ScalingAdjustment": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MinAdjustmentMagnitude": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Cooldown": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MetricAggregationType": {
+            "enum": [
+                "Average",
+                "Minimum",
+                "Maximum"
+            ]
+        },
+        "TargetTrackingScalingPolicyConfiguration": {
+            "type": "object",
+            "properties": {
+                "TargetValue": {
+                    "$ref": "#/$defs/MetricScale"
+                },
+                "PredefinedMetricSpecification": {
+                    "$ref": "#/$defs/PredefinedMetricSpecification"
+                },
+                "CustomizedMetricSpecification": {
+                    "$ref": "#/$defs/CustomizedMetricSpecification"
+                },
+                "ScaleOutCooldown": {
+                    "$ref": "#/$defs/Cooldown"
+                },
+                "ScaleInCooldown": {
+                    "$ref": "#/$defs/Cooldown"
+                },
+                "DisableScaleIn": {
+                    "$ref": "#/$defs/DisableScaleIn"
+                }
+            }
+        },
+        "PredefinedMetricSpecification": {
+            "type": "object",
+            "properties": {
+                "PredefinedMetricType": {
+                    "$ref": "#/$defs/MetricType"
+                },
+                "ResourceLabel": {
+                    "$ref": "#/$defs/ResourceLabel"
+                }
+            }
+        },
+        "MetricType": {
+            "enum": [
+                "DynamoDBReadCapacityUtilization",
+                "DynamoDBWriteCapacityUtilization",
+                "ALBRequestCountPerTarget",
+                "RDSReaderAverageCPUUtilization",
+                "RDSReaderAverageDatabaseConnections",
+                "EC2SpotFleetRequestAverageCPUUtilization",
+                "EC2SpotFleetRequestAverageNetworkIn",
+                "EC2SpotFleetRequestAverageNetworkOut",
+                "SageMakerVariantInvocationsPerInstance",
+                "ECSServiceAverageCPUUtilization",
+                "ECSServiceAverageMemoryUtilization",
+                "AppStreamAverageCapacityUtilization",
+                "ComprehendInferenceUtilization",
+                "LambdaProvisionedConcurrencyUtilization",
+                "CassandraReadCapacityUtilization",
+                "CassandraWriteCapacityUtilization",
+                "KafkaBrokerStorageUtilization",
+                "ElastiCachePrimaryEngineCPUUtilization",
+                "ElastiCacheReplicaEngineCPUUtilization",
+                "ElastiCacheDatabaseMemoryUsageCountedForEvictPercentage",
+                "NeptuneReaderAverageCPUUtilization",
+                "SageMakerVariantProvisionedConcurrencyUtilization",
+                "ElastiCacheDatabaseCapacityUsageCountedForEvictPercentage",
+                "SageMakerInferenceComponentInvocationsPerCopy",
+                "WorkSpacesAverageUserSessionsCapacityUtilization",
+                "SageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution",
+                "SageMakerVariantConcurrentRequestsPerModelHighResolution"
+            ]
+        },
+        "ResourceLabel": {
+            "type": "string"
+        },
+        "CustomizedMetricSpecification": {
+            "type": "object",
+            "properties": {
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/MetricNamespace"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/MetricDimensions"
+                },
+                "Statistic": {
+                    "$ref": "#/$defs/MetricStatistic"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/MetricUnit"
+                },
+                "Metrics": {
+                    "$ref": "#/$defs/TargetTrackingMetricDataQueries"
+                }
+            }
+        },
+        "MetricName": {
+            "type": "string"
+        },
+        "MetricNamespace": {
+            "type": "string"
+        },
+        "MetricDimensions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricDimension"
+            }
+        },
+        "MetricDimension": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/MetricDimensionName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/MetricDimensionValue"
+                }
+            }
+        },
+        "MetricDimensionName": {
+            "type": "string"
+        },
+        "MetricDimensionValue": {
+            "type": "string"
+        },
+        "MetricStatistic": {
+            "enum": [
+                "Average",
+                "Minimum",
+                "Maximum",
+                "SampleCount",
+                "Sum"
+            ]
+        },
+        "MetricUnit": {
+            "type": "string"
+        },
+        "TargetTrackingMetricDataQueries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetTrackingMetricDataQuery"
+            }
+        },
+        "TargetTrackingMetricDataQuery": {
+            "type": "object",
+            "properties": {
+                "Expression": {
+                    "$ref": "#/$defs/Expression"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Label": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "MetricStat": {
+                    "$ref": "#/$defs/TargetTrackingMetricStat"
+                },
+                "ReturnData": {
+                    "$ref": "#/$defs/ReturnData"
+                }
+            }
+        },
+        "Expression": {
+            "type": "string"
+        },
+        "Id": {
+            "type": "string"
+        },
+        "TargetTrackingMetricStat": {
+            "type": "object",
+            "properties": {
+                "Metric": {
+                    "$ref": "#/$defs/TargetTrackingMetric"
+                },
+                "Stat": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/TargetTrackingMetricUnit"
+                }
+            }
+        },
+        "TargetTrackingMetric": {
+            "type": "object",
+            "properties": {
+                "Dimensions": {
+                    "$ref": "#/$defs/TargetTrackingMetricDimensions"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/TargetTrackingMetricName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/TargetTrackingMetricNamespace"
+                }
+            }
+        },
+        "TargetTrackingMetricDimensions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetTrackingMetricDimension"
+            }
+        },
+        "TargetTrackingMetricDimension": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/TargetTrackingMetricDimensionName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TargetTrackingMetricDimensionValue"
+                }
+            }
+        },
+        "TargetTrackingMetricDimensionName": {
+            "type": "string"
+        },
+        "TargetTrackingMetricDimensionValue": {
+            "type": "string"
+        },
+        "TargetTrackingMetricName": {
+            "type": "string"
+        },
+        "TargetTrackingMetricNamespace": {
+            "type": "string"
+        },
+        "TargetTrackingMetricUnit": {
+            "type": "string"
+        },
+        "ReturnData": {
+            "type": "boolean"
+        },
+        "DisableScaleIn": {
+            "type": "boolean"
+        },
+        "Alarms": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Alarm"
+            }
+        },
+        "Alarm": {
+            "type": "object",
+            "properties": {
+                "AlarmName": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "AlarmARN": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DescribeScalingPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyNames": {
+                    "$ref": "#/$defs/ResourceIdsMaxLen1600"
+                },
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/XmlString"
+                }
+            }
+        },
+        "DescribeScheduledActionsResponse": {
+            "type": "object",
+            "properties": {
+                "ScheduledActions": {
+                    "$ref": "#/$defs/ScheduledActions"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/XmlString"
+                }
+            }
+        },
+        "ScheduledActions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScheduledAction"
+            }
+        },
+        "ScheduledAction": {
+            "type": "object",
+            "properties": {
+                "ScheduledActionName": {
+                    "$ref": "#/$defs/ScheduledActionName"
+                },
+                "ScheduledActionARN": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "Timezone": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "ScalableTargetAction": {
+                    "$ref": "#/$defs/ScalableTargetAction"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/TimestampType"
+                }
+            }
+        },
+        "ScheduledActionName": {
+            "type": "string"
+        },
+        "ScalableTargetAction": {
+            "type": "object",
+            "properties": {
+                "MinCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
+                "MaxCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                }
+            }
+        },
+        "DescribeScheduledActionsRequest": {
+            "type": "object",
+            "properties": {
+                "ScheduledActionNames": {
+                    "$ref": "#/$defs/ResourceIdsMaxLen1600"
+                },
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/XmlString"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "PutScalingPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "PolicyARN": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "Alarms": {
+                    "$ref": "#/$defs/Alarms"
+                }
+            }
+        },
+        "PutScalingPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "PolicyType": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "StepScalingPolicyConfiguration": {
+                    "$ref": "#/$defs/StepScalingPolicyConfiguration"
+                },
+                "TargetTrackingScalingPolicyConfiguration": {
+                    "$ref": "#/$defs/TargetTrackingScalingPolicyConfiguration"
+                }
+            }
+        },
+        "PutScheduledActionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutScheduledActionRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "Timezone": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScheduledActionName": {
+                    "$ref": "#/$defs/ScheduledActionName"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "ScalableTargetAction": {
+                    "$ref": "#/$defs/ScalableTargetAction"
+                }
+            }
+        },
+        "RegisterScalableTargetResponse": {
+            "type": "object",
+            "properties": {
+                "ScalableTargetARN": {
+                    "$ref": "#/$defs/XmlString"
+                }
+            }
+        },
+        "RegisterScalableTargetRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "MinCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
+                "MaxCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "SuspendedState": {
+                    "$ref": "#/$defs/SuspendedState"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://application-autoscaling-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://application-autoscaling.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://application-autoscaling-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://application-autoscaling.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://application-autoscaling.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,1306 @@
+{
+    "name": "iotfleetwise",
+    "commands": [
+        {
+            "name": "BatchCreateVehicle",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchCreateVehicle"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchCreateVehicleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchCreateVehicleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchUpdateVehicle",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchUpdateVehicle"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchUpdateVehicleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchUpdateVehicleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEncryptionConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEncryptionConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEncryptionConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEncryptionConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLoggingOptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLoggingOptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLoggingOptionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLoggingOptionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRegisterAccountStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRegisterAccountStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRegisterAccountStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRegisterAccountStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetVehicleStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetVehicleStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetVehicleStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetVehicleStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutEncryptionConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutEncryptionConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutEncryptionConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutEncryptionConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutLoggingOptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutLoggingOptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutLoggingOptionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutLoggingOptionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchCreateVehicleResponse": {
+            "type": "object",
+            "properties": {
+                "vehicles": {
+                    "$ref": "#/$defs/createVehicleResponses"
+                },
+                "errors": {
+                    "$ref": "#/$defs/createVehicleErrors"
+                }
+            }
+        },
+        "createVehicleResponses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateVehicleResponseItem"
+            }
+        },
+        "CreateVehicleResponseItem": {
+            "type": "object",
+            "properties": {
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                },
+                "arn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "thingArn": {
+                    "$ref": "#/$defs/arn"
+                }
+            }
+        },
+        "vehicleName": {
+            "type": "string"
+        },
+        "arn": {
+            "type": "string"
+        },
+        "createVehicleErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateVehicleError"
+            }
+        },
+        "CreateVehicleError": {
+            "type": "object",
+            "properties": {
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                },
+                "code": {
+                    "$ref": "#/$defs/string"
+                },
+                "message": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "string": {
+            "type": "string"
+        },
+        "BatchCreateVehicleRequest": {
+            "type": "object",
+            "properties": {
+                "vehicles": {
+                    "$ref": "#/$defs/createVehicleRequestItems"
+                }
+            }
+        },
+        "createVehicleRequestItems": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateVehicleRequestItem"
+            }
+        },
+        "CreateVehicleRequestItem": {
+            "type": "object",
+            "properties": {
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                },
+                "modelManifestArn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "decoderManifestArn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/attributesMap"
+                },
+                "associationBehavior": {
+                    "$ref": "#/$defs/VehicleAssociationBehavior"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "attributesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/attributeValue"
+            }
+        },
+        "attributeValue": {
+            "type": "string"
+        },
+        "VehicleAssociationBehavior": {
+            "enum": [
+                "CREATE_IOT_THING",
+                "VALIDATE_IOT_THING_EXISTS"
+            ]
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "BatchUpdateVehicleResponse": {
+            "type": "object",
+            "properties": {
+                "vehicles": {
+                    "$ref": "#/$defs/updateVehicleResponseItems"
+                },
+                "errors": {
+                    "$ref": "#/$defs/updateVehicleErrors"
+                }
+            }
+        },
+        "updateVehicleResponseItems": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UpdateVehicleResponseItem"
+            }
+        },
+        "UpdateVehicleResponseItem": {
+            "type": "object",
+            "properties": {
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                },
+                "arn": {
+                    "$ref": "#/$defs/arn"
+                }
+            }
+        },
+        "updateVehicleErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UpdateVehicleError"
+            }
+        },
+        "UpdateVehicleError": {
+            "type": "object",
+            "properties": {
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                },
+                "code": {
+                    "$ref": "#/$defs/number"
+                },
+                "message": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "number": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BatchUpdateVehicleRequest": {
+            "type": "object",
+            "properties": {
+                "vehicles": {
+                    "$ref": "#/$defs/updateVehicleRequestItems"
+                }
+            }
+        },
+        "updateVehicleRequestItems": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UpdateVehicleRequestItem"
+            }
+        },
+        "UpdateVehicleRequestItem": {
+            "type": "object",
+            "properties": {
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                },
+                "modelManifestArn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "decoderManifestArn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/attributesMap"
+                },
+                "attributeUpdateMode": {
+                    "$ref": "#/$defs/UpdateMode"
+                }
+            }
+        },
+        "UpdateMode": {
+            "enum": [
+                "OVERWRITE",
+                "MERGE"
+            ]
+        },
+        "GetEncryptionConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "kmsKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "encryptionStatus": {
+                    "$ref": "#/$defs/EncryptionStatus"
+                },
+                "encryptionType": {
+                    "$ref": "#/$defs/EncryptionType"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/errorMessage"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "lastModificationTime": {
+                    "$ref": "#/$defs/timestamp"
+                }
+            }
+        },
+        "EncryptionStatus": {
+            "enum": [
+                "PENDING",
+                "SUCCESS",
+                "FAILURE"
+            ]
+        },
+        "EncryptionType": {
+            "enum": [
+                "KMS_BASED_ENCRYPTION",
+                "FLEETWISE_DEFAULT_ENCRYPTION"
+            ]
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetEncryptionConfigurationRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetLoggingOptionsResponse": {
+            "type": "object",
+            "properties": {
+                "cloudWatchLogDelivery": {
+                    "$ref": "#/$defs/CloudWatchLogDeliveryOptions"
+                }
+            }
+        },
+        "CloudWatchLogDeliveryOptions": {
+            "type": "object",
+            "properties": {
+                "logType": {
+                    "$ref": "#/$defs/LogType"
+                },
+                "logGroupName": {
+                    "$ref": "#/$defs/CloudWatchLogGroupName"
+                }
+            }
+        },
+        "LogType": {
+            "enum": [
+                "OFF",
+                "ERROR"
+            ]
+        },
+        "CloudWatchLogGroupName": {
+            "type": "string"
+        },
+        "GetLoggingOptionsRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetRegisterAccountStatusResponse": {
+            "type": "object",
+            "properties": {
+                "customerAccountId": {
+                    "$ref": "#/$defs/customerAccountId"
+                },
+                "accountStatus": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "timestreamRegistrationResponse": {
+                    "$ref": "#/$defs/TimestreamRegistrationResponse"
+                },
+                "iamRegistrationResponse": {
+                    "$ref": "#/$defs/IamRegistrationResponse"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "lastModificationTime": {
+                    "$ref": "#/$defs/timestamp"
+                }
+            }
+        },
+        "customerAccountId": {
+            "type": "string"
+        },
+        "RegistrationStatus": {
+            "enum": [
+                "REGISTRATION_PENDING",
+                "REGISTRATION_SUCCESS",
+                "REGISTRATION_FAILURE"
+            ]
+        },
+        "TimestreamRegistrationResponse": {
+            "type": "object",
+            "properties": {
+                "timestreamDatabaseName": {
+                    "$ref": "#/$defs/TimestreamDatabaseName"
+                },
+                "timestreamTableName": {
+                    "$ref": "#/$defs/TimestreamTableName"
+                },
+                "timestreamDatabaseArn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "timestreamTableArn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "registrationStatus": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/errorMessage"
+                }
+            }
+        },
+        "TimestreamDatabaseName": {
+            "type": "string"
+        },
+        "TimestreamTableName": {
+            "type": "string"
+        },
+        "IamRegistrationResponse": {
+            "type": "object",
+            "properties": {
+                "roleArn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "registrationStatus": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/errorMessage"
+                }
+            }
+        },
+        "GetRegisterAccountStatusRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetVehicleStatusResponse": {
+            "type": "object",
+            "properties": {
+                "campaigns": {
+                    "$ref": "#/$defs/VehicleStatusList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/nextToken"
+                }
+            }
+        },
+        "VehicleStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VehicleStatus"
+            }
+        },
+        "VehicleStatus": {
+            "type": "object",
+            "properties": {
+                "campaignName": {
+                    "$ref": "#/$defs/string"
+                },
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                },
+                "status": {
+                    "$ref": "#/$defs/VehicleState"
+                }
+            }
+        },
+        "VehicleState": {
+            "enum": [
+                "CREATED",
+                "READY",
+                "HEALTHY",
+                "SUSPENDED",
+                "DELETING"
+            ]
+        },
+        "nextToken": {
+            "type": "string"
+        },
+        "GetVehicleStatusRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/nextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/maxResults"
+                },
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                }
+            }
+        },
+        "maxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "PutEncryptionConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "kmsKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "encryptionStatus": {
+                    "$ref": "#/$defs/EncryptionStatus"
+                },
+                "encryptionType": {
+                    "$ref": "#/$defs/EncryptionType"
+                }
+            }
+        },
+        "PutEncryptionConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "kmsKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "encryptionType": {
+                    "$ref": "#/$defs/EncryptionType"
+                }
+            }
+        },
+        "PutLoggingOptionsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutLoggingOptionsRequest": {
+            "type": "object",
+            "properties": {
+                "cloudWatchLogDelivery": {
+                    "$ref": "#/$defs/CloudWatchLogDeliveryOptions"
+                }
+            }
+        },
+        "RegisterAccountResponse": {
+            "type": "object",
+            "properties": {
+                "registerAccountStatus": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
+                "timestreamResources": {
+                    "$ref": "#/$defs/TimestreamResources"
+                },
+                "iamResources": {
+                    "$ref": "#/$defs/IamResources"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "lastModificationTime": {
+                    "$ref": "#/$defs/timestamp"
+                }
+            }
+        },
+        "TimestreamResources": {
+            "type": "object",
+            "properties": {
+                "timestreamDatabaseName": {
+                    "$ref": "#/$defs/TimestreamDatabaseName"
+                },
+                "timestreamTableName": {
+                    "$ref": "#/$defs/TimestreamTableName"
+                }
+            }
+        },
+        "IamResources": {
+            "type": "object",
+            "properties": {
+                "roleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                }
+            }
+        },
+        "IAMRoleArn": {
+            "type": "string"
+        },
+        "RegisterAccountRequest": {
+            "type": "object",
+            "properties": {
+                "timestreamResources": {
+                    "$ref": "#/$defs/TimestreamResources"
+                },
+                "iamResources": {
+                    "$ref": "#/$defs/IamResources"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://iotfleetwise-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://iotfleetwise-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://iotfleetwise.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://iotfleetwise.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

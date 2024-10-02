@@ -1,0 +1,1711 @@
+{
+    "name": "connect-campaigns",
+    "commands": [
+        {
+            "name": "CreateCampaign",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCampaign"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCampaignResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCampaignRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCampaign",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCampaign"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCampaignRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConnectInstanceConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteConnectInstanceConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConnectInstanceConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteInstanceOnboardingJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteInstanceOnboardingJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteInstanceOnboardingJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCampaign",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCampaign"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCampaignResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCampaignRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCampaignState",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCampaignState"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCampaignStateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCampaignStateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCampaignStateBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCampaignStateBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCampaignStateBatchResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCampaignStateBatchRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetConnectInstanceConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetConnectInstanceConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetConnectInstanceConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetConnectInstanceConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetInstanceOnboardingJobStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetInstanceOnboardingJobStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetInstanceOnboardingJobStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetInstanceOnboardingJobStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCampaigns",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCampaigns"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCampaignsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCampaignsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PauseCampaign",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PauseCampaign"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PauseCampaignRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutDialRequestBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutDialRequestBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutDialRequestBatchResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutDialRequestBatchRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ResumeCampaign",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ResumeCampaign"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ResumeCampaignRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartCampaign",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartCampaign"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartCampaignRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartInstanceOnboardingJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartInstanceOnboardingJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartInstanceOnboardingJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartInstanceOnboardingJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopCampaign",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopCampaign"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopCampaignRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCampaignDialerConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateCampaignDialerConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCampaignDialerConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCampaignName",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateCampaignName"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCampaignNameRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCampaignOutboundCallConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateCampaignOutboundCallConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCampaignOutboundCallConfigRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateCampaignResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                },
+                "arn": {
+                    "$ref": "#/$defs/CampaignArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "CampaignId": {
+            "type": "string"
+        },
+        "CampaignArn": {
+            "type": "string"
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateCampaignRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/CampaignName"
+                },
+                "connectInstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "dialerConfig": {
+                    "$ref": "#/$defs/DialerConfig"
+                },
+                "outboundCallConfig": {
+                    "$ref": "#/$defs/OutboundCallConfig"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "CampaignName": {
+            "type": "string"
+        },
+        "InstanceId": {
+            "type": "string"
+        },
+        "DialerConfig": {
+            "type": "object",
+            "properties": {
+                "progressiveDialerConfig": {
+                    "$ref": "#/$defs/ProgressiveDialerConfig"
+                },
+                "predictiveDialerConfig": {
+                    "$ref": "#/$defs/PredictiveDialerConfig"
+                },
+                "agentlessDialerConfig": {
+                    "$ref": "#/$defs/AgentlessDialerConfig"
+                }
+            }
+        },
+        "ProgressiveDialerConfig": {
+            "type": "object",
+            "properties": {
+                "bandwidthAllocation": {
+                    "$ref": "#/$defs/BandwidthAllocation"
+                },
+                "dialingCapacity": {
+                    "$ref": "#/$defs/DialingCapacity"
+                }
+            }
+        },
+        "BandwidthAllocation": {
+            "type": "number",
+            "format": "double"
+        },
+        "DialingCapacity": {
+            "type": "number",
+            "format": "double"
+        },
+        "PredictiveDialerConfig": {
+            "type": "object",
+            "properties": {
+                "bandwidthAllocation": {
+                    "$ref": "#/$defs/BandwidthAllocation"
+                },
+                "dialingCapacity": {
+                    "$ref": "#/$defs/DialingCapacity"
+                }
+            }
+        },
+        "AgentlessDialerConfig": {
+            "type": "object",
+            "properties": {
+                "dialingCapacity": {
+                    "$ref": "#/$defs/DialingCapacity"
+                }
+            }
+        },
+        "OutboundCallConfig": {
+            "type": "object",
+            "properties": {
+                "connectContactFlowId": {
+                    "$ref": "#/$defs/ContactFlowId"
+                },
+                "connectSourcePhoneNumber": {
+                    "$ref": "#/$defs/SourcePhoneNumber"
+                },
+                "connectQueueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "answerMachineDetectionConfig": {
+                    "$ref": "#/$defs/AnswerMachineDetectionConfig"
+                }
+            }
+        },
+        "ContactFlowId": {
+            "type": "string"
+        },
+        "SourcePhoneNumber": {
+            "type": "string"
+        },
+        "QueueId": {
+            "type": "string"
+        },
+        "AnswerMachineDetectionConfig": {
+            "type": "object",
+            "properties": {
+                "enableAnswerMachineDetection": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "awaitAnswerMachinePrompt": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "DeleteCampaignRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                }
+            }
+        },
+        "DeleteConnectInstanceConfigRequest": {
+            "type": "object",
+            "properties": {
+                "connectInstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                }
+            }
+        },
+        "DeleteInstanceOnboardingJobRequest": {
+            "type": "object",
+            "properties": {
+                "connectInstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                }
+            }
+        },
+        "DescribeCampaignResponse": {
+            "type": "object",
+            "properties": {
+                "campaign": {
+                    "$ref": "#/$defs/Campaign"
+                }
+            }
+        },
+        "Campaign": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                },
+                "arn": {
+                    "$ref": "#/$defs/CampaignArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/CampaignName"
+                },
+                "connectInstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "dialerConfig": {
+                    "$ref": "#/$defs/DialerConfig"
+                },
+                "outboundCallConfig": {
+                    "$ref": "#/$defs/OutboundCallConfig"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "DescribeCampaignRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                }
+            }
+        },
+        "GetCampaignStateResponse": {
+            "type": "object",
+            "properties": {
+                "state": {
+                    "$ref": "#/$defs/CampaignState"
+                }
+            }
+        },
+        "CampaignState": {
+            "type": "string"
+        },
+        "GetCampaignStateRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                }
+            }
+        },
+        "GetCampaignStateBatchResponse": {
+            "type": "object",
+            "properties": {
+                "successfulRequests": {
+                    "$ref": "#/$defs/SuccessfulCampaignStateResponseList"
+                },
+                "failedRequests": {
+                    "$ref": "#/$defs/FailedCampaignStateResponseList"
+                }
+            }
+        },
+        "SuccessfulCampaignStateResponseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SuccessfulCampaignStateResponse"
+            }
+        },
+        "SuccessfulCampaignStateResponse": {
+            "type": "object",
+            "properties": {
+                "campaignId": {
+                    "$ref": "#/$defs/CampaignId"
+                },
+                "state": {
+                    "$ref": "#/$defs/CampaignState"
+                }
+            }
+        },
+        "FailedCampaignStateResponseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FailedCampaignStateResponse"
+            }
+        },
+        "FailedCampaignStateResponse": {
+            "type": "object",
+            "properties": {
+                "campaignId": {
+                    "$ref": "#/$defs/CampaignId"
+                },
+                "failureCode": {
+                    "$ref": "#/$defs/GetCampaignStateBatchFailureCode"
+                }
+            }
+        },
+        "GetCampaignStateBatchFailureCode": {
+            "type": "string"
+        },
+        "GetCampaignStateBatchRequest": {
+            "type": "object",
+            "properties": {
+                "campaignIds": {
+                    "$ref": "#/$defs/CampaignIdList"
+                }
+            }
+        },
+        "CampaignIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CampaignId"
+            }
+        },
+        "GetConnectInstanceConfigResponse": {
+            "type": "object",
+            "properties": {
+                "connectInstanceConfig": {
+                    "$ref": "#/$defs/InstanceConfig"
+                }
+            }
+        },
+        "InstanceConfig": {
+            "type": "object",
+            "properties": {
+                "connectInstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "serviceLinkedRoleArn": {
+                    "$ref": "#/$defs/ServiceLinkedRoleArn"
+                },
+                "encryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                }
+            }
+        },
+        "ServiceLinkedRoleArn": {
+            "type": "string"
+        },
+        "EncryptionConfig": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/Enabled"
+                },
+                "encryptionType": {
+                    "$ref": "#/$defs/EncryptionType"
+                },
+                "keyArn": {
+                    "$ref": "#/$defs/EncryptionKey"
+                }
+            }
+        },
+        "Enabled": {
+            "type": "boolean"
+        },
+        "EncryptionType": {
+            "type": "string"
+        },
+        "EncryptionKey": {
+            "type": "string"
+        },
+        "GetConnectInstanceConfigRequest": {
+            "type": "object",
+            "properties": {
+                "connectInstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                }
+            }
+        },
+        "GetInstanceOnboardingJobStatusResponse": {
+            "type": "object",
+            "properties": {
+                "connectInstanceOnboardingJobStatus": {
+                    "$ref": "#/$defs/InstanceOnboardingJobStatus"
+                }
+            }
+        },
+        "InstanceOnboardingJobStatus": {
+            "type": "object",
+            "properties": {
+                "connectInstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "status": {
+                    "$ref": "#/$defs/InstanceOnboardingJobStatusCode"
+                },
+                "failureCode": {
+                    "$ref": "#/$defs/InstanceOnboardingJobFailureCode"
+                }
+            }
+        },
+        "InstanceOnboardingJobStatusCode": {
+            "type": "string"
+        },
+        "InstanceOnboardingJobFailureCode": {
+            "type": "string"
+        },
+        "GetInstanceOnboardingJobStatusRequest": {
+            "type": "object",
+            "properties": {
+                "connectInstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                }
+            }
+        },
+        "ListCampaignsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "campaignSummaryList": {
+                    "$ref": "#/$defs/CampaignSummaryList"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "CampaignSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CampaignSummary"
+            }
+        },
+        "CampaignSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                },
+                "arn": {
+                    "$ref": "#/$defs/CampaignArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/CampaignName"
+                },
+                "connectInstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                }
+            }
+        },
+        "ListCampaignsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "filters": {
+                    "$ref": "#/$defs/CampaignFilters"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CampaignFilters": {
+            "type": "object",
+            "properties": {
+                "instanceIdFilter": {
+                    "$ref": "#/$defs/InstanceIdFilter"
+                }
+            }
+        },
+        "InstanceIdFilter": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "operator": {
+                    "$ref": "#/$defs/InstanceIdFilterOperator"
+                }
+            }
+        },
+        "InstanceIdFilterOperator": {
+            "type": "string"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "PauseCampaignRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                }
+            }
+        },
+        "PutDialRequestBatchResponse": {
+            "type": "object",
+            "properties": {
+                "successfulRequests": {
+                    "$ref": "#/$defs/SuccessfulRequestList"
+                },
+                "failedRequests": {
+                    "$ref": "#/$defs/FailedRequestList"
+                }
+            }
+        },
+        "SuccessfulRequestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SuccessfulRequest"
+            }
+        },
+        "SuccessfulRequest": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "id": {
+                    "$ref": "#/$defs/DialRequestId"
+                }
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "DialRequestId": {
+            "type": "string"
+        },
+        "FailedRequestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FailedRequest"
+            }
+        },
+        "FailedRequest": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "id": {
+                    "$ref": "#/$defs/DialRequestId"
+                },
+                "failureCode": {
+                    "$ref": "#/$defs/FailureCode"
+                }
+            }
+        },
+        "FailureCode": {
+            "type": "string"
+        },
+        "PutDialRequestBatchRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                },
+                "dialRequests": {
+                    "$ref": "#/$defs/DialRequestList"
+                }
+            }
+        },
+        "DialRequestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DialRequest"
+            }
+        },
+        "DialRequest": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "phoneNumber": {
+                    "$ref": "#/$defs/DestinationPhoneNumber"
+                },
+                "expirationTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
+            }
+        },
+        "DestinationPhoneNumber": {
+            "type": "string"
+        },
+        "TimeStamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Attributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AttributeValue"
+            }
+        },
+        "AttributeValue": {
+            "type": "string"
+        },
+        "ResumeCampaignRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                }
+            }
+        },
+        "StartCampaignRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                }
+            }
+        },
+        "StartInstanceOnboardingJobResponse": {
+            "type": "object",
+            "properties": {
+                "connectInstanceOnboardingJobStatus": {
+                    "$ref": "#/$defs/InstanceOnboardingJobStatus"
+                }
+            }
+        },
+        "StartInstanceOnboardingJobRequest": {
+            "type": "object",
+            "properties": {
+                "connectInstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "encryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                }
+            }
+        },
+        "StopCampaignRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateCampaignDialerConfigRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                },
+                "dialerConfig": {
+                    "$ref": "#/$defs/DialerConfig"
+                }
+            }
+        },
+        "UpdateCampaignNameRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                },
+                "name": {
+                    "$ref": "#/$defs/CampaignName"
+                }
+            }
+        },
+        "UpdateCampaignOutboundCallConfigRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CampaignId"
+                },
+                "connectContactFlowId": {
+                    "$ref": "#/$defs/ContactFlowId"
+                },
+                "connectSourcePhoneNumber": {
+                    "$ref": "#/$defs/SourcePhoneNumber"
+                },
+                "answerMachineDetectionConfig": {
+                    "$ref": "#/$defs/AnswerMachineDetectionConfig"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://connect-campaigns-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://connect-campaigns-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://connect-campaigns.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://connect-campaigns.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

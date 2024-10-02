@@ -1,0 +1,4235 @@
+{
+    "name": "lex",
+    "commands": [
+        {
+            "name": "CreateBotVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateBotVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateBotVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateBotVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateIntentVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateIntentVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateIntentVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateIntentVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateSlotTypeVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateSlotTypeVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSlotTypeVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSlotTypeVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteBot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBotRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBotAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteBotAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBotAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBotChannelAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteBotChannelAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBotChannelAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBotVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteBotVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBotVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteIntent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteIntent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIntentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteIntentVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteIntentVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIntentVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSlotType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSlotType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSlotTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSlotTypeVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSlotTypeVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSlotTypeVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteUtterances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteUtterances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteUtterancesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBotResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBotRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBotAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBotAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBotAliasResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBotAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBotAliases",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBotAliases"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBotAliasesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBotAliasesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBotChannelAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBotChannelAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBotChannelAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBotChannelAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBotChannelAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBotChannelAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBotChannelAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBotChannelAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBots",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBots"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBotsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBotsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBotVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBotVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBotVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBotVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBuiltinIntent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBuiltinIntent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBuiltinIntentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBuiltinIntentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBuiltinIntents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBuiltinIntents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBuiltinIntentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBuiltinIntentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBuiltinSlotTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetBuiltinSlotTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBuiltinSlotTypesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBuiltinSlotTypesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetImport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetImport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetImportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetImportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetIntent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetIntent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIntentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIntentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetIntents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetIntents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIntentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIntentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetIntentVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetIntentVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIntentVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIntentVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMigration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMigration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMigrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMigrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMigrations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMigrations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMigrationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMigrationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSlotType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSlotType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSlotTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSlotTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSlotTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSlotTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSlotTypesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSlotTypesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSlotTypeVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSlotTypeVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSlotTypeVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSlotTypeVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetUtterancesView",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetUtterancesView"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetUtterancesViewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetUtterancesViewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutBot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutBot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutBotResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutBotRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutBotAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutBotAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutBotAliasResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutBotAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutIntent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutIntent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutIntentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutIntentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutSlotType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutSlotType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutSlotTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutSlotTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartImport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartImport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartImportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartImportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartMigration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartMigration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartMigrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartMigrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateBotVersionResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "intents": {
+                    "$ref": "#/$defs/IntentList"
+                },
+                "clarificationPrompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "abortStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "idleSessionTTLInSeconds": {
+                    "$ref": "#/$defs/SessionTTL"
+                },
+                "voiceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "childDirected": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "enableModelImprovements": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "detectSentiment": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "BotName": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "IntentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Intent"
+            }
+        },
+        "Intent": {
+            "type": "object",
+            "properties": {
+                "intentName": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "intentVersion": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "IntentName": {
+            "type": "string"
+        },
+        "Version": {
+            "type": "string"
+        },
+        "Prompt": {
+            "type": "object",
+            "properties": {
+                "messages": {
+                    "$ref": "#/$defs/MessageList"
+                },
+                "maxAttempts": {
+                    "$ref": "#/$defs/PromptMaxAttempts"
+                },
+                "responseCard": {
+                    "$ref": "#/$defs/ResponseCard"
+                }
+            }
+        },
+        "MessageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Message"
+            }
+        },
+        "Message": {
+            "type": "object",
+            "properties": {
+                "contentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "content": {
+                    "$ref": "#/$defs/ContentString"
+                },
+                "groupNumber": {
+                    "$ref": "#/$defs/GroupNumber"
+                }
+            }
+        },
+        "ContentType": {
+            "enum": [
+                "PLAIN_TEXT",
+                "SSML",
+                "CUSTOM_PAYLOAD"
+            ]
+        },
+        "ContentString": {
+            "type": "string"
+        },
+        "GroupNumber": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PromptMaxAttempts": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ResponseCard": {
+            "type": "string"
+        },
+        "Statement": {
+            "type": "object",
+            "properties": {
+                "messages": {
+                    "$ref": "#/$defs/MessageList"
+                },
+                "responseCard": {
+                    "$ref": "#/$defs/ResponseCard"
+                }
+            }
+        },
+        "Status": {
+            "enum": [
+                "BUILDING",
+                "READY",
+                "READY_BASIC_TESTING",
+                "FAILED",
+                "NOT_BUILT"
+            ]
+        },
+        "String": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "SessionTTL": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Locale": {
+            "enum": [
+                "DE_DE",
+                "EN_AU",
+                "EN_GB",
+                "EN_IN",
+                "EN_US",
+                "ES_419",
+                "ES_ES",
+                "ES_US",
+                "FR_FR",
+                "FR_CA",
+                "IT_IT",
+                "JA_JP",
+                "KO_KR"
+            ]
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "CreateBotVersionRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateIntentVersionResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "slots": {
+                    "$ref": "#/$defs/SlotList"
+                },
+                "sampleUtterances": {
+                    "$ref": "#/$defs/IntentUtteranceList"
+                },
+                "confirmationPrompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "rejectionStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "followUpPrompt": {
+                    "$ref": "#/$defs/FollowUpPrompt"
+                },
+                "conclusionStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "dialogCodeHook": {
+                    "$ref": "#/$defs/CodeHook"
+                },
+                "fulfillmentActivity": {
+                    "$ref": "#/$defs/FulfillmentActivity"
+                },
+                "parentIntentSignature": {
+                    "$ref": "#/$defs/BuiltinIntentSignature"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "kendraConfiguration": {
+                    "$ref": "#/$defs/KendraConfiguration"
+                },
+                "inputContexts": {
+                    "$ref": "#/$defs/InputContextList"
+                },
+                "outputContexts": {
+                    "$ref": "#/$defs/OutputContextList"
+                }
+            }
+        },
+        "SlotList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Slot"
+            }
+        },
+        "Slot": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "slotConstraint": {
+                    "$ref": "#/$defs/SlotConstraint"
+                },
+                "slotType": {
+                    "$ref": "#/$defs/CustomOrBuiltinSlotTypeName"
+                },
+                "slotTypeVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "valueElicitationPrompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "priority": {
+                    "$ref": "#/$defs/Priority"
+                },
+                "sampleUtterances": {
+                    "$ref": "#/$defs/SlotUtteranceList"
+                },
+                "responseCard": {
+                    "$ref": "#/$defs/ResponseCard"
+                },
+                "obfuscationSetting": {
+                    "$ref": "#/$defs/ObfuscationSetting"
+                },
+                "defaultValueSpec": {
+                    "$ref": "#/$defs/SlotDefaultValueSpec"
+                }
+            }
+        },
+        "SlotName": {
+            "type": "string"
+        },
+        "SlotConstraint": {
+            "enum": [
+                "REQUIRED",
+                "OPTIONAL"
+            ]
+        },
+        "CustomOrBuiltinSlotTypeName": {
+            "type": "string"
+        },
+        "Priority": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SlotUtteranceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Utterance"
+            }
+        },
+        "Utterance": {
+            "type": "string"
+        },
+        "ObfuscationSetting": {
+            "enum": [
+                "NONE",
+                "DEFAULT_OBFUSCATION"
+            ]
+        },
+        "SlotDefaultValueSpec": {
+            "type": "object",
+            "properties": {
+                "defaultValueList": {
+                    "$ref": "#/$defs/SlotDefaultValueList"
+                }
+            }
+        },
+        "SlotDefaultValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SlotDefaultValue"
+            }
+        },
+        "SlotDefaultValue": {
+            "type": "object",
+            "properties": {
+                "defaultValue": {
+                    "$ref": "#/$defs/SlotDefaultValueString"
+                }
+            }
+        },
+        "SlotDefaultValueString": {
+            "type": "string"
+        },
+        "IntentUtteranceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Utterance"
+            }
+        },
+        "FollowUpPrompt": {
+            "type": "object",
+            "properties": {
+                "prompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "rejectionStatement": {
+                    "$ref": "#/$defs/Statement"
+                }
+            }
+        },
+        "CodeHook": {
+            "type": "object",
+            "properties": {
+                "uri": {
+                    "$ref": "#/$defs/LambdaARN"
+                },
+                "messageVersion": {
+                    "$ref": "#/$defs/MessageVersion"
+                }
+            }
+        },
+        "LambdaARN": {
+            "type": "string"
+        },
+        "MessageVersion": {
+            "type": "string"
+        },
+        "FulfillmentActivity": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/FulfillmentActivityType"
+                },
+                "codeHook": {
+                    "$ref": "#/$defs/CodeHook"
+                }
+            }
+        },
+        "FulfillmentActivityType": {
+            "enum": [
+                "RETURN_INTENT",
+                "CODE_HOOK"
+            ]
+        },
+        "BuiltinIntentSignature": {
+            "type": "string"
+        },
+        "KendraConfiguration": {
+            "type": "object",
+            "properties": {
+                "kendraIndex": {
+                    "$ref": "#/$defs/KendraIndexArn"
+                },
+                "queryFilterString": {
+                    "$ref": "#/$defs/QueryFilterString"
+                },
+                "role": {
+                    "$ref": "#/$defs/roleArn"
+                }
+            }
+        },
+        "KendraIndexArn": {
+            "type": "string"
+        },
+        "QueryFilterString": {
+            "type": "string"
+        },
+        "roleArn": {
+            "type": "string"
+        },
+        "InputContextList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InputContext"
+            }
+        },
+        "InputContext": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/InputContextName"
+                }
+            }
+        },
+        "InputContextName": {
+            "type": "string"
+        },
+        "OutputContextList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OutputContext"
+            }
+        },
+        "OutputContext": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/OutputContextName"
+                },
+                "timeToLiveInSeconds": {
+                    "$ref": "#/$defs/ContextTimeToLiveInSeconds"
+                },
+                "turnsToLive": {
+                    "$ref": "#/$defs/ContextTurnsToLive"
+                }
+            }
+        },
+        "OutputContextName": {
+            "type": "string"
+        },
+        "ContextTimeToLiveInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ContextTurnsToLive": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CreateIntentVersionRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateSlotTypeVersionResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotTypeName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "enumerationValues": {
+                    "$ref": "#/$defs/EnumerationValues"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "valueSelectionStrategy": {
+                    "$ref": "#/$defs/SlotValueSelectionStrategy"
+                },
+                "parentSlotTypeSignature": {
+                    "$ref": "#/$defs/CustomOrBuiltinSlotTypeName"
+                },
+                "slotTypeConfigurations": {
+                    "$ref": "#/$defs/SlotTypeConfigurations"
+                }
+            }
+        },
+        "SlotTypeName": {
+            "type": "string"
+        },
+        "EnumerationValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnumerationValue"
+            }
+        },
+        "EnumerationValue": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/Value"
+                },
+                "synonyms": {
+                    "$ref": "#/$defs/SynonymList"
+                }
+            }
+        },
+        "Value": {
+            "type": "string"
+        },
+        "SynonymList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "SlotValueSelectionStrategy": {
+            "enum": [
+                "ORIGINAL_VALUE",
+                "TOP_RESOLUTION"
+            ]
+        },
+        "SlotTypeConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SlotTypeConfiguration"
+            }
+        },
+        "SlotTypeConfiguration": {
+            "type": "object",
+            "properties": {
+                "regexConfiguration": {
+                    "$ref": "#/$defs/SlotTypeRegexConfiguration"
+                }
+            }
+        },
+        "SlotTypeRegexConfiguration": {
+            "type": "object",
+            "properties": {
+                "pattern": {
+                    "$ref": "#/$defs/RegexPattern"
+                }
+            }
+        },
+        "RegexPattern": {
+            "type": "string"
+        },
+        "CreateSlotTypeVersionRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotTypeName"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteBotRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotName"
+                }
+            }
+        },
+        "DeleteBotAliasRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AliasName"
+                },
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                }
+            }
+        },
+        "AliasName": {
+            "type": "string"
+        },
+        "DeleteBotChannelAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotChannelName"
+                },
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/AliasName"
+                }
+            }
+        },
+        "BotChannelName": {
+            "type": "string"
+        },
+        "DeleteBotVersionRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "version": {
+                    "$ref": "#/$defs/NumericalVersion"
+                }
+            }
+        },
+        "NumericalVersion": {
+            "type": "string"
+        },
+        "DeleteIntentRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IntentName"
+                }
+            }
+        },
+        "DeleteIntentVersionRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "version": {
+                    "$ref": "#/$defs/NumericalVersion"
+                }
+            }
+        },
+        "DeleteSlotTypeRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotTypeName"
+                }
+            }
+        },
+        "DeleteSlotTypeVersionRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotTypeName"
+                },
+                "version": {
+                    "$ref": "#/$defs/NumericalVersion"
+                }
+            }
+        },
+        "DeleteUtterancesRequest": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                }
+            }
+        },
+        "UserId": {
+            "type": "string"
+        },
+        "GetBotResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "intents": {
+                    "$ref": "#/$defs/IntentList"
+                },
+                "enableModelImprovements": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "nluIntentConfidenceThreshold": {
+                    "$ref": "#/$defs/ConfidenceThreshold"
+                },
+                "clarificationPrompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "abortStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "idleSessionTTLInSeconds": {
+                    "$ref": "#/$defs/SessionTTL"
+                },
+                "voiceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "childDirected": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "detectSentiment": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ConfidenceThreshold": {
+            "type": "number",
+            "format": "double"
+        },
+        "GetBotRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "versionOrAlias": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetBotAliasResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AliasName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "botVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "conversationLogs": {
+                    "$ref": "#/$defs/ConversationLogsResponse"
+                }
+            }
+        },
+        "ConversationLogsResponse": {
+            "type": "object",
+            "properties": {
+                "logSettings": {
+                    "$ref": "#/$defs/LogSettingsResponseList"
+                },
+                "iamRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                }
+            }
+        },
+        "LogSettingsResponseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogSettingsResponse"
+            }
+        },
+        "LogSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "logType": {
+                    "$ref": "#/$defs/LogType"
+                },
+                "destination": {
+                    "$ref": "#/$defs/Destination"
+                },
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "resourcePrefix": {
+                    "$ref": "#/$defs/ResourcePrefix"
+                }
+            }
+        },
+        "LogType": {
+            "enum": [
+                "AUDIO",
+                "TEXT"
+            ]
+        },
+        "Destination": {
+            "enum": [
+                "CLOUDWATCH_LOGS",
+                "S3"
+            ]
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "ResourcePrefix": {
+            "type": "string"
+        },
+        "IamRoleArn": {
+            "type": "string"
+        },
+        "GetBotAliasRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AliasName"
+                },
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                }
+            }
+        },
+        "GetBotAliasesResponse": {
+            "type": "object",
+            "properties": {
+                "BotAliases": {
+                    "$ref": "#/$defs/BotAliasMetadataList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "BotAliasMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BotAliasMetadata"
+            }
+        },
+        "BotAliasMetadata": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AliasName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "botVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "conversationLogs": {
+                    "$ref": "#/$defs/ConversationLogsResponse"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "GetBotAliasesRequest": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nameContains": {
+                    "$ref": "#/$defs/AliasName"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetBotChannelAssociationResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotChannelName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/AliasName"
+                },
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "type": {
+                    "$ref": "#/$defs/ChannelType"
+                },
+                "botConfiguration": {
+                    "$ref": "#/$defs/ChannelConfigurationMap"
+                },
+                "status": {
+                    "$ref": "#/$defs/ChannelStatus"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ChannelType": {
+            "enum": [
+                "FACEBOOK",
+                "SLACK",
+                "TWILIO_SMS",
+                "KIK"
+            ]
+        },
+        "ChannelConfigurationMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ChannelStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "CREATED",
+                "FAILED"
+            ]
+        },
+        "GetBotChannelAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotChannelName"
+                },
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/AliasName"
+                }
+            }
+        },
+        "GetBotChannelAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "botChannelAssociations": {
+                    "$ref": "#/$defs/BotChannelAssociationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "BotChannelAssociationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BotChannelAssociation"
+            }
+        },
+        "BotChannelAssociation": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotChannelName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/AliasName"
+                },
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "type": {
+                    "$ref": "#/$defs/ChannelType"
+                },
+                "botConfiguration": {
+                    "$ref": "#/$defs/ChannelConfigurationMap"
+                },
+                "status": {
+                    "$ref": "#/$defs/ChannelStatus"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetBotChannelAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/AliasNameOrListAll"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nameContains": {
+                    "$ref": "#/$defs/BotChannelName"
+                }
+            }
+        },
+        "AliasNameOrListAll": {
+            "type": "string"
+        },
+        "GetBotsResponse": {
+            "type": "object",
+            "properties": {
+                "bots": {
+                    "$ref": "#/$defs/BotMetadataList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "BotMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BotMetadata"
+            }
+        },
+        "BotMetadata": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "GetBotsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nameContains": {
+                    "$ref": "#/$defs/BotName"
+                }
+            }
+        },
+        "GetBotVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "bots": {
+                    "$ref": "#/$defs/BotMetadataList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "GetBotVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "GetBuiltinIntentResponse": {
+            "type": "object",
+            "properties": {
+                "signature": {
+                    "$ref": "#/$defs/BuiltinIntentSignature"
+                },
+                "supportedLocales": {
+                    "$ref": "#/$defs/LocaleList"
+                },
+                "slots": {
+                    "$ref": "#/$defs/BuiltinIntentSlotList"
+                }
+            }
+        },
+        "LocaleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Locale"
+            }
+        },
+        "BuiltinIntentSlotList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BuiltinIntentSlot"
+            }
+        },
+        "BuiltinIntentSlot": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetBuiltinIntentRequest": {
+            "type": "object",
+            "properties": {
+                "signature": {
+                    "$ref": "#/$defs/BuiltinIntentSignature"
+                }
+            }
+        },
+        "GetBuiltinIntentsResponse": {
+            "type": "object",
+            "properties": {
+                "intents": {
+                    "$ref": "#/$defs/BuiltinIntentMetadataList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "BuiltinIntentMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BuiltinIntentMetadata"
+            }
+        },
+        "BuiltinIntentMetadata": {
+            "type": "object",
+            "properties": {
+                "signature": {
+                    "$ref": "#/$defs/BuiltinIntentSignature"
+                },
+                "supportedLocales": {
+                    "$ref": "#/$defs/LocaleList"
+                }
+            }
+        },
+        "GetBuiltinIntentsRequest": {
+            "type": "object",
+            "properties": {
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "signatureContains": {
+                    "$ref": "#/$defs/String"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "GetBuiltinSlotTypesResponse": {
+            "type": "object",
+            "properties": {
+                "slotTypes": {
+                    "$ref": "#/$defs/BuiltinSlotTypeMetadataList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "BuiltinSlotTypeMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BuiltinSlotTypeMetadata"
+            }
+        },
+        "BuiltinSlotTypeMetadata": {
+            "type": "object",
+            "properties": {
+                "signature": {
+                    "$ref": "#/$defs/BuiltinSlotTypeSignature"
+                },
+                "supportedLocales": {
+                    "$ref": "#/$defs/LocaleList"
+                }
+            }
+        },
+        "BuiltinSlotTypeSignature": {
+            "type": "string"
+        },
+        "GetBuiltinSlotTypesRequest": {
+            "type": "object",
+            "properties": {
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "signatureContains": {
+                    "$ref": "#/$defs/String"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "GetExportResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "version": {
+                    "$ref": "#/$defs/NumericalVersion"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "exportType": {
+                    "$ref": "#/$defs/ExportType"
+                },
+                "exportStatus": {
+                    "$ref": "#/$defs/ExportStatus"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "url": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Name": {
+            "type": "string"
+        },
+        "ResourceType": {
+            "enum": [
+                "BOT",
+                "INTENT",
+                "SLOT_TYPE"
+            ]
+        },
+        "ExportType": {
+            "enum": [
+                "ALEXA_SKILLS_KIT",
+                "LEX"
+            ]
+        },
+        "ExportStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "READY",
+                "FAILED"
+            ]
+        },
+        "GetExportRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "version": {
+                    "$ref": "#/$defs/NumericalVersion"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "exportType": {
+                    "$ref": "#/$defs/ExportType"
+                }
+            }
+        },
+        "GetImportResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "mergeStrategy": {
+                    "$ref": "#/$defs/MergeStrategy"
+                },
+                "importId": {
+                    "$ref": "#/$defs/String"
+                },
+                "importStatus": {
+                    "$ref": "#/$defs/ImportStatus"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "MergeStrategy": {
+            "enum": [
+                "OVERWRITE_LATEST",
+                "FAIL_ON_CONFLICT"
+            ]
+        },
+        "ImportStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETE",
+                "FAILED"
+            ]
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "GetImportRequest": {
+            "type": "object",
+            "properties": {
+                "importId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetIntentResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "slots": {
+                    "$ref": "#/$defs/SlotList"
+                },
+                "sampleUtterances": {
+                    "$ref": "#/$defs/IntentUtteranceList"
+                },
+                "confirmationPrompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "rejectionStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "followUpPrompt": {
+                    "$ref": "#/$defs/FollowUpPrompt"
+                },
+                "conclusionStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "dialogCodeHook": {
+                    "$ref": "#/$defs/CodeHook"
+                },
+                "fulfillmentActivity": {
+                    "$ref": "#/$defs/FulfillmentActivity"
+                },
+                "parentIntentSignature": {
+                    "$ref": "#/$defs/BuiltinIntentSignature"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "kendraConfiguration": {
+                    "$ref": "#/$defs/KendraConfiguration"
+                },
+                "inputContexts": {
+                    "$ref": "#/$defs/InputContextList"
+                },
+                "outputContexts": {
+                    "$ref": "#/$defs/OutputContextList"
+                }
+            }
+        },
+        "GetIntentRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "GetIntentsResponse": {
+            "type": "object",
+            "properties": {
+                "intents": {
+                    "$ref": "#/$defs/IntentMetadataList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "IntentMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IntentMetadata"
+            }
+        },
+        "IntentMetadata": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "GetIntentsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nameContains": {
+                    "$ref": "#/$defs/IntentName"
+                }
+            }
+        },
+        "GetIntentVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "intents": {
+                    "$ref": "#/$defs/IntentMetadataList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "GetIntentVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "GetMigrationResponse": {
+            "type": "object",
+            "properties": {
+                "migrationId": {
+                    "$ref": "#/$defs/MigrationId"
+                },
+                "v1BotName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "v1BotVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "v1BotLocale": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "v2BotId": {
+                    "$ref": "#/$defs/V2BotId"
+                },
+                "v2BotRole": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "migrationStatus": {
+                    "$ref": "#/$defs/MigrationStatus"
+                },
+                "migrationStrategy": {
+                    "$ref": "#/$defs/MigrationStrategy"
+                },
+                "migrationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "alerts": {
+                    "$ref": "#/$defs/MigrationAlerts"
+                }
+            }
+        },
+        "MigrationId": {
+            "type": "string"
+        },
+        "V2BotId": {
+            "type": "string"
+        },
+        "MigrationStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETED",
+                "FAILED"
+            ]
+        },
+        "MigrationStrategy": {
+            "enum": [
+                "CREATE_NEW",
+                "UPDATE_EXISTING"
+            ]
+        },
+        "MigrationAlerts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MigrationAlert"
+            }
+        },
+        "MigrationAlert": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/MigrationAlertType"
+                },
+                "message": {
+                    "$ref": "#/$defs/MigrationAlertMessage"
+                },
+                "details": {
+                    "$ref": "#/$defs/MigrationAlertDetails"
+                },
+                "referenceURLs": {
+                    "$ref": "#/$defs/MigrationAlertReferenceURLs"
+                }
+            }
+        },
+        "MigrationAlertType": {
+            "enum": [
+                "ERROR",
+                "WARN"
+            ]
+        },
+        "MigrationAlertMessage": {
+            "type": "string"
+        },
+        "MigrationAlertDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MigrationAlertDetail"
+            }
+        },
+        "MigrationAlertDetail": {
+            "type": "string"
+        },
+        "MigrationAlertReferenceURLs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MigrationAlertReferenceURL"
+            }
+        },
+        "MigrationAlertReferenceURL": {
+            "type": "string"
+        },
+        "GetMigrationRequest": {
+            "type": "object",
+            "properties": {
+                "migrationId": {
+                    "$ref": "#/$defs/MigrationId"
+                }
+            }
+        },
+        "GetMigrationsResponse": {
+            "type": "object",
+            "properties": {
+                "migrationSummaries": {
+                    "$ref": "#/$defs/MigrationSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MigrationSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MigrationSummary"
+            }
+        },
+        "MigrationSummary": {
+            "type": "object",
+            "properties": {
+                "migrationId": {
+                    "$ref": "#/$defs/MigrationId"
+                },
+                "v1BotName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "v1BotVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "v1BotLocale": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "v2BotId": {
+                    "$ref": "#/$defs/V2BotId"
+                },
+                "v2BotRole": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "migrationStatus": {
+                    "$ref": "#/$defs/MigrationStatus"
+                },
+                "migrationStrategy": {
+                    "$ref": "#/$defs/MigrationStrategy"
+                },
+                "migrationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "GetMigrationsRequest": {
+            "type": "object",
+            "properties": {
+                "sortByAttribute": {
+                    "$ref": "#/$defs/MigrationSortAttribute"
+                },
+                "sortByOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "v1BotNameContains": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "migrationStatusEquals": {
+                    "$ref": "#/$defs/MigrationStatus"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MigrationSortAttribute": {
+            "enum": [
+                "V1_BOT_NAME",
+                "MIGRATION_DATE_TIME"
+            ]
+        },
+        "SortOrder": {
+            "enum": [
+                "ASCENDING",
+                "DESCENDING"
+            ]
+        },
+        "GetSlotTypeResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotTypeName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "enumerationValues": {
+                    "$ref": "#/$defs/EnumerationValues"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "valueSelectionStrategy": {
+                    "$ref": "#/$defs/SlotValueSelectionStrategy"
+                },
+                "parentSlotTypeSignature": {
+                    "$ref": "#/$defs/CustomOrBuiltinSlotTypeName"
+                },
+                "slotTypeConfigurations": {
+                    "$ref": "#/$defs/SlotTypeConfigurations"
+                }
+            }
+        },
+        "GetSlotTypeRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotTypeName"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "GetSlotTypesResponse": {
+            "type": "object",
+            "properties": {
+                "slotTypes": {
+                    "$ref": "#/$defs/SlotTypeMetadataList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SlotTypeMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SlotTypeMetadata"
+            }
+        },
+        "SlotTypeMetadata": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotTypeName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "GetSlotTypesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nameContains": {
+                    "$ref": "#/$defs/SlotTypeName"
+                }
+            }
+        },
+        "GetSlotTypeVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "slotTypes": {
+                    "$ref": "#/$defs/SlotTypeMetadataList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "GetSlotTypeVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotTypeName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "GetUtterancesViewResponse": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "utterances": {
+                    "$ref": "#/$defs/ListsOfUtterances"
+                }
+            }
+        },
+        "ListsOfUtterances": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UtteranceList"
+            }
+        },
+        "UtteranceList": {
+            "type": "object",
+            "properties": {
+                "botVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "utterances": {
+                    "$ref": "#/$defs/ListOfUtterance"
+                }
+            }
+        },
+        "ListOfUtterance": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UtteranceData"
+            }
+        },
+        "UtteranceData": {
+            "type": "object",
+            "properties": {
+                "utteranceString": {
+                    "$ref": "#/$defs/UtteranceString"
+                },
+                "count": {
+                    "$ref": "#/$defs/Count"
+                },
+                "distinctUsers": {
+                    "$ref": "#/$defs/Count"
+                },
+                "firstUtteredDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUtteredDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UtteranceString": {
+            "type": "string"
+        },
+        "Count": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetUtterancesViewRequest": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botVersions": {
+                    "$ref": "#/$defs/BotVersions"
+                },
+                "statusType": {
+                    "$ref": "#/$defs/StatusType"
+                }
+            }
+        },
+        "BotVersions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Version"
+            }
+        },
+        "StatusType": {
+            "enum": [
+                "DETECTED",
+                "MISSED"
+            ]
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "PutBotResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "intents": {
+                    "$ref": "#/$defs/IntentList"
+                },
+                "enableModelImprovements": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "nluIntentConfidenceThreshold": {
+                    "$ref": "#/$defs/ConfidenceThreshold"
+                },
+                "clarificationPrompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "abortStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "idleSessionTTLInSeconds": {
+                    "$ref": "#/$defs/SessionTTL"
+                },
+                "voiceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "childDirected": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "createVersion": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "detectSentiment": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PutBotRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "intents": {
+                    "$ref": "#/$defs/IntentList"
+                },
+                "enableModelImprovements": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "nluIntentConfidenceThreshold": {
+                    "$ref": "#/$defs/ConfidenceThreshold"
+                },
+                "clarificationPrompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "abortStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "idleSessionTTLInSeconds": {
+                    "$ref": "#/$defs/SessionTTL"
+                },
+                "voiceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "processBehavior": {
+                    "$ref": "#/$defs/ProcessBehavior"
+                },
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "childDirected": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "detectSentiment": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "createVersion": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ProcessBehavior": {
+            "enum": [
+                "SAVE",
+                "BUILD"
+            ]
+        },
+        "PutBotAliasResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AliasName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "botVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "conversationLogs": {
+                    "$ref": "#/$defs/ConversationLogsResponse"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PutBotAliasRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AliasName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "botVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "conversationLogs": {
+                    "$ref": "#/$defs/ConversationLogsRequest"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ConversationLogsRequest": {
+            "type": "object",
+            "properties": {
+                "logSettings": {
+                    "$ref": "#/$defs/LogSettingsRequestList"
+                },
+                "iamRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                }
+            }
+        },
+        "LogSettingsRequestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogSettingsRequest"
+            }
+        },
+        "LogSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "logType": {
+                    "$ref": "#/$defs/LogType"
+                },
+                "destination": {
+                    "$ref": "#/$defs/Destination"
+                },
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "PutIntentResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "slots": {
+                    "$ref": "#/$defs/SlotList"
+                },
+                "sampleUtterances": {
+                    "$ref": "#/$defs/IntentUtteranceList"
+                },
+                "confirmationPrompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "rejectionStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "followUpPrompt": {
+                    "$ref": "#/$defs/FollowUpPrompt"
+                },
+                "conclusionStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "dialogCodeHook": {
+                    "$ref": "#/$defs/CodeHook"
+                },
+                "fulfillmentActivity": {
+                    "$ref": "#/$defs/FulfillmentActivity"
+                },
+                "parentIntentSignature": {
+                    "$ref": "#/$defs/BuiltinIntentSignature"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "createVersion": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "kendraConfiguration": {
+                    "$ref": "#/$defs/KendraConfiguration"
+                },
+                "inputContexts": {
+                    "$ref": "#/$defs/InputContextList"
+                },
+                "outputContexts": {
+                    "$ref": "#/$defs/OutputContextList"
+                }
+            }
+        },
+        "PutIntentRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "slots": {
+                    "$ref": "#/$defs/SlotList"
+                },
+                "sampleUtterances": {
+                    "$ref": "#/$defs/IntentUtteranceList"
+                },
+                "confirmationPrompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "rejectionStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "followUpPrompt": {
+                    "$ref": "#/$defs/FollowUpPrompt"
+                },
+                "conclusionStatement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "dialogCodeHook": {
+                    "$ref": "#/$defs/CodeHook"
+                },
+                "fulfillmentActivity": {
+                    "$ref": "#/$defs/FulfillmentActivity"
+                },
+                "parentIntentSignature": {
+                    "$ref": "#/$defs/BuiltinIntentSignature"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "createVersion": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "kendraConfiguration": {
+                    "$ref": "#/$defs/KendraConfiguration"
+                },
+                "inputContexts": {
+                    "$ref": "#/$defs/InputContextList"
+                },
+                "outputContexts": {
+                    "$ref": "#/$defs/OutputContextList"
+                }
+            }
+        },
+        "PutSlotTypeResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotTypeName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "enumerationValues": {
+                    "$ref": "#/$defs/EnumerationValues"
+                },
+                "lastUpdatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "valueSelectionStrategy": {
+                    "$ref": "#/$defs/SlotValueSelectionStrategy"
+                },
+                "createVersion": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "parentSlotTypeSignature": {
+                    "$ref": "#/$defs/CustomOrBuiltinSlotTypeName"
+                },
+                "slotTypeConfigurations": {
+                    "$ref": "#/$defs/SlotTypeConfigurations"
+                }
+            }
+        },
+        "PutSlotTypeRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SlotTypeName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "enumerationValues": {
+                    "$ref": "#/$defs/EnumerationValues"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "valueSelectionStrategy": {
+                    "$ref": "#/$defs/SlotValueSelectionStrategy"
+                },
+                "createVersion": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "parentSlotTypeSignature": {
+                    "$ref": "#/$defs/CustomOrBuiltinSlotTypeName"
+                },
+                "slotTypeConfigurations": {
+                    "$ref": "#/$defs/SlotTypeConfigurations"
+                }
+            }
+        },
+        "StartImportResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "mergeStrategy": {
+                    "$ref": "#/$defs/MergeStrategy"
+                },
+                "importId": {
+                    "$ref": "#/$defs/String"
+                },
+                "importStatus": {
+                    "$ref": "#/$defs/ImportStatus"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "createdDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "StartImportRequest": {
+            "type": "object",
+            "properties": {
+                "payload": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "mergeStrategy": {
+                    "$ref": "#/$defs/MergeStrategy"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "StartMigrationResponse": {
+            "type": "object",
+            "properties": {
+                "v1BotName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "v1BotVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "v1BotLocale": {
+                    "$ref": "#/$defs/Locale"
+                },
+                "v2BotId": {
+                    "$ref": "#/$defs/V2BotId"
+                },
+                "v2BotRole": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "migrationId": {
+                    "$ref": "#/$defs/MigrationId"
+                },
+                "migrationStrategy": {
+                    "$ref": "#/$defs/MigrationStrategy"
+                },
+                "migrationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "StartMigrationRequest": {
+            "type": "object",
+            "properties": {
+                "v1BotName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "v1BotVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "v2BotName": {
+                    "$ref": "#/$defs/V2BotName"
+                },
+                "v2BotRole": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "migrationStrategy": {
+                    "$ref": "#/$defs/MigrationStrategy"
+                }
+            }
+        },
+        "V2BotName": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://models.lex-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://models-fips.lex.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://models-fips.lex.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://models.lex-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://models.lex.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://models.lex.{Region}.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws-us-gov",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://models.lex.{Region}.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://models.lex.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,1488 @@
+{
+    "name": "mediastore",
+    "commands": [
+        {
+            "name": "CreateContainer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateContainer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateContainerOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateContainerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteContainer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteContainer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteContainerOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteContainerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteContainerPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteContainerPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteContainerPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteContainerPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCorsPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCorsPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCorsPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCorsPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLifecyclePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLifecyclePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLifecyclePolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLifecyclePolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMetricPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMetricPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteMetricPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMetricPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeContainer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeContainer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeContainerOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeContainerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetContainerPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetContainerPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetContainerPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetContainerPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCorsPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCorsPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCorsPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCorsPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLifecyclePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLifecyclePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLifecyclePolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLifecyclePolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMetricPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMetricPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMetricPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMetricPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListContainers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListContainers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListContainersOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListContainersInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutContainerPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutContainerPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutContainerPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutContainerPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutCorsPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutCorsPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutCorsPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutCorsPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutLifecyclePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutLifecyclePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutLifecyclePolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutLifecyclePolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutMetricPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutMetricPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutMetricPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutMetricPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartAccessLogging",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartAccessLogging"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartAccessLoggingOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartAccessLoggingInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopAccessLogging",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopAccessLogging"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopAccessLoggingOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopAccessLoggingInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateContainerOutput": {
+            "type": "object",
+            "properties": {
+                "Container": {
+                    "$ref": "#/$defs/Container"
+                }
+            }
+        },
+        "Container": {
+            "type": "object",
+            "properties": {
+                "Endpoint": {
+                    "$ref": "#/$defs/Endpoint"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "ARN": {
+                    "$ref": "#/$defs/ContainerARN"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ContainerName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ContainerStatus"
+                },
+                "AccessLoggingEnabled": {
+                    "$ref": "#/$defs/ContainerAccessLoggingEnabled"
+                }
+            }
+        },
+        "Endpoint": {
+            "type": "string"
+        },
+        "TimeStamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ContainerARN": {
+            "type": "string"
+        },
+        "ContainerName": {
+            "type": "string"
+        },
+        "ContainerStatus": {
+            "enum": [
+                "ACTIVE",
+                "CREATING",
+                "DELETING"
+            ]
+        },
+        "ContainerAccessLoggingEnabled": {
+            "type": "boolean"
+        },
+        "CreateContainerInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "DeleteContainerOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteContainerInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "DeleteContainerPolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteContainerPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "DeleteCorsPolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteCorsPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "DeleteLifecyclePolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteLifecyclePolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "DeleteMetricPolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteMetricPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "DescribeContainerOutput": {
+            "type": "object",
+            "properties": {
+                "Container": {
+                    "$ref": "#/$defs/Container"
+                }
+            }
+        },
+        "DescribeContainerInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "GetContainerPolicyOutput": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/ContainerPolicy"
+                }
+            }
+        },
+        "ContainerPolicy": {
+            "type": "string"
+        },
+        "GetContainerPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "GetCorsPolicyOutput": {
+            "type": "object",
+            "properties": {
+                "CorsPolicy": {
+                    "$ref": "#/$defs/CorsPolicy"
+                }
+            }
+        },
+        "CorsPolicy": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CorsRule"
+            }
+        },
+        "CorsRule": {
+            "type": "object",
+            "properties": {
+                "AllowedOrigins": {
+                    "$ref": "#/$defs/AllowedOrigins"
+                },
+                "AllowedMethods": {
+                    "$ref": "#/$defs/AllowedMethods"
+                },
+                "AllowedHeaders": {
+                    "$ref": "#/$defs/AllowedHeaders"
+                },
+                "MaxAgeSeconds": {
+                    "$ref": "#/$defs/MaxAgeSeconds"
+                },
+                "ExposeHeaders": {
+                    "$ref": "#/$defs/ExposeHeaders"
+                }
+            }
+        },
+        "AllowedOrigins": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Origin"
+            }
+        },
+        "Origin": {
+            "type": "string"
+        },
+        "AllowedMethods": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MethodName"
+            }
+        },
+        "MethodName": {
+            "enum": [
+                "PUT",
+                "GET",
+                "DELETE",
+                "HEAD"
+            ]
+        },
+        "AllowedHeaders": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Header"
+            }
+        },
+        "Header": {
+            "type": "string"
+        },
+        "MaxAgeSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ExposeHeaders": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Header"
+            }
+        },
+        "GetCorsPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "GetLifecyclePolicyOutput": {
+            "type": "object",
+            "properties": {
+                "LifecyclePolicy": {
+                    "$ref": "#/$defs/LifecyclePolicy"
+                }
+            }
+        },
+        "LifecyclePolicy": {
+            "type": "string"
+        },
+        "GetLifecyclePolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "GetMetricPolicyOutput": {
+            "type": "object",
+            "properties": {
+                "MetricPolicy": {
+                    "$ref": "#/$defs/MetricPolicy"
+                }
+            }
+        },
+        "MetricPolicy": {
+            "type": "object",
+            "properties": {
+                "ContainerLevelMetrics": {
+                    "$ref": "#/$defs/ContainerLevelMetrics"
+                },
+                "MetricPolicyRules": {
+                    "$ref": "#/$defs/MetricPolicyRules"
+                }
+            }
+        },
+        "ContainerLevelMetrics": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "MetricPolicyRules": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricPolicyRule"
+            }
+        },
+        "MetricPolicyRule": {
+            "type": "object",
+            "properties": {
+                "ObjectGroup": {
+                    "$ref": "#/$defs/ObjectGroup"
+                },
+                "ObjectGroupName": {
+                    "$ref": "#/$defs/ObjectGroupName"
+                }
+            }
+        },
+        "ObjectGroup": {
+            "type": "string"
+        },
+        "ObjectGroupName": {
+            "type": "string"
+        },
+        "GetMetricPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "ListContainersOutput": {
+            "type": "object",
+            "properties": {
+                "Containers": {
+                    "$ref": "#/$defs/ContainerList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ContainerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Container"
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "ListContainersInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ContainerListLimit"
+                }
+            }
+        },
+        "ContainerListLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceOutput": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/ContainerARN"
+                }
+            }
+        },
+        "PutContainerPolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutContainerPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/ContainerPolicy"
+                }
+            }
+        },
+        "PutCorsPolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutCorsPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                },
+                "CorsPolicy": {
+                    "$ref": "#/$defs/CorsPolicy"
+                }
+            }
+        },
+        "PutLifecyclePolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutLifecyclePolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                },
+                "LifecyclePolicy": {
+                    "$ref": "#/$defs/LifecyclePolicy"
+                }
+            }
+        },
+        "PutMetricPolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutMetricPolicyInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                },
+                "MetricPolicy": {
+                    "$ref": "#/$defs/MetricPolicy"
+                }
+            }
+        },
+        "StartAccessLoggingOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartAccessLoggingInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "StopAccessLoggingOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopAccessLoggingInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/ContainerName"
+                }
+            }
+        },
+        "TagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/ContainerARN"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/ContainerARN"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mediastore-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mediastore-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://mediastore.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://mediastore.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

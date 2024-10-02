@@ -1,0 +1,1238 @@
+{
+    "name": "lex",
+    "commands": [
+        {
+            "name": "DeleteSession",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSession"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSessionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSessionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSession",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSession"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSessionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSessionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PostContent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PostContent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PostContentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PostContentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PostText",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PostText"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PostTextResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PostTextRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutSession",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutSession"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutSessionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutSessionRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DeleteSessionResponse": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/BotAlias"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BotName": {
+            "type": "string"
+        },
+        "BotAlias": {
+            "type": "string"
+        },
+        "UserId": {
+            "type": "string"
+        },
+        "String": {
+            "type": "string"
+        },
+        "DeleteSessionRequest": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/BotAlias"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                }
+            }
+        },
+        "GetSessionResponse": {
+            "type": "object",
+            "properties": {
+                "recentIntentSummaryView": {
+                    "$ref": "#/$defs/IntentSummaryList"
+                },
+                "sessionAttributes": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "dialogAction": {
+                    "$ref": "#/$defs/DialogAction"
+                },
+                "activeContexts": {
+                    "$ref": "#/$defs/ActiveContextsList"
+                }
+            }
+        },
+        "IntentSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IntentSummary"
+            }
+        },
+        "IntentSummary": {
+            "type": "object",
+            "properties": {
+                "intentName": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "checkpointLabel": {
+                    "$ref": "#/$defs/IntentSummaryCheckpointLabel"
+                },
+                "slots": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "confirmationStatus": {
+                    "$ref": "#/$defs/ConfirmationStatus"
+                },
+                "dialogActionType": {
+                    "$ref": "#/$defs/DialogActionType"
+                },
+                "fulfillmentState": {
+                    "$ref": "#/$defs/FulfillmentState"
+                },
+                "slotToElicit": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "IntentName": {
+            "type": "string"
+        },
+        "IntentSummaryCheckpointLabel": {
+            "type": "string"
+        },
+        "StringMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ConfirmationStatus": {
+            "enum": [
+                "NONE",
+                "CONFIRMED",
+                "DENIED"
+            ]
+        },
+        "DialogActionType": {
+            "enum": [
+                "ELICIT_INTENT",
+                "CONFIRM_INTENT",
+                "ELICIT_SLOT",
+                "CLOSE",
+                "DELEGATE"
+            ]
+        },
+        "FulfillmentState": {
+            "enum": [
+                "FULFILLED",
+                "FAILED",
+                "READY_FOR_FULFILLMENT"
+            ]
+        },
+        "DialogAction": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/DialogActionType"
+                },
+                "intentName": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "slots": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "slotToElicit": {
+                    "$ref": "#/$defs/String"
+                },
+                "fulfillmentState": {
+                    "$ref": "#/$defs/FulfillmentState"
+                },
+                "message": {
+                    "$ref": "#/$defs/Text"
+                },
+                "messageFormat": {
+                    "$ref": "#/$defs/MessageFormatType"
+                }
+            }
+        },
+        "Text": {
+            "type": "string"
+        },
+        "MessageFormatType": {
+            "enum": [
+                "PLAIN_TEXT",
+                "CUSTOM_PAYLOAD",
+                "SSML",
+                "COMPOSITE"
+            ]
+        },
+        "ActiveContextsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActiveContext"
+            }
+        },
+        "ActiveContext": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ActiveContextName"
+                },
+                "timeToLive": {
+                    "$ref": "#/$defs/ActiveContextTimeToLive"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/ActiveContextParametersMap"
+                }
+            }
+        },
+        "ActiveContextName": {
+            "type": "string"
+        },
+        "ActiveContextTimeToLive": {
+            "type": "object",
+            "properties": {
+                "timeToLiveInSeconds": {
+                    "$ref": "#/$defs/ActiveContextTimeToLiveInSeconds"
+                },
+                "turnsToLive": {
+                    "$ref": "#/$defs/ActiveContextTurnsToLive"
+                }
+            }
+        },
+        "ActiveContextTimeToLiveInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ActiveContextTurnsToLive": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ActiveContextParametersMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Text"
+            }
+        },
+        "GetSessionRequest": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/BotAlias"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "checkpointLabelFilter": {
+                    "$ref": "#/$defs/IntentSummaryCheckpointLabel"
+                }
+            }
+        },
+        "PostContentResponse": {
+            "type": "object",
+            "properties": {
+                "contentType": {
+                    "$ref": "#/$defs/HttpContentType"
+                },
+                "intentName": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "nluIntentConfidence": {
+                    "$ref": "#/$defs/SynthesizedJsonString"
+                },
+                "alternativeIntents": {
+                    "$ref": "#/$defs/SynthesizedJsonString"
+                },
+                "slots": {
+                    "$ref": "#/$defs/SynthesizedJsonString"
+                },
+                "sessionAttributes": {
+                    "$ref": "#/$defs/SynthesizedJsonString"
+                },
+                "sentimentResponse": {
+                    "$ref": "#/$defs/String"
+                },
+                "message": {
+                    "$ref": "#/$defs/Text"
+                },
+                "encodedMessage": {
+                    "$ref": "#/$defs/SensitiveString"
+                },
+                "messageFormat": {
+                    "$ref": "#/$defs/MessageFormatType"
+                },
+                "dialogState": {
+                    "$ref": "#/$defs/DialogState"
+                },
+                "slotToElicit": {
+                    "$ref": "#/$defs/String"
+                },
+                "inputTranscript": {
+                    "$ref": "#/$defs/String"
+                },
+                "encodedInputTranscript": {
+                    "$ref": "#/$defs/SensitiveStringUnbounded"
+                },
+                "audioStream": {
+                    "$ref": "#/$defs/BlobStream"
+                },
+                "botVersion": {
+                    "$ref": "#/$defs/BotVersion"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "activeContexts": {
+                    "$ref": "#/$defs/SynthesizedJsonActiveContextsString"
+                }
+            }
+        },
+        "HttpContentType": {
+            "type": "string"
+        },
+        "SynthesizedJsonString": {
+            "type": "string"
+        },
+        "SensitiveString": {
+            "type": "string"
+        },
+        "DialogState": {
+            "enum": [
+                "ELICIT_INTENT",
+                "CONFIRM_INTENT",
+                "ELICIT_SLOT",
+                "FULFILLED",
+                "READY_FOR_FULFILLMENT",
+                "FAILED"
+            ]
+        },
+        "SensitiveStringUnbounded": {
+            "type": "string"
+        },
+        "BlobStream": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BotVersion": {
+            "type": "string"
+        },
+        "SynthesizedJsonActiveContextsString": {
+            "type": "string"
+        },
+        "PostContentRequest": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/BotAlias"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "sessionAttributes": {
+                    "$ref": "#/$defs/SynthesizedJsonAttributesString"
+                },
+                "requestAttributes": {
+                    "$ref": "#/$defs/SynthesizedJsonAttributesString"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/HttpContentType"
+                },
+                "accept": {
+                    "$ref": "#/$defs/Accept"
+                },
+                "inputStream": {
+                    "$ref": "#/$defs/BlobStream"
+                },
+                "activeContexts": {
+                    "$ref": "#/$defs/SynthesizedJsonActiveContextsString"
+                }
+            }
+        },
+        "SynthesizedJsonAttributesString": {
+            "type": "string"
+        },
+        "Accept": {
+            "type": "string"
+        },
+        "PostTextResponse": {
+            "type": "object",
+            "properties": {
+                "intentName": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "nluIntentConfidence": {
+                    "$ref": "#/$defs/IntentConfidence"
+                },
+                "alternativeIntents": {
+                    "$ref": "#/$defs/IntentList"
+                },
+                "slots": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "sessionAttributes": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "message": {
+                    "$ref": "#/$defs/Text"
+                },
+                "sentimentResponse": {
+                    "$ref": "#/$defs/SentimentResponse"
+                },
+                "messageFormat": {
+                    "$ref": "#/$defs/MessageFormatType"
+                },
+                "dialogState": {
+                    "$ref": "#/$defs/DialogState"
+                },
+                "slotToElicit": {
+                    "$ref": "#/$defs/String"
+                },
+                "responseCard": {
+                    "$ref": "#/$defs/ResponseCard"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "botVersion": {
+                    "$ref": "#/$defs/BotVersion"
+                },
+                "activeContexts": {
+                    "$ref": "#/$defs/ActiveContextsList"
+                }
+            }
+        },
+        "IntentConfidence": {
+            "type": "object",
+            "properties": {
+                "score": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "IntentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PredictedIntent"
+            }
+        },
+        "PredictedIntent": {
+            "type": "object",
+            "properties": {
+                "intentName": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "nluIntentConfidence": {
+                    "$ref": "#/$defs/IntentConfidence"
+                },
+                "slots": {
+                    "$ref": "#/$defs/StringMap"
+                }
+            }
+        },
+        "SentimentResponse": {
+            "type": "object",
+            "properties": {
+                "sentimentLabel": {
+                    "$ref": "#/$defs/SentimentLabel"
+                },
+                "sentimentScore": {
+                    "$ref": "#/$defs/SentimentScore"
+                }
+            }
+        },
+        "SentimentLabel": {
+            "type": "string"
+        },
+        "SentimentScore": {
+            "type": "string"
+        },
+        "ResponseCard": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "$ref": "#/$defs/String"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "genericAttachments": {
+                    "$ref": "#/$defs/genericAttachmentList"
+                }
+            }
+        },
+        "ContentType": {
+            "enum": [
+                "GENERIC"
+            ]
+        },
+        "genericAttachmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GenericAttachment"
+            }
+        },
+        "GenericAttachment": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "$ref": "#/$defs/StringWithLength"
+                },
+                "subTitle": {
+                    "$ref": "#/$defs/StringWithLength"
+                },
+                "attachmentLinkUrl": {
+                    "$ref": "#/$defs/StringUrlWithLength"
+                },
+                "imageUrl": {
+                    "$ref": "#/$defs/StringUrlWithLength"
+                },
+                "buttons": {
+                    "$ref": "#/$defs/listOfButtons"
+                }
+            }
+        },
+        "StringWithLength": {
+            "type": "string"
+        },
+        "StringUrlWithLength": {
+            "type": "string"
+        },
+        "listOfButtons": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Button"
+            }
+        },
+        "Button": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "$ref": "#/$defs/ButtonTextStringWithLength"
+                },
+                "value": {
+                    "$ref": "#/$defs/ButtonValueStringWithLength"
+                }
+            }
+        },
+        "ButtonTextStringWithLength": {
+            "type": "string"
+        },
+        "ButtonValueStringWithLength": {
+            "type": "string"
+        },
+        "PostTextRequest": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/BotAlias"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "sessionAttributes": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "requestAttributes": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "inputText": {
+                    "$ref": "#/$defs/Text"
+                },
+                "activeContexts": {
+                    "$ref": "#/$defs/ActiveContextsList"
+                }
+            }
+        },
+        "PutSessionResponse": {
+            "type": "object",
+            "properties": {
+                "contentType": {
+                    "$ref": "#/$defs/HttpContentType"
+                },
+                "intentName": {
+                    "$ref": "#/$defs/IntentName"
+                },
+                "slots": {
+                    "$ref": "#/$defs/SynthesizedJsonString"
+                },
+                "sessionAttributes": {
+                    "$ref": "#/$defs/SynthesizedJsonString"
+                },
+                "message": {
+                    "$ref": "#/$defs/Text"
+                },
+                "encodedMessage": {
+                    "$ref": "#/$defs/SensitiveString"
+                },
+                "messageFormat": {
+                    "$ref": "#/$defs/MessageFormatType"
+                },
+                "dialogState": {
+                    "$ref": "#/$defs/DialogState"
+                },
+                "slotToElicit": {
+                    "$ref": "#/$defs/String"
+                },
+                "audioStream": {
+                    "$ref": "#/$defs/BlobStream"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "activeContexts": {
+                    "$ref": "#/$defs/SynthesizedJsonActiveContextsString"
+                }
+            }
+        },
+        "PutSessionRequest": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/BotAlias"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "sessionAttributes": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "dialogAction": {
+                    "$ref": "#/$defs/DialogAction"
+                },
+                "recentIntentSummaryView": {
+                    "$ref": "#/$defs/IntentSummaryList"
+                },
+                "accept": {
+                    "$ref": "#/$defs/Accept"
+                },
+                "activeContexts": {
+                    "$ref": "#/$defs/ActiveContextsList"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://runtime.lex-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://runtime-fips.lex.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://runtime-fips.lex.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://runtime.lex-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://runtime.lex.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://runtime.lex.{Region}.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws-us-gov",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://runtime.lex.{Region}.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://runtime.lex.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

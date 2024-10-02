@@ -1,0 +1,5733 @@
+{
+    "name": "lambda",
+    "commands": [
+        {
+            "name": "AddLayerVersionPermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddLayerVersionPermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddLayerVersionPermissionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddLayerVersionPermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AddPermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddPermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddPermissionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddPermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AliasConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCodeSigningConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCodeSigningConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCodeSigningConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCodeSigningConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateEventSourceMapping",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateEventSourceMapping"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EventSourceMappingConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEventSourceMappingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateFunction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateFunction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FunctionConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateFunctionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateFunctionUrlConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateFunctionUrlConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateFunctionUrlConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateFunctionUrlConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCodeSigningConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCodeSigningConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCodeSigningConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCodeSigningConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEventSourceMapping",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEventSourceMapping"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EventSourceMappingConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEventSourceMappingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFunction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFunction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFunctionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFunctionCodeSigningConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFunctionCodeSigningConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFunctionCodeSigningConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFunctionConcurrency",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFunctionConcurrency"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFunctionConcurrencyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFunctionEventInvokeConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFunctionEventInvokeConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFunctionEventInvokeConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFunctionUrlConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFunctionUrlConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFunctionUrlConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLayerVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLayerVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLayerVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteProvisionedConcurrencyConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteProvisionedConcurrencyConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteProvisionedConcurrencyConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccountSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccountSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAccountSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAccountSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AliasConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCodeSigningConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCodeSigningConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCodeSigningConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCodeSigningConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEventSourceMapping",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEventSourceMapping"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EventSourceMappingConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEventSourceMappingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFunction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFunction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFunctionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFunctionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFunctionCodeSigningConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFunctionCodeSigningConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFunctionCodeSigningConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFunctionCodeSigningConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFunctionConcurrency",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFunctionConcurrency"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFunctionConcurrencyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFunctionConcurrencyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFunctionConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFunctionConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FunctionConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFunctionConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFunctionEventInvokeConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFunctionEventInvokeConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FunctionEventInvokeConfig"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFunctionEventInvokeConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFunctionRecursionConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFunctionRecursionConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFunctionRecursionConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFunctionRecursionConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetFunctionUrlConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetFunctionUrlConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFunctionUrlConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFunctionUrlConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLayerVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLayerVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLayerVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLayerVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLayerVersionByArn",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLayerVersionByArn"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLayerVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLayerVersionByArnRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLayerVersionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLayerVersionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLayerVersionPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLayerVersionPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetProvisionedConcurrencyConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetProvisionedConcurrencyConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetProvisionedConcurrencyConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetProvisionedConcurrencyConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRuntimeManagementConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRuntimeManagementConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRuntimeManagementConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRuntimeManagementConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Invoke",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Invoke"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvocationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvocationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InvokeAsync",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InvokeAsync"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvokeAsyncResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvokeAsyncRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InvokeWithResponseStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InvokeWithResponseStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvokeWithResponseStreamResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvokeWithResponseStreamRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAliases",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAliases"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAliasesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAliasesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCodeSigningConfigs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCodeSigningConfigs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCodeSigningConfigsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCodeSigningConfigsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEventSourceMappings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEventSourceMappings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEventSourceMappingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEventSourceMappingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFunctionEventInvokeConfigs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFunctionEventInvokeConfigs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFunctionEventInvokeConfigsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFunctionEventInvokeConfigsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFunctions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFunctions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFunctionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFunctionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFunctionsByCodeSigningConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFunctionsByCodeSigningConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFunctionsByCodeSigningConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFunctionsByCodeSigningConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFunctionUrlConfigs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFunctionUrlConfigs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFunctionUrlConfigsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFunctionUrlConfigsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLayers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLayers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLayersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLayersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLayerVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLayerVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLayerVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLayerVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProvisionedConcurrencyConfigs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListProvisionedConcurrencyConfigs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProvisionedConcurrencyConfigsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProvisionedConcurrencyConfigsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListVersionsByFunction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListVersionsByFunction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListVersionsByFunctionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListVersionsByFunctionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PublishLayerVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PublishLayerVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PublishLayerVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PublishLayerVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PublishVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PublishVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FunctionConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PublishVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutFunctionCodeSigningConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutFunctionCodeSigningConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutFunctionCodeSigningConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutFunctionCodeSigningConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutFunctionConcurrency",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutFunctionConcurrency"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Concurrency"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutFunctionConcurrencyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutFunctionEventInvokeConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutFunctionEventInvokeConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FunctionEventInvokeConfig"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutFunctionEventInvokeConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutFunctionRecursionConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutFunctionRecursionConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutFunctionRecursionConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutFunctionRecursionConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutProvisionedConcurrencyConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutProvisionedConcurrencyConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutProvisionedConcurrencyConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutProvisionedConcurrencyConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutRuntimeManagementConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutRuntimeManagementConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutRuntimeManagementConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutRuntimeManagementConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveLayerVersionPermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveLayerVersionPermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveLayerVersionPermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemovePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemovePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemovePermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AliasConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCodeSigningConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateCodeSigningConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateCodeSigningConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCodeSigningConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateEventSourceMapping",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateEventSourceMapping"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EventSourceMappingConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEventSourceMappingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateFunctionCode",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateFunctionCode"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FunctionConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateFunctionCodeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateFunctionConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateFunctionConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FunctionConfiguration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateFunctionConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateFunctionEventInvokeConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateFunctionEventInvokeConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FunctionEventInvokeConfig"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateFunctionEventInvokeConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateFunctionUrlConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateFunctionUrlConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateFunctionUrlConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateFunctionUrlConfigRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddLayerVersionPermissionResponse": {
+            "type": "object",
+            "properties": {
+                "Statement": {
+                    "$ref": "#/$defs/String"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "AddLayerVersionPermissionRequest": {
+            "type": "object",
+            "properties": {
+                "LayerName": {
+                    "$ref": "#/$defs/LayerName"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/LayerVersionNumber"
+                },
+                "StatementId": {
+                    "$ref": "#/$defs/StatementId"
+                },
+                "Action": {
+                    "$ref": "#/$defs/LayerPermissionAllowedAction"
+                },
+                "Principal": {
+                    "$ref": "#/$defs/LayerPermissionAllowedPrincipal"
+                },
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationId"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LayerName": {
+            "type": "string"
+        },
+        "LayerVersionNumber": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "StatementId": {
+            "type": "string"
+        },
+        "LayerPermissionAllowedAction": {
+            "type": "string"
+        },
+        "LayerPermissionAllowedPrincipal": {
+            "type": "string"
+        },
+        "OrganizationId": {
+            "type": "string"
+        },
+        "AddPermissionResponse": {
+            "type": "object",
+            "properties": {
+                "Statement": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AddPermissionRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "StatementId": {
+                    "$ref": "#/$defs/StatementId"
+                },
+                "Action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "Principal": {
+                    "$ref": "#/$defs/Principal"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "SourceAccount": {
+                    "$ref": "#/$defs/SourceOwner"
+                },
+                "EventSourceToken": {
+                    "$ref": "#/$defs/EventSourceToken"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "PrincipalOrgID": {
+                    "$ref": "#/$defs/PrincipalOrgID"
+                },
+                "FunctionUrlAuthType": {
+                    "$ref": "#/$defs/FunctionUrlAuthType"
+                }
+            }
+        },
+        "FunctionName": {
+            "type": "string"
+        },
+        "Action": {
+            "type": "string"
+        },
+        "Principal": {
+            "type": "string"
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "SourceOwner": {
+            "type": "string"
+        },
+        "EventSourceToken": {
+            "type": "string"
+        },
+        "Qualifier": {
+            "type": "string"
+        },
+        "PrincipalOrgID": {
+            "type": "string"
+        },
+        "FunctionUrlAuthType": {
+            "enum": [
+                "NONE",
+                "AWS_IAM"
+            ]
+        },
+        "AliasConfiguration": {
+            "type": "object",
+            "properties": {
+                "AliasArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Alias"
+                },
+                "FunctionVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "RoutingConfig": {
+                    "$ref": "#/$defs/AliasRoutingConfiguration"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FunctionArn": {
+            "type": "string"
+        },
+        "Alias": {
+            "type": "string"
+        },
+        "Version": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "AliasRoutingConfiguration": {
+            "type": "object",
+            "properties": {
+                "AdditionalVersionWeights": {
+                    "$ref": "#/$defs/AdditionalVersionWeights"
+                }
+            }
+        },
+        "AdditionalVersionWeights": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Weight"
+            }
+        },
+        "Weight": {
+            "type": "number",
+            "format": "double"
+        },
+        "CreateAliasRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Alias"
+                },
+                "FunctionVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "RoutingConfig": {
+                    "$ref": "#/$defs/AliasRoutingConfiguration"
+                }
+            }
+        },
+        "CreateCodeSigningConfigResponse": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfig": {
+                    "$ref": "#/$defs/CodeSigningConfig"
+                }
+            }
+        },
+        "CodeSigningConfig": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfigId": {
+                    "$ref": "#/$defs/CodeSigningConfigId"
+                },
+                "CodeSigningConfigArn": {
+                    "$ref": "#/$defs/CodeSigningConfigArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "AllowedPublishers": {
+                    "$ref": "#/$defs/AllowedPublishers"
+                },
+                "CodeSigningPolicies": {
+                    "$ref": "#/$defs/CodeSigningPolicies"
+                },
+                "LastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "CodeSigningConfigId": {
+            "type": "string"
+        },
+        "CodeSigningConfigArn": {
+            "type": "string"
+        },
+        "AllowedPublishers": {
+            "type": "object",
+            "properties": {
+                "SigningProfileVersionArns": {
+                    "$ref": "#/$defs/SigningProfileVersionArns"
+                }
+            }
+        },
+        "SigningProfileVersionArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "CodeSigningPolicies": {
+            "type": "object",
+            "properties": {
+                "UntrustedArtifactOnDeployment": {
+                    "$ref": "#/$defs/CodeSigningPolicy"
+                }
+            }
+        },
+        "CodeSigningPolicy": {
+            "enum": [
+                "Warn",
+                "Enforce"
+            ]
+        },
+        "Timestamp": {
+            "type": "string"
+        },
+        "CreateCodeSigningConfigRequest": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "AllowedPublishers": {
+                    "$ref": "#/$defs/AllowedPublishers"
+                },
+                "CodeSigningPolicies": {
+                    "$ref": "#/$defs/CodeSigningPolicies"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "EventSourceMappingConfiguration": {
+            "type": "object",
+            "properties": {
+                "UUID": {
+                    "$ref": "#/$defs/String"
+                },
+                "StartingPosition": {
+                    "$ref": "#/$defs/EventSourcePosition"
+                },
+                "StartingPositionTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "BatchSize": {
+                    "$ref": "#/$defs/BatchSize"
+                },
+                "MaximumBatchingWindowInSeconds": {
+                    "$ref": "#/$defs/MaximumBatchingWindowInSeconds"
+                },
+                "ParallelizationFactor": {
+                    "$ref": "#/$defs/ParallelizationFactor"
+                },
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "FilterCriteria": {
+                    "$ref": "#/$defs/FilterCriteria"
+                },
+                "FunctionArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "LastModified": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LastProcessingResult": {
+                    "$ref": "#/$defs/String"
+                },
+                "State": {
+                    "$ref": "#/$defs/String"
+                },
+                "StateTransitionReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "DestinationConfig": {
+                    "$ref": "#/$defs/DestinationConfig"
+                },
+                "Topics": {
+                    "$ref": "#/$defs/Topics"
+                },
+                "Queues": {
+                    "$ref": "#/$defs/Queues"
+                },
+                "SourceAccessConfigurations": {
+                    "$ref": "#/$defs/SourceAccessConfigurations"
+                },
+                "SelfManagedEventSource": {
+                    "$ref": "#/$defs/SelfManagedEventSource"
+                },
+                "MaximumRecordAgeInSeconds": {
+                    "$ref": "#/$defs/MaximumRecordAgeInSeconds"
+                },
+                "BisectBatchOnFunctionError": {
+                    "$ref": "#/$defs/BisectBatchOnFunctionError"
+                },
+                "MaximumRetryAttempts": {
+                    "$ref": "#/$defs/MaximumRetryAttemptsEventSourceMapping"
+                },
+                "TumblingWindowInSeconds": {
+                    "$ref": "#/$defs/TumblingWindowInSeconds"
+                },
+                "FunctionResponseTypes": {
+                    "$ref": "#/$defs/FunctionResponseTypeList"
+                },
+                "AmazonManagedKafkaEventSourceConfig": {
+                    "$ref": "#/$defs/AmazonManagedKafkaEventSourceConfig"
+                },
+                "SelfManagedKafkaEventSourceConfig": {
+                    "$ref": "#/$defs/SelfManagedKafkaEventSourceConfig"
+                },
+                "ScalingConfig": {
+                    "$ref": "#/$defs/ScalingConfig"
+                },
+                "DocumentDBEventSourceConfig": {
+                    "$ref": "#/$defs/DocumentDBEventSourceConfig"
+                },
+                "KMSKeyArn": {
+                    "$ref": "#/$defs/KMSKeyArn"
+                },
+                "FilterCriteriaError": {
+                    "$ref": "#/$defs/FilterCriteriaError"
+                },
+                "EventSourceMappingArn": {
+                    "$ref": "#/$defs/EventSourceMappingArn"
+                }
+            }
+        },
+        "EventSourcePosition": {
+            "enum": [
+                "TRIM_HORIZON",
+                "LATEST",
+                "AT_TIMESTAMP"
+            ]
+        },
+        "Date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "BatchSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaximumBatchingWindowInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ParallelizationFactor": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FilterCriteria": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                }
+            }
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Pattern": {
+                    "$ref": "#/$defs/Pattern"
+                }
+            }
+        },
+        "Pattern": {
+            "type": "string"
+        },
+        "DestinationConfig": {
+            "type": "object",
+            "properties": {
+                "OnSuccess": {
+                    "$ref": "#/$defs/OnSuccess"
+                },
+                "OnFailure": {
+                    "$ref": "#/$defs/OnFailure"
+                }
+            }
+        },
+        "OnSuccess": {
+            "type": "object",
+            "properties": {
+                "Destination": {
+                    "$ref": "#/$defs/DestinationArn"
+                }
+            }
+        },
+        "DestinationArn": {
+            "type": "string"
+        },
+        "OnFailure": {
+            "type": "object",
+            "properties": {
+                "Destination": {
+                    "$ref": "#/$defs/DestinationArn"
+                }
+            }
+        },
+        "Topics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Topic"
+            }
+        },
+        "Topic": {
+            "type": "string"
+        },
+        "Queues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Queue"
+            }
+        },
+        "Queue": {
+            "type": "string"
+        },
+        "SourceAccessConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SourceAccessConfiguration"
+            }
+        },
+        "SourceAccessConfiguration": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/SourceAccessType"
+                },
+                "URI": {
+                    "$ref": "#/$defs/URI"
+                }
+            }
+        },
+        "SourceAccessType": {
+            "enum": [
+                "BASIC_AUTH",
+                "VPC_SUBNET",
+                "VPC_SECURITY_GROUP",
+                "SASL_SCRAM_512_AUTH",
+                "SASL_SCRAM_256_AUTH",
+                "VIRTUAL_HOST",
+                "CLIENT_CERTIFICATE_TLS_AUTH",
+                "SERVER_ROOT_CA_CERTIFICATE"
+            ]
+        },
+        "URI": {
+            "type": "string"
+        },
+        "SelfManagedEventSource": {
+            "type": "object",
+            "properties": {
+                "Endpoints": {
+                    "$ref": "#/$defs/Endpoints"
+                }
+            }
+        },
+        "Endpoints": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EndpointLists"
+            }
+        },
+        "EndpointLists": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Endpoint"
+            }
+        },
+        "Endpoint": {
+            "type": "string"
+        },
+        "MaximumRecordAgeInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BisectBatchOnFunctionError": {
+            "type": "boolean"
+        },
+        "MaximumRetryAttemptsEventSourceMapping": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TumblingWindowInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FunctionResponseTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FunctionResponseType"
+            }
+        },
+        "FunctionResponseType": {
+            "enum": [
+                "ReportBatchItemFailures"
+            ]
+        },
+        "AmazonManagedKafkaEventSourceConfig": {
+            "type": "object",
+            "properties": {
+                "ConsumerGroupId": {
+                    "$ref": "#/$defs/URI"
+                }
+            }
+        },
+        "SelfManagedKafkaEventSourceConfig": {
+            "type": "object",
+            "properties": {
+                "ConsumerGroupId": {
+                    "$ref": "#/$defs/URI"
+                }
+            }
+        },
+        "ScalingConfig": {
+            "type": "object",
+            "properties": {
+                "MaximumConcurrency": {
+                    "$ref": "#/$defs/MaximumConcurrency"
+                }
+            }
+        },
+        "MaximumConcurrency": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DocumentDBEventSourceConfig": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/DatabaseName"
+                },
+                "CollectionName": {
+                    "$ref": "#/$defs/CollectionName"
+                },
+                "FullDocument": {
+                    "$ref": "#/$defs/FullDocument"
+                }
+            }
+        },
+        "DatabaseName": {
+            "type": "string"
+        },
+        "CollectionName": {
+            "type": "string"
+        },
+        "FullDocument": {
+            "enum": [
+                "UpdateLookup",
+                "Default"
+            ]
+        },
+        "KMSKeyArn": {
+            "type": "string"
+        },
+        "FilterCriteriaError": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/FilterCriteriaErrorCode"
+                },
+                "Message": {
+                    "$ref": "#/$defs/FilterCriteriaErrorMessage"
+                }
+            }
+        },
+        "FilterCriteriaErrorCode": {
+            "type": "string"
+        },
+        "FilterCriteriaErrorMessage": {
+            "type": "string"
+        },
+        "EventSourceMappingArn": {
+            "type": "string"
+        },
+        "CreateEventSourceMappingRequest": {
+            "type": "object",
+            "properties": {
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/Enabled"
+                },
+                "BatchSize": {
+                    "$ref": "#/$defs/BatchSize"
+                },
+                "FilterCriteria": {
+                    "$ref": "#/$defs/FilterCriteria"
+                },
+                "MaximumBatchingWindowInSeconds": {
+                    "$ref": "#/$defs/MaximumBatchingWindowInSeconds"
+                },
+                "ParallelizationFactor": {
+                    "$ref": "#/$defs/ParallelizationFactor"
+                },
+                "StartingPosition": {
+                    "$ref": "#/$defs/EventSourcePosition"
+                },
+                "StartingPositionTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "DestinationConfig": {
+                    "$ref": "#/$defs/DestinationConfig"
+                },
+                "MaximumRecordAgeInSeconds": {
+                    "$ref": "#/$defs/MaximumRecordAgeInSeconds"
+                },
+                "BisectBatchOnFunctionError": {
+                    "$ref": "#/$defs/BisectBatchOnFunctionError"
+                },
+                "MaximumRetryAttempts": {
+                    "$ref": "#/$defs/MaximumRetryAttemptsEventSourceMapping"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "TumblingWindowInSeconds": {
+                    "$ref": "#/$defs/TumblingWindowInSeconds"
+                },
+                "Topics": {
+                    "$ref": "#/$defs/Topics"
+                },
+                "Queues": {
+                    "$ref": "#/$defs/Queues"
+                },
+                "SourceAccessConfigurations": {
+                    "$ref": "#/$defs/SourceAccessConfigurations"
+                },
+                "SelfManagedEventSource": {
+                    "$ref": "#/$defs/SelfManagedEventSource"
+                },
+                "FunctionResponseTypes": {
+                    "$ref": "#/$defs/FunctionResponseTypeList"
+                },
+                "AmazonManagedKafkaEventSourceConfig": {
+                    "$ref": "#/$defs/AmazonManagedKafkaEventSourceConfig"
+                },
+                "SelfManagedKafkaEventSourceConfig": {
+                    "$ref": "#/$defs/SelfManagedKafkaEventSourceConfig"
+                },
+                "ScalingConfig": {
+                    "$ref": "#/$defs/ScalingConfig"
+                },
+                "DocumentDBEventSourceConfig": {
+                    "$ref": "#/$defs/DocumentDBEventSourceConfig"
+                },
+                "KMSKeyArn": {
+                    "$ref": "#/$defs/KMSKeyArn"
+                }
+            }
+        },
+        "Enabled": {
+            "type": "boolean"
+        },
+        "FunctionConfiguration": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/NamespacedFunctionName"
+                },
+                "FunctionArn": {
+                    "$ref": "#/$defs/NameSpacedFunctionArn"
+                },
+                "Runtime": {
+                    "$ref": "#/$defs/Runtime"
+                },
+                "Role": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "Handler": {
+                    "$ref": "#/$defs/Handler"
+                },
+                "CodeSize": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Timeout": {
+                    "$ref": "#/$defs/Timeout"
+                },
+                "MemorySize": {
+                    "$ref": "#/$defs/MemorySize"
+                },
+                "LastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CodeSha256": {
+                    "$ref": "#/$defs/String"
+                },
+                "Version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "VpcConfig": {
+                    "$ref": "#/$defs/VpcConfigResponse"
+                },
+                "DeadLetterConfig": {
+                    "$ref": "#/$defs/DeadLetterConfig"
+                },
+                "Environment": {
+                    "$ref": "#/$defs/EnvironmentResponse"
+                },
+                "KMSKeyArn": {
+                    "$ref": "#/$defs/KMSKeyArn"
+                },
+                "TracingConfig": {
+                    "$ref": "#/$defs/TracingConfigResponse"
+                },
+                "MasterArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Layers": {
+                    "$ref": "#/$defs/LayersReferenceList"
+                },
+                "State": {
+                    "$ref": "#/$defs/State"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/StateReason"
+                },
+                "StateReasonCode": {
+                    "$ref": "#/$defs/StateReasonCode"
+                },
+                "LastUpdateStatus": {
+                    "$ref": "#/$defs/LastUpdateStatus"
+                },
+                "LastUpdateStatusReason": {
+                    "$ref": "#/$defs/LastUpdateStatusReason"
+                },
+                "LastUpdateStatusReasonCode": {
+                    "$ref": "#/$defs/LastUpdateStatusReasonCode"
+                },
+                "FileSystemConfigs": {
+                    "$ref": "#/$defs/FileSystemConfigList"
+                },
+                "PackageType": {
+                    "$ref": "#/$defs/PackageType"
+                },
+                "ImageConfigResponse": {
+                    "$ref": "#/$defs/ImageConfigResponse"
+                },
+                "SigningProfileVersionArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "SigningJobArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Architectures": {
+                    "$ref": "#/$defs/ArchitecturesList"
+                },
+                "EphemeralStorage": {
+                    "$ref": "#/$defs/EphemeralStorage"
+                },
+                "SnapStart": {
+                    "$ref": "#/$defs/SnapStartResponse"
+                },
+                "RuntimeVersionConfig": {
+                    "$ref": "#/$defs/RuntimeVersionConfig"
+                },
+                "LoggingConfig": {
+                    "$ref": "#/$defs/LoggingConfig"
+                }
+            }
+        },
+        "NamespacedFunctionName": {
+            "type": "string"
+        },
+        "NameSpacedFunctionArn": {
+            "type": "string"
+        },
+        "Runtime": {
+            "enum": [
+                "nodejs",
+                "nodejs43",
+                "nodejs610",
+                "nodejs810",
+                "nodejs10x",
+                "nodejs12x",
+                "nodejs14x",
+                "nodejs16x",
+                "java8",
+                "java8al2",
+                "java11",
+                "python27",
+                "python36",
+                "python37",
+                "python38",
+                "python39",
+                "dotnetcore10",
+                "dotnetcore20",
+                "dotnetcore21",
+                "dotnetcore31",
+                "dotnet6",
+                "dotnet8",
+                "nodejs43edge",
+                "go1x",
+                "ruby25",
+                "ruby27",
+                "provided",
+                "providedal2",
+                "nodejs18x",
+                "python310",
+                "java17",
+                "ruby32",
+                "ruby33",
+                "python311",
+                "nodejs20x",
+                "providedal2023",
+                "python312",
+                "java21"
+            ]
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "Handler": {
+            "type": "string"
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Timeout": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MemorySize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "VpcConfigResponse": {
+            "type": "object",
+            "properties": {
+                "SubnetIds": {
+                    "$ref": "#/$defs/SubnetIds"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/SecurityGroupIds"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/VpcId"
+                },
+                "Ipv6AllowedForDualStack": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "SubnetIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "SubnetId": {
+            "type": "string"
+        },
+        "SecurityGroupIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityGroupId"
+            }
+        },
+        "SecurityGroupId": {
+            "type": "string"
+        },
+        "VpcId": {
+            "type": "string"
+        },
+        "NullableBoolean": {
+            "type": "boolean"
+        },
+        "DeadLetterConfig": {
+            "type": "object",
+            "properties": {
+                "TargetArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "EnvironmentResponse": {
+            "type": "object",
+            "properties": {
+                "Variables": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "Error": {
+                    "$ref": "#/$defs/EnvironmentError"
+                }
+            }
+        },
+        "EnvironmentVariables": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EnvironmentVariableValue"
+            }
+        },
+        "EnvironmentVariableValue": {
+            "type": "string"
+        },
+        "EnvironmentError": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/SensitiveString"
+                }
+            }
+        },
+        "SensitiveString": {
+            "type": "string"
+        },
+        "TracingConfigResponse": {
+            "type": "object",
+            "properties": {
+                "Mode": {
+                    "$ref": "#/$defs/TracingMode"
+                }
+            }
+        },
+        "TracingMode": {
+            "enum": [
+                "Active",
+                "PassThrough"
+            ]
+        },
+        "LayersReferenceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Layer"
+            }
+        },
+        "Layer": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/LayerVersionArn"
+                },
+                "CodeSize": {
+                    "$ref": "#/$defs/Long"
+                },
+                "SigningProfileVersionArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "SigningJobArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "LayerVersionArn": {
+            "type": "string"
+        },
+        "State": {
+            "enum": [
+                "Pending",
+                "Active",
+                "Inactive",
+                "Failed"
+            ]
+        },
+        "StateReason": {
+            "type": "string"
+        },
+        "StateReasonCode": {
+            "enum": [
+                "Idle",
+                "Creating",
+                "Restoring",
+                "EniLimitExceeded",
+                "InsufficientRolePermissions",
+                "InvalidConfiguration",
+                "InternalError",
+                "SubnetOutOfIPAddresses",
+                "InvalidSubnet",
+                "InvalidSecurityGroup",
+                "ImageDeleted",
+                "ImageAccessDenied",
+                "InvalidImage",
+                "KMSKeyAccessDenied",
+                "KMSKeyNotFound",
+                "InvalidStateKMSKey",
+                "DisabledKMSKey",
+                "EFSIOError",
+                "EFSMountConnectivityError",
+                "EFSMountFailure",
+                "EFSMountTimeout",
+                "InvalidRuntime",
+                "InvalidZipFileException",
+                "FunctionError"
+            ]
+        },
+        "LastUpdateStatus": {
+            "enum": [
+                "Successful",
+                "Failed",
+                "InProgress"
+            ]
+        },
+        "LastUpdateStatusReason": {
+            "type": "string"
+        },
+        "LastUpdateStatusReasonCode": {
+            "enum": [
+                "EniLimitExceeded",
+                "InsufficientRolePermissions",
+                "InvalidConfiguration",
+                "InternalError",
+                "SubnetOutOfIPAddresses",
+                "InvalidSubnet",
+                "InvalidSecurityGroup",
+                "ImageDeleted",
+                "ImageAccessDenied",
+                "InvalidImage",
+                "KMSKeyAccessDenied",
+                "KMSKeyNotFound",
+                "InvalidStateKMSKey",
+                "DisabledKMSKey",
+                "EFSIOError",
+                "EFSMountConnectivityError",
+                "EFSMountFailure",
+                "EFSMountTimeout",
+                "InvalidRuntime",
+                "InvalidZipFileException",
+                "FunctionError"
+            ]
+        },
+        "FileSystemConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FileSystemConfig"
+            }
+        },
+        "FileSystemConfig": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/FileSystemArn"
+                },
+                "LocalMountPath": {
+                    "$ref": "#/$defs/LocalMountPath"
+                }
+            }
+        },
+        "FileSystemArn": {
+            "type": "string"
+        },
+        "LocalMountPath": {
+            "type": "string"
+        },
+        "PackageType": {
+            "enum": [
+                "Zip",
+                "Image"
+            ]
+        },
+        "ImageConfigResponse": {
+            "type": "object",
+            "properties": {
+                "ImageConfig": {
+                    "$ref": "#/$defs/ImageConfig"
+                },
+                "Error": {
+                    "$ref": "#/$defs/ImageConfigError"
+                }
+            }
+        },
+        "ImageConfig": {
+            "type": "object",
+            "properties": {
+                "EntryPoint": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "Command": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "WorkingDirectory": {
+                    "$ref": "#/$defs/WorkingDirectory"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "WorkingDirectory": {
+            "type": "string"
+        },
+        "ImageConfigError": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/SensitiveString"
+                }
+            }
+        },
+        "ArchitecturesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Architecture"
+            }
+        },
+        "Architecture": {
+            "enum": [
+                "x86_64",
+                "arm64"
+            ]
+        },
+        "EphemeralStorage": {
+            "type": "object",
+            "properties": {
+                "Size": {
+                    "$ref": "#/$defs/EphemeralStorageSize"
+                }
+            }
+        },
+        "EphemeralStorageSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SnapStartResponse": {
+            "type": "object",
+            "properties": {
+                "ApplyOn": {
+                    "$ref": "#/$defs/SnapStartApplyOn"
+                },
+                "OptimizationStatus": {
+                    "$ref": "#/$defs/SnapStartOptimizationStatus"
+                }
+            }
+        },
+        "SnapStartApplyOn": {
+            "enum": [
+                "PublishedVersions",
+                "None"
+            ]
+        },
+        "SnapStartOptimizationStatus": {
+            "enum": [
+                "On",
+                "Off"
+            ]
+        },
+        "RuntimeVersionConfig": {
+            "type": "object",
+            "properties": {
+                "RuntimeVersionArn": {
+                    "$ref": "#/$defs/RuntimeVersionArn"
+                },
+                "Error": {
+                    "$ref": "#/$defs/RuntimeVersionError"
+                }
+            }
+        },
+        "RuntimeVersionArn": {
+            "type": "string"
+        },
+        "RuntimeVersionError": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/SensitiveString"
+                }
+            }
+        },
+        "LoggingConfig": {
+            "type": "object",
+            "properties": {
+                "LogFormat": {
+                    "$ref": "#/$defs/LogFormat"
+                },
+                "ApplicationLogLevel": {
+                    "$ref": "#/$defs/ApplicationLogLevel"
+                },
+                "SystemLogLevel": {
+                    "$ref": "#/$defs/SystemLogLevel"
+                },
+                "LogGroup": {
+                    "$ref": "#/$defs/LogGroup"
+                }
+            }
+        },
+        "LogFormat": {
+            "enum": [
+                "Json",
+                "Text"
+            ]
+        },
+        "ApplicationLogLevel": {
+            "enum": [
+                "Trace",
+                "Debug",
+                "Info",
+                "Warn",
+                "Error",
+                "Fatal"
+            ]
+        },
+        "SystemLogLevel": {
+            "enum": [
+                "Debug",
+                "Info",
+                "Warn"
+            ]
+        },
+        "LogGroup": {
+            "type": "string"
+        },
+        "CreateFunctionRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Runtime": {
+                    "$ref": "#/$defs/Runtime"
+                },
+                "Role": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "Handler": {
+                    "$ref": "#/$defs/Handler"
+                },
+                "Code": {
+                    "$ref": "#/$defs/FunctionCode"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Timeout": {
+                    "$ref": "#/$defs/Timeout"
+                },
+                "MemorySize": {
+                    "$ref": "#/$defs/MemorySize"
+                },
+                "Publish": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "VpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
+                "PackageType": {
+                    "$ref": "#/$defs/PackageType"
+                },
+                "DeadLetterConfig": {
+                    "$ref": "#/$defs/DeadLetterConfig"
+                },
+                "Environment": {
+                    "$ref": "#/$defs/Environment"
+                },
+                "KMSKeyArn": {
+                    "$ref": "#/$defs/KMSKeyArn"
+                },
+                "TracingConfig": {
+                    "$ref": "#/$defs/TracingConfig"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Layers": {
+                    "$ref": "#/$defs/LayerList"
+                },
+                "FileSystemConfigs": {
+                    "$ref": "#/$defs/FileSystemConfigList"
+                },
+                "ImageConfig": {
+                    "$ref": "#/$defs/ImageConfig"
+                },
+                "CodeSigningConfigArn": {
+                    "$ref": "#/$defs/CodeSigningConfigArn"
+                },
+                "Architectures": {
+                    "$ref": "#/$defs/ArchitecturesList"
+                },
+                "EphemeralStorage": {
+                    "$ref": "#/$defs/EphemeralStorage"
+                },
+                "SnapStart": {
+                    "$ref": "#/$defs/SnapStart"
+                },
+                "LoggingConfig": {
+                    "$ref": "#/$defs/LoggingConfig"
+                }
+            }
+        },
+        "FunctionCode": {
+            "type": "object",
+            "properties": {
+                "ZipFile": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "S3Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "S3Key": {
+                    "$ref": "#/$defs/S3Key"
+                },
+                "S3ObjectVersion": {
+                    "$ref": "#/$defs/S3ObjectVersion"
+                },
+                "ImageUri": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "S3Bucket": {
+            "type": "string"
+        },
+        "S3Key": {
+            "type": "string"
+        },
+        "S3ObjectVersion": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "VpcConfig": {
+            "type": "object",
+            "properties": {
+                "SubnetIds": {
+                    "$ref": "#/$defs/SubnetIds"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/SecurityGroupIds"
+                },
+                "Ipv6AllowedForDualStack": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "Environment": {
+            "type": "object",
+            "properties": {
+                "Variables": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                }
+            }
+        },
+        "TracingConfig": {
+            "type": "object",
+            "properties": {
+                "Mode": {
+                    "$ref": "#/$defs/TracingMode"
+                }
+            }
+        },
+        "LayerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LayerVersionArn"
+            }
+        },
+        "SnapStart": {
+            "type": "object",
+            "properties": {
+                "ApplyOn": {
+                    "$ref": "#/$defs/SnapStartApplyOn"
+                }
+            }
+        },
+        "CreateFunctionUrlConfigResponse": {
+            "type": "object",
+            "properties": {
+                "FunctionUrl": {
+                    "$ref": "#/$defs/FunctionUrl"
+                },
+                "FunctionArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "AuthType": {
+                    "$ref": "#/$defs/FunctionUrlAuthType"
+                },
+                "Cors": {
+                    "$ref": "#/$defs/Cors"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "InvokeMode": {
+                    "$ref": "#/$defs/InvokeMode"
+                }
+            }
+        },
+        "FunctionUrl": {
+            "type": "string"
+        },
+        "Cors": {
+            "type": "object",
+            "properties": {
+                "AllowCredentials": {
+                    "$ref": "#/$defs/AllowCredentials"
+                },
+                "AllowHeaders": {
+                    "$ref": "#/$defs/HeadersList"
+                },
+                "AllowMethods": {
+                    "$ref": "#/$defs/AllowMethodsList"
+                },
+                "AllowOrigins": {
+                    "$ref": "#/$defs/AllowOriginsList"
+                },
+                "ExposeHeaders": {
+                    "$ref": "#/$defs/HeadersList"
+                },
+                "MaxAge": {
+                    "$ref": "#/$defs/MaxAge"
+                }
+            }
+        },
+        "AllowCredentials": {
+            "type": "boolean"
+        },
+        "HeadersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Header"
+            }
+        },
+        "Header": {
+            "type": "string"
+        },
+        "AllowMethodsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Method"
+            }
+        },
+        "Method": {
+            "type": "string"
+        },
+        "AllowOriginsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Origin"
+            }
+        },
+        "Origin": {
+            "type": "string"
+        },
+        "MaxAge": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "InvokeMode": {
+            "enum": [
+                "BUFFERED",
+                "RESPONSE_STREAM"
+            ]
+        },
+        "CreateFunctionUrlConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/FunctionUrlQualifier"
+                },
+                "AuthType": {
+                    "$ref": "#/$defs/FunctionUrlAuthType"
+                },
+                "Cors": {
+                    "$ref": "#/$defs/Cors"
+                },
+                "InvokeMode": {
+                    "$ref": "#/$defs/InvokeMode"
+                }
+            }
+        },
+        "FunctionUrlQualifier": {
+            "type": "string"
+        },
+        "DeleteAliasRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Alias"
+                }
+            }
+        },
+        "DeleteCodeSigningConfigResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteCodeSigningConfigRequest": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfigArn": {
+                    "$ref": "#/$defs/CodeSigningConfigArn"
+                }
+            }
+        },
+        "DeleteEventSourceMappingRequest": {
+            "type": "object",
+            "properties": {
+                "UUID": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteFunctionRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "DeleteFunctionCodeSigningConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                }
+            }
+        },
+        "DeleteFunctionConcurrencyRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                }
+            }
+        },
+        "DeleteFunctionEventInvokeConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "DeleteFunctionUrlConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/FunctionUrlQualifier"
+                }
+            }
+        },
+        "DeleteLayerVersionRequest": {
+            "type": "object",
+            "properties": {
+                "LayerName": {
+                    "$ref": "#/$defs/LayerName"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/LayerVersionNumber"
+                }
+            }
+        },
+        "DeleteProvisionedConcurrencyConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "GetAccountSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "AccountLimit": {
+                    "$ref": "#/$defs/AccountLimit"
+                },
+                "AccountUsage": {
+                    "$ref": "#/$defs/AccountUsage"
+                }
+            }
+        },
+        "AccountLimit": {
+            "type": "object",
+            "properties": {
+                "TotalCodeSize": {
+                    "$ref": "#/$defs/Long"
+                },
+                "CodeSizeUnzipped": {
+                    "$ref": "#/$defs/Long"
+                },
+                "CodeSizeZipped": {
+                    "$ref": "#/$defs/Long"
+                },
+                "ConcurrentExecutions": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "UnreservedConcurrentExecutions": {
+                    "$ref": "#/$defs/UnreservedConcurrentExecutions"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UnreservedConcurrentExecutions": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AccountUsage": {
+            "type": "object",
+            "properties": {
+                "TotalCodeSize": {
+                    "$ref": "#/$defs/Long"
+                },
+                "FunctionCount": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "GetAccountSettingsRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetAliasRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Alias"
+                }
+            }
+        },
+        "GetCodeSigningConfigResponse": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfig": {
+                    "$ref": "#/$defs/CodeSigningConfig"
+                }
+            }
+        },
+        "GetCodeSigningConfigRequest": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfigArn": {
+                    "$ref": "#/$defs/CodeSigningConfigArn"
+                }
+            }
+        },
+        "GetEventSourceMappingRequest": {
+            "type": "object",
+            "properties": {
+                "UUID": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetFunctionResponse": {
+            "type": "object",
+            "properties": {
+                "Configuration": {
+                    "$ref": "#/$defs/FunctionConfiguration"
+                },
+                "Code": {
+                    "$ref": "#/$defs/FunctionCodeLocation"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Concurrency": {
+                    "$ref": "#/$defs/Concurrency"
+                }
+            }
+        },
+        "FunctionCodeLocation": {
+            "type": "object",
+            "properties": {
+                "RepositoryType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Location": {
+                    "$ref": "#/$defs/String"
+                },
+                "ImageUri": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResolvedImageUri": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Concurrency": {
+            "type": "object",
+            "properties": {
+                "ReservedConcurrentExecutions": {
+                    "$ref": "#/$defs/ReservedConcurrentExecutions"
+                }
+            }
+        },
+        "ReservedConcurrentExecutions": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetFunctionRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/NamespacedFunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "GetFunctionCodeSigningConfigResponse": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfigArn": {
+                    "$ref": "#/$defs/CodeSigningConfigArn"
+                },
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                }
+            }
+        },
+        "GetFunctionCodeSigningConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                }
+            }
+        },
+        "GetFunctionConcurrencyResponse": {
+            "type": "object",
+            "properties": {
+                "ReservedConcurrentExecutions": {
+                    "$ref": "#/$defs/ReservedConcurrentExecutions"
+                }
+            }
+        },
+        "GetFunctionConcurrencyRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                }
+            }
+        },
+        "GetFunctionConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/NamespacedFunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "FunctionEventInvokeConfig": {
+            "type": "object",
+            "properties": {
+                "LastModified": {
+                    "$ref": "#/$defs/Date"
+                },
+                "FunctionArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "MaximumRetryAttempts": {
+                    "$ref": "#/$defs/MaximumRetryAttempts"
+                },
+                "MaximumEventAgeInSeconds": {
+                    "$ref": "#/$defs/MaximumEventAgeInSeconds"
+                },
+                "DestinationConfig": {
+                    "$ref": "#/$defs/DestinationConfig"
+                }
+            }
+        },
+        "MaximumRetryAttempts": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaximumEventAgeInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetFunctionEventInvokeConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "GetFunctionRecursionConfigResponse": {
+            "type": "object",
+            "properties": {
+                "RecursiveLoop": {
+                    "$ref": "#/$defs/RecursiveLoop"
+                }
+            }
+        },
+        "RecursiveLoop": {
+            "enum": [
+                "Allow",
+                "Terminate"
+            ]
+        },
+        "GetFunctionRecursionConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/UnqualifiedFunctionName"
+                }
+            }
+        },
+        "UnqualifiedFunctionName": {
+            "type": "string"
+        },
+        "GetFunctionUrlConfigResponse": {
+            "type": "object",
+            "properties": {
+                "FunctionUrl": {
+                    "$ref": "#/$defs/FunctionUrl"
+                },
+                "FunctionArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "AuthType": {
+                    "$ref": "#/$defs/FunctionUrlAuthType"
+                },
+                "Cors": {
+                    "$ref": "#/$defs/Cors"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "InvokeMode": {
+                    "$ref": "#/$defs/InvokeMode"
+                }
+            }
+        },
+        "GetFunctionUrlConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/FunctionUrlQualifier"
+                }
+            }
+        },
+        "GetLayerVersionResponse": {
+            "type": "object",
+            "properties": {
+                "Content": {
+                    "$ref": "#/$defs/LayerVersionContentOutput"
+                },
+                "LayerArn": {
+                    "$ref": "#/$defs/LayerArn"
+                },
+                "LayerVersionArn": {
+                    "$ref": "#/$defs/LayerVersionArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "CreatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Version": {
+                    "$ref": "#/$defs/LayerVersionNumber"
+                },
+                "CompatibleRuntimes": {
+                    "$ref": "#/$defs/CompatibleRuntimes"
+                },
+                "LicenseInfo": {
+                    "$ref": "#/$defs/LicenseInfo"
+                },
+                "CompatibleArchitectures": {
+                    "$ref": "#/$defs/CompatibleArchitectures"
+                }
+            }
+        },
+        "LayerVersionContentOutput": {
+            "type": "object",
+            "properties": {
+                "Location": {
+                    "$ref": "#/$defs/String"
+                },
+                "CodeSha256": {
+                    "$ref": "#/$defs/String"
+                },
+                "CodeSize": {
+                    "$ref": "#/$defs/Long"
+                },
+                "SigningProfileVersionArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "SigningJobArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LayerArn": {
+            "type": "string"
+        },
+        "CompatibleRuntimes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Runtime"
+            }
+        },
+        "LicenseInfo": {
+            "type": "string"
+        },
+        "CompatibleArchitectures": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Architecture"
+            }
+        },
+        "GetLayerVersionRequest": {
+            "type": "object",
+            "properties": {
+                "LayerName": {
+                    "$ref": "#/$defs/LayerName"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/LayerVersionNumber"
+                }
+            }
+        },
+        "GetLayerVersionByArnRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/LayerVersionArn"
+                }
+            }
+        },
+        "GetLayerVersionPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/String"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetLayerVersionPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "LayerName": {
+                    "$ref": "#/$defs/LayerName"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/LayerVersionNumber"
+                }
+            }
+        },
+        "GetPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/String"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/NamespacedFunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "GetProvisionedConcurrencyConfigResponse": {
+            "type": "object",
+            "properties": {
+                "RequestedProvisionedConcurrentExecutions": {
+                    "$ref": "#/$defs/PositiveInteger"
+                },
+                "AvailableProvisionedConcurrentExecutions": {
+                    "$ref": "#/$defs/NonNegativeInteger"
+                },
+                "AllocatedProvisionedConcurrentExecutions": {
+                    "$ref": "#/$defs/NonNegativeInteger"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ProvisionedConcurrencyStatusEnum"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "LastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PositiveInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NonNegativeInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ProvisionedConcurrencyStatusEnum": {
+            "enum": [
+                "IN_PROGRESS",
+                "READY",
+                "FAILED"
+            ]
+        },
+        "GetProvisionedConcurrencyConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "GetRuntimeManagementConfigResponse": {
+            "type": "object",
+            "properties": {
+                "UpdateRuntimeOn": {
+                    "$ref": "#/$defs/UpdateRuntimeOn"
+                },
+                "RuntimeVersionArn": {
+                    "$ref": "#/$defs/RuntimeVersionArn"
+                },
+                "FunctionArn": {
+                    "$ref": "#/$defs/NameSpacedFunctionArn"
+                }
+            }
+        },
+        "UpdateRuntimeOn": {
+            "enum": [
+                "Auto",
+                "Manual",
+                "FunctionUpdate"
+            ]
+        },
+        "GetRuntimeManagementConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/NamespacedFunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "InvocationResponse": {
+            "type": "object",
+            "properties": {
+                "StatusCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "FunctionError": {
+                    "$ref": "#/$defs/String"
+                },
+                "LogResult": {
+                    "$ref": "#/$defs/String"
+                },
+                "Payload": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "ExecutedVersion": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "InvocationRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/NamespacedFunctionName"
+                },
+                "InvocationType": {
+                    "$ref": "#/$defs/InvocationType"
+                },
+                "LogType": {
+                    "$ref": "#/$defs/LogType"
+                },
+                "ClientContext": {
+                    "$ref": "#/$defs/String"
+                },
+                "Payload": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "InvocationType": {
+            "enum": [
+                "Event",
+                "RequestResponse",
+                "DryRun"
+            ]
+        },
+        "LogType": {
+            "enum": [
+                "None",
+                "Tail"
+            ]
+        },
+        "InvokeAsyncResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/HttpStatus"
+                }
+            }
+        },
+        "HttpStatus": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "InvokeAsyncRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/NamespacedFunctionName"
+                },
+                "InvokeArgs": {
+                    "$ref": "#/$defs/BlobStream"
+                }
+            }
+        },
+        "BlobStream": {
+            "type": "string",
+            "format": "binary"
+        },
+        "InvokeWithResponseStreamResponse": {
+            "type": "object",
+            "properties": {
+                "StatusCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ExecutedVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "EventStream": {
+                    "$ref": "#/$defs/InvokeWithResponseStreamResponseEvent"
+                },
+                "ResponseStreamContentType": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "InvokeWithResponseStreamResponseEvent": {
+            "type": "object",
+            "properties": {
+                "PayloadChunk": {
+                    "$ref": "#/$defs/InvokeResponseStreamUpdate"
+                },
+                "InvokeComplete": {
+                    "$ref": "#/$defs/InvokeWithResponseStreamCompleteEvent"
+                }
+            }
+        },
+        "InvokeResponseStreamUpdate": {
+            "type": "object",
+            "properties": {
+                "Payload": {
+                    "$ref": "#/$defs/Blob"
+                }
+            }
+        },
+        "InvokeWithResponseStreamCompleteEvent": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "ErrorDetails": {
+                    "$ref": "#/$defs/String"
+                },
+                "LogResult": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "InvokeWithResponseStreamRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/NamespacedFunctionName"
+                },
+                "InvocationType": {
+                    "$ref": "#/$defs/ResponseStreamingInvocationType"
+                },
+                "LogType": {
+                    "$ref": "#/$defs/LogType"
+                },
+                "ClientContext": {
+                    "$ref": "#/$defs/String"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                },
+                "Payload": {
+                    "$ref": "#/$defs/Blob"
+                }
+            }
+        },
+        "ResponseStreamingInvocationType": {
+            "enum": [
+                "RequestResponse",
+                "DryRun"
+            ]
+        },
+        "ListAliasesResponse": {
+            "type": "object",
+            "properties": {
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                },
+                "Aliases": {
+                    "$ref": "#/$defs/AliasList"
+                }
+            }
+        },
+        "AliasList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AliasConfiguration"
+            }
+        },
+        "ListAliasesRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "FunctionVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxListItems"
+                }
+            }
+        },
+        "MaxListItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListCodeSigningConfigsResponse": {
+            "type": "object",
+            "properties": {
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                },
+                "CodeSigningConfigs": {
+                    "$ref": "#/$defs/CodeSigningConfigList"
+                }
+            }
+        },
+        "CodeSigningConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CodeSigningConfig"
+            }
+        },
+        "ListCodeSigningConfigsRequest": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxListItems"
+                }
+            }
+        },
+        "ListEventSourceMappingsResponse": {
+            "type": "object",
+            "properties": {
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventSourceMappings": {
+                    "$ref": "#/$defs/EventSourceMappingsList"
+                }
+            }
+        },
+        "EventSourceMappingsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventSourceMappingConfiguration"
+            }
+        },
+        "ListEventSourceMappingsRequest": {
+            "type": "object",
+            "properties": {
+                "EventSourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxListItems"
+                }
+            }
+        },
+        "ListFunctionEventInvokeConfigsResponse": {
+            "type": "object",
+            "properties": {
+                "FunctionEventInvokeConfigs": {
+                    "$ref": "#/$defs/FunctionEventInvokeConfigList"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FunctionEventInvokeConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FunctionEventInvokeConfig"
+            }
+        },
+        "ListFunctionEventInvokeConfigsRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxFunctionEventInvokeConfigListItems"
+                }
+            }
+        },
+        "MaxFunctionEventInvokeConfigListItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListFunctionsResponse": {
+            "type": "object",
+            "properties": {
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                },
+                "Functions": {
+                    "$ref": "#/$defs/FunctionList"
+                }
+            }
+        },
+        "FunctionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FunctionConfiguration"
+            }
+        },
+        "ListFunctionsRequest": {
+            "type": "object",
+            "properties": {
+                "MasterRegion": {
+                    "$ref": "#/$defs/MasterRegion"
+                },
+                "FunctionVersion": {
+                    "$ref": "#/$defs/FunctionVersion"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxListItems"
+                }
+            }
+        },
+        "MasterRegion": {
+            "type": "string"
+        },
+        "FunctionVersion": {
+            "enum": [
+                "ALL"
+            ]
+        },
+        "ListFunctionsByCodeSigningConfigResponse": {
+            "type": "object",
+            "properties": {
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                },
+                "FunctionArns": {
+                    "$ref": "#/$defs/FunctionArnList"
+                }
+            }
+        },
+        "FunctionArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FunctionArn"
+            }
+        },
+        "ListFunctionsByCodeSigningConfigRequest": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfigArn": {
+                    "$ref": "#/$defs/CodeSigningConfigArn"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxListItems"
+                }
+            }
+        },
+        "ListFunctionUrlConfigsResponse": {
+            "type": "object",
+            "properties": {
+                "FunctionUrlConfigs": {
+                    "$ref": "#/$defs/FunctionUrlConfigList"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FunctionUrlConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FunctionUrlConfig"
+            }
+        },
+        "FunctionUrlConfig": {
+            "type": "object",
+            "properties": {
+                "FunctionUrl": {
+                    "$ref": "#/$defs/FunctionUrl"
+                },
+                "FunctionArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Cors": {
+                    "$ref": "#/$defs/Cors"
+                },
+                "AuthType": {
+                    "$ref": "#/$defs/FunctionUrlAuthType"
+                },
+                "InvokeMode": {
+                    "$ref": "#/$defs/InvokeMode"
+                }
+            }
+        },
+        "ListFunctionUrlConfigsRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxItems"
+                }
+            }
+        },
+        "MaxItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListLayersResponse": {
+            "type": "object",
+            "properties": {
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                },
+                "Layers": {
+                    "$ref": "#/$defs/LayersList"
+                }
+            }
+        },
+        "LayersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LayersListItem"
+            }
+        },
+        "LayersListItem": {
+            "type": "object",
+            "properties": {
+                "LayerName": {
+                    "$ref": "#/$defs/LayerName"
+                },
+                "LayerArn": {
+                    "$ref": "#/$defs/LayerArn"
+                },
+                "LatestMatchingVersion": {
+                    "$ref": "#/$defs/LayerVersionsListItem"
+                }
+            }
+        },
+        "LayerVersionsListItem": {
+            "type": "object",
+            "properties": {
+                "LayerVersionArn": {
+                    "$ref": "#/$defs/LayerVersionArn"
+                },
+                "Version": {
+                    "$ref": "#/$defs/LayerVersionNumber"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "CreatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CompatibleRuntimes": {
+                    "$ref": "#/$defs/CompatibleRuntimes"
+                },
+                "LicenseInfo": {
+                    "$ref": "#/$defs/LicenseInfo"
+                },
+                "CompatibleArchitectures": {
+                    "$ref": "#/$defs/CompatibleArchitectures"
+                }
+            }
+        },
+        "ListLayersRequest": {
+            "type": "object",
+            "properties": {
+                "CompatibleRuntime": {
+                    "$ref": "#/$defs/Runtime"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxLayerListItems"
+                },
+                "CompatibleArchitecture": {
+                    "$ref": "#/$defs/Architecture"
+                }
+            }
+        },
+        "MaxLayerListItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListLayerVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerVersions": {
+                    "$ref": "#/$defs/LayerVersionsList"
+                }
+            }
+        },
+        "LayerVersionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LayerVersionsListItem"
+            }
+        },
+        "ListLayerVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "CompatibleRuntime": {
+                    "$ref": "#/$defs/Runtime"
+                },
+                "LayerName": {
+                    "$ref": "#/$defs/LayerName"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxLayerListItems"
+                },
+                "CompatibleArchitecture": {
+                    "$ref": "#/$defs/Architecture"
+                }
+            }
+        },
+        "ListProvisionedConcurrencyConfigsResponse": {
+            "type": "object",
+            "properties": {
+                "ProvisionedConcurrencyConfigs": {
+                    "$ref": "#/$defs/ProvisionedConcurrencyConfigList"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ProvisionedConcurrencyConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProvisionedConcurrencyConfigListItem"
+            }
+        },
+        "ProvisionedConcurrencyConfigListItem": {
+            "type": "object",
+            "properties": {
+                "FunctionArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "RequestedProvisionedConcurrentExecutions": {
+                    "$ref": "#/$defs/PositiveInteger"
+                },
+                "AvailableProvisionedConcurrentExecutions": {
+                    "$ref": "#/$defs/NonNegativeInteger"
+                },
+                "AllocatedProvisionedConcurrentExecutions": {
+                    "$ref": "#/$defs/NonNegativeInteger"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ProvisionedConcurrencyStatusEnum"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "LastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListProvisionedConcurrencyConfigsRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxProvisionedConcurrencyConfigListItems"
+                }
+            }
+        },
+        "MaxProvisionedConcurrencyConfigListItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsRequest": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/TaggableResource"
+                }
+            }
+        },
+        "TaggableResource": {
+            "type": "string"
+        },
+        "ListVersionsByFunctionResponse": {
+            "type": "object",
+            "properties": {
+                "NextMarker": {
+                    "$ref": "#/$defs/String"
+                },
+                "Versions": {
+                    "$ref": "#/$defs/FunctionList"
+                }
+            }
+        },
+        "ListVersionsByFunctionRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/NamespacedFunctionName"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxListItems"
+                }
+            }
+        },
+        "PublishLayerVersionResponse": {
+            "type": "object",
+            "properties": {
+                "Content": {
+                    "$ref": "#/$defs/LayerVersionContentOutput"
+                },
+                "LayerArn": {
+                    "$ref": "#/$defs/LayerArn"
+                },
+                "LayerVersionArn": {
+                    "$ref": "#/$defs/LayerVersionArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "CreatedDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Version": {
+                    "$ref": "#/$defs/LayerVersionNumber"
+                },
+                "CompatibleRuntimes": {
+                    "$ref": "#/$defs/CompatibleRuntimes"
+                },
+                "LicenseInfo": {
+                    "$ref": "#/$defs/LicenseInfo"
+                },
+                "CompatibleArchitectures": {
+                    "$ref": "#/$defs/CompatibleArchitectures"
+                }
+            }
+        },
+        "PublishLayerVersionRequest": {
+            "type": "object",
+            "properties": {
+                "LayerName": {
+                    "$ref": "#/$defs/LayerName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Content": {
+                    "$ref": "#/$defs/LayerVersionContentInput"
+                },
+                "CompatibleRuntimes": {
+                    "$ref": "#/$defs/CompatibleRuntimes"
+                },
+                "LicenseInfo": {
+                    "$ref": "#/$defs/LicenseInfo"
+                },
+                "CompatibleArchitectures": {
+                    "$ref": "#/$defs/CompatibleArchitectures"
+                }
+            }
+        },
+        "LayerVersionContentInput": {
+            "type": "object",
+            "properties": {
+                "S3Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "S3Key": {
+                    "$ref": "#/$defs/S3Key"
+                },
+                "S3ObjectVersion": {
+                    "$ref": "#/$defs/S3ObjectVersion"
+                },
+                "ZipFile": {
+                    "$ref": "#/$defs/Blob"
+                }
+            }
+        },
+        "PublishVersionRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "CodeSha256": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PutFunctionCodeSigningConfigResponse": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfigArn": {
+                    "$ref": "#/$defs/CodeSigningConfigArn"
+                },
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                }
+            }
+        },
+        "PutFunctionCodeSigningConfigRequest": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfigArn": {
+                    "$ref": "#/$defs/CodeSigningConfigArn"
+                },
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                }
+            }
+        },
+        "PutFunctionConcurrencyRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "ReservedConcurrentExecutions": {
+                    "$ref": "#/$defs/ReservedConcurrentExecutions"
+                }
+            }
+        },
+        "PutFunctionEventInvokeConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                },
+                "MaximumRetryAttempts": {
+                    "$ref": "#/$defs/MaximumRetryAttempts"
+                },
+                "MaximumEventAgeInSeconds": {
+                    "$ref": "#/$defs/MaximumEventAgeInSeconds"
+                },
+                "DestinationConfig": {
+                    "$ref": "#/$defs/DestinationConfig"
+                }
+            }
+        },
+        "PutFunctionRecursionConfigResponse": {
+            "type": "object",
+            "properties": {
+                "RecursiveLoop": {
+                    "$ref": "#/$defs/RecursiveLoop"
+                }
+            }
+        },
+        "PutFunctionRecursionConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/UnqualifiedFunctionName"
+                },
+                "RecursiveLoop": {
+                    "$ref": "#/$defs/RecursiveLoop"
+                }
+            }
+        },
+        "PutProvisionedConcurrencyConfigResponse": {
+            "type": "object",
+            "properties": {
+                "RequestedProvisionedConcurrentExecutions": {
+                    "$ref": "#/$defs/PositiveInteger"
+                },
+                "AvailableProvisionedConcurrentExecutions": {
+                    "$ref": "#/$defs/NonNegativeInteger"
+                },
+                "AllocatedProvisionedConcurrentExecutions": {
+                    "$ref": "#/$defs/NonNegativeInteger"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ProvisionedConcurrencyStatusEnum"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "LastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PutProvisionedConcurrencyConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                },
+                "ProvisionedConcurrentExecutions": {
+                    "$ref": "#/$defs/PositiveInteger"
+                }
+            }
+        },
+        "PutRuntimeManagementConfigResponse": {
+            "type": "object",
+            "properties": {
+                "UpdateRuntimeOn": {
+                    "$ref": "#/$defs/UpdateRuntimeOn"
+                },
+                "FunctionArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "RuntimeVersionArn": {
+                    "$ref": "#/$defs/RuntimeVersionArn"
+                }
+            }
+        },
+        "PutRuntimeManagementConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                },
+                "UpdateRuntimeOn": {
+                    "$ref": "#/$defs/UpdateRuntimeOn"
+                },
+                "RuntimeVersionArn": {
+                    "$ref": "#/$defs/RuntimeVersionArn"
+                }
+            }
+        },
+        "RemoveLayerVersionPermissionRequest": {
+            "type": "object",
+            "properties": {
+                "LayerName": {
+                    "$ref": "#/$defs/LayerName"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/LayerVersionNumber"
+                },
+                "StatementId": {
+                    "$ref": "#/$defs/StatementId"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RemovePermissionRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "StatementId": {
+                    "$ref": "#/$defs/NamespacedStatementId"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "NamespacedStatementId": {
+            "type": "string"
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/TaggableResource"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/TaggableResource"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateAliasRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Alias"
+                },
+                "FunctionVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "RoutingConfig": {
+                    "$ref": "#/$defs/AliasRoutingConfiguration"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateCodeSigningConfigResponse": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfig": {
+                    "$ref": "#/$defs/CodeSigningConfig"
+                }
+            }
+        },
+        "UpdateCodeSigningConfigRequest": {
+            "type": "object",
+            "properties": {
+                "CodeSigningConfigArn": {
+                    "$ref": "#/$defs/CodeSigningConfigArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "AllowedPublishers": {
+                    "$ref": "#/$defs/AllowedPublishers"
+                },
+                "CodeSigningPolicies": {
+                    "$ref": "#/$defs/CodeSigningPolicies"
+                }
+            }
+        },
+        "UpdateEventSourceMappingRequest": {
+            "type": "object",
+            "properties": {
+                "UUID": {
+                    "$ref": "#/$defs/String"
+                },
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/Enabled"
+                },
+                "BatchSize": {
+                    "$ref": "#/$defs/BatchSize"
+                },
+                "FilterCriteria": {
+                    "$ref": "#/$defs/FilterCriteria"
+                },
+                "MaximumBatchingWindowInSeconds": {
+                    "$ref": "#/$defs/MaximumBatchingWindowInSeconds"
+                },
+                "DestinationConfig": {
+                    "$ref": "#/$defs/DestinationConfig"
+                },
+                "MaximumRecordAgeInSeconds": {
+                    "$ref": "#/$defs/MaximumRecordAgeInSeconds"
+                },
+                "BisectBatchOnFunctionError": {
+                    "$ref": "#/$defs/BisectBatchOnFunctionError"
+                },
+                "MaximumRetryAttempts": {
+                    "$ref": "#/$defs/MaximumRetryAttemptsEventSourceMapping"
+                },
+                "ParallelizationFactor": {
+                    "$ref": "#/$defs/ParallelizationFactor"
+                },
+                "SourceAccessConfigurations": {
+                    "$ref": "#/$defs/SourceAccessConfigurations"
+                },
+                "TumblingWindowInSeconds": {
+                    "$ref": "#/$defs/TumblingWindowInSeconds"
+                },
+                "FunctionResponseTypes": {
+                    "$ref": "#/$defs/FunctionResponseTypeList"
+                },
+                "ScalingConfig": {
+                    "$ref": "#/$defs/ScalingConfig"
+                },
+                "DocumentDBEventSourceConfig": {
+                    "$ref": "#/$defs/DocumentDBEventSourceConfig"
+                },
+                "KMSKeyArn": {
+                    "$ref": "#/$defs/KMSKeyArn"
+                }
+            }
+        },
+        "UpdateFunctionCodeRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "ZipFile": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "S3Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "S3Key": {
+                    "$ref": "#/$defs/S3Key"
+                },
+                "S3ObjectVersion": {
+                    "$ref": "#/$defs/S3ObjectVersion"
+                },
+                "ImageUri": {
+                    "$ref": "#/$defs/String"
+                },
+                "Publish": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Architectures": {
+                    "$ref": "#/$defs/ArchitecturesList"
+                }
+            }
+        },
+        "UpdateFunctionConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Role": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "Handler": {
+                    "$ref": "#/$defs/Handler"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Timeout": {
+                    "$ref": "#/$defs/Timeout"
+                },
+                "MemorySize": {
+                    "$ref": "#/$defs/MemorySize"
+                },
+                "VpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
+                "Environment": {
+                    "$ref": "#/$defs/Environment"
+                },
+                "Runtime": {
+                    "$ref": "#/$defs/Runtime"
+                },
+                "DeadLetterConfig": {
+                    "$ref": "#/$defs/DeadLetterConfig"
+                },
+                "KMSKeyArn": {
+                    "$ref": "#/$defs/KMSKeyArn"
+                },
+                "TracingConfig": {
+                    "$ref": "#/$defs/TracingConfig"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Layers": {
+                    "$ref": "#/$defs/LayerList"
+                },
+                "FileSystemConfigs": {
+                    "$ref": "#/$defs/FileSystemConfigList"
+                },
+                "ImageConfig": {
+                    "$ref": "#/$defs/ImageConfig"
+                },
+                "EphemeralStorage": {
+                    "$ref": "#/$defs/EphemeralStorage"
+                },
+                "SnapStart": {
+                    "$ref": "#/$defs/SnapStart"
+                },
+                "LoggingConfig": {
+                    "$ref": "#/$defs/LoggingConfig"
+                }
+            }
+        },
+        "UpdateFunctionEventInvokeConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                },
+                "MaximumRetryAttempts": {
+                    "$ref": "#/$defs/MaximumRetryAttempts"
+                },
+                "MaximumEventAgeInSeconds": {
+                    "$ref": "#/$defs/MaximumEventAgeInSeconds"
+                },
+                "DestinationConfig": {
+                    "$ref": "#/$defs/DestinationConfig"
+                }
+            }
+        },
+        "UpdateFunctionUrlConfigResponse": {
+            "type": "object",
+            "properties": {
+                "FunctionUrl": {
+                    "$ref": "#/$defs/FunctionUrl"
+                },
+                "FunctionArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "AuthType": {
+                    "$ref": "#/$defs/FunctionUrlAuthType"
+                },
+                "Cors": {
+                    "$ref": "#/$defs/Cors"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "InvokeMode": {
+                    "$ref": "#/$defs/InvokeMode"
+                }
+            }
+        },
+        "UpdateFunctionUrlConfigRequest": {
+            "type": "object",
+            "properties": {
+                "FunctionName": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/FunctionUrlQualifier"
+                },
+                "AuthType": {
+                    "$ref": "#/$defs/FunctionUrlAuthType"
+                },
+                "Cors": {
+                    "$ref": "#/$defs/Cors"
+                },
+                "InvokeMode": {
+                    "$ref": "#/$defs/InvokeMode"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://lambda-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://lambda-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://lambda.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://lambda.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

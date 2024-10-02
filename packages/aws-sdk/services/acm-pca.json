@@ -1,0 +1,2236 @@
+{
+    "name": "acm-pca",
+    "commands": [
+        {
+            "name": "CreateCertificateAuthority",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCertificateAuthority"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCertificateAuthorityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCertificateAuthorityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCertificateAuthorityAuditReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCertificateAuthorityAuditReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCertificateAuthorityAuditReportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCertificateAuthorityAuditReportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCertificateAuthority",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCertificateAuthority"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCertificateAuthorityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCertificateAuthority",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCertificateAuthority"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCertificateAuthorityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCertificateAuthorityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCertificateAuthorityAuditReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCertificateAuthorityAuditReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCertificateAuthorityAuditReportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCertificateAuthorityAuditReportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCertificateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCertificateAuthorityCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCertificateAuthorityCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCertificateAuthorityCertificateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCertificateAuthorityCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCertificateAuthorityCsr",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCertificateAuthorityCsr"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCertificateAuthorityCsrResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCertificateAuthorityCsrRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportCertificateAuthorityCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportCertificateAuthorityCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportCertificateAuthorityCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "IssueCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "IssueCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/IssueCertificateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/IssueCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCertificateAuthorities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCertificateAuthorities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCertificateAuthoritiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCertificateAuthoritiesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPermissions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPermissions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPermissionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPermissionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RestoreCertificateAuthority",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RestoreCertificateAuthority"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RestoreCertificateAuthorityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RevokeCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RevokeCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RevokeCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagCertificateAuthority",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagCertificateAuthority"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagCertificateAuthorityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagCertificateAuthority",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagCertificateAuthority"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagCertificateAuthorityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCertificateAuthority",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateCertificateAuthority"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCertificateAuthorityRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateCertificateAuthorityResponse": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "CreateCertificateAuthorityRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityConfiguration": {
+                    "$ref": "#/$defs/CertificateAuthorityConfiguration"
+                },
+                "RevocationConfiguration": {
+                    "$ref": "#/$defs/RevocationConfiguration"
+                },
+                "CertificateAuthorityType": {
+                    "$ref": "#/$defs/CertificateAuthorityType"
+                },
+                "IdempotencyToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "KeyStorageSecurityStandard": {
+                    "$ref": "#/$defs/KeyStorageSecurityStandard"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "UsageMode": {
+                    "$ref": "#/$defs/CertificateAuthorityUsageMode"
+                }
+            }
+        },
+        "CertificateAuthorityConfiguration": {
+            "type": "object",
+            "properties": {
+                "KeyAlgorithm": {
+                    "$ref": "#/$defs/KeyAlgorithm"
+                },
+                "SigningAlgorithm": {
+                    "$ref": "#/$defs/SigningAlgorithm"
+                },
+                "Subject": {
+                    "$ref": "#/$defs/ASN1Subject"
+                },
+                "CsrExtensions": {
+                    "$ref": "#/$defs/CsrExtensions"
+                }
+            }
+        },
+        "KeyAlgorithm": {
+            "enum": [
+                "RSA_2048",
+                "RSA_4096",
+                "EC_prime256v1",
+                "EC_secp384r1",
+                "SM2"
+            ]
+        },
+        "SigningAlgorithm": {
+            "enum": [
+                "SHA256WITHECDSA",
+                "SHA384WITHECDSA",
+                "SHA512WITHECDSA",
+                "SHA256WITHRSA",
+                "SHA384WITHRSA",
+                "SHA512WITHRSA",
+                "SM3WITHSM2"
+            ]
+        },
+        "ASN1Subject": {
+            "type": "object",
+            "properties": {
+                "Country": {
+                    "$ref": "#/$defs/CountryCodeString"
+                },
+                "Organization": {
+                    "$ref": "#/$defs/String64"
+                },
+                "OrganizationalUnit": {
+                    "$ref": "#/$defs/String64"
+                },
+                "DistinguishedNameQualifier": {
+                    "$ref": "#/$defs/ASN1PrintableString64"
+                },
+                "State": {
+                    "$ref": "#/$defs/String128"
+                },
+                "CommonName": {
+                    "$ref": "#/$defs/String64"
+                },
+                "SerialNumber": {
+                    "$ref": "#/$defs/ASN1PrintableString64"
+                },
+                "Locality": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Title": {
+                    "$ref": "#/$defs/String64"
+                },
+                "Surname": {
+                    "$ref": "#/$defs/String40"
+                },
+                "GivenName": {
+                    "$ref": "#/$defs/String16"
+                },
+                "Initials": {
+                    "$ref": "#/$defs/String5"
+                },
+                "Pseudonym": {
+                    "$ref": "#/$defs/String128"
+                },
+                "GenerationQualifier": {
+                    "$ref": "#/$defs/String3"
+                },
+                "CustomAttributes": {
+                    "$ref": "#/$defs/CustomAttributeList"
+                }
+            }
+        },
+        "CountryCodeString": {
+            "type": "string"
+        },
+        "String64": {
+            "type": "string"
+        },
+        "ASN1PrintableString64": {
+            "type": "string"
+        },
+        "String128": {
+            "type": "string"
+        },
+        "String40": {
+            "type": "string"
+        },
+        "String16": {
+            "type": "string"
+        },
+        "String5": {
+            "type": "string"
+        },
+        "String3": {
+            "type": "string"
+        },
+        "CustomAttributeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CustomAttribute"
+            }
+        },
+        "CustomAttribute": {
+            "type": "object",
+            "properties": {
+                "ObjectIdentifier": {
+                    "$ref": "#/$defs/CustomObjectIdentifier"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String1To256"
+                }
+            }
+        },
+        "CustomObjectIdentifier": {
+            "type": "string"
+        },
+        "String1To256": {
+            "type": "string"
+        },
+        "CsrExtensions": {
+            "type": "object",
+            "properties": {
+                "KeyUsage": {
+                    "$ref": "#/$defs/KeyUsage"
+                },
+                "SubjectInformationAccess": {
+                    "$ref": "#/$defs/AccessDescriptionList"
+                }
+            }
+        },
+        "KeyUsage": {
+            "type": "object",
+            "properties": {
+                "DigitalSignature": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NonRepudiation": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "KeyEncipherment": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DataEncipherment": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "KeyAgreement": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "KeyCertSign": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CRLSign": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "EncipherOnly": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DecipherOnly": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "AccessDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessDescription"
+            }
+        },
+        "AccessDescription": {
+            "type": "object",
+            "properties": {
+                "AccessMethod": {
+                    "$ref": "#/$defs/AccessMethod"
+                },
+                "AccessLocation": {
+                    "$ref": "#/$defs/GeneralName"
+                }
+            }
+        },
+        "AccessMethod": {
+            "type": "object",
+            "properties": {
+                "CustomObjectIdentifier": {
+                    "$ref": "#/$defs/CustomObjectIdentifier"
+                },
+                "AccessMethodType": {
+                    "$ref": "#/$defs/AccessMethodType"
+                }
+            }
+        },
+        "AccessMethodType": {
+            "enum": [
+                "CA_REPOSITORY",
+                "RESOURCE_PKI_MANIFEST",
+                "RESOURCE_PKI_NOTIFY"
+            ]
+        },
+        "GeneralName": {
+            "type": "object",
+            "properties": {
+                "OtherName": {
+                    "$ref": "#/$defs/OtherName"
+                },
+                "Rfc822Name": {
+                    "$ref": "#/$defs/String256"
+                },
+                "DnsName": {
+                    "$ref": "#/$defs/String253"
+                },
+                "DirectoryName": {
+                    "$ref": "#/$defs/ASN1Subject"
+                },
+                "EdiPartyName": {
+                    "$ref": "#/$defs/EdiPartyName"
+                },
+                "UniformResourceIdentifier": {
+                    "$ref": "#/$defs/String253"
+                },
+                "IpAddress": {
+                    "$ref": "#/$defs/String39"
+                },
+                "RegisteredId": {
+                    "$ref": "#/$defs/CustomObjectIdentifier"
+                }
+            }
+        },
+        "OtherName": {
+            "type": "object",
+            "properties": {
+                "TypeId": {
+                    "$ref": "#/$defs/CustomObjectIdentifier"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String256"
+                }
+            }
+        },
+        "String256": {
+            "type": "string"
+        },
+        "String253": {
+            "type": "string"
+        },
+        "EdiPartyName": {
+            "type": "object",
+            "properties": {
+                "PartyName": {
+                    "$ref": "#/$defs/String256"
+                },
+                "NameAssigner": {
+                    "$ref": "#/$defs/String256"
+                }
+            }
+        },
+        "String39": {
+            "type": "string"
+        },
+        "RevocationConfiguration": {
+            "type": "object",
+            "properties": {
+                "CrlConfiguration": {
+                    "$ref": "#/$defs/CrlConfiguration"
+                },
+                "OcspConfiguration": {
+                    "$ref": "#/$defs/OcspConfiguration"
+                }
+            }
+        },
+        "CrlConfiguration": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ExpirationInDays": {
+                    "$ref": "#/$defs/Integer1To5000"
+                },
+                "CustomCname": {
+                    "$ref": "#/$defs/CnameString"
+                },
+                "S3BucketName": {
+                    "$ref": "#/$defs/S3BucketName3To255"
+                },
+                "S3ObjectAcl": {
+                    "$ref": "#/$defs/S3ObjectAcl"
+                },
+                "CrlDistributionPointExtensionConfiguration": {
+                    "$ref": "#/$defs/CrlDistributionPointExtensionConfiguration"
+                }
+            }
+        },
+        "Integer1To5000": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CnameString": {
+            "type": "string"
+        },
+        "S3BucketName3To255": {
+            "type": "string"
+        },
+        "S3ObjectAcl": {
+            "enum": [
+                "PUBLIC_READ",
+                "BUCKET_OWNER_FULL_CONTROL"
+            ]
+        },
+        "CrlDistributionPointExtensionConfiguration": {
+            "type": "object",
+            "properties": {
+                "OmitExtension": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "OcspConfiguration": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "OcspCustomCname": {
+                    "$ref": "#/$defs/CnameString"
+                }
+            }
+        },
+        "CertificateAuthorityType": {
+            "enum": [
+                "ROOT",
+                "SUBORDINATE"
+            ]
+        },
+        "IdempotencyToken": {
+            "type": "string"
+        },
+        "KeyStorageSecurityStandard": {
+            "enum": [
+                "FIPS_140_2_LEVEL_2_OR_HIGHER",
+                "FIPS_140_2_LEVEL_3_OR_HIGHER",
+                "CCPC_LEVEL_1_OR_HIGHER"
+            ]
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CertificateAuthorityUsageMode": {
+            "enum": [
+                "GENERAL_PURPOSE",
+                "SHORT_LIVED_CERTIFICATE"
+            ]
+        },
+        "CreateCertificateAuthorityAuditReportResponse": {
+            "type": "object",
+            "properties": {
+                "AuditReportId": {
+                    "$ref": "#/$defs/AuditReportId"
+                },
+                "S3Key": {
+                    "$ref": "#/$defs/S3Key"
+                }
+            }
+        },
+        "AuditReportId": {
+            "type": "string"
+        },
+        "S3Key": {
+            "type": "string"
+        },
+        "CreateCertificateAuthorityAuditReportRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "S3BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "AuditReportResponseFormat": {
+                    "$ref": "#/$defs/AuditReportResponseFormat"
+                }
+            }
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "AuditReportResponseFormat": {
+            "enum": [
+                "JSON",
+                "CSV"
+            ]
+        },
+        "CreatePermissionRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Principal": {
+                    "$ref": "#/$defs/Principal"
+                },
+                "SourceAccount": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "Actions": {
+                    "$ref": "#/$defs/ActionList"
+                }
+            }
+        },
+        "Principal": {
+            "type": "string"
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "ActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionType"
+            }
+        },
+        "ActionType": {
+            "enum": [
+                "IssueCertificate",
+                "GetCertificate",
+                "ListPermissions"
+            ]
+        },
+        "DeleteCertificateAuthorityRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "PermanentDeletionTimeInDays": {
+                    "$ref": "#/$defs/PermanentDeletionTimeInDays"
+                }
+            }
+        },
+        "PermanentDeletionTimeInDays": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DeletePermissionRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Principal": {
+                    "$ref": "#/$defs/Principal"
+                },
+                "SourceAccount": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "DeletePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeCertificateAuthorityResponse": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthority": {
+                    "$ref": "#/$defs/CertificateAuthority"
+                }
+            }
+        },
+        "CertificateAuthority": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "OwnerAccount": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "LastStateChangeAt": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "Type": {
+                    "$ref": "#/$defs/CertificateAuthorityType"
+                },
+                "Serial": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/CertificateAuthorityStatus"
+                },
+                "NotBefore": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "NotAfter": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "FailureReason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "CertificateAuthorityConfiguration": {
+                    "$ref": "#/$defs/CertificateAuthorityConfiguration"
+                },
+                "RevocationConfiguration": {
+                    "$ref": "#/$defs/RevocationConfiguration"
+                },
+                "RestorableUntil": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "KeyStorageSecurityStandard": {
+                    "$ref": "#/$defs/KeyStorageSecurityStandard"
+                },
+                "UsageMode": {
+                    "$ref": "#/$defs/CertificateAuthorityUsageMode"
+                }
+            }
+        },
+        "TStamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "String": {
+            "type": "string"
+        },
+        "CertificateAuthorityStatus": {
+            "enum": [
+                "CREATING",
+                "PENDING_CERTIFICATE",
+                "ACTIVE",
+                "DELETED",
+                "DISABLED",
+                "EXPIRED",
+                "FAILED"
+            ]
+        },
+        "FailureReason": {
+            "enum": [
+                "REQUEST_TIMED_OUT",
+                "UNSUPPORTED_ALGORITHM",
+                "OTHER"
+            ]
+        },
+        "DescribeCertificateAuthorityRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeCertificateAuthorityAuditReportResponse": {
+            "type": "object",
+            "properties": {
+                "AuditReportStatus": {
+                    "$ref": "#/$defs/AuditReportStatus"
+                },
+                "S3BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "S3Key": {
+                    "$ref": "#/$defs/S3Key"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/TStamp"
+                }
+            }
+        },
+        "AuditReportStatus": {
+            "enum": [
+                "CREATING",
+                "SUCCESS",
+                "FAILED"
+            ]
+        },
+        "DescribeCertificateAuthorityAuditReportRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AuditReportId": {
+                    "$ref": "#/$defs/AuditReportId"
+                }
+            }
+        },
+        "GetCertificateResponse": {
+            "type": "object",
+            "properties": {
+                "Certificate": {
+                    "$ref": "#/$defs/CertificateBody"
+                },
+                "CertificateChain": {
+                    "$ref": "#/$defs/CertificateChain"
+                }
+            }
+        },
+        "CertificateBody": {
+            "type": "string"
+        },
+        "CertificateChain": {
+            "type": "string"
+        },
+        "GetCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "GetCertificateAuthorityCertificateResponse": {
+            "type": "object",
+            "properties": {
+                "Certificate": {
+                    "$ref": "#/$defs/CertificateBody"
+                },
+                "CertificateChain": {
+                    "$ref": "#/$defs/CertificateChain"
+                }
+            }
+        },
+        "GetCertificateAuthorityCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "GetCertificateAuthorityCsrResponse": {
+            "type": "object",
+            "properties": {
+                "Csr": {
+                    "$ref": "#/$defs/CsrBody"
+                }
+            }
+        },
+        "CsrBody": {
+            "type": "string"
+        },
+        "GetCertificateAuthorityCsrRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "GetPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/AWSPolicy"
+                }
+            }
+        },
+        "AWSPolicy": {
+            "type": "string"
+        },
+        "GetPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ImportCertificateAuthorityCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Certificate": {
+                    "$ref": "#/$defs/CertificateBodyBlob"
+                },
+                "CertificateChain": {
+                    "$ref": "#/$defs/CertificateChainBlob"
+                }
+            }
+        },
+        "CertificateBodyBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CertificateChainBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "IssueCertificateResponse": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "IssueCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "ApiPassthrough": {
+                    "$ref": "#/$defs/ApiPassthrough"
+                },
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Csr": {
+                    "$ref": "#/$defs/CsrBlob"
+                },
+                "SigningAlgorithm": {
+                    "$ref": "#/$defs/SigningAlgorithm"
+                },
+                "TemplateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Validity": {
+                    "$ref": "#/$defs/Validity"
+                },
+                "ValidityNotBefore": {
+                    "$ref": "#/$defs/Validity"
+                },
+                "IdempotencyToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                }
+            }
+        },
+        "ApiPassthrough": {
+            "type": "object",
+            "properties": {
+                "Extensions": {
+                    "$ref": "#/$defs/Extensions"
+                },
+                "Subject": {
+                    "$ref": "#/$defs/ASN1Subject"
+                }
+            }
+        },
+        "Extensions": {
+            "type": "object",
+            "properties": {
+                "CertificatePolicies": {
+                    "$ref": "#/$defs/CertificatePolicyList"
+                },
+                "ExtendedKeyUsage": {
+                    "$ref": "#/$defs/ExtendedKeyUsageList"
+                },
+                "KeyUsage": {
+                    "$ref": "#/$defs/KeyUsage"
+                },
+                "SubjectAlternativeNames": {
+                    "$ref": "#/$defs/GeneralNameList"
+                },
+                "CustomExtensions": {
+                    "$ref": "#/$defs/CustomExtensionList"
+                }
+            }
+        },
+        "CertificatePolicyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyInformation"
+            }
+        },
+        "PolicyInformation": {
+            "type": "object",
+            "properties": {
+                "CertPolicyId": {
+                    "$ref": "#/$defs/CustomObjectIdentifier"
+                },
+                "PolicyQualifiers": {
+                    "$ref": "#/$defs/PolicyQualifierInfoList"
+                }
+            }
+        },
+        "PolicyQualifierInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyQualifierInfo"
+            }
+        },
+        "PolicyQualifierInfo": {
+            "type": "object",
+            "properties": {
+                "PolicyQualifierId": {
+                    "$ref": "#/$defs/PolicyQualifierId"
+                },
+                "Qualifier": {
+                    "$ref": "#/$defs/Qualifier"
+                }
+            }
+        },
+        "PolicyQualifierId": {
+            "enum": [
+                "CPS"
+            ]
+        },
+        "Qualifier": {
+            "type": "object",
+            "properties": {
+                "CpsUri": {
+                    "$ref": "#/$defs/String256"
+                }
+            }
+        },
+        "ExtendedKeyUsageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExtendedKeyUsage"
+            }
+        },
+        "ExtendedKeyUsage": {
+            "type": "object",
+            "properties": {
+                "ExtendedKeyUsageType": {
+                    "$ref": "#/$defs/ExtendedKeyUsageType"
+                },
+                "ExtendedKeyUsageObjectIdentifier": {
+                    "$ref": "#/$defs/CustomObjectIdentifier"
+                }
+            }
+        },
+        "ExtendedKeyUsageType": {
+            "enum": [
+                "SERVER_AUTH",
+                "CLIENT_AUTH",
+                "CODE_SIGNING",
+                "EMAIL_PROTECTION",
+                "TIME_STAMPING",
+                "OCSP_SIGNING",
+                "SMART_CARD_LOGIN",
+                "DOCUMENT_SIGNING",
+                "CERTIFICATE_TRANSPARENCY"
+            ]
+        },
+        "GeneralNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GeneralName"
+            }
+        },
+        "CustomExtensionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CustomExtension"
+            }
+        },
+        "CustomExtension": {
+            "type": "object",
+            "properties": {
+                "ObjectIdentifier": {
+                    "$ref": "#/$defs/CustomObjectIdentifier"
+                },
+                "Value": {
+                    "$ref": "#/$defs/Base64String1To4096"
+                },
+                "Critical": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Base64String1To4096": {
+            "type": "string"
+        },
+        "CsrBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "Validity": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/PositiveLong"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ValidityPeriodType"
+                }
+            }
+        },
+        "PositiveLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ValidityPeriodType": {
+            "enum": [
+                "END_DATE",
+                "ABSOLUTE",
+                "DAYS",
+                "MONTHS",
+                "YEARS"
+            ]
+        },
+        "ListCertificateAuthoritiesResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "CertificateAuthorities": {
+                    "$ref": "#/$defs/CertificateAuthorities"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "CertificateAuthorities": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CertificateAuthority"
+            }
+        },
+        "ListCertificateAuthoritiesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ResourceOwner": {
+                    "$ref": "#/$defs/ResourceOwner"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ResourceOwner": {
+            "enum": [
+                "SELF",
+                "OTHER_ACCOUNTS"
+            ]
+        },
+        "ListPermissionsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Permissions": {
+                    "$ref": "#/$defs/PermissionList"
+                }
+            }
+        },
+        "PermissionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Permission"
+            }
+        },
+        "Permission": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "Principal": {
+                    "$ref": "#/$defs/Principal"
+                },
+                "SourceAccount": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "Actions": {
+                    "$ref": "#/$defs/ActionList"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/AWSPolicy"
+                }
+            }
+        },
+        "ListPermissionsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListTagsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "PutPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/AWSPolicy"
+                }
+            }
+        },
+        "RestoreCertificateAuthorityRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "RevokeCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CertificateSerial": {
+                    "$ref": "#/$defs/String128"
+                },
+                "RevocationReason": {
+                    "$ref": "#/$defs/RevocationReason"
+                }
+            }
+        },
+        "RevocationReason": {
+            "enum": [
+                "UNSPECIFIED",
+                "KEY_COMPROMISE",
+                "CERTIFICATE_AUTHORITY_COMPROMISE",
+                "AFFILIATION_CHANGED",
+                "SUPERSEDED",
+                "CESSATION_OF_OPERATION",
+                "PRIVILEGE_WITHDRAWN",
+                "A_A_COMPROMISE"
+            ]
+        },
+        "TagCertificateAuthorityRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagCertificateAuthorityRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UpdateCertificateAuthorityRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RevocationConfiguration": {
+                    "$ref": "#/$defs/RevocationConfiguration"
+                },
+                "Status": {
+                    "$ref": "#/$defs/CertificateAuthorityStatus"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://acm-pca-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://acm-pca.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://acm-pca-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://acm-pca.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://acm-pca.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

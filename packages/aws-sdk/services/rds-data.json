@@ -1,0 +1,1103 @@
+{
+    "name": "rds-data",
+    "commands": [
+        {
+            "name": "BatchExecuteStatement",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchExecuteStatement"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchExecuteStatementResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchExecuteStatementRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BeginTransaction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BeginTransaction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BeginTransactionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BeginTransactionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CommitTransaction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CommitTransaction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CommitTransactionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CommitTransactionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExecuteSql",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ExecuteSql"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExecuteSqlResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExecuteSqlRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExecuteStatement",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ExecuteStatement"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExecuteStatementResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExecuteStatementRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RollbackTransaction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RollbackTransaction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RollbackTransactionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RollbackTransactionRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchExecuteStatementResponse": {
+            "type": "object",
+            "properties": {
+                "updateResults": {
+                    "$ref": "#/$defs/UpdateResults"
+                }
+            }
+        },
+        "UpdateResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UpdateResult"
+            }
+        },
+        "UpdateResult": {
+            "type": "object",
+            "properties": {
+                "generatedFields": {
+                    "$ref": "#/$defs/FieldList"
+                }
+            }
+        },
+        "FieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Field"
+            }
+        },
+        "Field": {
+            "type": "object",
+            "properties": {
+                "isNull": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "booleanValue": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "longValue": {
+                    "$ref": "#/$defs/BoxedLong"
+                },
+                "doubleValue": {
+                    "$ref": "#/$defs/BoxedDouble"
+                },
+                "stringValue": {
+                    "$ref": "#/$defs/String"
+                },
+                "blobValue": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "arrayValue": {
+                    "$ref": "#/$defs/ArrayValue"
+                }
+            }
+        },
+        "BoxedBoolean": {
+            "type": "boolean"
+        },
+        "BoxedLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "BoxedDouble": {
+            "type": "number",
+            "format": "double"
+        },
+        "String": {
+            "type": "string"
+        },
+        "Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ArrayValue": {
+            "type": "object",
+            "properties": {
+                "booleanValues": {
+                    "$ref": "#/$defs/BooleanArray"
+                },
+                "longValues": {
+                    "$ref": "#/$defs/LongArray"
+                },
+                "doubleValues": {
+                    "$ref": "#/$defs/DoubleArray"
+                },
+                "stringValues": {
+                    "$ref": "#/$defs/StringArray"
+                },
+                "arrayValues": {
+                    "$ref": "#/$defs/ArrayOfArray"
+                }
+            }
+        },
+        "BooleanArray": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BoxedBoolean"
+            }
+        },
+        "LongArray": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BoxedLong"
+            }
+        },
+        "DoubleArray": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BoxedDouble"
+            }
+        },
+        "StringArray": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ArrayOfArray": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ArrayValue"
+            }
+        },
+        "BatchExecuteStatementRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "secretArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "sql": {
+                    "$ref": "#/$defs/SqlStatement"
+                },
+                "database": {
+                    "$ref": "#/$defs/DbName"
+                },
+                "schema": {
+                    "$ref": "#/$defs/DbName"
+                },
+                "parameterSets": {
+                    "$ref": "#/$defs/SqlParameterSets"
+                },
+                "transactionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "SqlStatement": {
+            "type": "string"
+        },
+        "DbName": {
+            "type": "string"
+        },
+        "SqlParameterSets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SqlParametersList"
+            }
+        },
+        "SqlParametersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SqlParameter"
+            }
+        },
+        "SqlParameter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ParameterName"
+                },
+                "value": {
+                    "$ref": "#/$defs/Field"
+                },
+                "typeHint": {
+                    "$ref": "#/$defs/TypeHint"
+                }
+            }
+        },
+        "ParameterName": {
+            "type": "string"
+        },
+        "TypeHint": {
+            "type": "string"
+        },
+        "Id": {
+            "type": "string"
+        },
+        "BeginTransactionResponse": {
+            "type": "object",
+            "properties": {
+                "transactionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "BeginTransactionRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "secretArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "database": {
+                    "$ref": "#/$defs/DbName"
+                },
+                "schema": {
+                    "$ref": "#/$defs/DbName"
+                }
+            }
+        },
+        "CommitTransactionResponse": {
+            "type": "object",
+            "properties": {
+                "transactionStatus": {
+                    "$ref": "#/$defs/TransactionStatus"
+                }
+            }
+        },
+        "TransactionStatus": {
+            "type": "string"
+        },
+        "CommitTransactionRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "secretArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "transactionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ExecuteSqlResponse": {
+            "type": "object",
+            "properties": {
+                "sqlStatementResults": {
+                    "$ref": "#/$defs/SqlStatementResults"
+                }
+            }
+        },
+        "SqlStatementResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SqlStatementResult"
+            }
+        },
+        "SqlStatementResult": {
+            "type": "object",
+            "properties": {
+                "resultFrame": {
+                    "$ref": "#/$defs/ResultFrame"
+                },
+                "numberOfRecordsUpdated": {
+                    "$ref": "#/$defs/RecordsUpdated"
+                }
+            }
+        },
+        "ResultFrame": {
+            "type": "object",
+            "properties": {
+                "resultSetMetadata": {
+                    "$ref": "#/$defs/ResultSetMetadata"
+                },
+                "records": {
+                    "$ref": "#/$defs/Records"
+                }
+            }
+        },
+        "ResultSetMetadata": {
+            "type": "object",
+            "properties": {
+                "columnCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "columnMetadata": {
+                    "$ref": "#/$defs/Metadata"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Metadata": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ColumnMetadata"
+            }
+        },
+        "ColumnMetadata": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "type": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/String"
+                },
+                "label": {
+                    "$ref": "#/$defs/String"
+                },
+                "schemaName": {
+                    "$ref": "#/$defs/String"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/String"
+                },
+                "isAutoIncrement": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isSigned": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isCurrency": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isCaseSensitive": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "nullable": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "precision": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "scale": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "arrayBaseColumnType": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "Records": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Record"
+            }
+        },
+        "Record": {
+            "type": "object",
+            "properties": {
+                "values": {
+                    "$ref": "#/$defs/Row"
+                }
+            }
+        },
+        "Row": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "Value": {
+            "type": "object",
+            "properties": {
+                "isNull": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "bitValue": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "bigIntValue": {
+                    "$ref": "#/$defs/BoxedLong"
+                },
+                "intValue": {
+                    "$ref": "#/$defs/BoxedInteger"
+                },
+                "doubleValue": {
+                    "$ref": "#/$defs/BoxedDouble"
+                },
+                "realValue": {
+                    "$ref": "#/$defs/BoxedFloat"
+                },
+                "stringValue": {
+                    "$ref": "#/$defs/String"
+                },
+                "blobValue": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "arrayValues": {
+                    "$ref": "#/$defs/ArrayValueList"
+                },
+                "structValue": {
+                    "$ref": "#/$defs/StructValue"
+                }
+            }
+        },
+        "BoxedInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BoxedFloat": {
+            "type": "number",
+            "format": "float"
+        },
+        "ArrayValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "StructValue": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "$ref": "#/$defs/ArrayValueList"
+                }
+            }
+        },
+        "RecordsUpdated": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ExecuteSqlRequest": {
+            "type": "object",
+            "properties": {
+                "dbClusterOrInstanceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "awsSecretStoreArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "sqlStatements": {
+                    "$ref": "#/$defs/SqlStatement"
+                },
+                "database": {
+                    "$ref": "#/$defs/DbName"
+                },
+                "schema": {
+                    "$ref": "#/$defs/DbName"
+                }
+            }
+        },
+        "ExecuteStatementResponse": {
+            "type": "object",
+            "properties": {
+                "records": {
+                    "$ref": "#/$defs/SqlRecords"
+                },
+                "columnMetadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "numberOfRecordsUpdated": {
+                    "$ref": "#/$defs/RecordsUpdated"
+                },
+                "generatedFields": {
+                    "$ref": "#/$defs/FieldList"
+                },
+                "formattedRecords": {
+                    "$ref": "#/$defs/FormattedSqlRecords"
+                }
+            }
+        },
+        "SqlRecords": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FieldList"
+            }
+        },
+        "FormattedSqlRecords": {
+            "type": "string"
+        },
+        "ExecuteStatementRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "secretArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "sql": {
+                    "$ref": "#/$defs/SqlStatement"
+                },
+                "database": {
+                    "$ref": "#/$defs/DbName"
+                },
+                "schema": {
+                    "$ref": "#/$defs/DbName"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/SqlParametersList"
+                },
+                "transactionId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "includeResultMetadata": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "continueAfterTimeout": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "resultSetOptions": {
+                    "$ref": "#/$defs/ResultSetOptions"
+                },
+                "formatRecordsAs": {
+                    "$ref": "#/$defs/RecordsFormatType"
+                }
+            }
+        },
+        "ResultSetOptions": {
+            "type": "object",
+            "properties": {
+                "decimalReturnType": {
+                    "$ref": "#/$defs/DecimalReturnType"
+                },
+                "longReturnType": {
+                    "$ref": "#/$defs/LongReturnType"
+                }
+            }
+        },
+        "DecimalReturnType": {
+            "type": "string"
+        },
+        "LongReturnType": {
+            "type": "string"
+        },
+        "RecordsFormatType": {
+            "type": "string"
+        },
+        "RollbackTransactionResponse": {
+            "type": "object",
+            "properties": {
+                "transactionStatus": {
+                    "$ref": "#/$defs/TransactionStatus"
+                }
+            }
+        },
+        "RollbackTransactionRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "secretArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "transactionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://rds-data-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://rds-data-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://rds-data.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://rds-data.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

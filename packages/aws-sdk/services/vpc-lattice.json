@@ -1,0 +1,1165 @@
+{
+    "name": "vpc-lattice",
+    "commands": [
+        {
+            "name": "BatchUpdateRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchUpdateRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchUpdateRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchUpdateRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAuthPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAuthPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteAuthPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAuthPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAuthPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAuthPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAuthPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAuthPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAuthPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAuthPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutAuthPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAuthPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchUpdateRuleResponse": {
+            "type": "object",
+            "properties": {
+                "successful": {
+                    "$ref": "#/$defs/RuleUpdateSuccessList"
+                },
+                "unsuccessful": {
+                    "$ref": "#/$defs/RuleUpdateFailureList"
+                }
+            }
+        },
+        "RuleUpdateSuccessList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleUpdateSuccess"
+            }
+        },
+        "RuleUpdateSuccess": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RuleArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/RuleId"
+                },
+                "name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "isDefault": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "match": {
+                    "$ref": "#/$defs/RuleMatch"
+                },
+                "priority": {
+                    "$ref": "#/$defs/RulePriority"
+                },
+                "action": {
+                    "$ref": "#/$defs/RuleAction"
+                }
+            }
+        },
+        "RuleArn": {
+            "type": "string"
+        },
+        "RuleId": {
+            "type": "string"
+        },
+        "RuleName": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "RuleMatch": {
+            "type": "object",
+            "properties": {
+                "httpMatch": {
+                    "$ref": "#/$defs/HttpMatch"
+                }
+            }
+        },
+        "HttpMatch": {
+            "type": "object",
+            "properties": {
+                "method": {
+                    "$ref": "#/$defs/HttpMethod"
+                },
+                "pathMatch": {
+                    "$ref": "#/$defs/PathMatch"
+                },
+                "headerMatches": {
+                    "$ref": "#/$defs/HeaderMatchList"
+                }
+            }
+        },
+        "HttpMethod": {
+            "type": "string"
+        },
+        "PathMatch": {
+            "type": "object",
+            "properties": {
+                "match": {
+                    "$ref": "#/$defs/PathMatchType"
+                },
+                "caseSensitive": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "PathMatchType": {
+            "type": "object",
+            "properties": {
+                "exact": {
+                    "$ref": "#/$defs/PathMatchExact"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/PathMatchPrefix"
+                }
+            }
+        },
+        "PathMatchExact": {
+            "type": "string"
+        },
+        "PathMatchPrefix": {
+            "type": "string"
+        },
+        "HeaderMatchList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HeaderMatch"
+            }
+        },
+        "HeaderMatch": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/HeaderMatchName"
+                },
+                "match": {
+                    "$ref": "#/$defs/HeaderMatchType"
+                },
+                "caseSensitive": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "HeaderMatchName": {
+            "type": "string"
+        },
+        "HeaderMatchType": {
+            "type": "object",
+            "properties": {
+                "exact": {
+                    "$ref": "#/$defs/HeaderMatchExact"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/HeaderMatchPrefix"
+                },
+                "contains": {
+                    "$ref": "#/$defs/HeaderMatchContains"
+                }
+            }
+        },
+        "HeaderMatchExact": {
+            "type": "string"
+        },
+        "HeaderMatchPrefix": {
+            "type": "string"
+        },
+        "HeaderMatchContains": {
+            "type": "string"
+        },
+        "RulePriority": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RuleAction": {
+            "type": "object",
+            "properties": {
+                "forward": {
+                    "$ref": "#/$defs/ForwardAction"
+                },
+                "fixedResponse": {
+                    "$ref": "#/$defs/FixedResponseAction"
+                }
+            }
+        },
+        "ForwardAction": {
+            "type": "object",
+            "properties": {
+                "targetGroups": {
+                    "$ref": "#/$defs/WeightedTargetGroupList"
+                }
+            }
+        },
+        "WeightedTargetGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WeightedTargetGroup"
+            }
+        },
+        "WeightedTargetGroup": {
+            "type": "object",
+            "properties": {
+                "targetGroupIdentifier": {
+                    "$ref": "#/$defs/TargetGroupIdentifier"
+                },
+                "weight": {
+                    "$ref": "#/$defs/TargetGroupWeight"
+                }
+            }
+        },
+        "TargetGroupIdentifier": {
+            "type": "string"
+        },
+        "TargetGroupWeight": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FixedResponseAction": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "$ref": "#/$defs/HttpStatusCode"
+                }
+            }
+        },
+        "HttpStatusCode": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RuleUpdateFailureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleUpdateFailure"
+            }
+        },
+        "RuleUpdateFailure": {
+            "type": "object",
+            "properties": {
+                "ruleIdentifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "failureCode": {
+                    "$ref": "#/$defs/FailureCode"
+                },
+                "failureMessage": {
+                    "$ref": "#/$defs/FailureMessage"
+                }
+            }
+        },
+        "RuleIdentifier": {
+            "type": "string"
+        },
+        "FailureCode": {
+            "type": "string"
+        },
+        "FailureMessage": {
+            "type": "string"
+        },
+        "BatchUpdateRuleRequest": {
+            "type": "object",
+            "properties": {
+                "serviceIdentifier": {
+                    "$ref": "#/$defs/ServiceIdentifier"
+                },
+                "listenerIdentifier": {
+                    "$ref": "#/$defs/ListenerIdentifier"
+                },
+                "rules": {
+                    "$ref": "#/$defs/RuleUpdateList"
+                }
+            }
+        },
+        "ServiceIdentifier": {
+            "type": "string"
+        },
+        "ListenerIdentifier": {
+            "type": "string"
+        },
+        "RuleUpdateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleUpdate"
+            }
+        },
+        "RuleUpdate": {
+            "type": "object",
+            "properties": {
+                "ruleIdentifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "match": {
+                    "$ref": "#/$defs/RuleMatch"
+                },
+                "priority": {
+                    "$ref": "#/$defs/RulePriority"
+                },
+                "action": {
+                    "$ref": "#/$defs/RuleAction"
+                }
+            }
+        },
+        "DeleteAuthPolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteAuthPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "resourceIdentifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                }
+            }
+        },
+        "ResourceIdentifier": {
+            "type": "string"
+        },
+        "DeleteResourcePolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "GetAuthPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "policy": {
+                    "$ref": "#/$defs/AuthPolicyString"
+                },
+                "state": {
+                    "$ref": "#/$defs/AuthPolicyState"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "AuthPolicyString": {
+            "type": "string"
+        },
+        "AuthPolicyState": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetAuthPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "resourceIdentifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                }
+            }
+        },
+        "GetResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "policy": {
+                    "$ref": "#/$defs/PolicyString"
+                }
+            }
+        },
+        "PolicyString": {
+            "type": "string"
+        },
+        "GetResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "PutAuthPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "policy": {
+                    "$ref": "#/$defs/AuthPolicyString"
+                },
+                "state": {
+                    "$ref": "#/$defs/AuthPolicyState"
+                }
+            }
+        },
+        "PutAuthPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "resourceIdentifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                },
+                "policy": {
+                    "$ref": "#/$defs/AuthPolicyString"
+                }
+            }
+        },
+        "PutResourcePolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "policy": {
+                    "$ref": "#/$defs/PolicyString"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://vpc-lattice-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://vpc-lattice-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://vpc-lattice.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://vpc-lattice.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

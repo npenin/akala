@@ -1,0 +1,2460 @@
+{
+    "name": "elasticloadbalancing",
+    "commands": [
+        {
+            "name": "AddTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddTagsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddTagsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ApplySecurityGroupsToLoadBalancer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ApplySecurityGroupsToLoadBalancer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApplySecurityGroupsToLoadBalancerOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ApplySecurityGroupsToLoadBalancerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AttachLoadBalancerToSubnets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AttachLoadBalancerToSubnets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AttachLoadBalancerToSubnetsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AttachLoadBalancerToSubnetsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ConfigureHealthCheck",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ConfigureHealthCheck"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigureHealthCheckOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ConfigureHealthCheckInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAppCookieStickinessPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAppCookieStickinessPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAppCookieStickinessPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAppCookieStickinessPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLBCookieStickinessPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLBCookieStickinessPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLBCookieStickinessPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLBCookieStickinessPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLoadBalancer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLoadBalancer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAccessPointOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAccessPointInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLoadBalancerListeners",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLoadBalancerListeners"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLoadBalancerListenerOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLoadBalancerListenerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLoadBalancerPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLoadBalancerPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLoadBalancerPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLoadBalancerPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLoadBalancer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLoadBalancer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteAccessPointOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAccessPointInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLoadBalancerListeners",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLoadBalancerListeners"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLoadBalancerListenerOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLoadBalancerListenerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLoadBalancerPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLoadBalancerPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLoadBalancerPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLoadBalancerPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterInstancesFromLoadBalancer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterInstancesFromLoadBalancer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterEndPointsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterEndPointsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAccountLimits",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAccountLimits"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAccountLimitsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAccountLimitsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeInstanceHealth",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeInstanceHealth"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEndPointStateOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEndPointStateInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLoadBalancerAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLoadBalancerAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLoadBalancerAttributesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLoadBalancerAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLoadBalancerPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLoadBalancerPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLoadBalancerPoliciesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLoadBalancerPoliciesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLoadBalancerPolicyTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLoadBalancerPolicyTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLoadBalancerPolicyTypesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLoadBalancerPolicyTypesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLoadBalancers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLoadBalancers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAccessPointsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAccessPointsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTagsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTagsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DetachLoadBalancerFromSubnets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DetachLoadBalancerFromSubnets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DetachLoadBalancerFromSubnetsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DetachLoadBalancerFromSubnetsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableAvailabilityZonesForLoadBalancer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableAvailabilityZonesForLoadBalancer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RemoveAvailabilityZonesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveAvailabilityZonesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableAvailabilityZonesForLoadBalancer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableAvailabilityZonesForLoadBalancer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddAvailabilityZonesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddAvailabilityZonesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ModifyLoadBalancerAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ModifyLoadBalancerAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyLoadBalancerAttributesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyLoadBalancerAttributesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterInstancesWithLoadBalancer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterInstancesWithLoadBalancer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterEndPointsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterEndPointsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RemoveTagsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveTagsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetLoadBalancerListenerSSLCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetLoadBalancerListenerSSLCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SetLoadBalancerListenerSSLCertificateOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetLoadBalancerListenerSSLCertificateInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetLoadBalancerPoliciesForBackendServer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetLoadBalancerPoliciesForBackendServer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SetLoadBalancerPoliciesForBackendServerOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetLoadBalancerPoliciesForBackendServerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetLoadBalancerPoliciesOfListener",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetLoadBalancerPoliciesOfListener"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SetLoadBalancerPoliciesOfListenerOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetLoadBalancerPoliciesOfListenerInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddTagsOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "AddTagsInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerNames": {
+                    "$ref": "#/$defs/LoadBalancerNames"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "LoadBalancerNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessPointName"
+            }
+        },
+        "AccessPointName": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ApplySecurityGroupsToLoadBalancerOutput": {
+            "type": "object",
+            "properties": {
+                "SecurityGroups": {
+                    "$ref": "#/$defs/SecurityGroups"
+                }
+            }
+        },
+        "SecurityGroups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityGroupId"
+            }
+        },
+        "SecurityGroupId": {
+            "type": "string"
+        },
+        "ApplySecurityGroupsToLoadBalancerInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/SecurityGroups"
+                }
+            }
+        },
+        "AttachLoadBalancerToSubnetsOutput": {
+            "type": "object",
+            "properties": {
+                "Subnets": {
+                    "$ref": "#/$defs/Subnets"
+                }
+            }
+        },
+        "Subnets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "SubnetId": {
+            "type": "string"
+        },
+        "AttachLoadBalancerToSubnetsInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "Subnets": {
+                    "$ref": "#/$defs/Subnets"
+                }
+            }
+        },
+        "ConfigureHealthCheckOutput": {
+            "type": "object",
+            "properties": {
+                "HealthCheck": {
+                    "$ref": "#/$defs/HealthCheck"
+                }
+            }
+        },
+        "HealthCheck": {
+            "type": "object",
+            "properties": {
+                "Target": {
+                    "$ref": "#/$defs/HealthCheckTarget"
+                },
+                "Interval": {
+                    "$ref": "#/$defs/HealthCheckInterval"
+                },
+                "Timeout": {
+                    "$ref": "#/$defs/HealthCheckTimeout"
+                },
+                "UnhealthyThreshold": {
+                    "$ref": "#/$defs/UnhealthyThreshold"
+                },
+                "HealthyThreshold": {
+                    "$ref": "#/$defs/HealthyThreshold"
+                }
+            }
+        },
+        "HealthCheckTarget": {
+            "type": "string"
+        },
+        "HealthCheckInterval": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HealthCheckTimeout": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UnhealthyThreshold": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HealthyThreshold": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ConfigureHealthCheckInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "HealthCheck": {
+                    "$ref": "#/$defs/HealthCheck"
+                }
+            }
+        },
+        "CreateAppCookieStickinessPolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateAppCookieStickinessPolicyInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "CookieName": {
+                    "$ref": "#/$defs/CookieName"
+                }
+            }
+        },
+        "PolicyName": {
+            "type": "string"
+        },
+        "CookieName": {
+            "type": "string"
+        },
+        "CreateLBCookieStickinessPolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateLBCookieStickinessPolicyInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "CookieExpirationPeriod": {
+                    "$ref": "#/$defs/CookieExpirationPeriod"
+                }
+            }
+        },
+        "CookieExpirationPeriod": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CreateAccessPointOutput": {
+            "type": "object",
+            "properties": {
+                "DNSName": {
+                    "$ref": "#/$defs/DNSName"
+                }
+            }
+        },
+        "DNSName": {
+            "type": "string"
+        },
+        "CreateAccessPointInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "Listeners": {
+                    "$ref": "#/$defs/Listeners"
+                },
+                "AvailabilityZones": {
+                    "$ref": "#/$defs/AvailabilityZones"
+                },
+                "Subnets": {
+                    "$ref": "#/$defs/Subnets"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/SecurityGroups"
+                },
+                "Scheme": {
+                    "$ref": "#/$defs/LoadBalancerScheme"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "Listeners": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Listener"
+            }
+        },
+        "Listener": {
+            "type": "object",
+            "properties": {
+                "Protocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "LoadBalancerPort": {
+                    "$ref": "#/$defs/AccessPointPort"
+                },
+                "InstanceProtocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "InstancePort": {
+                    "$ref": "#/$defs/InstancePort"
+                },
+                "SSLCertificateId": {
+                    "$ref": "#/$defs/SSLCertificateId"
+                }
+            }
+        },
+        "Protocol": {
+            "type": "string"
+        },
+        "AccessPointPort": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "InstancePort": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SSLCertificateId": {
+            "type": "string"
+        },
+        "AvailabilityZones": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AvailabilityZone"
+            }
+        },
+        "AvailabilityZone": {
+            "type": "string"
+        },
+        "LoadBalancerScheme": {
+            "type": "string"
+        },
+        "CreateLoadBalancerListenerOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateLoadBalancerListenerInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "Listeners": {
+                    "$ref": "#/$defs/Listeners"
+                }
+            }
+        },
+        "CreateLoadBalancerPolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateLoadBalancerPolicyInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "PolicyTypeName": {
+                    "$ref": "#/$defs/PolicyTypeName"
+                },
+                "PolicyAttributes": {
+                    "$ref": "#/$defs/PolicyAttributes"
+                }
+            }
+        },
+        "PolicyTypeName": {
+            "type": "string"
+        },
+        "PolicyAttributes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyAttribute"
+            }
+        },
+        "PolicyAttribute": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/AttributeName"
+                },
+                "AttributeValue": {
+                    "$ref": "#/$defs/AttributeValue"
+                }
+            }
+        },
+        "AttributeName": {
+            "type": "string"
+        },
+        "AttributeValue": {
+            "type": "string"
+        },
+        "DeleteAccessPointOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteAccessPointInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                }
+            }
+        },
+        "DeleteLoadBalancerListenerOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteLoadBalancerListenerInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "LoadBalancerPorts": {
+                    "$ref": "#/$defs/Ports"
+                }
+            }
+        },
+        "Ports": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessPointPort"
+            }
+        },
+        "DeleteLoadBalancerPolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteLoadBalancerPolicyInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                }
+            }
+        },
+        "DeregisterEndPointsOutput": {
+            "type": "object",
+            "properties": {
+                "Instances": {
+                    "$ref": "#/$defs/Instances"
+                }
+            }
+        },
+        "Instances": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Instance"
+            }
+        },
+        "Instance": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                }
+            }
+        },
+        "InstanceId": {
+            "type": "string"
+        },
+        "DeregisterEndPointsInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "Instances": {
+                    "$ref": "#/$defs/Instances"
+                }
+            }
+        },
+        "DescribeAccountLimitsOutput": {
+            "type": "object",
+            "properties": {
+                "Limits": {
+                    "$ref": "#/$defs/Limits"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/Marker"
+                }
+            }
+        },
+        "Limits": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Limit"
+            }
+        },
+        "Limit": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Max": {
+                    "$ref": "#/$defs/Max"
+                }
+            }
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Max": {
+            "type": "string"
+        },
+        "Marker": {
+            "type": "string"
+        },
+        "DescribeAccountLimitsInput": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                },
+                "PageSize": {
+                    "$ref": "#/$defs/PageSize"
+                }
+            }
+        },
+        "PageSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeEndPointStateOutput": {
+            "type": "object",
+            "properties": {
+                "InstanceStates": {
+                    "$ref": "#/$defs/InstanceStates"
+                }
+            }
+        },
+        "InstanceStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceState"
+            }
+        },
+        "InstanceState": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "State": {
+                    "$ref": "#/$defs/State"
+                },
+                "ReasonCode": {
+                    "$ref": "#/$defs/ReasonCode"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "State": {
+            "type": "string"
+        },
+        "ReasonCode": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "DescribeEndPointStateInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "Instances": {
+                    "$ref": "#/$defs/Instances"
+                }
+            }
+        },
+        "DescribeLoadBalancerAttributesOutput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerAttributes": {
+                    "$ref": "#/$defs/LoadBalancerAttributes"
+                }
+            }
+        },
+        "LoadBalancerAttributes": {
+            "type": "object",
+            "properties": {
+                "CrossZoneLoadBalancing": {
+                    "$ref": "#/$defs/CrossZoneLoadBalancing"
+                },
+                "AccessLog": {
+                    "$ref": "#/$defs/AccessLog"
+                },
+                "ConnectionDraining": {
+                    "$ref": "#/$defs/ConnectionDraining"
+                },
+                "ConnectionSettings": {
+                    "$ref": "#/$defs/ConnectionSettings"
+                },
+                "AdditionalAttributes": {
+                    "$ref": "#/$defs/AdditionalAttributes"
+                }
+            }
+        },
+        "CrossZoneLoadBalancing": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/CrossZoneLoadBalancingEnabled"
+                }
+            }
+        },
+        "CrossZoneLoadBalancingEnabled": {
+            "type": "boolean"
+        },
+        "AccessLog": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/AccessLogEnabled"
+                },
+                "S3BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "EmitInterval": {
+                    "$ref": "#/$defs/AccessLogInterval"
+                },
+                "S3BucketPrefix": {
+                    "$ref": "#/$defs/AccessLogPrefix"
+                }
+            }
+        },
+        "AccessLogEnabled": {
+            "type": "boolean"
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "AccessLogInterval": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AccessLogPrefix": {
+            "type": "string"
+        },
+        "ConnectionDraining": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/ConnectionDrainingEnabled"
+                },
+                "Timeout": {
+                    "$ref": "#/$defs/ConnectionDrainingTimeout"
+                }
+            }
+        },
+        "ConnectionDrainingEnabled": {
+            "type": "boolean"
+        },
+        "ConnectionDrainingTimeout": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ConnectionSettings": {
+            "type": "object",
+            "properties": {
+                "IdleTimeout": {
+                    "$ref": "#/$defs/IdleTimeout"
+                }
+            }
+        },
+        "IdleTimeout": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AdditionalAttributes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdditionalAttribute"
+            }
+        },
+        "AdditionalAttribute": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/AdditionalAttributeKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/AdditionalAttributeValue"
+                }
+            }
+        },
+        "AdditionalAttributeKey": {
+            "type": "string"
+        },
+        "AdditionalAttributeValue": {
+            "type": "string"
+        },
+        "DescribeLoadBalancerAttributesInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                }
+            }
+        },
+        "DescribeLoadBalancerPoliciesOutput": {
+            "type": "object",
+            "properties": {
+                "PolicyDescriptions": {
+                    "$ref": "#/$defs/PolicyDescriptions"
+                }
+            }
+        },
+        "PolicyDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyDescription"
+            }
+        },
+        "PolicyDescription": {
+            "type": "object",
+            "properties": {
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "PolicyTypeName": {
+                    "$ref": "#/$defs/PolicyTypeName"
+                },
+                "PolicyAttributeDescriptions": {
+                    "$ref": "#/$defs/PolicyAttributeDescriptions"
+                }
+            }
+        },
+        "PolicyAttributeDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyAttributeDescription"
+            }
+        },
+        "PolicyAttributeDescription": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/AttributeName"
+                },
+                "AttributeValue": {
+                    "$ref": "#/$defs/AttributeValue"
+                }
+            }
+        },
+        "DescribeLoadBalancerPoliciesInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "PolicyNames": {
+                    "$ref": "#/$defs/PolicyNames"
+                }
+            }
+        },
+        "PolicyNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyName"
+            }
+        },
+        "DescribeLoadBalancerPolicyTypesOutput": {
+            "type": "object",
+            "properties": {
+                "PolicyTypeDescriptions": {
+                    "$ref": "#/$defs/PolicyTypeDescriptions"
+                }
+            }
+        },
+        "PolicyTypeDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyTypeDescription"
+            }
+        },
+        "PolicyTypeDescription": {
+            "type": "object",
+            "properties": {
+                "PolicyTypeName": {
+                    "$ref": "#/$defs/PolicyTypeName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "PolicyAttributeTypeDescriptions": {
+                    "$ref": "#/$defs/PolicyAttributeTypeDescriptions"
+                }
+            }
+        },
+        "PolicyAttributeTypeDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyAttributeTypeDescription"
+            }
+        },
+        "PolicyAttributeTypeDescription": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/AttributeName"
+                },
+                "AttributeType": {
+                    "$ref": "#/$defs/AttributeType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "DefaultValue": {
+                    "$ref": "#/$defs/DefaultValue"
+                },
+                "Cardinality": {
+                    "$ref": "#/$defs/Cardinality"
+                }
+            }
+        },
+        "AttributeType": {
+            "type": "string"
+        },
+        "DefaultValue": {
+            "type": "string"
+        },
+        "Cardinality": {
+            "type": "string"
+        },
+        "DescribeLoadBalancerPolicyTypesInput": {
+            "type": "object",
+            "properties": {
+                "PolicyTypeNames": {
+                    "$ref": "#/$defs/PolicyTypeNames"
+                }
+            }
+        },
+        "PolicyTypeNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyTypeName"
+            }
+        },
+        "DescribeAccessPointsOutput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerDescriptions": {
+                    "$ref": "#/$defs/LoadBalancerDescriptions"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/Marker"
+                }
+            }
+        },
+        "LoadBalancerDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LoadBalancerDescription"
+            }
+        },
+        "LoadBalancerDescription": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "DNSName": {
+                    "$ref": "#/$defs/DNSName"
+                },
+                "CanonicalHostedZoneName": {
+                    "$ref": "#/$defs/DNSName"
+                },
+                "CanonicalHostedZoneNameID": {
+                    "$ref": "#/$defs/DNSName"
+                },
+                "ListenerDescriptions": {
+                    "$ref": "#/$defs/ListenerDescriptions"
+                },
+                "Policies": {
+                    "$ref": "#/$defs/Policies"
+                },
+                "BackendServerDescriptions": {
+                    "$ref": "#/$defs/BackendServerDescriptions"
+                },
+                "AvailabilityZones": {
+                    "$ref": "#/$defs/AvailabilityZones"
+                },
+                "Subnets": {
+                    "$ref": "#/$defs/Subnets"
+                },
+                "VPCId": {
+                    "$ref": "#/$defs/VPCId"
+                },
+                "Instances": {
+                    "$ref": "#/$defs/Instances"
+                },
+                "HealthCheck": {
+                    "$ref": "#/$defs/HealthCheck"
+                },
+                "SourceSecurityGroup": {
+                    "$ref": "#/$defs/SourceSecurityGroup"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/SecurityGroups"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/CreatedTime"
+                },
+                "Scheme": {
+                    "$ref": "#/$defs/LoadBalancerScheme"
+                }
+            }
+        },
+        "ListenerDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListenerDescription"
+            }
+        },
+        "ListenerDescription": {
+            "type": "object",
+            "properties": {
+                "Listener": {
+                    "$ref": "#/$defs/Listener"
+                },
+                "PolicyNames": {
+                    "$ref": "#/$defs/PolicyNames"
+                }
+            }
+        },
+        "Policies": {
+            "type": "object",
+            "properties": {
+                "AppCookieStickinessPolicies": {
+                    "$ref": "#/$defs/AppCookieStickinessPolicies"
+                },
+                "LBCookieStickinessPolicies": {
+                    "$ref": "#/$defs/LBCookieStickinessPolicies"
+                },
+                "OtherPolicies": {
+                    "$ref": "#/$defs/PolicyNames"
+                }
+            }
+        },
+        "AppCookieStickinessPolicies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AppCookieStickinessPolicy"
+            }
+        },
+        "AppCookieStickinessPolicy": {
+            "type": "object",
+            "properties": {
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "CookieName": {
+                    "$ref": "#/$defs/CookieName"
+                }
+            }
+        },
+        "LBCookieStickinessPolicies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LBCookieStickinessPolicy"
+            }
+        },
+        "LBCookieStickinessPolicy": {
+            "type": "object",
+            "properties": {
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "CookieExpirationPeriod": {
+                    "$ref": "#/$defs/CookieExpirationPeriod"
+                }
+            }
+        },
+        "BackendServerDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BackendServerDescription"
+            }
+        },
+        "BackendServerDescription": {
+            "type": "object",
+            "properties": {
+                "InstancePort": {
+                    "$ref": "#/$defs/InstancePort"
+                },
+                "PolicyNames": {
+                    "$ref": "#/$defs/PolicyNames"
+                }
+            }
+        },
+        "VPCId": {
+            "type": "string"
+        },
+        "SourceSecurityGroup": {
+            "type": "object",
+            "properties": {
+                "OwnerAlias": {
+                    "$ref": "#/$defs/SecurityGroupOwnerAlias"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/SecurityGroupName"
+                }
+            }
+        },
+        "SecurityGroupOwnerAlias": {
+            "type": "string"
+        },
+        "SecurityGroupName": {
+            "type": "string"
+        },
+        "CreatedTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeAccessPointsInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerNames": {
+                    "$ref": "#/$defs/LoadBalancerNames"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                },
+                "PageSize": {
+                    "$ref": "#/$defs/PageSize"
+                }
+            }
+        },
+        "DescribeTagsOutput": {
+            "type": "object",
+            "properties": {
+                "TagDescriptions": {
+                    "$ref": "#/$defs/TagDescriptions"
+                }
+            }
+        },
+        "TagDescriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagDescription"
+            }
+        },
+        "TagDescription": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "DescribeTagsInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerNames": {
+                    "$ref": "#/$defs/LoadBalancerNamesMax20"
+                }
+            }
+        },
+        "LoadBalancerNamesMax20": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessPointName"
+            }
+        },
+        "DetachLoadBalancerFromSubnetsOutput": {
+            "type": "object",
+            "properties": {
+                "Subnets": {
+                    "$ref": "#/$defs/Subnets"
+                }
+            }
+        },
+        "DetachLoadBalancerFromSubnetsInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "Subnets": {
+                    "$ref": "#/$defs/Subnets"
+                }
+            }
+        },
+        "RemoveAvailabilityZonesOutput": {
+            "type": "object",
+            "properties": {
+                "AvailabilityZones": {
+                    "$ref": "#/$defs/AvailabilityZones"
+                }
+            }
+        },
+        "RemoveAvailabilityZonesInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "AvailabilityZones": {
+                    "$ref": "#/$defs/AvailabilityZones"
+                }
+            }
+        },
+        "AddAvailabilityZonesOutput": {
+            "type": "object",
+            "properties": {
+                "AvailabilityZones": {
+                    "$ref": "#/$defs/AvailabilityZones"
+                }
+            }
+        },
+        "AddAvailabilityZonesInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "AvailabilityZones": {
+                    "$ref": "#/$defs/AvailabilityZones"
+                }
+            }
+        },
+        "ModifyLoadBalancerAttributesOutput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "LoadBalancerAttributes": {
+                    "$ref": "#/$defs/LoadBalancerAttributes"
+                }
+            }
+        },
+        "ModifyLoadBalancerAttributesInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "LoadBalancerAttributes": {
+                    "$ref": "#/$defs/LoadBalancerAttributes"
+                }
+            }
+        },
+        "RegisterEndPointsOutput": {
+            "type": "object",
+            "properties": {
+                "Instances": {
+                    "$ref": "#/$defs/Instances"
+                }
+            }
+        },
+        "RegisterEndPointsInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "Instances": {
+                    "$ref": "#/$defs/Instances"
+                }
+            }
+        },
+        "RemoveTagsOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "RemoveTagsInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerNames": {
+                    "$ref": "#/$defs/LoadBalancerNames"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKeyOnly"
+            }
+        },
+        "TagKeyOnly": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                }
+            }
+        },
+        "SetLoadBalancerListenerSSLCertificateOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "SetLoadBalancerListenerSSLCertificateInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "LoadBalancerPort": {
+                    "$ref": "#/$defs/AccessPointPort"
+                },
+                "SSLCertificateId": {
+                    "$ref": "#/$defs/SSLCertificateId"
+                }
+            }
+        },
+        "SetLoadBalancerPoliciesForBackendServerOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "SetLoadBalancerPoliciesForBackendServerInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "InstancePort": {
+                    "$ref": "#/$defs/EndPointPort"
+                },
+                "PolicyNames": {
+                    "$ref": "#/$defs/PolicyNames"
+                }
+            }
+        },
+        "EndPointPort": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SetLoadBalancerPoliciesOfListenerOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "SetLoadBalancerPoliciesOfListenerInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/AccessPointName"
+                },
+                "LoadBalancerPort": {
+                    "$ref": "#/$defs/AccessPointPort"
+                },
+                "PolicyNames": {
+                    "$ref": "#/$defs/PolicyNames"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elasticloadbalancing-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://elasticloadbalancing.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elasticloadbalancing-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elasticloadbalancing.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://elasticloadbalancing.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

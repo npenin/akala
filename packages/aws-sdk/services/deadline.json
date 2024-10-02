@@ -1,0 +1,2187 @@
+{
+    "name": "deadline",
+    "commands": [
+        {
+            "name": "CreateQueueFleetAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateQueueFleetAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateQueueFleetAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateQueueFleetAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteQueueFleetAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteQueueFleetAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteQueueFleetAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteQueueFleetAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetQueueFleetAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetQueueFleetAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQueueFleetAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQueueFleetAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSessionsStatisticsAggregation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSessionsStatisticsAggregation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSessionsStatisticsAggregationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSessionsStatisticsAggregationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAvailableMeteredProducts",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAvailableMeteredProducts"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAvailableMeteredProductsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAvailableMeteredProductsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQueueFleetAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListQueueFleetAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQueueFleetAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListQueueFleetAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SearchJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchSteps",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SearchSteps"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchStepsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchStepsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchTasks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SearchTasks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchTasksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchTasksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchWorkers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SearchWorkers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchWorkersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchWorkersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartSessionsStatisticsAggregation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartSessionsStatisticsAggregation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartSessionsStatisticsAggregationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartSessionsStatisticsAggregationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateQueueFleetAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateQueueFleetAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateQueueFleetAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateQueueFleetAssociationRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateQueueFleetAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateQueueFleetAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                }
+            }
+        },
+        "FarmId": {
+            "type": "string"
+        },
+        "QueueId": {
+            "type": "string"
+        },
+        "FleetId": {
+            "type": "string"
+        },
+        "DeleteQueueFleetAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteQueueFleetAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                }
+            }
+        },
+        "GetQueueFleetAssociationResponse": {
+            "type": "object",
+            "properties": {
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                },
+                "status": {
+                    "$ref": "#/$defs/QueueFleetAssociationStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/UpdatedAt"
+                },
+                "updatedBy": {
+                    "$ref": "#/$defs/UpdatedBy"
+                }
+            }
+        },
+        "QueueFleetAssociationStatus": {
+            "enum": [
+                "ACTIVE",
+                "STOP_SCHEDULING_AND_COMPLETE_TASKS",
+                "STOP_SCHEDULING_AND_CANCEL_TASKS",
+                "STOPPED"
+            ]
+        },
+        "CreatedAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreatedBy": {
+            "type": "string"
+        },
+        "UpdatedAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "UpdatedBy": {
+            "type": "string"
+        },
+        "GetQueueFleetAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                }
+            }
+        },
+        "GetSessionsStatisticsAggregationResponse": {
+            "type": "object",
+            "properties": {
+                "statistics": {
+                    "$ref": "#/$defs/StatisticsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/SessionsStatisticsAggregationStatus"
+                },
+                "statusMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StatisticsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Statistics"
+            }
+        },
+        "Statistics": {
+            "type": "object",
+            "properties": {
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "jobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "usageType": {
+                    "$ref": "#/$defs/UsageType"
+                },
+                "licenseProduct": {
+                    "$ref": "#/$defs/LicenseProduct"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/InstanceType"
+                },
+                "count": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "costInUsd": {
+                    "$ref": "#/$defs/Stats"
+                },
+                "runtimeInSeconds": {
+                    "$ref": "#/$defs/Stats"
+                },
+                "aggregationStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "aggregationEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "JobId": {
+            "type": "string"
+        },
+        "JobName": {
+            "type": "string"
+        },
+        "UserId": {
+            "type": "string"
+        },
+        "UsageType": {
+            "enum": [
+                "COMPUTE",
+                "LICENSE"
+            ]
+        },
+        "LicenseProduct": {
+            "type": "string"
+        },
+        "InstanceType": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Stats": {
+            "type": "object",
+            "properties": {
+                "min": {
+                    "$ref": "#/$defs/Double"
+                },
+                "max": {
+                    "$ref": "#/$defs/Double"
+                },
+                "avg": {
+                    "$ref": "#/$defs/Double"
+                },
+                "sum": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "String": {
+            "type": "string"
+        },
+        "SessionsStatisticsAggregationStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "TIMEOUT",
+                "FAILED",
+                "COMPLETED"
+            ]
+        },
+        "GetSessionsStatisticsAggregationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "aggregationId": {
+                    "$ref": "#/$defs/AggregationId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AggregationId": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListAvailableMeteredProductsResponse": {
+            "type": "object",
+            "properties": {
+                "meteredProducts": {
+                    "$ref": "#/$defs/MeteredProductSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "MeteredProductSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MeteredProductSummary"
+            }
+        },
+        "MeteredProductSummary": {
+            "type": "object",
+            "properties": {
+                "productId": {
+                    "$ref": "#/$defs/MeteredProductId"
+                },
+                "family": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "vendor": {
+                    "$ref": "#/$defs/BoundedString"
+                },
+                "port": {
+                    "$ref": "#/$defs/PortNumber"
+                }
+            }
+        },
+        "MeteredProductId": {
+            "type": "string"
+        },
+        "BoundedString": {
+            "type": "string"
+        },
+        "PortNumber": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListAvailableMeteredProductsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListQueueFleetAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "queueFleetAssociations": {
+                    "$ref": "#/$defs/QueueFleetAssociationSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "QueueFleetAssociationSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueueFleetAssociationSummary"
+            }
+        },
+        "QueueFleetAssociationSummary": {
+            "type": "object",
+            "properties": {
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                },
+                "status": {
+                    "$ref": "#/$defs/QueueFleetAssociationStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/UpdatedAt"
+                },
+                "updatedBy": {
+                    "$ref": "#/$defs/UpdatedBy"
+                }
+            }
+        },
+        "ListQueueFleetAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SearchJobsResponse": {
+            "type": "object",
+            "properties": {
+                "jobs": {
+                    "$ref": "#/$defs/JobSearchSummaries"
+                },
+                "nextItemOffset": {
+                    "$ref": "#/$defs/NextItemOffset"
+                },
+                "totalResults": {
+                    "$ref": "#/$defs/TotalResults"
+                }
+            }
+        },
+        "JobSearchSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobSearchSummary"
+            }
+        },
+        "JobSearchSummary": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "name": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "lifecycleStatus": {
+                    "$ref": "#/$defs/JobLifecycleStatus"
+                },
+                "lifecycleStatusMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskRunStatus": {
+                    "$ref": "#/$defs/TaskRunStatus"
+                },
+                "targetTaskRunStatus": {
+                    "$ref": "#/$defs/JobTargetTaskRunStatus"
+                },
+                "taskRunStatusCounts": {
+                    "$ref": "#/$defs/TaskRunStatusCounts"
+                },
+                "priority": {
+                    "$ref": "#/$defs/JobPriority"
+                },
+                "maxFailedTasksCount": {
+                    "$ref": "#/$defs/MaxFailedTasksCount"
+                },
+                "maxRetriesPerTask": {
+                    "$ref": "#/$defs/MaxRetriesPerTask"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "endedAt": {
+                    "$ref": "#/$defs/EndedAt"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/StartedAt"
+                },
+                "jobParameters": {
+                    "$ref": "#/$defs/JobParameters"
+                }
+            }
+        },
+        "JobLifecycleStatus": {
+            "enum": [
+                "CREATE_IN_PROGRESS",
+                "CREATE_FAILED",
+                "CREATE_COMPLETE",
+                "UPLOAD_IN_PROGRESS",
+                "UPLOAD_FAILED",
+                "UPDATE_IN_PROGRESS",
+                "UPDATE_FAILED",
+                "UPDATE_SUCCEEDED",
+                "ARCHIVED"
+            ]
+        },
+        "TaskRunStatus": {
+            "enum": [
+                "PENDING",
+                "READY",
+                "ASSIGNED",
+                "STARTING",
+                "SCHEDULED",
+                "INTERRUPTING",
+                "RUNNING",
+                "SUSPENDED",
+                "CANCELED",
+                "FAILED",
+                "SUCCEEDED",
+                "NOT_COMPATIBLE"
+            ]
+        },
+        "JobTargetTaskRunStatus": {
+            "enum": [
+                "READY",
+                "FAILED",
+                "SUCCEEDED",
+                "CANCELED",
+                "SUSPENDED",
+                "PENDING"
+            ]
+        },
+        "TaskRunStatusCounts": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Integer"
+            }
+        },
+        "JobPriority": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaxFailedTasksCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaxRetriesPerTask": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "EndedAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "StartedAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "JobParameters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/JobParameter"
+            }
+        },
+        "JobParameter": {
+            "type": "object",
+            "properties": {
+                "int": {
+                    "$ref": "#/$defs/IntString"
+                },
+                "float": {
+                    "$ref": "#/$defs/FloatString"
+                },
+                "string": {
+                    "$ref": "#/$defs/ParameterString"
+                },
+                "path": {
+                    "$ref": "#/$defs/PathString"
+                }
+            }
+        },
+        "IntString": {
+            "type": "string"
+        },
+        "FloatString": {
+            "type": "string"
+        },
+        "ParameterString": {
+            "type": "string"
+        },
+        "PathString": {
+            "type": "string"
+        },
+        "NextItemOffset": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TotalResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SearchJobsRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueIds": {
+                    "$ref": "#/$defs/QueueIds"
+                },
+                "filterExpressions": {
+                    "$ref": "#/$defs/SearchGroupedFilterExpressions"
+                },
+                "sortExpressions": {
+                    "$ref": "#/$defs/SearchSortExpressions"
+                },
+                "itemOffset": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "pageSize": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "QueueIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueueId"
+            }
+        },
+        "SearchGroupedFilterExpressions": {
+            "type": "object",
+            "properties": {
+                "filters": {
+                    "$ref": "#/$defs/SearchFilterExpressions"
+                },
+                "operator": {
+                    "$ref": "#/$defs/LogicalOperator"
+                }
+            }
+        },
+        "SearchFilterExpressions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchFilterExpression"
+            }
+        },
+        "SearchFilterExpression": {
+            "type": "object",
+            "properties": {
+                "dateTimeFilter": {
+                    "$ref": "#/$defs/DateTimeFilterExpression"
+                },
+                "parameterFilter": {
+                    "$ref": "#/$defs/ParameterFilterExpression"
+                },
+                "searchTermFilter": {
+                    "$ref": "#/$defs/SearchTermFilterExpression"
+                },
+                "stringFilter": {
+                    "$ref": "#/$defs/StringFilterExpression"
+                },
+                "groupFilter": {
+                    "$ref": "#/$defs/SearchGroupedFilterExpressions"
+                }
+            }
+        },
+        "DateTimeFilterExpression": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "operator": {
+                    "$ref": "#/$defs/ComparisonOperator"
+                },
+                "dateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ComparisonOperator": {
+            "enum": [
+                "EQUAL",
+                "NOT_EQUAL",
+                "GREATER_THAN_EQUAL_TO",
+                "GREATER_THAN",
+                "LESS_THAN_EQUAL_TO",
+                "LESS_THAN"
+            ]
+        },
+        "ParameterFilterExpression": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "operator": {
+                    "$ref": "#/$defs/ComparisonOperator"
+                },
+                "value": {
+                    "$ref": "#/$defs/ParameterValue"
+                }
+            }
+        },
+        "ParameterValue": {
+            "type": "string"
+        },
+        "SearchTermFilterExpression": {
+            "type": "object",
+            "properties": {
+                "searchTerm": {
+                    "$ref": "#/$defs/SearchTerm"
+                }
+            }
+        },
+        "SearchTerm": {
+            "type": "string"
+        },
+        "StringFilterExpression": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "operator": {
+                    "$ref": "#/$defs/ComparisonOperator"
+                },
+                "value": {
+                    "$ref": "#/$defs/StringFilter"
+                }
+            }
+        },
+        "StringFilter": {
+            "type": "string"
+        },
+        "LogicalOperator": {
+            "enum": [
+                "AND",
+                "OR"
+            ]
+        },
+        "SearchSortExpressions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchSortExpression"
+            }
+        },
+        "SearchSortExpression": {
+            "type": "object",
+            "properties": {
+                "userJobsFirst": {
+                    "$ref": "#/$defs/UserJobsFirst"
+                },
+                "fieldSort": {
+                    "$ref": "#/$defs/FieldSortExpression"
+                },
+                "parameterSort": {
+                    "$ref": "#/$defs/ParameterSortExpression"
+                }
+            }
+        },
+        "UserJobsFirst": {
+            "type": "object",
+            "properties": {
+                "userIdentityId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FieldSortExpression": {
+            "type": "object",
+            "properties": {
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SortOrder": {
+            "enum": [
+                "ASCENDING",
+                "DESCENDING"
+            ]
+        },
+        "ParameterSortExpression": {
+            "type": "object",
+            "properties": {
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SearchStepsResponse": {
+            "type": "object",
+            "properties": {
+                "steps": {
+                    "$ref": "#/$defs/StepSearchSummaries"
+                },
+                "nextItemOffset": {
+                    "$ref": "#/$defs/NextItemOffset"
+                },
+                "totalResults": {
+                    "$ref": "#/$defs/TotalResults"
+                }
+            }
+        },
+        "StepSearchSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StepSearchSummary"
+            }
+        },
+        "StepSearchSummary": {
+            "type": "object",
+            "properties": {
+                "stepId": {
+                    "$ref": "#/$defs/StepId"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "name": {
+                    "$ref": "#/$defs/StepName"
+                },
+                "lifecycleStatus": {
+                    "$ref": "#/$defs/StepLifecycleStatus"
+                },
+                "lifecycleStatusMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskRunStatus": {
+                    "$ref": "#/$defs/TaskRunStatus"
+                },
+                "targetTaskRunStatus": {
+                    "$ref": "#/$defs/StepTargetTaskRunStatus"
+                },
+                "taskRunStatusCounts": {
+                    "$ref": "#/$defs/TaskRunStatusCounts"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/StartedAt"
+                },
+                "endedAt": {
+                    "$ref": "#/$defs/EndedAt"
+                },
+                "parameterSpace": {
+                    "$ref": "#/$defs/ParameterSpace"
+                }
+            }
+        },
+        "StepId": {
+            "type": "string"
+        },
+        "StepName": {
+            "type": "string"
+        },
+        "StepLifecycleStatus": {
+            "enum": [
+                "CREATE_COMPLETE",
+                "UPDATE_IN_PROGRESS",
+                "UPDATE_FAILED",
+                "UPDATE_SUCCEEDED"
+            ]
+        },
+        "StepTargetTaskRunStatus": {
+            "enum": [
+                "READY",
+                "FAILED",
+                "SUCCEEDED",
+                "CANCELED",
+                "SUSPENDED",
+                "PENDING"
+            ]
+        },
+        "ParameterSpace": {
+            "type": "object",
+            "properties": {
+                "parameters": {
+                    "$ref": "#/$defs/StepParameterList"
+                },
+                "combination": {
+                    "$ref": "#/$defs/CombinationExpression"
+                }
+            }
+        },
+        "StepParameterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StepParameter"
+            }
+        },
+        "StepParameter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/StepParameterName"
+                },
+                "type": {
+                    "$ref": "#/$defs/StepParameterType"
+                }
+            }
+        },
+        "StepParameterName": {
+            "type": "string"
+        },
+        "StepParameterType": {
+            "enum": [
+                "INT",
+                "FLOAT",
+                "STRING",
+                "PATH"
+            ]
+        },
+        "CombinationExpression": {
+            "type": "string"
+        },
+        "SearchStepsRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueIds": {
+                    "$ref": "#/$defs/QueueIds"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "filterExpressions": {
+                    "$ref": "#/$defs/SearchGroupedFilterExpressions"
+                },
+                "sortExpressions": {
+                    "$ref": "#/$defs/SearchSortExpressions"
+                },
+                "itemOffset": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "pageSize": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "SearchTasksResponse": {
+            "type": "object",
+            "properties": {
+                "tasks": {
+                    "$ref": "#/$defs/TaskSearchSummaries"
+                },
+                "nextItemOffset": {
+                    "$ref": "#/$defs/NextItemOffset"
+                },
+                "totalResults": {
+                    "$ref": "#/$defs/TotalResults"
+                }
+            }
+        },
+        "TaskSearchSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaskSearchSummary"
+            }
+        },
+        "TaskSearchSummary": {
+            "type": "object",
+            "properties": {
+                "taskId": {
+                    "$ref": "#/$defs/TaskId"
+                },
+                "stepId": {
+                    "$ref": "#/$defs/StepId"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "runStatus": {
+                    "$ref": "#/$defs/TaskRunStatus"
+                },
+                "targetRunStatus": {
+                    "$ref": "#/$defs/TaskTargetRunStatus"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/TaskParameters"
+                },
+                "failureRetryCount": {
+                    "$ref": "#/$defs/TaskRetryCount"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/StartedAt"
+                },
+                "endedAt": {
+                    "$ref": "#/$defs/EndedAt"
+                }
+            }
+        },
+        "TaskId": {
+            "type": "string"
+        },
+        "TaskTargetRunStatus": {
+            "enum": [
+                "READY",
+                "FAILED",
+                "SUCCEEDED",
+                "CANCELED",
+                "SUSPENDED",
+                "PENDING"
+            ]
+        },
+        "TaskParameters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TaskParameterValue"
+            }
+        },
+        "TaskParameterValue": {
+            "type": "object",
+            "properties": {
+                "int": {
+                    "$ref": "#/$defs/IntString"
+                },
+                "float": {
+                    "$ref": "#/$defs/FloatString"
+                },
+                "string": {
+                    "$ref": "#/$defs/ParameterString"
+                },
+                "path": {
+                    "$ref": "#/$defs/PathString"
+                }
+            }
+        },
+        "TaskRetryCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SearchTasksRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueIds": {
+                    "$ref": "#/$defs/QueueIds"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "filterExpressions": {
+                    "$ref": "#/$defs/SearchGroupedFilterExpressions"
+                },
+                "sortExpressions": {
+                    "$ref": "#/$defs/SearchSortExpressions"
+                },
+                "itemOffset": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "pageSize": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "SearchWorkersResponse": {
+            "type": "object",
+            "properties": {
+                "workers": {
+                    "$ref": "#/$defs/WorkerSearchSummaries"
+                },
+                "nextItemOffset": {
+                    "$ref": "#/$defs/NextItemOffset"
+                },
+                "totalResults": {
+                    "$ref": "#/$defs/TotalResults"
+                }
+            }
+        },
+        "WorkerSearchSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WorkerSearchSummary"
+            }
+        },
+        "WorkerSearchSummary": {
+            "type": "object",
+            "properties": {
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                },
+                "workerId": {
+                    "$ref": "#/$defs/WorkerId"
+                },
+                "status": {
+                    "$ref": "#/$defs/WorkerStatus"
+                },
+                "hostProperties": {
+                    "$ref": "#/$defs/HostPropertiesResponse"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "updatedBy": {
+                    "$ref": "#/$defs/UpdatedBy"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/UpdatedAt"
+                }
+            }
+        },
+        "WorkerId": {
+            "type": "string"
+        },
+        "WorkerStatus": {
+            "enum": [
+                "CREATED",
+                "STARTED",
+                "STOPPING",
+                "STOPPED",
+                "NOT_RESPONDING",
+                "NOT_COMPATIBLE",
+                "RUNNING",
+                "IDLE"
+            ]
+        },
+        "HostPropertiesResponse": {
+            "type": "object",
+            "properties": {
+                "ipAddresses": {
+                    "$ref": "#/$defs/IpAddresses"
+                },
+                "hostName": {
+                    "$ref": "#/$defs/HostName"
+                },
+                "ec2InstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ec2InstanceType": {
+                    "$ref": "#/$defs/InstanceType"
+                }
+            }
+        },
+        "IpAddresses": {
+            "type": "object",
+            "properties": {
+                "ipV4Addresses": {
+                    "$ref": "#/$defs/IpV4Addresses"
+                },
+                "ipV6Addresses": {
+                    "$ref": "#/$defs/IpV6Addresses"
+                }
+            }
+        },
+        "IpV4Addresses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IpV4Address"
+            }
+        },
+        "IpV4Address": {
+            "type": "string"
+        },
+        "IpV6Addresses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IpV6Address"
+            }
+        },
+        "IpV6Address": {
+            "type": "string"
+        },
+        "HostName": {
+            "type": "string"
+        },
+        "SearchWorkersRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "fleetIds": {
+                    "$ref": "#/$defs/FleetIds"
+                },
+                "filterExpressions": {
+                    "$ref": "#/$defs/SearchGroupedFilterExpressions"
+                },
+                "sortExpressions": {
+                    "$ref": "#/$defs/SearchSortExpressions"
+                },
+                "itemOffset": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "pageSize": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "FleetIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FleetId"
+            }
+        },
+        "StartSessionsStatisticsAggregationResponse": {
+            "type": "object",
+            "properties": {
+                "aggregationId": {
+                    "$ref": "#/$defs/AggregationId"
+                }
+            }
+        },
+        "StartSessionsStatisticsAggregationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "resourceIds": {
+                    "$ref": "#/$defs/SessionsStatisticsResources"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "timezone": {
+                    "$ref": "#/$defs/Timezone"
+                },
+                "period": {
+                    "$ref": "#/$defs/Period"
+                },
+                "groupBy": {
+                    "$ref": "#/$defs/UsageGroupBy"
+                },
+                "statistics": {
+                    "$ref": "#/$defs/UsageStatistics"
+                }
+            }
+        },
+        "SessionsStatisticsResources": {
+            "type": "object",
+            "properties": {
+                "queueIds": {
+                    "$ref": "#/$defs/QueueIds"
+                },
+                "fleetIds": {
+                    "$ref": "#/$defs/FleetIds"
+                }
+            }
+        },
+        "Timezone": {
+            "type": "string"
+        },
+        "Period": {
+            "enum": [
+                "HOURLY",
+                "DAILY",
+                "WEEKLY",
+                "MONTHLY"
+            ]
+        },
+        "UsageGroupBy": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UsageGroupByField"
+            }
+        },
+        "UsageGroupByField": {
+            "enum": [
+                "QUEUE_ID",
+                "FLEET_ID",
+                "JOB_ID",
+                "USER_ID",
+                "USAGE_TYPE",
+                "INSTANCE_TYPE",
+                "LICENSE_PRODUCT"
+            ]
+        },
+        "UsageStatistics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UsageStatistic"
+            }
+        },
+        "UsageStatistic": {
+            "enum": [
+                "SUM",
+                "MIN",
+                "MAX",
+                "AVG"
+            ]
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "UpdateQueueFleetAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateQueueFleetAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                },
+                "status": {
+                    "$ref": "#/$defs/UpdateQueueFleetAssociationStatus"
+                }
+            }
+        },
+        "UpdateQueueFleetAssociationStatus": {
+            "enum": [
+                "ACTIVE",
+                "STOP_SCHEDULING_AND_COMPLETE_TASKS",
+                "STOP_SCHEDULING_AND_CANCEL_TASKS"
+            ]
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://deadline-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://deadline-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://deadline.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://deadline.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

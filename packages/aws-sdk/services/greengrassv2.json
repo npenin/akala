@@ -1,0 +1,3109 @@
+{
+    "name": "greengrass",
+    "commands": [
+        {
+            "name": "AssociateServiceRoleToAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateServiceRoleToAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateServiceRoleToAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateServiceRoleToAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchAssociateClientDeviceWithCoreDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchAssociateClientDeviceWithCoreDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchAssociateClientDeviceWithCoreDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchAssociateClientDeviceWithCoreDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchDisassociateClientDeviceFromCoreDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchDisassociateClientDeviceFromCoreDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDisassociateClientDeviceFromCoreDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDisassociateClientDeviceFromCoreDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelDeploymentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelDeploymentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateComponentVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateComponentVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateComponentVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateComponentVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDeploymentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDeploymentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteComponent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteComponent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteComponentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCoreDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCoreDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCoreDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDeploymentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeComponent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeComponent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeComponentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeComponentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateServiceRoleFromAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateServiceRoleFromAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateServiceRoleFromAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateServiceRoleFromAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetComponent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetComponent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetComponentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetComponentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetComponentVersionArtifact",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetComponentVersionArtifact"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetComponentVersionArtifactResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetComponentVersionArtifactRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetConnectivityInfo",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetConnectivityInfo"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetConnectivityInfoResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetConnectivityInfoRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCoreDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCoreDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCoreDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCoreDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeploymentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeploymentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetServiceRoleForAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetServiceRoleForAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetServiceRoleForAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetServiceRoleForAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListClientDevicesAssociatedWithCoreDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListClientDevicesAssociatedWithCoreDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListClientDevicesAssociatedWithCoreDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListClientDevicesAssociatedWithCoreDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListComponents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListComponents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListComponentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListComponentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListComponentVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListComponentVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListComponentVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListComponentVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCoreDevices",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCoreDevices"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCoreDevicesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCoreDevicesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeployments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeployments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDeploymentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeploymentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEffectiveDeployments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEffectiveDeployments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEffectiveDeploymentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEffectiveDeploymentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListInstalledComponents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListInstalledComponents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListInstalledComponentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListInstalledComponentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ResolveComponentCandidates",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ResolveComponentCandidates"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ResolveComponentCandidatesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ResolveComponentCandidatesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConnectivityInfo",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConnectivityInfo"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateConnectivityInfoResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConnectivityInfoRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssociateServiceRoleToAccountResponse": {
+            "type": "object",
+            "properties": {
+                "associatedAt": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "AssociateServiceRoleToAccountRequest": {
+            "type": "object",
+            "properties": {
+                "roleArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BatchAssociateClientDeviceWithCoreDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "errorEntries": {
+                    "$ref": "#/$defs/AssociateClientDeviceWithCoreDeviceErrorList"
+                }
+            }
+        },
+        "AssociateClientDeviceWithCoreDeviceErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssociateClientDeviceWithCoreDeviceErrorEntry"
+            }
+        },
+        "AssociateClientDeviceWithCoreDeviceErrorEntry": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/IoTThingName"
+                },
+                "code": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "message": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "IoTThingName": {
+            "type": "string"
+        },
+        "NonEmptyString": {
+            "type": "string"
+        },
+        "BatchAssociateClientDeviceWithCoreDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "entries": {
+                    "$ref": "#/$defs/AssociateClientDeviceWithCoreDeviceEntryList"
+                },
+                "coreDeviceThingName": {
+                    "$ref": "#/$defs/IoTThingName"
+                }
+            }
+        },
+        "AssociateClientDeviceWithCoreDeviceEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssociateClientDeviceWithCoreDeviceEntry"
+            }
+        },
+        "AssociateClientDeviceWithCoreDeviceEntry": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/IoTThingName"
+                }
+            }
+        },
+        "BatchDisassociateClientDeviceFromCoreDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "errorEntries": {
+                    "$ref": "#/$defs/DisassociateClientDeviceFromCoreDeviceErrorList"
+                }
+            }
+        },
+        "DisassociateClientDeviceFromCoreDeviceErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DisassociateClientDeviceFromCoreDeviceErrorEntry"
+            }
+        },
+        "DisassociateClientDeviceFromCoreDeviceErrorEntry": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/IoTThingName"
+                },
+                "code": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "message": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "BatchDisassociateClientDeviceFromCoreDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "entries": {
+                    "$ref": "#/$defs/DisassociateClientDeviceFromCoreDeviceEntryList"
+                },
+                "coreDeviceThingName": {
+                    "$ref": "#/$defs/IoTThingName"
+                }
+            }
+        },
+        "DisassociateClientDeviceFromCoreDeviceEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DisassociateClientDeviceFromCoreDeviceEntry"
+            }
+        },
+        "DisassociateClientDeviceFromCoreDeviceEntry": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/IoTThingName"
+                }
+            }
+        },
+        "CancelDeploymentResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "CancelDeploymentRequest": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "CreateComponentVersionResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ComponentVersionARN"
+                },
+                "componentName": {
+                    "$ref": "#/$defs/ComponentNameString"
+                },
+                "componentVersion": {
+                    "$ref": "#/$defs/ComponentVersionString"
+                },
+                "creationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/CloudComponentStatus"
+                }
+            }
+        },
+        "ComponentVersionARN": {
+            "type": "string"
+        },
+        "ComponentNameString": {
+            "type": "string"
+        },
+        "ComponentVersionString": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CloudComponentStatus": {
+            "type": "object",
+            "properties": {
+                "componentState": {
+                    "$ref": "#/$defs/CloudComponentState"
+                },
+                "message": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "errors": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "vendorGuidance": {
+                    "$ref": "#/$defs/VendorGuidance"
+                },
+                "vendorGuidanceMessage": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "CloudComponentState": {
+            "enum": [
+                "REQUESTED",
+                "INITIATED",
+                "DEPLOYABLE",
+                "FAILED",
+                "DEPRECATED"
+            ]
+        },
+        "StringMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "VendorGuidance": {
+            "enum": [
+                "ACTIVE",
+                "DISCONTINUED",
+                "DELETED"
+            ]
+        },
+        "CreateComponentVersionRequest": {
+            "type": "object",
+            "properties": {
+                "inlineRecipe": {
+                    "$ref": "#/$defs/RecipeBlob"
+                },
+                "lambdaFunction": {
+                    "$ref": "#/$defs/LambdaFunctionRecipeSource"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                }
+            }
+        },
+        "RecipeBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "LambdaFunctionRecipeSource": {
+            "type": "object",
+            "properties": {
+                "lambdaArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "componentName": {
+                    "$ref": "#/$defs/ComponentNameString"
+                },
+                "componentVersion": {
+                    "$ref": "#/$defs/ComponentVersionString"
+                },
+                "componentPlatforms": {
+                    "$ref": "#/$defs/ComponentPlatformList"
+                },
+                "componentDependencies": {
+                    "$ref": "#/$defs/ComponentDependencyMap"
+                },
+                "componentLambdaParameters": {
+                    "$ref": "#/$defs/LambdaExecutionParameters"
+                }
+            }
+        },
+        "ComponentPlatformList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComponentPlatform"
+            }
+        },
+        "ComponentPlatform": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/PlatformAttributesMap"
+                }
+            }
+        },
+        "PlatformAttributesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "ComponentDependencyMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ComponentDependencyRequirement"
+            }
+        },
+        "ComponentDependencyRequirement": {
+            "type": "object",
+            "properties": {
+                "versionRequirement": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "dependencyType": {
+                    "$ref": "#/$defs/ComponentDependencyType"
+                }
+            }
+        },
+        "ComponentDependencyType": {
+            "enum": [
+                "HARD",
+                "SOFT"
+            ]
+        },
+        "LambdaExecutionParameters": {
+            "type": "object",
+            "properties": {
+                "eventSources": {
+                    "$ref": "#/$defs/LambdaEventSourceList"
+                },
+                "maxQueueSize": {
+                    "$ref": "#/$defs/OptionalInteger"
+                },
+                "maxInstancesCount": {
+                    "$ref": "#/$defs/OptionalInteger"
+                },
+                "maxIdleTimeInSeconds": {
+                    "$ref": "#/$defs/OptionalInteger"
+                },
+                "timeoutInSeconds": {
+                    "$ref": "#/$defs/OptionalInteger"
+                },
+                "statusTimeoutInSeconds": {
+                    "$ref": "#/$defs/OptionalInteger"
+                },
+                "pinned": {
+                    "$ref": "#/$defs/OptionalBoolean"
+                },
+                "inputPayloadEncodingType": {
+                    "$ref": "#/$defs/LambdaInputPayloadEncodingType"
+                },
+                "execArgs": {
+                    "$ref": "#/$defs/LambdaExecArgsList"
+                },
+                "environmentVariables": {
+                    "$ref": "#/$defs/LambdaEnvironmentVariables"
+                },
+                "linuxProcessParams": {
+                    "$ref": "#/$defs/LambdaLinuxProcessParams"
+                }
+            }
+        },
+        "LambdaEventSourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LambdaEventSource"
+            }
+        },
+        "LambdaEventSource": {
+            "type": "object",
+            "properties": {
+                "topic": {
+                    "$ref": "#/$defs/TopicString"
+                },
+                "type": {
+                    "$ref": "#/$defs/LambdaEventSourceType"
+                }
+            }
+        },
+        "TopicString": {
+            "type": "string"
+        },
+        "LambdaEventSourceType": {
+            "enum": [
+                "PUB_SUB",
+                "IOT_CORE"
+            ]
+        },
+        "OptionalInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OptionalBoolean": {
+            "type": "boolean"
+        },
+        "LambdaInputPayloadEncodingType": {
+            "enum": [
+                "JSON",
+                "BINARY"
+            ]
+        },
+        "LambdaExecArgsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LambdaExecArg"
+            }
+        },
+        "LambdaExecArg": {
+            "type": "string"
+        },
+        "LambdaEnvironmentVariables": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "LambdaLinuxProcessParams": {
+            "type": "object",
+            "properties": {
+                "isolationMode": {
+                    "$ref": "#/$defs/LambdaIsolationMode"
+                },
+                "containerParams": {
+                    "$ref": "#/$defs/LambdaContainerParams"
+                }
+            }
+        },
+        "LambdaIsolationMode": {
+            "enum": [
+                "GREENGRASS_CONTAINER",
+                "NO_CONTAINER"
+            ]
+        },
+        "LambdaContainerParams": {
+            "type": "object",
+            "properties": {
+                "memorySizeInKB": {
+                    "$ref": "#/$defs/OptionalInteger"
+                },
+                "mountROSysfs": {
+                    "$ref": "#/$defs/OptionalBoolean"
+                },
+                "volumes": {
+                    "$ref": "#/$defs/LambdaVolumeList"
+                },
+                "devices": {
+                    "$ref": "#/$defs/LambdaDeviceList"
+                }
+            }
+        },
+        "LambdaVolumeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LambdaVolumeMount"
+            }
+        },
+        "LambdaVolumeMount": {
+            "type": "object",
+            "properties": {
+                "sourcePath": {
+                    "$ref": "#/$defs/FileSystemPath"
+                },
+                "destinationPath": {
+                    "$ref": "#/$defs/FileSystemPath"
+                },
+                "permission": {
+                    "$ref": "#/$defs/LambdaFilesystemPermission"
+                },
+                "addGroupOwner": {
+                    "$ref": "#/$defs/OptionalBoolean"
+                }
+            }
+        },
+        "FileSystemPath": {
+            "type": "string"
+        },
+        "LambdaFilesystemPermission": {
+            "enum": [
+                "RO",
+                "RW"
+            ]
+        },
+        "LambdaDeviceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LambdaDeviceMount"
+            }
+        },
+        "LambdaDeviceMount": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "$ref": "#/$defs/FileSystemPath"
+                },
+                "permission": {
+                    "$ref": "#/$defs/LambdaFilesystemPermission"
+                },
+                "addGroupOwner": {
+                    "$ref": "#/$defs/OptionalBoolean"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ClientTokenString": {
+            "type": "string"
+        },
+        "CreateDeploymentResponse": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "iotJobId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "iotJobArn": {
+                    "$ref": "#/$defs/IoTJobARN"
+                }
+            }
+        },
+        "IoTJobARN": {
+            "type": "string"
+        },
+        "CreateDeploymentRequest": {
+            "type": "object",
+            "properties": {
+                "targetArn": {
+                    "$ref": "#/$defs/TargetARN"
+                },
+                "deploymentName": {
+                    "$ref": "#/$defs/DeploymentNameString"
+                },
+                "components": {
+                    "$ref": "#/$defs/ComponentDeploymentSpecifications"
+                },
+                "iotJobConfiguration": {
+                    "$ref": "#/$defs/DeploymentIoTJobConfiguration"
+                },
+                "deploymentPolicies": {
+                    "$ref": "#/$defs/DeploymentPolicies"
+                },
+                "parentTargetArn": {
+                    "$ref": "#/$defs/ThingGroupARN"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                }
+            }
+        },
+        "TargetARN": {
+            "type": "string"
+        },
+        "DeploymentNameString": {
+            "type": "string"
+        },
+        "ComponentDeploymentSpecifications": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ComponentDeploymentSpecification"
+            }
+        },
+        "ComponentDeploymentSpecification": {
+            "type": "object",
+            "properties": {
+                "componentVersion": {
+                    "$ref": "#/$defs/ComponentVersionString"
+                },
+                "configurationUpdate": {
+                    "$ref": "#/$defs/ComponentConfigurationUpdate"
+                },
+                "runWith": {
+                    "$ref": "#/$defs/ComponentRunWith"
+                }
+            }
+        },
+        "ComponentConfigurationUpdate": {
+            "type": "object",
+            "properties": {
+                "merge": {
+                    "$ref": "#/$defs/ComponentConfigurationString"
+                },
+                "reset": {
+                    "$ref": "#/$defs/ComponentConfigurationPathList"
+                }
+            }
+        },
+        "ComponentConfigurationString": {
+            "type": "string"
+        },
+        "ComponentConfigurationPathList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComponentConfigurationPath"
+            }
+        },
+        "ComponentConfigurationPath": {
+            "type": "string"
+        },
+        "ComponentRunWith": {
+            "type": "object",
+            "properties": {
+                "posixUser": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "systemResourceLimits": {
+                    "$ref": "#/$defs/SystemResourceLimits"
+                },
+                "windowsUser": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "SystemResourceLimits": {
+            "type": "object",
+            "properties": {
+                "memory": {
+                    "$ref": "#/$defs/Memory"
+                },
+                "cpus": {
+                    "$ref": "#/$defs/CPU"
+                }
+            }
+        },
+        "Memory": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CPU": {
+            "type": "number",
+            "format": "double"
+        },
+        "DeploymentIoTJobConfiguration": {
+            "type": "object",
+            "properties": {
+                "jobExecutionsRolloutConfig": {
+                    "$ref": "#/$defs/IoTJobExecutionsRolloutConfig"
+                },
+                "abortConfig": {
+                    "$ref": "#/$defs/IoTJobAbortConfig"
+                },
+                "timeoutConfig": {
+                    "$ref": "#/$defs/IoTJobTimeoutConfig"
+                }
+            }
+        },
+        "IoTJobExecutionsRolloutConfig": {
+            "type": "object",
+            "properties": {
+                "exponentialRate": {
+                    "$ref": "#/$defs/IoTJobExponentialRolloutRate"
+                },
+                "maximumPerMinute": {
+                    "$ref": "#/$defs/IoTJobMaxExecutionsPerMin"
+                }
+            }
+        },
+        "IoTJobExponentialRolloutRate": {
+            "type": "object",
+            "properties": {
+                "baseRatePerMinute": {
+                    "$ref": "#/$defs/IoTJobRolloutBaseRatePerMinute"
+                },
+                "incrementFactor": {
+                    "$ref": "#/$defs/IoTJobRolloutIncrementFactor"
+                },
+                "rateIncreaseCriteria": {
+                    "$ref": "#/$defs/IoTJobRateIncreaseCriteria"
+                }
+            }
+        },
+        "IoTJobRolloutBaseRatePerMinute": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "IoTJobRolloutIncrementFactor": {
+            "type": "number",
+            "format": "double"
+        },
+        "IoTJobRateIncreaseCriteria": {
+            "type": "object",
+            "properties": {
+                "numberOfNotifiedThings": {
+                    "$ref": "#/$defs/IoTJobNumberOfThings"
+                },
+                "numberOfSucceededThings": {
+                    "$ref": "#/$defs/IoTJobNumberOfThings"
+                }
+            }
+        },
+        "IoTJobNumberOfThings": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "IoTJobMaxExecutionsPerMin": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "IoTJobAbortConfig": {
+            "type": "object",
+            "properties": {
+                "criteriaList": {
+                    "$ref": "#/$defs/IoTJobAbortCriteriaList"
+                }
+            }
+        },
+        "IoTJobAbortCriteriaList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IoTJobAbortCriteria"
+            }
+        },
+        "IoTJobAbortCriteria": {
+            "type": "object",
+            "properties": {
+                "failureType": {
+                    "$ref": "#/$defs/IoTJobExecutionFailureType"
+                },
+                "action": {
+                    "$ref": "#/$defs/IoTJobAbortAction"
+                },
+                "thresholdPercentage": {
+                    "$ref": "#/$defs/IoTJobAbortThresholdPercentage"
+                },
+                "minNumberOfExecutedThings": {
+                    "$ref": "#/$defs/IoTJobMinimumNumberOfExecutedThings"
+                }
+            }
+        },
+        "IoTJobExecutionFailureType": {
+            "enum": [
+                "FAILED",
+                "REJECTED",
+                "TIMED_OUT",
+                "ALL"
+            ]
+        },
+        "IoTJobAbortAction": {
+            "enum": [
+                "CANCEL"
+            ]
+        },
+        "IoTJobAbortThresholdPercentage": {
+            "type": "number",
+            "format": "double"
+        },
+        "IoTJobMinimumNumberOfExecutedThings": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "IoTJobTimeoutConfig": {
+            "type": "object",
+            "properties": {
+                "inProgressTimeoutInMinutes": {
+                    "$ref": "#/$defs/IoTJobInProgressTimeoutInMinutes"
+                }
+            }
+        },
+        "IoTJobInProgressTimeoutInMinutes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DeploymentPolicies": {
+            "type": "object",
+            "properties": {
+                "failureHandlingPolicy": {
+                    "$ref": "#/$defs/DeploymentFailureHandlingPolicy"
+                },
+                "componentUpdatePolicy": {
+                    "$ref": "#/$defs/DeploymentComponentUpdatePolicy"
+                },
+                "configurationValidationPolicy": {
+                    "$ref": "#/$defs/DeploymentConfigurationValidationPolicy"
+                }
+            }
+        },
+        "DeploymentFailureHandlingPolicy": {
+            "enum": [
+                "ROLLBACK",
+                "DO_NOTHING"
+            ]
+        },
+        "DeploymentComponentUpdatePolicy": {
+            "type": "object",
+            "properties": {
+                "timeoutInSeconds": {
+                    "$ref": "#/$defs/OptionalInteger"
+                },
+                "action": {
+                    "$ref": "#/$defs/DeploymentComponentUpdatePolicyAction"
+                }
+            }
+        },
+        "DeploymentComponentUpdatePolicyAction": {
+            "enum": [
+                "NOTIFY_COMPONENTS",
+                "SKIP_NOTIFY_COMPONENTS"
+            ]
+        },
+        "DeploymentConfigurationValidationPolicy": {
+            "type": "object",
+            "properties": {
+                "timeoutInSeconds": {
+                    "$ref": "#/$defs/OptionalInteger"
+                }
+            }
+        },
+        "ThingGroupARN": {
+            "type": "string"
+        },
+        "DeleteComponentRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ComponentVersionARN"
+                }
+            }
+        },
+        "DeleteCoreDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "coreDeviceThingName": {
+                    "$ref": "#/$defs/CoreDeviceThingName"
+                }
+            }
+        },
+        "CoreDeviceThingName": {
+            "type": "string"
+        },
+        "DeleteDeploymentRequest": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "DescribeComponentResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ComponentVersionARN"
+                },
+                "componentName": {
+                    "$ref": "#/$defs/ComponentNameString"
+                },
+                "componentVersion": {
+                    "$ref": "#/$defs/ComponentVersionString"
+                },
+                "creationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "publisher": {
+                    "$ref": "#/$defs/PublisherString"
+                },
+                "description": {
+                    "$ref": "#/$defs/DescriptionString"
+                },
+                "status": {
+                    "$ref": "#/$defs/CloudComponentStatus"
+                },
+                "platforms": {
+                    "$ref": "#/$defs/ComponentPlatformList"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "PublisherString": {
+            "type": "string"
+        },
+        "DescriptionString": {
+            "type": "string"
+        },
+        "DescribeComponentRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ComponentVersionARN"
+                }
+            }
+        },
+        "DisassociateServiceRoleFromAccountResponse": {
+            "type": "object",
+            "properties": {
+                "disassociatedAt": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DisassociateServiceRoleFromAccountRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetComponentResponse": {
+            "type": "object",
+            "properties": {
+                "recipeOutputFormat": {
+                    "$ref": "#/$defs/RecipeOutputFormat"
+                },
+                "recipe": {
+                    "$ref": "#/$defs/RecipeBlob"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "RecipeOutputFormat": {
+            "enum": [
+                "JSON",
+                "YAML"
+            ]
+        },
+        "GetComponentRequest": {
+            "type": "object",
+            "properties": {
+                "recipeOutputFormat": {
+                    "$ref": "#/$defs/RecipeOutputFormat"
+                },
+                "arn": {
+                    "$ref": "#/$defs/ComponentVersionARN"
+                }
+            }
+        },
+        "GetComponentVersionArtifactResponse": {
+            "type": "object",
+            "properties": {
+                "preSignedUrl": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "GetComponentVersionArtifactRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ComponentVersionARN"
+                },
+                "artifactName": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "s3EndpointType": {
+                    "$ref": "#/$defs/S3EndpointType"
+                },
+                "iotEndpointType": {
+                    "$ref": "#/$defs/IotEndpointType"
+                }
+            }
+        },
+        "S3EndpointType": {
+            "enum": [
+                "REGIONAL",
+                "GLOBAL"
+            ]
+        },
+        "IotEndpointType": {
+            "enum": [
+                "fips",
+                "standard"
+            ]
+        },
+        "GetConnectivityInfoResponse": {
+            "type": "object",
+            "properties": {
+                "connectivityInfo": {
+                    "$ref": "#/$defs/connectivityInfoList"
+                },
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "connectivityInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectivityInfo"
+            }
+        },
+        "ConnectivityInfo": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/String"
+                },
+                "hostAddress": {
+                    "$ref": "#/$defs/String"
+                },
+                "portNumber": {
+                    "$ref": "#/$defs/PortNumberInt"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PortNumberInt": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetConnectivityInfoRequest": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/CoreDeviceThingName"
+                }
+            }
+        },
+        "GetCoreDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "coreDeviceThingName": {
+                    "$ref": "#/$defs/CoreDeviceThingName"
+                },
+                "coreVersion": {
+                    "$ref": "#/$defs/GGCVersion"
+                },
+                "platform": {
+                    "$ref": "#/$defs/CoreDevicePlatformString"
+                },
+                "architecture": {
+                    "$ref": "#/$defs/CoreDeviceArchitectureString"
+                },
+                "status": {
+                    "$ref": "#/$defs/CoreDeviceStatus"
+                },
+                "lastStatusUpdateTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "GGCVersion": {
+            "type": "string"
+        },
+        "CoreDevicePlatformString": {
+            "type": "string"
+        },
+        "CoreDeviceArchitectureString": {
+            "type": "string"
+        },
+        "CoreDeviceStatus": {
+            "enum": [
+                "HEALTHY",
+                "UNHEALTHY"
+            ]
+        },
+        "GetCoreDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "coreDeviceThingName": {
+                    "$ref": "#/$defs/CoreDeviceThingName"
+                }
+            }
+        },
+        "GetDeploymentResponse": {
+            "type": "object",
+            "properties": {
+                "targetArn": {
+                    "$ref": "#/$defs/TargetARN"
+                },
+                "revisionId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "deploymentId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "deploymentName": {
+                    "$ref": "#/$defs/NullableString"
+                },
+                "deploymentStatus": {
+                    "$ref": "#/$defs/DeploymentStatus"
+                },
+                "iotJobId": {
+                    "$ref": "#/$defs/NullableString"
+                },
+                "iotJobArn": {
+                    "$ref": "#/$defs/IoTJobARN"
+                },
+                "components": {
+                    "$ref": "#/$defs/ComponentDeploymentSpecifications"
+                },
+                "deploymentPolicies": {
+                    "$ref": "#/$defs/DeploymentPolicies"
+                },
+                "iotJobConfiguration": {
+                    "$ref": "#/$defs/DeploymentIoTJobConfiguration"
+                },
+                "creationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "isLatestForTarget": {
+                    "$ref": "#/$defs/IsLatestForTarget"
+                },
+                "parentTargetArn": {
+                    "$ref": "#/$defs/ThingGroupARN"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "NullableString": {
+            "type": "string"
+        },
+        "DeploymentStatus": {
+            "enum": [
+                "ACTIVE",
+                "COMPLETED",
+                "CANCELED",
+                "FAILED",
+                "INACTIVE"
+            ]
+        },
+        "IsLatestForTarget": {
+            "type": "boolean"
+        },
+        "GetDeploymentRequest": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "GetServiceRoleForAccountResponse": {
+            "type": "object",
+            "properties": {
+                "associatedAt": {
+                    "$ref": "#/$defs/String"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetServiceRoleForAccountRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "ListClientDevicesAssociatedWithCoreDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "associatedClientDevices": {
+                    "$ref": "#/$defs/AssociatedClientDeviceList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "AssociatedClientDeviceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssociatedClientDevice"
+            }
+        },
+        "AssociatedClientDevice": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/IoTThingName"
+                },
+                "associationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "NextTokenString": {
+            "type": "string"
+        },
+        "ListClientDevicesAssociatedWithCoreDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "coreDeviceThingName": {
+                    "$ref": "#/$defs/IoTThingName"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/DefaultMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "DefaultMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListComponentsResponse": {
+            "type": "object",
+            "properties": {
+                "components": {
+                    "$ref": "#/$defs/ComponentList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "ComponentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Component"
+            }
+        },
+        "Component": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ComponentARN"
+                },
+                "componentName": {
+                    "$ref": "#/$defs/ComponentNameString"
+                },
+                "latestVersion": {
+                    "$ref": "#/$defs/ComponentLatestVersion"
+                }
+            }
+        },
+        "ComponentARN": {
+            "type": "string"
+        },
+        "ComponentLatestVersion": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ComponentVersionARN"
+                },
+                "componentVersion": {
+                    "$ref": "#/$defs/ComponentVersionString"
+                },
+                "creationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "description": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "publisher": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "platforms": {
+                    "$ref": "#/$defs/ComponentPlatformList"
+                }
+            }
+        },
+        "ListComponentsRequest": {
+            "type": "object",
+            "properties": {
+                "scope": {
+                    "$ref": "#/$defs/ComponentVisibilityScope"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/DefaultMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "ComponentVisibilityScope": {
+            "enum": [
+                "PRIVATE",
+                "PUBLIC"
+            ]
+        },
+        "ListComponentVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "componentVersions": {
+                    "$ref": "#/$defs/ComponentVersionList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "ComponentVersionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComponentVersionListItem"
+            }
+        },
+        "ComponentVersionListItem": {
+            "type": "object",
+            "properties": {
+                "componentName": {
+                    "$ref": "#/$defs/ComponentNameString"
+                },
+                "componentVersion": {
+                    "$ref": "#/$defs/ComponentVersionString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "ListComponentVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ComponentARN"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/DefaultMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "ListCoreDevicesResponse": {
+            "type": "object",
+            "properties": {
+                "coreDevices": {
+                    "$ref": "#/$defs/CoreDevicesList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "CoreDevicesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CoreDevice"
+            }
+        },
+        "CoreDevice": {
+            "type": "object",
+            "properties": {
+                "coreDeviceThingName": {
+                    "$ref": "#/$defs/CoreDeviceThingName"
+                },
+                "status": {
+                    "$ref": "#/$defs/CoreDeviceStatus"
+                },
+                "lastStatusUpdateTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListCoreDevicesRequest": {
+            "type": "object",
+            "properties": {
+                "thingGroupArn": {
+                    "$ref": "#/$defs/ThingGroupARN"
+                },
+                "status": {
+                    "$ref": "#/$defs/CoreDeviceStatus"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/DefaultMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "ListDeploymentsResponse": {
+            "type": "object",
+            "properties": {
+                "deployments": {
+                    "$ref": "#/$defs/DeploymentList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "DeploymentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Deployment"
+            }
+        },
+        "Deployment": {
+            "type": "object",
+            "properties": {
+                "targetArn": {
+                    "$ref": "#/$defs/TargetARN"
+                },
+                "revisionId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "deploymentId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "deploymentName": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "creationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "deploymentStatus": {
+                    "$ref": "#/$defs/DeploymentStatus"
+                },
+                "isLatestForTarget": {
+                    "$ref": "#/$defs/IsLatestForTarget"
+                },
+                "parentTargetArn": {
+                    "$ref": "#/$defs/ThingGroupARN"
+                }
+            }
+        },
+        "ListDeploymentsRequest": {
+            "type": "object",
+            "properties": {
+                "targetArn": {
+                    "$ref": "#/$defs/TargetARN"
+                },
+                "historyFilter": {
+                    "$ref": "#/$defs/DeploymentHistoryFilter"
+                },
+                "parentTargetArn": {
+                    "$ref": "#/$defs/ThingGroupARN"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/DefaultMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "DeploymentHistoryFilter": {
+            "enum": [
+                "ALL",
+                "LATEST_ONLY"
+            ]
+        },
+        "ListEffectiveDeploymentsResponse": {
+            "type": "object",
+            "properties": {
+                "effectiveDeployments": {
+                    "$ref": "#/$defs/EffectiveDeploymentsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "EffectiveDeploymentsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EffectiveDeployment"
+            }
+        },
+        "EffectiveDeployment": {
+            "type": "object",
+            "properties": {
+                "deploymentId": {
+                    "$ref": "#/$defs/DeploymentID"
+                },
+                "deploymentName": {
+                    "$ref": "#/$defs/DeploymentName"
+                },
+                "iotJobId": {
+                    "$ref": "#/$defs/IoTJobId"
+                },
+                "iotJobArn": {
+                    "$ref": "#/$defs/IoTJobARN"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetARN"
+                },
+                "coreDeviceExecutionStatus": {
+                    "$ref": "#/$defs/EffectiveDeploymentExecutionStatus"
+                },
+                "reason": {
+                    "$ref": "#/$defs/Reason"
+                },
+                "creationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "modifiedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "statusDetails": {
+                    "$ref": "#/$defs/EffectiveDeploymentStatusDetails"
+                }
+            }
+        },
+        "DeploymentID": {
+            "type": "string"
+        },
+        "DeploymentName": {
+            "type": "string"
+        },
+        "IoTJobId": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "EffectiveDeploymentExecutionStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "QUEUED",
+                "FAILED",
+                "COMPLETED",
+                "TIMED_OUT",
+                "CANCELED",
+                "REJECTED",
+                "SUCCEEDED"
+            ]
+        },
+        "Reason": {
+            "type": "string"
+        },
+        "EffectiveDeploymentStatusDetails": {
+            "type": "object",
+            "properties": {
+                "errorStack": {
+                    "$ref": "#/$defs/EffectiveDeploymentErrorStack"
+                },
+                "errorTypes": {
+                    "$ref": "#/$defs/EffectiveDeploymentErrorTypeList"
+                }
+            }
+        },
+        "EffectiveDeploymentErrorStack": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EffectiveDeploymentErrorCode"
+            }
+        },
+        "EffectiveDeploymentErrorCode": {
+            "type": "string"
+        },
+        "EffectiveDeploymentErrorTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EffectiveDeploymentErrorType"
+            }
+        },
+        "EffectiveDeploymentErrorType": {
+            "type": "string"
+        },
+        "ListEffectiveDeploymentsRequest": {
+            "type": "object",
+            "properties": {
+                "coreDeviceThingName": {
+                    "$ref": "#/$defs/CoreDeviceThingName"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/DefaultMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "ListInstalledComponentsResponse": {
+            "type": "object",
+            "properties": {
+                "installedComponents": {
+                    "$ref": "#/$defs/InstalledComponentList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                }
+            }
+        },
+        "InstalledComponentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstalledComponent"
+            }
+        },
+        "InstalledComponent": {
+            "type": "object",
+            "properties": {
+                "componentName": {
+                    "$ref": "#/$defs/ComponentNameString"
+                },
+                "componentVersion": {
+                    "$ref": "#/$defs/ComponentVersionString"
+                },
+                "lifecycleState": {
+                    "$ref": "#/$defs/InstalledComponentLifecycleState"
+                },
+                "lifecycleStateDetails": {
+                    "$ref": "#/$defs/LifecycleStateDetails"
+                },
+                "isRoot": {
+                    "$ref": "#/$defs/IsRoot"
+                },
+                "lastStatusChangeTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastReportedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastInstallationSource": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "lifecycleStatusCodes": {
+                    "$ref": "#/$defs/InstalledComponentLifecycleStatusCodeList"
+                }
+            }
+        },
+        "InstalledComponentLifecycleState": {
+            "enum": [
+                "NEW",
+                "INSTALLED",
+                "STARTING",
+                "RUNNING",
+                "STOPPING",
+                "ERRORED",
+                "BROKEN",
+                "FINISHED"
+            ]
+        },
+        "LifecycleStateDetails": {
+            "type": "string"
+        },
+        "IsRoot": {
+            "type": "boolean"
+        },
+        "InstalledComponentLifecycleStatusCodeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstalledComponentLifecycleStatusCode"
+            }
+        },
+        "InstalledComponentLifecycleStatusCode": {
+            "type": "string"
+        },
+        "ListInstalledComponentsRequest": {
+            "type": "object",
+            "properties": {
+                "coreDeviceThingName": {
+                    "$ref": "#/$defs/CoreDeviceThingName"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/DefaultMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenString"
+                },
+                "topologyFilter": {
+                    "$ref": "#/$defs/InstalledComponentTopologyFilter"
+                }
+            }
+        },
+        "InstalledComponentTopologyFilter": {
+            "enum": [
+                "ALL",
+                "ROOT"
+            ]
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/GenericV2ARN"
+                }
+            }
+        },
+        "GenericV2ARN": {
+            "type": "string"
+        },
+        "ResolveComponentCandidatesResponse": {
+            "type": "object",
+            "properties": {
+                "resolvedComponentVersions": {
+                    "$ref": "#/$defs/ResolvedComponentVersionsList"
+                }
+            }
+        },
+        "ResolvedComponentVersionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResolvedComponentVersion"
+            }
+        },
+        "ResolvedComponentVersion": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ComponentVersionARN"
+                },
+                "componentName": {
+                    "$ref": "#/$defs/ComponentNameString"
+                },
+                "componentVersion": {
+                    "$ref": "#/$defs/ComponentVersionString"
+                },
+                "recipe": {
+                    "$ref": "#/$defs/RecipeBlob"
+                },
+                "vendorGuidance": {
+                    "$ref": "#/$defs/VendorGuidance"
+                },
+                "message": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "ResolveComponentCandidatesRequest": {
+            "type": "object",
+            "properties": {
+                "platform": {
+                    "$ref": "#/$defs/ComponentPlatform"
+                },
+                "componentCandidates": {
+                    "$ref": "#/$defs/ComponentCandidateList"
+                }
+            }
+        },
+        "ComponentCandidateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComponentCandidate"
+            }
+        },
+        "ComponentCandidate": {
+            "type": "object",
+            "properties": {
+                "componentName": {
+                    "$ref": "#/$defs/ComponentNameString"
+                },
+                "componentVersion": {
+                    "$ref": "#/$defs/ComponentVersionString"
+                },
+                "versionRequirements": {
+                    "$ref": "#/$defs/ComponentVersionRequirementMap"
+                }
+            }
+        },
+        "ComponentVersionRequirementMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/GenericV2ARN"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/GenericV2ARN"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateConnectivityInfoResponse": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "$ref": "#/$defs/String"
+                },
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateConnectivityInfoRequest": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/CoreDeviceThingName"
+                },
+                "connectivityInfo": {
+                    "$ref": "#/$defs/connectivityInfoList"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://greengrass-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-east-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://greengrass.us-gov-east-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-west-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://greengrass.us-gov-west-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://greengrass-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://greengrass.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            },
+                                            "dataplane-us-gov-east-1"
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://greengrass-ats.iot.us-gov-east-1.amazonaws.com",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "greengrass",
+                                                "signingRegion": "us-gov-east-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            },
+                                            "dataplane-us-gov-west-1"
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://greengrass-ats.iot.us-gov-west-1.amazonaws.com",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "greengrass",
+                                                "signingRegion": "us-gov-west-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://greengrass.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

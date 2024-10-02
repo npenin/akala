@@ -1,0 +1,4621 @@
+{
+    "name": "elasticbeanstalk",
+    "commands": [
+        {
+            "name": "AbortEnvironmentUpdate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AbortEnvironmentUpdate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AbortEnvironmentUpdateMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ApplyEnvironmentManagedAction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ApplyEnvironmentManagedAction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApplyEnvironmentManagedActionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ApplyEnvironmentManagedActionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateEnvironmentOperationsRole",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateEnvironmentOperationsRole"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateEnvironmentOperationsRoleMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CheckDNSAvailability",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CheckDNSAvailability"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CheckDNSAvailabilityResultMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CheckDNSAvailabilityMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ComposeEnvironments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ComposeEnvironments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnvironmentDescriptionsMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ComposeEnvironmentsMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApplicationDescriptionMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApplicationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateApplicationVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateApplicationVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApplicationVersionDescriptionMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApplicationVersionMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateConfigurationTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateConfigurationTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigurationSettingsDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateConfigurationTemplateMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnvironmentDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEnvironmentMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePlatformVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePlatformVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePlatformVersionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePlatformVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateStorageLocation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateStorageLocation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateStorageLocationResultMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteApplicationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteApplicationVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteApplicationVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteApplicationVersionMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConfigurationTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteConfigurationTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConfigurationTemplateMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEnvironmentConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEnvironmentConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEnvironmentConfigurationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePlatformVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePlatformVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePlatformVersionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePlatformVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAccountAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAccountAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAccountAttributesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeApplications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApplicationDescriptionsMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeApplicationsMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeApplicationVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeApplicationVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApplicationVersionDescriptionsMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeApplicationVersionsMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConfigurationOptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConfigurationOptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigurationOptionsDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConfigurationOptionsMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConfigurationSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConfigurationSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigurationSettingsDescriptions"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConfigurationSettingsMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEnvironmentHealth",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEnvironmentHealth"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEnvironmentHealthResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEnvironmentHealthRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEnvironmentManagedActionHistory",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEnvironmentManagedActionHistory"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEnvironmentManagedActionHistoryResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEnvironmentManagedActionHistoryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEnvironmentManagedActions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEnvironmentManagedActions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEnvironmentManagedActionsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEnvironmentManagedActionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEnvironmentResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEnvironmentResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnvironmentResourceDescriptionsMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEnvironmentResourcesMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEnvironments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEnvironments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnvironmentDescriptionsMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEnvironmentsMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EventDescriptionsMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEventsMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeInstancesHealth",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeInstancesHealth"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeInstancesHealthResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeInstancesHealthRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribePlatformVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribePlatformVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePlatformVersionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePlatformVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateEnvironmentOperationsRole",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateEnvironmentOperationsRole"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateEnvironmentOperationsRoleMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAvailableSolutionStacks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAvailableSolutionStacks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAvailableSolutionStacksResultMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPlatformBranches",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPlatformBranches"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPlatformBranchesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPlatformBranchesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPlatformVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPlatformVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPlatformVersionsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPlatformVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ResourceTagsDescriptionMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RebuildEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RebuildEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RebuildEnvironmentMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RequestEnvironmentInfo",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RequestEnvironmentInfo"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RequestEnvironmentInfoMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RestartAppServer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RestartAppServer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RestartAppServerMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RetrieveEnvironmentInfo",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RetrieveEnvironmentInfo"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RetrieveEnvironmentInfoResultMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RetrieveEnvironmentInfoMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SwapEnvironmentCNAMEs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SwapEnvironmentCNAMEs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SwapEnvironmentCNAMEsMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TerminateEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TerminateEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnvironmentDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TerminateEnvironmentMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApplicationDescriptionMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApplicationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApplicationResourceLifecycle",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateApplicationResourceLifecycle"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApplicationResourceLifecycleDescriptionMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApplicationResourceLifecycleMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApplicationVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateApplicationVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApplicationVersionDescriptionMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApplicationVersionMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConfigurationTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConfigurationTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigurationSettingsDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConfigurationTemplateMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnvironmentDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEnvironmentMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateTagsForResourceMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ValidateConfigurationSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ValidateConfigurationSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigurationSettingsValidationMessages"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ValidateConfigurationSettingsMessage"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AbortEnvironmentUpdateMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                }
+            }
+        },
+        "EnvironmentId": {
+            "type": "string"
+        },
+        "EnvironmentName": {
+            "type": "string"
+        },
+        "ApplyEnvironmentManagedActionResult": {
+            "type": "object",
+            "properties": {
+                "ActionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ActionDescription": {
+                    "$ref": "#/$defs/String"
+                },
+                "ActionType": {
+                    "$ref": "#/$defs/ActionType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "ActionType": {
+            "enum": [
+                "InstanceRefresh",
+                "PlatformUpdate",
+                "Unknown"
+            ]
+        },
+        "ApplyEnvironmentManagedActionRequest": {
+            "type": "object",
+            "properties": {
+                "EnvironmentName": {
+                    "$ref": "#/$defs/String"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ActionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AssociateEnvironmentOperationsRoleMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "OperationsRole": {
+                    "$ref": "#/$defs/OperationsRole"
+                }
+            }
+        },
+        "OperationsRole": {
+            "type": "string"
+        },
+        "CheckDNSAvailabilityResultMessage": {
+            "type": "object",
+            "properties": {
+                "Available": {
+                    "$ref": "#/$defs/CnameAvailability"
+                },
+                "FullyQualifiedCNAME": {
+                    "$ref": "#/$defs/DNSCname"
+                }
+            }
+        },
+        "CnameAvailability": {
+            "type": "boolean"
+        },
+        "DNSCname": {
+            "type": "string"
+        },
+        "CheckDNSAvailabilityMessage": {
+            "type": "object",
+            "properties": {
+                "CNAMEPrefix": {
+                    "$ref": "#/$defs/DNSCnamePrefix"
+                }
+            }
+        },
+        "DNSCnamePrefix": {
+            "type": "string"
+        },
+        "EnvironmentDescriptionsMessage": {
+            "type": "object",
+            "properties": {
+                "Environments": {
+                    "$ref": "#/$defs/EnvironmentDescriptionsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "EnvironmentDescriptionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentDescription"
+            }
+        },
+        "EnvironmentDescription": {
+            "type": "object",
+            "properties": {
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "SolutionStackName": {
+                    "$ref": "#/$defs/SolutionStackName"
+                },
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "EndpointURL": {
+                    "$ref": "#/$defs/EndpointURL"
+                },
+                "CNAME": {
+                    "$ref": "#/$defs/DNSCname"
+                },
+                "DateCreated": {
+                    "$ref": "#/$defs/CreationDate"
+                },
+                "DateUpdated": {
+                    "$ref": "#/$defs/UpdateDate"
+                },
+                "Status": {
+                    "$ref": "#/$defs/EnvironmentStatus"
+                },
+                "AbortableOperationInProgress": {
+                    "$ref": "#/$defs/AbortableOperationInProgress"
+                },
+                "Health": {
+                    "$ref": "#/$defs/EnvironmentHealth"
+                },
+                "HealthStatus": {
+                    "$ref": "#/$defs/EnvironmentHealthStatus"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/EnvironmentResourcesDescription"
+                },
+                "Tier": {
+                    "$ref": "#/$defs/EnvironmentTier"
+                },
+                "EnvironmentLinks": {
+                    "$ref": "#/$defs/EnvironmentLinks"
+                },
+                "EnvironmentArn": {
+                    "$ref": "#/$defs/EnvironmentArn"
+                },
+                "OperationsRole": {
+                    "$ref": "#/$defs/OperationsRole"
+                }
+            }
+        },
+        "ApplicationName": {
+            "type": "string"
+        },
+        "VersionLabel": {
+            "type": "string"
+        },
+        "SolutionStackName": {
+            "type": "string"
+        },
+        "PlatformArn": {
+            "type": "string"
+        },
+        "ConfigurationTemplateName": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "EndpointURL": {
+            "type": "string"
+        },
+        "CreationDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "UpdateDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "EnvironmentStatus": {
+            "enum": [
+                "Aborting",
+                "Launching",
+                "Updating",
+                "LinkingFrom",
+                "LinkingTo",
+                "Ready",
+                "Terminating",
+                "Terminated"
+            ]
+        },
+        "AbortableOperationInProgress": {
+            "type": "boolean"
+        },
+        "EnvironmentHealth": {
+            "enum": [
+                "Green",
+                "Yellow",
+                "Red",
+                "Grey"
+            ]
+        },
+        "EnvironmentHealthStatus": {
+            "enum": [
+                "NoData",
+                "Unknown",
+                "Pending",
+                "Ok",
+                "Info",
+                "Warning",
+                "Degraded",
+                "Severe",
+                "Suspended"
+            ]
+        },
+        "EnvironmentResourcesDescription": {
+            "type": "object",
+            "properties": {
+                "LoadBalancer": {
+                    "$ref": "#/$defs/LoadBalancerDescription"
+                }
+            }
+        },
+        "LoadBalancerDescription": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/String"
+                },
+                "Listeners": {
+                    "$ref": "#/$defs/LoadBalancerListenersDescription"
+                }
+            }
+        },
+        "LoadBalancerListenersDescription": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Listener"
+            }
+        },
+        "Listener": {
+            "type": "object",
+            "properties": {
+                "Protocol": {
+                    "$ref": "#/$defs/String"
+                },
+                "Port": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "EnvironmentTier": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EnvironmentLinks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentLink"
+            }
+        },
+        "EnvironmentLink": {
+            "type": "object",
+            "properties": {
+                "LinkName": {
+                    "$ref": "#/$defs/String"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EnvironmentArn": {
+            "type": "string"
+        },
+        "Token": {
+            "type": "string"
+        },
+        "ComposeEnvironmentsMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "VersionLabels": {
+                    "$ref": "#/$defs/VersionLabels"
+                }
+            }
+        },
+        "GroupName": {
+            "type": "string"
+        },
+        "VersionLabels": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VersionLabel"
+            }
+        },
+        "ApplicationDescriptionMessage": {
+            "type": "object",
+            "properties": {
+                "Application": {
+                    "$ref": "#/$defs/ApplicationDescription"
+                }
+            }
+        },
+        "ApplicationDescription": {
+            "type": "object",
+            "properties": {
+                "ApplicationArn": {
+                    "$ref": "#/$defs/ApplicationArn"
+                },
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "DateCreated": {
+                    "$ref": "#/$defs/CreationDate"
+                },
+                "DateUpdated": {
+                    "$ref": "#/$defs/UpdateDate"
+                },
+                "Versions": {
+                    "$ref": "#/$defs/VersionLabelsList"
+                },
+                "ConfigurationTemplates": {
+                    "$ref": "#/$defs/ConfigurationTemplateNamesList"
+                },
+                "ResourceLifecycleConfig": {
+                    "$ref": "#/$defs/ApplicationResourceLifecycleConfig"
+                }
+            }
+        },
+        "ApplicationArn": {
+            "type": "string"
+        },
+        "VersionLabelsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VersionLabel"
+            }
+        },
+        "ConfigurationTemplateNamesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationTemplateName"
+            }
+        },
+        "ApplicationResourceLifecycleConfig": {
+            "type": "object",
+            "properties": {
+                "ServiceRole": {
+                    "$ref": "#/$defs/String"
+                },
+                "VersionLifecycleConfig": {
+                    "$ref": "#/$defs/ApplicationVersionLifecycleConfig"
+                }
+            }
+        },
+        "ApplicationVersionLifecycleConfig": {
+            "type": "object",
+            "properties": {
+                "MaxCountRule": {
+                    "$ref": "#/$defs/MaxCountRule"
+                },
+                "MaxAgeRule": {
+                    "$ref": "#/$defs/MaxAgeRule"
+                }
+            }
+        },
+        "MaxCountRule": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "MaxCount": {
+                    "$ref": "#/$defs/BoxedInt"
+                },
+                "DeleteSourceFromS3": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                }
+            }
+        },
+        "BoxedBoolean": {
+            "type": "boolean"
+        },
+        "BoxedInt": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaxAgeRule": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "MaxAgeInDays": {
+                    "$ref": "#/$defs/BoxedInt"
+                },
+                "DeleteSourceFromS3": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                }
+            }
+        },
+        "CreateApplicationMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ResourceLifecycleConfig": {
+                    "$ref": "#/$defs/ApplicationResourceLifecycleConfig"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ApplicationVersionDescriptionMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationVersion": {
+                    "$ref": "#/$defs/ApplicationVersionDescription"
+                }
+            }
+        },
+        "ApplicationVersionDescription": {
+            "type": "object",
+            "properties": {
+                "ApplicationVersionArn": {
+                    "$ref": "#/$defs/ApplicationVersionArn"
+                },
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "SourceBuildInformation": {
+                    "$ref": "#/$defs/SourceBuildInformation"
+                },
+                "BuildArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "SourceBundle": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "DateCreated": {
+                    "$ref": "#/$defs/CreationDate"
+                },
+                "DateUpdated": {
+                    "$ref": "#/$defs/UpdateDate"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ApplicationVersionStatus"
+                }
+            }
+        },
+        "ApplicationVersionArn": {
+            "type": "string"
+        },
+        "SourceBuildInformation": {
+            "type": "object",
+            "properties": {
+                "SourceType": {
+                    "$ref": "#/$defs/SourceType"
+                },
+                "SourceRepository": {
+                    "$ref": "#/$defs/SourceRepository"
+                },
+                "SourceLocation": {
+                    "$ref": "#/$defs/SourceLocation"
+                }
+            }
+        },
+        "SourceType": {
+            "enum": [
+                "Git",
+                "Zip"
+            ]
+        },
+        "SourceRepository": {
+            "enum": [
+                "CodeCommit",
+                "S3"
+            ]
+        },
+        "SourceLocation": {
+            "type": "string"
+        },
+        "S3Location": {
+            "type": "object",
+            "properties": {
+                "S3Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "S3Key": {
+                    "$ref": "#/$defs/S3Key"
+                }
+            }
+        },
+        "S3Bucket": {
+            "type": "string"
+        },
+        "S3Key": {
+            "type": "string"
+        },
+        "ApplicationVersionStatus": {
+            "enum": [
+                "Processed",
+                "Unprocessed",
+                "Failed",
+                "Processing",
+                "Building"
+            ]
+        },
+        "CreateApplicationVersionMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "SourceBuildInformation": {
+                    "$ref": "#/$defs/SourceBuildInformation"
+                },
+                "SourceBundle": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "BuildConfiguration": {
+                    "$ref": "#/$defs/BuildConfiguration"
+                },
+                "AutoCreateApplication": {
+                    "$ref": "#/$defs/AutoCreateApplication"
+                },
+                "Process": {
+                    "$ref": "#/$defs/ApplicationVersionProccess"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "BuildConfiguration": {
+            "type": "object",
+            "properties": {
+                "ArtifactName": {
+                    "$ref": "#/$defs/String"
+                },
+                "CodeBuildServiceRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "ComputeType": {
+                    "$ref": "#/$defs/ComputeType"
+                },
+                "Image": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "TimeoutInMinutes": {
+                    "$ref": "#/$defs/BoxedInt"
+                }
+            }
+        },
+        "NonEmptyString": {
+            "type": "string"
+        },
+        "ComputeType": {
+            "enum": [
+                "BUILD_GENERAL1_SMALL",
+                "BUILD_GENERAL1_MEDIUM",
+                "BUILD_GENERAL1_LARGE"
+            ]
+        },
+        "AutoCreateApplication": {
+            "type": "boolean"
+        },
+        "ApplicationVersionProccess": {
+            "type": "boolean"
+        },
+        "ConfigurationSettingsDescription": {
+            "type": "object",
+            "properties": {
+                "SolutionStackName": {
+                    "$ref": "#/$defs/SolutionStackName"
+                },
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "DeploymentStatus": {
+                    "$ref": "#/$defs/ConfigurationDeploymentStatus"
+                },
+                "DateCreated": {
+                    "$ref": "#/$defs/CreationDate"
+                },
+                "DateUpdated": {
+                    "$ref": "#/$defs/UpdateDate"
+                },
+                "OptionSettings": {
+                    "$ref": "#/$defs/ConfigurationOptionSettingsList"
+                }
+            }
+        },
+        "ConfigurationDeploymentStatus": {
+            "enum": [
+                "deployed",
+                "pending",
+                "failed"
+            ]
+        },
+        "ConfigurationOptionSettingsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationOptionSetting"
+            }
+        },
+        "ConfigurationOptionSetting": {
+            "type": "object",
+            "properties": {
+                "ResourceName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/OptionNamespace"
+                },
+                "OptionName": {
+                    "$ref": "#/$defs/ConfigurationOptionName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/ConfigurationOptionValue"
+                }
+            }
+        },
+        "ResourceName": {
+            "type": "string"
+        },
+        "OptionNamespace": {
+            "type": "string"
+        },
+        "ConfigurationOptionName": {
+            "type": "string"
+        },
+        "ConfigurationOptionValue": {
+            "type": "string"
+        },
+        "CreateConfigurationTemplateMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "SolutionStackName": {
+                    "$ref": "#/$defs/SolutionStackName"
+                },
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "SourceConfiguration": {
+                    "$ref": "#/$defs/SourceConfiguration"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "OptionSettings": {
+                    "$ref": "#/$defs/ConfigurationOptionSettingsList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "SourceConfiguration": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                }
+            }
+        },
+        "CreateEnvironmentMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "CNAMEPrefix": {
+                    "$ref": "#/$defs/DNSCnamePrefix"
+                },
+                "Tier": {
+                    "$ref": "#/$defs/EnvironmentTier"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "SolutionStackName": {
+                    "$ref": "#/$defs/SolutionStackName"
+                },
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "OptionSettings": {
+                    "$ref": "#/$defs/ConfigurationOptionSettingsList"
+                },
+                "OptionsToRemove": {
+                    "$ref": "#/$defs/OptionsSpecifierList"
+                },
+                "OperationsRole": {
+                    "$ref": "#/$defs/OperationsRole"
+                }
+            }
+        },
+        "OptionsSpecifierList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OptionSpecification"
+            }
+        },
+        "OptionSpecification": {
+            "type": "object",
+            "properties": {
+                "ResourceName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/OptionNamespace"
+                },
+                "OptionName": {
+                    "$ref": "#/$defs/ConfigurationOptionName"
+                }
+            }
+        },
+        "CreatePlatformVersionResult": {
+            "type": "object",
+            "properties": {
+                "PlatformSummary": {
+                    "$ref": "#/$defs/PlatformSummary"
+                },
+                "Builder": {
+                    "$ref": "#/$defs/Builder"
+                }
+            }
+        },
+        "PlatformSummary": {
+            "type": "object",
+            "properties": {
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "PlatformOwner": {
+                    "$ref": "#/$defs/PlatformOwner"
+                },
+                "PlatformStatus": {
+                    "$ref": "#/$defs/PlatformStatus"
+                },
+                "PlatformCategory": {
+                    "$ref": "#/$defs/PlatformCategory"
+                },
+                "OperatingSystemName": {
+                    "$ref": "#/$defs/OperatingSystemName"
+                },
+                "OperatingSystemVersion": {
+                    "$ref": "#/$defs/OperatingSystemVersion"
+                },
+                "SupportedTierList": {
+                    "$ref": "#/$defs/SupportedTierList"
+                },
+                "SupportedAddonList": {
+                    "$ref": "#/$defs/SupportedAddonList"
+                },
+                "PlatformLifecycleState": {
+                    "$ref": "#/$defs/PlatformLifecycleState"
+                },
+                "PlatformVersion": {
+                    "$ref": "#/$defs/PlatformVersion"
+                },
+                "PlatformBranchName": {
+                    "$ref": "#/$defs/BranchName"
+                },
+                "PlatformBranchLifecycleState": {
+                    "$ref": "#/$defs/PlatformBranchLifecycleState"
+                }
+            }
+        },
+        "PlatformOwner": {
+            "type": "string"
+        },
+        "PlatformStatus": {
+            "enum": [
+                "Creating",
+                "Failed",
+                "Ready",
+                "Deleting",
+                "Deleted"
+            ]
+        },
+        "PlatformCategory": {
+            "type": "string"
+        },
+        "OperatingSystemName": {
+            "type": "string"
+        },
+        "OperatingSystemVersion": {
+            "type": "string"
+        },
+        "SupportedTierList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SupportedTier"
+            }
+        },
+        "SupportedTier": {
+            "type": "string"
+        },
+        "SupportedAddonList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SupportedAddon"
+            }
+        },
+        "SupportedAddon": {
+            "type": "string"
+        },
+        "PlatformLifecycleState": {
+            "type": "string"
+        },
+        "PlatformVersion": {
+            "type": "string"
+        },
+        "BranchName": {
+            "type": "string"
+        },
+        "PlatformBranchLifecycleState": {
+            "type": "string"
+        },
+        "Builder": {
+            "type": "object",
+            "properties": {
+                "ARN": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "ARN": {
+            "type": "string"
+        },
+        "CreatePlatformVersionRequest": {
+            "type": "object",
+            "properties": {
+                "PlatformName": {
+                    "$ref": "#/$defs/PlatformName"
+                },
+                "PlatformVersion": {
+                    "$ref": "#/$defs/PlatformVersion"
+                },
+                "PlatformDefinitionBundle": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "OptionSettings": {
+                    "$ref": "#/$defs/ConfigurationOptionSettingsList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "PlatformName": {
+            "type": "string"
+        },
+        "CreateStorageLocationResultMessage": {
+            "type": "object",
+            "properties": {
+                "S3Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                }
+            }
+        },
+        "DeleteApplicationMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "TerminateEnvByForce": {
+                    "$ref": "#/$defs/TerminateEnvForce"
+                }
+            }
+        },
+        "TerminateEnvForce": {
+            "type": "boolean"
+        },
+        "DeleteApplicationVersionMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "DeleteSourceBundle": {
+                    "$ref": "#/$defs/DeleteSourceBundle"
+                }
+            }
+        },
+        "DeleteSourceBundle": {
+            "type": "boolean"
+        },
+        "DeleteConfigurationTemplateMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                }
+            }
+        },
+        "DeleteEnvironmentConfigurationMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                }
+            }
+        },
+        "DeletePlatformVersionResult": {
+            "type": "object",
+            "properties": {
+                "PlatformSummary": {
+                    "$ref": "#/$defs/PlatformSummary"
+                }
+            }
+        },
+        "DeletePlatformVersionRequest": {
+            "type": "object",
+            "properties": {
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                }
+            }
+        },
+        "DescribeAccountAttributesResult": {
+            "type": "object",
+            "properties": {
+                "ResourceQuotas": {
+                    "$ref": "#/$defs/ResourceQuotas"
+                }
+            }
+        },
+        "ResourceQuotas": {
+            "type": "object",
+            "properties": {
+                "ApplicationQuota": {
+                    "$ref": "#/$defs/ResourceQuota"
+                },
+                "ApplicationVersionQuota": {
+                    "$ref": "#/$defs/ResourceQuota"
+                },
+                "EnvironmentQuota": {
+                    "$ref": "#/$defs/ResourceQuota"
+                },
+                "ConfigurationTemplateQuota": {
+                    "$ref": "#/$defs/ResourceQuota"
+                },
+                "CustomPlatformQuota": {
+                    "$ref": "#/$defs/ResourceQuota"
+                }
+            }
+        },
+        "ResourceQuota": {
+            "type": "object",
+            "properties": {
+                "Maximum": {
+                    "$ref": "#/$defs/BoxedInt"
+                }
+            }
+        },
+        "ApplicationDescriptionsMessage": {
+            "type": "object",
+            "properties": {
+                "Applications": {
+                    "$ref": "#/$defs/ApplicationDescriptionList"
+                }
+            }
+        },
+        "ApplicationDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationDescription"
+            }
+        },
+        "DescribeApplicationsMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationNames": {
+                    "$ref": "#/$defs/ApplicationNamesList"
+                }
+            }
+        },
+        "ApplicationNamesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationName"
+            }
+        },
+        "ApplicationVersionDescriptionsMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationVersions": {
+                    "$ref": "#/$defs/ApplicationVersionDescriptionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ApplicationVersionDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationVersionDescription"
+            }
+        },
+        "DescribeApplicationVersionsMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "VersionLabels": {
+                    "$ref": "#/$defs/VersionLabelsList"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/MaxRecords"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "MaxRecords": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ConfigurationOptionsDescription": {
+            "type": "object",
+            "properties": {
+                "SolutionStackName": {
+                    "$ref": "#/$defs/SolutionStackName"
+                },
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "Options": {
+                    "$ref": "#/$defs/ConfigurationOptionDescriptionsList"
+                }
+            }
+        },
+        "ConfigurationOptionDescriptionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationOptionDescription"
+            }
+        },
+        "ConfigurationOptionDescription": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/OptionNamespace"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ConfigurationOptionName"
+                },
+                "DefaultValue": {
+                    "$ref": "#/$defs/ConfigurationOptionDefaultValue"
+                },
+                "ChangeSeverity": {
+                    "$ref": "#/$defs/ConfigurationOptionSeverity"
+                },
+                "UserDefined": {
+                    "$ref": "#/$defs/UserDefinedOption"
+                },
+                "ValueType": {
+                    "$ref": "#/$defs/ConfigurationOptionValueType"
+                },
+                "ValueOptions": {
+                    "$ref": "#/$defs/ConfigurationOptionPossibleValues"
+                },
+                "MinValue": {
+                    "$ref": "#/$defs/OptionRestrictionMinValue"
+                },
+                "MaxValue": {
+                    "$ref": "#/$defs/OptionRestrictionMaxValue"
+                },
+                "MaxLength": {
+                    "$ref": "#/$defs/OptionRestrictionMaxLength"
+                },
+                "Regex": {
+                    "$ref": "#/$defs/OptionRestrictionRegex"
+                }
+            }
+        },
+        "ConfigurationOptionDefaultValue": {
+            "type": "string"
+        },
+        "ConfigurationOptionSeverity": {
+            "type": "string"
+        },
+        "UserDefinedOption": {
+            "type": "boolean"
+        },
+        "ConfigurationOptionValueType": {
+            "enum": [
+                "Scalar",
+                "List"
+            ]
+        },
+        "ConfigurationOptionPossibleValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationOptionPossibleValue"
+            }
+        },
+        "ConfigurationOptionPossibleValue": {
+            "type": "string"
+        },
+        "OptionRestrictionMinValue": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OptionRestrictionMaxValue": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OptionRestrictionMaxLength": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OptionRestrictionRegex": {
+            "type": "object",
+            "properties": {
+                "Pattern": {
+                    "$ref": "#/$defs/RegexPattern"
+                },
+                "Label": {
+                    "$ref": "#/$defs/RegexLabel"
+                }
+            }
+        },
+        "RegexPattern": {
+            "type": "string"
+        },
+        "RegexLabel": {
+            "type": "string"
+        },
+        "DescribeConfigurationOptionsMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "SolutionStackName": {
+                    "$ref": "#/$defs/SolutionStackName"
+                },
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "Options": {
+                    "$ref": "#/$defs/OptionsSpecifierList"
+                }
+            }
+        },
+        "ConfigurationSettingsDescriptions": {
+            "type": "object",
+            "properties": {
+                "ConfigurationSettings": {
+                    "$ref": "#/$defs/ConfigurationSettingsDescriptionList"
+                }
+            }
+        },
+        "ConfigurationSettingsDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationSettingsDescription"
+            }
+        },
+        "DescribeConfigurationSettingsMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                }
+            }
+        },
+        "DescribeEnvironmentHealthResult": {
+            "type": "object",
+            "properties": {
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "HealthStatus": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/EnvironmentHealth"
+                },
+                "Color": {
+                    "$ref": "#/$defs/String"
+                },
+                "Causes": {
+                    "$ref": "#/$defs/Causes"
+                },
+                "ApplicationMetrics": {
+                    "$ref": "#/$defs/ApplicationMetrics"
+                },
+                "InstancesHealth": {
+                    "$ref": "#/$defs/InstanceHealthSummary"
+                },
+                "RefreshedAt": {
+                    "$ref": "#/$defs/RefreshedAt"
+                }
+            }
+        },
+        "Causes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Cause"
+            }
+        },
+        "Cause": {
+            "type": "string"
+        },
+        "ApplicationMetrics": {
+            "type": "object",
+            "properties": {
+                "Duration": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "RequestCount": {
+                    "$ref": "#/$defs/RequestCount"
+                },
+                "StatusCodes": {
+                    "$ref": "#/$defs/StatusCodes"
+                },
+                "Latency": {
+                    "$ref": "#/$defs/Latency"
+                }
+            }
+        },
+        "NullableInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RequestCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "StatusCodes": {
+            "type": "object",
+            "properties": {
+                "Status2xx": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Status3xx": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Status4xx": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Status5xx": {
+                    "$ref": "#/$defs/NullableInteger"
+                }
+            }
+        },
+        "Latency": {
+            "type": "object",
+            "properties": {
+                "P999": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "P99": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "P95": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "P90": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "P85": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "P75": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "P50": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "P10": {
+                    "$ref": "#/$defs/NullableDouble"
+                }
+            }
+        },
+        "NullableDouble": {
+            "type": "number",
+            "format": "double"
+        },
+        "InstanceHealthSummary": {
+            "type": "object",
+            "properties": {
+                "NoData": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Unknown": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Pending": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Ok": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Info": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Warning": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Degraded": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Severe": {
+                    "$ref": "#/$defs/NullableInteger"
+                }
+            }
+        },
+        "RefreshedAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeEnvironmentHealthRequest": {
+            "type": "object",
+            "properties": {
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "AttributeNames": {
+                    "$ref": "#/$defs/EnvironmentHealthAttributes"
+                }
+            }
+        },
+        "EnvironmentHealthAttributes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentHealthAttribute"
+            }
+        },
+        "EnvironmentHealthAttribute": {
+            "enum": [
+                "Status",
+                "Color",
+                "Causes",
+                "ApplicationMetrics",
+                "InstancesHealth",
+                "All",
+                "HealthStatus",
+                "RefreshedAt"
+            ]
+        },
+        "DescribeEnvironmentManagedActionHistoryResult": {
+            "type": "object",
+            "properties": {
+                "ManagedActionHistoryItems": {
+                    "$ref": "#/$defs/ManagedActionHistoryItems"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ManagedActionHistoryItems": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ManagedActionHistoryItem"
+            }
+        },
+        "ManagedActionHistoryItem": {
+            "type": "object",
+            "properties": {
+                "ActionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ActionType": {
+                    "$ref": "#/$defs/ActionType"
+                },
+                "ActionDescription": {
+                    "$ref": "#/$defs/String"
+                },
+                "FailureType": {
+                    "$ref": "#/$defs/FailureType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ActionHistoryStatus"
+                },
+                "FailureDescription": {
+                    "$ref": "#/$defs/String"
+                },
+                "ExecutedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FinishedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "FailureType": {
+            "enum": [
+                "UpdateCancelled",
+                "CancellationFailed",
+                "RollbackFailed",
+                "RollbackSuccessful",
+                "InternalFailure",
+                "InvalidEnvironmentState",
+                "PermissionsError"
+            ]
+        },
+        "ActionHistoryStatus": {
+            "enum": [
+                "Completed",
+                "Failed",
+                "Unknown"
+            ]
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeEnvironmentManagedActionHistoryRequest": {
+            "type": "object",
+            "properties": {
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/ManagedActionHistoryMaxItems"
+                }
+            }
+        },
+        "ManagedActionHistoryMaxItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeEnvironmentManagedActionsResult": {
+            "type": "object",
+            "properties": {
+                "ManagedActions": {
+                    "$ref": "#/$defs/ManagedActions"
+                }
+            }
+        },
+        "ManagedActions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ManagedAction"
+            }
+        },
+        "ManagedAction": {
+            "type": "object",
+            "properties": {
+                "ActionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ActionDescription": {
+                    "$ref": "#/$defs/String"
+                },
+                "ActionType": {
+                    "$ref": "#/$defs/ActionType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ActionStatus"
+                },
+                "WindowStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ActionStatus": {
+            "enum": [
+                "Scheduled",
+                "Pending",
+                "Running",
+                "Unknown"
+            ]
+        },
+        "DescribeEnvironmentManagedActionsRequest": {
+            "type": "object",
+            "properties": {
+                "EnvironmentName": {
+                    "$ref": "#/$defs/String"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ActionStatus"
+                }
+            }
+        },
+        "EnvironmentResourceDescriptionsMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentResources": {
+                    "$ref": "#/$defs/EnvironmentResourceDescription"
+                }
+            }
+        },
+        "EnvironmentResourceDescription": {
+            "type": "object",
+            "properties": {
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "AutoScalingGroups": {
+                    "$ref": "#/$defs/AutoScalingGroupList"
+                },
+                "Instances": {
+                    "$ref": "#/$defs/InstanceList"
+                },
+                "LaunchConfigurations": {
+                    "$ref": "#/$defs/LaunchConfigurationList"
+                },
+                "LaunchTemplates": {
+                    "$ref": "#/$defs/LaunchTemplateList"
+                },
+                "LoadBalancers": {
+                    "$ref": "#/$defs/LoadBalancerList"
+                },
+                "Triggers": {
+                    "$ref": "#/$defs/TriggerList"
+                },
+                "Queues": {
+                    "$ref": "#/$defs/QueueList"
+                }
+            }
+        },
+        "AutoScalingGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AutoScalingGroup"
+            }
+        },
+        "AutoScalingGroup": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "InstanceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Instance"
+            }
+        },
+        "Instance": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "LaunchConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LaunchConfiguration"
+            }
+        },
+        "LaunchConfiguration": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "LaunchTemplateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LaunchTemplate"
+            }
+        },
+        "LaunchTemplate": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "LoadBalancerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LoadBalancer"
+            }
+        },
+        "LoadBalancer": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "TriggerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Trigger"
+            }
+        },
+        "Trigger": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "QueueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Queue"
+            }
+        },
+        "Queue": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "URL": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeEnvironmentResourcesMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                }
+            }
+        },
+        "DescribeEnvironmentsMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "EnvironmentIds": {
+                    "$ref": "#/$defs/EnvironmentIdList"
+                },
+                "EnvironmentNames": {
+                    "$ref": "#/$defs/EnvironmentNamesList"
+                },
+                "IncludeDeleted": {
+                    "$ref": "#/$defs/IncludeDeleted"
+                },
+                "IncludedDeletedBackTo": {
+                    "$ref": "#/$defs/IncludeDeletedBackTo"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/MaxRecords"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "EnvironmentIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentId"
+            }
+        },
+        "EnvironmentNamesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentName"
+            }
+        },
+        "IncludeDeleted": {
+            "type": "boolean"
+        },
+        "IncludeDeletedBackTo": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "EventDescriptionsMessage": {
+            "type": "object",
+            "properties": {
+                "Events": {
+                    "$ref": "#/$defs/EventDescriptionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "EventDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventDescription"
+            }
+        },
+        "EventDescription": {
+            "type": "object",
+            "properties": {
+                "EventDate": {
+                    "$ref": "#/$defs/EventDate"
+                },
+                "Message": {
+                    "$ref": "#/$defs/EventMessage"
+                },
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "Severity": {
+                    "$ref": "#/$defs/EventSeverity"
+                }
+            }
+        },
+        "EventDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "EventMessage": {
+            "type": "string"
+        },
+        "RequestId": {
+            "type": "string"
+        },
+        "EventSeverity": {
+            "enum": [
+                "TRACE",
+                "DEBUG",
+                "INFO",
+                "WARN",
+                "ERROR",
+                "FATAL"
+            ]
+        },
+        "DescribeEventsMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "Severity": {
+                    "$ref": "#/$defs/EventSeverity"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/TimeFilterStart"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/TimeFilterEnd"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/MaxRecords"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "TimeFilterStart": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "TimeFilterEnd": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeInstancesHealthResult": {
+            "type": "object",
+            "properties": {
+                "InstanceHealthList": {
+                    "$ref": "#/$defs/InstanceHealthList"
+                },
+                "RefreshedAt": {
+                    "$ref": "#/$defs/RefreshedAt"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "InstanceHealthList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SingleInstanceHealth"
+            }
+        },
+        "SingleInstanceHealth": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "HealthStatus": {
+                    "$ref": "#/$defs/String"
+                },
+                "Color": {
+                    "$ref": "#/$defs/String"
+                },
+                "Causes": {
+                    "$ref": "#/$defs/Causes"
+                },
+                "LaunchedAt": {
+                    "$ref": "#/$defs/LaunchedAt"
+                },
+                "ApplicationMetrics": {
+                    "$ref": "#/$defs/ApplicationMetrics"
+                },
+                "System": {
+                    "$ref": "#/$defs/SystemStatus"
+                },
+                "Deployment": {
+                    "$ref": "#/$defs/Deployment"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "InstanceId": {
+            "type": "string"
+        },
+        "LaunchedAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "SystemStatus": {
+            "type": "object",
+            "properties": {
+                "CPUUtilization": {
+                    "$ref": "#/$defs/CPUUtilization"
+                },
+                "LoadAverage": {
+                    "$ref": "#/$defs/LoadAverage"
+                }
+            }
+        },
+        "CPUUtilization": {
+            "type": "object",
+            "properties": {
+                "User": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "Nice": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "System": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "Idle": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "IOWait": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "IRQ": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "SoftIRQ": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "Privileged": {
+                    "$ref": "#/$defs/NullableDouble"
+                }
+            }
+        },
+        "LoadAverage": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LoadAverageValue"
+            }
+        },
+        "LoadAverageValue": {
+            "type": "number",
+            "format": "double"
+        },
+        "Deployment": {
+            "type": "object",
+            "properties": {
+                "VersionLabel": {
+                    "$ref": "#/$defs/String"
+                },
+                "DeploymentId": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "DeploymentTime": {
+                    "$ref": "#/$defs/DeploymentTimestamp"
+                }
+            }
+        },
+        "NullableLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DeploymentTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeInstancesHealthRequest": {
+            "type": "object",
+            "properties": {
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "AttributeNames": {
+                    "$ref": "#/$defs/InstancesHealthAttributes"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "InstancesHealthAttributes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstancesHealthAttribute"
+            }
+        },
+        "InstancesHealthAttribute": {
+            "enum": [
+                "HealthStatus",
+                "Color",
+                "Causes",
+                "ApplicationMetrics",
+                "RefreshedAt",
+                "LaunchedAt",
+                "System",
+                "Deployment",
+                "AvailabilityZone",
+                "InstanceType",
+                "All"
+            ]
+        },
+        "DescribePlatformVersionResult": {
+            "type": "object",
+            "properties": {
+                "PlatformDescription": {
+                    "$ref": "#/$defs/PlatformDescription"
+                }
+            }
+        },
+        "PlatformDescription": {
+            "type": "object",
+            "properties": {
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "PlatformOwner": {
+                    "$ref": "#/$defs/PlatformOwner"
+                },
+                "PlatformName": {
+                    "$ref": "#/$defs/PlatformName"
+                },
+                "PlatformVersion": {
+                    "$ref": "#/$defs/PlatformVersion"
+                },
+                "SolutionStackName": {
+                    "$ref": "#/$defs/SolutionStackName"
+                },
+                "PlatformStatus": {
+                    "$ref": "#/$defs/PlatformStatus"
+                },
+                "DateCreated": {
+                    "$ref": "#/$defs/CreationDate"
+                },
+                "DateUpdated": {
+                    "$ref": "#/$defs/UpdateDate"
+                },
+                "PlatformCategory": {
+                    "$ref": "#/$defs/PlatformCategory"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Maintainer": {
+                    "$ref": "#/$defs/Maintainer"
+                },
+                "OperatingSystemName": {
+                    "$ref": "#/$defs/OperatingSystemName"
+                },
+                "OperatingSystemVersion": {
+                    "$ref": "#/$defs/OperatingSystemVersion"
+                },
+                "ProgrammingLanguages": {
+                    "$ref": "#/$defs/PlatformProgrammingLanguages"
+                },
+                "Frameworks": {
+                    "$ref": "#/$defs/PlatformFrameworks"
+                },
+                "CustomAmiList": {
+                    "$ref": "#/$defs/CustomAmiList"
+                },
+                "SupportedTierList": {
+                    "$ref": "#/$defs/SupportedTierList"
+                },
+                "SupportedAddonList": {
+                    "$ref": "#/$defs/SupportedAddonList"
+                },
+                "PlatformLifecycleState": {
+                    "$ref": "#/$defs/PlatformLifecycleState"
+                },
+                "PlatformBranchName": {
+                    "$ref": "#/$defs/BranchName"
+                },
+                "PlatformBranchLifecycleState": {
+                    "$ref": "#/$defs/PlatformBranchLifecycleState"
+                }
+            }
+        },
+        "Maintainer": {
+            "type": "string"
+        },
+        "PlatformProgrammingLanguages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlatformProgrammingLanguage"
+            }
+        },
+        "PlatformProgrammingLanguage": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PlatformFrameworks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlatformFramework"
+            }
+        },
+        "PlatformFramework": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CustomAmiList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CustomAmi"
+            }
+        },
+        "CustomAmi": {
+            "type": "object",
+            "properties": {
+                "VirtualizationType": {
+                    "$ref": "#/$defs/VirtualizationType"
+                },
+                "ImageId": {
+                    "$ref": "#/$defs/ImageId"
+                }
+            }
+        },
+        "VirtualizationType": {
+            "type": "string"
+        },
+        "ImageId": {
+            "type": "string"
+        },
+        "DescribePlatformVersionRequest": {
+            "type": "object",
+            "properties": {
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                }
+            }
+        },
+        "DisassociateEnvironmentOperationsRoleMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                }
+            }
+        },
+        "ListAvailableSolutionStacksResultMessage": {
+            "type": "object",
+            "properties": {
+                "SolutionStacks": {
+                    "$ref": "#/$defs/AvailableSolutionStackNamesList"
+                },
+                "SolutionStackDetails": {
+                    "$ref": "#/$defs/AvailableSolutionStackDetailsList"
+                }
+            }
+        },
+        "AvailableSolutionStackNamesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SolutionStackName"
+            }
+        },
+        "AvailableSolutionStackDetailsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SolutionStackDescription"
+            }
+        },
+        "SolutionStackDescription": {
+            "type": "object",
+            "properties": {
+                "SolutionStackName": {
+                    "$ref": "#/$defs/SolutionStackName"
+                },
+                "PermittedFileTypes": {
+                    "$ref": "#/$defs/SolutionStackFileTypeList"
+                }
+            }
+        },
+        "SolutionStackFileTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FileTypeExtension"
+            }
+        },
+        "FileTypeExtension": {
+            "type": "string"
+        },
+        "ListPlatformBranchesResult": {
+            "type": "object",
+            "properties": {
+                "PlatformBranchSummaryList": {
+                    "$ref": "#/$defs/PlatformBranchSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "PlatformBranchSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlatformBranchSummary"
+            }
+        },
+        "PlatformBranchSummary": {
+            "type": "object",
+            "properties": {
+                "PlatformName": {
+                    "$ref": "#/$defs/PlatformName"
+                },
+                "BranchName": {
+                    "$ref": "#/$defs/BranchName"
+                },
+                "LifecycleState": {
+                    "$ref": "#/$defs/PlatformBranchLifecycleState"
+                },
+                "BranchOrder": {
+                    "$ref": "#/$defs/BranchOrder"
+                },
+                "SupportedTierList": {
+                    "$ref": "#/$defs/SupportedTierList"
+                }
+            }
+        },
+        "BranchOrder": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListPlatformBranchesRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/SearchFilters"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/PlatformBranchMaxRecords"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "SearchFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchFilter"
+            }
+        },
+        "SearchFilter": {
+            "type": "object",
+            "properties": {
+                "Attribute": {
+                    "$ref": "#/$defs/SearchFilterAttribute"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/SearchFilterOperator"
+                },
+                "Values": {
+                    "$ref": "#/$defs/SearchFilterValues"
+                }
+            }
+        },
+        "SearchFilterAttribute": {
+            "type": "string"
+        },
+        "SearchFilterOperator": {
+            "type": "string"
+        },
+        "SearchFilterValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchFilterValue"
+            }
+        },
+        "SearchFilterValue": {
+            "type": "string"
+        },
+        "PlatformBranchMaxRecords": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListPlatformVersionsResult": {
+            "type": "object",
+            "properties": {
+                "PlatformSummaryList": {
+                    "$ref": "#/$defs/PlatformSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "PlatformSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlatformSummary"
+            }
+        },
+        "ListPlatformVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/PlatformFilters"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/PlatformMaxRecords"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "PlatformFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlatformFilter"
+            }
+        },
+        "PlatformFilter": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/PlatformFilterType"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/PlatformFilterOperator"
+                },
+                "Values": {
+                    "$ref": "#/$defs/PlatformFilterValueList"
+                }
+            }
+        },
+        "PlatformFilterType": {
+            "type": "string"
+        },
+        "PlatformFilterOperator": {
+            "type": "string"
+        },
+        "PlatformFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlatformFilterValue"
+            }
+        },
+        "PlatformFilterValue": {
+            "type": "string"
+        },
+        "PlatformMaxRecords": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ResourceTagsDescriptionMessage": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "ListTagsForResourceMessage": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "RebuildEnvironmentMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                }
+            }
+        },
+        "RequestEnvironmentInfoMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "InfoType": {
+                    "$ref": "#/$defs/EnvironmentInfoType"
+                }
+            }
+        },
+        "EnvironmentInfoType": {
+            "enum": [
+                "tail",
+                "bundle"
+            ]
+        },
+        "RestartAppServerMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                }
+            }
+        },
+        "RetrieveEnvironmentInfoResultMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentInfo": {
+                    "$ref": "#/$defs/EnvironmentInfoDescriptionList"
+                }
+            }
+        },
+        "EnvironmentInfoDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentInfoDescription"
+            }
+        },
+        "EnvironmentInfoDescription": {
+            "type": "object",
+            "properties": {
+                "InfoType": {
+                    "$ref": "#/$defs/EnvironmentInfoType"
+                },
+                "Ec2InstanceId": {
+                    "$ref": "#/$defs/Ec2InstanceId"
+                },
+                "SampleTimestamp": {
+                    "$ref": "#/$defs/SampleTimestamp"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "Ec2InstanceId": {
+            "type": "string"
+        },
+        "SampleTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Message": {
+            "type": "string"
+        },
+        "RetrieveEnvironmentInfoMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "InfoType": {
+                    "$ref": "#/$defs/EnvironmentInfoType"
+                }
+            }
+        },
+        "SwapEnvironmentCNAMEsMessage": {
+            "type": "object",
+            "properties": {
+                "SourceEnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "SourceEnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "DestinationEnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "DestinationEnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                }
+            }
+        },
+        "TerminateEnvironmentMessage": {
+            "type": "object",
+            "properties": {
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "TerminateResources": {
+                    "$ref": "#/$defs/TerminateEnvironmentResources"
+                },
+                "ForceTerminate": {
+                    "$ref": "#/$defs/ForceTerminate"
+                }
+            }
+        },
+        "TerminateEnvironmentResources": {
+            "type": "boolean"
+        },
+        "ForceTerminate": {
+            "type": "boolean"
+        },
+        "UpdateApplicationMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "ApplicationResourceLifecycleDescriptionMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "ResourceLifecycleConfig": {
+                    "$ref": "#/$defs/ApplicationResourceLifecycleConfig"
+                }
+            }
+        },
+        "UpdateApplicationResourceLifecycleMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "ResourceLifecycleConfig": {
+                    "$ref": "#/$defs/ApplicationResourceLifecycleConfig"
+                }
+            }
+        },
+        "UpdateApplicationVersionMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "UpdateConfigurationTemplateMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "OptionSettings": {
+                    "$ref": "#/$defs/ConfigurationOptionSettingsList"
+                },
+                "OptionsToRemove": {
+                    "$ref": "#/$defs/OptionsSpecifierList"
+                }
+            }
+        },
+        "UpdateEnvironmentMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Tier": {
+                    "$ref": "#/$defs/EnvironmentTier"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "SolutionStackName": {
+                    "$ref": "#/$defs/SolutionStackName"
+                },
+                "PlatformArn": {
+                    "$ref": "#/$defs/PlatformArn"
+                },
+                "OptionSettings": {
+                    "$ref": "#/$defs/ConfigurationOptionSettingsList"
+                },
+                "OptionsToRemove": {
+                    "$ref": "#/$defs/OptionsSpecifierList"
+                }
+            }
+        },
+        "UpdateTagsForResourceMessage": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "TagsToAdd": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "TagsToRemove": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "ConfigurationSettingsValidationMessages": {
+            "type": "object",
+            "properties": {
+                "Messages": {
+                    "$ref": "#/$defs/ValidationMessagesList"
+                }
+            }
+        },
+        "ValidationMessagesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ValidationMessage"
+            }
+        },
+        "ValidationMessage": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/ValidationMessageString"
+                },
+                "Severity": {
+                    "$ref": "#/$defs/ValidationSeverity"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/OptionNamespace"
+                },
+                "OptionName": {
+                    "$ref": "#/$defs/ConfigurationOptionName"
+                }
+            }
+        },
+        "ValidationMessageString": {
+            "type": "string"
+        },
+        "ValidationSeverity": {
+            "enum": [
+                "error",
+                "warning"
+            ]
+        },
+        "ValidateConfigurationSettingsMessage": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "TemplateName": {
+                    "$ref": "#/$defs/ConfigurationTemplateName"
+                },
+                "EnvironmentName": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "OptionSettings": {
+                    "$ref": "#/$defs/ConfigurationOptionSettingsList"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elasticbeanstalk-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://elasticbeanstalk.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elasticbeanstalk-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elasticbeanstalk.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://elasticbeanstalk.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

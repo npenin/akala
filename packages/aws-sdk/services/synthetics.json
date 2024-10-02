@@ -1,0 +1,2039 @@
+{
+    "name": "synthetics",
+    "commands": [
+        {
+            "name": "AssociateResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCanary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCanary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCanaryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCanaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCanary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCanary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCanaryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCanaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCanaries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCanaries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCanariesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCanariesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCanariesLastRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCanariesLastRun"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCanariesLastRunResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCanariesLastRunRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRuntimeVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRuntimeVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRuntimeVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRuntimeVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCanary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCanary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCanaryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCanaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCanaryRuns",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCanaryRuns"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCanaryRunsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCanaryRunsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssociatedGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAssociatedGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssociatedGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssociatedGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListGroupResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListGroupResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGroupResourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListGroupResourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartCanary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartCanary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartCanaryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartCanaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopCanary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopCanary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopCanaryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopCanaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCanary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateCanary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateCanaryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCanaryRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssociateResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "AssociateResourceRequest": {
+            "type": "object",
+            "properties": {
+                "GroupIdentifier": {
+                    "$ref": "#/$defs/GroupIdentifier"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/CanaryArn"
+                }
+            }
+        },
+        "GroupIdentifier": {
+            "type": "string"
+        },
+        "CanaryArn": {
+            "type": "string"
+        },
+        "CreateCanaryResponse": {
+            "type": "object",
+            "properties": {
+                "Canary": {
+                    "$ref": "#/$defs/Canary"
+                }
+            }
+        },
+        "Canary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "Name": {
+                    "$ref": "#/$defs/CanaryName"
+                },
+                "Code": {
+                    "$ref": "#/$defs/CanaryCodeOutput"
+                },
+                "ExecutionRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/CanaryScheduleOutput"
+                },
+                "RunConfig": {
+                    "$ref": "#/$defs/CanaryRunConfigOutput"
+                },
+                "SuccessRetentionPeriodInDays": {
+                    "$ref": "#/$defs/MaxSize1024"
+                },
+                "FailureRetentionPeriodInDays": {
+                    "$ref": "#/$defs/MaxSize1024"
+                },
+                "Status": {
+                    "$ref": "#/$defs/CanaryStatus"
+                },
+                "Timeline": {
+                    "$ref": "#/$defs/CanaryTimeline"
+                },
+                "ArtifactS3Location": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineArn": {
+                    "$ref": "#/$defs/FunctionArn"
+                },
+                "RuntimeVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "VpcConfig": {
+                    "$ref": "#/$defs/VpcConfigOutput"
+                },
+                "VisualReference": {
+                    "$ref": "#/$defs/VisualReferenceOutput"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "ArtifactConfig": {
+                    "$ref": "#/$defs/ArtifactConfigOutput"
+                }
+            }
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "CanaryName": {
+            "type": "string"
+        },
+        "CanaryCodeOutput": {
+            "type": "object",
+            "properties": {
+                "SourceLocationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Handler": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "CanaryScheduleOutput": {
+            "type": "object",
+            "properties": {
+                "Expression": {
+                    "$ref": "#/$defs/String"
+                },
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/MaxOneYearInSeconds"
+                }
+            }
+        },
+        "MaxOneYearInSeconds": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CanaryRunConfigOutput": {
+            "type": "object",
+            "properties": {
+                "TimeoutInSeconds": {
+                    "$ref": "#/$defs/MaxFifteenMinutesInSeconds"
+                },
+                "MemoryInMB": {
+                    "$ref": "#/$defs/MaxSize3008"
+                },
+                "ActiveTracing": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "MaxFifteenMinutesInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaxSize3008": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NullableBoolean": {
+            "type": "boolean"
+        },
+        "MaxSize1024": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CanaryStatus": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/CanaryState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "StateReasonCode": {
+                    "$ref": "#/$defs/CanaryStateReasonCode"
+                }
+            }
+        },
+        "CanaryState": {
+            "enum": [
+                "CREATING",
+                "READY",
+                "STARTING",
+                "RUNNING",
+                "UPDATING",
+                "STOPPING",
+                "STOPPED",
+                "ERROR",
+                "DELETING"
+            ]
+        },
+        "CanaryStateReasonCode": {
+            "enum": [
+                "INVALID_PERMISSIONS",
+                "CREATE_PENDING",
+                "CREATE_IN_PROGRESS",
+                "CREATE_FAILED",
+                "UPDATE_PENDING",
+                "UPDATE_IN_PROGRESS",
+                "UPDATE_COMPLETE",
+                "ROLLBACK_COMPLETE",
+                "ROLLBACK_FAILED",
+                "DELETE_IN_PROGRESS",
+                "DELETE_FAILED",
+                "SYNC_DELETE_IN_PROGRESS"
+            ]
+        },
+        "CanaryTimeline": {
+            "type": "object",
+            "properties": {
+                "Created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastStarted": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastStopped": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "FunctionArn": {
+            "type": "string"
+        },
+        "VpcConfigOutput": {
+            "type": "object",
+            "properties": {
+                "VpcId": {
+                    "$ref": "#/$defs/VpcId"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/SubnetIds"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/SecurityGroupIds"
+                }
+            }
+        },
+        "VpcId": {
+            "type": "string"
+        },
+        "SubnetIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "SubnetId": {
+            "type": "string"
+        },
+        "SecurityGroupIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityGroupId"
+            }
+        },
+        "SecurityGroupId": {
+            "type": "string"
+        },
+        "VisualReferenceOutput": {
+            "type": "object",
+            "properties": {
+                "BaseScreenshots": {
+                    "$ref": "#/$defs/BaseScreenshots"
+                },
+                "BaseCanaryRunId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BaseScreenshots": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BaseScreenshot"
+            }
+        },
+        "BaseScreenshot": {
+            "type": "object",
+            "properties": {
+                "ScreenshotName": {
+                    "$ref": "#/$defs/String"
+                },
+                "IgnoreCoordinates": {
+                    "$ref": "#/$defs/BaseScreenshotIgnoreCoordinates"
+                }
+            }
+        },
+        "BaseScreenshotIgnoreCoordinates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BaseScreenshotConfigIgnoreCoordinate"
+            }
+        },
+        "BaseScreenshotConfigIgnoreCoordinate": {
+            "type": "string"
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ArtifactConfigOutput": {
+            "type": "object",
+            "properties": {
+                "S3Encryption": {
+                    "$ref": "#/$defs/S3EncryptionConfig"
+                }
+            }
+        },
+        "S3EncryptionConfig": {
+            "type": "object",
+            "properties": {
+                "EncryptionMode": {
+                    "$ref": "#/$defs/EncryptionMode"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                }
+            }
+        },
+        "EncryptionMode": {
+            "enum": [
+                "SSE_S3",
+                "SSE_KMS"
+            ]
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "CreateCanaryRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/CanaryName"
+                },
+                "Code": {
+                    "$ref": "#/$defs/CanaryCodeInput"
+                },
+                "ArtifactS3Location": {
+                    "$ref": "#/$defs/String"
+                },
+                "ExecutionRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/CanaryScheduleInput"
+                },
+                "RunConfig": {
+                    "$ref": "#/$defs/CanaryRunConfigInput"
+                },
+                "SuccessRetentionPeriodInDays": {
+                    "$ref": "#/$defs/MaxSize1024"
+                },
+                "FailureRetentionPeriodInDays": {
+                    "$ref": "#/$defs/MaxSize1024"
+                },
+                "RuntimeVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "VpcConfig": {
+                    "$ref": "#/$defs/VpcConfigInput"
+                },
+                "ResourcesToReplicateTags": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "ArtifactConfig": {
+                    "$ref": "#/$defs/ArtifactConfigInput"
+                }
+            }
+        },
+        "CanaryCodeInput": {
+            "type": "object",
+            "properties": {
+                "S3Bucket": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3Version": {
+                    "$ref": "#/$defs/String"
+                },
+                "ZipFile": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "Handler": {
+                    "$ref": "#/$defs/CodeHandler"
+                }
+            }
+        },
+        "Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CodeHandler": {
+            "type": "string"
+        },
+        "CanaryScheduleInput": {
+            "type": "object",
+            "properties": {
+                "Expression": {
+                    "$ref": "#/$defs/String"
+                },
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/MaxOneYearInSeconds"
+                }
+            }
+        },
+        "CanaryRunConfigInput": {
+            "type": "object",
+            "properties": {
+                "TimeoutInSeconds": {
+                    "$ref": "#/$defs/MaxFifteenMinutesInSeconds"
+                },
+                "MemoryInMB": {
+                    "$ref": "#/$defs/MaxSize3008"
+                },
+                "ActiveTracing": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "EnvironmentVariables": {
+                    "$ref": "#/$defs/EnvironmentVariablesMap"
+                }
+            }
+        },
+        "EnvironmentVariablesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EnvironmentVariableValue"
+            }
+        },
+        "EnvironmentVariableValue": {
+            "type": "string"
+        },
+        "VpcConfigInput": {
+            "type": "object",
+            "properties": {
+                "SubnetIds": {
+                    "$ref": "#/$defs/SubnetIds"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/SecurityGroupIds"
+                }
+            }
+        },
+        "ResourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceToTag"
+            }
+        },
+        "ResourceToTag": {
+            "enum": [
+                "LAMBDA_FUNCTION"
+            ]
+        },
+        "ArtifactConfigInput": {
+            "type": "object",
+            "properties": {
+                "S3Encryption": {
+                    "$ref": "#/$defs/S3EncryptionConfig"
+                }
+            }
+        },
+        "CreateGroupResponse": {
+            "type": "object",
+            "properties": {
+                "Group": {
+                    "$ref": "#/$defs/Group"
+                }
+            }
+        },
+        "Group": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/GroupArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "GroupName": {
+            "type": "string"
+        },
+        "GroupArn": {
+            "type": "string"
+        },
+        "CreateGroupRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "DeleteCanaryResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteCanaryRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/CanaryName"
+                },
+                "DeleteLambda": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "boolean": {
+            "type": "boolean"
+        },
+        "DeleteGroupResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteGroupRequest": {
+            "type": "object",
+            "properties": {
+                "GroupIdentifier": {
+                    "$ref": "#/$defs/GroupIdentifier"
+                }
+            }
+        },
+        "DescribeCanariesResponse": {
+            "type": "object",
+            "properties": {
+                "Canaries": {
+                    "$ref": "#/$defs/Canaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "Canaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Canary"
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "DescribeCanariesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxCanaryResults"
+                },
+                "Names": {
+                    "$ref": "#/$defs/DescribeCanariesNameFilter"
+                }
+            }
+        },
+        "MaxCanaryResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeCanariesNameFilter": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CanaryName"
+            }
+        },
+        "DescribeCanariesLastRunResponse": {
+            "type": "object",
+            "properties": {
+                "CanariesLastRun": {
+                    "$ref": "#/$defs/CanariesLastRun"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "CanariesLastRun": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CanaryLastRun"
+            }
+        },
+        "CanaryLastRun": {
+            "type": "object",
+            "properties": {
+                "CanaryName": {
+                    "$ref": "#/$defs/CanaryName"
+                },
+                "LastRun": {
+                    "$ref": "#/$defs/CanaryRun"
+                }
+            }
+        },
+        "CanaryRun": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "Name": {
+                    "$ref": "#/$defs/CanaryName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/CanaryRunStatus"
+                },
+                "Timeline": {
+                    "$ref": "#/$defs/CanaryRunTimeline"
+                },
+                "ArtifactS3Location": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CanaryRunStatus": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/CanaryRunState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "StateReasonCode": {
+                    "$ref": "#/$defs/CanaryRunStateReasonCode"
+                }
+            }
+        },
+        "CanaryRunState": {
+            "enum": [
+                "RUNNING",
+                "PASSED",
+                "FAILED"
+            ]
+        },
+        "CanaryRunStateReasonCode": {
+            "enum": [
+                "CANARY_FAILURE",
+                "EXECUTION_FAILURE"
+            ]
+        },
+        "CanaryRunTimeline": {
+            "type": "object",
+            "properties": {
+                "Started": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Completed": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeCanariesLastRunRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                },
+                "Names": {
+                    "$ref": "#/$defs/DescribeCanariesLastRunNameFilter"
+                }
+            }
+        },
+        "MaxSize100": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeCanariesLastRunNameFilter": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CanaryName"
+            }
+        },
+        "DescribeRuntimeVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "RuntimeVersions": {
+                    "$ref": "#/$defs/RuntimeVersionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "RuntimeVersionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuntimeVersion"
+            }
+        },
+        "RuntimeVersion": {
+            "type": "object",
+            "properties": {
+                "VersionName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReleaseDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DeprecationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeRuntimeVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "DisassociateResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisassociateResourceRequest": {
+            "type": "object",
+            "properties": {
+                "GroupIdentifier": {
+                    "$ref": "#/$defs/GroupIdentifier"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/CanaryArn"
+                }
+            }
+        },
+        "GetCanaryResponse": {
+            "type": "object",
+            "properties": {
+                "Canary": {
+                    "$ref": "#/$defs/Canary"
+                }
+            }
+        },
+        "GetCanaryRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/CanaryName"
+                }
+            }
+        },
+        "GetCanaryRunsResponse": {
+            "type": "object",
+            "properties": {
+                "CanaryRuns": {
+                    "$ref": "#/$defs/CanaryRuns"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "CanaryRuns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CanaryRun"
+            }
+        },
+        "GetCanaryRunsRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/CanaryName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize100"
+                }
+            }
+        },
+        "GetGroupResponse": {
+            "type": "object",
+            "properties": {
+                "Group": {
+                    "$ref": "#/$defs/Group"
+                }
+            }
+        },
+        "GetGroupRequest": {
+            "type": "object",
+            "properties": {
+                "GroupIdentifier": {
+                    "$ref": "#/$defs/GroupIdentifier"
+                }
+            }
+        },
+        "ListAssociatedGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "Groups": {
+                    "$ref": "#/$defs/GroupSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "GroupSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GroupSummary"
+            }
+        },
+        "GroupSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/GroupArn"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "ListAssociatedGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxGroupResults"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/CanaryArn"
+                }
+            }
+        },
+        "MaxGroupResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListGroupResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "Resources": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ListGroupResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxGroupResults"
+                },
+                "GroupIdentifier": {
+                    "$ref": "#/$defs/GroupIdentifier"
+                }
+            }
+        },
+        "ListGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "Groups": {
+                    "$ref": "#/$defs/GroupSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ListGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxGroupResults"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "StartCanaryResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartCanaryRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/CanaryName"
+                }
+            }
+        },
+        "StopCanaryResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopCanaryRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/CanaryName"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateCanaryResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateCanaryRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/CanaryName"
+                },
+                "Code": {
+                    "$ref": "#/$defs/CanaryCodeInput"
+                },
+                "ExecutionRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "RuntimeVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/CanaryScheduleInput"
+                },
+                "RunConfig": {
+                    "$ref": "#/$defs/CanaryRunConfigInput"
+                },
+                "SuccessRetentionPeriodInDays": {
+                    "$ref": "#/$defs/MaxSize1024"
+                },
+                "FailureRetentionPeriodInDays": {
+                    "$ref": "#/$defs/MaxSize1024"
+                },
+                "VpcConfig": {
+                    "$ref": "#/$defs/VpcConfigInput"
+                },
+                "VisualReference": {
+                    "$ref": "#/$defs/VisualReferenceInput"
+                },
+                "ArtifactS3Location": {
+                    "$ref": "#/$defs/String"
+                },
+                "ArtifactConfig": {
+                    "$ref": "#/$defs/ArtifactConfigInput"
+                }
+            }
+        },
+        "VisualReferenceInput": {
+            "type": "object",
+            "properties": {
+                "BaseScreenshots": {
+                    "$ref": "#/$defs/BaseScreenshots"
+                },
+                "BaseCanaryRunId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://synthetics-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://synthetics-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://synthetics.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://synthetics.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

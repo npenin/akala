@@ -1,0 +1,2356 @@
+{
+    "name": "elastictranscoder",
+    "commands": [
+        {
+            "name": "CancelJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePreset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePreset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePresetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePresetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePreset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePreset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePresetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePresetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJobsByPipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListJobsByPipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJobsByPipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJobsByPipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJobsByStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListJobsByStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJobsByStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJobsByStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPipelines",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPipelines"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPipelinesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPipelinesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPresets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPresets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPresetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPresetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ReadJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ReadJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ReadJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ReadJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ReadPipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ReadPipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ReadPipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ReadPipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ReadPreset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ReadPreset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ReadPresetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ReadPresetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TestRole",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TestRole"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TestRoleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TestRoleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePipelineNotifications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePipelineNotifications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePipelineNotificationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePipelineNotificationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePipelineStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePipelineStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePipelineStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePipelineStatusRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CancelJobResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CancelJobRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Id": {
+            "type": "string"
+        },
+        "CreateJobResponse": {
+            "type": "object",
+            "properties": {
+                "Job": {
+                    "$ref": "#/$defs/Job"
+                }
+            }
+        },
+        "Job": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "PipelineId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Input": {
+                    "$ref": "#/$defs/JobInput"
+                },
+                "Inputs": {
+                    "$ref": "#/$defs/JobInputs"
+                },
+                "Output": {
+                    "$ref": "#/$defs/JobOutput"
+                },
+                "Outputs": {
+                    "$ref": "#/$defs/JobOutputs"
+                },
+                "OutputKeyPrefix": {
+                    "$ref": "#/$defs/Key"
+                },
+                "Playlists": {
+                    "$ref": "#/$defs/Playlists"
+                },
+                "Status": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "UserMetadata": {
+                    "$ref": "#/$defs/UserMetadata"
+                },
+                "Timing": {
+                    "$ref": "#/$defs/Timing"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "JobInput": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/LongKey"
+                },
+                "FrameRate": {
+                    "$ref": "#/$defs/FrameRate"
+                },
+                "Resolution": {
+                    "$ref": "#/$defs/Resolution"
+                },
+                "AspectRatio": {
+                    "$ref": "#/$defs/AspectRatio"
+                },
+                "Interlaced": {
+                    "$ref": "#/$defs/Interlaced"
+                },
+                "Container": {
+                    "$ref": "#/$defs/JobContainer"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/Encryption"
+                },
+                "TimeSpan": {
+                    "$ref": "#/$defs/TimeSpan"
+                },
+                "InputCaptions": {
+                    "$ref": "#/$defs/InputCaptions"
+                },
+                "DetectedProperties": {
+                    "$ref": "#/$defs/DetectedProperties"
+                }
+            }
+        },
+        "LongKey": {
+            "type": "string"
+        },
+        "FrameRate": {
+            "type": "string"
+        },
+        "Resolution": {
+            "type": "string"
+        },
+        "AspectRatio": {
+            "type": "string"
+        },
+        "Interlaced": {
+            "type": "string"
+        },
+        "JobContainer": {
+            "type": "string"
+        },
+        "Encryption": {
+            "type": "object",
+            "properties": {
+                "Mode": {
+                    "$ref": "#/$defs/EncryptionMode"
+                },
+                "Key": {
+                    "$ref": "#/$defs/Base64EncodedString"
+                },
+                "KeyMd5": {
+                    "$ref": "#/$defs/Base64EncodedString"
+                },
+                "InitializationVector": {
+                    "$ref": "#/$defs/ZeroTo255String"
+                }
+            }
+        },
+        "EncryptionMode": {
+            "type": "string"
+        },
+        "Base64EncodedString": {
+            "type": "string"
+        },
+        "ZeroTo255String": {
+            "type": "string"
+        },
+        "TimeSpan": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/Time"
+                }
+            }
+        },
+        "Time": {
+            "type": "string"
+        },
+        "InputCaptions": {
+            "type": "object",
+            "properties": {
+                "MergePolicy": {
+                    "$ref": "#/$defs/CaptionMergePolicy"
+                },
+                "CaptionSources": {
+                    "$ref": "#/$defs/CaptionSources"
+                }
+            }
+        },
+        "CaptionMergePolicy": {
+            "type": "string"
+        },
+        "CaptionSources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CaptionSource"
+            }
+        },
+        "CaptionSource": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/LongKey"
+                },
+                "Language": {
+                    "$ref": "#/$defs/Key"
+                },
+                "TimeOffset": {
+                    "$ref": "#/$defs/TimeOffset"
+                },
+                "Label": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/Encryption"
+                }
+            }
+        },
+        "Key": {
+            "type": "string"
+        },
+        "TimeOffset": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "DetectedProperties": {
+            "type": "object",
+            "properties": {
+                "Width": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Height": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "FrameRate": {
+                    "$ref": "#/$defs/FloatString"
+                },
+                "FileSize": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "DurationMillis": {
+                    "$ref": "#/$defs/NullableLong"
+                }
+            }
+        },
+        "NullableInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FloatString": {
+            "type": "string"
+        },
+        "NullableLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "JobInputs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobInput"
+            }
+        },
+        "JobOutput": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "Key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "ThumbnailPattern": {
+                    "$ref": "#/$defs/ThumbnailPattern"
+                },
+                "ThumbnailEncryption": {
+                    "$ref": "#/$defs/Encryption"
+                },
+                "Rotate": {
+                    "$ref": "#/$defs/Rotate"
+                },
+                "PresetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SegmentDuration": {
+                    "$ref": "#/$defs/FloatString"
+                },
+                "Status": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "StatusDetail": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "Width": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Height": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "FrameRate": {
+                    "$ref": "#/$defs/FloatString"
+                },
+                "FileSize": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "DurationMillis": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "Watermarks": {
+                    "$ref": "#/$defs/JobWatermarks"
+                },
+                "AlbumArt": {
+                    "$ref": "#/$defs/JobAlbumArt"
+                },
+                "Composition": {
+                    "$ref": "#/$defs/Composition"
+                },
+                "Captions": {
+                    "$ref": "#/$defs/Captions"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/Encryption"
+                },
+                "AppliedColorSpaceConversion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ThumbnailPattern": {
+            "type": "string"
+        },
+        "Rotate": {
+            "type": "string"
+        },
+        "JobStatus": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "JobWatermarks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobWatermark"
+            }
+        },
+        "JobWatermark": {
+            "type": "object",
+            "properties": {
+                "PresetWatermarkId": {
+                    "$ref": "#/$defs/PresetWatermarkId"
+                },
+                "InputKey": {
+                    "$ref": "#/$defs/WatermarkKey"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/Encryption"
+                }
+            }
+        },
+        "PresetWatermarkId": {
+            "type": "string"
+        },
+        "WatermarkKey": {
+            "type": "string"
+        },
+        "JobAlbumArt": {
+            "type": "object",
+            "properties": {
+                "MergePolicy": {
+                    "$ref": "#/$defs/MergePolicy"
+                },
+                "Artwork": {
+                    "$ref": "#/$defs/Artworks"
+                }
+            }
+        },
+        "MergePolicy": {
+            "type": "string"
+        },
+        "Artworks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Artwork"
+            }
+        },
+        "Artwork": {
+            "type": "object",
+            "properties": {
+                "InputKey": {
+                    "$ref": "#/$defs/WatermarkKey"
+                },
+                "MaxWidth": {
+                    "$ref": "#/$defs/DigitsOrAuto"
+                },
+                "MaxHeight": {
+                    "$ref": "#/$defs/DigitsOrAuto"
+                },
+                "SizingPolicy": {
+                    "$ref": "#/$defs/SizingPolicy"
+                },
+                "PaddingPolicy": {
+                    "$ref": "#/$defs/PaddingPolicy"
+                },
+                "AlbumArtFormat": {
+                    "$ref": "#/$defs/JpgOrPng"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/Encryption"
+                }
+            }
+        },
+        "DigitsOrAuto": {
+            "type": "string"
+        },
+        "SizingPolicy": {
+            "type": "string"
+        },
+        "PaddingPolicy": {
+            "type": "string"
+        },
+        "JpgOrPng": {
+            "type": "string"
+        },
+        "Composition": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Clip"
+            }
+        },
+        "Clip": {
+            "type": "object",
+            "properties": {
+                "TimeSpan": {
+                    "$ref": "#/$defs/TimeSpan"
+                }
+            }
+        },
+        "Captions": {
+            "type": "object",
+            "properties": {
+                "MergePolicy": {
+                    "$ref": "#/$defs/CaptionMergePolicy"
+                },
+                "CaptionSources": {
+                    "$ref": "#/$defs/CaptionSources"
+                },
+                "CaptionFormats": {
+                    "$ref": "#/$defs/CaptionFormats"
+                }
+            }
+        },
+        "CaptionFormats": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CaptionFormat"
+            }
+        },
+        "CaptionFormat": {
+            "type": "object",
+            "properties": {
+                "Format": {
+                    "$ref": "#/$defs/CaptionFormatFormat"
+                },
+                "Pattern": {
+                    "$ref": "#/$defs/CaptionFormatPattern"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/Encryption"
+                }
+            }
+        },
+        "CaptionFormatFormat": {
+            "type": "string"
+        },
+        "CaptionFormatPattern": {
+            "type": "string"
+        },
+        "JobOutputs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobOutput"
+            }
+        },
+        "Playlists": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Playlist"
+            }
+        },
+        "Playlist": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Filename"
+                },
+                "Format": {
+                    "$ref": "#/$defs/PlaylistFormat"
+                },
+                "OutputKeys": {
+                    "$ref": "#/$defs/OutputKeys"
+                },
+                "HlsContentProtection": {
+                    "$ref": "#/$defs/HlsContentProtection"
+                },
+                "PlayReadyDrm": {
+                    "$ref": "#/$defs/PlayReadyDrm"
+                },
+                "Status": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "StatusDetail": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "Filename": {
+            "type": "string"
+        },
+        "PlaylistFormat": {
+            "type": "string"
+        },
+        "OutputKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Key"
+            }
+        },
+        "HlsContentProtection": {
+            "type": "object",
+            "properties": {
+                "Method": {
+                    "$ref": "#/$defs/HlsContentProtectionMethod"
+                },
+                "Key": {
+                    "$ref": "#/$defs/Base64EncodedString"
+                },
+                "KeyMd5": {
+                    "$ref": "#/$defs/Base64EncodedString"
+                },
+                "InitializationVector": {
+                    "$ref": "#/$defs/ZeroTo255String"
+                },
+                "LicenseAcquisitionUrl": {
+                    "$ref": "#/$defs/ZeroTo512String"
+                },
+                "KeyStoragePolicy": {
+                    "$ref": "#/$defs/KeyStoragePolicy"
+                }
+            }
+        },
+        "HlsContentProtectionMethod": {
+            "type": "string"
+        },
+        "ZeroTo512String": {
+            "type": "string"
+        },
+        "KeyStoragePolicy": {
+            "type": "string"
+        },
+        "PlayReadyDrm": {
+            "type": "object",
+            "properties": {
+                "Format": {
+                    "$ref": "#/$defs/PlayReadyDrmFormatString"
+                },
+                "Key": {
+                    "$ref": "#/$defs/NonEmptyBase64EncodedString"
+                },
+                "KeyMd5": {
+                    "$ref": "#/$defs/NonEmptyBase64EncodedString"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdGuid"
+                },
+                "InitializationVector": {
+                    "$ref": "#/$defs/ZeroTo255String"
+                },
+                "LicenseAcquisitionUrl": {
+                    "$ref": "#/$defs/OneTo512String"
+                }
+            }
+        },
+        "PlayReadyDrmFormatString": {
+            "type": "string"
+        },
+        "NonEmptyBase64EncodedString": {
+            "type": "string"
+        },
+        "KeyIdGuid": {
+            "type": "string"
+        },
+        "OneTo512String": {
+            "type": "string"
+        },
+        "UserMetadata": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Timing": {
+            "type": "object",
+            "properties": {
+                "SubmitTimeMillis": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "StartTimeMillis": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "FinishTimeMillis": {
+                    "$ref": "#/$defs/NullableLong"
+                }
+            }
+        },
+        "CreateJobRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Input": {
+                    "$ref": "#/$defs/JobInput"
+                },
+                "Inputs": {
+                    "$ref": "#/$defs/JobInputs"
+                },
+                "Output": {
+                    "$ref": "#/$defs/CreateJobOutput"
+                },
+                "Outputs": {
+                    "$ref": "#/$defs/CreateJobOutputs"
+                },
+                "OutputKeyPrefix": {
+                    "$ref": "#/$defs/Key"
+                },
+                "Playlists": {
+                    "$ref": "#/$defs/CreateJobPlaylists"
+                },
+                "UserMetadata": {
+                    "$ref": "#/$defs/UserMetadata"
+                }
+            }
+        },
+        "CreateJobOutput": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "ThumbnailPattern": {
+                    "$ref": "#/$defs/ThumbnailPattern"
+                },
+                "ThumbnailEncryption": {
+                    "$ref": "#/$defs/Encryption"
+                },
+                "Rotate": {
+                    "$ref": "#/$defs/Rotate"
+                },
+                "PresetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SegmentDuration": {
+                    "$ref": "#/$defs/FloatString"
+                },
+                "Watermarks": {
+                    "$ref": "#/$defs/JobWatermarks"
+                },
+                "AlbumArt": {
+                    "$ref": "#/$defs/JobAlbumArt"
+                },
+                "Composition": {
+                    "$ref": "#/$defs/Composition"
+                },
+                "Captions": {
+                    "$ref": "#/$defs/Captions"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/Encryption"
+                }
+            }
+        },
+        "CreateJobOutputs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateJobOutput"
+            }
+        },
+        "CreateJobPlaylists": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateJobPlaylist"
+            }
+        },
+        "CreateJobPlaylist": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Filename"
+                },
+                "Format": {
+                    "$ref": "#/$defs/PlaylistFormat"
+                },
+                "OutputKeys": {
+                    "$ref": "#/$defs/OutputKeys"
+                },
+                "HlsContentProtection": {
+                    "$ref": "#/$defs/HlsContentProtection"
+                },
+                "PlayReadyDrm": {
+                    "$ref": "#/$defs/PlayReadyDrm"
+                }
+            }
+        },
+        "CreatePipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                },
+                "Warnings": {
+                    "$ref": "#/$defs/Warnings"
+                }
+            }
+        },
+        "Pipeline": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Status": {
+                    "$ref": "#/$defs/PipelineStatus"
+                },
+                "InputBucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "OutputBucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "AwsKmsKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "Notifications": {
+                    "$ref": "#/$defs/Notifications"
+                },
+                "ContentConfig": {
+                    "$ref": "#/$defs/PipelineOutputConfig"
+                },
+                "ThumbnailConfig": {
+                    "$ref": "#/$defs/PipelineOutputConfig"
+                }
+            }
+        },
+        "PipelineStatus": {
+            "type": "string"
+        },
+        "BucketName": {
+            "type": "string"
+        },
+        "Role": {
+            "type": "string"
+        },
+        "KeyArn": {
+            "type": "string"
+        },
+        "Notifications": {
+            "type": "object",
+            "properties": {
+                "Progressing": {
+                    "$ref": "#/$defs/SnsTopic"
+                },
+                "Completed": {
+                    "$ref": "#/$defs/SnsTopic"
+                },
+                "Warning": {
+                    "$ref": "#/$defs/SnsTopic"
+                },
+                "Error": {
+                    "$ref": "#/$defs/SnsTopic"
+                }
+            }
+        },
+        "SnsTopic": {
+            "type": "string"
+        },
+        "PipelineOutputConfig": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "StorageClass": {
+                    "$ref": "#/$defs/StorageClass"
+                },
+                "Permissions": {
+                    "$ref": "#/$defs/Permissions"
+                }
+            }
+        },
+        "StorageClass": {
+            "type": "string"
+        },
+        "Permissions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Permission"
+            }
+        },
+        "Permission": {
+            "type": "object",
+            "properties": {
+                "GranteeType": {
+                    "$ref": "#/$defs/GranteeType"
+                },
+                "Grantee": {
+                    "$ref": "#/$defs/Grantee"
+                },
+                "Access": {
+                    "$ref": "#/$defs/AccessControls"
+                }
+            }
+        },
+        "GranteeType": {
+            "type": "string"
+        },
+        "Grantee": {
+            "type": "string"
+        },
+        "AccessControls": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessControl"
+            }
+        },
+        "AccessControl": {
+            "type": "string"
+        },
+        "Warnings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Warning"
+            }
+        },
+        "Warning": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreatePipelineRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "InputBucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "OutputBucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "AwsKmsKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "Notifications": {
+                    "$ref": "#/$defs/Notifications"
+                },
+                "ContentConfig": {
+                    "$ref": "#/$defs/PipelineOutputConfig"
+                },
+                "ThumbnailConfig": {
+                    "$ref": "#/$defs/PipelineOutputConfig"
+                }
+            }
+        },
+        "CreatePresetResponse": {
+            "type": "object",
+            "properties": {
+                "Preset": {
+                    "$ref": "#/$defs/Preset"
+                },
+                "Warning": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Preset": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Container": {
+                    "$ref": "#/$defs/PresetContainer"
+                },
+                "Audio": {
+                    "$ref": "#/$defs/AudioParameters"
+                },
+                "Video": {
+                    "$ref": "#/$defs/VideoParameters"
+                },
+                "Thumbnails": {
+                    "$ref": "#/$defs/Thumbnails"
+                },
+                "Type": {
+                    "$ref": "#/$defs/PresetType"
+                }
+            }
+        },
+        "PresetContainer": {
+            "type": "string"
+        },
+        "AudioParameters": {
+            "type": "object",
+            "properties": {
+                "Codec": {
+                    "$ref": "#/$defs/AudioCodec"
+                },
+                "SampleRate": {
+                    "$ref": "#/$defs/AudioSampleRate"
+                },
+                "BitRate": {
+                    "$ref": "#/$defs/AudioBitRate"
+                },
+                "Channels": {
+                    "$ref": "#/$defs/AudioChannels"
+                },
+                "AudioPackingMode": {
+                    "$ref": "#/$defs/AudioPackingMode"
+                },
+                "CodecOptions": {
+                    "$ref": "#/$defs/AudioCodecOptions"
+                }
+            }
+        },
+        "AudioCodec": {
+            "type": "string"
+        },
+        "AudioSampleRate": {
+            "type": "string"
+        },
+        "AudioBitRate": {
+            "type": "string"
+        },
+        "AudioChannels": {
+            "type": "string"
+        },
+        "AudioPackingMode": {
+            "type": "string"
+        },
+        "AudioCodecOptions": {
+            "type": "object",
+            "properties": {
+                "Profile": {
+                    "$ref": "#/$defs/AudioCodecProfile"
+                },
+                "BitDepth": {
+                    "$ref": "#/$defs/AudioBitDepth"
+                },
+                "BitOrder": {
+                    "$ref": "#/$defs/AudioBitOrder"
+                },
+                "Signed": {
+                    "$ref": "#/$defs/AudioSigned"
+                }
+            }
+        },
+        "AudioCodecProfile": {
+            "type": "string"
+        },
+        "AudioBitDepth": {
+            "type": "string"
+        },
+        "AudioBitOrder": {
+            "type": "string"
+        },
+        "AudioSigned": {
+            "type": "string"
+        },
+        "VideoParameters": {
+            "type": "object",
+            "properties": {
+                "Codec": {
+                    "$ref": "#/$defs/VideoCodec"
+                },
+                "CodecOptions": {
+                    "$ref": "#/$defs/CodecOptions"
+                },
+                "KeyframesMaxDist": {
+                    "$ref": "#/$defs/KeyframesMaxDist"
+                },
+                "FixedGOP": {
+                    "$ref": "#/$defs/FixedGOP"
+                },
+                "BitRate": {
+                    "$ref": "#/$defs/VideoBitRate"
+                },
+                "FrameRate": {
+                    "$ref": "#/$defs/FrameRate"
+                },
+                "MaxFrameRate": {
+                    "$ref": "#/$defs/MaxFrameRate"
+                },
+                "Resolution": {
+                    "$ref": "#/$defs/Resolution"
+                },
+                "AspectRatio": {
+                    "$ref": "#/$defs/AspectRatio"
+                },
+                "MaxWidth": {
+                    "$ref": "#/$defs/DigitsOrAuto"
+                },
+                "MaxHeight": {
+                    "$ref": "#/$defs/DigitsOrAuto"
+                },
+                "DisplayAspectRatio": {
+                    "$ref": "#/$defs/AspectRatio"
+                },
+                "SizingPolicy": {
+                    "$ref": "#/$defs/SizingPolicy"
+                },
+                "PaddingPolicy": {
+                    "$ref": "#/$defs/PaddingPolicy"
+                },
+                "Watermarks": {
+                    "$ref": "#/$defs/PresetWatermarks"
+                }
+            }
+        },
+        "VideoCodec": {
+            "type": "string"
+        },
+        "CodecOptions": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/CodecOption"
+            }
+        },
+        "CodecOption": {
+            "type": "string"
+        },
+        "KeyframesMaxDist": {
+            "type": "string"
+        },
+        "FixedGOP": {
+            "type": "string"
+        },
+        "VideoBitRate": {
+            "type": "string"
+        },
+        "MaxFrameRate": {
+            "type": "string"
+        },
+        "PresetWatermarks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PresetWatermark"
+            }
+        },
+        "PresetWatermark": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/PresetWatermarkId"
+                },
+                "MaxWidth": {
+                    "$ref": "#/$defs/PixelsOrPercent"
+                },
+                "MaxHeight": {
+                    "$ref": "#/$defs/PixelsOrPercent"
+                },
+                "SizingPolicy": {
+                    "$ref": "#/$defs/WatermarkSizingPolicy"
+                },
+                "HorizontalAlign": {
+                    "$ref": "#/$defs/HorizontalAlign"
+                },
+                "HorizontalOffset": {
+                    "$ref": "#/$defs/PixelsOrPercent"
+                },
+                "VerticalAlign": {
+                    "$ref": "#/$defs/VerticalAlign"
+                },
+                "VerticalOffset": {
+                    "$ref": "#/$defs/PixelsOrPercent"
+                },
+                "Opacity": {
+                    "$ref": "#/$defs/Opacity"
+                },
+                "Target": {
+                    "$ref": "#/$defs/Target"
+                }
+            }
+        },
+        "PixelsOrPercent": {
+            "type": "string"
+        },
+        "WatermarkSizingPolicy": {
+            "type": "string"
+        },
+        "HorizontalAlign": {
+            "type": "string"
+        },
+        "VerticalAlign": {
+            "type": "string"
+        },
+        "Opacity": {
+            "type": "string"
+        },
+        "Target": {
+            "type": "string"
+        },
+        "Thumbnails": {
+            "type": "object",
+            "properties": {
+                "Format": {
+                    "$ref": "#/$defs/JpgOrPng"
+                },
+                "Interval": {
+                    "$ref": "#/$defs/Digits"
+                },
+                "Resolution": {
+                    "$ref": "#/$defs/ThumbnailResolution"
+                },
+                "AspectRatio": {
+                    "$ref": "#/$defs/AspectRatio"
+                },
+                "MaxWidth": {
+                    "$ref": "#/$defs/DigitsOrAuto"
+                },
+                "MaxHeight": {
+                    "$ref": "#/$defs/DigitsOrAuto"
+                },
+                "SizingPolicy": {
+                    "$ref": "#/$defs/SizingPolicy"
+                },
+                "PaddingPolicy": {
+                    "$ref": "#/$defs/PaddingPolicy"
+                }
+            }
+        },
+        "Digits": {
+            "type": "string"
+        },
+        "ThumbnailResolution": {
+            "type": "string"
+        },
+        "PresetType": {
+            "type": "string"
+        },
+        "CreatePresetRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Container": {
+                    "$ref": "#/$defs/PresetContainer"
+                },
+                "Video": {
+                    "$ref": "#/$defs/VideoParameters"
+                },
+                "Audio": {
+                    "$ref": "#/$defs/AudioParameters"
+                },
+                "Thumbnails": {
+                    "$ref": "#/$defs/Thumbnails"
+                }
+            }
+        },
+        "DeletePipelineResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeletePipelineRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "DeletePresetResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeletePresetRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ListJobsByPipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Jobs": {
+                    "$ref": "#/$defs/Jobs"
+                },
+                "NextPageToken": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Jobs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Job"
+            }
+        },
+        "ListJobsByPipelineRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Ascending": {
+                    "$ref": "#/$defs/Ascending"
+                },
+                "PageToken": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Ascending": {
+            "type": "string"
+        },
+        "ListJobsByStatusResponse": {
+            "type": "object",
+            "properties": {
+                "Jobs": {
+                    "$ref": "#/$defs/Jobs"
+                },
+                "NextPageToken": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ListJobsByStatusRequest": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "Ascending": {
+                    "$ref": "#/$defs/Ascending"
+                },
+                "PageToken": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ListPipelinesResponse": {
+            "type": "object",
+            "properties": {
+                "Pipelines": {
+                    "$ref": "#/$defs/Pipelines"
+                },
+                "NextPageToken": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Pipelines": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Pipeline"
+            }
+        },
+        "ListPipelinesRequest": {
+            "type": "object",
+            "properties": {
+                "Ascending": {
+                    "$ref": "#/$defs/Ascending"
+                },
+                "PageToken": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ListPresetsResponse": {
+            "type": "object",
+            "properties": {
+                "Presets": {
+                    "$ref": "#/$defs/Presets"
+                },
+                "NextPageToken": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Presets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Preset"
+            }
+        },
+        "ListPresetsRequest": {
+            "type": "object",
+            "properties": {
+                "Ascending": {
+                    "$ref": "#/$defs/Ascending"
+                },
+                "PageToken": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ReadJobResponse": {
+            "type": "object",
+            "properties": {
+                "Job": {
+                    "$ref": "#/$defs/Job"
+                }
+            }
+        },
+        "ReadJobRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ReadPipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                },
+                "Warnings": {
+                    "$ref": "#/$defs/Warnings"
+                }
+            }
+        },
+        "ReadPipelineRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ReadPresetResponse": {
+            "type": "object",
+            "properties": {
+                "Preset": {
+                    "$ref": "#/$defs/Preset"
+                }
+            }
+        },
+        "ReadPresetRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "TestRoleResponse": {
+            "type": "object",
+            "properties": {
+                "Success": {
+                    "$ref": "#/$defs/Success"
+                },
+                "Messages": {
+                    "$ref": "#/$defs/ExceptionMessages"
+                }
+            }
+        },
+        "Success": {
+            "type": "string"
+        },
+        "ExceptionMessages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "TestRoleRequest": {
+            "type": "object",
+            "properties": {
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "InputBucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "OutputBucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "Topics": {
+                    "$ref": "#/$defs/SnsTopics"
+                }
+            }
+        },
+        "SnsTopics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SnsTopic"
+            }
+        },
+        "UpdatePipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                },
+                "Warnings": {
+                    "$ref": "#/$defs/Warnings"
+                }
+            }
+        },
+        "UpdatePipelineRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "InputBucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "AwsKmsKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "Notifications": {
+                    "$ref": "#/$defs/Notifications"
+                },
+                "ContentConfig": {
+                    "$ref": "#/$defs/PipelineOutputConfig"
+                },
+                "ThumbnailConfig": {
+                    "$ref": "#/$defs/PipelineOutputConfig"
+                }
+            }
+        },
+        "UpdatePipelineNotificationsResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                }
+            }
+        },
+        "UpdatePipelineNotificationsRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Notifications": {
+                    "$ref": "#/$defs/Notifications"
+                }
+            }
+        },
+        "UpdatePipelineStatusResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                }
+            }
+        },
+        "UpdatePipelineStatusRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Status": {
+                    "$ref": "#/$defs/PipelineStatus"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elastictranscoder-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elastictranscoder-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://elastictranscoder.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://elastictranscoder.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

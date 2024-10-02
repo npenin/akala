@@ -1,0 +1,2318 @@
+{
+    "name": "transfer",
+    "commands": [
+        {
+            "name": "CreateAccess",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAccess"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAccessResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAccessRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAccess",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAccess"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAccessRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteHostKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteHostKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteHostKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSshPublicKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSshPublicKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSshPublicKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAccess",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAccess"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAccessResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAccessRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeExecutionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeExecutionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeHostKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeHostKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeHostKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeHostKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeSecurityPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeSecurityPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeSecurityPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeSecurityPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportHostKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportHostKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportHostKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportHostKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportSshPublicKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportSshPublicKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportSshPublicKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportSshPublicKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAccesses",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAccesses"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAccessesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAccessesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListExecutionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListExecutionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListHostKeys",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListHostKeys"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListHostKeysResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListHostKeysRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSecurityPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSecurityPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSecurityPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSecurityPoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SendWorkflowStepState",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendWorkflowStepState"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendWorkflowStepStateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendWorkflowStepStateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDirectoryListing",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartDirectoryListing"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDirectoryListingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDirectoryListingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartFileTransfer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartFileTransfer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartFileTransferResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartFileTransferRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartServer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartServer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartServerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopServer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopServer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopServerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TestConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TestConnection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TestConnectionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TestConnectionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TestIdentityProvider",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TestIdentityProvider"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TestIdentityProviderResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TestIdentityProviderRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAccess",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAccess"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAccessResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAccessRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateHostKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateHostKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateHostKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateHostKeyRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateAccessResponse": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "ExternalId": {
+                    "$ref": "#/$defs/ExternalId"
+                }
+            }
+        },
+        "ServerId": {
+            "type": "string"
+        },
+        "ExternalId": {
+            "type": "string"
+        },
+        "CreateAccessRequest": {
+            "type": "object",
+            "properties": {
+                "HomeDirectory": {
+                    "$ref": "#/$defs/HomeDirectory"
+                },
+                "HomeDirectoryType": {
+                    "$ref": "#/$defs/HomeDirectoryType"
+                },
+                "HomeDirectoryMappings": {
+                    "$ref": "#/$defs/HomeDirectoryMappings"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                },
+                "PosixProfile": {
+                    "$ref": "#/$defs/PosixProfile"
+                },
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "ExternalId": {
+                    "$ref": "#/$defs/ExternalId"
+                }
+            }
+        },
+        "HomeDirectory": {
+            "type": "string"
+        },
+        "HomeDirectoryType": {
+            "enum": [
+                "PATH",
+                "LOGICAL"
+            ]
+        },
+        "HomeDirectoryMappings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HomeDirectoryMapEntry"
+            }
+        },
+        "HomeDirectoryMapEntry": {
+            "type": "object",
+            "properties": {
+                "Entry": {
+                    "$ref": "#/$defs/MapEntry"
+                },
+                "Target": {
+                    "$ref": "#/$defs/MapTarget"
+                },
+                "Type": {
+                    "$ref": "#/$defs/MapType"
+                }
+            }
+        },
+        "MapEntry": {
+            "type": "string"
+        },
+        "MapTarget": {
+            "type": "string"
+        },
+        "MapType": {
+            "enum": [
+                "FILE",
+                "DIRECTORY"
+            ]
+        },
+        "Policy": {
+            "type": "string"
+        },
+        "PosixProfile": {
+            "type": "object",
+            "properties": {
+                "Uid": {
+                    "$ref": "#/$defs/PosixId"
+                },
+                "Gid": {
+                    "$ref": "#/$defs/PosixId"
+                },
+                "SecondaryGids": {
+                    "$ref": "#/$defs/SecondaryGids"
+                }
+            }
+        },
+        "PosixId": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "SecondaryGids": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PosixId"
+            }
+        },
+        "Role": {
+            "type": "string"
+        },
+        "DeleteAccessRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "ExternalId": {
+                    "$ref": "#/$defs/ExternalId"
+                }
+            }
+        },
+        "DeleteHostKeyRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "HostKeyId": {
+                    "$ref": "#/$defs/HostKeyId"
+                }
+            }
+        },
+        "HostKeyId": {
+            "type": "string"
+        },
+        "DeleteSshPublicKeyRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "SshPublicKeyId": {
+                    "$ref": "#/$defs/SshPublicKeyId"
+                },
+                "UserName": {
+                    "$ref": "#/$defs/UserName"
+                }
+            }
+        },
+        "SshPublicKeyId": {
+            "type": "string"
+        },
+        "UserName": {
+            "type": "string"
+        },
+        "DescribeAccessResponse": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "Access": {
+                    "$ref": "#/$defs/DescribedAccess"
+                }
+            }
+        },
+        "DescribedAccess": {
+            "type": "object",
+            "properties": {
+                "HomeDirectory": {
+                    "$ref": "#/$defs/HomeDirectory"
+                },
+                "HomeDirectoryMappings": {
+                    "$ref": "#/$defs/HomeDirectoryMappings"
+                },
+                "HomeDirectoryType": {
+                    "$ref": "#/$defs/HomeDirectoryType"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                },
+                "PosixProfile": {
+                    "$ref": "#/$defs/PosixProfile"
+                },
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "ExternalId": {
+                    "$ref": "#/$defs/ExternalId"
+                }
+            }
+        },
+        "DescribeAccessRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "ExternalId": {
+                    "$ref": "#/$defs/ExternalId"
+                }
+            }
+        },
+        "DescribeExecutionResponse": {
+            "type": "object",
+            "properties": {
+                "WorkflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "Execution": {
+                    "$ref": "#/$defs/DescribedExecution"
+                }
+            }
+        },
+        "WorkflowId": {
+            "type": "string"
+        },
+        "DescribedExecution": {
+            "type": "object",
+            "properties": {
+                "ExecutionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                },
+                "InitialFileLocation": {
+                    "$ref": "#/$defs/FileLocation"
+                },
+                "ServiceMetadata": {
+                    "$ref": "#/$defs/ServiceMetadata"
+                },
+                "ExecutionRole": {
+                    "$ref": "#/$defs/Role"
+                },
+                "LoggingConfiguration": {
+                    "$ref": "#/$defs/LoggingConfiguration"
+                },
+                "PosixProfile": {
+                    "$ref": "#/$defs/PosixProfile"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ExecutionStatus"
+                },
+                "Results": {
+                    "$ref": "#/$defs/ExecutionResults"
+                }
+            }
+        },
+        "ExecutionId": {
+            "type": "string"
+        },
+        "FileLocation": {
+            "type": "object",
+            "properties": {
+                "S3FileLocation": {
+                    "$ref": "#/$defs/S3FileLocation"
+                },
+                "EfsFileLocation": {
+                    "$ref": "#/$defs/EfsFileLocation"
+                }
+            }
+        },
+        "S3FileLocation": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "Key": {
+                    "$ref": "#/$defs/S3Key"
+                },
+                "VersionId": {
+                    "$ref": "#/$defs/S3VersionId"
+                },
+                "Etag": {
+                    "$ref": "#/$defs/S3Etag"
+                }
+            }
+        },
+        "S3Bucket": {
+            "type": "string"
+        },
+        "S3Key": {
+            "type": "string"
+        },
+        "S3VersionId": {
+            "type": "string"
+        },
+        "S3Etag": {
+            "type": "string"
+        },
+        "EfsFileLocation": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/EfsFileSystemId"
+                },
+                "Path": {
+                    "$ref": "#/$defs/EfsPath"
+                }
+            }
+        },
+        "EfsFileSystemId": {
+            "type": "string"
+        },
+        "EfsPath": {
+            "type": "string"
+        },
+        "ServiceMetadata": {
+            "type": "object",
+            "properties": {
+                "UserDetails": {
+                    "$ref": "#/$defs/UserDetails"
+                }
+            }
+        },
+        "UserDetails": {
+            "type": "object",
+            "properties": {
+                "UserName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                }
+            }
+        },
+        "SessionId": {
+            "type": "string"
+        },
+        "LoggingConfiguration": {
+            "type": "object",
+            "properties": {
+                "LoggingRole": {
+                    "$ref": "#/$defs/Role"
+                },
+                "LogGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                }
+            }
+        },
+        "LogGroupName": {
+            "type": "string"
+        },
+        "ExecutionStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETED",
+                "EXCEPTION",
+                "HANDLING_EXCEPTION"
+            ]
+        },
+        "ExecutionResults": {
+            "type": "object",
+            "properties": {
+                "Steps": {
+                    "$ref": "#/$defs/ExecutionStepResults"
+                },
+                "OnExceptionSteps": {
+                    "$ref": "#/$defs/ExecutionStepResults"
+                }
+            }
+        },
+        "ExecutionStepResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExecutionStepResult"
+            }
+        },
+        "ExecutionStepResult": {
+            "type": "object",
+            "properties": {
+                "StepType": {
+                    "$ref": "#/$defs/WorkflowStepType"
+                },
+                "Outputs": {
+                    "$ref": "#/$defs/StepResultOutputsJson"
+                },
+                "Error": {
+                    "$ref": "#/$defs/ExecutionError"
+                }
+            }
+        },
+        "WorkflowStepType": {
+            "enum": [
+                "COPY",
+                "CUSTOM",
+                "TAG",
+                "DELETE",
+                "DECRYPT"
+            ]
+        },
+        "StepResultOutputsJson": {
+            "type": "string"
+        },
+        "ExecutionError": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/ExecutionErrorType"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ExecutionErrorMessage"
+                }
+            }
+        },
+        "ExecutionErrorType": {
+            "enum": [
+                "PERMISSION_DENIED",
+                "CUSTOM_STEP_FAILED",
+                "THROTTLED",
+                "ALREADY_EXISTS",
+                "NOT_FOUND",
+                "BAD_REQUEST",
+                "TIMEOUT",
+                "INTERNAL_SERVER_ERROR"
+            ]
+        },
+        "ExecutionErrorMessage": {
+            "type": "string"
+        },
+        "DescribeExecutionRequest": {
+            "type": "object",
+            "properties": {
+                "ExecutionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                },
+                "WorkflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                }
+            }
+        },
+        "DescribeHostKeyResponse": {
+            "type": "object",
+            "properties": {
+                "HostKey": {
+                    "$ref": "#/$defs/DescribedHostKey"
+                }
+            }
+        },
+        "DescribedHostKey": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "HostKeyId": {
+                    "$ref": "#/$defs/HostKeyId"
+                },
+                "HostKeyFingerprint": {
+                    "$ref": "#/$defs/HostKeyFingerprint"
+                },
+                "Description": {
+                    "$ref": "#/$defs/HostKeyDescription"
+                },
+                "Type": {
+                    "$ref": "#/$defs/HostKeyType"
+                },
+                "DateImported": {
+                    "$ref": "#/$defs/DateImported"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "HostKeyFingerprint": {
+            "type": "string"
+        },
+        "HostKeyDescription": {
+            "type": "string"
+        },
+        "HostKeyType": {
+            "type": "string"
+        },
+        "DateImported": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "DescribeHostKeyRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "HostKeyId": {
+                    "$ref": "#/$defs/HostKeyId"
+                }
+            }
+        },
+        "DescribeSecurityPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "SecurityPolicy": {
+                    "$ref": "#/$defs/DescribedSecurityPolicy"
+                }
+            }
+        },
+        "DescribedSecurityPolicy": {
+            "type": "object",
+            "properties": {
+                "Fips": {
+                    "$ref": "#/$defs/Fips"
+                },
+                "SecurityPolicyName": {
+                    "$ref": "#/$defs/SecurityPolicyName"
+                },
+                "SshCiphers": {
+                    "$ref": "#/$defs/SecurityPolicyOptions"
+                },
+                "SshKexs": {
+                    "$ref": "#/$defs/SecurityPolicyOptions"
+                },
+                "SshMacs": {
+                    "$ref": "#/$defs/SecurityPolicyOptions"
+                },
+                "TlsCiphers": {
+                    "$ref": "#/$defs/SecurityPolicyOptions"
+                },
+                "SshHostKeyAlgorithms": {
+                    "$ref": "#/$defs/SecurityPolicyOptions"
+                },
+                "Type": {
+                    "$ref": "#/$defs/SecurityPolicyResourceType"
+                },
+                "Protocols": {
+                    "$ref": "#/$defs/SecurityPolicyProtocols"
+                }
+            }
+        },
+        "Fips": {
+            "type": "boolean"
+        },
+        "SecurityPolicyName": {
+            "type": "string"
+        },
+        "SecurityPolicyOptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityPolicyOption"
+            }
+        },
+        "SecurityPolicyOption": {
+            "type": "string"
+        },
+        "SecurityPolicyResourceType": {
+            "enum": [
+                "SERVER",
+                "CONNECTOR"
+            ]
+        },
+        "SecurityPolicyProtocols": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityPolicyProtocol"
+            }
+        },
+        "SecurityPolicyProtocol": {
+            "enum": [
+                "SFTP",
+                "FTPS"
+            ]
+        },
+        "DescribeSecurityPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "SecurityPolicyName": {
+                    "$ref": "#/$defs/SecurityPolicyName"
+                }
+            }
+        },
+        "ImportHostKeyResponse": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "HostKeyId": {
+                    "$ref": "#/$defs/HostKeyId"
+                }
+            }
+        },
+        "ImportHostKeyRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "HostKeyBody": {
+                    "$ref": "#/$defs/HostKey"
+                },
+                "Description": {
+                    "$ref": "#/$defs/HostKeyDescription"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "HostKey": {
+            "type": "string"
+        },
+        "ImportSshPublicKeyResponse": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "SshPublicKeyId": {
+                    "$ref": "#/$defs/SshPublicKeyId"
+                },
+                "UserName": {
+                    "$ref": "#/$defs/UserName"
+                }
+            }
+        },
+        "ImportSshPublicKeyRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "SshPublicKeyBody": {
+                    "$ref": "#/$defs/SshPublicKeyBody"
+                },
+                "UserName": {
+                    "$ref": "#/$defs/UserName"
+                }
+            }
+        },
+        "SshPublicKeyBody": {
+            "type": "string"
+        },
+        "ListAccessesResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "Accesses": {
+                    "$ref": "#/$defs/ListedAccesses"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListedAccesses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListedAccess"
+            }
+        },
+        "ListedAccess": {
+            "type": "object",
+            "properties": {
+                "HomeDirectory": {
+                    "$ref": "#/$defs/HomeDirectory"
+                },
+                "HomeDirectoryType": {
+                    "$ref": "#/$defs/HomeDirectoryType"
+                },
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "ExternalId": {
+                    "$ref": "#/$defs/ExternalId"
+                }
+            }
+        },
+        "ListAccessesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListExecutionsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "WorkflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "Executions": {
+                    "$ref": "#/$defs/ListedExecutions"
+                }
+            }
+        },
+        "ListedExecutions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListedExecution"
+            }
+        },
+        "ListedExecution": {
+            "type": "object",
+            "properties": {
+                "ExecutionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                },
+                "InitialFileLocation": {
+                    "$ref": "#/$defs/FileLocation"
+                },
+                "ServiceMetadata": {
+                    "$ref": "#/$defs/ServiceMetadata"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ExecutionStatus"
+                }
+            }
+        },
+        "ListExecutionsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "WorkflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                }
+            }
+        },
+        "ListHostKeysResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "HostKeys": {
+                    "$ref": "#/$defs/ListedHostKeys"
+                }
+            }
+        },
+        "ListedHostKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListedHostKey"
+            }
+        },
+        "ListedHostKey": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "HostKeyId": {
+                    "$ref": "#/$defs/HostKeyId"
+                },
+                "Fingerprint": {
+                    "$ref": "#/$defs/HostKeyFingerprint"
+                },
+                "Description": {
+                    "$ref": "#/$defs/HostKeyDescription"
+                },
+                "Type": {
+                    "$ref": "#/$defs/HostKeyType"
+                },
+                "DateImported": {
+                    "$ref": "#/$defs/DateImported"
+                }
+            }
+        },
+        "ListHostKeysRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                }
+            }
+        },
+        "ListSecurityPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "SecurityPolicyNames": {
+                    "$ref": "#/$defs/SecurityPolicyNames"
+                }
+            }
+        },
+        "SecurityPolicyNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityPolicyName"
+            }
+        },
+        "ListSecurityPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SendWorkflowStepStateResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "SendWorkflowStepStateRequest": {
+            "type": "object",
+            "properties": {
+                "WorkflowId": {
+                    "$ref": "#/$defs/WorkflowId"
+                },
+                "ExecutionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                },
+                "Token": {
+                    "$ref": "#/$defs/CallbackToken"
+                },
+                "Status": {
+                    "$ref": "#/$defs/CustomStepStatus"
+                }
+            }
+        },
+        "CallbackToken": {
+            "type": "string"
+        },
+        "CustomStepStatus": {
+            "enum": [
+                "SUCCESS",
+                "FAILURE"
+            ]
+        },
+        "StartDirectoryListingResponse": {
+            "type": "object",
+            "properties": {
+                "ListingId": {
+                    "$ref": "#/$defs/ListingId"
+                },
+                "OutputFileName": {
+                    "$ref": "#/$defs/OutputFileName"
+                }
+            }
+        },
+        "ListingId": {
+            "type": "string"
+        },
+        "OutputFileName": {
+            "type": "string"
+        },
+        "StartDirectoryListingRequest": {
+            "type": "object",
+            "properties": {
+                "ConnectorId": {
+                    "$ref": "#/$defs/ConnectorId"
+                },
+                "RemoteDirectoryPath": {
+                    "$ref": "#/$defs/FilePath"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxItems"
+                },
+                "OutputDirectoryPath": {
+                    "$ref": "#/$defs/FilePath"
+                }
+            }
+        },
+        "ConnectorId": {
+            "type": "string"
+        },
+        "FilePath": {
+            "type": "string"
+        },
+        "MaxItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "StartFileTransferResponse": {
+            "type": "object",
+            "properties": {
+                "TransferId": {
+                    "$ref": "#/$defs/TransferId"
+                }
+            }
+        },
+        "TransferId": {
+            "type": "string"
+        },
+        "StartFileTransferRequest": {
+            "type": "object",
+            "properties": {
+                "ConnectorId": {
+                    "$ref": "#/$defs/ConnectorId"
+                },
+                "SendFilePaths": {
+                    "$ref": "#/$defs/FilePaths"
+                },
+                "RetrieveFilePaths": {
+                    "$ref": "#/$defs/FilePaths"
+                },
+                "LocalDirectoryPath": {
+                    "$ref": "#/$defs/FilePath"
+                },
+                "RemoteDirectoryPath": {
+                    "$ref": "#/$defs/FilePath"
+                }
+            }
+        },
+        "FilePaths": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilePath"
+            }
+        },
+        "StartServerRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                }
+            }
+        },
+        "StopServerRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "TestConnectionResponse": {
+            "type": "object",
+            "properties": {
+                "ConnectorId": {
+                    "$ref": "#/$defs/ConnectorId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "Status": {
+            "type": "string"
+        },
+        "Message": {
+            "type": "string"
+        },
+        "TestConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "ConnectorId": {
+                    "$ref": "#/$defs/ConnectorId"
+                }
+            }
+        },
+        "TestIdentityProviderResponse": {
+            "type": "object",
+            "properties": {
+                "Response": {
+                    "$ref": "#/$defs/Response"
+                },
+                "StatusCode": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "Url": {
+                    "$ref": "#/$defs/Url"
+                }
+            }
+        },
+        "Response": {
+            "type": "string"
+        },
+        "StatusCode": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Url": {
+            "type": "string"
+        },
+        "TestIdentityProviderRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "ServerProtocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "SourceIp": {
+                    "$ref": "#/$defs/SourceIp"
+                },
+                "UserName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "UserPassword": {
+                    "$ref": "#/$defs/UserPassword"
+                }
+            }
+        },
+        "Protocol": {
+            "enum": [
+                "SFTP",
+                "FTP",
+                "FTPS",
+                "AS2"
+            ]
+        },
+        "SourceIp": {
+            "type": "string"
+        },
+        "UserPassword": {
+            "type": "string"
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateAccessResponse": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "ExternalId": {
+                    "$ref": "#/$defs/ExternalId"
+                }
+            }
+        },
+        "UpdateAccessRequest": {
+            "type": "object",
+            "properties": {
+                "HomeDirectory": {
+                    "$ref": "#/$defs/HomeDirectory"
+                },
+                "HomeDirectoryType": {
+                    "$ref": "#/$defs/HomeDirectoryType"
+                },
+                "HomeDirectoryMappings": {
+                    "$ref": "#/$defs/HomeDirectoryMappings"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                },
+                "PosixProfile": {
+                    "$ref": "#/$defs/PosixProfile"
+                },
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "ExternalId": {
+                    "$ref": "#/$defs/ExternalId"
+                }
+            }
+        },
+        "UpdateHostKeyResponse": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "HostKeyId": {
+                    "$ref": "#/$defs/HostKeyId"
+                }
+            }
+        },
+        "UpdateHostKeyRequest": {
+            "type": "object",
+            "properties": {
+                "ServerId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "HostKeyId": {
+                    "$ref": "#/$defs/HostKeyId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/HostKeyDescription"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://transfer-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://transfer-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://transfer.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://transfer.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

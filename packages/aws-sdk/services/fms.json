@@ -1,0 +1,4676 @@
+{
+    "name": "fms",
+    "commands": [
+        {
+            "name": "AssociateAdminAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateAdminAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateAdminAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateThirdPartyFirewall",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateThirdPartyFirewall"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateThirdPartyFirewallResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateThirdPartyFirewallRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchAssociateResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchAssociateResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchAssociateResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchAssociateResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchDisassociateResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchDisassociateResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDisassociateResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDisassociateResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAppsList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAppsList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAppsListRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteNotificationChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteNotificationChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteNotificationChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteProtocolsList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteProtocolsList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteProtocolsListRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourceSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourceSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourceSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateAdminAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateAdminAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateAdminAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateThirdPartyFirewall",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateThirdPartyFirewall"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateThirdPartyFirewallResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateThirdPartyFirewallRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAdminAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAdminAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAdminAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAdminAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAdminScope",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAdminScope"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAdminScopeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAdminScopeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAppsList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAppsList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAppsListResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAppsListRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetComplianceDetail",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetComplianceDetail"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetComplianceDetailResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetComplianceDetailRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetNotificationChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetNotificationChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetNotificationChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetNotificationChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetProtectionStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetProtectionStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetProtectionStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetProtectionStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetProtocolsList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetProtocolsList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetProtocolsListResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetProtocolsListRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourceSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResourceSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourceSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourceSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetThirdPartyFirewallAssociationStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetThirdPartyFirewallAssociationStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetThirdPartyFirewallAssociationStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetThirdPartyFirewallAssociationStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetViolationDetails",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetViolationDetails"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetViolationDetailsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetViolationDetailsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAdminAccountsForOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAdminAccountsForOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAdminAccountsForOrganizationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAdminAccountsForOrganizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAdminsManagingAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAdminsManagingAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAdminsManagingAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAdminsManagingAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAppsLists",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAppsLists"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAppsListsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAppsListsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListComplianceStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListComplianceStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListComplianceStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListComplianceStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDiscoveredResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDiscoveredResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDiscoveredResourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDiscoveredResourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListMemberAccounts",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListMemberAccounts"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMemberAccountsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMemberAccountsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProtocolsLists",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListProtocolsLists"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProtocolsListsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProtocolsListsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListResourceSetResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListResourceSetResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListResourceSetResourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListResourceSetResourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListResourceSets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListResourceSets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListResourceSetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListResourceSetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListThirdPartyFirewallFirewallPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListThirdPartyFirewallFirewallPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListThirdPartyFirewallFirewallPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListThirdPartyFirewallFirewallPoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAdminAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAdminAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAdminAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAppsList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAppsList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutAppsListResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAppsListRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutNotificationChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutNotificationChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutNotificationChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutProtocolsList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutProtocolsList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutProtocolsListResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutProtocolsListRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourceSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourceSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourceSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourceSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssociateAdminAccountRequest": {
+            "type": "object",
+            "properties": {
+                "AdminAccount": {
+                    "$ref": "#/$defs/AWSAccountId"
+                }
+            }
+        },
+        "AWSAccountId": {
+            "type": "string"
+        },
+        "AssociateThirdPartyFirewallResponse": {
+            "type": "object",
+            "properties": {
+                "ThirdPartyFirewallStatus": {
+                    "$ref": "#/$defs/ThirdPartyFirewallAssociationStatus"
+                }
+            }
+        },
+        "ThirdPartyFirewallAssociationStatus": {
+            "enum": [
+                "ONBOARDING",
+                "ONBOARD_COMPLETE",
+                "OFFBOARDING",
+                "OFFBOARD_COMPLETE",
+                "NOT_EXIST"
+            ]
+        },
+        "AssociateThirdPartyFirewallRequest": {
+            "type": "object",
+            "properties": {
+                "ThirdPartyFirewall": {
+                    "$ref": "#/$defs/ThirdPartyFirewall"
+                }
+            }
+        },
+        "ThirdPartyFirewall": {
+            "enum": [
+                "PALO_ALTO_NETWORKS_CLOUD_NGFW",
+                "FORTIGATE_CLOUD_NATIVE_FIREWALL"
+            ]
+        },
+        "BatchAssociateResourceResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceSetIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "FailedItems": {
+                    "$ref": "#/$defs/FailedItemList"
+                }
+            }
+        },
+        "Identifier": {
+            "type": "string"
+        },
+        "FailedItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FailedItem"
+            }
+        },
+        "FailedItem": {
+            "type": "object",
+            "properties": {
+                "URI": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/FailedItemReason"
+                }
+            }
+        },
+        "FailedItemReason": {
+            "enum": [
+                "NotValidArn",
+                "NotValidPartition",
+                "NotValidRegion",
+                "NotValidService",
+                "NotValidResourceType",
+                "NotValidAccountId"
+            ]
+        },
+        "BatchAssociateResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceSetIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "Items": {
+                    "$ref": "#/$defs/IdentifierList"
+                }
+            }
+        },
+        "IdentifierList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Identifier"
+            }
+        },
+        "BatchDisassociateResourceResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceSetIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "FailedItems": {
+                    "$ref": "#/$defs/FailedItemList"
+                }
+            }
+        },
+        "BatchDisassociateResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceSetIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "Items": {
+                    "$ref": "#/$defs/IdentifierList"
+                }
+            }
+        },
+        "DeleteAppsListRequest": {
+            "type": "object",
+            "properties": {
+                "ListId": {
+                    "$ref": "#/$defs/ListId"
+                }
+            }
+        },
+        "ListId": {
+            "type": "string"
+        },
+        "DeleteNotificationChannelRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeletePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "DeleteAllPolicyResources": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "PolicyId": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "DeleteProtocolsListRequest": {
+            "type": "object",
+            "properties": {
+                "ListId": {
+                    "$ref": "#/$defs/ListId"
+                }
+            }
+        },
+        "DeleteResourceSetRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Base62Id"
+                }
+            }
+        },
+        "Base62Id": {
+            "type": "string"
+        },
+        "DisassociateAdminAccountRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisassociateThirdPartyFirewallResponse": {
+            "type": "object",
+            "properties": {
+                "ThirdPartyFirewallStatus": {
+                    "$ref": "#/$defs/ThirdPartyFirewallAssociationStatus"
+                }
+            }
+        },
+        "DisassociateThirdPartyFirewallRequest": {
+            "type": "object",
+            "properties": {
+                "ThirdPartyFirewall": {
+                    "$ref": "#/$defs/ThirdPartyFirewall"
+                }
+            }
+        },
+        "GetAdminAccountResponse": {
+            "type": "object",
+            "properties": {
+                "AdminAccount": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "RoleStatus": {
+                    "$ref": "#/$defs/AccountRoleStatus"
+                }
+            }
+        },
+        "AccountRoleStatus": {
+            "enum": [
+                "Ready",
+                "Creating",
+                "PendingDeletion",
+                "Deleting",
+                "Deleted"
+            ]
+        },
+        "GetAdminAccountRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetAdminScopeResponse": {
+            "type": "object",
+            "properties": {
+                "AdminScope": {
+                    "$ref": "#/$defs/AdminScope"
+                },
+                "Status": {
+                    "$ref": "#/$defs/OrganizationStatus"
+                }
+            }
+        },
+        "AdminScope": {
+            "type": "object",
+            "properties": {
+                "AccountScope": {
+                    "$ref": "#/$defs/AccountScope"
+                },
+                "OrganizationalUnitScope": {
+                    "$ref": "#/$defs/OrganizationalUnitScope"
+                },
+                "RegionScope": {
+                    "$ref": "#/$defs/RegionScope"
+                },
+                "PolicyTypeScope": {
+                    "$ref": "#/$defs/PolicyTypeScope"
+                }
+            }
+        },
+        "AccountScope": {
+            "type": "object",
+            "properties": {
+                "Accounts": {
+                    "$ref": "#/$defs/AccountIdList"
+                },
+                "AllAccountsEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ExcludeSpecifiedAccounts": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "AccountIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AWSAccountId"
+            }
+        },
+        "OrganizationalUnitScope": {
+            "type": "object",
+            "properties": {
+                "OrganizationalUnits": {
+                    "$ref": "#/$defs/OrganizationalUnitIdList"
+                },
+                "AllOrganizationalUnitsEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ExcludeSpecifiedOrganizationalUnits": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "OrganizationalUnitIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OrganizationalUnitId"
+            }
+        },
+        "OrganizationalUnitId": {
+            "type": "string"
+        },
+        "RegionScope": {
+            "type": "object",
+            "properties": {
+                "Regions": {
+                    "$ref": "#/$defs/AWSRegionList"
+                },
+                "AllRegionsEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "AWSRegionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AWSRegion"
+            }
+        },
+        "AWSRegion": {
+            "type": "string"
+        },
+        "PolicyTypeScope": {
+            "type": "object",
+            "properties": {
+                "PolicyTypes": {
+                    "$ref": "#/$defs/SecurityServiceTypeList"
+                },
+                "AllPolicyTypesEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "SecurityServiceTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityServiceType"
+            }
+        },
+        "SecurityServiceType": {
+            "enum": [
+                "WAF",
+                "WAFV2",
+                "SHIELD_ADVANCED",
+                "SECURITY_GROUPS_COMMON",
+                "SECURITY_GROUPS_CONTENT_AUDIT",
+                "SECURITY_GROUPS_USAGE_AUDIT",
+                "NETWORK_FIREWALL",
+                "DNS_FIREWALL",
+                "THIRD_PARTY_FIREWALL",
+                "IMPORT_NETWORK_FIREWALL",
+                "NETWORK_ACL_COMMON"
+            ]
+        },
+        "OrganizationStatus": {
+            "enum": [
+                "Onboarding",
+                "OnboardingComplete",
+                "Offboarding",
+                "OffboardingComplete"
+            ]
+        },
+        "GetAdminScopeRequest": {
+            "type": "object",
+            "properties": {
+                "AdminAccount": {
+                    "$ref": "#/$defs/AWSAccountId"
+                }
+            }
+        },
+        "GetAppsListResponse": {
+            "type": "object",
+            "properties": {
+                "AppsList": {
+                    "$ref": "#/$defs/AppsListData"
+                },
+                "AppsListArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "AppsListData": {
+            "type": "object",
+            "properties": {
+                "ListId": {
+                    "$ref": "#/$defs/ListId"
+                },
+                "ListName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "ListUpdateToken": {
+                    "$ref": "#/$defs/UpdateToken"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "LastUpdateTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "AppsList": {
+                    "$ref": "#/$defs/AppsList"
+                },
+                "PreviousAppsList": {
+                    "$ref": "#/$defs/PreviousAppsList"
+                }
+            }
+        },
+        "ResourceName": {
+            "type": "string"
+        },
+        "UpdateToken": {
+            "type": "string"
+        },
+        "TimeStamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "AppsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/App"
+            }
+        },
+        "App": {
+            "type": "object",
+            "properties": {
+                "AppName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "Port": {
+                    "$ref": "#/$defs/IPPortNumber"
+                }
+            }
+        },
+        "Protocol": {
+            "type": "string"
+        },
+        "IPPortNumber": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "PreviousAppsList": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AppsList"
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "GetAppsListRequest": {
+            "type": "object",
+            "properties": {
+                "ListId": {
+                    "$ref": "#/$defs/ListId"
+                },
+                "DefaultList": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "GetComplianceDetailResponse": {
+            "type": "object",
+            "properties": {
+                "PolicyComplianceDetail": {
+                    "$ref": "#/$defs/PolicyComplianceDetail"
+                }
+            }
+        },
+        "PolicyComplianceDetail": {
+            "type": "object",
+            "properties": {
+                "PolicyOwner": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "MemberAccount": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "Violators": {
+                    "$ref": "#/$defs/ComplianceViolators"
+                },
+                "EvaluationLimitExceeded": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ExpiredAt": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "IssueInfoMap": {
+                    "$ref": "#/$defs/IssueInfoMap"
+                }
+            }
+        },
+        "ComplianceViolators": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComplianceViolator"
+            }
+        },
+        "ComplianceViolator": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ViolationReason": {
+                    "$ref": "#/$defs/ViolationReason"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/ComplianceViolatorMetadata"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "ViolationReason": {
+            "enum": [
+                "WebAclMissingRuleGroup",
+                "ResourceMissingWebAcl",
+                "ResourceIncorrectWebAcl",
+                "ResourceMissingShieldProtection",
+                "ResourceMissingWebaclOrShieldProtection",
+                "ResourceMissingSecurityGroup",
+                "ResourceViolatesAuditSecurityGroup",
+                "SecurityGroupUnused",
+                "SecurityGroupRedundant",
+                "FMSCreatedSecurityGroupEdited",
+                "MissingFirewall",
+                "MissingFirewallSubnetInAZ",
+                "MissingExpectedRouteTable",
+                "NetworkFirewallPolicyModified",
+                "FirewallSubnetIsOutOfScope",
+                "InternetGatewayMissingExpectedRoute",
+                "FirewallSubnetMissingExpectedRoute",
+                "UnexpectedFirewallRoutes",
+                "UnexpectedTargetGatewayRoutes",
+                "TrafficInspectionCrossesAZBoundary",
+                "InvalidRouteConfiguration",
+                "MissingTargetGateway",
+                "InternetTrafficNotInspected",
+                "BlackHoleRouteDetected",
+                "BlackHoleRouteDetectedInFirewallSubnet",
+                "ResourceMissingDnsFirewall",
+                "RouteHasOutOfScopeEndpoint",
+                "FirewallSubnetMissingVPCEndpoint",
+                "InvalidNetworkAclEntry"
+            ]
+        },
+        "ResourceType": {
+            "type": "string"
+        },
+        "ComplianceViolatorMetadata": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/LengthBoundedString"
+            }
+        },
+        "LengthBoundedString": {
+            "type": "string"
+        },
+        "IssueInfoMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/DetailedInfo"
+            }
+        },
+        "DetailedInfo": {
+            "type": "string"
+        },
+        "GetComplianceDetailRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "MemberAccount": {
+                    "$ref": "#/$defs/AWSAccountId"
+                }
+            }
+        },
+        "GetNotificationChannelResponse": {
+            "type": "object",
+            "properties": {
+                "SnsTopicArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "SnsRoleName": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "GetNotificationChannelRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                },
+                "PolicyArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "Policy": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "PolicyUpdateToken": {
+                    "$ref": "#/$defs/PolicyUpdateToken"
+                },
+                "SecurityServicePolicyData": {
+                    "$ref": "#/$defs/SecurityServicePolicyData"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceTypeList": {
+                    "$ref": "#/$defs/ResourceTypeList"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                },
+                "ExcludeResourceTags": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RemediationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DeleteUnusedFMManagedResources": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IncludeMap": {
+                    "$ref": "#/$defs/CustomerPolicyScopeMap"
+                },
+                "ExcludeMap": {
+                    "$ref": "#/$defs/CustomerPolicyScopeMap"
+                },
+                "ResourceSetIds": {
+                    "$ref": "#/$defs/ResourceSetIds"
+                },
+                "PolicyDescription": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "PolicyStatus": {
+                    "$ref": "#/$defs/CustomerPolicyStatus"
+                }
+            }
+        },
+        "PolicyUpdateToken": {
+            "type": "string"
+        },
+        "SecurityServicePolicyData": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/SecurityServiceType"
+                },
+                "ManagedServiceData": {
+                    "$ref": "#/$defs/ManagedServiceData"
+                },
+                "PolicyOption": {
+                    "$ref": "#/$defs/PolicyOption"
+                }
+            }
+        },
+        "ManagedServiceData": {
+            "type": "string"
+        },
+        "PolicyOption": {
+            "type": "object",
+            "properties": {
+                "NetworkFirewallPolicy": {
+                    "$ref": "#/$defs/NetworkFirewallPolicy"
+                },
+                "ThirdPartyFirewallPolicy": {
+                    "$ref": "#/$defs/ThirdPartyFirewallPolicy"
+                },
+                "NetworkAclCommonPolicy": {
+                    "$ref": "#/$defs/NetworkAclCommonPolicy"
+                }
+            }
+        },
+        "NetworkFirewallPolicy": {
+            "type": "object",
+            "properties": {
+                "FirewallDeploymentModel": {
+                    "$ref": "#/$defs/FirewallDeploymentModel"
+                }
+            }
+        },
+        "FirewallDeploymentModel": {
+            "enum": [
+                "CENTRALIZED",
+                "DISTRIBUTED"
+            ]
+        },
+        "ThirdPartyFirewallPolicy": {
+            "type": "object",
+            "properties": {
+                "FirewallDeploymentModel": {
+                    "$ref": "#/$defs/FirewallDeploymentModel"
+                }
+            }
+        },
+        "NetworkAclCommonPolicy": {
+            "type": "object",
+            "properties": {
+                "NetworkAclEntrySet": {
+                    "$ref": "#/$defs/NetworkAclEntrySet"
+                }
+            }
+        },
+        "NetworkAclEntrySet": {
+            "type": "object",
+            "properties": {
+                "FirstEntries": {
+                    "$ref": "#/$defs/NetworkAclEntries"
+                },
+                "ForceRemediateForFirstEntries": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "LastEntries": {
+                    "$ref": "#/$defs/NetworkAclEntries"
+                },
+                "ForceRemediateForLastEntries": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "NetworkAclEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetworkAclEntry"
+            }
+        },
+        "NetworkAclEntry": {
+            "type": "object",
+            "properties": {
+                "IcmpTypeCode": {
+                    "$ref": "#/$defs/NetworkAclIcmpTypeCode"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "PortRange": {
+                    "$ref": "#/$defs/NetworkAclPortRange"
+                },
+                "CidrBlock": {
+                    "$ref": "#/$defs/LengthBoundedNonEmptyString"
+                },
+                "Ipv6CidrBlock": {
+                    "$ref": "#/$defs/LengthBoundedNonEmptyString"
+                },
+                "RuleAction": {
+                    "$ref": "#/$defs/NetworkAclRuleAction"
+                },
+                "Egress": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "NetworkAclIcmpTypeCode": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/IntegerObject"
+                },
+                "Type": {
+                    "$ref": "#/$defs/IntegerObject"
+                }
+            }
+        },
+        "IntegerObject": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NetworkAclPortRange": {
+            "type": "object",
+            "properties": {
+                "From": {
+                    "$ref": "#/$defs/IPPortNumberInteger"
+                },
+                "To": {
+                    "$ref": "#/$defs/IPPortNumberInteger"
+                }
+            }
+        },
+        "IPPortNumberInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LengthBoundedNonEmptyString": {
+            "type": "string"
+        },
+        "NetworkAclRuleAction": {
+            "enum": [
+                "ALLOW",
+                "DENY"
+            ]
+        },
+        "BooleanObject": {
+            "type": "boolean"
+        },
+        "ResourceTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceType"
+            }
+        },
+        "ResourceTags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTag"
+            }
+        },
+        "ResourceTag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/ResourceTagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/ResourceTagValue"
+                }
+            }
+        },
+        "ResourceTagKey": {
+            "type": "string"
+        },
+        "ResourceTagValue": {
+            "type": "string"
+        },
+        "CustomerPolicyScopeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/CustomerPolicyScopeIdList"
+            }
+        },
+        "CustomerPolicyScopeIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CustomerPolicyScopeId"
+            }
+        },
+        "CustomerPolicyScopeId": {
+            "type": "string"
+        },
+        "ResourceSetIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Base62Id"
+            }
+        },
+        "ResourceDescription": {
+            "type": "string"
+        },
+        "CustomerPolicyStatus": {
+            "enum": [
+                "ACTIVE",
+                "OUT_OF_ADMIN_SCOPE"
+            ]
+        },
+        "GetPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                }
+            }
+        },
+        "GetProtectionStatusResponse": {
+            "type": "object",
+            "properties": {
+                "AdminAccountId": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "ServiceType": {
+                    "$ref": "#/$defs/SecurityServiceType"
+                },
+                "Data": {
+                    "$ref": "#/$defs/ProtectionData"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ProtectionData": {
+            "type": "string"
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "GetProtectionStatusRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "MemberAccountId": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "PaginationMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetProtocolsListResponse": {
+            "type": "object",
+            "properties": {
+                "ProtocolsList": {
+                    "$ref": "#/$defs/ProtocolsListData"
+                },
+                "ProtocolsListArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ProtocolsListData": {
+            "type": "object",
+            "properties": {
+                "ListId": {
+                    "$ref": "#/$defs/ListId"
+                },
+                "ListName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "ListUpdateToken": {
+                    "$ref": "#/$defs/UpdateToken"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "LastUpdateTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "ProtocolsList": {
+                    "$ref": "#/$defs/ProtocolsList"
+                },
+                "PreviousProtocolsList": {
+                    "$ref": "#/$defs/PreviousProtocolsList"
+                }
+            }
+        },
+        "ProtocolsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Protocol"
+            }
+        },
+        "PreviousProtocolsList": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ProtocolsList"
+            }
+        },
+        "GetProtocolsListRequest": {
+            "type": "object",
+            "properties": {
+                "ListId": {
+                    "$ref": "#/$defs/ListId"
+                },
+                "DefaultList": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "GetResourceSetResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceSet": {
+                    "$ref": "#/$defs/ResourceSet"
+                },
+                "ResourceSetArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceSet": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Base62Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "UpdateToken": {
+                    "$ref": "#/$defs/UpdateToken"
+                },
+                "ResourceTypeList": {
+                    "$ref": "#/$defs/ResourceTypeList"
+                },
+                "LastUpdateTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "ResourceSetStatus": {
+                    "$ref": "#/$defs/ResourceSetStatus"
+                }
+            }
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "ResourceSetStatus": {
+            "enum": [
+                "ACTIVE",
+                "OUT_OF_ADMIN_SCOPE"
+            ]
+        },
+        "GetResourceSetRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Base62Id"
+                }
+            }
+        },
+        "GetThirdPartyFirewallAssociationStatusResponse": {
+            "type": "object",
+            "properties": {
+                "ThirdPartyFirewallStatus": {
+                    "$ref": "#/$defs/ThirdPartyFirewallAssociationStatus"
+                },
+                "MarketplaceOnboardingStatus": {
+                    "$ref": "#/$defs/MarketplaceSubscriptionOnboardingStatus"
+                }
+            }
+        },
+        "MarketplaceSubscriptionOnboardingStatus": {
+            "enum": [
+                "NO_SUBSCRIPTION",
+                "NOT_COMPLETE",
+                "COMPLETE"
+            ]
+        },
+        "GetThirdPartyFirewallAssociationStatusRequest": {
+            "type": "object",
+            "properties": {
+                "ThirdPartyFirewall": {
+                    "$ref": "#/$defs/ThirdPartyFirewall"
+                }
+            }
+        },
+        "GetViolationDetailsResponse": {
+            "type": "object",
+            "properties": {
+                "ViolationDetail": {
+                    "$ref": "#/$defs/ViolationDetail"
+                }
+            }
+        },
+        "ViolationDetail": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "MemberAccount": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceViolations": {
+                    "$ref": "#/$defs/ResourceViolations"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ResourceDescription": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                }
+            }
+        },
+        "ResourceViolations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceViolation"
+            }
+        },
+        "ResourceViolation": {
+            "type": "object",
+            "properties": {
+                "AwsVPCSecurityGroupViolation": {
+                    "$ref": "#/$defs/AwsVPCSecurityGroupViolation"
+                },
+                "AwsEc2NetworkInterfaceViolation": {
+                    "$ref": "#/$defs/AwsEc2NetworkInterfaceViolation"
+                },
+                "AwsEc2InstanceViolation": {
+                    "$ref": "#/$defs/AwsEc2InstanceViolation"
+                },
+                "NetworkFirewallMissingFirewallViolation": {
+                    "$ref": "#/$defs/NetworkFirewallMissingFirewallViolation"
+                },
+                "NetworkFirewallMissingSubnetViolation": {
+                    "$ref": "#/$defs/NetworkFirewallMissingSubnetViolation"
+                },
+                "NetworkFirewallMissingExpectedRTViolation": {
+                    "$ref": "#/$defs/NetworkFirewallMissingExpectedRTViolation"
+                },
+                "NetworkFirewallPolicyModifiedViolation": {
+                    "$ref": "#/$defs/NetworkFirewallPolicyModifiedViolation"
+                },
+                "NetworkFirewallInternetTrafficNotInspectedViolation": {
+                    "$ref": "#/$defs/NetworkFirewallInternetTrafficNotInspectedViolation"
+                },
+                "NetworkFirewallInvalidRouteConfigurationViolation": {
+                    "$ref": "#/$defs/NetworkFirewallInvalidRouteConfigurationViolation"
+                },
+                "NetworkFirewallBlackHoleRouteDetectedViolation": {
+                    "$ref": "#/$defs/NetworkFirewallBlackHoleRouteDetectedViolation"
+                },
+                "NetworkFirewallUnexpectedFirewallRoutesViolation": {
+                    "$ref": "#/$defs/NetworkFirewallUnexpectedFirewallRoutesViolation"
+                },
+                "NetworkFirewallUnexpectedGatewayRoutesViolation": {
+                    "$ref": "#/$defs/NetworkFirewallUnexpectedGatewayRoutesViolation"
+                },
+                "NetworkFirewallMissingExpectedRoutesViolation": {
+                    "$ref": "#/$defs/NetworkFirewallMissingExpectedRoutesViolation"
+                },
+                "DnsRuleGroupPriorityConflictViolation": {
+                    "$ref": "#/$defs/DnsRuleGroupPriorityConflictViolation"
+                },
+                "DnsDuplicateRuleGroupViolation": {
+                    "$ref": "#/$defs/DnsDuplicateRuleGroupViolation"
+                },
+                "DnsRuleGroupLimitExceededViolation": {
+                    "$ref": "#/$defs/DnsRuleGroupLimitExceededViolation"
+                },
+                "FirewallSubnetIsOutOfScopeViolation": {
+                    "$ref": "#/$defs/FirewallSubnetIsOutOfScopeViolation"
+                },
+                "RouteHasOutOfScopeEndpointViolation": {
+                    "$ref": "#/$defs/RouteHasOutOfScopeEndpointViolation"
+                },
+                "ThirdPartyFirewallMissingFirewallViolation": {
+                    "$ref": "#/$defs/ThirdPartyFirewallMissingFirewallViolation"
+                },
+                "ThirdPartyFirewallMissingSubnetViolation": {
+                    "$ref": "#/$defs/ThirdPartyFirewallMissingSubnetViolation"
+                },
+                "ThirdPartyFirewallMissingExpectedRouteTableViolation": {
+                    "$ref": "#/$defs/ThirdPartyFirewallMissingExpectedRouteTableViolation"
+                },
+                "FirewallSubnetMissingVPCEndpointViolation": {
+                    "$ref": "#/$defs/FirewallSubnetMissingVPCEndpointViolation"
+                },
+                "InvalidNetworkAclEntriesViolation": {
+                    "$ref": "#/$defs/InvalidNetworkAclEntriesViolation"
+                },
+                "PossibleRemediationActions": {
+                    "$ref": "#/$defs/PossibleRemediationActions"
+                }
+            }
+        },
+        "AwsVPCSecurityGroupViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "ViolationTargetDescription": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "PartialMatches": {
+                    "$ref": "#/$defs/PartialMatches"
+                },
+                "PossibleSecurityGroupRemediationActions": {
+                    "$ref": "#/$defs/SecurityGroupRemediationActions"
+                }
+            }
+        },
+        "ViolationTarget": {
+            "type": "string"
+        },
+        "PartialMatches": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartialMatch"
+            }
+        },
+        "PartialMatch": {
+            "type": "object",
+            "properties": {
+                "Reference": {
+                    "$ref": "#/$defs/ReferenceRule"
+                },
+                "TargetViolationReasons": {
+                    "$ref": "#/$defs/TargetViolationReasons"
+                }
+            }
+        },
+        "ReferenceRule": {
+            "type": "string"
+        },
+        "TargetViolationReasons": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetViolationReason"
+            }
+        },
+        "TargetViolationReason": {
+            "type": "string"
+        },
+        "SecurityGroupRemediationActions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityGroupRemediationAction"
+            }
+        },
+        "SecurityGroupRemediationAction": {
+            "type": "object",
+            "properties": {
+                "RemediationActionType": {
+                    "$ref": "#/$defs/RemediationActionType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/RemediationActionDescription"
+                },
+                "RemediationResult": {
+                    "$ref": "#/$defs/SecurityGroupRuleDescription"
+                },
+                "IsDefaultAction": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "RemediationActionType": {
+            "enum": [
+                "Remove",
+                "Modify"
+            ]
+        },
+        "RemediationActionDescription": {
+            "type": "string"
+        },
+        "SecurityGroupRuleDescription": {
+            "type": "object",
+            "properties": {
+                "IPV4Range": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "IPV6Range": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "PrefixListId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "FromPort": {
+                    "$ref": "#/$defs/IPPortNumber"
+                },
+                "ToPort": {
+                    "$ref": "#/$defs/IPPortNumber"
+                }
+            }
+        },
+        "CIDR": {
+            "type": "string"
+        },
+        "AwsEc2NetworkInterfaceViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "ViolatingSecurityGroups": {
+                    "$ref": "#/$defs/ResourceIdList"
+                }
+            }
+        },
+        "ResourceIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceId"
+            }
+        },
+        "AwsEc2InstanceViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "AwsEc2NetworkInterfaceViolations": {
+                    "$ref": "#/$defs/AwsEc2NetworkInterfaceViolations"
+                }
+            }
+        },
+        "AwsEc2NetworkInterfaceViolations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AwsEc2NetworkInterfaceViolation"
+            }
+        },
+        "NetworkFirewallMissingFirewallViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "VPC": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "TargetViolationReason": {
+                    "$ref": "#/$defs/TargetViolationReason"
+                }
+            }
+        },
+        "NetworkFirewallMissingSubnetViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "VPC": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "TargetViolationReason": {
+                    "$ref": "#/$defs/TargetViolationReason"
+                }
+            }
+        },
+        "NetworkFirewallMissingExpectedRTViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "VPC": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "CurrentRouteTable": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ExpectedRouteTable": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "NetworkFirewallPolicyModifiedViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "CurrentPolicyDescription": {
+                    "$ref": "#/$defs/NetworkFirewallPolicyDescription"
+                },
+                "ExpectedPolicyDescription": {
+                    "$ref": "#/$defs/NetworkFirewallPolicyDescription"
+                }
+            }
+        },
+        "NetworkFirewallPolicyDescription": {
+            "type": "object",
+            "properties": {
+                "StatelessRuleGroups": {
+                    "$ref": "#/$defs/StatelessRuleGroupList"
+                },
+                "StatelessDefaultActions": {
+                    "$ref": "#/$defs/NetworkFirewallActionList"
+                },
+                "StatelessFragmentDefaultActions": {
+                    "$ref": "#/$defs/NetworkFirewallActionList"
+                },
+                "StatelessCustomActions": {
+                    "$ref": "#/$defs/NetworkFirewallActionList"
+                },
+                "StatefulRuleGroups": {
+                    "$ref": "#/$defs/StatefulRuleGroupList"
+                },
+                "StatefulDefaultActions": {
+                    "$ref": "#/$defs/NetworkFirewallActionList"
+                },
+                "StatefulEngineOptions": {
+                    "$ref": "#/$defs/StatefulEngineOptions"
+                }
+            }
+        },
+        "StatelessRuleGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StatelessRuleGroup"
+            }
+        },
+        "StatelessRuleGroup": {
+            "type": "object",
+            "properties": {
+                "RuleGroupName": {
+                    "$ref": "#/$defs/NetworkFirewallResourceName"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Priority": {
+                    "$ref": "#/$defs/StatelessRuleGroupPriority"
+                }
+            }
+        },
+        "NetworkFirewallResourceName": {
+            "type": "string"
+        },
+        "StatelessRuleGroupPriority": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NetworkFirewallActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetworkFirewallAction"
+            }
+        },
+        "NetworkFirewallAction": {
+            "type": "string"
+        },
+        "StatefulRuleGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StatefulRuleGroup"
+            }
+        },
+        "StatefulRuleGroup": {
+            "type": "object",
+            "properties": {
+                "RuleGroupName": {
+                    "$ref": "#/$defs/NetworkFirewallResourceName"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Priority": {
+                    "$ref": "#/$defs/PriorityNumber"
+                },
+                "Override": {
+                    "$ref": "#/$defs/NetworkFirewallStatefulRuleGroupOverride"
+                }
+            }
+        },
+        "PriorityNumber": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NetworkFirewallStatefulRuleGroupOverride": {
+            "type": "object",
+            "properties": {
+                "Action": {
+                    "$ref": "#/$defs/NetworkFirewallOverrideAction"
+                }
+            }
+        },
+        "NetworkFirewallOverrideAction": {
+            "enum": [
+                "DROP_TO_ALERT"
+            ]
+        },
+        "StatefulEngineOptions": {
+            "type": "object",
+            "properties": {
+                "RuleOrder": {
+                    "$ref": "#/$defs/RuleOrder"
+                },
+                "StreamExceptionPolicy": {
+                    "$ref": "#/$defs/StreamExceptionPolicy"
+                }
+            }
+        },
+        "RuleOrder": {
+            "enum": [
+                "STRICT_ORDER",
+                "DEFAULT_ACTION_ORDER"
+            ]
+        },
+        "StreamExceptionPolicy": {
+            "enum": [
+                "DROP",
+                "CONTINUE",
+                "REJECT",
+                "FMS_IGNORE"
+            ]
+        },
+        "NetworkFirewallInternetTrafficNotInspectedViolation": {
+            "type": "object",
+            "properties": {
+                "SubnetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "SubnetAvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ViolatingRoutes": {
+                    "$ref": "#/$defs/Routes"
+                },
+                "IsRouteTableUsedInDifferentAZ": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CurrentFirewallSubnetRouteTable": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ExpectedFirewallEndpoint": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "FirewallSubnetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ExpectedFirewallSubnetRoutes": {
+                    "$ref": "#/$defs/ExpectedRoutes"
+                },
+                "ActualFirewallSubnetRoutes": {
+                    "$ref": "#/$defs/Routes"
+                },
+                "InternetGatewayId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "CurrentInternetGatewayRouteTable": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ExpectedInternetGatewayRoutes": {
+                    "$ref": "#/$defs/ExpectedRoutes"
+                },
+                "ActualInternetGatewayRoutes": {
+                    "$ref": "#/$defs/Routes"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "Routes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Route"
+            }
+        },
+        "Route": {
+            "type": "object",
+            "properties": {
+                "DestinationType": {
+                    "$ref": "#/$defs/DestinationType"
+                },
+                "TargetType": {
+                    "$ref": "#/$defs/TargetType"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "Target": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                }
+            }
+        },
+        "DestinationType": {
+            "enum": [
+                "IPV4",
+                "IPV6",
+                "PrefixList"
+            ]
+        },
+        "TargetType": {
+            "enum": [
+                "Gateway",
+                "CarrierGateway",
+                "Instance",
+                "LocalGateway",
+                "NatGateway",
+                "NetworkInterface",
+                "VPCEndpoint",
+                "VPCPeeringConnection",
+                "EgressOnlyInternetGateway",
+                "TransitGateway"
+            ]
+        },
+        "ExpectedRoutes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExpectedRoute"
+            }
+        },
+        "ExpectedRoute": {
+            "type": "object",
+            "properties": {
+                "IpV4Cidr": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "PrefixListId": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "IpV6Cidr": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "ContributingSubnets": {
+                    "$ref": "#/$defs/ResourceIdList"
+                },
+                "AllowedTargets": {
+                    "$ref": "#/$defs/LengthBoundedStringList"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "LengthBoundedStringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LengthBoundedString"
+            }
+        },
+        "NetworkFirewallInvalidRouteConfigurationViolation": {
+            "type": "object",
+            "properties": {
+                "AffectedSubnets": {
+                    "$ref": "#/$defs/ResourceIdList"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "IsRouteTableUsedInDifferentAZ": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ViolatingRoute": {
+                    "$ref": "#/$defs/Route"
+                },
+                "CurrentFirewallSubnetRouteTable": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ExpectedFirewallEndpoint": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ActualFirewallEndpoint": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ExpectedFirewallSubnetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ActualFirewallSubnetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ExpectedFirewallSubnetRoutes": {
+                    "$ref": "#/$defs/ExpectedRoutes"
+                },
+                "ActualFirewallSubnetRoutes": {
+                    "$ref": "#/$defs/Routes"
+                },
+                "InternetGatewayId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "CurrentInternetGatewayRouteTable": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ExpectedInternetGatewayRoutes": {
+                    "$ref": "#/$defs/ExpectedRoutes"
+                },
+                "ActualInternetGatewayRoutes": {
+                    "$ref": "#/$defs/Routes"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "NetworkFirewallBlackHoleRouteDetectedViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ViolatingRoutes": {
+                    "$ref": "#/$defs/Routes"
+                }
+            }
+        },
+        "NetworkFirewallUnexpectedFirewallRoutesViolation": {
+            "type": "object",
+            "properties": {
+                "FirewallSubnetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ViolatingRoutes": {
+                    "$ref": "#/$defs/Routes"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "FirewallEndpoint": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "NetworkFirewallUnexpectedGatewayRoutesViolation": {
+            "type": "object",
+            "properties": {
+                "GatewayId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ViolatingRoutes": {
+                    "$ref": "#/$defs/Routes"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "NetworkFirewallMissingExpectedRoutesViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "ExpectedRoutes": {
+                    "$ref": "#/$defs/ExpectedRoutes"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DnsRuleGroupPriorityConflictViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "ViolationTargetDescription": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "ConflictingPriority": {
+                    "$ref": "#/$defs/DnsRuleGroupPriority"
+                },
+                "ConflictingPolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "UnavailablePriorities": {
+                    "$ref": "#/$defs/DnsRuleGroupPriorities"
+                }
+            }
+        },
+        "DnsRuleGroupPriority": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DnsRuleGroupPriorities": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DnsRuleGroupPriority"
+            }
+        },
+        "DnsDuplicateRuleGroupViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "ViolationTargetDescription": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                }
+            }
+        },
+        "DnsRuleGroupLimitExceededViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "ViolationTargetDescription": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "NumberOfRuleGroupsAlreadyAssociated": {
+                    "$ref": "#/$defs/BasicInteger"
+                }
+            }
+        },
+        "BasicInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FirewallSubnetIsOutOfScopeViolation": {
+            "type": "object",
+            "properties": {
+                "FirewallSubnetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "SubnetAvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "SubnetAvailabilityZoneId": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "VpcEndpointId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "RouteHasOutOfScopeEndpointViolation": {
+            "type": "object",
+            "properties": {
+                "SubnetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ViolatingRoutes": {
+                    "$ref": "#/$defs/Routes"
+                },
+                "SubnetAvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "SubnetAvailabilityZoneId": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "CurrentFirewallSubnetRouteTable": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "FirewallSubnetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "FirewallSubnetRoutes": {
+                    "$ref": "#/$defs/Routes"
+                },
+                "InternetGatewayId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "CurrentInternetGatewayRouteTable": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "InternetGatewayRoutes": {
+                    "$ref": "#/$defs/Routes"
+                }
+            }
+        },
+        "ThirdPartyFirewallMissingFirewallViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "VPC": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "TargetViolationReason": {
+                    "$ref": "#/$defs/TargetViolationReason"
+                }
+            }
+        },
+        "ThirdPartyFirewallMissingSubnetViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "VPC": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "TargetViolationReason": {
+                    "$ref": "#/$defs/TargetViolationReason"
+                }
+            }
+        },
+        "ThirdPartyFirewallMissingExpectedRouteTableViolation": {
+            "type": "object",
+            "properties": {
+                "ViolationTarget": {
+                    "$ref": "#/$defs/ViolationTarget"
+                },
+                "VPC": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "CurrentRouteTable": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ExpectedRouteTable": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "FirewallSubnetMissingVPCEndpointViolation": {
+            "type": "object",
+            "properties": {
+                "FirewallSubnetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "SubnetAvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "SubnetAvailabilityZoneId": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                }
+            }
+        },
+        "InvalidNetworkAclEntriesViolation": {
+            "type": "object",
+            "properties": {
+                "Vpc": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Subnet": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "SubnetAvailabilityZone": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "CurrentAssociatedNetworkAcl": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "EntryViolations": {
+                    "$ref": "#/$defs/EntryViolations"
+                }
+            }
+        },
+        "EntryViolations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntryViolation"
+            }
+        },
+        "EntryViolation": {
+            "type": "object",
+            "properties": {
+                "ExpectedEntry": {
+                    "$ref": "#/$defs/EntryDescription"
+                },
+                "ExpectedEvaluationOrder": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "ActualEvaluationOrder": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "EntryAtExpectedEvaluationOrder": {
+                    "$ref": "#/$defs/EntryDescription"
+                },
+                "EntriesWithConflicts": {
+                    "$ref": "#/$defs/EntriesWithConflicts"
+                },
+                "EntryViolationReasons": {
+                    "$ref": "#/$defs/EntryViolationReasons"
+                }
+            }
+        },
+        "EntryDescription": {
+            "type": "object",
+            "properties": {
+                "EntryDetail": {
+                    "$ref": "#/$defs/NetworkAclEntry"
+                },
+                "EntryRuleNumber": {
+                    "$ref": "#/$defs/IntegerObjectMinimum0"
+                },
+                "EntryType": {
+                    "$ref": "#/$defs/EntryType"
+                }
+            }
+        },
+        "IntegerObjectMinimum0": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "EntryType": {
+            "enum": [
+                "FMSManagedFirstEntry",
+                "FMSManagedLastEntry",
+                "CustomEntry"
+            ]
+        },
+        "EntriesWithConflicts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntryDescription"
+            }
+        },
+        "EntryViolationReasons": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntryViolationReason"
+            }
+        },
+        "EntryViolationReason": {
+            "enum": [
+                "MissingExpectedEntry",
+                "IncorrectEntryOrder",
+                "EntryConflict"
+            ]
+        },
+        "PossibleRemediationActions": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "Actions": {
+                    "$ref": "#/$defs/PossibleRemediationActionList"
+                }
+            }
+        },
+        "PossibleRemediationActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PossibleRemediationAction"
+            }
+        },
+        "PossibleRemediationAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "OrderedRemediationActions": {
+                    "$ref": "#/$defs/OrderedRemediationActions"
+                },
+                "IsDefaultAction": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "OrderedRemediationActions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RemediationActionWithOrder"
+            }
+        },
+        "RemediationActionWithOrder": {
+            "type": "object",
+            "properties": {
+                "RemediationAction": {
+                    "$ref": "#/$defs/RemediationAction"
+                },
+                "Order": {
+                    "$ref": "#/$defs/BasicInteger"
+                }
+            }
+        },
+        "RemediationAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "EC2CreateRouteAction": {
+                    "$ref": "#/$defs/EC2CreateRouteAction"
+                },
+                "EC2ReplaceRouteAction": {
+                    "$ref": "#/$defs/EC2ReplaceRouteAction"
+                },
+                "EC2DeleteRouteAction": {
+                    "$ref": "#/$defs/EC2DeleteRouteAction"
+                },
+                "EC2CopyRouteTableAction": {
+                    "$ref": "#/$defs/EC2CopyRouteTableAction"
+                },
+                "EC2ReplaceRouteTableAssociationAction": {
+                    "$ref": "#/$defs/EC2ReplaceRouteTableAssociationAction"
+                },
+                "EC2AssociateRouteTableAction": {
+                    "$ref": "#/$defs/EC2AssociateRouteTableAction"
+                },
+                "EC2CreateRouteTableAction": {
+                    "$ref": "#/$defs/EC2CreateRouteTableAction"
+                },
+                "FMSPolicyUpdateFirewallCreationConfigAction": {
+                    "$ref": "#/$defs/FMSPolicyUpdateFirewallCreationConfigAction"
+                },
+                "CreateNetworkAclAction": {
+                    "$ref": "#/$defs/CreateNetworkAclAction"
+                },
+                "ReplaceNetworkAclAssociationAction": {
+                    "$ref": "#/$defs/ReplaceNetworkAclAssociationAction"
+                },
+                "CreateNetworkAclEntriesAction": {
+                    "$ref": "#/$defs/CreateNetworkAclEntriesAction"
+                },
+                "DeleteNetworkAclEntriesAction": {
+                    "$ref": "#/$defs/DeleteNetworkAclEntriesAction"
+                }
+            }
+        },
+        "EC2CreateRouteAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "DestinationCidrBlock": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "DestinationPrefixListId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "DestinationIpv6CidrBlock": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "VpcEndpointId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "GatewayId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ActionTarget"
+                }
+            }
+        },
+        "ActionTarget": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                }
+            }
+        },
+        "EC2ReplaceRouteAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "DestinationCidrBlock": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "DestinationPrefixListId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "DestinationIpv6CidrBlock": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "GatewayId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ActionTarget"
+                }
+            }
+        },
+        "EC2DeleteRouteAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "DestinationCidrBlock": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "DestinationPrefixListId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "DestinationIpv6CidrBlock": {
+                    "$ref": "#/$defs/CIDR"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ActionTarget"
+                }
+            }
+        },
+        "EC2CopyRouteTableAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ActionTarget"
+                }
+            }
+        },
+        "EC2ReplaceRouteTableAssociationAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "AssociationId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ActionTarget"
+                }
+            }
+        },
+        "EC2AssociateRouteTableAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "RouteTableId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "SubnetId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "GatewayId": {
+                    "$ref": "#/$defs/ActionTarget"
+                }
+            }
+        },
+        "EC2CreateRouteTableAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/ActionTarget"
+                }
+            }
+        },
+        "FMSPolicyUpdateFirewallCreationConfigAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "FirewallCreationConfig": {
+                    "$ref": "#/$defs/ManagedServiceData"
+                }
+            }
+        },
+        "CreateNetworkAclAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "Vpc": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "FMSCanRemediate": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ReplaceNetworkAclAssociationAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "AssociationId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "NetworkAclId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "FMSCanRemediate": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "CreateNetworkAclEntriesAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "NetworkAclId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "NetworkAclEntriesToBeCreated": {
+                    "$ref": "#/$defs/EntriesDescription"
+                },
+                "FMSCanRemediate": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "EntriesDescription": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntryDescription"
+            }
+        },
+        "DeleteNetworkAclEntriesAction": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                },
+                "NetworkAclId": {
+                    "$ref": "#/$defs/ActionTarget"
+                },
+                "NetworkAclEntriesToBeDeleted": {
+                    "$ref": "#/$defs/EntriesDescription"
+                },
+                "FMSCanRemediate": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "GetViolationDetailsRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "MemberAccount": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                }
+            }
+        },
+        "ListAdminAccountsForOrganizationResponse": {
+            "type": "object",
+            "properties": {
+                "AdminAccounts": {
+                    "$ref": "#/$defs/AdminAccountSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "AdminAccountSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdminAccountSummary"
+            }
+        },
+        "AdminAccountSummary": {
+            "type": "object",
+            "properties": {
+                "AdminAccount": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "DefaultAdmin": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Status": {
+                    "$ref": "#/$defs/OrganizationStatus"
+                }
+            }
+        },
+        "ListAdminAccountsForOrganizationRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "ListAdminsManagingAccountResponse": {
+            "type": "object",
+            "properties": {
+                "AdminAccounts": {
+                    "$ref": "#/$defs/AccountIdList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListAdminsManagingAccountRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "ListAppsListsResponse": {
+            "type": "object",
+            "properties": {
+                "AppsLists": {
+                    "$ref": "#/$defs/AppsListsData"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "AppsListsData": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AppsListDataSummary"
+            }
+        },
+        "AppsListDataSummary": {
+            "type": "object",
+            "properties": {
+                "ListArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "ListId": {
+                    "$ref": "#/$defs/ListId"
+                },
+                "ListName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "AppsList": {
+                    "$ref": "#/$defs/AppsList"
+                }
+            }
+        },
+        "ListAppsListsRequest": {
+            "type": "object",
+            "properties": {
+                "DefaultLists": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "ListComplianceStatusResponse": {
+            "type": "object",
+            "properties": {
+                "PolicyComplianceStatusList": {
+                    "$ref": "#/$defs/PolicyComplianceStatusList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "PolicyComplianceStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyComplianceStatus"
+            }
+        },
+        "PolicyComplianceStatus": {
+            "type": "object",
+            "properties": {
+                "PolicyOwner": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "MemberAccount": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "EvaluationResults": {
+                    "$ref": "#/$defs/EvaluationResults"
+                },
+                "LastUpdated": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "IssueInfoMap": {
+                    "$ref": "#/$defs/IssueInfoMap"
+                }
+            }
+        },
+        "EvaluationResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EvaluationResult"
+            }
+        },
+        "EvaluationResult": {
+            "type": "object",
+            "properties": {
+                "ComplianceStatus": {
+                    "$ref": "#/$defs/PolicyComplianceStatusType"
+                },
+                "ViolatorCount": {
+                    "$ref": "#/$defs/ResourceCount"
+                },
+                "EvaluationLimitExceeded": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "PolicyComplianceStatusType": {
+            "enum": [
+                "Compliant",
+                "NonCompliant"
+            ]
+        },
+        "ResourceCount": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ListComplianceStatusRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "ListDiscoveredResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/DiscoveredResourceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "DiscoveredResourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DiscoveredResource"
+            }
+        },
+        "DiscoveredResource": {
+            "type": "object",
+            "properties": {
+                "URI": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "ListDiscoveredResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "MemberAccountIds": {
+                    "$ref": "#/$defs/AWSAccountIdList"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "AWSAccountIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AWSAccountId"
+            }
+        },
+        "ListMemberAccountsResponse": {
+            "type": "object",
+            "properties": {
+                "MemberAccounts": {
+                    "$ref": "#/$defs/MemberAccounts"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "MemberAccounts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AWSAccountId"
+            }
+        },
+        "ListMemberAccountsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "ListPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "PolicyList": {
+                    "$ref": "#/$defs/PolicySummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "PolicySummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicySummary"
+            }
+        },
+        "PolicySummary": {
+            "type": "object",
+            "properties": {
+                "PolicyArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "SecurityServiceType": {
+                    "$ref": "#/$defs/SecurityServiceType"
+                },
+                "RemediationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DeleteUnusedFMManagedResources": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PolicyStatus": {
+                    "$ref": "#/$defs/CustomerPolicyStatus"
+                }
+            }
+        },
+        "ListPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "ListProtocolsListsResponse": {
+            "type": "object",
+            "properties": {
+                "ProtocolsLists": {
+                    "$ref": "#/$defs/ProtocolsListsData"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ProtocolsListsData": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProtocolsListDataSummary"
+            }
+        },
+        "ProtocolsListDataSummary": {
+            "type": "object",
+            "properties": {
+                "ListArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "ListId": {
+                    "$ref": "#/$defs/ListId"
+                },
+                "ListName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "ProtocolsList": {
+                    "$ref": "#/$defs/ProtocolsList"
+                }
+            }
+        },
+        "ListProtocolsListsRequest": {
+            "type": "object",
+            "properties": {
+                "DefaultLists": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "ListResourceSetResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ResourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Resource"
+            }
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "URI": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AWSAccountId"
+                }
+            }
+        },
+        "ListResourceSetResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListResourceSetsResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceSets": {
+                    "$ref": "#/$defs/ResourceSetSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ResourceSetSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceSetSummary"
+            }
+        },
+        "ResourceSetSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Base62Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "LastUpdateTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "ResourceSetStatus": {
+                    "$ref": "#/$defs/ResourceSetStatus"
+                }
+            }
+        },
+        "ListResourceSetsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ListThirdPartyFirewallFirewallPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "ThirdPartyFirewallFirewallPolicies": {
+                    "$ref": "#/$defs/ThirdPartyFirewallFirewallPolicies"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ThirdPartyFirewallFirewallPolicies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ThirdPartyFirewallFirewallPolicy"
+            }
+        },
+        "ThirdPartyFirewallFirewallPolicy": {
+            "type": "object",
+            "properties": {
+                "FirewallPolicyId": {
+                    "$ref": "#/$defs/FirewallPolicyId"
+                },
+                "FirewallPolicyName": {
+                    "$ref": "#/$defs/FirewallPolicyName"
+                }
+            }
+        },
+        "FirewallPolicyId": {
+            "type": "string"
+        },
+        "FirewallPolicyName": {
+            "type": "string"
+        },
+        "ListThirdPartyFirewallFirewallPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "ThirdPartyFirewall": {
+                    "$ref": "#/$defs/ThirdPartyFirewall"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "PutAdminAccountRequest": {
+            "type": "object",
+            "properties": {
+                "AdminAccount": {
+                    "$ref": "#/$defs/AWSAccountId"
+                },
+                "AdminScope": {
+                    "$ref": "#/$defs/AdminScope"
+                }
+            }
+        },
+        "PutAppsListResponse": {
+            "type": "object",
+            "properties": {
+                "AppsList": {
+                    "$ref": "#/$defs/AppsListData"
+                },
+                "AppsListArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "PutAppsListRequest": {
+            "type": "object",
+            "properties": {
+                "AppsList": {
+                    "$ref": "#/$defs/AppsListData"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PutNotificationChannelRequest": {
+            "type": "object",
+            "properties": {
+                "SnsTopicArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "SnsRoleName": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "PutPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                },
+                "PolicyArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "PutPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PutProtocolsListResponse": {
+            "type": "object",
+            "properties": {
+                "ProtocolsList": {
+                    "$ref": "#/$defs/ProtocolsListData"
+                },
+                "ProtocolsListArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "PutProtocolsListRequest": {
+            "type": "object",
+            "properties": {
+                "ProtocolsList": {
+                    "$ref": "#/$defs/ProtocolsListData"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PutResourceSetResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceSet": {
+                    "$ref": "#/$defs/ResourceSet"
+                },
+                "ResourceSetArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "PutResourceSetRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceSet": {
+                    "$ref": "#/$defs/ResourceSet"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://fms-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://fms-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://fms.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://fms.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

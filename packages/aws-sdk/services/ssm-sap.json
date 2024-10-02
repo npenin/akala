@@ -1,0 +1,2213 @@
+{
+    "name": "ssm-sap",
+    "commands": [
+        {
+            "name": "DeleteResourcePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteResourcePermissionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcePermissionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterApplicationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetApplicationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetComponent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetComponent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetComponentOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetComponentInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDatabase",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDatabase"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDatabaseOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDatabaseInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetOperation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetOperation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetOperationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetOperationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourcePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResourcePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourcePermissionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourcePermissionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListApplications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApplicationsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApplicationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListComponents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListComponents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListComponentsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListComponentsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatabases",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDatabases"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatabasesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatabasesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOperationEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOperationEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOperationEventsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOperationEventsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOperations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOperations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOperationsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOperationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePermissionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePermissionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterApplicationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartApplicationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartApplicationRefresh",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartApplicationRefresh"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartApplicationRefreshOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartApplicationRefreshInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopApplicationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopApplicationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApplicationSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateApplicationSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateApplicationSettingsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApplicationSettingsInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DeleteResourcePermissionOutput": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "DeleteResourcePermissionInput": {
+            "type": "object",
+            "properties": {
+                "ActionType": {
+                    "$ref": "#/$defs/PermissionActionType"
+                },
+                "SourceResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "PermissionActionType": {
+            "enum": [
+                "RESTORE"
+            ]
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "DeregisterApplicationOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeregisterApplicationInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                }
+            }
+        },
+        "ApplicationId": {
+            "type": "string"
+        },
+        "GetApplicationOutput": {
+            "type": "object",
+            "properties": {
+                "Application": {
+                    "$ref": "#/$defs/Application"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "Application": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ApplicationType"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                },
+                "AppRegistryArn": {
+                    "$ref": "#/$defs/AppRegistryArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ApplicationStatus"
+                },
+                "DiscoveryStatus": {
+                    "$ref": "#/$defs/ApplicationDiscoveryStatus"
+                },
+                "Components": {
+                    "$ref": "#/$defs/ComponentIdList"
+                },
+                "LastUpdated": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "AssociatedApplicationArns": {
+                    "$ref": "#/$defs/ApplicationArnList"
+                }
+            }
+        },
+        "ApplicationType": {
+            "enum": [
+                "HANA",
+                "SAP_ABAP"
+            ]
+        },
+        "SsmSapArn": {
+            "type": "string"
+        },
+        "AppRegistryArn": {
+            "type": "string"
+        },
+        "ApplicationStatus": {
+            "enum": [
+                "ACTIVATED",
+                "STARTING",
+                "STOPPED",
+                "STOPPING",
+                "FAILED",
+                "REGISTERING",
+                "DELETING",
+                "UNKNOWN"
+            ]
+        },
+        "ApplicationDiscoveryStatus": {
+            "enum": [
+                "SUCCESS",
+                "REGISTRATION_FAILED",
+                "REFRESH_FAILED",
+                "REGISTERING",
+                "DELETING"
+            ]
+        },
+        "ComponentIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComponentId"
+            }
+        },
+        "ComponentId": {
+            "type": "string"
+        },
+        "ApplicationArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SsmSapArn"
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "GetApplicationInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "ApplicationArn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                },
+                "AppRegistryArn": {
+                    "$ref": "#/$defs/AppRegistryArn"
+                }
+            }
+        },
+        "GetComponentOutput": {
+            "type": "object",
+            "properties": {
+                "Component": {
+                    "$ref": "#/$defs/Component"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "Component": {
+            "type": "object",
+            "properties": {
+                "ComponentId": {
+                    "$ref": "#/$defs/ComponentId"
+                },
+                "Sid": {
+                    "$ref": "#/$defs/SID"
+                },
+                "SystemNumber": {
+                    "$ref": "#/$defs/SAPInstanceNumber"
+                },
+                "ParentComponent": {
+                    "$ref": "#/$defs/ComponentId"
+                },
+                "ChildComponents": {
+                    "$ref": "#/$defs/ComponentIdList"
+                },
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "ComponentType": {
+                    "$ref": "#/$defs/ComponentType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ComponentStatus"
+                },
+                "SapHostname": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SapFeature": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SapKernelVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "HdbVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Resilience": {
+                    "$ref": "#/$defs/Resilience"
+                },
+                "AssociatedHost": {
+                    "$ref": "#/$defs/AssociatedHost"
+                },
+                "Databases": {
+                    "$ref": "#/$defs/DatabaseIdList"
+                },
+                "Hosts": {
+                    "$ref": "#/$defs/HostList"
+                },
+                "PrimaryHost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "DatabaseConnection": {
+                    "$ref": "#/$defs/DatabaseConnection"
+                },
+                "LastUpdated": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                }
+            }
+        },
+        "SID": {
+            "type": "string"
+        },
+        "SAPInstanceNumber": {
+            "type": "string"
+        },
+        "ComponentType": {
+            "enum": [
+                "HANA",
+                "HANA_NODE",
+                "ABAP",
+                "ASCS",
+                "DIALOG",
+                "WEBDISP",
+                "WD",
+                "ERS"
+            ]
+        },
+        "ComponentStatus": {
+            "enum": [
+                "ACTIVATED",
+                "STARTING",
+                "STOPPED",
+                "STOPPING",
+                "RUNNING",
+                "RUNNING_WITH_ERROR",
+                "UNDEFINED"
+            ]
+        },
+        "Resilience": {
+            "type": "object",
+            "properties": {
+                "HsrTier": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "HsrReplicationMode": {
+                    "$ref": "#/$defs/ReplicationMode"
+                },
+                "HsrOperationMode": {
+                    "$ref": "#/$defs/OperationMode"
+                },
+                "ClusterStatus": {
+                    "$ref": "#/$defs/ClusterStatus"
+                },
+                "EnqueueReplication": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "ReplicationMode": {
+            "enum": [
+                "PRIMARY",
+                "NONE",
+                "SYNC",
+                "SYNCMEM",
+                "ASYNC"
+            ]
+        },
+        "OperationMode": {
+            "enum": [
+                "PRIMARY",
+                "LOGREPLAY",
+                "DELTA_DATASHIPPING",
+                "LOGREPLAY_READACCESS",
+                "NONE"
+            ]
+        },
+        "ClusterStatus": {
+            "enum": [
+                "ONLINE",
+                "STANDBY",
+                "MAINTENANCE",
+                "OFFLINE",
+                "NONE"
+            ]
+        },
+        "AssociatedHost": {
+            "type": "object",
+            "properties": {
+                "Hostname": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Ec2InstanceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IpAddresses": {
+                    "$ref": "#/$defs/IpAddressList"
+                },
+                "OsVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "IpAddressList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IpAddressMember"
+            }
+        },
+        "IpAddressMember": {
+            "type": "object",
+            "properties": {
+                "IpAddress": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Primary": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "AllocationType": {
+                    "$ref": "#/$defs/AllocationType"
+                }
+            }
+        },
+        "AllocationType": {
+            "enum": [
+                "VPC_SUBNET",
+                "ELASTIC_IP",
+                "OVERLAY",
+                "UNKNOWN"
+            ]
+        },
+        "DatabaseIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatabaseId"
+            }
+        },
+        "DatabaseId": {
+            "type": "string"
+        },
+        "HostList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Host"
+            }
+        },
+        "Host": {
+            "type": "object",
+            "properties": {
+                "HostName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "HostIp": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "EC2InstanceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "HostRole": {
+                    "$ref": "#/$defs/HostRole"
+                },
+                "OsVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "HostRole": {
+            "enum": [
+                "LEADER",
+                "WORKER",
+                "STANDBY",
+                "UNKNOWN"
+            ]
+        },
+        "DatabaseConnection": {
+            "type": "object",
+            "properties": {
+                "DatabaseConnectionMethod": {
+                    "$ref": "#/$defs/DatabaseConnectionMethod"
+                },
+                "DatabaseArn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                },
+                "ConnectionIp": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "DatabaseConnectionMethod": {
+            "enum": [
+                "DIRECT",
+                "OVERLAY"
+            ]
+        },
+        "GetComponentInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "ComponentId": {
+                    "$ref": "#/$defs/ComponentId"
+                }
+            }
+        },
+        "GetDatabaseOutput": {
+            "type": "object",
+            "properties": {
+                "Database": {
+                    "$ref": "#/$defs/Database"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "Database": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "ComponentId": {
+                    "$ref": "#/$defs/ComponentId"
+                },
+                "Credentials": {
+                    "$ref": "#/$defs/ApplicationCredentialList"
+                },
+                "DatabaseId": {
+                    "$ref": "#/$defs/DatabaseId"
+                },
+                "DatabaseName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "DatabaseType": {
+                    "$ref": "#/$defs/DatabaseType"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DatabaseStatus"
+                },
+                "PrimaryHost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SQLPort": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "LastUpdated": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ConnectedComponentArns": {
+                    "$ref": "#/$defs/ComponentArnList"
+                }
+            }
+        },
+        "ApplicationCredentialList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationCredential"
+            }
+        },
+        "ApplicationCredential": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/DatabaseName"
+                },
+                "CredentialType": {
+                    "$ref": "#/$defs/CredentialType"
+                },
+                "SecretId": {
+                    "$ref": "#/$defs/SecretId"
+                }
+            }
+        },
+        "DatabaseName": {
+            "type": "string"
+        },
+        "CredentialType": {
+            "enum": [
+                "ADMIN"
+            ]
+        },
+        "SecretId": {
+            "type": "string"
+        },
+        "DatabaseType": {
+            "enum": [
+                "SYSTEM",
+                "TENANT"
+            ]
+        },
+        "DatabaseStatus": {
+            "enum": [
+                "RUNNING",
+                "STARTING",
+                "STOPPED",
+                "WARNING",
+                "UNKNOWN",
+                "ERROR"
+            ]
+        },
+        "ComponentArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SsmSapArn"
+            }
+        },
+        "GetDatabaseInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "ComponentId": {
+                    "$ref": "#/$defs/ComponentId"
+                },
+                "DatabaseId": {
+                    "$ref": "#/$defs/DatabaseId"
+                },
+                "DatabaseArn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                }
+            }
+        },
+        "GetOperationOutput": {
+            "type": "object",
+            "properties": {
+                "Operation": {
+                    "$ref": "#/$defs/Operation"
+                }
+            }
+        },
+        "Operation": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/OperationId"
+                },
+                "Type": {
+                    "$ref": "#/$defs/OperationType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/OperationStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Properties": {
+                    "$ref": "#/$defs/OperationProperties"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "OperationId": {
+            "type": "string"
+        },
+        "OperationType": {
+            "type": "string"
+        },
+        "OperationStatus": {
+            "enum": [
+                "INPROGRESS",
+                "SUCCESS",
+                "ERROR"
+            ]
+        },
+        "OperationProperties": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ResourceType": {
+            "type": "string"
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "GetOperationInput": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "GetResourcePermissionOutput": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetResourcePermissionInput": {
+            "type": "object",
+            "properties": {
+                "ActionType": {
+                    "$ref": "#/$defs/PermissionActionType"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListApplicationsOutput": {
+            "type": "object",
+            "properties": {
+                "Applications": {
+                    "$ref": "#/$defs/ApplicationSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ApplicationSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationSummary"
+            }
+        },
+        "ApplicationSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "DiscoveryStatus": {
+                    "$ref": "#/$defs/ApplicationDiscoveryStatus"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ApplicationType"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListApplicationsInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/FilterName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/FilterValue"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/FilterOperator"
+                }
+            }
+        },
+        "FilterName": {
+            "type": "string"
+        },
+        "FilterValue": {
+            "type": "string"
+        },
+        "FilterOperator": {
+            "enum": [
+                "EQUALS",
+                "GREATER_THAN_OR_EQUALS",
+                "LESS_THAN_OR_EQUALS"
+            ]
+        },
+        "ListComponentsOutput": {
+            "type": "object",
+            "properties": {
+                "Components": {
+                    "$ref": "#/$defs/ComponentSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ComponentSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComponentSummary"
+            }
+        },
+        "ComponentSummary": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "ComponentId": {
+                    "$ref": "#/$defs/ComponentId"
+                },
+                "ComponentType": {
+                    "$ref": "#/$defs/ComponentType"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                }
+            }
+        },
+        "ListComponentsInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListDatabasesOutput": {
+            "type": "object",
+            "properties": {
+                "Databases": {
+                    "$ref": "#/$defs/DatabaseSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DatabaseSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatabaseSummary"
+            }
+        },
+        "DatabaseSummary": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "ComponentId": {
+                    "$ref": "#/$defs/ComponentId"
+                },
+                "DatabaseId": {
+                    "$ref": "#/$defs/DatabaseId"
+                },
+                "DatabaseType": {
+                    "$ref": "#/$defs/DatabaseType"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListDatabasesInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "ComponentId": {
+                    "$ref": "#/$defs/ComponentId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListOperationEventsOutput": {
+            "type": "object",
+            "properties": {
+                "OperationEvents": {
+                    "$ref": "#/$defs/OperationEventList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "OperationEventList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperationEvent"
+            }
+        },
+        "OperationEvent": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Resource": {
+                    "$ref": "#/$defs/Resource"
+                },
+                "Status": {
+                    "$ref": "#/$defs/OperationEventStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Timestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/OperationEventResourceType"
+                }
+            }
+        },
+        "OperationEventResourceType": {
+            "type": "string"
+        },
+        "OperationEventStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETED",
+                "FAILED"
+            ]
+        },
+        "ListOperationEventsInput": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                }
+            }
+        },
+        "ListOperationsOutput": {
+            "type": "object",
+            "properties": {
+                "Operations": {
+                    "$ref": "#/$defs/OperationList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "OperationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Operation"
+            }
+        },
+        "ListOperationsInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                }
+            }
+        },
+        "PutResourcePermissionOutput": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "PutResourcePermissionInput": {
+            "type": "object",
+            "properties": {
+                "ActionType": {
+                    "$ref": "#/$defs/PermissionActionType"
+                },
+                "SourceResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "RegisterApplicationOutput": {
+            "type": "object",
+            "properties": {
+                "Application": {
+                    "$ref": "#/$defs/Application"
+                },
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "RegisterApplicationInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "ApplicationType": {
+                    "$ref": "#/$defs/ApplicationType"
+                },
+                "Instances": {
+                    "$ref": "#/$defs/InstanceList"
+                },
+                "SapInstanceNumber": {
+                    "$ref": "#/$defs/SAPInstanceNumber"
+                },
+                "Sid": {
+                    "$ref": "#/$defs/SID"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "Credentials": {
+                    "$ref": "#/$defs/ApplicationCredentialList"
+                },
+                "DatabaseArn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                }
+            }
+        },
+        "InstanceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceId"
+            }
+        },
+        "InstanceId": {
+            "type": "string"
+        },
+        "StartApplicationOutput": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "StartApplicationInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                }
+            }
+        },
+        "StartApplicationRefreshOutput": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "StartApplicationRefreshInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                }
+            }
+        },
+        "StopApplicationOutput": {
+            "type": "object",
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
+        },
+        "StopApplicationInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "StopConnectedEntity": {
+                    "$ref": "#/$defs/ConnectedEntityType"
+                },
+                "IncludeEc2InstanceShutdown": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "ConnectedEntityType": {
+            "enum": [
+                "DBMS"
+            ]
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateApplicationSettingsOutput": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "OperationIds": {
+                    "$ref": "#/$defs/OperationIdList"
+                }
+            }
+        },
+        "OperationIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperationId"
+            }
+        },
+        "UpdateApplicationSettingsInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "CredentialsToAddOrUpdate": {
+                    "$ref": "#/$defs/ApplicationCredentialList"
+                },
+                "CredentialsToRemove": {
+                    "$ref": "#/$defs/ApplicationCredentialList"
+                },
+                "Backint": {
+                    "$ref": "#/$defs/BackintConfig"
+                },
+                "DatabaseArn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                }
+            }
+        },
+        "BackintConfig": {
+            "type": "object",
+            "properties": {
+                "BackintMode": {
+                    "$ref": "#/$defs/BackintMode"
+                },
+                "EnsureNoBackupInProcess": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "BackintMode": {
+            "enum": [
+                "AWSBackup"
+            ]
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://ssm-sap-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://ssm-sap-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://ssm-sap.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ssm-sap.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

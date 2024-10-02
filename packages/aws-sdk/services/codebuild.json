@@ -1,0 +1,5222 @@
+{
+    "name": "codebuild",
+    "commands": [
+        {
+            "name": "BatchDeleteBuilds",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchDeleteBuilds"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDeleteBuildsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDeleteBuildsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetBuildBatches",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetBuildBatches"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetBuildBatchesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetBuildBatchesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetBuilds",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetBuilds"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetBuildsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetBuildsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetFleets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetFleets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetFleetsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetFleetsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetProjects",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetProjects"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetProjectsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetProjectsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetReportGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetReportGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetReportGroupsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetReportGroupsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetReports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetReports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetReportsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetReportsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateFleet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateFleet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateFleetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateFleetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateProject",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateProject"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateProjectOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateProjectInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateReportGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateReportGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateReportGroupOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateReportGroupInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateWebhook",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateWebhook"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateWebhookOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateWebhookInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBuildBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteBuildBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteBuildBatchOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBuildBatchInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFleet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFleet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteFleetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFleetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteProject",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteProject"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteProjectOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteProjectInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteReportOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteReportInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteReportGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteReportGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteReportGroupOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteReportGroupInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteResourcePolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcePolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSourceCredentials",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSourceCredentials"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSourceCredentialsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSourceCredentialsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteWebhook",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteWebhook"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteWebhookOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteWebhookInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCodeCoverages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCodeCoverages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCodeCoveragesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCodeCoveragesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTestCases",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTestCases"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTestCasesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTestCasesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetReportGroupTrend",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetReportGroupTrend"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetReportGroupTrendOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetReportGroupTrendInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourcePolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourcePolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportSourceCredentials",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportSourceCredentials"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportSourceCredentialsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportSourceCredentialsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InvalidateProjectCache",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InvalidateProjectCache"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvalidateProjectCacheOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvalidateProjectCacheInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBuildBatches",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListBuildBatches"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBuildBatchesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBuildBatchesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBuildBatchesForProject",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListBuildBatchesForProject"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBuildBatchesForProjectOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBuildBatchesForProjectInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBuilds",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListBuilds"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBuildsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBuildsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBuildsForProject",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListBuildsForProject"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBuildsForProjectOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBuildsForProjectInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCuratedEnvironmentImages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCuratedEnvironmentImages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCuratedEnvironmentImagesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCuratedEnvironmentImagesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFleets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFleets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFleetsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFleetsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProjects",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListProjects"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProjectsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProjectsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReportGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReportGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReportGroupsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReportGroupsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReportsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReportsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReportsForReportGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReportsForReportGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReportsForReportGroupOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReportsForReportGroupInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSharedProjects",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSharedProjects"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSharedProjectsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSharedProjectsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSharedReportGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSharedReportGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSharedReportGroupsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSharedReportGroupsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSourceCredentials",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSourceCredentials"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSourceCredentialsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSourceCredentialsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RetryBuild",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RetryBuild"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RetryBuildOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RetryBuildInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RetryBuildBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RetryBuildBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RetryBuildBatchOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RetryBuildBatchInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartBuild",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartBuild"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartBuildOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartBuildInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartBuildBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartBuildBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartBuildBatchOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartBuildBatchInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopBuild",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopBuild"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopBuildOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopBuildInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopBuildBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopBuildBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopBuildBatchOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopBuildBatchInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateFleet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateFleet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateFleetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateFleetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateProject",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateProject"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateProjectOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateProjectInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateProjectVisibility",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateProjectVisibility"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateProjectVisibilityOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateProjectVisibilityInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateReportGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateReportGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateReportGroupOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateReportGroupInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateWebhook",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateWebhook"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateWebhookOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateWebhookInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchDeleteBuildsOutput": {
+            "type": "object",
+            "properties": {
+                "buildsDeleted": {
+                    "$ref": "#/$defs/BuildIds"
+                },
+                "buildsNotDeleted": {
+                    "$ref": "#/$defs/BuildsNotDeleted"
+                }
+            }
+        },
+        "BuildIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "NonEmptyString": {
+            "type": "string"
+        },
+        "BuildsNotDeleted": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BuildNotDeleted"
+            }
+        },
+        "BuildNotDeleted": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "statusCode": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "BatchDeleteBuildsInput": {
+            "type": "object",
+            "properties": {
+                "ids": {
+                    "$ref": "#/$defs/BuildIds"
+                }
+            }
+        },
+        "BatchGetBuildBatchesOutput": {
+            "type": "object",
+            "properties": {
+                "buildBatches": {
+                    "$ref": "#/$defs/BuildBatches"
+                },
+                "buildBatchesNotFound": {
+                    "$ref": "#/$defs/BuildBatchIds"
+                }
+            }
+        },
+        "BuildBatches": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BuildBatch"
+            }
+        },
+        "BuildBatch": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "currentPhase": {
+                    "$ref": "#/$defs/String"
+                },
+                "buildBatchStatus": {
+                    "$ref": "#/$defs/StatusType"
+                },
+                "sourceVersion": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "resolvedSourceVersion": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "projectName": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "phases": {
+                    "$ref": "#/$defs/BuildBatchPhases"
+                },
+                "source": {
+                    "$ref": "#/$defs/ProjectSource"
+                },
+                "secondarySources": {
+                    "$ref": "#/$defs/ProjectSources"
+                },
+                "secondarySourceVersions": {
+                    "$ref": "#/$defs/ProjectSecondarySourceVersions"
+                },
+                "artifacts": {
+                    "$ref": "#/$defs/BuildArtifacts"
+                },
+                "secondaryArtifacts": {
+                    "$ref": "#/$defs/BuildArtifactsList"
+                },
+                "cache": {
+                    "$ref": "#/$defs/ProjectCache"
+                },
+                "environment": {
+                    "$ref": "#/$defs/ProjectEnvironment"
+                },
+                "serviceRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "logConfig": {
+                    "$ref": "#/$defs/LogsConfig"
+                },
+                "buildTimeoutInMinutes": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "queuedTimeoutInMinutes": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "complete": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "initiator": {
+                    "$ref": "#/$defs/String"
+                },
+                "vpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
+                "encryptionKey": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "buildBatchNumber": {
+                    "$ref": "#/$defs/WrapperLong"
+                },
+                "fileSystemLocations": {
+                    "$ref": "#/$defs/ProjectFileSystemLocations"
+                },
+                "buildBatchConfig": {
+                    "$ref": "#/$defs/ProjectBuildBatchConfig"
+                },
+                "buildGroups": {
+                    "$ref": "#/$defs/BuildGroups"
+                },
+                "debugSessionEnabled": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "StatusType": {
+            "enum": [
+                "SUCCEEDED",
+                "FAILED",
+                "FAULT",
+                "TIMED_OUT",
+                "IN_PROGRESS",
+                "STOPPED"
+            ]
+        },
+        "BuildBatchPhases": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BuildBatchPhase"
+            }
+        },
+        "BuildBatchPhase": {
+            "type": "object",
+            "properties": {
+                "phaseType": {
+                    "$ref": "#/$defs/BuildBatchPhaseType"
+                },
+                "phaseStatus": {
+                    "$ref": "#/$defs/StatusType"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "durationInSeconds": {
+                    "$ref": "#/$defs/WrapperLong"
+                },
+                "contexts": {
+                    "$ref": "#/$defs/PhaseContexts"
+                }
+            }
+        },
+        "BuildBatchPhaseType": {
+            "enum": [
+                "SUBMITTED",
+                "DOWNLOAD_BATCHSPEC",
+                "IN_PROGRESS",
+                "COMBINE_ARTIFACTS",
+                "SUCCEEDED",
+                "FAILED",
+                "STOPPED"
+            ]
+        },
+        "WrapperLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "PhaseContexts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PhaseContext"
+            }
+        },
+        "PhaseContext": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ProjectSource": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/SourceType"
+                },
+                "location": {
+                    "$ref": "#/$defs/String"
+                },
+                "gitCloneDepth": {
+                    "$ref": "#/$defs/GitCloneDepth"
+                },
+                "gitSubmodulesConfig": {
+                    "$ref": "#/$defs/GitSubmodulesConfig"
+                },
+                "buildspec": {
+                    "$ref": "#/$defs/String"
+                },
+                "auth": {
+                    "$ref": "#/$defs/SourceAuth"
+                },
+                "reportBuildStatus": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "buildStatusConfig": {
+                    "$ref": "#/$defs/BuildStatusConfig"
+                },
+                "insecureSsl": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "sourceIdentifier": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SourceType": {
+            "enum": [
+                "CODECOMMIT",
+                "CODEPIPELINE",
+                "GITHUB",
+                "GITLAB",
+                "GITLAB_SELF_MANAGED",
+                "S3",
+                "BITBUCKET",
+                "GITHUB_ENTERPRISE",
+                "NO_SOURCE"
+            ]
+        },
+        "GitCloneDepth": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GitSubmodulesConfig": {
+            "type": "object",
+            "properties": {
+                "fetchSubmodules": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                }
+            }
+        },
+        "WrapperBoolean": {
+            "type": "boolean"
+        },
+        "SourceAuth": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/SourceAuthType"
+                },
+                "resource": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SourceAuthType": {
+            "enum": [
+                "OAUTH",
+                "CODECONNECTIONS",
+                "SECRETS_MANAGER"
+            ]
+        },
+        "BuildStatusConfig": {
+            "type": "object",
+            "properties": {
+                "context": {
+                    "$ref": "#/$defs/String"
+                },
+                "targetUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ProjectSources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProjectSource"
+            }
+        },
+        "ProjectSecondarySourceVersions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProjectSourceVersion"
+            }
+        },
+        "ProjectSourceVersion": {
+            "type": "object",
+            "properties": {
+                "sourceIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "sourceVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BuildArtifacts": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "$ref": "#/$defs/String"
+                },
+                "sha256sum": {
+                    "$ref": "#/$defs/String"
+                },
+                "md5sum": {
+                    "$ref": "#/$defs/String"
+                },
+                "overrideArtifactName": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "encryptionDisabled": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "artifactIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "bucketOwnerAccess": {
+                    "$ref": "#/$defs/BucketOwnerAccess"
+                }
+            }
+        },
+        "BucketOwnerAccess": {
+            "enum": [
+                "NONE",
+                "READ_ONLY",
+                "FULL"
+            ]
+        },
+        "BuildArtifactsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BuildArtifacts"
+            }
+        },
+        "ProjectCache": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/CacheType"
+                },
+                "location": {
+                    "$ref": "#/$defs/String"
+                },
+                "modes": {
+                    "$ref": "#/$defs/ProjectCacheModes"
+                }
+            }
+        },
+        "CacheType": {
+            "enum": [
+                "NO_CACHE",
+                "S3",
+                "LOCAL"
+            ]
+        },
+        "ProjectCacheModes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CacheMode"
+            }
+        },
+        "CacheMode": {
+            "enum": [
+                "LOCAL_DOCKER_LAYER_CACHE",
+                "LOCAL_SOURCE_CACHE",
+                "LOCAL_CUSTOM_CACHE"
+            ]
+        },
+        "ProjectEnvironment": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/EnvironmentType"
+                },
+                "image": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "computeType": {
+                    "$ref": "#/$defs/ComputeType"
+                },
+                "fleet": {
+                    "$ref": "#/$defs/ProjectFleet"
+                },
+                "environmentVariables": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "privilegedMode": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "certificate": {
+                    "$ref": "#/$defs/String"
+                },
+                "registryCredential": {
+                    "$ref": "#/$defs/RegistryCredential"
+                },
+                "imagePullCredentialsType": {
+                    "$ref": "#/$defs/ImagePullCredentialsType"
+                }
+            }
+        },
+        "EnvironmentType": {
+            "enum": [
+                "WINDOWS_CONTAINER",
+                "LINUX_CONTAINER",
+                "LINUX_GPU_CONTAINER",
+                "ARM_CONTAINER",
+                "WINDOWS_SERVER_2019_CONTAINER",
+                "LINUX_LAMBDA_CONTAINER",
+                "ARM_LAMBDA_CONTAINER",
+                "MAC_ARM"
+            ]
+        },
+        "ComputeType": {
+            "enum": [
+                "BUILD_GENERAL1_SMALL",
+                "BUILD_GENERAL1_MEDIUM",
+                "BUILD_GENERAL1_LARGE",
+                "BUILD_GENERAL1_XLARGE",
+                "BUILD_GENERAL1_2XLARGE",
+                "BUILD_LAMBDA_1GB",
+                "BUILD_LAMBDA_2GB",
+                "BUILD_LAMBDA_4GB",
+                "BUILD_LAMBDA_8GB",
+                "BUILD_LAMBDA_10GB"
+            ]
+        },
+        "ProjectFleet": {
+            "type": "object",
+            "properties": {
+                "fleetArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EnvironmentVariables": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentVariable"
+            }
+        },
+        "EnvironmentVariable": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "value": {
+                    "$ref": "#/$defs/String"
+                },
+                "type": {
+                    "$ref": "#/$defs/EnvironmentVariableType"
+                }
+            }
+        },
+        "EnvironmentVariableType": {
+            "enum": [
+                "PLAINTEXT",
+                "PARAMETER_STORE",
+                "SECRETS_MANAGER"
+            ]
+        },
+        "RegistryCredential": {
+            "type": "object",
+            "properties": {
+                "credential": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "credentialProvider": {
+                    "$ref": "#/$defs/CredentialProviderType"
+                }
+            }
+        },
+        "CredentialProviderType": {
+            "enum": [
+                "SECRETS_MANAGER"
+            ]
+        },
+        "ImagePullCredentialsType": {
+            "enum": [
+                "CODEBUILD",
+                "SERVICE_ROLE"
+            ]
+        },
+        "LogsConfig": {
+            "type": "object",
+            "properties": {
+                "cloudWatchLogs": {
+                    "$ref": "#/$defs/CloudWatchLogsConfig"
+                },
+                "s3Logs": {
+                    "$ref": "#/$defs/S3LogsConfig"
+                }
+            }
+        },
+        "CloudWatchLogsConfig": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/LogsConfigStatusType"
+                },
+                "groupName": {
+                    "$ref": "#/$defs/String"
+                },
+                "streamName": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LogsConfigStatusType": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "S3LogsConfig": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/LogsConfigStatusType"
+                },
+                "location": {
+                    "$ref": "#/$defs/String"
+                },
+                "encryptionDisabled": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "bucketOwnerAccess": {
+                    "$ref": "#/$defs/BucketOwnerAccess"
+                }
+            }
+        },
+        "WrapperInt": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "VpcConfig": {
+            "type": "object",
+            "properties": {
+                "vpcId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "subnets": {
+                    "$ref": "#/$defs/Subnets"
+                },
+                "securityGroupIds": {
+                    "$ref": "#/$defs/SecurityGroupIds"
+                }
+            }
+        },
+        "Subnets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "SecurityGroupIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "ProjectFileSystemLocations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProjectFileSystemLocation"
+            }
+        },
+        "ProjectFileSystemLocation": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/FileSystemType"
+                },
+                "location": {
+                    "$ref": "#/$defs/String"
+                },
+                "mountPoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "identifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "mountOptions": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FileSystemType": {
+            "enum": [
+                "EFS"
+            ]
+        },
+        "ProjectBuildBatchConfig": {
+            "type": "object",
+            "properties": {
+                "serviceRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "combineArtifacts": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "restrictions": {
+                    "$ref": "#/$defs/BatchRestrictions"
+                },
+                "timeoutInMins": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "batchReportMode": {
+                    "$ref": "#/$defs/BatchReportModeType"
+                }
+            }
+        },
+        "BatchRestrictions": {
+            "type": "object",
+            "properties": {
+                "maximumBuildsAllowed": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "computeTypesAllowed": {
+                    "$ref": "#/$defs/ComputeTypesAllowed"
+                }
+            }
+        },
+        "ComputeTypesAllowed": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "BatchReportModeType": {
+            "enum": [
+                "REPORT_INDIVIDUAL_BUILDS",
+                "REPORT_AGGREGATED_BATCH"
+            ]
+        },
+        "BuildGroups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BuildGroup"
+            }
+        },
+        "BuildGroup": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "dependsOn": {
+                    "$ref": "#/$defs/Identifiers"
+                },
+                "ignoreFailure": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "currentBuildSummary": {
+                    "$ref": "#/$defs/BuildSummary"
+                },
+                "priorBuildSummaryList": {
+                    "$ref": "#/$defs/BuildSummaries"
+                }
+            }
+        },
+        "Identifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "BuildSummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "requestedOn": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "buildStatus": {
+                    "$ref": "#/$defs/StatusType"
+                },
+                "primaryArtifact": {
+                    "$ref": "#/$defs/ResolvedArtifact"
+                },
+                "secondaryArtifacts": {
+                    "$ref": "#/$defs/ResolvedSecondaryArtifacts"
+                }
+            }
+        },
+        "ResolvedArtifact": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/ArtifactsType"
+                },
+                "location": {
+                    "$ref": "#/$defs/String"
+                },
+                "identifier": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ArtifactsType": {
+            "enum": [
+                "CODEPIPELINE",
+                "S3",
+                "NO_ARTIFACTS"
+            ]
+        },
+        "ResolvedSecondaryArtifacts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResolvedArtifact"
+            }
+        },
+        "BuildSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BuildSummary"
+            }
+        },
+        "BuildBatchIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "BatchGetBuildBatchesInput": {
+            "type": "object",
+            "properties": {
+                "ids": {
+                    "$ref": "#/$defs/BuildBatchIds"
+                }
+            }
+        },
+        "BatchGetBuildsOutput": {
+            "type": "object",
+            "properties": {
+                "builds": {
+                    "$ref": "#/$defs/Builds"
+                },
+                "buildsNotFound": {
+                    "$ref": "#/$defs/BuildIds"
+                }
+            }
+        },
+        "Builds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Build"
+            }
+        },
+        "Build": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "buildNumber": {
+                    "$ref": "#/$defs/WrapperLong"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "currentPhase": {
+                    "$ref": "#/$defs/String"
+                },
+                "buildStatus": {
+                    "$ref": "#/$defs/StatusType"
+                },
+                "sourceVersion": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "resolvedSourceVersion": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "projectName": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "phases": {
+                    "$ref": "#/$defs/BuildPhases"
+                },
+                "source": {
+                    "$ref": "#/$defs/ProjectSource"
+                },
+                "secondarySources": {
+                    "$ref": "#/$defs/ProjectSources"
+                },
+                "secondarySourceVersions": {
+                    "$ref": "#/$defs/ProjectSecondarySourceVersions"
+                },
+                "artifacts": {
+                    "$ref": "#/$defs/BuildArtifacts"
+                },
+                "secondaryArtifacts": {
+                    "$ref": "#/$defs/BuildArtifactsList"
+                },
+                "cache": {
+                    "$ref": "#/$defs/ProjectCache"
+                },
+                "environment": {
+                    "$ref": "#/$defs/ProjectEnvironment"
+                },
+                "serviceRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "logs": {
+                    "$ref": "#/$defs/LogsLocation"
+                },
+                "timeoutInMinutes": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "queuedTimeoutInMinutes": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "buildComplete": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "initiator": {
+                    "$ref": "#/$defs/String"
+                },
+                "vpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
+                "networkInterface": {
+                    "$ref": "#/$defs/NetworkInterface"
+                },
+                "encryptionKey": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "exportedEnvironmentVariables": {
+                    "$ref": "#/$defs/ExportedEnvironmentVariables"
+                },
+                "reportArns": {
+                    "$ref": "#/$defs/BuildReportArns"
+                },
+                "fileSystemLocations": {
+                    "$ref": "#/$defs/ProjectFileSystemLocations"
+                },
+                "debugSession": {
+                    "$ref": "#/$defs/DebugSession"
+                },
+                "buildBatchArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BuildPhases": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BuildPhase"
+            }
+        },
+        "BuildPhase": {
+            "type": "object",
+            "properties": {
+                "phaseType": {
+                    "$ref": "#/$defs/BuildPhaseType"
+                },
+                "phaseStatus": {
+                    "$ref": "#/$defs/StatusType"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "durationInSeconds": {
+                    "$ref": "#/$defs/WrapperLong"
+                },
+                "contexts": {
+                    "$ref": "#/$defs/PhaseContexts"
+                }
+            }
+        },
+        "BuildPhaseType": {
+            "enum": [
+                "SUBMITTED",
+                "QUEUED",
+                "PROVISIONING",
+                "DOWNLOAD_SOURCE",
+                "INSTALL",
+                "PRE_BUILD",
+                "BUILD",
+                "POST_BUILD",
+                "UPLOAD_ARTIFACTS",
+                "FINALIZING",
+                "COMPLETED"
+            ]
+        },
+        "LogsLocation": {
+            "type": "object",
+            "properties": {
+                "groupName": {
+                    "$ref": "#/$defs/String"
+                },
+                "streamName": {
+                    "$ref": "#/$defs/String"
+                },
+                "deepLink": {
+                    "$ref": "#/$defs/String"
+                },
+                "s3DeepLink": {
+                    "$ref": "#/$defs/String"
+                },
+                "cloudWatchLogsArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "s3LogsArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "cloudWatchLogs": {
+                    "$ref": "#/$defs/CloudWatchLogsConfig"
+                },
+                "s3Logs": {
+                    "$ref": "#/$defs/S3LogsConfig"
+                }
+            }
+        },
+        "NetworkInterface": {
+            "type": "object",
+            "properties": {
+                "subnetId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "networkInterfaceId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "ExportedEnvironmentVariables": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExportedEnvironmentVariable"
+            }
+        },
+        "ExportedEnvironmentVariable": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BuildReportArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "DebugSession": {
+            "type": "object",
+            "properties": {
+                "sessionEnabled": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "sessionTarget": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "BatchGetBuildsInput": {
+            "type": "object",
+            "properties": {
+                "ids": {
+                    "$ref": "#/$defs/BuildIds"
+                }
+            }
+        },
+        "BatchGetFleetsOutput": {
+            "type": "object",
+            "properties": {
+                "fleets": {
+                    "$ref": "#/$defs/Fleets"
+                },
+                "fleetsNotFound": {
+                    "$ref": "#/$defs/FleetNames"
+                }
+            }
+        },
+        "Fleets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Fleet"
+            }
+        },
+        "Fleet": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "name": {
+                    "$ref": "#/$defs/FleetName"
+                },
+                "id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/FleetStatus"
+                },
+                "baseCapacity": {
+                    "$ref": "#/$defs/FleetCapacity"
+                },
+                "environmentType": {
+                    "$ref": "#/$defs/EnvironmentType"
+                },
+                "computeType": {
+                    "$ref": "#/$defs/ComputeType"
+                },
+                "scalingConfiguration": {
+                    "$ref": "#/$defs/ScalingConfigurationOutput"
+                },
+                "overflowBehavior": {
+                    "$ref": "#/$defs/FleetOverflowBehavior"
+                },
+                "vpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "fleetServiceRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "FleetName": {
+            "type": "string"
+        },
+        "FleetStatus": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "$ref": "#/$defs/FleetStatusCode"
+                },
+                "context": {
+                    "$ref": "#/$defs/FleetContextCode"
+                },
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FleetStatusCode": {
+            "enum": [
+                "CREATING",
+                "UPDATING",
+                "ROTATING",
+                "PENDING_DELETION",
+                "DELETING",
+                "CREATE_FAILED",
+                "UPDATE_ROLLBACK_FAILED",
+                "ACTIVE"
+            ]
+        },
+        "FleetContextCode": {
+            "enum": [
+                "CREATE_FAILED",
+                "UPDATE_FAILED",
+                "ACTION_REQUIRED",
+                "PENDING_DELETION",
+                "INSUFFICIENT_CAPACITY"
+            ]
+        },
+        "FleetCapacity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ScalingConfigurationOutput": {
+            "type": "object",
+            "properties": {
+                "scalingType": {
+                    "$ref": "#/$defs/FleetScalingType"
+                },
+                "targetTrackingScalingConfigs": {
+                    "$ref": "#/$defs/TargetTrackingScalingConfigurations"
+                },
+                "maxCapacity": {
+                    "$ref": "#/$defs/FleetCapacity"
+                },
+                "desiredCapacity": {
+                    "$ref": "#/$defs/FleetCapacity"
+                }
+            }
+        },
+        "FleetScalingType": {
+            "enum": [
+                "TARGET_TRACKING_SCALING"
+            ]
+        },
+        "TargetTrackingScalingConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetTrackingScalingConfiguration"
+            }
+        },
+        "TargetTrackingScalingConfiguration": {
+            "type": "object",
+            "properties": {
+                "metricType": {
+                    "$ref": "#/$defs/FleetScalingMetricType"
+                },
+                "targetValue": {
+                    "$ref": "#/$defs/WrapperDouble"
+                }
+            }
+        },
+        "FleetScalingMetricType": {
+            "enum": [
+                "FLEET_UTILIZATION_RATE"
+            ]
+        },
+        "WrapperDouble": {
+            "type": "number",
+            "format": "double"
+        },
+        "FleetOverflowBehavior": {
+            "enum": [
+                "QUEUE",
+                "ON_DEMAND"
+            ]
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/KeyInput"
+                },
+                "value": {
+                    "$ref": "#/$defs/ValueInput"
+                }
+            }
+        },
+        "KeyInput": {
+            "type": "string"
+        },
+        "ValueInput": {
+            "type": "string"
+        },
+        "FleetNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "BatchGetFleetsInput": {
+            "type": "object",
+            "properties": {
+                "names": {
+                    "$ref": "#/$defs/FleetNames"
+                }
+            }
+        },
+        "BatchGetProjectsOutput": {
+            "type": "object",
+            "properties": {
+                "projects": {
+                    "$ref": "#/$defs/Projects"
+                },
+                "projectsNotFound": {
+                    "$ref": "#/$defs/ProjectNames"
+                }
+            }
+        },
+        "Projects": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Project"
+            }
+        },
+        "Project": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "description": {
+                    "$ref": "#/$defs/ProjectDescription"
+                },
+                "source": {
+                    "$ref": "#/$defs/ProjectSource"
+                },
+                "secondarySources": {
+                    "$ref": "#/$defs/ProjectSources"
+                },
+                "sourceVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "secondarySourceVersions": {
+                    "$ref": "#/$defs/ProjectSecondarySourceVersions"
+                },
+                "artifacts": {
+                    "$ref": "#/$defs/ProjectArtifacts"
+                },
+                "secondaryArtifacts": {
+                    "$ref": "#/$defs/ProjectArtifactsList"
+                },
+                "cache": {
+                    "$ref": "#/$defs/ProjectCache"
+                },
+                "environment": {
+                    "$ref": "#/$defs/ProjectEnvironment"
+                },
+                "serviceRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "timeoutInMinutes": {
+                    "$ref": "#/$defs/BuildTimeOut"
+                },
+                "queuedTimeoutInMinutes": {
+                    "$ref": "#/$defs/TimeOut"
+                },
+                "encryptionKey": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "webhook": {
+                    "$ref": "#/$defs/Webhook"
+                },
+                "vpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
+                "badge": {
+                    "$ref": "#/$defs/ProjectBadge"
+                },
+                "logsConfig": {
+                    "$ref": "#/$defs/LogsConfig"
+                },
+                "fileSystemLocations": {
+                    "$ref": "#/$defs/ProjectFileSystemLocations"
+                },
+                "buildBatchConfig": {
+                    "$ref": "#/$defs/ProjectBuildBatchConfig"
+                },
+                "concurrentBuildLimit": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "projectVisibility": {
+                    "$ref": "#/$defs/ProjectVisibilityType"
+                },
+                "publicProjectAlias": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "resourceAccessRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "ProjectName": {
+            "type": "string"
+        },
+        "ProjectDescription": {
+            "type": "string"
+        },
+        "ProjectArtifacts": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/ArtifactsType"
+                },
+                "location": {
+                    "$ref": "#/$defs/String"
+                },
+                "path": {
+                    "$ref": "#/$defs/String"
+                },
+                "namespaceType": {
+                    "$ref": "#/$defs/ArtifactNamespace"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "packaging": {
+                    "$ref": "#/$defs/ArtifactPackaging"
+                },
+                "overrideArtifactName": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "encryptionDisabled": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "artifactIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "bucketOwnerAccess": {
+                    "$ref": "#/$defs/BucketOwnerAccess"
+                }
+            }
+        },
+        "ArtifactNamespace": {
+            "enum": [
+                "NONE",
+                "BUILD_ID"
+            ]
+        },
+        "ArtifactPackaging": {
+            "enum": [
+                "NONE",
+                "ZIP"
+            ]
+        },
+        "ProjectArtifactsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProjectArtifacts"
+            }
+        },
+        "BuildTimeOut": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TimeOut": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Webhook": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "payloadUrl": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "secret": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "branchFilter": {
+                    "$ref": "#/$defs/String"
+                },
+                "filterGroups": {
+                    "$ref": "#/$defs/FilterGroups"
+                },
+                "buildType": {
+                    "$ref": "#/$defs/WebhookBuildType"
+                },
+                "manualCreation": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "lastModifiedSecret": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "scopeConfiguration": {
+                    "$ref": "#/$defs/ScopeConfiguration"
+                }
+            }
+        },
+        "FilterGroups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterGroup"
+            }
+        },
+        "FilterGroup": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WebhookFilter"
+            }
+        },
+        "WebhookFilter": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/WebhookFilterType"
+                },
+                "pattern": {
+                    "$ref": "#/$defs/String"
+                },
+                "excludeMatchedPattern": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                }
+            }
+        },
+        "WebhookFilterType": {
+            "enum": [
+                "EVENT",
+                "BASE_REF",
+                "HEAD_REF",
+                "ACTOR_ACCOUNT_ID",
+                "FILE_PATH",
+                "COMMIT_MESSAGE",
+                "WORKFLOW_NAME",
+                "TAG_NAME",
+                "RELEASE_NAME"
+            ]
+        },
+        "WebhookBuildType": {
+            "enum": [
+                "BUILD",
+                "BUILD_BATCH"
+            ]
+        },
+        "ScopeConfiguration": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "domain": {
+                    "$ref": "#/$defs/String"
+                },
+                "scope": {
+                    "$ref": "#/$defs/WebhookScopeType"
+                }
+            }
+        },
+        "WebhookScopeType": {
+            "enum": [
+                "GITHUB_ORGANIZATION",
+                "GITHUB_GLOBAL",
+                "GITLAB_GROUP"
+            ]
+        },
+        "ProjectBadge": {
+            "type": "object",
+            "properties": {
+                "badgeEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "badgeRequestUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ProjectVisibilityType": {
+            "enum": [
+                "PUBLIC_READ",
+                "PRIVATE"
+            ]
+        },
+        "ProjectNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "BatchGetProjectsInput": {
+            "type": "object",
+            "properties": {
+                "names": {
+                    "$ref": "#/$defs/ProjectNames"
+                }
+            }
+        },
+        "BatchGetReportGroupsOutput": {
+            "type": "object",
+            "properties": {
+                "reportGroups": {
+                    "$ref": "#/$defs/ReportGroups"
+                },
+                "reportGroupsNotFound": {
+                    "$ref": "#/$defs/ReportGroupArns"
+                }
+            }
+        },
+        "ReportGroups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReportGroup"
+            }
+        },
+        "ReportGroup": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "name": {
+                    "$ref": "#/$defs/ReportGroupName"
+                },
+                "type": {
+                    "$ref": "#/$defs/ReportType"
+                },
+                "exportConfig": {
+                    "$ref": "#/$defs/ReportExportConfig"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "status": {
+                    "$ref": "#/$defs/ReportGroupStatusType"
+                }
+            }
+        },
+        "ReportGroupName": {
+            "type": "string"
+        },
+        "ReportType": {
+            "enum": [
+                "TEST",
+                "CODE_COVERAGE"
+            ]
+        },
+        "ReportExportConfig": {
+            "type": "object",
+            "properties": {
+                "exportConfigType": {
+                    "$ref": "#/$defs/ReportExportConfigType"
+                },
+                "s3Destination": {
+                    "$ref": "#/$defs/S3ReportExportConfig"
+                }
+            }
+        },
+        "ReportExportConfigType": {
+            "enum": [
+                "S3",
+                "NO_EXPORT"
+            ]
+        },
+        "S3ReportExportConfig": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "bucketOwner": {
+                    "$ref": "#/$defs/String"
+                },
+                "path": {
+                    "$ref": "#/$defs/String"
+                },
+                "packaging": {
+                    "$ref": "#/$defs/ReportPackagingType"
+                },
+                "encryptionKey": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "encryptionDisabled": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                }
+            }
+        },
+        "ReportPackagingType": {
+            "enum": [
+                "ZIP",
+                "NONE"
+            ]
+        },
+        "ReportGroupStatusType": {
+            "enum": [
+                "ACTIVE",
+                "DELETING"
+            ]
+        },
+        "ReportGroupArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "BatchGetReportGroupsInput": {
+            "type": "object",
+            "properties": {
+                "reportGroupArns": {
+                    "$ref": "#/$defs/ReportGroupArns"
+                }
+            }
+        },
+        "BatchGetReportsOutput": {
+            "type": "object",
+            "properties": {
+                "reports": {
+                    "$ref": "#/$defs/Reports"
+                },
+                "reportsNotFound": {
+                    "$ref": "#/$defs/ReportArns"
+                }
+            }
+        },
+        "Reports": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Report"
+            }
+        },
+        "Report": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "type": {
+                    "$ref": "#/$defs/ReportType"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "reportGroupArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "executionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/ReportStatusType"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "expired": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "exportConfig": {
+                    "$ref": "#/$defs/ReportExportConfig"
+                },
+                "truncated": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "testSummary": {
+                    "$ref": "#/$defs/TestReportSummary"
+                },
+                "codeCoverageSummary": {
+                    "$ref": "#/$defs/CodeCoverageReportSummary"
+                }
+            }
+        },
+        "ReportStatusType": {
+            "enum": [
+                "GENERATING",
+                "SUCCEEDED",
+                "FAILED",
+                "INCOMPLETE",
+                "DELETING"
+            ]
+        },
+        "TestReportSummary": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "statusCounts": {
+                    "$ref": "#/$defs/ReportStatusCounts"
+                },
+                "durationInNanoSeconds": {
+                    "$ref": "#/$defs/WrapperLong"
+                }
+            }
+        },
+        "ReportStatusCounts": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/WrapperInt"
+            }
+        },
+        "CodeCoverageReportSummary": {
+            "type": "object",
+            "properties": {
+                "lineCoveragePercentage": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "linesCovered": {
+                    "$ref": "#/$defs/NonNegativeInt"
+                },
+                "linesMissed": {
+                    "$ref": "#/$defs/NonNegativeInt"
+                },
+                "branchCoveragePercentage": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "branchesCovered": {
+                    "$ref": "#/$defs/NonNegativeInt"
+                },
+                "branchesMissed": {
+                    "$ref": "#/$defs/NonNegativeInt"
+                }
+            }
+        },
+        "Percentage": {
+            "type": "number",
+            "format": "double"
+        },
+        "NonNegativeInt": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ReportArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "BatchGetReportsInput": {
+            "type": "object",
+            "properties": {
+                "reportArns": {
+                    "$ref": "#/$defs/ReportArns"
+                }
+            }
+        },
+        "CreateFleetOutput": {
+            "type": "object",
+            "properties": {
+                "fleet": {
+                    "$ref": "#/$defs/Fleet"
+                }
+            }
+        },
+        "CreateFleetInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/FleetName"
+                },
+                "baseCapacity": {
+                    "$ref": "#/$defs/FleetCapacity"
+                },
+                "environmentType": {
+                    "$ref": "#/$defs/EnvironmentType"
+                },
+                "computeType": {
+                    "$ref": "#/$defs/ComputeType"
+                },
+                "scalingConfiguration": {
+                    "$ref": "#/$defs/ScalingConfigurationInput"
+                },
+                "overflowBehavior": {
+                    "$ref": "#/$defs/FleetOverflowBehavior"
+                },
+                "vpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "fleetServiceRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ScalingConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "scalingType": {
+                    "$ref": "#/$defs/FleetScalingType"
+                },
+                "targetTrackingScalingConfigs": {
+                    "$ref": "#/$defs/TargetTrackingScalingConfigurations"
+                },
+                "maxCapacity": {
+                    "$ref": "#/$defs/FleetCapacity"
+                }
+            }
+        },
+        "CreateProjectOutput": {
+            "type": "object",
+            "properties": {
+                "project": {
+                    "$ref": "#/$defs/Project"
+                }
+            }
+        },
+        "CreateProjectInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "description": {
+                    "$ref": "#/$defs/ProjectDescription"
+                },
+                "source": {
+                    "$ref": "#/$defs/ProjectSource"
+                },
+                "secondarySources": {
+                    "$ref": "#/$defs/ProjectSources"
+                },
+                "sourceVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "secondarySourceVersions": {
+                    "$ref": "#/$defs/ProjectSecondarySourceVersions"
+                },
+                "artifacts": {
+                    "$ref": "#/$defs/ProjectArtifacts"
+                },
+                "secondaryArtifacts": {
+                    "$ref": "#/$defs/ProjectArtifactsList"
+                },
+                "cache": {
+                    "$ref": "#/$defs/ProjectCache"
+                },
+                "environment": {
+                    "$ref": "#/$defs/ProjectEnvironment"
+                },
+                "serviceRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "timeoutInMinutes": {
+                    "$ref": "#/$defs/BuildTimeOut"
+                },
+                "queuedTimeoutInMinutes": {
+                    "$ref": "#/$defs/TimeOut"
+                },
+                "encryptionKey": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "vpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
+                "badgeEnabled": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "logsConfig": {
+                    "$ref": "#/$defs/LogsConfig"
+                },
+                "fileSystemLocations": {
+                    "$ref": "#/$defs/ProjectFileSystemLocations"
+                },
+                "buildBatchConfig": {
+                    "$ref": "#/$defs/ProjectBuildBatchConfig"
+                },
+                "concurrentBuildLimit": {
+                    "$ref": "#/$defs/WrapperInt"
+                }
+            }
+        },
+        "CreateReportGroupOutput": {
+            "type": "object",
+            "properties": {
+                "reportGroup": {
+                    "$ref": "#/$defs/ReportGroup"
+                }
+            }
+        },
+        "CreateReportGroupInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ReportGroupName"
+                },
+                "type": {
+                    "$ref": "#/$defs/ReportType"
+                },
+                "exportConfig": {
+                    "$ref": "#/$defs/ReportExportConfig"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CreateWebhookOutput": {
+            "type": "object",
+            "properties": {
+                "webhook": {
+                    "$ref": "#/$defs/Webhook"
+                }
+            }
+        },
+        "CreateWebhookInput": {
+            "type": "object",
+            "properties": {
+                "projectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "branchFilter": {
+                    "$ref": "#/$defs/String"
+                },
+                "filterGroups": {
+                    "$ref": "#/$defs/FilterGroups"
+                },
+                "buildType": {
+                    "$ref": "#/$defs/WebhookBuildType"
+                },
+                "manualCreation": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "scopeConfiguration": {
+                    "$ref": "#/$defs/ScopeConfiguration"
+                }
+            }
+        },
+        "DeleteBuildBatchOutput": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "buildsDeleted": {
+                    "$ref": "#/$defs/BuildIds"
+                },
+                "buildsNotDeleted": {
+                    "$ref": "#/$defs/BuildsNotDeleted"
+                }
+            }
+        },
+        "DeleteBuildBatchInput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "DeleteFleetOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteFleetInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "DeleteProjectOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteProjectInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "DeleteReportOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteReportInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "DeleteReportGroupOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteReportGroupInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "deleteReports": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DeleteResourcePolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteResourcePolicyInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "DeleteSourceCredentialsOutput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "DeleteSourceCredentialsInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "DeleteWebhookOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteWebhookInput": {
+            "type": "object",
+            "properties": {
+                "projectName": {
+                    "$ref": "#/$defs/ProjectName"
+                }
+            }
+        },
+        "DescribeCodeCoveragesOutput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "codeCoverages": {
+                    "$ref": "#/$defs/CodeCoverages"
+                }
+            }
+        },
+        "CodeCoverages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CodeCoverage"
+            }
+        },
+        "CodeCoverage": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "reportARN": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "filePath": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "lineCoveragePercentage": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "linesCovered": {
+                    "$ref": "#/$defs/NonNegativeInt"
+                },
+                "linesMissed": {
+                    "$ref": "#/$defs/NonNegativeInt"
+                },
+                "branchCoveragePercentage": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "branchesCovered": {
+                    "$ref": "#/$defs/NonNegativeInt"
+                },
+                "branchesMissed": {
+                    "$ref": "#/$defs/NonNegativeInt"
+                },
+                "expired": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeCodeCoveragesInput": {
+            "type": "object",
+            "properties": {
+                "reportArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "sortBy": {
+                    "$ref": "#/$defs/ReportCodeCoverageSortByType"
+                },
+                "minLineCoveragePercentage": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "maxLineCoveragePercentage": {
+                    "$ref": "#/$defs/Percentage"
+                }
+            }
+        },
+        "PageSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SortOrderType": {
+            "enum": [
+                "ASCENDING",
+                "DESCENDING"
+            ]
+        },
+        "ReportCodeCoverageSortByType": {
+            "enum": [
+                "LINE_COVERAGE_PERCENTAGE",
+                "FILE_PATH"
+            ]
+        },
+        "DescribeTestCasesOutput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "testCases": {
+                    "$ref": "#/$defs/TestCases"
+                }
+            }
+        },
+        "TestCases": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TestCase"
+            }
+        },
+        "TestCase": {
+            "type": "object",
+            "properties": {
+                "reportArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "testRawDataPath": {
+                    "$ref": "#/$defs/String"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/String"
+                },
+                "durationInNanoSeconds": {
+                    "$ref": "#/$defs/WrapperLong"
+                },
+                "message": {
+                    "$ref": "#/$defs/String"
+                },
+                "expired": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeTestCasesInput": {
+            "type": "object",
+            "properties": {
+                "reportArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "filter": {
+                    "$ref": "#/$defs/TestCaseFilter"
+                }
+            }
+        },
+        "TestCaseFilter": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/String"
+                },
+                "keyword": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetReportGroupTrendOutput": {
+            "type": "object",
+            "properties": {
+                "stats": {
+                    "$ref": "#/$defs/ReportGroupTrendStats"
+                },
+                "rawData": {
+                    "$ref": "#/$defs/ReportGroupTrendRawDataList"
+                }
+            }
+        },
+        "ReportGroupTrendStats": {
+            "type": "object",
+            "properties": {
+                "average": {
+                    "$ref": "#/$defs/String"
+                },
+                "max": {
+                    "$ref": "#/$defs/String"
+                },
+                "min": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ReportGroupTrendRawDataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReportWithRawData"
+            }
+        },
+        "ReportWithRawData": {
+            "type": "object",
+            "properties": {
+                "reportArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "data": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetReportGroupTrendInput": {
+            "type": "object",
+            "properties": {
+                "reportGroupArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "numOfReports": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "trendField": {
+                    "$ref": "#/$defs/ReportGroupTrendFieldType"
+                }
+            }
+        },
+        "ReportGroupTrendFieldType": {
+            "enum": [
+                "PASS_RATE",
+                "DURATION",
+                "TOTAL",
+                "LINE_COVERAGE",
+                "LINES_COVERED",
+                "LINES_MISSED",
+                "BRANCH_COVERAGE",
+                "BRANCHES_COVERED",
+                "BRANCHES_MISSED"
+            ]
+        },
+        "GetResourcePolicyOutput": {
+            "type": "object",
+            "properties": {
+                "policy": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "GetResourcePolicyInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "ImportSourceCredentialsOutput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "ImportSourceCredentialsInput": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "token": {
+                    "$ref": "#/$defs/SensitiveNonEmptyString"
+                },
+                "serverType": {
+                    "$ref": "#/$defs/ServerType"
+                },
+                "authType": {
+                    "$ref": "#/$defs/AuthType"
+                },
+                "shouldOverwrite": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                }
+            }
+        },
+        "SensitiveNonEmptyString": {
+            "type": "string"
+        },
+        "ServerType": {
+            "enum": [
+                "GITHUB",
+                "BITBUCKET",
+                "GITHUB_ENTERPRISE",
+                "GITLAB",
+                "GITLAB_SELF_MANAGED"
+            ]
+        },
+        "AuthType": {
+            "enum": [
+                "OAUTH",
+                "BASIC_AUTH",
+                "PERSONAL_ACCESS_TOKEN",
+                "CODECONNECTIONS",
+                "SECRETS_MANAGER"
+            ]
+        },
+        "InvalidateProjectCacheOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "InvalidateProjectCacheInput": {
+            "type": "object",
+            "properties": {
+                "projectName": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "ListBuildBatchesOutput": {
+            "type": "object",
+            "properties": {
+                "ids": {
+                    "$ref": "#/$defs/BuildBatchIds"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListBuildBatchesInput": {
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "$ref": "#/$defs/BuildBatchFilter"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BuildBatchFilter": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/StatusType"
+                }
+            }
+        },
+        "ListBuildBatchesForProjectOutput": {
+            "type": "object",
+            "properties": {
+                "ids": {
+                    "$ref": "#/$defs/BuildBatchIds"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListBuildBatchesForProjectInput": {
+            "type": "object",
+            "properties": {
+                "projectName": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "filter": {
+                    "$ref": "#/$defs/BuildBatchFilter"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListBuildsOutput": {
+            "type": "object",
+            "properties": {
+                "ids": {
+                    "$ref": "#/$defs/BuildIds"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListBuildsInput": {
+            "type": "object",
+            "properties": {
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListBuildsForProjectOutput": {
+            "type": "object",
+            "properties": {
+                "ids": {
+                    "$ref": "#/$defs/BuildIds"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListBuildsForProjectInput": {
+            "type": "object",
+            "properties": {
+                "projectName": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListCuratedEnvironmentImagesOutput": {
+            "type": "object",
+            "properties": {
+                "platforms": {
+                    "$ref": "#/$defs/EnvironmentPlatforms"
+                }
+            }
+        },
+        "EnvironmentPlatforms": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentPlatform"
+            }
+        },
+        "EnvironmentPlatform": {
+            "type": "object",
+            "properties": {
+                "platform": {
+                    "$ref": "#/$defs/PlatformType"
+                },
+                "languages": {
+                    "$ref": "#/$defs/EnvironmentLanguages"
+                }
+            }
+        },
+        "PlatformType": {
+            "enum": [
+                "DEBIAN",
+                "AMAZON_LINUX",
+                "UBUNTU",
+                "WINDOWS_SERVER"
+            ]
+        },
+        "EnvironmentLanguages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentLanguage"
+            }
+        },
+        "EnvironmentLanguage": {
+            "type": "object",
+            "properties": {
+                "language": {
+                    "$ref": "#/$defs/LanguageType"
+                },
+                "images": {
+                    "$ref": "#/$defs/EnvironmentImages"
+                }
+            }
+        },
+        "LanguageType": {
+            "enum": [
+                "JAVA",
+                "PYTHON",
+                "NODE_JS",
+                "RUBY",
+                "GOLANG",
+                "DOCKER",
+                "ANDROID",
+                "DOTNET",
+                "BASE",
+                "PHP"
+            ]
+        },
+        "EnvironmentImages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentImage"
+            }
+        },
+        "EnvironmentImage": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "description": {
+                    "$ref": "#/$defs/String"
+                },
+                "versions": {
+                    "$ref": "#/$defs/ImageVersions"
+                }
+            }
+        },
+        "ImageVersions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ListCuratedEnvironmentImagesInput": {
+            "type": "object",
+            "properties": {}
+        },
+        "ListFleetsOutput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "fleets": {
+                    "$ref": "#/$defs/FleetArns"
+                }
+            }
+        },
+        "FleetArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "ListFleetsInput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/SensitiveString"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "sortBy": {
+                    "$ref": "#/$defs/FleetSortByType"
+                }
+            }
+        },
+        "SensitiveString": {
+            "type": "string"
+        },
+        "FleetSortByType": {
+            "enum": [
+                "NAME",
+                "CREATED_TIME",
+                "LAST_MODIFIED_TIME"
+            ]
+        },
+        "ListProjectsOutput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "projects": {
+                    "$ref": "#/$defs/ProjectNames"
+                }
+            }
+        },
+        "ListProjectsInput": {
+            "type": "object",
+            "properties": {
+                "sortBy": {
+                    "$ref": "#/$defs/ProjectSortByType"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "ProjectSortByType": {
+            "enum": [
+                "NAME",
+                "CREATED_TIME",
+                "LAST_MODIFIED_TIME"
+            ]
+        },
+        "ListReportGroupsOutput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "reportGroups": {
+                    "$ref": "#/$defs/ReportGroupArns"
+                }
+            }
+        },
+        "ListReportGroupsInput": {
+            "type": "object",
+            "properties": {
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "sortBy": {
+                    "$ref": "#/$defs/ReportGroupSortByType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PageSize"
+                }
+            }
+        },
+        "ReportGroupSortByType": {
+            "enum": [
+                "NAME",
+                "CREATED_TIME",
+                "LAST_MODIFIED_TIME"
+            ]
+        },
+        "ListReportsOutput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "reports": {
+                    "$ref": "#/$defs/ReportArns"
+                }
+            }
+        },
+        "ListReportsInput": {
+            "type": "object",
+            "properties": {
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "filter": {
+                    "$ref": "#/$defs/ReportFilter"
+                }
+            }
+        },
+        "ReportFilter": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ReportStatusType"
+                }
+            }
+        },
+        "ListReportsForReportGroupOutput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "reports": {
+                    "$ref": "#/$defs/ReportArns"
+                }
+            }
+        },
+        "ListReportsForReportGroupInput": {
+            "type": "object",
+            "properties": {
+                "reportGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "filter": {
+                    "$ref": "#/$defs/ReportFilter"
+                }
+            }
+        },
+        "ListSharedProjectsOutput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "projects": {
+                    "$ref": "#/$defs/ProjectArns"
+                }
+            }
+        },
+        "ProjectArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "ListSharedProjectsInput": {
+            "type": "object",
+            "properties": {
+                "sortBy": {
+                    "$ref": "#/$defs/SharedResourceSortByType"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "SharedResourceSortByType": {
+            "enum": [
+                "ARN",
+                "MODIFIED_TIME"
+            ]
+        },
+        "ListSharedReportGroupsOutput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "reportGroups": {
+                    "$ref": "#/$defs/ReportGroupArns"
+                }
+            }
+        },
+        "ListSharedReportGroupsInput": {
+            "type": "object",
+            "properties": {
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrderType"
+                },
+                "sortBy": {
+                    "$ref": "#/$defs/SharedResourceSortByType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PageSize"
+                }
+            }
+        },
+        "ListSourceCredentialsOutput": {
+            "type": "object",
+            "properties": {
+                "sourceCredentialsInfos": {
+                    "$ref": "#/$defs/SourceCredentialsInfos"
+                }
+            }
+        },
+        "SourceCredentialsInfos": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SourceCredentialsInfo"
+            }
+        },
+        "SourceCredentialsInfo": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "serverType": {
+                    "$ref": "#/$defs/ServerType"
+                },
+                "authType": {
+                    "$ref": "#/$defs/AuthType"
+                },
+                "resource": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListSourceCredentialsInput": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutResourcePolicyOutput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "PutResourcePolicyInput": {
+            "type": "object",
+            "properties": {
+                "policy": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "RetryBuildOutput": {
+            "type": "object",
+            "properties": {
+                "build": {
+                    "$ref": "#/$defs/Build"
+                }
+            }
+        },
+        "RetryBuildInput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "idempotencyToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RetryBuildBatchOutput": {
+            "type": "object",
+            "properties": {
+                "buildBatch": {
+                    "$ref": "#/$defs/BuildBatch"
+                }
+            }
+        },
+        "RetryBuildBatchInput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "idempotencyToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "retryType": {
+                    "$ref": "#/$defs/RetryBuildBatchType"
+                }
+            }
+        },
+        "RetryBuildBatchType": {
+            "enum": [
+                "RETRY_ALL_BUILDS",
+                "RETRY_FAILED_BUILDS"
+            ]
+        },
+        "StartBuildOutput": {
+            "type": "object",
+            "properties": {
+                "build": {
+                    "$ref": "#/$defs/Build"
+                }
+            }
+        },
+        "StartBuildInput": {
+            "type": "object",
+            "properties": {
+                "projectName": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "secondarySourcesOverride": {
+                    "$ref": "#/$defs/ProjectSources"
+                },
+                "secondarySourcesVersionOverride": {
+                    "$ref": "#/$defs/ProjectSecondarySourceVersions"
+                },
+                "sourceVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "artifactsOverride": {
+                    "$ref": "#/$defs/ProjectArtifacts"
+                },
+                "secondaryArtifactsOverride": {
+                    "$ref": "#/$defs/ProjectArtifactsList"
+                },
+                "environmentVariablesOverride": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "sourceTypeOverride": {
+                    "$ref": "#/$defs/SourceType"
+                },
+                "sourceLocationOverride": {
+                    "$ref": "#/$defs/String"
+                },
+                "sourceAuthOverride": {
+                    "$ref": "#/$defs/SourceAuth"
+                },
+                "gitCloneDepthOverride": {
+                    "$ref": "#/$defs/GitCloneDepth"
+                },
+                "gitSubmodulesConfigOverride": {
+                    "$ref": "#/$defs/GitSubmodulesConfig"
+                },
+                "buildspecOverride": {
+                    "$ref": "#/$defs/String"
+                },
+                "insecureSslOverride": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "reportBuildStatusOverride": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "buildStatusConfigOverride": {
+                    "$ref": "#/$defs/BuildStatusConfig"
+                },
+                "environmentTypeOverride": {
+                    "$ref": "#/$defs/EnvironmentType"
+                },
+                "imageOverride": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "computeTypeOverride": {
+                    "$ref": "#/$defs/ComputeType"
+                },
+                "certificateOverride": {
+                    "$ref": "#/$defs/String"
+                },
+                "cacheOverride": {
+                    "$ref": "#/$defs/ProjectCache"
+                },
+                "serviceRoleOverride": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "privilegedModeOverride": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "timeoutInMinutesOverride": {
+                    "$ref": "#/$defs/BuildTimeOut"
+                },
+                "queuedTimeoutInMinutesOverride": {
+                    "$ref": "#/$defs/TimeOut"
+                },
+                "encryptionKeyOverride": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "idempotencyToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "logsConfigOverride": {
+                    "$ref": "#/$defs/LogsConfig"
+                },
+                "registryCredentialOverride": {
+                    "$ref": "#/$defs/RegistryCredential"
+                },
+                "imagePullCredentialsTypeOverride": {
+                    "$ref": "#/$defs/ImagePullCredentialsType"
+                },
+                "debugSessionEnabled": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "fleetOverride": {
+                    "$ref": "#/$defs/ProjectFleet"
+                }
+            }
+        },
+        "StartBuildBatchOutput": {
+            "type": "object",
+            "properties": {
+                "buildBatch": {
+                    "$ref": "#/$defs/BuildBatch"
+                }
+            }
+        },
+        "StartBuildBatchInput": {
+            "type": "object",
+            "properties": {
+                "projectName": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "secondarySourcesOverride": {
+                    "$ref": "#/$defs/ProjectSources"
+                },
+                "secondarySourcesVersionOverride": {
+                    "$ref": "#/$defs/ProjectSecondarySourceVersions"
+                },
+                "sourceVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "artifactsOverride": {
+                    "$ref": "#/$defs/ProjectArtifacts"
+                },
+                "secondaryArtifactsOverride": {
+                    "$ref": "#/$defs/ProjectArtifactsList"
+                },
+                "environmentVariablesOverride": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "sourceTypeOverride": {
+                    "$ref": "#/$defs/SourceType"
+                },
+                "sourceLocationOverride": {
+                    "$ref": "#/$defs/String"
+                },
+                "sourceAuthOverride": {
+                    "$ref": "#/$defs/SourceAuth"
+                },
+                "gitCloneDepthOverride": {
+                    "$ref": "#/$defs/GitCloneDepth"
+                },
+                "gitSubmodulesConfigOverride": {
+                    "$ref": "#/$defs/GitSubmodulesConfig"
+                },
+                "buildspecOverride": {
+                    "$ref": "#/$defs/String"
+                },
+                "insecureSslOverride": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "reportBuildBatchStatusOverride": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "environmentTypeOverride": {
+                    "$ref": "#/$defs/EnvironmentType"
+                },
+                "imageOverride": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "computeTypeOverride": {
+                    "$ref": "#/$defs/ComputeType"
+                },
+                "certificateOverride": {
+                    "$ref": "#/$defs/String"
+                },
+                "cacheOverride": {
+                    "$ref": "#/$defs/ProjectCache"
+                },
+                "serviceRoleOverride": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "privilegedModeOverride": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "buildTimeoutInMinutesOverride": {
+                    "$ref": "#/$defs/BuildTimeOut"
+                },
+                "queuedTimeoutInMinutesOverride": {
+                    "$ref": "#/$defs/TimeOut"
+                },
+                "encryptionKeyOverride": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "idempotencyToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "logsConfigOverride": {
+                    "$ref": "#/$defs/LogsConfig"
+                },
+                "registryCredentialOverride": {
+                    "$ref": "#/$defs/RegistryCredential"
+                },
+                "imagePullCredentialsTypeOverride": {
+                    "$ref": "#/$defs/ImagePullCredentialsType"
+                },
+                "buildBatchConfigOverride": {
+                    "$ref": "#/$defs/ProjectBuildBatchConfig"
+                },
+                "debugSessionEnabled": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                }
+            }
+        },
+        "StopBuildOutput": {
+            "type": "object",
+            "properties": {
+                "build": {
+                    "$ref": "#/$defs/Build"
+                }
+            }
+        },
+        "StopBuildInput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "StopBuildBatchOutput": {
+            "type": "object",
+            "properties": {
+                "buildBatch": {
+                    "$ref": "#/$defs/BuildBatch"
+                }
+            }
+        },
+        "StopBuildBatchInput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "UpdateFleetOutput": {
+            "type": "object",
+            "properties": {
+                "fleet": {
+                    "$ref": "#/$defs/Fleet"
+                }
+            }
+        },
+        "UpdateFleetInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "baseCapacity": {
+                    "$ref": "#/$defs/FleetCapacity"
+                },
+                "environmentType": {
+                    "$ref": "#/$defs/EnvironmentType"
+                },
+                "computeType": {
+                    "$ref": "#/$defs/ComputeType"
+                },
+                "scalingConfiguration": {
+                    "$ref": "#/$defs/ScalingConfigurationInput"
+                },
+                "overflowBehavior": {
+                    "$ref": "#/$defs/FleetOverflowBehavior"
+                },
+                "vpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "fleetServiceRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UpdateProjectOutput": {
+            "type": "object",
+            "properties": {
+                "project": {
+                    "$ref": "#/$defs/Project"
+                }
+            }
+        },
+        "UpdateProjectInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "description": {
+                    "$ref": "#/$defs/ProjectDescription"
+                },
+                "source": {
+                    "$ref": "#/$defs/ProjectSource"
+                },
+                "secondarySources": {
+                    "$ref": "#/$defs/ProjectSources"
+                },
+                "sourceVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "secondarySourceVersions": {
+                    "$ref": "#/$defs/ProjectSecondarySourceVersions"
+                },
+                "artifacts": {
+                    "$ref": "#/$defs/ProjectArtifacts"
+                },
+                "secondaryArtifacts": {
+                    "$ref": "#/$defs/ProjectArtifactsList"
+                },
+                "cache": {
+                    "$ref": "#/$defs/ProjectCache"
+                },
+                "environment": {
+                    "$ref": "#/$defs/ProjectEnvironment"
+                },
+                "serviceRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "timeoutInMinutes": {
+                    "$ref": "#/$defs/BuildTimeOut"
+                },
+                "queuedTimeoutInMinutes": {
+                    "$ref": "#/$defs/TimeOut"
+                },
+                "encryptionKey": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "vpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
+                "badgeEnabled": {
+                    "$ref": "#/$defs/WrapperBoolean"
+                },
+                "logsConfig": {
+                    "$ref": "#/$defs/LogsConfig"
+                },
+                "fileSystemLocations": {
+                    "$ref": "#/$defs/ProjectFileSystemLocations"
+                },
+                "buildBatchConfig": {
+                    "$ref": "#/$defs/ProjectBuildBatchConfig"
+                },
+                "concurrentBuildLimit": {
+                    "$ref": "#/$defs/WrapperInt"
+                }
+            }
+        },
+        "UpdateProjectVisibilityOutput": {
+            "type": "object",
+            "properties": {
+                "projectArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "publicProjectAlias": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "projectVisibility": {
+                    "$ref": "#/$defs/ProjectVisibilityType"
+                }
+            }
+        },
+        "UpdateProjectVisibilityInput": {
+            "type": "object",
+            "properties": {
+                "projectArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "projectVisibility": {
+                    "$ref": "#/$defs/ProjectVisibilityType"
+                },
+                "resourceAccessRole": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "UpdateReportGroupOutput": {
+            "type": "object",
+            "properties": {
+                "reportGroup": {
+                    "$ref": "#/$defs/ReportGroup"
+                }
+            }
+        },
+        "UpdateReportGroupInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "exportConfig": {
+                    "$ref": "#/$defs/ReportExportConfig"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UpdateWebhookOutput": {
+            "type": "object",
+            "properties": {
+                "webhook": {
+                    "$ref": "#/$defs/Webhook"
+                }
+            }
+        },
+        "UpdateWebhookInput": {
+            "type": "object",
+            "properties": {
+                "projectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "branchFilter": {
+                    "$ref": "#/$defs/String"
+                },
+                "rotateSecret": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "filterGroups": {
+                    "$ref": "#/$defs/FilterGroups"
+                },
+                "buildType": {
+                    "$ref": "#/$defs/WebhookBuildType"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codebuild-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codebuild-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codebuild.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://codebuild.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

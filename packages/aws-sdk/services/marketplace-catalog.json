@@ -1,0 +1,2708 @@
+{
+    "name": "aws-marketplace",
+    "commands": [
+        {
+            "name": "BatchDescribeEntities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchDescribeEntities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDescribeEntitiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDescribeEntitiesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelChangeSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelChangeSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelChangeSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelChangeSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeChangeSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeChangeSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeChangeSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeChangeSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEntity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEntity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEntityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEntityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChangeSets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChangeSets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChangeSetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChangeSetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEntities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEntities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEntitiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEntitiesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartChangeSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartChangeSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartChangeSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartChangeSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchDescribeEntitiesResponse": {
+            "type": "object",
+            "properties": {
+                "EntityDetails": {
+                    "$ref": "#/$defs/EntityDetails"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/Errors"
+                }
+            }
+        },
+        "EntityDetails": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EntityDetail"
+            }
+        },
+        "EntityDetail": {
+            "type": "object",
+            "properties": {
+                "EntityType": {
+                    "$ref": "#/$defs/EntityType"
+                },
+                "EntityArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "EntityIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "DetailsDocument": {
+                    "$ref": "#/$defs/JsonDocumentType"
+                }
+            }
+        },
+        "EntityType": {
+            "type": "string"
+        },
+        "ARN": {
+            "type": "string"
+        },
+        "Identifier": {
+            "type": "string"
+        },
+        "DateTimeISO8601": {
+            "type": "string"
+        },
+        "JsonDocumentType": {},
+        "Errors": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/BatchDescribeErrorDetail"
+            }
+        },
+        "BatchDescribeErrorDetail": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/BatchDescribeErrorCodeString"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/BatchDescribeErrorMessageContent"
+                }
+            }
+        },
+        "BatchDescribeErrorCodeString": {
+            "type": "string"
+        },
+        "BatchDescribeErrorMessageContent": {
+            "type": "string"
+        },
+        "BatchDescribeEntitiesRequest": {
+            "type": "object",
+            "properties": {
+                "EntityRequestList": {
+                    "$ref": "#/$defs/EntityRequestList"
+                }
+            }
+        },
+        "EntityRequestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntityRequest"
+            }
+        },
+        "EntityRequest": {
+            "type": "object",
+            "properties": {
+                "Catalog": {
+                    "$ref": "#/$defs/Catalog"
+                },
+                "EntityId": {
+                    "$ref": "#/$defs/EntityId"
+                }
+            }
+        },
+        "Catalog": {
+            "type": "string"
+        },
+        "EntityId": {
+            "type": "string"
+        },
+        "CancelChangeSetResponse": {
+            "type": "object",
+            "properties": {
+                "ChangeSetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ChangeSetArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "CancelChangeSetRequest": {
+            "type": "object",
+            "properties": {
+                "Catalog": {
+                    "$ref": "#/$defs/Catalog"
+                },
+                "ChangeSetId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DeleteResourcePolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "ResourceARN": {
+            "type": "string"
+        },
+        "DescribeChangeSetResponse": {
+            "type": "object",
+            "properties": {
+                "ChangeSetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ChangeSetArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "ChangeSetName": {
+                    "$ref": "#/$defs/ChangeSetName"
+                },
+                "Intent": {
+                    "$ref": "#/$defs/Intent"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ChangeStatus"
+                },
+                "FailureCode": {
+                    "$ref": "#/$defs/FailureCode"
+                },
+                "FailureDescription": {
+                    "$ref": "#/$defs/ExceptionMessageContent"
+                },
+                "ChangeSet": {
+                    "$ref": "#/$defs/ChangeSetDescription"
+                }
+            }
+        },
+        "ChangeSetName": {
+            "type": "string"
+        },
+        "Intent": {
+            "enum": [
+                "VALIDATE",
+                "APPLY"
+            ]
+        },
+        "ChangeStatus": {
+            "enum": [
+                "PREPARING",
+                "APPLYING",
+                "SUCCEEDED",
+                "CANCELLED",
+                "FAILED"
+            ]
+        },
+        "FailureCode": {
+            "enum": [
+                "ClientError",
+                "ServerFault"
+            ]
+        },
+        "ExceptionMessageContent": {
+            "type": "string"
+        },
+        "ChangeSetDescription": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChangeSummary"
+            }
+        },
+        "ChangeSummary": {
+            "type": "object",
+            "properties": {
+                "ChangeType": {
+                    "$ref": "#/$defs/ChangeType"
+                },
+                "Entity": {
+                    "$ref": "#/$defs/Entity"
+                },
+                "Details": {
+                    "$ref": "#/$defs/Json"
+                },
+                "DetailsDocument": {
+                    "$ref": "#/$defs/JsonDocumentType"
+                },
+                "ErrorDetailList": {
+                    "$ref": "#/$defs/ErrorDetailList"
+                },
+                "ChangeName": {
+                    "$ref": "#/$defs/ChangeName"
+                }
+            }
+        },
+        "ChangeType": {
+            "type": "string"
+        },
+        "Entity": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/EntityType"
+                },
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                }
+            }
+        },
+        "Json": {
+            "type": "string"
+        },
+        "ErrorDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ErrorDetail"
+            }
+        },
+        "ErrorDetail": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCodeString"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ExceptionMessageContent"
+                }
+            }
+        },
+        "ErrorCodeString": {
+            "type": "string"
+        },
+        "ChangeName": {
+            "type": "string"
+        },
+        "DescribeChangeSetRequest": {
+            "type": "object",
+            "properties": {
+                "Catalog": {
+                    "$ref": "#/$defs/Catalog"
+                },
+                "ChangeSetId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DescribeEntityResponse": {
+            "type": "object",
+            "properties": {
+                "EntityType": {
+                    "$ref": "#/$defs/EntityType"
+                },
+                "EntityIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "EntityArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "Details": {
+                    "$ref": "#/$defs/Json"
+                },
+                "DetailsDocument": {
+                    "$ref": "#/$defs/JsonDocumentType"
+                }
+            }
+        },
+        "DescribeEntityRequest": {
+            "type": "object",
+            "properties": {
+                "Catalog": {
+                    "$ref": "#/$defs/Catalog"
+                },
+                "EntityId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "GetResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/ResourcePolicyJson"
+                }
+            }
+        },
+        "ResourcePolicyJson": {
+            "type": "string"
+        },
+        "GetResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "ListChangeSetsResponse": {
+            "type": "object",
+            "properties": {
+                "ChangeSetSummaryList": {
+                    "$ref": "#/$defs/ChangeSetSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ChangeSetSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChangeSetSummaryListItem"
+            }
+        },
+        "ChangeSetSummaryListItem": {
+            "type": "object",
+            "properties": {
+                "ChangeSetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ChangeSetArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "ChangeSetName": {
+                    "$ref": "#/$defs/ChangeSetName"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ChangeStatus"
+                },
+                "EntityIdList": {
+                    "$ref": "#/$defs/ResourceIdList"
+                },
+                "FailureCode": {
+                    "$ref": "#/$defs/FailureCode"
+                }
+            }
+        },
+        "ResourceIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceId"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListChangeSetsRequest": {
+            "type": "object",
+            "properties": {
+                "Catalog": {
+                    "$ref": "#/$defs/Catalog"
+                },
+                "FilterList": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "Sort": {
+                    "$ref": "#/$defs/Sort"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListChangeSetsMaxResultInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/FilterName"
+                },
+                "ValueList": {
+                    "$ref": "#/$defs/ValueList"
+                }
+            }
+        },
+        "FilterName": {
+            "type": "string"
+        },
+        "ValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterValueContent"
+            }
+        },
+        "FilterValueContent": {
+            "type": "string"
+        },
+        "Sort": {
+            "type": "object",
+            "properties": {
+                "SortBy": {
+                    "$ref": "#/$defs/SortBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "SortBy": {
+            "type": "string"
+        },
+        "SortOrder": {
+            "enum": [
+                "ASCENDING",
+                "DESCENDING"
+            ]
+        },
+        "ListChangeSetsMaxResultInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListEntitiesResponse": {
+            "type": "object",
+            "properties": {
+                "EntitySummaryList": {
+                    "$ref": "#/$defs/EntitySummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EntitySummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntitySummary"
+            }
+        },
+        "EntitySummary": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EntityNameString"
+                },
+                "EntityType": {
+                    "$ref": "#/$defs/EntityType"
+                },
+                "EntityId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "EntityArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/VisibilityValue"
+                },
+                "AmiProductSummary": {
+                    "$ref": "#/$defs/AmiProductSummary"
+                },
+                "ContainerProductSummary": {
+                    "$ref": "#/$defs/ContainerProductSummary"
+                },
+                "DataProductSummary": {
+                    "$ref": "#/$defs/DataProductSummary"
+                },
+                "SaaSProductSummary": {
+                    "$ref": "#/$defs/SaaSProductSummary"
+                },
+                "OfferSummary": {
+                    "$ref": "#/$defs/OfferSummary"
+                },
+                "ResaleAuthorizationSummary": {
+                    "$ref": "#/$defs/ResaleAuthorizationSummary"
+                }
+            }
+        },
+        "EntityNameString": {
+            "type": "string"
+        },
+        "VisibilityValue": {
+            "type": "string"
+        },
+        "AmiProductSummary": {
+            "type": "object",
+            "properties": {
+                "ProductTitle": {
+                    "$ref": "#/$defs/AmiProductTitleString"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/AmiProductVisibilityString"
+                }
+            }
+        },
+        "AmiProductTitleString": {
+            "type": "string"
+        },
+        "AmiProductVisibilityString": {
+            "enum": [
+                "Limited",
+                "Public",
+                "Restricted",
+                "Draft"
+            ]
+        },
+        "ContainerProductSummary": {
+            "type": "object",
+            "properties": {
+                "ProductTitle": {
+                    "$ref": "#/$defs/ContainerProductTitleString"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/ContainerProductVisibilityString"
+                }
+            }
+        },
+        "ContainerProductTitleString": {
+            "type": "string"
+        },
+        "ContainerProductVisibilityString": {
+            "enum": [
+                "Limited",
+                "Public",
+                "Restricted",
+                "Draft"
+            ]
+        },
+        "DataProductSummary": {
+            "type": "object",
+            "properties": {
+                "ProductTitle": {
+                    "$ref": "#/$defs/DataProductTitleString"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/DataProductVisibilityString"
+                }
+            }
+        },
+        "DataProductTitleString": {
+            "type": "string"
+        },
+        "DataProductVisibilityString": {
+            "enum": [
+                "Limited",
+                "Public",
+                "Restricted",
+                "Unavailable",
+                "Draft"
+            ]
+        },
+        "SaaSProductSummary": {
+            "type": "object",
+            "properties": {
+                "ProductTitle": {
+                    "$ref": "#/$defs/SaaSProductTitleString"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/SaaSProductVisibilityString"
+                }
+            }
+        },
+        "SaaSProductTitleString": {
+            "type": "string"
+        },
+        "SaaSProductVisibilityString": {
+            "enum": [
+                "Limited",
+                "Public",
+                "Restricted",
+                "Draft"
+            ]
+        },
+        "OfferSummary": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/OfferNameString"
+                },
+                "ProductId": {
+                    "$ref": "#/$defs/OfferProductIdString"
+                },
+                "ResaleAuthorizationId": {
+                    "$ref": "#/$defs/OfferResaleAuthorizationIdString"
+                },
+                "ReleaseDate": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "AvailabilityEndDate": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BuyerAccounts": {
+                    "$ref": "#/$defs/OfferBuyerAccountsList"
+                },
+                "State": {
+                    "$ref": "#/$defs/OfferStateString"
+                },
+                "Targeting": {
+                    "$ref": "#/$defs/OfferTargetingList"
+                }
+            }
+        },
+        "OfferNameString": {
+            "type": "string"
+        },
+        "OfferProductIdString": {
+            "type": "string"
+        },
+        "OfferResaleAuthorizationIdString": {
+            "type": "string"
+        },
+        "OfferBuyerAccountsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OfferBuyerAccountsString"
+            }
+        },
+        "OfferBuyerAccountsString": {
+            "type": "string"
+        },
+        "OfferStateString": {
+            "enum": [
+                "Draft",
+                "Released"
+            ]
+        },
+        "OfferTargetingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OfferTargetingString"
+            }
+        },
+        "OfferTargetingString": {
+            "enum": [
+                "BuyerAccounts",
+                "ParticipatingPrograms",
+                "CountryCodes",
+                "None"
+            ]
+        },
+        "ResaleAuthorizationSummary": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ResaleAuthorizationNameString"
+                },
+                "ProductId": {
+                    "$ref": "#/$defs/ResaleAuthorizationProductIdString"
+                },
+                "ProductName": {
+                    "$ref": "#/$defs/ResaleAuthorizationProductNameString"
+                },
+                "ManufacturerAccountId": {
+                    "$ref": "#/$defs/ResaleAuthorizationManufacturerAccountIdString"
+                },
+                "ManufacturerLegalName": {
+                    "$ref": "#/$defs/ResaleAuthorizationManufacturerLegalNameString"
+                },
+                "ResellerAccountID": {
+                    "$ref": "#/$defs/ResaleAuthorizationResellerAccountIDString"
+                },
+                "ResellerLegalName": {
+                    "$ref": "#/$defs/ResaleAuthorizationResellerLegalNameString"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ResaleAuthorizationStatusString"
+                },
+                "OfferExtendedStatus": {
+                    "$ref": "#/$defs/ResaleAuthorizationOfferExtendedStatusString"
+                },
+                "CreatedDate": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "AvailabilityEndDate": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "ResaleAuthorizationNameString": {
+            "type": "string"
+        },
+        "ResaleAuthorizationProductIdString": {
+            "type": "string"
+        },
+        "ResaleAuthorizationProductNameString": {
+            "type": "string"
+        },
+        "ResaleAuthorizationManufacturerAccountIdString": {
+            "type": "string"
+        },
+        "ResaleAuthorizationManufacturerLegalNameString": {
+            "type": "string"
+        },
+        "ResaleAuthorizationResellerAccountIDString": {
+            "type": "string"
+        },
+        "ResaleAuthorizationResellerLegalNameString": {
+            "type": "string"
+        },
+        "ResaleAuthorizationStatusString": {
+            "enum": [
+                "Draft",
+                "Active",
+                "Restricted"
+            ]
+        },
+        "ResaleAuthorizationOfferExtendedStatusString": {
+            "type": "string"
+        },
+        "ListEntitiesRequest": {
+            "type": "object",
+            "properties": {
+                "Catalog": {
+                    "$ref": "#/$defs/Catalog"
+                },
+                "EntityType": {
+                    "$ref": "#/$defs/EntityType"
+                },
+                "FilterList": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "Sort": {
+                    "$ref": "#/$defs/Sort"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListEntitiesMaxResultInteger"
+                },
+                "OwnershipType": {
+                    "$ref": "#/$defs/OwnershipType"
+                },
+                "EntityTypeFilters": {
+                    "$ref": "#/$defs/EntityTypeFilters"
+                },
+                "EntityTypeSort": {
+                    "$ref": "#/$defs/EntityTypeSort"
+                }
+            }
+        },
+        "ListEntitiesMaxResultInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OwnershipType": {
+            "enum": [
+                "SELF",
+                "SHARED"
+            ]
+        },
+        "EntityTypeFilters": {
+            "type": "object",
+            "properties": {
+                "DataProductFilters": {
+                    "$ref": "#/$defs/DataProductFilters"
+                },
+                "SaaSProductFilters": {
+                    "$ref": "#/$defs/SaaSProductFilters"
+                },
+                "AmiProductFilters": {
+                    "$ref": "#/$defs/AmiProductFilters"
+                },
+                "OfferFilters": {
+                    "$ref": "#/$defs/OfferFilters"
+                },
+                "ContainerProductFilters": {
+                    "$ref": "#/$defs/ContainerProductFilters"
+                },
+                "ResaleAuthorizationFilters": {
+                    "$ref": "#/$defs/ResaleAuthorizationFilters"
+                }
+            }
+        },
+        "DataProductFilters": {
+            "type": "object",
+            "properties": {
+                "EntityId": {
+                    "$ref": "#/$defs/DataProductEntityIdFilter"
+                },
+                "ProductTitle": {
+                    "$ref": "#/$defs/DataProductTitleFilter"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/DataProductVisibilityFilter"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/DataProductLastModifiedDateFilter"
+                }
+            }
+        },
+        "DataProductEntityIdFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/DataProductEntityIdFilterValueList"
+                }
+            }
+        },
+        "DataProductEntityIdFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataProductEntityIdString"
+            }
+        },
+        "DataProductEntityIdString": {
+            "type": "string"
+        },
+        "DataProductTitleFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/DataProductTitleFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/DataProductTitleString"
+                }
+            }
+        },
+        "DataProductTitleFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataProductTitleString"
+            }
+        },
+        "DataProductVisibilityFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/DataProductVisibilityFilterValueList"
+                }
+            }
+        },
+        "DataProductVisibilityFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataProductVisibilityString"
+            }
+        },
+        "DataProductLastModifiedDateFilter": {
+            "type": "object",
+            "properties": {
+                "DateRange": {
+                    "$ref": "#/$defs/DataProductLastModifiedDateFilterDateRange"
+                }
+            }
+        },
+        "DataProductLastModifiedDateFilterDateRange": {
+            "type": "object",
+            "properties": {
+                "AfterValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BeforeValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "SaaSProductFilters": {
+            "type": "object",
+            "properties": {
+                "EntityId": {
+                    "$ref": "#/$defs/SaaSProductEntityIdFilter"
+                },
+                "ProductTitle": {
+                    "$ref": "#/$defs/SaaSProductTitleFilter"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/SaaSProductVisibilityFilter"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/SaaSProductLastModifiedDateFilter"
+                }
+            }
+        },
+        "SaaSProductEntityIdFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/SaaSProductEntityIdFilterValueList"
+                }
+            }
+        },
+        "SaaSProductEntityIdFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SaaSProductEntityIdString"
+            }
+        },
+        "SaaSProductEntityIdString": {
+            "type": "string"
+        },
+        "SaaSProductTitleFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/SaaSProductTitleFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/SaaSProductTitleString"
+                }
+            }
+        },
+        "SaaSProductTitleFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SaaSProductTitleString"
+            }
+        },
+        "SaaSProductVisibilityFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/SaaSProductVisibilityFilterValueList"
+                }
+            }
+        },
+        "SaaSProductVisibilityFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SaaSProductVisibilityString"
+            }
+        },
+        "SaaSProductLastModifiedDateFilter": {
+            "type": "object",
+            "properties": {
+                "DateRange": {
+                    "$ref": "#/$defs/SaaSProductLastModifiedDateFilterDateRange"
+                }
+            }
+        },
+        "SaaSProductLastModifiedDateFilterDateRange": {
+            "type": "object",
+            "properties": {
+                "AfterValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BeforeValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "AmiProductFilters": {
+            "type": "object",
+            "properties": {
+                "EntityId": {
+                    "$ref": "#/$defs/AmiProductEntityIdFilter"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/AmiProductLastModifiedDateFilter"
+                },
+                "ProductTitle": {
+                    "$ref": "#/$defs/AmiProductTitleFilter"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/AmiProductVisibilityFilter"
+                }
+            }
+        },
+        "AmiProductEntityIdFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/AmiProductEntityIdFilterValueList"
+                }
+            }
+        },
+        "AmiProductEntityIdFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AmiProductEntityIdString"
+            }
+        },
+        "AmiProductEntityIdString": {
+            "type": "string"
+        },
+        "AmiProductLastModifiedDateFilter": {
+            "type": "object",
+            "properties": {
+                "DateRange": {
+                    "$ref": "#/$defs/AmiProductLastModifiedDateFilterDateRange"
+                }
+            }
+        },
+        "AmiProductLastModifiedDateFilterDateRange": {
+            "type": "object",
+            "properties": {
+                "AfterValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BeforeValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "AmiProductTitleFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/AmiProductTitleFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/AmiProductTitleString"
+                }
+            }
+        },
+        "AmiProductTitleFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AmiProductTitleString"
+            }
+        },
+        "AmiProductVisibilityFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/AmiProductVisibilityFilterValueList"
+                }
+            }
+        },
+        "AmiProductVisibilityFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AmiProductVisibilityString"
+            }
+        },
+        "OfferFilters": {
+            "type": "object",
+            "properties": {
+                "EntityId": {
+                    "$ref": "#/$defs/OfferEntityIdFilter"
+                },
+                "Name": {
+                    "$ref": "#/$defs/OfferNameFilter"
+                },
+                "ProductId": {
+                    "$ref": "#/$defs/OfferProductIdFilter"
+                },
+                "ResaleAuthorizationId": {
+                    "$ref": "#/$defs/OfferResaleAuthorizationIdFilter"
+                },
+                "ReleaseDate": {
+                    "$ref": "#/$defs/OfferReleaseDateFilter"
+                },
+                "AvailabilityEndDate": {
+                    "$ref": "#/$defs/OfferAvailabilityEndDateFilter"
+                },
+                "BuyerAccounts": {
+                    "$ref": "#/$defs/OfferBuyerAccountsFilter"
+                },
+                "State": {
+                    "$ref": "#/$defs/OfferStateFilter"
+                },
+                "Targeting": {
+                    "$ref": "#/$defs/OfferTargetingFilter"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/OfferLastModifiedDateFilter"
+                }
+            }
+        },
+        "OfferEntityIdFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/OfferEntityIdFilterValueList"
+                }
+            }
+        },
+        "OfferEntityIdFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OfferEntityIdString"
+            }
+        },
+        "OfferEntityIdString": {
+            "type": "string"
+        },
+        "OfferNameFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/OfferNameFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/OfferNameString"
+                }
+            }
+        },
+        "OfferNameFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OfferNameString"
+            }
+        },
+        "OfferProductIdFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/OfferProductIdFilterValueList"
+                }
+            }
+        },
+        "OfferProductIdFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OfferProductIdString"
+            }
+        },
+        "OfferResaleAuthorizationIdFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/OfferResaleAuthorizationIdFilterValueList"
+                }
+            }
+        },
+        "OfferResaleAuthorizationIdFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OfferResaleAuthorizationIdString"
+            }
+        },
+        "OfferReleaseDateFilter": {
+            "type": "object",
+            "properties": {
+                "DateRange": {
+                    "$ref": "#/$defs/OfferReleaseDateFilterDateRange"
+                }
+            }
+        },
+        "OfferReleaseDateFilterDateRange": {
+            "type": "object",
+            "properties": {
+                "AfterValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BeforeValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "OfferAvailabilityEndDateFilter": {
+            "type": "object",
+            "properties": {
+                "DateRange": {
+                    "$ref": "#/$defs/OfferAvailabilityEndDateFilterDateRange"
+                }
+            }
+        },
+        "OfferAvailabilityEndDateFilterDateRange": {
+            "type": "object",
+            "properties": {
+                "AfterValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BeforeValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "OfferBuyerAccountsFilter": {
+            "type": "object",
+            "properties": {
+                "WildCardValue": {
+                    "$ref": "#/$defs/OfferBuyerAccountsFilterWildcard"
+                }
+            }
+        },
+        "OfferBuyerAccountsFilterWildcard": {
+            "type": "string"
+        },
+        "OfferStateFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/OfferStateFilterValueList"
+                }
+            }
+        },
+        "OfferStateFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OfferStateString"
+            }
+        },
+        "OfferTargetingFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/OfferTargetingFilterValueList"
+                }
+            }
+        },
+        "OfferTargetingFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OfferTargetingString"
+            }
+        },
+        "OfferLastModifiedDateFilter": {
+            "type": "object",
+            "properties": {
+                "DateRange": {
+                    "$ref": "#/$defs/OfferLastModifiedDateFilterDateRange"
+                }
+            }
+        },
+        "OfferLastModifiedDateFilterDateRange": {
+            "type": "object",
+            "properties": {
+                "AfterValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BeforeValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "ContainerProductFilters": {
+            "type": "object",
+            "properties": {
+                "EntityId": {
+                    "$ref": "#/$defs/ContainerProductEntityIdFilter"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/ContainerProductLastModifiedDateFilter"
+                },
+                "ProductTitle": {
+                    "$ref": "#/$defs/ContainerProductTitleFilter"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/ContainerProductVisibilityFilter"
+                }
+            }
+        },
+        "ContainerProductEntityIdFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ContainerProductEntityIdFilterValueList"
+                }
+            }
+        },
+        "ContainerProductEntityIdFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerProductEntityIdString"
+            }
+        },
+        "ContainerProductEntityIdString": {
+            "type": "string"
+        },
+        "ContainerProductLastModifiedDateFilter": {
+            "type": "object",
+            "properties": {
+                "DateRange": {
+                    "$ref": "#/$defs/ContainerProductLastModifiedDateFilterDateRange"
+                }
+            }
+        },
+        "ContainerProductLastModifiedDateFilterDateRange": {
+            "type": "object",
+            "properties": {
+                "AfterValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BeforeValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "ContainerProductTitleFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ContainerProductTitleFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/ContainerProductTitleString"
+                }
+            }
+        },
+        "ContainerProductTitleFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerProductTitleString"
+            }
+        },
+        "ContainerProductVisibilityFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ContainerProductVisibilityFilterValueList"
+                }
+            }
+        },
+        "ContainerProductVisibilityFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerProductVisibilityString"
+            }
+        },
+        "ResaleAuthorizationFilters": {
+            "type": "object",
+            "properties": {
+                "EntityId": {
+                    "$ref": "#/$defs/ResaleAuthorizationEntityIdFilter"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ResaleAuthorizationNameFilter"
+                },
+                "ProductId": {
+                    "$ref": "#/$defs/ResaleAuthorizationProductIdFilter"
+                },
+                "CreatedDate": {
+                    "$ref": "#/$defs/ResaleAuthorizationCreatedDateFilter"
+                },
+                "AvailabilityEndDate": {
+                    "$ref": "#/$defs/ResaleAuthorizationAvailabilityEndDateFilter"
+                },
+                "ManufacturerAccountId": {
+                    "$ref": "#/$defs/ResaleAuthorizationManufacturerAccountIdFilter"
+                },
+                "ProductName": {
+                    "$ref": "#/$defs/ResaleAuthorizationProductNameFilter"
+                },
+                "ManufacturerLegalName": {
+                    "$ref": "#/$defs/ResaleAuthorizationManufacturerLegalNameFilter"
+                },
+                "ResellerAccountID": {
+                    "$ref": "#/$defs/ResaleAuthorizationResellerAccountIDFilter"
+                },
+                "ResellerLegalName": {
+                    "$ref": "#/$defs/ResaleAuthorizationResellerLegalNameFilter"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ResaleAuthorizationStatusFilter"
+                },
+                "OfferExtendedStatus": {
+                    "$ref": "#/$defs/ResaleAuthorizationOfferExtendedStatusFilter"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/ResaleAuthorizationLastModifiedDateFilter"
+                }
+            }
+        },
+        "ResaleAuthorizationEntityIdFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationEntityIdFilterValueList"
+                }
+            }
+        },
+        "ResaleAuthorizationEntityIdFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResaleAuthorizationEntityIdString"
+            }
+        },
+        "ResaleAuthorizationEntityIdString": {
+            "type": "string"
+        },
+        "ResaleAuthorizationNameFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationNameFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/ResaleAuthorizationNameFilterWildcard"
+                }
+            }
+        },
+        "ResaleAuthorizationNameFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResaleAuthorizationNameString"
+            }
+        },
+        "ResaleAuthorizationNameFilterWildcard": {
+            "type": "string"
+        },
+        "ResaleAuthorizationProductIdFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationProductIdFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/ResaleAuthorizationProductIdFilterWildcard"
+                }
+            }
+        },
+        "ResaleAuthorizationProductIdFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResaleAuthorizationProductIdString"
+            }
+        },
+        "ResaleAuthorizationProductIdFilterWildcard": {
+            "type": "string"
+        },
+        "ResaleAuthorizationCreatedDateFilter": {
+            "type": "object",
+            "properties": {
+                "DateRange": {
+                    "$ref": "#/$defs/ResaleAuthorizationCreatedDateFilterDateRange"
+                },
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationCreatedDateFilterValueList"
+                }
+            }
+        },
+        "ResaleAuthorizationCreatedDateFilterDateRange": {
+            "type": "object",
+            "properties": {
+                "AfterValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BeforeValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "ResaleAuthorizationCreatedDateFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DateTimeISO8601"
+            }
+        },
+        "ResaleAuthorizationAvailabilityEndDateFilter": {
+            "type": "object",
+            "properties": {
+                "DateRange": {
+                    "$ref": "#/$defs/ResaleAuthorizationAvailabilityEndDateFilterDateRange"
+                },
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationAvailabilityEndDateFilterValueList"
+                }
+            }
+        },
+        "ResaleAuthorizationAvailabilityEndDateFilterDateRange": {
+            "type": "object",
+            "properties": {
+                "AfterValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BeforeValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "ResaleAuthorizationAvailabilityEndDateFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DateTimeISO8601"
+            }
+        },
+        "ResaleAuthorizationManufacturerAccountIdFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationManufacturerAccountIdFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/ResaleAuthorizationManufacturerAccountIdFilterWildcard"
+                }
+            }
+        },
+        "ResaleAuthorizationManufacturerAccountIdFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResaleAuthorizationManufacturerAccountIdString"
+            }
+        },
+        "ResaleAuthorizationManufacturerAccountIdFilterWildcard": {
+            "type": "string"
+        },
+        "ResaleAuthorizationProductNameFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationProductNameFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/ResaleAuthorizationProductNameFilterWildcard"
+                }
+            }
+        },
+        "ResaleAuthorizationProductNameFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResaleAuthorizationProductNameString"
+            }
+        },
+        "ResaleAuthorizationProductNameFilterWildcard": {
+            "type": "string"
+        },
+        "ResaleAuthorizationManufacturerLegalNameFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationManufacturerLegalNameFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/ResaleAuthorizationManufacturerLegalNameFilterWildcard"
+                }
+            }
+        },
+        "ResaleAuthorizationManufacturerLegalNameFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResaleAuthorizationManufacturerLegalNameString"
+            }
+        },
+        "ResaleAuthorizationManufacturerLegalNameFilterWildcard": {
+            "type": "string"
+        },
+        "ResaleAuthorizationResellerAccountIDFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationResellerAccountIDFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/ResaleAuthorizationResellerAccountIDFilterWildcard"
+                }
+            }
+        },
+        "ResaleAuthorizationResellerAccountIDFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResaleAuthorizationResellerAccountIDString"
+            }
+        },
+        "ResaleAuthorizationResellerAccountIDFilterWildcard": {
+            "type": "string"
+        },
+        "ResaleAuthorizationResellerLegalNameFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationResellerLegalNameFilterValueList"
+                },
+                "WildCardValue": {
+                    "$ref": "#/$defs/ResaleAuthorizationResellerLegalNameFilterWildcard"
+                }
+            }
+        },
+        "ResaleAuthorizationResellerLegalNameFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResaleAuthorizationResellerLegalNameString"
+            }
+        },
+        "ResaleAuthorizationResellerLegalNameFilterWildcard": {
+            "type": "string"
+        },
+        "ResaleAuthorizationStatusFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationStatusFilterValueList"
+                }
+            }
+        },
+        "ResaleAuthorizationStatusFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResaleAuthorizationStatusString"
+            }
+        },
+        "ResaleAuthorizationOfferExtendedStatusFilter": {
+            "type": "object",
+            "properties": {
+                "ValueList": {
+                    "$ref": "#/$defs/ResaleAuthorizationOfferExtendedStatusFilterValueList"
+                }
+            }
+        },
+        "ResaleAuthorizationOfferExtendedStatusFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResaleAuthorizationOfferExtendedStatusString"
+            }
+        },
+        "ResaleAuthorizationLastModifiedDateFilter": {
+            "type": "object",
+            "properties": {
+                "DateRange": {
+                    "$ref": "#/$defs/ResaleAuthorizationLastModifiedDateFilterDateRange"
+                }
+            }
+        },
+        "ResaleAuthorizationLastModifiedDateFilterDateRange": {
+            "type": "object",
+            "properties": {
+                "AfterValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                },
+                "BeforeValue": {
+                    "$ref": "#/$defs/DateTimeISO8601"
+                }
+            }
+        },
+        "EntityTypeSort": {
+            "type": "object",
+            "properties": {
+                "DataProductSort": {
+                    "$ref": "#/$defs/DataProductSort"
+                },
+                "SaaSProductSort": {
+                    "$ref": "#/$defs/SaaSProductSort"
+                },
+                "AmiProductSort": {
+                    "$ref": "#/$defs/AmiProductSort"
+                },
+                "OfferSort": {
+                    "$ref": "#/$defs/OfferSort"
+                },
+                "ContainerProductSort": {
+                    "$ref": "#/$defs/ContainerProductSort"
+                },
+                "ResaleAuthorizationSort": {
+                    "$ref": "#/$defs/ResaleAuthorizationSort"
+                }
+            }
+        },
+        "DataProductSort": {
+            "type": "object",
+            "properties": {
+                "SortBy": {
+                    "$ref": "#/$defs/DataProductSortBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "DataProductSortBy": {
+            "enum": [
+                "EntityId",
+                "ProductTitle",
+                "Visibility",
+                "LastModifiedDate"
+            ]
+        },
+        "SaaSProductSort": {
+            "type": "object",
+            "properties": {
+                "SortBy": {
+                    "$ref": "#/$defs/SaaSProductSortBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "SaaSProductSortBy": {
+            "enum": [
+                "EntityId",
+                "ProductTitle",
+                "Visibility",
+                "LastModifiedDate"
+            ]
+        },
+        "AmiProductSort": {
+            "type": "object",
+            "properties": {
+                "SortBy": {
+                    "$ref": "#/$defs/AmiProductSortBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "AmiProductSortBy": {
+            "enum": [
+                "EntityId",
+                "LastModifiedDate",
+                "ProductTitle",
+                "Visibility"
+            ]
+        },
+        "OfferSort": {
+            "type": "object",
+            "properties": {
+                "SortBy": {
+                    "$ref": "#/$defs/OfferSortBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "OfferSortBy": {
+            "enum": [
+                "EntityId",
+                "Name",
+                "ProductId",
+                "ResaleAuthorizationId",
+                "ReleaseDate",
+                "AvailabilityEndDate",
+                "BuyerAccounts",
+                "State",
+                "Targeting",
+                "LastModifiedDate"
+            ]
+        },
+        "ContainerProductSort": {
+            "type": "object",
+            "properties": {
+                "SortBy": {
+                    "$ref": "#/$defs/ContainerProductSortBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "ContainerProductSortBy": {
+            "enum": [
+                "EntityId",
+                "LastModifiedDate",
+                "ProductTitle",
+                "Visibility"
+            ]
+        },
+        "ResaleAuthorizationSort": {
+            "type": "object",
+            "properties": {
+                "SortBy": {
+                    "$ref": "#/$defs/ResaleAuthorizationSortBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "ResaleAuthorizationSortBy": {
+            "enum": [
+                "EntityId",
+                "Name",
+                "ProductId",
+                "ProductName",
+                "ManufacturerAccountId",
+                "ManufacturerLegalName",
+                "ResellerAccountID",
+                "ResellerLegalName",
+                "Status",
+                "OfferExtendedStatus",
+                "CreatedDate",
+                "AvailabilityEndDate",
+                "LastModifiedDate"
+            ]
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "PutResourcePolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/ResourcePolicyJson"
+                }
+            }
+        },
+        "StartChangeSetResponse": {
+            "type": "object",
+            "properties": {
+                "ChangeSetId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ChangeSetArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "StartChangeSetRequest": {
+            "type": "object",
+            "properties": {
+                "Catalog": {
+                    "$ref": "#/$defs/Catalog"
+                },
+                "ChangeSet": {
+                    "$ref": "#/$defs/RequestedChangeList"
+                },
+                "ChangeSetName": {
+                    "$ref": "#/$defs/ChangeSetName"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "ChangeSetTags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "Intent": {
+                    "$ref": "#/$defs/Intent"
+                }
+            }
+        },
+        "RequestedChangeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Change"
+            }
+        },
+        "Change": {
+            "type": "object",
+            "properties": {
+                "ChangeType": {
+                    "$ref": "#/$defs/ChangeType"
+                },
+                "Entity": {
+                    "$ref": "#/$defs/Entity"
+                },
+                "EntityTags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "Details": {
+                    "$ref": "#/$defs/Json"
+                },
+                "DetailsDocument": {
+                    "$ref": "#/$defs/JsonDocumentType"
+                },
+                "ChangeName": {
+                    "$ref": "#/$defs/ChangeName"
+                }
+            }
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://catalog.marketplace-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://catalog.marketplace-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://catalog.marketplace.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://catalog.marketplace.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

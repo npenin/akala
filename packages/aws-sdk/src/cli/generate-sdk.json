@@ -1,0 +1,23 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "": {
+        "inject": [
+            "$http",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "cli": {
+        "usage": "generate [output] [service]",
+        "inject": [
+            "$http",
+            "options.service",
+            "options.output"
+        ],
+        "options": {
+            "output": {
+                "normalize": true
+            }
+        }
+    }
+}

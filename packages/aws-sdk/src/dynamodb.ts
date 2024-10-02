@@ -59,18 +59,6 @@ export const actions = {
     }
 };
 
-export class DynamoDb
-{
-    constructor(public readonly prefix: string, private region: string, private credentials?: { AccessKey: string })
-    {
-
-    }
-
-    public table<T, THashKey extends keyof T, TRangeKey extends keyof T | undefined = undefined>(name: string)
-    {
-        return new Table<T, THashKey, TRangeKey>(this.prefix + name, this.region, this.credentials);
-    }
-}
 
 export function marshall<T>(value: T, options?: { removeUndefinedValues: boolean }): Marshall<T>
 {
@@ -158,19 +146,6 @@ export function unmarshall<T extends object>(value: Marshall<T>, parent?: keyof 
         }
     }))
     return result;
-}
-
-export class Table<T, THashKey extends keyof T, TRangeKey extends keyof T | undefined = undefined>
-{
-    constructor(private name: string, private region: string, credentials: { AccessKey: string })
-    {
-
-    }
-
-    public get(key: THashKey, range?: TRangeKey)
-    {
-        return fetch('https://dynamodb.' + this.region + '.amazonaws.com', { headers: { 'content-type': 'application/json', 'x-amz-target': actions.DynamoDB_2012010.GetItem }, body: JSON.stringify(marshall({ key })) })
-    }
 }
 
 export type AttributeValue = SMember | NMember | BMember | SSMember | NSMember | BSMember | MMember | LMember | NULLMember | BOOLMember;

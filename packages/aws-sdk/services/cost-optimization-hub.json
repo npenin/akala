@@ -1,0 +1,1930 @@
+{
+    "commands": [
+        {
+            "name": "GetPreferences",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPreferences"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPreferencesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPreferencesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRecommendation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRecommendation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRecommendationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRecommendationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEnrollmentStatuses",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEnrollmentStatuses"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEnrollmentStatusesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEnrollmentStatusesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRecommendations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRecommendations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRecommendationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRecommendationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRecommendationSummaries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRecommendationSummaries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRecommendationSummariesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRecommendationSummariesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateEnrollmentStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateEnrollmentStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateEnrollmentStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEnrollmentStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePreferences",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePreferences"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePreferencesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePreferencesRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetPreferencesResponse": {
+            "type": "object",
+            "properties": {
+                "savingsEstimationMode": {
+                    "$ref": "#/$defs/SavingsEstimationMode"
+                },
+                "memberAccountDiscountVisibility": {
+                    "$ref": "#/$defs/MemberAccountDiscountVisibility"
+                }
+            }
+        },
+        "SavingsEstimationMode": {
+            "enum": [
+                "BEFORE_DISCOUNTS",
+                "AFTER_DISCOUNTS"
+            ]
+        },
+        "MemberAccountDiscountVisibility": {
+            "enum": [
+                "ALL",
+                "NONE"
+            ]
+        },
+        "GetPreferencesRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetRecommendationResponse": {
+            "type": "object",
+            "properties": {
+                "recommendationId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "currencyCode": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "recommendationLookbackPeriodInDays": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "costCalculationLookbackPeriodInDays": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "estimatedSavingsPercentage": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "estimatedSavingsOverCostCalculationLookbackPeriod": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "currentResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "recommendedResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "region": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "lastRefreshTimestamp": {
+                    "$ref": "#/$defs/Datetime"
+                },
+                "estimatedMonthlySavings": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "estimatedMonthlyCost": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "implementationEffort": {
+                    "$ref": "#/$defs/ImplementationEffort"
+                },
+                "restartNeeded": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "actionType": {
+                    "$ref": "#/$defs/ActionType"
+                },
+                "rollbackPossible": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "currentResourceDetails": {
+                    "$ref": "#/$defs/ResourceDetails"
+                },
+                "recommendedResourceDetails": {
+                    "$ref": "#/$defs/ResourceDetails"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ResourceType": {
+            "enum": [
+                "EC2_INSTANCE",
+                "LAMBDA_FUNCTION",
+                "EBS_VOLUME",
+                "ECS_SERVICE",
+                "EC2_AUTO_SCALING_GROUP",
+                "EC2_INSTANCE_SAVINGS_PLANS",
+                "COMPUTE_SAVINGS_PLANS",
+                "SAGE_MAKER_SAVINGS_PLANS",
+                "EC2_RESERVED_INSTANCES",
+                "RDS_RESERVED_INSTANCES",
+                "OPEN_SEARCH_RESERVED_INSTANCES",
+                "REDSHIFT_RESERVED_INSTANCES",
+                "ELASTI_CACHE_RESERVED_INSTANCES",
+                "RDS_DB_INSTANCE_STORAGE",
+                "RDS_DB_INSTANCE"
+            ]
+        },
+        "Source": {
+            "enum": [
+                "COMPUTE_OPTIMIZER",
+                "COST_EXPLORER"
+            ]
+        },
+        "Datetime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ImplementationEffort": {
+            "enum": [
+                "VERY_LOW",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "VERY_HIGH"
+            ]
+        },
+        "ActionType": {
+            "enum": [
+                "RIGHTSIZE",
+                "STOP",
+                "UPGRADE",
+                "PURCHASE_SAVINGS_PLANS",
+                "PURCHASE_RESERVED_INSTANCES",
+                "MIGRATE_TO_GRAVITON"
+            ]
+        },
+        "ResourceDetails": {
+            "type": "object",
+            "properties": {
+                "lambdaFunction": {
+                    "$ref": "#/$defs/LambdaFunction"
+                },
+                "ecsService": {
+                    "$ref": "#/$defs/EcsService"
+                },
+                "ec2Instance": {
+                    "$ref": "#/$defs/Ec2Instance"
+                },
+                "ebsVolume": {
+                    "$ref": "#/$defs/EbsVolume"
+                },
+                "ec2AutoScalingGroup": {
+                    "$ref": "#/$defs/Ec2AutoScalingGroup"
+                },
+                "ec2ReservedInstances": {
+                    "$ref": "#/$defs/Ec2ReservedInstances"
+                },
+                "rdsReservedInstances": {
+                    "$ref": "#/$defs/RdsReservedInstances"
+                },
+                "elastiCacheReservedInstances": {
+                    "$ref": "#/$defs/ElastiCacheReservedInstances"
+                },
+                "openSearchReservedInstances": {
+                    "$ref": "#/$defs/OpenSearchReservedInstances"
+                },
+                "redshiftReservedInstances": {
+                    "$ref": "#/$defs/RedshiftReservedInstances"
+                },
+                "ec2InstanceSavingsPlans": {
+                    "$ref": "#/$defs/Ec2InstanceSavingsPlans"
+                },
+                "computeSavingsPlans": {
+                    "$ref": "#/$defs/ComputeSavingsPlans"
+                },
+                "sageMakerSavingsPlans": {
+                    "$ref": "#/$defs/SageMakerSavingsPlans"
+                },
+                "rdsDbInstance": {
+                    "$ref": "#/$defs/RdsDbInstance"
+                },
+                "rdsDbInstanceStorage": {
+                    "$ref": "#/$defs/RdsDbInstanceStorage"
+                }
+            }
+        },
+        "LambdaFunction": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/LambdaFunctionConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ResourceCostCalculation"
+                }
+            }
+        },
+        "LambdaFunctionConfiguration": {
+            "type": "object",
+            "properties": {
+                "compute": {
+                    "$ref": "#/$defs/ComputeConfiguration"
+                }
+            }
+        },
+        "ComputeConfiguration": {
+            "type": "object",
+            "properties": {
+                "vCpu": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "memorySizeInMB": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "architecture": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "platform": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ResourceCostCalculation": {
+            "type": "object",
+            "properties": {
+                "usages": {
+                    "$ref": "#/$defs/UsageList"
+                },
+                "pricing": {
+                    "$ref": "#/$defs/ResourcePricing"
+                }
+            }
+        },
+        "UsageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Usage"
+            }
+        },
+        "Usage": {
+            "type": "object",
+            "properties": {
+                "usageType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "usageAmount": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "operation": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "productCode": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "unit": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ResourcePricing": {
+            "type": "object",
+            "properties": {
+                "estimatedCostBeforeDiscounts": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "estimatedNetUnusedAmortizedCommitments": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "estimatedDiscounts": {
+                    "$ref": "#/$defs/EstimatedDiscounts"
+                },
+                "estimatedCostAfterDiscounts": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                }
+            }
+        },
+        "EstimatedDiscounts": {
+            "type": "object",
+            "properties": {
+                "savingsPlansDiscount": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "reservedInstancesDiscount": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "otherDiscount": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                }
+            }
+        },
+        "EcsService": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/EcsServiceConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ResourceCostCalculation"
+                }
+            }
+        },
+        "EcsServiceConfiguration": {
+            "type": "object",
+            "properties": {
+                "compute": {
+                    "$ref": "#/$defs/ComputeConfiguration"
+                }
+            }
+        },
+        "Ec2Instance": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/Ec2InstanceConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ResourceCostCalculation"
+                }
+            }
+        },
+        "Ec2InstanceConfiguration": {
+            "type": "object",
+            "properties": {
+                "instance": {
+                    "$ref": "#/$defs/InstanceConfiguration"
+                }
+            }
+        },
+        "InstanceConfiguration": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "EbsVolume": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/EbsVolumeConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ResourceCostCalculation"
+                }
+            }
+        },
+        "EbsVolumeConfiguration": {
+            "type": "object",
+            "properties": {
+                "storage": {
+                    "$ref": "#/$defs/StorageConfiguration"
+                },
+                "performance": {
+                    "$ref": "#/$defs/BlockStoragePerformanceConfiguration"
+                },
+                "attachmentState": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "StorageConfiguration": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sizeInGb": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                }
+            }
+        },
+        "BlockStoragePerformanceConfiguration": {
+            "type": "object",
+            "properties": {
+                "iops": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "throughput": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                }
+            }
+        },
+        "Ec2AutoScalingGroup": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/Ec2AutoScalingGroupConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ResourceCostCalculation"
+                }
+            }
+        },
+        "Ec2AutoScalingGroupConfiguration": {
+            "type": "object",
+            "properties": {
+                "instance": {
+                    "$ref": "#/$defs/InstanceConfiguration"
+                }
+            }
+        },
+        "Ec2ReservedInstances": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/Ec2ReservedInstancesConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ReservedInstancesCostCalculation"
+                }
+            }
+        },
+        "Ec2ReservedInstancesConfiguration": {
+            "type": "object",
+            "properties": {
+                "accountScope": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "service": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "normalizedUnitsToPurchase": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "term": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "paymentOption": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "numberOfInstancesToPurchase": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "offeringClass": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceFamily": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "reservedInstancesRegion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "currentGeneration": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "platform": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tenancy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sizeFlexEligible": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "upfrontCost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "monthlyRecurringCost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ReservedInstancesCostCalculation": {
+            "type": "object",
+            "properties": {
+                "pricing": {
+                    "$ref": "#/$defs/ReservedInstancesPricing"
+                }
+            }
+        },
+        "ReservedInstancesPricing": {
+            "type": "object",
+            "properties": {
+                "estimatedOnDemandCost": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "monthlyReservationEligibleCost": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "savingsPercentage": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "estimatedMonthlyAmortizedReservationCost": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                }
+            }
+        },
+        "RdsReservedInstances": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/RdsReservedInstancesConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ReservedInstancesCostCalculation"
+                }
+            }
+        },
+        "RdsReservedInstancesConfiguration": {
+            "type": "object",
+            "properties": {
+                "accountScope": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "service": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "normalizedUnitsToPurchase": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "term": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "paymentOption": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "numberOfInstancesToPurchase": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceFamily": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "reservedInstancesRegion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sizeFlexEligible": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "currentGeneration": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "upfrontCost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "monthlyRecurringCost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "licenseModel": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "databaseEdition": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "databaseEngine": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "deploymentOption": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ElastiCacheReservedInstances": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/ElastiCacheReservedInstancesConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ReservedInstancesCostCalculation"
+                }
+            }
+        },
+        "ElastiCacheReservedInstancesConfiguration": {
+            "type": "object",
+            "properties": {
+                "accountScope": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "service": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "normalizedUnitsToPurchase": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "term": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "paymentOption": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "numberOfInstancesToPurchase": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceFamily": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "reservedInstancesRegion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "currentGeneration": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sizeFlexEligible": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "upfrontCost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "monthlyRecurringCost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "OpenSearchReservedInstances": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/OpenSearchReservedInstancesConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ReservedInstancesCostCalculation"
+                }
+            }
+        },
+        "OpenSearchReservedInstancesConfiguration": {
+            "type": "object",
+            "properties": {
+                "accountScope": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "service": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "normalizedUnitsToPurchase": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "term": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "paymentOption": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "numberOfInstancesToPurchase": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "reservedInstancesRegion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "currentGeneration": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sizeFlexEligible": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "upfrontCost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "monthlyRecurringCost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RedshiftReservedInstances": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/RedshiftReservedInstancesConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ReservedInstancesCostCalculation"
+                }
+            }
+        },
+        "RedshiftReservedInstancesConfiguration": {
+            "type": "object",
+            "properties": {
+                "accountScope": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "service": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "normalizedUnitsToPurchase": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "term": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "paymentOption": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "numberOfInstancesToPurchase": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceFamily": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "reservedInstancesRegion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sizeFlexEligible": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "currentGeneration": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "upfrontCost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "monthlyRecurringCost": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Ec2InstanceSavingsPlans": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/Ec2InstanceSavingsPlansConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/SavingsPlansCostCalculation"
+                }
+            }
+        },
+        "Ec2InstanceSavingsPlansConfiguration": {
+            "type": "object",
+            "properties": {
+                "accountScope": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "term": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "paymentOption": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "hourlyCommitment": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceFamily": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "savingsPlansRegion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SavingsPlansCostCalculation": {
+            "type": "object",
+            "properties": {
+                "pricing": {
+                    "$ref": "#/$defs/SavingsPlansPricing"
+                }
+            }
+        },
+        "SavingsPlansPricing": {
+            "type": "object",
+            "properties": {
+                "monthlySavingsPlansEligibleCost": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "estimatedMonthlyCommitment": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "savingsPercentage": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "estimatedOnDemandCost": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                }
+            }
+        },
+        "ComputeSavingsPlans": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/ComputeSavingsPlansConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/SavingsPlansCostCalculation"
+                }
+            }
+        },
+        "ComputeSavingsPlansConfiguration": {
+            "type": "object",
+            "properties": {
+                "accountScope": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "term": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "paymentOption": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "hourlyCommitment": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SageMakerSavingsPlans": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/SageMakerSavingsPlansConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/SavingsPlansCostCalculation"
+                }
+            }
+        },
+        "SageMakerSavingsPlansConfiguration": {
+            "type": "object",
+            "properties": {
+                "accountScope": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "term": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "paymentOption": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "hourlyCommitment": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RdsDbInstance": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/RdsDbInstanceConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ResourceCostCalculation"
+                }
+            }
+        },
+        "RdsDbInstanceConfiguration": {
+            "type": "object",
+            "properties": {
+                "instance": {
+                    "$ref": "#/$defs/DbInstanceConfiguration"
+                }
+            }
+        },
+        "DbInstanceConfiguration": {
+            "type": "object",
+            "properties": {
+                "dbInstanceClass": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RdsDbInstanceStorage": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/RdsDbInstanceStorageConfiguration"
+                },
+                "costCalculation": {
+                    "$ref": "#/$defs/ResourceCostCalculation"
+                }
+            }
+        },
+        "RdsDbInstanceStorageConfiguration": {
+            "type": "object",
+            "properties": {
+                "storageType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "allocatedStorageInGb": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "iops": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "storageThroughput": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "value": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetRecommendationRequest": {
+            "type": "object",
+            "properties": {
+                "recommendationId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListEnrollmentStatusesResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/$defs/AccountEnrollmentStatuses"
+                },
+                "includeMemberAccounts": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "AccountEnrollmentStatuses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountEnrollmentStatus"
+            }
+        },
+        "AccountEnrollmentStatus": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "status": {
+                    "$ref": "#/$defs/EnrollmentStatus"
+                },
+                "lastUpdatedTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "createdTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "EnrollmentStatus": {
+            "enum": [
+                "ACTIVE",
+                "INACTIVE"
+            ]
+        },
+        "ListEnrollmentStatusesRequest": {
+            "type": "object",
+            "properties": {
+                "includeOrganizationInfo": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListRecommendationsResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/$defs/RecommendationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RecommendationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Recommendation"
+            }
+        },
+        "Recommendation": {
+            "type": "object",
+            "properties": {
+                "recommendationId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "region": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "currentResourceType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "recommendedResourceType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "estimatedMonthlySavings": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "estimatedSavingsPercentage": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "estimatedMonthlyCost": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "currencyCode": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "implementationEffort": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "restartNeeded": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "actionType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "rollbackPossible": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "currentResourceSummary": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "recommendedResourceSummary": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "lastRefreshTimestamp": {
+                    "$ref": "#/$defs/Datetime"
+                },
+                "recommendationLookbackPeriodInDays": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListRecommendationsRequest": {
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "$ref": "#/$defs/Filter"
+                },
+                "orderBy": {
+                    "$ref": "#/$defs/OrderBy"
+                },
+                "includeAllRecommendations": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "restartNeeded": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "rollbackPossible": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "implementationEfforts": {
+                    "$ref": "#/$defs/ImplementationEffortList"
+                },
+                "accountIds": {
+                    "$ref": "#/$defs/AccountIdList"
+                },
+                "regions": {
+                    "$ref": "#/$defs/RegionList"
+                },
+                "resourceTypes": {
+                    "$ref": "#/$defs/ResourceTypeList"
+                },
+                "actionTypes": {
+                    "$ref": "#/$defs/ActionTypeList"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "resourceIds": {
+                    "$ref": "#/$defs/ResourceIdList"
+                },
+                "resourceArns": {
+                    "$ref": "#/$defs/ResourceArnList"
+                },
+                "recommendationIds": {
+                    "$ref": "#/$defs/RecommendationIdList"
+                }
+            }
+        },
+        "ImplementationEffortList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImplementationEffort"
+            }
+        },
+        "AccountIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "RegionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ResourceTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceType"
+            }
+        },
+        "ActionTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionType"
+            }
+        },
+        "ResourceIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ResourceArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "RecommendationIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "OrderBy": {
+            "type": "object",
+            "properties": {
+                "dimension": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "order": {
+                    "$ref": "#/$defs/Order"
+                }
+            }
+        },
+        "Order": {
+            "enum": [
+                "ASC",
+                "DESC"
+            ]
+        },
+        "ListRecommendationSummariesResponse": {
+            "type": "object",
+            "properties": {
+                "estimatedTotalDedupedSavings": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "items": {
+                    "$ref": "#/$defs/RecommendationSummariesList"
+                },
+                "groupBy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "currencyCode": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "metrics": {
+                    "$ref": "#/$defs/SummaryMetricsResult"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RecommendationSummariesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationSummary"
+            }
+        },
+        "RecommendationSummary": {
+            "type": "object",
+            "properties": {
+                "group": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "estimatedMonthlySavings": {
+                    "$ref": "#/$defs/smithy.api#Double"
+                },
+                "recommendationCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "SummaryMetricsResult": {
+            "type": "object",
+            "properties": {
+                "savingsPercentage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListRecommendationSummariesRequest": {
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "$ref": "#/$defs/Filter"
+                },
+                "groupBy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "metrics": {
+                    "$ref": "#/$defs/SummaryMetricsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SummaryMetricsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SummaryMetrics"
+            }
+        },
+        "SummaryMetrics": {
+            "enum": [
+                "SAVINGS_PERCENTAGE"
+            ]
+        },
+        "UpdateEnrollmentStatusResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "UpdateEnrollmentStatusRequest": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/EnrollmentStatus"
+                },
+                "includeMemberAccounts": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "UpdatePreferencesResponse": {
+            "type": "object",
+            "properties": {
+                "savingsEstimationMode": {
+                    "$ref": "#/$defs/SavingsEstimationMode"
+                },
+                "memberAccountDiscountVisibility": {
+                    "$ref": "#/$defs/MemberAccountDiscountVisibility"
+                }
+            }
+        },
+        "UpdatePreferencesRequest": {
+            "type": "object",
+            "properties": {
+                "savingsEstimationMode": {
+                    "$ref": "#/$defs/SavingsEstimationMode"
+                },
+                "memberAccountDiscountVisibility": {
+                    "$ref": "#/$defs/MemberAccountDiscountVisibility"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://cost-optimization-hub-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://cost-optimization-hub-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://cost-optimization-hub.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cost-optimization-hub.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

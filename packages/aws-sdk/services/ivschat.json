@@ -1,0 +1,1615 @@
+{
+    "name": "ivschat",
+    "commands": [
+        {
+            "name": "CreateChatToken",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateChatToken"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateChatTokenResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateChatTokenRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLoggingConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLoggingConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLoggingConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLoggingConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateRoom",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRoom"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRoomResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRoomRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLoggingConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLoggingConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLoggingConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMessage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMessage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteMessageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMessageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRoom",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRoom"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRoomRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisconnectUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisconnectUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisconnectUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisconnectUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLoggingConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLoggingConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLoggingConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLoggingConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRoom",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRoom"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRoomResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRoomRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLoggingConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLoggingConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLoggingConfigurationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLoggingConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRooms",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRooms"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRoomsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRoomsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SendEvent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendEvent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendEventResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendEventRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLoggingConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLoggingConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLoggingConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLoggingConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRoom",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRoom"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateRoomResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRoomRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateChatTokenResponse": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "$ref": "#/$defs/ChatToken"
+                },
+                "tokenExpirationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "sessionExpirationTime": {
+                    "$ref": "#/$defs/Time"
+                }
+            }
+        },
+        "ChatToken": {
+            "type": "string"
+        },
+        "Time": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateChatTokenRequest": {
+            "type": "object",
+            "properties": {
+                "roomIdentifier": {
+                    "$ref": "#/$defs/RoomIdentifier"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserID"
+                },
+                "capabilities": {
+                    "$ref": "#/$defs/ChatTokenCapabilities"
+                },
+                "sessionDurationInMinutes": {
+                    "$ref": "#/$defs/SessionDurationInMinutes"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/ChatTokenAttributes"
+                }
+            }
+        },
+        "RoomIdentifier": {
+            "type": "string"
+        },
+        "UserID": {
+            "type": "string"
+        },
+        "ChatTokenCapabilities": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChatTokenCapability"
+            }
+        },
+        "ChatTokenCapability": {
+            "type": "string"
+        },
+        "SessionDurationInMinutes": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ChatTokenAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "CreateLoggingConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/LoggingConfigurationArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/LoggingConfigurationID"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "name": {
+                    "$ref": "#/$defs/LoggingConfigurationName"
+                },
+                "destinationConfiguration": {
+                    "$ref": "#/$defs/DestinationConfiguration"
+                },
+                "state": {
+                    "$ref": "#/$defs/CreateLoggingConfigurationState"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "LoggingConfigurationArn": {
+            "type": "string"
+        },
+        "LoggingConfigurationID": {
+            "type": "string"
+        },
+        "LoggingConfigurationName": {
+            "type": "string"
+        },
+        "DestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "s3": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                },
+                "cloudWatchLogs": {
+                    "$ref": "#/$defs/CloudWatchLogsDestinationConfiguration"
+                },
+                "firehose": {
+                    "$ref": "#/$defs/FirehoseDestinationConfiguration"
+                }
+            }
+        },
+        "S3DestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/BucketName"
+                }
+            }
+        },
+        "BucketName": {
+            "type": "string"
+        },
+        "CloudWatchLogsDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                }
+            }
+        },
+        "LogGroupName": {
+            "type": "string"
+        },
+        "FirehoseDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "deliveryStreamName": {
+                    "$ref": "#/$defs/DeliveryStreamName"
+                }
+            }
+        },
+        "DeliveryStreamName": {
+            "type": "string"
+        },
+        "CreateLoggingConfigurationState": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateLoggingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/LoggingConfigurationName"
+                },
+                "destinationConfiguration": {
+                    "$ref": "#/$defs/DestinationConfiguration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateRoomResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RoomArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/RoomID"
+                },
+                "name": {
+                    "$ref": "#/$defs/RoomName"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "maximumMessageRatePerSecond": {
+                    "$ref": "#/$defs/RoomMaxMessageRatePerSecond"
+                },
+                "maximumMessageLength": {
+                    "$ref": "#/$defs/RoomMaxMessageLength"
+                },
+                "messageReviewHandler": {
+                    "$ref": "#/$defs/MessageReviewHandler"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "loggingConfigurationIdentifiers": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifierList"
+                }
+            }
+        },
+        "RoomArn": {
+            "type": "string"
+        },
+        "RoomID": {
+            "type": "string"
+        },
+        "RoomName": {
+            "type": "string"
+        },
+        "RoomMaxMessageRatePerSecond": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RoomMaxMessageLength": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MessageReviewHandler": {
+            "type": "object",
+            "properties": {
+                "uri": {
+                    "$ref": "#/$defs/LambdaArn"
+                },
+                "fallbackResult": {
+                    "$ref": "#/$defs/FallbackResult"
+                }
+            }
+        },
+        "LambdaArn": {
+            "type": "string"
+        },
+        "FallbackResult": {
+            "type": "string"
+        },
+        "LoggingConfigurationIdentifierList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LoggingConfigurationIdentifier"
+            }
+        },
+        "LoggingConfigurationIdentifier": {
+            "type": "string"
+        },
+        "CreateRoomRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/RoomName"
+                },
+                "maximumMessageRatePerSecond": {
+                    "$ref": "#/$defs/RoomMaxMessageRatePerSecond"
+                },
+                "maximumMessageLength": {
+                    "$ref": "#/$defs/RoomMaxMessageLength"
+                },
+                "messageReviewHandler": {
+                    "$ref": "#/$defs/MessageReviewHandler"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "loggingConfigurationIdentifiers": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifierList"
+                }
+            }
+        },
+        "DeleteLoggingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifier"
+                }
+            }
+        },
+        "DeleteMessageResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ID"
+                }
+            }
+        },
+        "ID": {
+            "type": "string"
+        },
+        "DeleteMessageRequest": {
+            "type": "object",
+            "properties": {
+                "roomIdentifier": {
+                    "$ref": "#/$defs/RoomIdentifier"
+                },
+                "id": {
+                    "$ref": "#/$defs/MessageID"
+                },
+                "reason": {
+                    "$ref": "#/$defs/Reason"
+                }
+            }
+        },
+        "MessageID": {
+            "type": "string"
+        },
+        "Reason": {
+            "type": "string"
+        },
+        "DeleteRoomRequest": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/RoomIdentifier"
+                }
+            }
+        },
+        "DisconnectUserResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisconnectUserRequest": {
+            "type": "object",
+            "properties": {
+                "roomIdentifier": {
+                    "$ref": "#/$defs/RoomIdentifier"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserID"
+                },
+                "reason": {
+                    "$ref": "#/$defs/Reason"
+                }
+            }
+        },
+        "GetLoggingConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/LoggingConfigurationArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/LoggingConfigurationID"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "name": {
+                    "$ref": "#/$defs/LoggingConfigurationName"
+                },
+                "destinationConfiguration": {
+                    "$ref": "#/$defs/DestinationConfiguration"
+                },
+                "state": {
+                    "$ref": "#/$defs/LoggingConfigurationState"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "LoggingConfigurationState": {
+            "type": "string"
+        },
+        "GetLoggingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifier"
+                }
+            }
+        },
+        "GetRoomResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RoomArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/RoomID"
+                },
+                "name": {
+                    "$ref": "#/$defs/RoomName"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "maximumMessageRatePerSecond": {
+                    "$ref": "#/$defs/RoomMaxMessageRatePerSecond"
+                },
+                "maximumMessageLength": {
+                    "$ref": "#/$defs/RoomMaxMessageLength"
+                },
+                "messageReviewHandler": {
+                    "$ref": "#/$defs/MessageReviewHandler"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "loggingConfigurationIdentifiers": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifierList"
+                }
+            }
+        },
+        "GetRoomRequest": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/RoomIdentifier"
+                }
+            }
+        },
+        "ListLoggingConfigurationsResponse": {
+            "type": "object",
+            "properties": {
+                "loggingConfigurations": {
+                    "$ref": "#/$defs/LoggingConfigurationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "LoggingConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LoggingConfigurationSummary"
+            }
+        },
+        "LoggingConfigurationSummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/LoggingConfigurationArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/LoggingConfigurationID"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "name": {
+                    "$ref": "#/$defs/LoggingConfigurationName"
+                },
+                "destinationConfiguration": {
+                    "$ref": "#/$defs/DestinationConfiguration"
+                },
+                "state": {
+                    "$ref": "#/$defs/LoggingConfigurationState"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "ListLoggingConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxLoggingConfigurationResults"
+                }
+            }
+        },
+        "MaxLoggingConfigurationResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListRoomsResponse": {
+            "type": "object",
+            "properties": {
+                "rooms": {
+                    "$ref": "#/$defs/RoomList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "RoomList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RoomSummary"
+            }
+        },
+        "RoomSummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RoomArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/RoomID"
+                },
+                "name": {
+                    "$ref": "#/$defs/RoomName"
+                },
+                "messageReviewHandler": {
+                    "$ref": "#/$defs/MessageReviewHandler"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "loggingConfigurationIdentifiers": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifierList"
+                }
+            }
+        },
+        "ListRoomsRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/RoomName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxRoomResults"
+                },
+                "messageReviewHandlerUri": {
+                    "$ref": "#/$defs/LambdaArn"
+                },
+                "loggingConfigurationIdentifier": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifier"
+                }
+            }
+        },
+        "MaxRoomResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "SendEventResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ID"
+                }
+            }
+        },
+        "SendEventRequest": {
+            "type": "object",
+            "properties": {
+                "roomIdentifier": {
+                    "$ref": "#/$defs/RoomIdentifier"
+                },
+                "eventName": {
+                    "$ref": "#/$defs/EventName"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/EventAttributes"
+                }
+            }
+        },
+        "EventName": {
+            "type": "string"
+        },
+        "EventAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateLoggingConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/LoggingConfigurationArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/LoggingConfigurationID"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "name": {
+                    "$ref": "#/$defs/LoggingConfigurationName"
+                },
+                "destinationConfiguration": {
+                    "$ref": "#/$defs/DestinationConfiguration"
+                },
+                "state": {
+                    "$ref": "#/$defs/UpdateLoggingConfigurationState"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UpdateLoggingConfigurationState": {
+            "type": "string"
+        },
+        "UpdateLoggingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifier"
+                },
+                "name": {
+                    "$ref": "#/$defs/LoggingConfigurationName"
+                },
+                "destinationConfiguration": {
+                    "$ref": "#/$defs/DestinationConfiguration"
+                }
+            }
+        },
+        "UpdateRoomResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RoomArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/RoomID"
+                },
+                "name": {
+                    "$ref": "#/$defs/RoomName"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "maximumMessageRatePerSecond": {
+                    "$ref": "#/$defs/RoomMaxMessageRatePerSecond"
+                },
+                "maximumMessageLength": {
+                    "$ref": "#/$defs/RoomMaxMessageLength"
+                },
+                "messageReviewHandler": {
+                    "$ref": "#/$defs/MessageReviewHandler"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "loggingConfigurationIdentifiers": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifierList"
+                }
+            }
+        },
+        "UpdateRoomRequest": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/RoomIdentifier"
+                },
+                "name": {
+                    "$ref": "#/$defs/RoomName"
+                },
+                "maximumMessageRatePerSecond": {
+                    "$ref": "#/$defs/RoomMaxMessageRatePerSecond"
+                },
+                "maximumMessageLength": {
+                    "$ref": "#/$defs/RoomMaxMessageLength"
+                },
+                "messageReviewHandler": {
+                    "$ref": "#/$defs/MessageReviewHandler"
+                },
+                "loggingConfigurationIdentifiers": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifierList"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ivschat-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ivschat-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ivschat.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://ivschat.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

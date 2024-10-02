@@ -1,0 +1,2113 @@
+{
+    "name": "ecr-public",
+    "commands": [
+        {
+            "name": "BatchCheckLayerAvailability",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchCheckLayerAvailability"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchCheckLayerAvailabilityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchCheckLayerAvailabilityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchDeleteImage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchDeleteImage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDeleteImageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDeleteImageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CompleteLayerUpload",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CompleteLayerUpload"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CompleteLayerUploadResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CompleteLayerUploadRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateRepository",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRepository"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRepositoryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRepositoryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRepository",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRepository"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteRepositoryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRepositoryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRepositoryPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRepositoryPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteRepositoryPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRepositoryPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeImages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeImages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeImagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeImagesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeImageTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeImageTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeImageTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeImageTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRegistries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRegistries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRegistriesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRegistriesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRepositories",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRepositories"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRepositoriesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRepositoriesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAuthorizationToken",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAuthorizationToken"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAuthorizationTokenResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAuthorizationTokenRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRegistryCatalogData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRegistryCatalogData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRegistryCatalogDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRegistryCatalogDataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRepositoryCatalogData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRepositoryCatalogData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRepositoryCatalogDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRepositoryCatalogDataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRepositoryPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRepositoryPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRepositoryPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRepositoryPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InitiateLayerUpload",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InitiateLayerUpload"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InitiateLayerUploadResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InitiateLayerUploadRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutImage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutImage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutImageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutImageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutRegistryCatalogData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutRegistryCatalogData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutRegistryCatalogDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutRegistryCatalogDataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutRepositoryCatalogData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutRepositoryCatalogData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutRepositoryCatalogDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutRepositoryCatalogDataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetRepositoryPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetRepositoryPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SetRepositoryPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetRepositoryPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UploadLayerPart",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UploadLayerPart"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UploadLayerPartResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UploadLayerPartRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchCheckLayerAvailabilityResponse": {
+            "type": "object",
+            "properties": {
+                "layers": {
+                    "$ref": "#/$defs/LayerList"
+                },
+                "failures": {
+                    "$ref": "#/$defs/LayerFailureList"
+                }
+            }
+        },
+        "LayerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Layer"
+            }
+        },
+        "Layer": {
+            "type": "object",
+            "properties": {
+                "layerDigest": {
+                    "$ref": "#/$defs/LayerDigest"
+                },
+                "layerAvailability": {
+                    "$ref": "#/$defs/LayerAvailability"
+                },
+                "layerSize": {
+                    "$ref": "#/$defs/LayerSizeInBytes"
+                },
+                "mediaType": {
+                    "$ref": "#/$defs/MediaType"
+                }
+            }
+        },
+        "LayerDigest": {
+            "type": "string"
+        },
+        "LayerAvailability": {
+            "enum": [
+                "AVAILABLE",
+                "UNAVAILABLE"
+            ]
+        },
+        "LayerSizeInBytes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "MediaType": {
+            "type": "string"
+        },
+        "LayerFailureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LayerFailure"
+            }
+        },
+        "LayerFailure": {
+            "type": "object",
+            "properties": {
+                "layerDigest": {
+                    "$ref": "#/$defs/BatchedOperationLayerDigest"
+                },
+                "failureCode": {
+                    "$ref": "#/$defs/LayerFailureCode"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/LayerFailureReason"
+                }
+            }
+        },
+        "BatchedOperationLayerDigest": {
+            "type": "string"
+        },
+        "LayerFailureCode": {
+            "enum": [
+                "InvalidLayerDigest",
+                "MissingLayerDigest"
+            ]
+        },
+        "LayerFailureReason": {
+            "type": "string"
+        },
+        "BatchCheckLayerAvailabilityRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryIdOrAlias"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "layerDigests": {
+                    "$ref": "#/$defs/BatchedOperationLayerDigestList"
+                }
+            }
+        },
+        "RegistryIdOrAlias": {
+            "type": "string"
+        },
+        "RepositoryName": {
+            "type": "string"
+        },
+        "BatchedOperationLayerDigestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchedOperationLayerDigest"
+            }
+        },
+        "BatchDeleteImageResponse": {
+            "type": "object",
+            "properties": {
+                "imageIds": {
+                    "$ref": "#/$defs/ImageIdentifierList"
+                },
+                "failures": {
+                    "$ref": "#/$defs/ImageFailureList"
+                }
+            }
+        },
+        "ImageIdentifierList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageIdentifier"
+            }
+        },
+        "ImageIdentifier": {
+            "type": "object",
+            "properties": {
+                "imageDigest": {
+                    "$ref": "#/$defs/ImageDigest"
+                },
+                "imageTag": {
+                    "$ref": "#/$defs/ImageTag"
+                }
+            }
+        },
+        "ImageDigest": {
+            "type": "string"
+        },
+        "ImageTag": {
+            "type": "string"
+        },
+        "ImageFailureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageFailure"
+            }
+        },
+        "ImageFailure": {
+            "type": "object",
+            "properties": {
+                "imageId": {
+                    "$ref": "#/$defs/ImageIdentifier"
+                },
+                "failureCode": {
+                    "$ref": "#/$defs/ImageFailureCode"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/ImageFailureReason"
+                }
+            }
+        },
+        "ImageFailureCode": {
+            "enum": [
+                "InvalidImageDigest",
+                "InvalidImageTag",
+                "ImageTagDoesNotMatchDigest",
+                "ImageNotFound",
+                "MissingDigestAndTag",
+                "ImageReferencedByManifestList",
+                "KmsError"
+            ]
+        },
+        "ImageFailureReason": {
+            "type": "string"
+        },
+        "BatchDeleteImageRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryIdOrAlias"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageIds": {
+                    "$ref": "#/$defs/ImageIdentifierList"
+                }
+            }
+        },
+        "CompleteLayerUploadResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/UploadId"
+                },
+                "layerDigest": {
+                    "$ref": "#/$defs/LayerDigest"
+                }
+            }
+        },
+        "RegistryId": {
+            "type": "string"
+        },
+        "UploadId": {
+            "type": "string"
+        },
+        "CompleteLayerUploadRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryIdOrAlias"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/UploadId"
+                },
+                "layerDigests": {
+                    "$ref": "#/$defs/LayerDigestList"
+                }
+            }
+        },
+        "LayerDigestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LayerDigest"
+            }
+        },
+        "CreateRepositoryResponse": {
+            "type": "object",
+            "properties": {
+                "repository": {
+                    "$ref": "#/$defs/Repository"
+                },
+                "catalogData": {
+                    "$ref": "#/$defs/RepositoryCatalogData"
+                }
+            }
+        },
+        "Repository": {
+            "type": "object",
+            "properties": {
+                "repositoryArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "repositoryUri": {
+                    "$ref": "#/$defs/Url"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreationTimestamp"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "Url": {
+            "type": "string"
+        },
+        "CreationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "RepositoryCatalogData": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/RepositoryDescription"
+                },
+                "architectures": {
+                    "$ref": "#/$defs/ArchitectureList"
+                },
+                "operatingSystems": {
+                    "$ref": "#/$defs/OperatingSystemList"
+                },
+                "logoUrl": {
+                    "$ref": "#/$defs/ResourceUrl"
+                },
+                "aboutText": {
+                    "$ref": "#/$defs/AboutText"
+                },
+                "usageText": {
+                    "$ref": "#/$defs/UsageText"
+                },
+                "marketplaceCertified": {
+                    "$ref": "#/$defs/MarketplaceCertified"
+                }
+            }
+        },
+        "RepositoryDescription": {
+            "type": "string"
+        },
+        "ArchitectureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Architecture"
+            }
+        },
+        "Architecture": {
+            "type": "string"
+        },
+        "OperatingSystemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperatingSystem"
+            }
+        },
+        "OperatingSystem": {
+            "type": "string"
+        },
+        "ResourceUrl": {
+            "type": "string"
+        },
+        "AboutText": {
+            "type": "string"
+        },
+        "UsageText": {
+            "type": "string"
+        },
+        "MarketplaceCertified": {
+            "type": "boolean"
+        },
+        "CreateRepositoryRequest": {
+            "type": "object",
+            "properties": {
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "catalogData": {
+                    "$ref": "#/$defs/RepositoryCatalogDataInput"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "RepositoryCatalogDataInput": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/RepositoryDescription"
+                },
+                "architectures": {
+                    "$ref": "#/$defs/ArchitectureList"
+                },
+                "operatingSystems": {
+                    "$ref": "#/$defs/OperatingSystemList"
+                },
+                "logoImageBlob": {
+                    "$ref": "#/$defs/LogoImageBlob"
+                },
+                "aboutText": {
+                    "$ref": "#/$defs/AboutText"
+                },
+                "usageText": {
+                    "$ref": "#/$defs/UsageText"
+                }
+            }
+        },
+        "LogoImageBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "DeleteRepositoryResponse": {
+            "type": "object",
+            "properties": {
+                "repository": {
+                    "$ref": "#/$defs/Repository"
+                }
+            }
+        },
+        "DeleteRepositoryRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "force": {
+                    "$ref": "#/$defs/ForceFlag"
+                }
+            }
+        },
+        "ForceFlag": {
+            "type": "boolean"
+        },
+        "DeleteRepositoryPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                }
+            }
+        },
+        "RepositoryPolicyText": {
+            "type": "string"
+        },
+        "DeleteRepositoryPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                }
+            }
+        },
+        "DescribeImagesResponse": {
+            "type": "object",
+            "properties": {
+                "imageDetails": {
+                    "$ref": "#/$defs/ImageDetailList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ImageDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageDetail"
+            }
+        },
+        "ImageDetail": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageDigest": {
+                    "$ref": "#/$defs/ImageDigest"
+                },
+                "imageTags": {
+                    "$ref": "#/$defs/ImageTagList"
+                },
+                "imageSizeInBytes": {
+                    "$ref": "#/$defs/ImageSizeInBytes"
+                },
+                "imagePushedAt": {
+                    "$ref": "#/$defs/PushTimestamp"
+                },
+                "imageManifestMediaType": {
+                    "$ref": "#/$defs/MediaType"
+                },
+                "artifactMediaType": {
+                    "$ref": "#/$defs/MediaType"
+                }
+            }
+        },
+        "ImageTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageTag"
+            }
+        },
+        "ImageSizeInBytes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "PushTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeImagesRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageIds": {
+                    "$ref": "#/$defs/ImageIdentifierList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeImageTagsResponse": {
+            "type": "object",
+            "properties": {
+                "imageTagDetails": {
+                    "$ref": "#/$defs/ImageTagDetailList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ImageTagDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageTagDetail"
+            }
+        },
+        "ImageTagDetail": {
+            "type": "object",
+            "properties": {
+                "imageTag": {
+                    "$ref": "#/$defs/ImageTag"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreationTimestamp"
+                },
+                "imageDetail": {
+                    "$ref": "#/$defs/ReferencedImageDetail"
+                }
+            }
+        },
+        "ReferencedImageDetail": {
+            "type": "object",
+            "properties": {
+                "imageDigest": {
+                    "$ref": "#/$defs/ImageDigest"
+                },
+                "imageSizeInBytes": {
+                    "$ref": "#/$defs/ImageSizeInBytes"
+                },
+                "imagePushedAt": {
+                    "$ref": "#/$defs/PushTimestamp"
+                },
+                "imageManifestMediaType": {
+                    "$ref": "#/$defs/MediaType"
+                },
+                "artifactMediaType": {
+                    "$ref": "#/$defs/MediaType"
+                }
+            }
+        },
+        "DescribeImageTagsRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "DescribeRegistriesResponse": {
+            "type": "object",
+            "properties": {
+                "registries": {
+                    "$ref": "#/$defs/RegistryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RegistryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Registry"
+            }
+        },
+        "Registry": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "registryArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "registryUri": {
+                    "$ref": "#/$defs/Url"
+                },
+                "verified": {
+                    "$ref": "#/$defs/RegistryVerified"
+                },
+                "aliases": {
+                    "$ref": "#/$defs/RegistryAliasList"
+                }
+            }
+        },
+        "RegistryVerified": {
+            "type": "boolean"
+        },
+        "RegistryAliasList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RegistryAlias"
+            }
+        },
+        "RegistryAlias": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/RegistryAliasName"
+                },
+                "status": {
+                    "$ref": "#/$defs/RegistryAliasStatus"
+                },
+                "primaryRegistryAlias": {
+                    "$ref": "#/$defs/PrimaryRegistryAliasFlag"
+                },
+                "defaultRegistryAlias": {
+                    "$ref": "#/$defs/DefaultRegistryAliasFlag"
+                }
+            }
+        },
+        "RegistryAliasName": {
+            "type": "string"
+        },
+        "RegistryAliasStatus": {
+            "enum": [
+                "ACTIVE",
+                "PENDING",
+                "REJECTED"
+            ]
+        },
+        "PrimaryRegistryAliasFlag": {
+            "type": "boolean"
+        },
+        "DefaultRegistryAliasFlag": {
+            "type": "boolean"
+        },
+        "DescribeRegistriesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "DescribeRepositoriesResponse": {
+            "type": "object",
+            "properties": {
+                "repositories": {
+                    "$ref": "#/$defs/RepositoryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RepositoryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Repository"
+            }
+        },
+        "DescribeRepositoriesRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryNames": {
+                    "$ref": "#/$defs/RepositoryNameList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "RepositoryNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RepositoryName"
+            }
+        },
+        "GetAuthorizationTokenResponse": {
+            "type": "object",
+            "properties": {
+                "authorizationData": {
+                    "$ref": "#/$defs/AuthorizationData"
+                }
+            }
+        },
+        "AuthorizationData": {
+            "type": "object",
+            "properties": {
+                "authorizationToken": {
+                    "$ref": "#/$defs/Base64"
+                },
+                "expiresAt": {
+                    "$ref": "#/$defs/ExpirationTimestamp"
+                }
+            }
+        },
+        "Base64": {
+            "type": "string"
+        },
+        "ExpirationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetAuthorizationTokenRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetRegistryCatalogDataResponse": {
+            "type": "object",
+            "properties": {
+                "registryCatalogData": {
+                    "$ref": "#/$defs/RegistryCatalogData"
+                }
+            }
+        },
+        "RegistryCatalogData": {
+            "type": "object",
+            "properties": {
+                "displayName": {
+                    "$ref": "#/$defs/RegistryDisplayName"
+                }
+            }
+        },
+        "RegistryDisplayName": {
+            "type": "string"
+        },
+        "GetRegistryCatalogDataRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetRepositoryCatalogDataResponse": {
+            "type": "object",
+            "properties": {
+                "catalogData": {
+                    "$ref": "#/$defs/RepositoryCatalogData"
+                }
+            }
+        },
+        "GetRepositoryCatalogDataRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                }
+            }
+        },
+        "GetRepositoryPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                }
+            }
+        },
+        "GetRepositoryPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                }
+            }
+        },
+        "InitiateLayerUploadResponse": {
+            "type": "object",
+            "properties": {
+                "uploadId": {
+                    "$ref": "#/$defs/UploadId"
+                },
+                "partSize": {
+                    "$ref": "#/$defs/PartSize"
+                }
+            }
+        },
+        "PartSize": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "InitiateLayerUploadRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryIdOrAlias"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "PutImageResponse": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "$ref": "#/$defs/Image"
+                }
+            }
+        },
+        "Image": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryIdOrAlias"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/ImageIdentifier"
+                },
+                "imageManifest": {
+                    "$ref": "#/$defs/ImageManifest"
+                },
+                "imageManifestMediaType": {
+                    "$ref": "#/$defs/MediaType"
+                }
+            }
+        },
+        "ImageManifest": {
+            "type": "string"
+        },
+        "PutImageRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryIdOrAlias"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageManifest": {
+                    "$ref": "#/$defs/ImageManifest"
+                },
+                "imageManifestMediaType": {
+                    "$ref": "#/$defs/MediaType"
+                },
+                "imageTag": {
+                    "$ref": "#/$defs/ImageTag"
+                },
+                "imageDigest": {
+                    "$ref": "#/$defs/ImageDigest"
+                }
+            }
+        },
+        "PutRegistryCatalogDataResponse": {
+            "type": "object",
+            "properties": {
+                "registryCatalogData": {
+                    "$ref": "#/$defs/RegistryCatalogData"
+                }
+            }
+        },
+        "PutRegistryCatalogDataRequest": {
+            "type": "object",
+            "properties": {
+                "displayName": {
+                    "$ref": "#/$defs/RegistryDisplayName"
+                }
+            }
+        },
+        "PutRepositoryCatalogDataResponse": {
+            "type": "object",
+            "properties": {
+                "catalogData": {
+                    "$ref": "#/$defs/RepositoryCatalogData"
+                }
+            }
+        },
+        "PutRepositoryCatalogDataRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "catalogData": {
+                    "$ref": "#/$defs/RepositoryCatalogDataInput"
+                }
+            }
+        },
+        "SetRepositoryPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                }
+            }
+        },
+        "SetRepositoryPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                },
+                "force": {
+                    "$ref": "#/$defs/ForceFlag"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UploadLayerPartResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/UploadId"
+                },
+                "lastByteReceived": {
+                    "$ref": "#/$defs/PartSize"
+                }
+            }
+        },
+        "UploadLayerPartRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryIdOrAlias"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/UploadId"
+                },
+                "partFirstByte": {
+                    "$ref": "#/$defs/PartSize"
+                },
+                "partLastByte": {
+                    "$ref": "#/$defs/PartSize"
+                },
+                "layerPartBlob": {
+                    "$ref": "#/$defs/LayerPartBlob"
+                }
+            }
+        },
+        "LayerPartBlob": {
+            "type": "string",
+            "format": "binary"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.ecr-public-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.ecr-public-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.ecr-public.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://api.ecr-public.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

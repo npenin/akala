@@ -1,0 +1,2375 @@
+{
+    "name": "route53-recovery-readiness",
+    "commands": [
+        {
+            "name": "CreateCell",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCell"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCellResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCellRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCrossAccountAuthorization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCrossAccountAuthorization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCrossAccountAuthorizationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCrossAccountAuthorizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateReadinessCheck",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateReadinessCheck"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateReadinessCheckResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateReadinessCheckRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateRecoveryGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRecoveryGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRecoveryGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRecoveryGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateResourceSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateResourceSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateResourceSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateResourceSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCell",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCell"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCellRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCrossAccountAuthorization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCrossAccountAuthorization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCrossAccountAuthorizationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCrossAccountAuthorizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteReadinessCheck",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteReadinessCheck"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteReadinessCheckRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRecoveryGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRecoveryGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRecoveryGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourceSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourceSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourceSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetArchitectureRecommendations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetArchitectureRecommendations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetArchitectureRecommendationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetArchitectureRecommendationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCell",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCell"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCellResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCellRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCellReadinessSummary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCellReadinessSummary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCellReadinessSummaryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCellReadinessSummaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetReadinessCheck",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetReadinessCheck"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetReadinessCheckResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetReadinessCheckRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetReadinessCheckResourceStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetReadinessCheckResourceStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetReadinessCheckResourceStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetReadinessCheckResourceStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetReadinessCheckStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetReadinessCheckStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetReadinessCheckStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetReadinessCheckStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRecoveryGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRecoveryGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRecoveryGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRecoveryGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRecoveryGroupReadinessSummary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRecoveryGroupReadinessSummary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRecoveryGroupReadinessSummaryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRecoveryGroupReadinessSummaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourceSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResourceSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourceSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourceSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCells",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCells"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCellsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCellsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCrossAccountAuthorizations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCrossAccountAuthorizations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCrossAccountAuthorizationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCrossAccountAuthorizationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReadinessChecks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReadinessChecks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReadinessChecksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReadinessChecksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRecoveryGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRecoveryGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRecoveryGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRecoveryGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListResourceSets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListResourceSets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListResourceSetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListResourceSetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRulesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRulesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCell",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateCell"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateCellResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCellRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateReadinessCheck",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateReadinessCheck"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateReadinessCheckResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateReadinessCheckRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRecoveryGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRecoveryGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateRecoveryGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRecoveryGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateResourceSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateResourceSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateResourceSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateResourceSetRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateCellResponse": {
+            "type": "object",
+            "properties": {
+                "CellArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "CellName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "ParentReadinessScopes": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "__stringMax256": {
+            "type": "string"
+        },
+        "__stringMax64PatternAAZAZ09Z": {
+            "type": "string"
+        },
+        "__listOf__string": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "CreateCellRequest": {
+            "type": "object",
+            "properties": {
+                "CellName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateCrossAccountAuthorizationResponse": {
+            "type": "object",
+            "properties": {
+                "CrossAccountAuthorization": {
+                    "$ref": "#/$defs/CrossAccountAuthorization"
+                }
+            }
+        },
+        "CrossAccountAuthorization": {
+            "type": "string"
+        },
+        "CreateCrossAccountAuthorizationRequest": {
+            "type": "object",
+            "properties": {
+                "CrossAccountAuthorization": {
+                    "$ref": "#/$defs/CrossAccountAuthorization"
+                }
+            }
+        },
+        "CreateReadinessCheckResponse": {
+            "type": "object",
+            "properties": {
+                "ReadinessCheckArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "ResourceSet": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateReadinessCheckRequest": {
+            "type": "object",
+            "properties": {
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceSetName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateRecoveryGroupResponse": {
+            "type": "object",
+            "properties": {
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "RecoveryGroupArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "RecoveryGroupName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateRecoveryGroupRequest": {
+            "type": "object",
+            "properties": {
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "RecoveryGroupName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateResourceSetResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceSetArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "ResourceSetName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "ResourceSetType": {
+                    "$ref": "#/$defs/__stringPatternAWSAZaZ09AZaZ09"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/__listOfResource"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "__stringPatternAWSAZaZ09AZaZ09": {
+            "type": "string"
+        },
+        "__listOfResource": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Resource"
+            }
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "ComponentId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DnsTargetResource": {
+                    "$ref": "#/$defs/DNSTargetResource"
+                },
+                "ReadinessScopes": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DNSTargetResource": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HostedZoneArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RecordSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RecordType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TargetResource": {
+                    "$ref": "#/$defs/TargetResource"
+                }
+            }
+        },
+        "TargetResource": {
+            "type": "object",
+            "properties": {
+                "NLBResource": {
+                    "$ref": "#/$defs/NLBResource"
+                },
+                "R53Resource": {
+                    "$ref": "#/$defs/R53ResourceRecord"
+                }
+            }
+        },
+        "NLBResource": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "R53ResourceRecord": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RecordSetId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateResourceSetRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceSetName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceSetType": {
+                    "$ref": "#/$defs/__stringPatternAWSAZaZ09AZaZ09"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/__listOfResource"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DeleteCellRequest": {
+            "type": "object",
+            "properties": {
+                "CellName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteCrossAccountAuthorizationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteCrossAccountAuthorizationRequest": {
+            "type": "object",
+            "properties": {
+                "CrossAccountAuthorization": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteReadinessCheckRequest": {
+            "type": "object",
+            "properties": {
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteRecoveryGroupRequest": {
+            "type": "object",
+            "properties": {
+                "RecoveryGroupName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteResourceSetRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceSetName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetArchitectureRecommendationsResponse": {
+            "type": "object",
+            "properties": {
+                "LastAuditTimestamp": {
+                    "$ref": "#/$defs/LastAuditTimestamp"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Recommendations": {
+                    "$ref": "#/$defs/__listOfRecommendation"
+                }
+            }
+        },
+        "LastAuditTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "__listOfRecommendation": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Recommendation"
+            }
+        },
+        "Recommendation": {
+            "type": "object",
+            "properties": {
+                "RecommendationText": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetArchitectureRecommendationsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RecoveryGroupName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetCellResponse": {
+            "type": "object",
+            "properties": {
+                "CellArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "CellName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "ParentReadinessScopes": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "GetCellRequest": {
+            "type": "object",
+            "properties": {
+                "CellName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetCellReadinessSummaryResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Readiness": {
+                    "$ref": "#/$defs/Readiness"
+                },
+                "ReadinessChecks": {
+                    "$ref": "#/$defs/__listOfReadinessCheckSummary"
+                }
+            }
+        },
+        "Readiness": {
+            "enum": [
+                "READY",
+                "NOT_READY",
+                "UNKNOWN",
+                "NOT_AUTHORIZED"
+            ]
+        },
+        "__listOfReadinessCheckSummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReadinessCheckSummary"
+            }
+        },
+        "ReadinessCheckSummary": {
+            "type": "object",
+            "properties": {
+                "Readiness": {
+                    "$ref": "#/$defs/Readiness"
+                },
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetCellReadinessSummaryRequest": {
+            "type": "object",
+            "properties": {
+                "CellName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetReadinessCheckResponse": {
+            "type": "object",
+            "properties": {
+                "ReadinessCheckArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "ResourceSet": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "GetReadinessCheckRequest": {
+            "type": "object",
+            "properties": {
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetReadinessCheckResourceStatusResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Readiness": {
+                    "$ref": "#/$defs/Readiness"
+                },
+                "Rules": {
+                    "$ref": "#/$defs/__listOfRuleResult"
+                }
+            }
+        },
+        "__listOfRuleResult": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleResult"
+            }
+        },
+        "RuleResult": {
+            "type": "object",
+            "properties": {
+                "LastCheckedTimestamp": {
+                    "$ref": "#/$defs/ReadinessCheckTimestamp"
+                },
+                "Messages": {
+                    "$ref": "#/$defs/__listOfMessage"
+                },
+                "Readiness": {
+                    "$ref": "#/$defs/Readiness"
+                },
+                "RuleId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ReadinessCheckTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "__listOfMessage": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Message"
+            }
+        },
+        "Message": {
+            "type": "object",
+            "properties": {
+                "MessageText": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetReadinessCheckResourceStatusRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceIdentifier": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetReadinessCheckStatusResponse": {
+            "type": "object",
+            "properties": {
+                "Messages": {
+                    "$ref": "#/$defs/__listOfMessage"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Readiness": {
+                    "$ref": "#/$defs/Readiness"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/__listOfResourceResult"
+                }
+            }
+        },
+        "__listOfResourceResult": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceResult"
+            }
+        },
+        "ResourceResult": {
+            "type": "object",
+            "properties": {
+                "ComponentId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LastCheckedTimestamp": {
+                    "$ref": "#/$defs/ReadinessCheckTimestamp"
+                },
+                "Readiness": {
+                    "$ref": "#/$defs/Readiness"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetReadinessCheckStatusRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetRecoveryGroupResponse": {
+            "type": "object",
+            "properties": {
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "RecoveryGroupArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "RecoveryGroupName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "GetRecoveryGroupRequest": {
+            "type": "object",
+            "properties": {
+                "RecoveryGroupName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetRecoveryGroupReadinessSummaryResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Readiness": {
+                    "$ref": "#/$defs/Readiness"
+                },
+                "ReadinessChecks": {
+                    "$ref": "#/$defs/__listOfReadinessCheckSummary"
+                }
+            }
+        },
+        "GetRecoveryGroupReadinessSummaryRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RecoveryGroupName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetResourceSetResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceSetArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "ResourceSetName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "ResourceSetType": {
+                    "$ref": "#/$defs/__stringPatternAWSAZaZ09AZaZ09"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/__listOfResource"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "GetResourceSetRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceSetName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListCellsResponse": {
+            "type": "object",
+            "properties": {
+                "Cells": {
+                    "$ref": "#/$defs/__listOfCellOutput"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfCellOutput": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CellOutput"
+            }
+        },
+        "CellOutput": {
+            "type": "object",
+            "properties": {
+                "CellArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "CellName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "ParentReadinessScopes": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListCellsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListCrossAccountAuthorizationsResponse": {
+            "type": "object",
+            "properties": {
+                "CrossAccountAuthorizations": {
+                    "$ref": "#/$defs/__listOfCrossAccountAuthorization"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfCrossAccountAuthorization": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CrossAccountAuthorization"
+            }
+        },
+        "ListCrossAccountAuthorizationsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListReadinessChecksResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadinessChecks": {
+                    "$ref": "#/$defs/__listOfReadinessCheckOutput"
+                }
+            }
+        },
+        "__listOfReadinessCheckOutput": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReadinessCheckOutput"
+            }
+        },
+        "ReadinessCheckOutput": {
+            "type": "object",
+            "properties": {
+                "ReadinessCheckArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "ResourceSet": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListReadinessChecksRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListRecoveryGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RecoveryGroups": {
+                    "$ref": "#/$defs/__listOfRecoveryGroupOutput"
+                }
+            }
+        },
+        "__listOfRecoveryGroupOutput": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecoveryGroupOutput"
+            }
+        },
+        "RecoveryGroupOutput": {
+            "type": "object",
+            "properties": {
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "RecoveryGroupArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "RecoveryGroupName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListRecoveryGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListResourceSetsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceSets": {
+                    "$ref": "#/$defs/__listOfResourceSetOutput"
+                }
+            }
+        },
+        "__listOfResourceSetOutput": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceSetOutput"
+            }
+        },
+        "ResourceSetOutput": {
+            "type": "object",
+            "properties": {
+                "ResourceSetArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "ResourceSetName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "ResourceSetType": {
+                    "$ref": "#/$defs/__stringPatternAWSAZaZ09AZaZ09"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/__listOfResource"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListResourceSetsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListRulesResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Rules": {
+                    "$ref": "#/$defs/__listOfListRulesOutput"
+                }
+            }
+        },
+        "__listOfListRulesOutput": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListRulesOutput"
+            }
+        },
+        "ListRulesOutput": {
+            "type": "object",
+            "properties": {
+                "ResourceType": {
+                    "$ref": "#/$defs/__stringMax64"
+                },
+                "RuleDescription": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "RuleId": {
+                    "$ref": "#/$defs/__stringMax64"
+                }
+            }
+        },
+        "__stringMax64": {
+            "type": "string"
+        },
+        "ListRulesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListTagsForResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "UpdateCellResponse": {
+            "type": "object",
+            "properties": {
+                "CellArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "CellName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "ParentReadinessScopes": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UpdateCellRequest": {
+            "type": "object",
+            "properties": {
+                "CellName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "UpdateReadinessCheckResponse": {
+            "type": "object",
+            "properties": {
+                "ReadinessCheckArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "ResourceSet": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UpdateReadinessCheckRequest": {
+            "type": "object",
+            "properties": {
+                "ReadinessCheckName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceSetName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "UpdateRecoveryGroupResponse": {
+            "type": "object",
+            "properties": {
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "RecoveryGroupArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "RecoveryGroupName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UpdateRecoveryGroupRequest": {
+            "type": "object",
+            "properties": {
+                "Cells": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "RecoveryGroupName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "UpdateResourceSetResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceSetArn": {
+                    "$ref": "#/$defs/__stringMax256"
+                },
+                "ResourceSetName": {
+                    "$ref": "#/$defs/__stringMax64PatternAAZAZ09Z"
+                },
+                "ResourceSetType": {
+                    "$ref": "#/$defs/__stringPatternAWSAZaZ09AZaZ09"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/__listOfResource"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UpdateResourceSetRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceSetName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceSetType": {
+                    "$ref": "#/$defs/__stringPatternAWSAZaZ09AZaZ09"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/__listOfResource"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://route53-recovery-readiness-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://route53-recovery-readiness-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://route53-recovery-readiness.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://route53-recovery-readiness.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

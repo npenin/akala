@@ -1,0 +1,1307 @@
+{
+    "name": "codestar-notifications",
+    "commands": [
+        {
+            "name": "CreateNotificationRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateNotificationRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateNotificationRuleResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateNotificationRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteNotificationRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteNotificationRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteNotificationRuleResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteNotificationRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteTargetResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTargetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeNotificationRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeNotificationRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeNotificationRuleResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeNotificationRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEventTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEventTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEventTypesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEventTypesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListNotificationRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListNotificationRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListNotificationRulesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListNotificationRulesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTargetsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTargetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Subscribe",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Subscribe"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SubscribeResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SubscribeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Unsubscribe",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Unsubscribe"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UnsubscribeResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnsubscribeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateNotificationRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateNotificationRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateNotificationRuleResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateNotificationRuleRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateNotificationRuleResult": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
+        },
+        "NotificationRuleArn": {
+            "type": "string"
+        },
+        "CreateNotificationRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NotificationRuleName"
+                },
+                "EventTypeIds": {
+                    "$ref": "#/$defs/EventTypeIds"
+                },
+                "Resource": {
+                    "$ref": "#/$defs/NotificationRuleResource"
+                },
+                "Targets": {
+                    "$ref": "#/$defs/Targets"
+                },
+                "DetailType": {
+                    "$ref": "#/$defs/DetailType"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Status": {
+                    "$ref": "#/$defs/NotificationRuleStatus"
+                }
+            }
+        },
+        "NotificationRuleName": {
+            "type": "string"
+        },
+        "EventTypeIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventTypeId"
+            }
+        },
+        "EventTypeId": {
+            "type": "string"
+        },
+        "NotificationRuleResource": {
+            "type": "string"
+        },
+        "Targets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Target"
+            }
+        },
+        "Target": {
+            "type": "object",
+            "properties": {
+                "TargetType": {
+                    "$ref": "#/$defs/TargetType"
+                },
+                "TargetAddress": {
+                    "$ref": "#/$defs/TargetAddress"
+                }
+            }
+        },
+        "TargetType": {
+            "type": "string"
+        },
+        "TargetAddress": {
+            "type": "string"
+        },
+        "DetailType": {
+            "enum": [
+                "BASIC",
+                "FULL"
+            ]
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "NotificationRuleStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "DeleteNotificationRuleResult": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
+        },
+        "DeleteNotificationRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
+        },
+        "DeleteTargetResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteTargetRequest": {
+            "type": "object",
+            "properties": {
+                "TargetAddress": {
+                    "$ref": "#/$defs/TargetAddress"
+                },
+                "ForceUnsubscribeAll": {
+                    "$ref": "#/$defs/ForceUnsubscribeAll"
+                }
+            }
+        },
+        "ForceUnsubscribeAll": {
+            "type": "boolean"
+        },
+        "DescribeNotificationRuleResult": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NotificationRuleName"
+                },
+                "EventTypes": {
+                    "$ref": "#/$defs/EventTypeBatch"
+                },
+                "Resource": {
+                    "$ref": "#/$defs/NotificationRuleResource"
+                },
+                "Targets": {
+                    "$ref": "#/$defs/TargetsBatch"
+                },
+                "DetailType": {
+                    "$ref": "#/$defs/DetailType"
+                },
+                "CreatedBy": {
+                    "$ref": "#/$defs/NotificationRuleCreatedBy"
+                },
+                "Status": {
+                    "$ref": "#/$defs/NotificationRuleStatus"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/CreatedTimestamp"
+                },
+                "LastModifiedTimestamp": {
+                    "$ref": "#/$defs/LastModifiedTimestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "EventTypeBatch": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventTypeSummary"
+            }
+        },
+        "EventTypeSummary": {
+            "type": "object",
+            "properties": {
+                "EventTypeId": {
+                    "$ref": "#/$defs/EventTypeId"
+                },
+                "ServiceName": {
+                    "$ref": "#/$defs/ServiceName"
+                },
+                "EventTypeName": {
+                    "$ref": "#/$defs/EventTypeName"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                }
+            }
+        },
+        "ServiceName": {
+            "type": "string"
+        },
+        "EventTypeName": {
+            "type": "string"
+        },
+        "ResourceType": {
+            "type": "string"
+        },
+        "TargetsBatch": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetSummary"
+            }
+        },
+        "TargetSummary": {
+            "type": "object",
+            "properties": {
+                "TargetAddress": {
+                    "$ref": "#/$defs/TargetAddress"
+                },
+                "TargetType": {
+                    "$ref": "#/$defs/TargetType"
+                },
+                "TargetStatus": {
+                    "$ref": "#/$defs/TargetStatus"
+                }
+            }
+        },
+        "TargetStatus": {
+            "enum": [
+                "PENDING",
+                "ACTIVE",
+                "UNREACHABLE",
+                "INACTIVE",
+                "DEACTIVATED"
+            ]
+        },
+        "NotificationRuleCreatedBy": {
+            "type": "string"
+        },
+        "CreatedTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "LastModifiedTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeNotificationRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
+        },
+        "ListEventTypesResult": {
+            "type": "object",
+            "properties": {
+                "EventTypes": {
+                    "$ref": "#/$defs/EventTypeBatch"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListEventTypesRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/ListEventTypesFilters"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListEventTypesFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListEventTypesFilter"
+            }
+        },
+        "ListEventTypesFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ListEventTypesFilterName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/ListEventTypesFilterValue"
+                }
+            }
+        },
+        "ListEventTypesFilterName": {
+            "enum": [
+                "RESOURCE_TYPE",
+                "SERVICE_NAME"
+            ]
+        },
+        "ListEventTypesFilterValue": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListNotificationRulesResult": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "NotificationRules": {
+                    "$ref": "#/$defs/NotificationRuleBatch"
+                }
+            }
+        },
+        "NotificationRuleBatch": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NotificationRuleSummary"
+            }
+        },
+        "NotificationRuleSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/NotificationRuleId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
+        },
+        "NotificationRuleId": {
+            "type": "string"
+        },
+        "ListNotificationRulesRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/ListNotificationRulesFilters"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListNotificationRulesFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListNotificationRulesFilter"
+            }
+        },
+        "ListNotificationRulesFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ListNotificationRulesFilterName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/ListNotificationRulesFilterValue"
+                }
+            }
+        },
+        "ListNotificationRulesFilterName": {
+            "enum": [
+                "EVENT_TYPE_ID",
+                "CREATED_BY",
+                "RESOURCE",
+                "TARGET_ADDRESS"
+            ]
+        },
+        "ListNotificationRulesFilterValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceResult": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
+        },
+        "ListTargetsResult": {
+            "type": "object",
+            "properties": {
+                "Targets": {
+                    "$ref": "#/$defs/TargetsBatch"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTargetsRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/ListTargetsFilters"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListTargetsFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListTargetsFilter"
+            }
+        },
+        "ListTargetsFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ListTargetsFilterName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/ListTargetsFilterValue"
+                }
+            }
+        },
+        "ListTargetsFilterName": {
+            "enum": [
+                "TARGET_TYPE",
+                "TARGET_ADDRESS",
+                "TARGET_STATUS"
+            ]
+        },
+        "ListTargetsFilterValue": {
+            "type": "string"
+        },
+        "SubscribeResult": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
+        },
+        "SubscribeRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                },
+                "Target": {
+                    "$ref": "#/$defs/Target"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                }
+            }
+        },
+        "TagResourceResult": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UnsubscribeResult": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
+        },
+        "UnsubscribeRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                },
+                "TargetAddress": {
+                    "$ref": "#/$defs/TargetAddress"
+                }
+            }
+        },
+        "UntagResourceResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateNotificationRuleResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateNotificationRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NotificationRuleName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/NotificationRuleStatus"
+                },
+                "EventTypeIds": {
+                    "$ref": "#/$defs/EventTypeIds"
+                },
+                "Targets": {
+                    "$ref": "#/$defs/Targets"
+                },
+                "DetailType": {
+                    "$ref": "#/$defs/DetailType"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codestar-notifications-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codestar-notifications-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codestar-notifications.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://codestar-notifications.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

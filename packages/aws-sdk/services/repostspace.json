@@ -1,0 +1,1129 @@
+{
+    "name": "repostspace",
+    "commands": [
+        {
+            "name": "CreateSpace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateSpace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSpaceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSpaceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSpace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSpace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSpaceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterAdmin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterAdmin"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterAdminInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSpace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSpace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSpaceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSpaceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSpaces",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSpaces"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSpacesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSpacesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterAdmin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterAdmin"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterAdminInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SendInvites",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendInvites"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendInvitesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateSpace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateSpace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateSpaceInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateSpaceOutput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                }
+            }
+        },
+        "SpaceId": {
+            "type": "string"
+        },
+        "CreateSpaceInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SpaceName"
+                },
+                "subdomain": {
+                    "$ref": "#/$defs/SpaceSubdomain"
+                },
+                "tier": {
+                    "$ref": "#/$defs/TierLevel"
+                },
+                "description": {
+                    "$ref": "#/$defs/SpaceDescription"
+                },
+                "userKMSKey": {
+                    "$ref": "#/$defs/KMSKey"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "SpaceName": {
+            "type": "string"
+        },
+        "SpaceSubdomain": {
+            "type": "string"
+        },
+        "TierLevel": {
+            "enum": [
+                "BASIC",
+                "STANDARD"
+            ]
+        },
+        "SpaceDescription": {
+            "type": "string"
+        },
+        "KMSKey": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "DeleteSpaceInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                }
+            }
+        },
+        "DeregisterAdminInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                },
+                "adminId": {
+                    "$ref": "#/$defs/AdminId"
+                }
+            }
+        },
+        "AdminId": {
+            "type": "string"
+        },
+        "GetSpaceOutput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "name": {
+                    "$ref": "#/$defs/SpaceName"
+                },
+                "status": {
+                    "$ref": "#/$defs/ProvisioningStatus"
+                },
+                "configurationStatus": {
+                    "$ref": "#/$defs/ConfigurationStatus"
+                },
+                "clientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "description": {
+                    "$ref": "#/$defs/SpaceDescription"
+                },
+                "vanityDomainStatus": {
+                    "$ref": "#/$defs/VanityDomainStatus"
+                },
+                "vanityDomain": {
+                    "$ref": "#/$defs/Url"
+                },
+                "randomDomain": {
+                    "$ref": "#/$defs/Url"
+                },
+                "customerRoleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "createDateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "deleteDateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "tier": {
+                    "$ref": "#/$defs/TierLevel"
+                },
+                "storageLimit": {
+                    "$ref": "#/$defs/StorageLimit"
+                },
+                "userAdmins": {
+                    "$ref": "#/$defs/UserAdmins"
+                },
+                "groupAdmins": {
+                    "$ref": "#/$defs/GroupAdmins"
+                },
+                "userKMSKey": {
+                    "$ref": "#/$defs/KMSKey"
+                },
+                "userCount": {
+                    "$ref": "#/$defs/UserCount"
+                },
+                "contentSize": {
+                    "$ref": "#/$defs/ContentSize"
+                }
+            }
+        },
+        "ProvisioningStatus": {
+            "type": "string"
+        },
+        "ConfigurationStatus": {
+            "enum": [
+                "CONFIGURED",
+                "UNCONFIGURED"
+            ]
+        },
+        "ClientId": {
+            "type": "string"
+        },
+        "VanityDomainStatus": {
+            "enum": [
+                "PENDING",
+                "APPROVED",
+                "UNAPPROVED"
+            ]
+        },
+        "Url": {
+            "type": "string"
+        },
+        "StorageLimit": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "UserAdmins": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdminId"
+            }
+        },
+        "GroupAdmins": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdminId"
+            }
+        },
+        "UserCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ContentSize": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GetSpaceInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                }
+            }
+        },
+        "ListSpacesOutput": {
+            "type": "object",
+            "properties": {
+                "spaces": {
+                    "$ref": "#/$defs/SpacesList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SpacesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SpaceData"
+            }
+        },
+        "SpaceData": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "name": {
+                    "$ref": "#/$defs/SpaceName"
+                },
+                "description": {
+                    "$ref": "#/$defs/SpaceDescription"
+                },
+                "status": {
+                    "$ref": "#/$defs/ProvisioningStatus"
+                },
+                "configurationStatus": {
+                    "$ref": "#/$defs/ConfigurationStatus"
+                },
+                "vanityDomainStatus": {
+                    "$ref": "#/$defs/VanityDomainStatus"
+                },
+                "vanityDomain": {
+                    "$ref": "#/$defs/Url"
+                },
+                "randomDomain": {
+                    "$ref": "#/$defs/Url"
+                },
+                "tier": {
+                    "$ref": "#/$defs/TierLevel"
+                },
+                "storageLimit": {
+                    "$ref": "#/$defs/StorageLimit"
+                },
+                "createDateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "deleteDateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "userKMSKey": {
+                    "$ref": "#/$defs/KMSKey"
+                },
+                "userCount": {
+                    "$ref": "#/$defs/UserCount"
+                },
+                "contentSize": {
+                    "$ref": "#/$defs/ContentSize"
+                }
+            }
+        },
+        "ListSpacesInput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListSpacesLimit"
+                }
+            }
+        },
+        "ListSpacesLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "RegisterAdminInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                },
+                "adminId": {
+                    "$ref": "#/$defs/AdminId"
+                }
+            }
+        },
+        "SendInvitesInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                },
+                "accessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "title": {
+                    "$ref": "#/$defs/InviteTitle"
+                },
+                "body": {
+                    "$ref": "#/$defs/InviteBody"
+                }
+            }
+        },
+        "AccessorIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessorId"
+            }
+        },
+        "AccessorId": {
+            "type": "string"
+        },
+        "InviteTitle": {
+            "type": "string"
+        },
+        "InviteBody": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateSpaceInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                },
+                "description": {
+                    "$ref": "#/$defs/SpaceDescription"
+                },
+                "tier": {
+                    "$ref": "#/$defs/TierLevel"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://repostspace-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://repostspace-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://repostspace.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://repostspace.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}
