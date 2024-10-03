@@ -5,7 +5,7 @@ export default async function (name: string, options: CliContext<{ force?: boole
 {
     var { output } = await outputHelper(destination, name + '.ts', options && options.force);
 
-    await write(output, `export default async function ${name}(${args?.map(a => a.type ? a.name + ': ' + a.type : a.name)?.join(', ') || ''})
+    await write(output, `export default async function ${name.replace(/[- \.](\w)/g, (m, letter) => letter.toUpperCase())}(${args?.map(a => a.type ? a.name + ': ' + a.type : a.name)?.join(', ') || ''})
 {
 
 }`);
