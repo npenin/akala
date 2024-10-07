@@ -42,26 +42,27 @@ export default async function generate(folder?: string, name?: string, outputFil
             var hasBody = false;
             action.parameters = commands[i].config.http.inject.map(p =>
             {
-                if (p.startsWith('route.'))
-                    return {
-                        name: p.substring('route.'.length),
-                        in: 'path',
-                        // required: keys.find(k => k.name == p.substring('route.'.length)).modifier == '?'
-                    }
-                if (p.startsWith('query.'))
-                    return {
-                        name: p.substring('query.'.length),
-                        in: 'query',
-                        // required: keys.find(k => k.name == p.substring('query.'.length)).modifier == '?'
-                    }
-                if (p.startsWith('header.'))
-                    return {
-                        name: p.substring('header.'.length),
-                        in: 'header',
-                        // required: keys.find(k => k.name == p.substring('header.'.length)).modifier == '?'
-                    }
-                if (p.startsWith('body.'))
-                    hasBody = true;
+                if (typeof p == 'string')
+                    if (p.startsWith('route.'))
+                        return {
+                            name: p.substring('route.'.length),
+                            in: 'path',
+                            // required: keys.find(k => k.name == p.substring('route.'.length)).modifier == '?'
+                        }
+                    else if (p.startsWith('query.'))
+                        return {
+                            name: p.substring('query.'.length),
+                            in: 'query',
+                            // required: keys.find(k => k.name == p.substring('query.'.length)).modifier == '?'
+                        }
+                    else if (p.startsWith('header.'))
+                        return {
+                            name: p.substring('header.'.length),
+                            in: 'header',
+                            // required: keys.find(k => k.name == p.substring('header.'.length)).modifier == '?'
+                        }
+                    else if (p.startsWith('body.'))
+                        hasBody = true;
             });
             if (hasBody)
             {
@@ -84,8 +85,8 @@ export default async function generate(folder?: string, name?: string, outputFil
                 }
                 commands[i].config.http.inject.forEach((p, i) =>
                 {
-                    if (p.startsWith('body.'))
-                        content.schema.properties[p.substring('body.'.length)] = commands[i].config.schema?.inject[i] ? commands[i].config.schema?.$defs[commands[i].config.schema?.inject[i]] : {};
+                    if (typeof p == 'string' && p.startsWith('body.'))
+                        content.schema.properties[p.substring('body.'.length)] = commands[i].config.schema?.inject[i] ? commands[i].config.schema?.$defs[commands[i].config.schema?.inject[i] as string] : {};
                 });
             }
         }

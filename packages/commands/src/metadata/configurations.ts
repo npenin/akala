@@ -1,5 +1,6 @@
 import { OptionType } from '@akala/cli';
 import { FileSystemConfiguration, HttpConfiguration, SchemaConfiguration } from '../processors/index.js'
+import { Resolvable } from '@akala/core';
 
 export type jsonPrimitive = string | number | boolean | undefined;
 export type jsonObject = { [key: string]: jsonPrimitive | jsonPrimitive[] | jsonObject[] | jsonObject };
@@ -10,7 +11,7 @@ export type GenericConfiguration = Configuration & jsonObject;
 
 export interface Configuration
 {
-    inject?: string[];
+    inject?: Exclude<Resolvable, symbol>[];
 }
 
 export interface ConfigurationWithAuth<T extends Configuration>
@@ -29,7 +30,7 @@ export interface ConfigurationMap //extends Record<string, Configuration>
     doc: DocConfiguration;
     schema: SchemaConfiguration
     jsonrpc: Configuration
-    auth: { required?: boolean } & { [key in Exclude<keyof ConfigurationMap, 'auth'>]?: ConfigurationMap[key] extends ConfigurationWithAuth<infer X> ? X : ConfigurationMap[key] }
+    auth: { required?: boolean }// & { [key in Exclude<keyof ConfigurationMap, 'auth'>]?: ConfigurationMap[key] extends ConfigurationWithAuth<infer X> ? X : ConfigurationMap[key] }
 }
 
 export interface Configurations extends Partial<ConfigurationMap>

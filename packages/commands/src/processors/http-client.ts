@@ -1,5 +1,4 @@
-import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector, ErrorWithStatus } from '@akala/core';
-import * as pathRegexp from 'path-to-regexp';
+import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector, ErrorWithStatus, HttpStatusCode, UrlTemplate } from '@akala/core';
 import { CommandProcessor, StructuredParameters } from '../model/processor.js';
 import { Command, Configuration } from '../metadata/index.js';
 import { Container } from '../model/container.js';
@@ -76,58 +75,80 @@ export class HttpClient extends CommandProcessor
             config.http.type = undefined;
         }
         const options: HttpOptions<unknown> = { method: config.http.method, url: '', type: config.http.type };
-        if (config.auth.http)
+
+        function inject(value: object, arg: object)
         {
-            switch (config.auth.http.mode)
+            if (Array.isArray(value))
+                throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'Array is not supported yet');
+
+            const valueEntries = Object.entries(value);
+
+            valueEntries.forEach(e =>
             {
-                case 'basic':
-                    switch (typeof (auth))
-                    {
-                        case 'object':
-                            if (!options.headers)
-                                options.headers = {};
-                            options.headers.authorization = 'Basic ' + base64.base64EncArr(base64.strToUTF8Arr(auth['username'] + ':' + auth['password']))
-                            break;
-                        case 'string':
-                            if (!options.headers)
-                                options.headers = {};
-                            options.headers.authorization = 'Basic ' + auth;
-                            break;
-                        case 'undefined':
-                            throw new ErrorWithStatus(401, 'no auth was provided');
-                        default:
-                            throw new ErrorWithStatus(400, 'invalid auth object');
+                switch (typeof e[1])
+                {
+                    case 'string':
+                        {
+                            const indexOfDot = e[1].indexOf('.');
+                            const key = ~indexOfDot ? e[1].substring(0, indexOfDot) : e[1];
+                            const subKey: string | undefined = ~indexOfDot ? e[1].substring(indexOfDot + 1) : undefined;
+                            switch (key)
+                            {
+                                case 'body':
+                                    options.contentType = options.type as HttpOptions<unknown>['contentType'];
+                                    if (typeof subKey !== 'undefined')
+                                    {
+                                        options.body = options.body || {};
+                                        options.body[subKey] = arg && arg[e[0]];
+                                    }
+                                    else
+                                    {
+                                        if (options.body)
+                                            throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'The request cannot define both body properties and the complete body object');
 
-                    }
-                case 'bearer':
-                    if (!options.headers)
-                        options.headers = {};
-                    options.headers.authorization = 'Bearer ' + auth;
-                    break;
-                default:
-                    switch (config.auth.http.mode.type)
-                    {
-                        case 'query':
-                            if (typeof auth !== 'string')
-                                throw new ErrorWithStatus(400, 'invalid auth object');
-
-                            if (!options.queryString)
-                                options.queryString = new URLSearchParams({});
-                            (options.queryString as URLSearchParams).append(config.auth.http.mode.name, auth);
-                            break;
-                        case 'header':
-                            if (typeof auth !== 'string')
-                                throw new ErrorWithStatus(400, 'invalid auth object');
-
-                            if (!options.headers)
-                                options.headers = {};
-                            options.headers[config.auth.http.mode.name] = auth;
-                            break;
-                        case 'cookie':
-                            throw new ErrorWithStatus(501, 'cookie auth not supported yet')
-                    }
-            }
+                                        options.body = Object.fromEntries(Object.entries(arg).filter(e2 => !valueEntries.find(e3 => e3[0] == e2[0])));
+                                    }
+                                    break;
+                                case 'header':
+                                    if (typeof subKey !== 'undefined')
+                                    {
+                                        options.headers = options.headers || {};
+                                        options.headers[subKey] = arg && arg[e[0]];
+                                    }
+                                    else
+                                        options.headers = Object.assign(options.headers || {}, Object.fromEntries(Object.entries(arg).filter(e2 => !valueEntries.find(e3 => e3[0] == e2[0]))));
+                                    break;
+                                case 'query':
+                                    if (!options.queryString)
+                                        options.queryString = new URLSearchParams();
+                                    if (typeof options.queryString == 'string')
+                                        options.queryString = new URLSearchParams(options.queryString)
+                                    if (typeof subKey !== 'undefined')
+                                        options.queryString.append(subKey, arg && arg[e[0]] as string);
+                                    else
+                                        Object.entries(arg).filter(e2 => !valueEntries.find(e3 => e3[0] == e2[0])).forEach(e => (options.queryString as URLSearchParams).append(e[0], param[e[0]]));
+                                    break;
+                                case 'route':
+                                    if (!route)
+                                        route = {};
+                                    if (arg && arg[e[0]])
+                                        if (subKey)
+                                            route[subKey] = arg && arg[e[0]] && arg[e[0]].toString();
+                                        else
+                                            Object.assign(Object.fromEntries(Object.entries(arg).filter(e2 => !valueEntries.find(e3 => e3[0] == e2[0]))));
+                                    break;
+                            }
+                        }
+                        break;
+                    case 'object':
+                        inject(e[1], arg[e[0]]);
+                        break;
+                    default:
+                        throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'Not supported')
+                }
+            })
         }
+
         if (config.http.inject)
             each(config.http.inject, function (value, key)
             {
@@ -149,6 +170,11 @@ export class HttpClient extends CommandProcessor
                         break;
                     default:
                         {
+                            if (typeof value == 'object')
+                            {
+                                inject(value, param[key] as object);
+                                break;
+                            }
                             const indexOfDot = value.indexOf('.');
                             if (~indexOfDot)
                             {
@@ -185,42 +211,46 @@ export class HttpClient extends CommandProcessor
                 }
             })
         if (route)
-            options.url = resolveUrl(pathRegexp.compile(url)(route as Record<string, string | string[]>))
+            options.url = resolveUrl(UrlTemplate.expand(UrlTemplate.parse(url), route))
         else
             options.url = resolveUrl(url);
 
-        if (typeof auth != 'undefined' && config.auth?.http)
+        if (typeof auth != 'undefined' && config.http.auth)
         {
-            switch (config.auth.http.mode)
+            switch (config.http.auth.mode)
             {
                 case 'basic':
                     if (typeof auth !== 'object' || !('username' in auth) || !('password' in auth) || typeof auth.username !== 'string' || typeof auth.password !== 'string')
                         throw new Error('When using basic mode, the authentication has to be in form of {username:string, password:string}');
+                    if (!options.headers)
+                        options.headers = {};
 
                     options.headers.authorization = 'Basic ' + base64.base64EncArr(base64.strToUTF8Arr(auth.username + ':' + auth.password));
                     break;
                 case 'bearer':
                     if (typeof auth !== 'string')
                         throw new Error('When using bearer mode, the authentication has to be a string')
+                    if (!options.headers)
+                        options.headers = {};
                     options.headers.authorization = 'Bearer ' + auth;
                     break;
                 default:
 
                     if (typeof auth !== 'string')
-                        throw new Error('When using ' + config.auth.http.mode.type + ' mode, the authentication has to be a string')
+                        throw new Error('When using ' + config.http.auth.mode.type + ' mode, the authentication has to be a string')
 
-                    switch (config.auth.http.mode.type)
+                    switch (config.http.auth.mode.type)
                     {
                         case 'cookie':
                             if (!options.headers.cookie)
                                 options.headers.cookie = '';
-                            options.headers.cookie += encodeURIComponent(config.auth.http.mode.name) + '=' + encodeURIComponent(auth);
+                            options.headers.cookie += encodeURIComponent(config.http.auth.mode.name) + '=' + encodeURIComponent(auth);
                             break;
                         case 'query':
-                            options.queryString[config.auth.http.mode.name] = auth;
+                            options.queryString[config.http.auth.mode.name] = auth;
                             break;
                         case 'header':
-                            options.headers[config.auth.http.mode.name] = auth;
+                            options.headers[config.http.auth.mode.name] = auth;
                             break;
                     }
             }

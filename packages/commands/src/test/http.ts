@@ -5,7 +5,7 @@ import * as http from 'http';
 import { HttpClient } from '../processors/http-client.js';
 import { metadata, proxy } from '../generator.js';
 import * as akala from '@akala/core'
-import * as pathRegexp from 'path-to-regexp';
+import { UrlTemplate } from '@akala/core';
 
 describe('test http processing', function ()
 {
@@ -30,26 +30,27 @@ describe('test http processing', function ()
                 if (cmd && cmd.config && cmd.config.http && cmd.config.http.inject)
                 {
                     const config = cmd.config.http;
-                    const regexp = pathRegexp.pathToRegexp(config.route);
-                    const keys: pathRegexp.Key[] = regexp.keys;
-                    const match = url.match(regexp.regexp)
+                    const template = UrlTemplate.parse(config.route);
+                    // const keys: pathRegexp.Key[] = regexp.keys;
+                    const match = UrlTemplate.match(url, template)
                     if (match && config.inject)
                     {
-                        match.forEach(function (value, i)
-                        {
-                            if (i > 0 && config.inject)
-                            {
-                                const key = keys[i - 1]
-                                const indexOfParam = config.inject.indexOf('route.' + key.name);
-                                if (indexOfParam > -1)
-                                    params[indexOfParam] = value;
-                            }
-                        })
+                        Object.assign(params, match.variables);
+                        // match.varai.forEach(function (value, i)
+                        // {
+                        //     if (i > 0 && config.inject)
+                        //     {
+                        //         const key = keys[i - 1]
+                        //         const indexOfParam = config.inject.indexOf('route.' + key.name);
+                        //         if (indexOfParam > -1)
+                        //             params[indexOfParam] = value;
+                        //     }
+                        // })
                     }
                 }
             }
             else
-                cmdName = url.substr(1);
+                cmdName = url.substring(1);
             Promise.resolve(calculator.dispatch(cmdName, { param: params })).then(function (result)
             {
                 if (typeof result != 'undefined')

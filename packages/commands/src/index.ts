@@ -27,6 +27,9 @@ export { default as serve, ServeOptions, serverHandlers, ServerHandler, getOrCre
 import { outputHelper, write } from './cli/new.js';
 import { Readable } from 'stream';
 
+export { generatorPlugin as tsPluginHandler } from './cli/generate-metadata.js'
+export { generatorPlugin as metadataPluginHandler } from './cli/generate.js'
+
 export const FileGenerator = { outputHelper, write };
 
 export class Cli

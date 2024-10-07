@@ -23,7 +23,7 @@ export default async function implement(pathToCommandFile: string, destination: 
             c.config = {};
         var paramConfig: { name: string, type?: string }[] = c.config["types"] && c.config["types"].inject && c.config["types"].inject.map((a, i) => ({ name: a, type: c.config["types"].types && c.config["types"].types[i] }));
         if (!paramConfig)
-            paramConfig = c.config[""] && c.config[""].inject && c.config[""].inject?.map(p => ({ name: p.replace(/\./g, '') }));
+            paramConfig = c.config[""] && c.config[""].inject && c.config[""].inject?.map((p, i) => ({ name: typeof p == 'string' && p.replace(/\./g, '') || 'arg' + i }));
 
         await command(c.name, options, join(destination, metadata.name), paramConfig);
         if (!c.config.fs)

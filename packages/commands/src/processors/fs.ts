@@ -293,7 +293,7 @@ export class FileSystem extends CommandProcessor
                         {
                             akala.each(cmd.config[''].inject, item =>
                             {
-                                if (item.startsWith('param.') || item == '$container')
+                                if (typeof item == 'string' && (item.startsWith('param.') || item == '$container'))
                                     params.push(item);
                                 else
                                     params.push('ignore');

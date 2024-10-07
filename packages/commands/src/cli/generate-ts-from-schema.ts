@@ -120,7 +120,8 @@ export async function resolveToTypeScript(p: string | JsonSchema, anchors: Recor
                                 {
                                     result += (await Promise.all((p.prefixItems as (object | string)[]).map((p) => resolveToTypeScript(p, anchors, types)))).join(', ');
                                     counter += (p.prefixItems as unknown[]).length;
-                                } if ('items' in p && p.items)
+                                }
+                                if ('items' in p && p.items)
                                 {
                                     if (counter == 0)
                                         return '(' + await resolveToTypeScript(p.items as object, anchors, types) + ')[]';
@@ -156,6 +157,7 @@ export async function resolveToTypeScript(p: string | JsonSchema, anchors: Recor
             if (typeof p == 'string' && p in types)
                 return p;
             return 'unknown';
+
     }
 }
 

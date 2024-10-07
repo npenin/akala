@@ -17,7 +17,7 @@ export function simplifySchema(command: Command)
     if (!command.config?.schema?.$defs)
         return command;
 
-    const usedRef = command.config.schema.inject?.filter(p => !SchemaValidator.notRefTypes.includes(p));
+    const usedRef = command.config.schema.inject?.filter(p => !SchemaValidator.notRefTypes.includes(p as string));
     if (!usedRef?.length && !command.config.schema.resultSchema)
         delete command.config.schema.$defs;
     else
@@ -27,7 +27,7 @@ export function simplifySchema(command: Command)
                 ...command.config, schema: {
                     inject: command.config.schema.inject,
                     resultSchema: command.config.schema.resultSchema,
-                    $defs: Object.fromEntries(usedRef.map(p => [p, command.config.schema.$defs[p]]))
+                    $defs: Object.fromEntries(usedRef.map(p => [p, command.config.schema.$defs[p as string]]))
                 }
             }
         };
@@ -43,10 +43,10 @@ export function simplifySchema(command: Command)
         }
         for (const initRef of init)
         {
-            if (processed.includes(initRef))
+            if (processed.includes(initRef as string))
                 continue;
 
-            const refStack = [resolve(initRef, command.config.schema)];
+            const refStack = [resolve(initRef as string, command.config.schema)];
 
             function processItem(ref: SchemaObject)
             {
@@ -180,7 +180,7 @@ export default async function generate(folder?: string, name?: string, outputFil
         await Promise.all(promises).then(results =>
         {
             c.cmd.config.schema = {
-                $defs: Object.fromEntries(c.cmd.config[""].inject.map((p, i) => [p, p.startsWith('param.') ? results[i] : { type: "null", description: p }])),
+                $defs: Object.fromEntries(c.cmd.config[""].inject.map((p, i) => [p, typeof p == 'string' && p.startsWith('param.') ? results[i] : { type: "null", description: p }])),
                 inject: c.cmd.config[""].inject,
             };
         });

@@ -1,7 +1,7 @@
 import { program as root, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
 import { SimpleInjector, mapAsync } from "@akala/core"
 import commands from "./commands.js";
-import { Cli, ICommandProcessor, ServeOptions } from "./index.js";
+import { ICommandProcessor, registerCommands, ServeOptions, Triggers } from "./index.js";
 import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
@@ -57,7 +57,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                             if (cmd !== init && cmd.name !== '$metadata' && param._trigger === 'cli')
                                 try
                                 {
-                                    await container.dispatch(init, param);
+                                    await container.dispatch(init, { ...param, containers });
                                 }
                                 catch (e)
                                 {
@@ -68,7 +68,9 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                     });
                 }
 
-                await new Cli(cliContainer, commands, handler.processor, program.command(name)).promise;
+                registerCommands(commands, handler.processor, cliContainer);
+                await cliContainer.attach(Triggers.cli, program.command(name));
+
                 containers.register(name, cliContainer);
             })
     });

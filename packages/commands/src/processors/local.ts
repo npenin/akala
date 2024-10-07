@@ -1,4 +1,4 @@
-import { Injectable, each, MiddlewarePromise, isPromiseLike, SpecialNextParam, MiddlewareAsync, SimpleInjector } from '@akala/core';
+import { Injectable, each, MiddlewarePromise, isPromiseLike, SpecialNextParam, MiddlewareAsync, SimpleInjector, Resolvable } from '@akala/core';
 import * as  Metadata from '../metadata/index.js';
 import { CommandMetadataProcessorSignature, CommandProcessor, ICommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';
@@ -46,12 +46,12 @@ export class Local extends CommandProcessor
         return new Local(o as any);
     }
 
-    public static extractParams(source: string[])
+    public static extractParams(source: Exclude<Resolvable, symbol>[])
     {
         const sourceParams = source.
-            map((i, j) => [i, j] as [string, number]).
-            filter(x => x[0].startsWith('param.')).
-            map(x => [...x, Number(x[0].substring('param.'.length))] as const).
+            map((i, j) => [i, j]).
+            filter(x => typeof x[0] == 'string' && x[0].startsWith('param.')).
+            map(x => [...x as [string, number], Number((x[0] as string).substring('param.'.length))] as const).
             sort((a, b) => a[2] - b[2])
             ;
 

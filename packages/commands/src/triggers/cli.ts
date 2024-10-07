@@ -59,7 +59,7 @@ export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware):
 {
     cmd.config?.cli?.inject?.forEach((p, i) =>
     {
-        if (p.startsWith('options.'))
+        if (typeof p == 'string' && p.startsWith('options.'))
         {
             const optionName = p.substring('options.'.length);
             var option = cmd.config.cli.options && cmd.config.cli.options[optionName]

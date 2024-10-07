@@ -35,7 +35,7 @@ export class SchemaValidator implements ICommandProcessor
             const schema: SchemaObject = {
                 $defs: cmd.config.schema.$defs,
                 type: "array",
-                prefixItems: cmd.config.schema.inject.map(x => SchemaValidator.notRefTypes.includes(x) ? x : ({ $ref: x })),
+                prefixItems: cmd.config.schema.inject.map(x => typeof x == 'string' ? SchemaValidator.notRefTypes.includes(x) ? x : { $ref: x } : x),
                 items: false
             }
 
