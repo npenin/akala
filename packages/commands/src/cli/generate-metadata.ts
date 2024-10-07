@@ -155,11 +155,15 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
     throw undefined;
 });
 
+function toCamelCase(s: string): string
+{
+    return s.replace(/-([a-z])/g, (_all, letter) => letter.toUpperCase());
+}
 export default async function generate(name?: string, folder?: string, outputFile?: string, options?: { name?: string, noContainer?: boolean, noProxy?: boolean, noStandalone?: boolean, noMetadata?: boolean })
 {
     folder = folder || process.cwd();
     if (!name)
-        options.name = path.basename(folder, path.extname(folder));
+        options.name = toCamelCase(path.basename(folder, path.extname(folder)));
     const container = new Container(options.name, {});
 
     let output: Writable;
