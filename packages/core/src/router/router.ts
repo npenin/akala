@@ -2,6 +2,7 @@ import { Middleware, SpecialNextParam, convertToMiddleware } from '../middleware
 import { MiddlewareComposite } from '../middlewares/composite-sync.js';
 import { MiddlewareRoute, Routable, RouteBuilder, RouteBuilderArguments } from './route.js';
 import { each } from '../each.js';
+import { UriTemplate } from '../uri-template/index.js';
 
 export interface RouterOptions
 {
@@ -25,7 +26,7 @@ export function useRoutes<T extends [Routable, ...unknown[]], TReturnType>(route
     {
         if (typeof match == 'number')
             return;
-        const routed = new MiddlewareRoute(match as string, { end: typeof (route) == 'object' });
+        const routed = new MiddlewareRoute(match as string);
         if (typeof (route) == 'object')
         {
             useRoutes(route, routed);
@@ -56,13 +57,13 @@ export class Router<T extends [{ path: string, params?: Record<string, unknown> 
         return this;
     }
 
-    public useMiddleware(route: string | RegExp, ...middlewares: Middleware<T>[]): this
+    public useMiddleware(route: string | UriTemplate, ...middlewares: Middleware<T>[]): this
     public useMiddleware(...middlewares: Middleware<T>[]): this
-    public useMiddleware(route: string | RegExp | Middleware<T>, ...middlewares: Middleware<T>[]): this
+    public useMiddleware(route: string | UriTemplate | Middleware<T>, ...middlewares: Middleware<T>[]): this
     {
-        if (typeof route === 'string' || route instanceof RegExp)
+        if (typeof route === 'string' || Array.isArray(route))
         {
-            const routed = new MiddlewareRoute<T>(route, { end: false });
+            const routed = new MiddlewareRoute<T>(route);
             routed.useMiddleware(...middlewares);
             super.useMiddleware(routed);
         }
@@ -72,13 +73,13 @@ export class Router<T extends [{ path: string, params?: Record<string, unknown> 
     }
 
 
-    public use(route: string | RegExp, ...middlewares: ((...args: T) => unknown)[]): this
+    public use(route: string | UriTemplate, ...middlewares: ((...args: T) => unknown)[]): this
     public use(...middlewares: ((...args: T) => unknown)[]): this
-    public use(route: string | RegExp | ((...args: T) => unknown), ...middlewares: ((...args: T) => unknown)[]): this
+    public use(route: string | UriTemplate | ((...args: T) => unknown), ...middlewares: ((...args: T) => unknown)[]): this
     {
-        if (typeof route === 'string' || route instanceof RegExp)
+        if (typeof route === 'string' || Array.isArray(route))
         {
-            const routed = new MiddlewareRoute<T>(route, { end: false });
+            const routed = new MiddlewareRoute<T>(route);
             routed.use(...middlewares);
             super.useMiddleware(routed);
             return this;

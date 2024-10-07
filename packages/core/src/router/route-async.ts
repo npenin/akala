@@ -1,25 +1,18 @@
-import { Key, PathToRegexpOptions, pathToRegexp, MatchFunction, match } from "path-to-regexp";
 import { MiddlewarePromise } from '../middlewares/shared.js';
 import { MiddlewareCompositeAsync } from '../middlewares/composite-async.js';
 import { Routable, RouteBuilderArguments } from "./route.js";
 import { MiddlewareAsync } from "../middlewares/shared.js";
+import { UriTemplate } from '../uri-template/index.js';
+import { UrlTemplate } from '../index.js';
 
 export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends MiddlewareCompositeAsync<T>
 {
-    params: Key[];
-    match: MatchFunction<Record<string, string>>;
-    delimiter: string;
-    constructor(route: string | RegExp, options?: PathToRegexpOptions)
+    routePath: UriTemplate;
+    constructor(route: string | UriTemplate)
     {
         super(route.toString());
-        this.params = [];
-        this.delimiter = options && options.delimiter || '/';
 
-        const routePath = route instanceof RegExp ? route : pathToRegexp(route, options);
-        if ('keys' in routePath)
-            this.params = routePath.keys;
-
-        this.match = match(route.toString(), options)
+        this.routePath = Array.isArray(route) ? route : UrlTemplate.parse(route);
     }
 
     route(...args: RouteBuilderArguments): MiddlewareRouteAsync<T>
@@ -32,18 +25,18 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends Mi
     handle(...context: T): MiddlewarePromise
     {
         const req = context[0] as Routable;
-        const isMatch = this.match(req.path);
+        const isMatch = UrlTemplate.match(req.path, this.routePath);
 
         if (isMatch && (!this.isApplicable || this.isApplicable(req)))
         {
             const oldPath = req.path;
-            const c = oldPath[isMatch.path.length];
-            if (c && c !== this.delimiter)
+            const c = oldPath[oldPath.length - isMatch.remainder.length];
+            if (c && c !== '/')
                 return Promise.resolve();
-            req.path = req.path.substring(isMatch.path.length) || this.delimiter;
+            req.path = isMatch.remainder || '/';
 
             const oldParams = req.params;
-            req.params = isMatch.params;
+            req.params = isMatch.variables;
 
             try
             {
@@ -58,13 +51,13 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends Mi
         return Promise.resolve();
     }
 
-    public useMiddleware(route: string | RegExp, ...middlewares: MiddlewareAsync<T>[]): this
+    public useMiddleware(route: string | UriTemplate, ...middlewares: MiddlewareAsync<T>[]): this
     public useMiddleware(...middlewares: MiddlewareAsync<T>[]): this
-    public useMiddleware(route: string | RegExp | MiddlewareAsync<T>, ...middlewares: MiddlewareAsync<T>[]): this
+    public useMiddleware(route: string | UriTemplate | MiddlewareAsync<T>, ...middlewares: MiddlewareAsync<T>[]): this
     {
-        if (typeof route === 'string' || route instanceof RegExp)
+        if (typeof route === 'string' || Array.isArray(route))
         {
-            const routed = new MiddlewareRouteAsync<T>(route, { end: false });
+            const routed = new MiddlewareRouteAsync<T>(route);
             routed.useMiddleware(...middlewares);
             super.useMiddleware(routed);
         }
@@ -73,13 +66,13 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends Mi
         return this;
     }
 
-    public use(route: string | RegExp, ...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    public use(route: string | UriTemplate, ...middlewares: ((...args: T) => Promise<unknown>)[]): this
     public use(...middlewares: ((...args: T) => Promise<unknown>)[]): this
-    public use(route: string | RegExp | ((...args: T) => Promise<unknown>), ...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    public use(route: string | UriTemplate | ((...args: T) => Promise<unknown>), ...middlewares: ((...args: T) => Promise<unknown>)[]): this
     {
-        if (typeof route === 'string' || route instanceof RegExp)
+        if (typeof route === 'string' || Array.isArray(route))
         {
-            const routed = new MiddlewareRouteAsync<T>(route, { end: false });
+            const routed = new MiddlewareRouteAsync<T>(route);
             routed.use(...middlewares);
             return super.useMiddleware(routed);
         }

@@ -46,3 +46,5 @@ export * from './logger.js'
 export * from './errorWithStatus.js'
 
 export * from './url-handler.js'
+import * as UrlTemplate from './uri-template/index.js'
+export { UrlTemplate };

@@ -5,6 +5,7 @@ import { each } from '../each.js';
 import { RouterOptions, Routes } from './router.js';
 import { Routable, RouteBuilderArguments } from './route.js';
 import { MiddlewareAsync } from '../middlewares/shared.js'
+import { UriTemplate } from '../uri-template/index.js';
 
 export type RouteBuilderAsync<T extends [Routable, ...unknown[]]> = (...args: RouteBuilderArguments) => MiddlewareRouteAsync<T>;
 
@@ -16,7 +17,7 @@ export function useRoutesAsync<T extends [Routable, ...unknown[]]>(routes: Route
     {
         if (typeof match == 'number')
             return;
-        const routed = new MiddlewareRouteAsync(match as string, { end: typeof (route) == 'object' });
+        const routed = new MiddlewareRouteAsync(match as string);
         if (typeof (route) == 'object')
         {
             useRoutesAsync(route, routed);
@@ -47,13 +48,13 @@ export class RouterAsync<T extends [{ path: string, params?: Record<string, unkn
         return this;
     }
 
-    public useMiddleware(route: string | RegExp, ...middlewares: MiddlewareAsync<T>[]): this
+    public useMiddleware(route: string | UriTemplate, ...middlewares: MiddlewareAsync<T>[]): this
     public useMiddleware(...middlewares: MiddlewareAsync<T>[]): this
-    public useMiddleware(route: string | RegExp | MiddlewareAsync<T>, ...middlewares: MiddlewareAsync<T>[]): this
+    public useMiddleware(route: string | UriTemplate | MiddlewareAsync<T>, ...middlewares: MiddlewareAsync<T>[]): this
     {
-        if (typeof route === 'string' || route instanceof RegExp)
+        if (typeof route === 'string' || Array.isArray(route))
         {
-            const routed = new MiddlewareRouteAsync<T>(route, { end: false });
+            const routed = new MiddlewareRouteAsync<T>(route);
             routed.useMiddleware(...middlewares);
             super.useMiddleware(routed);
         }
@@ -63,13 +64,13 @@ export class RouterAsync<T extends [{ path: string, params?: Record<string, unkn
     }
 
 
-    public use(route: string | RegExp, ...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    public use(route: string | UriTemplate, ...middlewares: ((...args: T) => Promise<unknown>)[]): this
     public use(...middlewares: ((...args: T) => Promise<unknown>)[]): this
-    public use(route: string | RegExp | ((...args: T) => Promise<unknown>), ...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    public use(route: string | UriTemplate | ((...args: T) => Promise<unknown>), ...middlewares: ((...args: T) => Promise<unknown>)[]): this
     {
-        if (typeof route === 'string' || route instanceof RegExp)
+        if (typeof route === 'string' || Array.isArray(route))
         {
-            const routed = new MiddlewareRouteAsync<T>(route, { end: false });
+            const routed = new MiddlewareRouteAsync<T>(route);
             routed.use(...middlewares);
             super.useMiddleware(routed);
             return this;

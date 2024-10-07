@@ -1,0 +1,17 @@
+export const _count = ["one", "two", "three"]
+export const _dom = ["example", "com"]
+export const _dub = "me/too"
+export const _hello = "Hello World!"
+export const _half = "50%"
+export const _var = "value"
+export const _who = "fred"
+export const _base = "http://example.com/home/"
+export const _path = "/foo/bar"
+export const _list = ["red", "green", "blue"]
+export const _keys = [["semi", ";"], ["dot", "."], ["comma", ","]]
+export const _v = "6"
+export const _x = "1024"
+export const _y = "768"
+export const _empty = ""
+export const _empty_keys = []
+export const _undef = null

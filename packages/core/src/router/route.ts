@@ -1,6 +1,7 @@
-import { Key, PathToRegexpOptions, pathToRegexp, MatchFunction, match } from "path-to-regexp";
+import { UrlTemplate } from '../index.js';
 import { MiddlewareComposite } from '../middlewares/composite-sync.js';
 import { Middleware, MiddlewareResult } from '../middlewares/shared.js';
+import { UriTemplate } from '../uri-template/index.js';
 
 export interface Routable
 {
@@ -8,26 +9,24 @@ export interface Routable
     params?: Record<string, unknown>
 }
 
-export type RouteBuilderArguments = [route: string | RegExp, options?: PathToRegexpOptions]
+export type RouteBuilderArguments = [route: string | UriTemplate]
 export type RouteBuilder<T extends [Routable, ...unknown[]]> = (...args: RouteBuilderArguments) => MiddlewareRoute<T>;
 
 
 export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends MiddlewareComposite<T>
 {
-    params: Key[];
-    match: MatchFunction<Record<string, string>>;
-    delimiter: string;
-    constructor(route: string | RegExp, options?: PathToRegexpOptions)
+    // delimiter: string;
+    routePath: UriTemplate;
+    constructor(route: string | UriTemplate)
     {
         super(route.toString());
-        this.params = [];
-        this.delimiter = options && options.delimiter || '/';
+        // this.delimiter = options && options.delimiter || '/';
 
-        const routePath = route instanceof RegExp ? route : pathToRegexp(route, options);
-        if ('keys' in routePath)
-            this.params = routePath.keys;
+        this.routePath = Array.isArray(route) ? route : UrlTemplate.parse(route);
+        // if ('keys' in routePath)
+        //     this.params = routePath.keys;
 
-        this.match = match(route.toString(), options)
+        // this.match = match(route.toString(), options)
     }
 
     route(...args: RouteBuilderArguments): MiddlewareRoute<T>
@@ -40,18 +39,18 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
     handle(...context: T): MiddlewareResult
     {
         const req = context[0] as Routable;
-        const isMatch = this.match(req.path);
+        const isMatch = UrlTemplate.match(req.path, this.routePath);
 
         if (isMatch && (!this.isApplicable || this.isApplicable(req)))
         {
             const oldPath = req.path;
-            const c = oldPath[isMatch.path.length];
-            if (c && c !== this.delimiter)
+            const c = oldPath[oldPath.length - isMatch.remainder.length];
+            if (c && c !== '/')
                 return;
-            req.path = req.path.substring(isMatch.path.length) || this.delimiter;
+            req.path = isMatch.remainder || '/';
 
             const oldParams = req.params;
-            req.params = isMatch.params;
+            req.params = isMatch.variables;
 
             try
             {
@@ -66,13 +65,13 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
         return;
     }
 
-    public useMiddleware(route: string | RegExp, ...middlewares: Middleware<T>[]): this
+    public useMiddleware(route: string | UriTemplate, ...middlewares: Middleware<T>[]): this
     public useMiddleware(...middlewares: Middleware<T>[]): this
-    public useMiddleware(route: string | RegExp | Middleware<T>, ...middlewares: Middleware<T>[]): this
+    public useMiddleware(route: string | UriTemplate | Middleware<T>, ...middlewares: Middleware<T>[]): this
     {
-        if (typeof route === 'string' || route instanceof RegExp)
+        if (typeof route === 'string' || Array.isArray(route))
         {
-            const routed = new MiddlewareRoute<T>(route, { end: false });
+            const routed = new MiddlewareRoute<T>(route);
             routed.useMiddleware(...middlewares);
             super.useMiddleware(routed);
         }
@@ -81,13 +80,13 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
         return this;
     }
 
-    public use(route: string | RegExp, ...middlewares: ((...args: T) => unknown)[]): this
+    public use(route: string | UriTemplate, ...middlewares: ((...args: T) => unknown)[]): this
     public use(...middlewares: ((...args: T) => unknown)[]): this
-    public use(route: string | RegExp | ((...args: T) => unknown), ...middlewares: ((...args: T) => unknown)[]): this
+    public use(route: string | UriTemplate | ((...args: T) => unknown), ...middlewares: ((...args: T) => unknown)[]): this
     {
-        if (typeof route === 'string' || route instanceof RegExp)
+        if (typeof route === 'string' || Array.isArray(route))
         {
-            const routed = new MiddlewareRoute<T>(route, { end: false });
+            const routed = new MiddlewareRoute<T>(route);
             routed.use(...middlewares);
             return super.useMiddleware(routed);
         }
