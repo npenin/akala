@@ -19,10 +19,10 @@ namespace commands
    export const meta={"name":"@akala/client-compiler","commands":[{"name":"add-loader","config":{"fs":{"inject":["param.0","param.1"],"path":"dist/esm/commands/add-loader.js","source":"src/commands/add-loader.ts"},"":{"inject":["param.0","param.1"]},"cli":{"inject":["options.type","options.path"],"usage":"add-loader <type> <path>","options":{"path":{"normalize":true}}}}},{"name":"compile","config":{"fs":{"inject":["param"],"path":"dist/esm/commands/compile.js","source":"src/commands/compile.ts"},"":{"inject":["param"]},"cli":{"usage":"compile [...entrypoints]","inject":["context.state","options.entrypoints"],"options":{"entrypoints":{"normalize":true}}}}}]} as Metadata.Container;
 
    export function connect(processor?:ICommandProcessor) {
-        const container = new Container<void>("commands", void 0);
-        registerCommands(meta.commands, processor, container);
-        return container as container & Container<void>;
-    }
+            const container = new Container<void>("commands", void 0);
+            registerCommands(meta.commands, processor, container);
+            return container as container & Container<void>;
+        }
 }
 
 export { commands as default };

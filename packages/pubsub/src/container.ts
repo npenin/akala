@@ -21,10 +21,10 @@ namespace commands
    export const meta={"name":"pubsub","commands":[{"name":"publish","config":{"fs":{"path":"dist/esm/commands/publish.js","source":"src/commands/publish.ts","inject":["param.0","param.1"]},"":{"inject":["param.0","param.1"]},"jsonrpc":{"inject":["param.0","param.1"]}}},{"name":"subscribe","config":{"fs":{"path":"dist/esm/commands/subscribe.js","source":"src/commands/subscribe.ts","inject":["param.0","param.1","param.2"]},"":{"inject":["param.0","param.1","param.2"]},"jsonrpc":{"inject":["$connectionAsContainer","param.1","param.2"]}}},{"name":"unsubscribe","config":{"fs":{"inject":["param.0","param.1"],"path":"dist/esm/commands/unsubscribe.js","source":"src/commands/unsubscribe.ts"},"":{"inject":["param.0","param.1"]},"jsonrpc":{"inject":["connectionAsContainer","param.0"]}}}]} as Metadata.Container;
 
    export function connect(processor?:ICommandProcessor) {
-        const container = new Container<void>("commands", void 0);
-        registerCommands(meta.commands, processor, container);
-        return container as container & Container<void>;
-    }
+            const container = new Container<void>("commands", void 0);
+            registerCommands(meta.commands, processor, container);
+            return container as container & Container<void>;
+        }
 }
 
 export { commands as default };

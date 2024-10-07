@@ -185,11 +185,11 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
     await write(output, 'import {Metadata, ICommandProcessor, Container, registerCommands} from "@akala/commands";\n');
 
     if (outputFile.endsWith('.d.ts'))
-        await write(output, 'declare namespace ' + name);
+        await write(output, 'declare namespace ' + options.name);
     else
     {
         await write(output, '// eslint-disable-next-line @typescript-eslint/no-namespace\n');
-        await write(output, 'namespace ' + name);
+        await write(output, 'namespace ' + options.name);
     }
     await write(output, '\n{\n');
 

@@ -23,10 +23,10 @@ namespace workflow
    export const meta={"name":"workflow","commands":[{"name":"$init","config":{"fs":{"path":"dist/esm/workflow-commands/$init.js","source":"src/workflow-commands/$init.ts","inject":["param.0","pm","param.1"]},"":{"inject":["param.0","pm","param.1"]},"cli":{"inject":["options.name","pm","context"]}}},{"name":"process","config":{"fs":{"inject":["param.0","param.1","$container"],"path":"dist/esm/workflow-commands/process.js","source":"src/workflow-commands/process.ts"},"":{"inject":["param.0","param.1","$container"]},"automate":{"inject":["workflow","inputs","$container"]}}},{"name":"set-config","config":{"fs":{"path":"dist/esm/workflow-commands/set-config.js","source":"src/workflow-commands/set-config.ts","inject":["param.0"]},"":{"inject":["param.0"]}}},{"name":"use","config":{"fs":{"inject":["$container","param.0","param.1"],"path":"dist/esm/workflow-commands/use.js","source":"src/workflow-commands/use.ts"},"":{"inject":["$container","param.0","param.1"]}}}]} as Metadata.Container;
 
    export function connect(processor?:ICommandProcessor) {
-        const container = new Container<void>("workflow", void 0);
-        registerCommands(meta.commands, processor, container);
-        return container as container & Container<void>;
-    }
+            const container = new Container<void>("workflow", void 0);
+            registerCommands(meta.commands, processor, container);
+            return container as container & Container<void>;
+        }
 }
 
 export { workflow as default };
