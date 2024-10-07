@@ -4,6 +4,30 @@ import { Metadata, Processors } from '@akala/commands'
 import { SchemaObject } from 'ajv';
 import fs from 'fs/promises'
 
+function parseRoute(uri: string): { route: string, parameters: { name: string, multiple: boolean }[] }
+{
+    const url = new URL(uri, 'http://localhost');
+    const result = { route: uri, parameters: [] };
+    result.route = url.pathname.split('/').map(p =>
+    {
+        const start = p.indexOf('%7B');
+        if (~start)
+        {
+            const end = p.indexOf('%7D', start);
+            if (~end)
+            {
+                if (p[end - 1] == '+')
+                    result.parameters.push({ name: p.substring(start + 3, end - 1), multiple: true })
+                else
+                    result.parameters.push({ name: p.substring(start + 3, end), multiple: false })
+                return `${result.parameters[result.parameters.length - 1].multiple ? '*' : ':'}${result.parameters[result.parameters.length - 1].name}`;
+            }
+        }
+        return p;
+    }).join('/')
+    return result;
+}
+
 const baseUrl = new URL('https://api.github.com/repos/aws/aws-sdk-js-v3/contents/codegen/sdk-codegen/aws-models/');
 const downloadBaseUrl = new URL('https://raw.githubusercontent.com/aws/aws-sdk-js-v3/main/codegen/sdk-codegen/aws-models/')
 
@@ -58,7 +82,12 @@ export type SmithyTrait = {
             "cloudTrailEventSource": string,
             "endpointPrefix": string
         },
-        'smithy.rule#endpointRuleSet': SmithyRuleSet<string, string>
+        'smithy.rule#endpointRuleSet': SmithyRuleSet<string, string>,
+        'smithy.api#http': {
+            method: string,
+            uri: string,
+            code: number
+        }
     }
 }
 
@@ -105,7 +134,7 @@ const arg = (argument: { ref: string } | boolean | string | SmithyRuleCondition<
                 return `config[${JSON.stringify(argument.ref)}]`;
             const result = conditionRules[argument.fn](argument);
             if (argument.assign)
-                return `config[${JSON.stringify(argument.assign)}]= await ${result}`;
+                return `config[${JSON.stringify(argument.assign)}]= await ${result} `;
             return result;
     }
 }
@@ -117,7 +146,7 @@ function deepObjectInterpolate(obj: unknown)
         case 'object':
             if (Array.isArray(obj))
                 return `[${obj.map(e => deepObjectInterpolate(e))}]`;
-            return `{${Object.entries(obj).map(e => JSON.stringify(e[0]) + ':' + deepObjectInterpolate(e[1]))}}`;
+            return `{${Object.entries(obj).map(e => JSON.stringify(e[0]) + ':' + deepObjectInterpolate(e[1]))} } `;
         case 'string':
             let interpolateString: RegExpExecArray;
             let result = '';
@@ -154,21 +183,25 @@ function deepObjectInterpolate(obj: unknown)
 
 const conditionRules = {
     isSet: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `typeof ${arg(condition.argv[0])} != undefined`,
-    booleanEquals: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `${arg(condition.argv[0])} != ${arg(condition.argv[1])}`,
-    stringEquals: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `${arg(condition.argv[0])} != ${arg(condition.argv[1])}`,
+    booleanEquals: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `${arg(condition.argv[0])} != ${arg(condition.argv[1])} `,
+    stringEquals: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `${arg(condition.argv[0])} != ${arg(condition.argv[1])} `,
     substring: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) =>
     {
         if (typeof condition.argv[3] == 'boolean')
             if (condition.argv[3])
-                return `${arg(condition.argv[0])}.split("").reverse().join("").substring(${arg(condition.argv[1])},${arg(condition.argv[2])}`;
+                return `${arg(condition.argv[0])}.split("").reverse().join("").substring(${arg(condition.argv[1])
+                    },${arg(condition.argv[2])} `;
             else
-                return `${arg(condition.argv[0])}.substring(${arg(condition.argv[1])},${arg(condition.argv[2])}`;
-        return `${arg(condition.argv[3])} ? ${arg(condition.argv[0])}.split("").reverse().join("").substring(${arg(condition.argv[1])},${arg(condition.argv[2])} : ${arg(condition.argv[0])}.substring(${arg(condition.argv[1])},${arg(condition.argv[2])}`;
+                return `${arg(condition.argv[0])}.substring(${arg(condition.argv[1])
+                    },${arg(condition.argv[2])} `;
+        return `${arg(condition.argv[3])} ? ${arg(condition.argv[0])}.split("").reverse().join("").substring(${arg(condition.argv[1])
+            }, ${arg(condition.argv[2])
+            } : ${arg(condition.argv[0])}.substring(${arg(condition.argv[1])},${arg(condition.argv[2])} `;
     },
-    not: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `!${arg(condition.argv[0])}`,
-    getAttr: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `${arg(condition.argv[0])}[${arg(condition.argv[1])}]`,
-    'aws.partition': <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `import('@akala/aws-sdk').then(sdk=>sdk.getPartition(${arg(condition.argv[0])}))`,
-    isValidHostLabel: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `/^[A-Z0-9-\.]+$/i.test(${arg(condition.argv[0])})`,
+    not: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `!${arg(condition.argv[0])} `,
+    getAttr: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `${arg(condition.argv[0])} [${arg(condition.argv[1])}]`,
+    'aws.partition': <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `import('@akala/aws-sdk').then(sdk => sdk.getPartition(${arg(condition.argv[0])}))`,
+    isValidHostLabel: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `/^ [A - Z0 - 9 -\.] + $ / i.test(${arg(condition.argv[0])})`,
 }
 
 export function staticEndpointBuilder(ruleset: SmithyRuleSet<string, string>['rules'], parameters: Record<string, string | boolean>): string
@@ -178,18 +211,18 @@ export function staticEndpointBuilder(ruleset: SmithyRuleSet<string, string>['ru
         switch (rule.type)
         {
             case 'error':
-                return `if(${rule.conditions?.length ? rule.conditions.map(arg).join(' && ') : true}) 
-                throw new Error(${JSON.stringify(rule.error)}); `;
+                return `if (${rule.conditions?.length ? rule.conditions.map(arg).join(' && ') : true})
+throw new Error(${JSON.stringify(rule.error)}); `;
             case 'tree':
-                return `if(${rule.conditions?.length ? rule.conditions.map(arg).join(' && ') : true}) {
-                ${rule.rules?.length ? staticEndpointBuilder(rule.rules, parameters) : staticEndpointBuilder([{ error: 'invalid smithy rule', type: 'error', conditions: [] }], parameters)}; 
-                throw new Error('Tree Rules exhausted') 
-                }`;
+                return `if (${rule.conditions?.length ? rule.conditions.map(arg).join(' && ') : true}) {
+                ${rule.rules?.length ? staticEndpointBuilder(rule.rules, parameters) : staticEndpointBuilder([{ error: 'invalid smithy rule', type: 'error', conditions: [] }], parameters)};
+    throw new Error('Tree Rules exhausted')
+} `;
             case 'endpoint':
                 if (rule.conditions?.length == 0)
-                    return `return ${deepObjectInterpolate(rule.endpoint)};`;
-                return `if(${rule.conditions.map(arg).join(' && ') || true}) 
-                return ${deepObjectInterpolate(rule.endpoint)};`;
+                    return `return ${deepObjectInterpolate(rule.endpoint)}; `;
+                return `if (${rule.conditions.map(arg).join(' && ') || true})
+return ${deepObjectInterpolate(rule.endpoint)}; `;
         }
     }).join('  ');
 }
@@ -257,10 +290,37 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
     container.commands = service.operations?.map<Metadata.Command>(op =>
     {
         const operation = resolve(smithy, op);
+        const operationName = op.target.substring(urn.length);
         try
         {
+            if (operation.traits['smithy.api#http'])
+            {
+                const httpTrait = operation.traits['smithy.api#http'];
+                const route = parseRoute(httpTrait.uri);
+
+                return {
+                    name: operationName,
+                    config: {
+                        http: {
+                            inject: [{
+                                ...Object.fromEntries(route.parameters.map(p => [p.name, 'route.' + p.name])),
+                                '...': httpTrait.method == 'GET' ? 'query' : 'body',
+                            }],
+                            method: httpTrait.method,
+                            route: route.route,
+                            // auth: { mode: { type: 'header', name: 'Authorization' } },
+                        } as Processors.HttpConfiguration,
+                        schema: {
+                            resultSchema: toSchema(urn, (operation as SmithyOperation)?.output, smithy, schemaCache),
+                            inject: [].concat(route.parameters.map(p => 'param.0.' + p.name), ['param.0']),
+                            $defs: { 'param.0': toSchema(urn, (operation as SmithyOperation)?.input, smithy, schemaCache) }
+                        }
+                    }
+                }
+            }
+
             return {
-                name: op.target.substring(urn.length),
+                name: operationName,
                 config: {
                     http: {
                         inject: ["param.0"],
@@ -280,21 +340,23 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
         }
         catch (e)
         {
-            console.error(`error happened for service ${serviceName} and operation ${op.target.substring(urn.length)}`)
+            console.error(`error happened for service ${serviceName} and operation ${op.target.substring(urn.length)} `)
             throw e;
         }
     });
 
     container.$defs = schemaCache;
 
-    container['state'] = service.traits['smithy.rules#endpointRuleSet'];
-    console.log(container['state'])
+    console.log(Processors.HttpClient.buildCall(container.commands.find(c => c.name == 'GetObject').config, s => s, 'xxx', { Bucket: 'medzie-uploads', Key: 'sitemap.xml' }))
+
+    container['aws'] = {
+        endpoint: service.traits['smithy.rules#endpointRuleSet'],
+    }
 
     if (output)
         await fs.writeFile(output, JSON.stringify(container, null, 4));
     else
         return container;
-
 }
 
 

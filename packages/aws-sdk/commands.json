@@ -2,6 +2,21 @@
     "name": "aws-sdk",
     "commands": [
         {
+            "name": "$init-akala",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/cli/$init-akala.js",
+                    "source": "src/cli/$init-akala.ts"
+                },
+                "": {
+                    "inject": [
+                        "containers"
+                    ]
+                }
+            }
+        },
+        {
             "name": "generate-sdk",
             "config": {
                 "fs": {
