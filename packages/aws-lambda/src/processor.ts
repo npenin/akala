@@ -23,15 +23,15 @@ export class Processor extends CommandProcessor
                 param = params.param && params.param[indexOfEvent];
             else
             {
-                const indexOfEventDot = cmd.config.aws.inject?.findIndex(v => v.indexOf('event.') >= 0);
+                const indexOfEventDot = cmd.config.aws.inject?.findIndex(v => typeof v == 'string' && v.indexOf('event.') >= 0);
                 if (typeof indexOfEventDot !== 'undefined' && indexOfEventDot > -1)
                 {
                     param = {};
                     for (let i = indexOfEventDot, j = 0; i < (cmd.config.aws.inject?.length || 0); i++, j++)
                     {
-                        if (cmd.config.aws.inject![i].indexOf('event.') == -1)
+                        if ((cmd.config.aws.inject![i] as string).indexOf('event.') == -1)
                             continue;
-                        (param as Record<string, unknown>)[cmd.config.aws.inject![i].substring('event.'.length)] = params.param[j];
+                        (param as Record<string, unknown>)[(cmd.config.aws.inject![i] as string).substring('event.'.length)] = params.param[j];
                     }
                 }
             }
