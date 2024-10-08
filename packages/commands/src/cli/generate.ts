@@ -39,7 +39,7 @@ export default async function generate(options: Partial<DiscoveryOptions>, folde
     meta.commands = commands;
     if (commands.name)
         meta.name = commands.name;
-    meta.$schema = 'https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json';
+    meta.$schema = 'https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json';
 
     try
     {

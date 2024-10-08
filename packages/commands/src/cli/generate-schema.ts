@@ -122,7 +122,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     // }
     // while (configPath);
     var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), discoveryOptions);
-    const result = { name: commands.name, commands, $schema: 'https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json' };
+    const result = { name: commands.name, commands, $schema: 'https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json' };
     const defs: { local: Record<string, { id: string, isDynamic: boolean, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> } = {
         local: {}, global: {
             SharedArrayBuffer: { id: 'SharedArrayBuffer', promise: Promise.resolve({ type: "array", $id: 'SharedArrayBuffer', items: { type: 'number' } }) }

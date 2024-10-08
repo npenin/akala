@@ -16,7 +16,7 @@ jobs:
         run: |
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
-          elif [[ $GITHUB_REF == refs/heads/master ]]; then
+          elif [[ $GITHUB_REF == refs/heads/main ]]; then
             echo ::set-output name=version::latest
           elif [[ $GITHUB_REF == refs/heads/* ]]; then
             echo ::set-output name=version::${GITHUB_REF#refs/heads/}
