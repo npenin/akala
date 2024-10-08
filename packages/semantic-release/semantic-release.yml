@@ -16,11 +16,16 @@ outputs:
 jobs:
   build:
     steps:
+      - name: version
+        dispatch: get-version
+        with:
+          path: $(package.location)
       - name: tags
-        run: node node_modules/git-semver-tags/src/cli.js --lerna --package $(package.name) | head -n1
+        run: git rev-list -n 1 $(package.name)@$(build.version)
         with:
           result: stdout
           shell: true
+          ignore-failure: true
       - name: commits
         run:
           - git
