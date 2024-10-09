@@ -7,7 +7,7 @@ export type Operators = OperatorL2 | OperatorL3 | OperatorReserved
 
 const first = {
     '': '',
-    '+': undefined,
+    '+': '',
     '.': '.',
     '/': '/',
     ';': ';',
