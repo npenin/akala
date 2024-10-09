@@ -20,11 +20,11 @@ function parseRoute(uri: string): { route: string, parameters: { name: string, m
                     result.parameters.push({ name: p.substring(start + 3, end - 1), multiple: true })
                 else
                     result.parameters.push({ name: p.substring(start + 3, end), multiple: false })
-                return `${result.parameters[result.parameters.length - 1].multiple ? '*' : ':'}${result.parameters[result.parameters.length - 1].name}`;
+                return `{${result.parameters[result.parameters.length - 1].multiple ? '/' : ''}${result.parameters[result.parameters.length - 1].name}${result.parameters[result.parameters.length - 1].multiple ? '*' : ''}}`;
             }
         }
         return p;
-    }).join('/')
+    }).join('/').replace(/\/\{\//g, '{/');
     return result;
 }
 
@@ -302,10 +302,10 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
                     name: operationName,
                     config: {
                         http: {
-                            inject: [{
+                            inject: route.parameters?.length ? [{
                                 ...Object.fromEntries(route.parameters.map(p => [p.name, 'route.' + p.name])),
                                 '...': httpTrait.method == 'GET' ? 'query' : 'body',
-                            }],
+                            }] : httpTrait.method == 'GET' ? ['query'] : ['body'],
                             method: httpTrait.method,
                             route: route.route,
                             // auth: { mode: { type: 'header', name: 'Authorization' } },
@@ -346,8 +346,6 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
     });
 
     container.$defs = schemaCache;
-
-    console.log(Processors.HttpClient.buildCall(container.commands.find(c => c.name == 'GetObject').config, s => s, 'xxx', { Bucket: 'medzie-uploads', Key: 'sitemap.xml' }))
 
     container['aws'] = {
         endpoint: service.traits['smithy.rules#endpointRuleSet'],
