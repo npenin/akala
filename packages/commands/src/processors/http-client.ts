@@ -126,7 +126,7 @@ export class HttpClient extends CommandProcessor
                                     if (typeof subKey !== 'undefined')
                                         options.queryString.append(subKey, arg && arg[e[0]] as string);
                                     else
-                                        Object.entries(arg).filter(e2 => !valueEntries.find(e3 => e3[0] == e2[0])).forEach(e => (options.queryString as URLSearchParams).append(e[0], param[e[0]]));
+                                        Object.entries(arg).filter(e2 => !valueEntries.find(e3 => e3[0] == e2[0])).forEach(e => (options.queryString as URLSearchParams).append(e[0], arg[e[0]]));
                                     break;
                                 case 'route':
                                     if (!route)
@@ -135,7 +135,7 @@ export class HttpClient extends CommandProcessor
                                         if (subKey)
                                             route[subKey] = arg && arg[e[0]] && arg[e[0]].toString();
                                         else
-                                            Object.assign(Object.fromEntries(Object.entries(arg).filter(e2 => !valueEntries.find(e3 => e3[0] == e2[0]))));
+                                            Object.assign(route, Object.fromEntries(Object.entries(arg).filter(e2 => !valueEntries.find(e3 => e3[0] == e2[0]))));
                                     break;
                             }
                         }
