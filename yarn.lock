@@ -91,6 +91,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@akala/cli@npm:^2.14.33":
+  version: 2.14.33
+  resolution: "@akala/cli@npm:2.14.33"
+  dependencies:
+    "@akala/core": "npm:^18.1.0"
+    reflect-metadata: "npm:^0.2.2"
+  bin:
+    akala: ./dist/esm/cli.js
+  checksum: 10/58f82ddfb1f71ec72a9e1ac2607832a4b46ee92577646be5d86c4bba7e8480447621d6e765fdf0d2a24c38cbab35319116f395768e0ee7449b24e9fe57d8a32a
+  languageName: node
+  linkType: hard
+
 "@akala/cli@workspace:^, @akala/cli@workspace:packages/cli":
   version: 0.0.0-use.local
   resolution: "@akala/cli@workspace:packages/cli"
@@ -154,6 +166,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@akala/commands@npm:^8.2.23":
+  version: 8.2.23
+  resolution: "@akala/commands@npm:8.2.23"
+  dependencies:
+    "@akala/cli": "npm:^2.14.33"
+    "@akala/core": "npm:^18.1.0"
+    "@akala/json-rpc-ws": "npm:^10.5.36"
+    ajv: "npm:^8.17.1"
+    debug: "npm:^4.3.7"
+    path-to-regexp: "npm:^8.1.0"
+    reflect-metadata: "npm:^0.2.2"
+    ws: "npm:^8.18.0"
+  bin:
+    ac: dist/esm/cli.mjs
+  checksum: 10/d6c4043fcd909a61800323ae0b075ed58a1336fce4689030817da183cc0c5f7c94b92473ca5620262f219c627aeb2800afd8bb037d7544bf1b4e7850aa669ac6
+  languageName: node
+  linkType: hard
+
 "@akala/commands@workspace:^, @akala/commands@workspace:packages/commands":
   version: 0.0.0-use.local
   resolution: "@akala/commands@workspace:packages/commands"
@@ -180,6 +210,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@akala/config@npm:^4.0.71":
+  version: 4.0.71
+  resolution: "@akala/config@npm:4.0.71"
+  dependencies:
+    "@akala/commands": "npm:^8.2.23"
+    "@akala/core": "npm:^18.1.0"
+  peerDependencies:
+    "@akala/pm": "*"
+  peerDependenciesMeta:
+    "@akala/pm":
+      optional: true
+  bin:
+    uci2: ./dist/cli.js
+  checksum: 10/a618d056df292b70516904746e1d9b4cb3f1f950434eb82b198b101dc631a99c69abeb50432acc50702cb572ba3dee8cf91850d7fed48fe72c206dc67453fda2
+  languageName: node
+  linkType: hard
+
 "@akala/config@workspace:^, @akala/config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@akala/config@workspace:packages/config"
@@ -197,6 +244,17 @@ __metadata:
     uci2: ./dist/cli.js
   languageName: unknown
   linkType: soft
+
+"@akala/core@npm:^18.1.0":
+  version: 18.1.0
+  resolution: "@akala/core@npm:18.1.0"
+  dependencies:
+    debug: "npm:^4.3.7"
+    path-to-regexp: "npm:^8.1.0"
+    reflect-metadata: "npm:^0.2.2"
+  checksum: 10/b51cdf567da6c7f88d44fc65f2e9d45d98dd177f22d3a16d7b9963d243c964bfe90871008f42627288055c43a7153a5f303098acd7a934f440fd73950c0f9cdb
+  languageName: node
+  linkType: hard
 
 "@akala/core@workspace:^, @akala/core@workspace:packages/core":
   version: 0.0.0-use.local
@@ -266,6 +324,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@akala/json-rpc-ws@npm:^10.5.36":
+  version: 10.5.36
+  resolution: "@akala/json-rpc-ws@npm:10.5.36"
+  dependencies:
+    "@akala/core": "npm:^18.1.0"
+    debug: "npm:^4.3.7"
+    reflect-metadata: "npm:^0.2.2"
+    ws: "npm:^8.18.0"
+  checksum: 10/59e171eeb55a80b7341aa653bf44d98ca2612163be1158abd1a496ed9de4d66a8559a254c86309789c45898b8898c88add5ea645ec40b979424bd6efd12f7f20
+  languageName: node
+  linkType: hard
+
 "@akala/json-rpc-ws@workspace:^, @akala/json-rpc-ws@workspace:packages/json-rpc-ws":
   version: 0.0.0-use.local
   resolution: "@akala/json-rpc-ws@workspace:packages/json-rpc-ws"
@@ -314,7 +384,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/pm@npm:^9.2.1, @akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
+"@akala/pm@npm:^9.2.1":
+  version: 9.3.18
+  resolution: "@akala/pm@npm:9.3.18"
+  dependencies:
+    "@akala/cli": "npm:^2.14.33"
+    "@akala/commands": "npm:^8.2.23"
+    "@akala/config": "npm:^4.0.71"
+    "@akala/core": "npm:^18.1.0"
+    "@akala/json-rpc-ws": "npm:^10.5.36"
+    reflect-metadata: "npm:^0.2.2"
+    source-map-support: "npm:^0.5.21"
+  bin:
+    pm: dist/esm/cli.js
+    pm-fork: dist/esm/fork.js
+  checksum: 10/a46df29b6aad5b6cedf6e501ec2befc909d021030d467adee5dd1ddec3d5cbee64415041d2cae6d7c72d599a6200d9212986e30bf169aa0ced25e18996bcf919
+  languageName: node
+  linkType: hard
+
+"@akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
   version: 0.0.0-use.local
   resolution: "@akala/pm@workspace:packages/pm"
   dependencies:
@@ -404,7 +492,7 @@ __metadata:
     fast-xml-parser: "npm:^4.5.0"
     mime-types: "npm:^2.1.35"
     reflect-metadata: "npm:^0.2.2"
-    send: "npm:^0.19.0"
+    send: "npm:^1.0.0"
     source-map-support: "npm:^0.5.21"
     typescript: "npm:^5.6.2"
   languageName: unknown
@@ -4364,7 +4452,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:2.6.9, debug@npm:2.x.x":
+"debug@npm:2.x.x":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
   dependencies:
@@ -4501,7 +4589,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"destroy@npm:1.2.0":
+"destroy@npm:^1.2.0":
   version: 1.2.0
   resolution: "destroy@npm:1.2.0"
   checksum: 10/0acb300b7478a08b92d810ab229d5afe0d2f4399272045ab22affa0d99dbaf12637659411530a6fcd597a9bdac718fc94373a61a95b4651bbc7b83684a565e38
@@ -4632,10 +4720,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"encodeurl@npm:~1.0.2":
-  version: 1.0.2
-  resolution: "encodeurl@npm:1.0.2"
-  checksum: 10/e50e3d508cdd9c4565ba72d2012e65038e5d71bdc9198cb125beb6237b5b1ade6c0d343998da9e170fb2eae52c1bed37d4d6d98a46ea423a0cddbed5ac3f780c
+"encodeurl@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "encodeurl@npm:2.0.0"
+  checksum: 10/abf5cd51b78082cf8af7be6785813c33b6df2068ce5191a40ca8b1afe6a86f9230af9a9ce694a5ce4665955e5c1120871826df9c128a642e09c58d592e2807fe
   languageName: node
   linkType: hard
 
@@ -4930,7 +5018,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"escape-html@npm:~1.0.3":
+"escape-html@npm:^1.0.3":
   version: 1.0.3
   resolution: "escape-html@npm:1.0.3"
   checksum: 10/6213ca9ae00d0ab8bccb6d8d4e0a98e76237b2410302cf7df70aaa6591d509a2a37ce8998008cbecae8fc8ffaadf3fb0229535e6a145f3ce0b211d060decbb24
@@ -5095,7 +5183,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"etag@npm:~1.8.1":
+"etag@npm:^1.8.1":
   version: 1.8.1
   resolution: "etag@npm:1.8.1"
   checksum: 10/571aeb3dbe0f2bbd4e4fadbdb44f325fc75335cd5f6f6b6a091e6a06a9f25ed5392f0863c5442acb0646787446e816f13cbfc6edce5b07658541dff573cab1ff
@@ -5387,7 +5475,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fresh@npm:0.5.2":
+"fresh@npm:^0.5.2":
   version: 0.5.2
   resolution: "fresh@npm:0.5.2"
   checksum: 10/64c88e489b5d08e2f29664eb3c79c705ff9a8eb15d3e597198ef76546d4ade295897a44abb0abd2700e7ef784b2e3cbf1161e4fbf16f59129193fd1030d16da1
@@ -5842,7 +5930,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-errors@npm:2.0.0":
+"http-errors@npm:2.0.0, http-errors@npm:^2.0.0":
   version: 2.0.0
   resolution: "http-errors@npm:2.0.0"
   dependencies:
@@ -6723,15 +6811,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mime@npm:1.6.0":
-  version: 1.6.0
-  resolution: "mime@npm:1.6.0"
-  bin:
-    mime: cli.js
-  checksum: 10/b7d98bb1e006c0e63e2c91b590fe1163b872abf8f7ef224d53dd31499c2197278a6d3d0864c45239b1a93d22feaf6f9477e9fc847eef945838150b8c02d03170
-  languageName: node
-  linkType: hard
-
 "mimic-fn@npm:^2.1.0":
   version: 2.1.0
   resolution: "mimic-fn@npm:2.1.0"
@@ -6986,7 +7065,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ms@npm:2.1.3, ms@npm:^2.1.3":
+"ms@npm:^2.1.3":
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
   checksum: 10/aa92de608021b242401676e35cfa5aa42dd70cbdc082b916da7fb925c542173e36bce97ea3e804923fe92c0ad991434e4a38327e15a1b5b5f945d66df615ae6d
@@ -7221,7 +7300,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"on-finished@npm:2.4.1":
+"on-finished@npm:^2.4.1":
   version: 2.4.1
   resolution: "on-finished@npm:2.4.1"
   dependencies:
@@ -7576,6 +7655,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"path-to-regexp@npm:^8.1.0":
+  version: 8.2.0
+  resolution: "path-to-regexp@npm:8.2.0"
+  checksum: 10/23378276a172b8ba5f5fb824475d1818ca5ccee7bbdb4674701616470f23a14e536c1db11da9c9e6d82b82c556a817bbf4eee6e41b9ed20090ef9427cbb38e13
+  languageName: node
+  linkType: hard
+
 "pause@npm:0.0.1":
   version: 0.0.1
   resolution: "pause@npm:0.0.1"
@@ -7873,7 +7959,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"range-parser@npm:~1.2.1":
+"range-parser@npm:^1.2.1":
   version: 1.2.1
   resolution: "range-parser@npm:1.2.1"
   checksum: 10/ce21ef2a2dd40506893157970dc76e835c78cf56437e26e19189c48d5291e7279314477b06ac38abd6a401b661a6840f7b03bd0b1249da9b691deeaa15872c26
@@ -8245,24 +8331,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"send@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "send@npm:0.19.0"
+"send@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "send@npm:1.1.0"
   dependencies:
-    debug: "npm:2.6.9"
-    depd: "npm:2.0.0"
-    destroy: "npm:1.2.0"
-    encodeurl: "npm:~1.0.2"
-    escape-html: "npm:~1.0.3"
-    etag: "npm:~1.8.1"
-    fresh: "npm:0.5.2"
-    http-errors: "npm:2.0.0"
-    mime: "npm:1.6.0"
-    ms: "npm:2.1.3"
-    on-finished: "npm:2.4.1"
-    range-parser: "npm:~1.2.1"
-    statuses: "npm:2.0.1"
-  checksum: 10/1f6064dea0ae4cbe4878437aedc9270c33f2a6650a77b56a16b62d057527f2766d96ee282997dd53ec0339082f2aad935bc7d989b46b48c82fc610800dc3a1d0
+    debug: "npm:^4.3.5"
+    destroy: "npm:^1.2.0"
+    encodeurl: "npm:^2.0.0"
+    escape-html: "npm:^1.0.3"
+    etag: "npm:^1.8.1"
+    fresh: "npm:^0.5.2"
+    http-errors: "npm:^2.0.0"
+    mime-types: "npm:^2.1.35"
+    ms: "npm:^2.1.3"
+    on-finished: "npm:^2.4.1"
+    range-parser: "npm:^1.2.1"
+    statuses: "npm:^2.0.1"
+  checksum: 10/5040d4d1e52a2a4634a3381a0c21be8115543be3ac0345b99c16d2510af2391968e1c4031ac3e1620cca6948f5ff888f39fa6515c4b6005c6c792c56300ea997
   languageName: node
   linkType: hard
 
@@ -8485,7 +8570,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"statuses@npm:2.0.1":
+"statuses@npm:2.0.1, statuses@npm:^2.0.1":
   version: 2.0.1
   resolution: "statuses@npm:2.0.1"
   checksum: 10/18c7623fdb8f646fb213ca4051be4df7efb3484d4ab662937ca6fbef7ced9b9e12842709872eb3020cc3504b93bde88935c9f6417489627a7786f24f8031cbcb
