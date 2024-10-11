@@ -1,87 +1,76 @@
 {
+    "name": "social-messaging",
     "commands": [
         {
-            "name": "DescribeAgreement",
+            "name": "ListTagsForResource",
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AWSMPCommerceService_v20200301.DescribeAgreement"
-                    }
+                    "method": "GET",
+                    "route": "/v1/tags/list"
                 },
                 "schema": {
                     "resultSchema": {
-                        "$ref": "#/$defs/DescribeAgreementOutput"
+                        "$ref": "#/$defs/ListTagsForResourceOutput"
                     },
                     "inject": [
                         "param.0"
                     ],
                     "$defs": {
                         "param.0": {
-                            "$ref": "#/$defs/DescribeAgreementInput"
+                            "$ref": "#/$defs/ListTagsForResourceInput"
                         }
                     }
                 }
             }
         },
         {
-            "name": "GetAgreementTerms",
+            "name": "TagResource",
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AWSMPCommerceService_v20200301.GetAgreementTerms"
-                    }
+                    "route": "/v1/tags/tag-resource"
                 },
                 "schema": {
                     "resultSchema": {
-                        "$ref": "#/$defs/GetAgreementTermsOutput"
+                        "$ref": "#/$defs/TagResourceOutput"
                     },
                     "inject": [
                         "param.0"
                     ],
                     "$defs": {
                         "param.0": {
-                            "$ref": "#/$defs/GetAgreementTermsInput"
+                            "$ref": "#/$defs/TagResourceInput"
                         }
                     }
                 }
             }
         },
         {
-            "name": "SearchAgreements",
+            "name": "UntagResource",
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AWSMPCommerceService_v20200301.SearchAgreements"
-                    }
+                    "route": "/v1/tags/untag-resource"
                 },
                 "schema": {
                     "resultSchema": {
-                        "$ref": "#/$defs/SearchAgreementsOutput"
+                        "$ref": "#/$defs/UntagResourceOutput"
                     },
                     "inject": [
                         "param.0"
                     ],
                     "$defs": {
                         "param.0": {
-                            "$ref": "#/$defs/SearchAgreementsInput"
+                            "$ref": "#/$defs/UntagResourceInput"
                         }
                     }
                 }
@@ -134,669 +123,88 @@
             "type": "string",
             "format": "binary"
         },
-        "DescribeAgreementOutput": {
+        "ListTagsForResourceOutput": {
             "type": "object",
             "properties": {
-                "agreementId": {
-                    "$ref": "#/$defs/ResourceId"
+                "statusCode": {
+                    "$ref": "#/$defs/smithy.api#Integer"
                 },
-                "acceptor": {
-                    "$ref": "#/$defs/Acceptor"
-                },
-                "proposer": {
-                    "$ref": "#/$defs/Proposer"
-                },
-                "startTime": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "endTime": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "acceptanceTime": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "agreementType": {
-                    "$ref": "#/$defs/AgreementType"
-                },
-                "estimatedCharges": {
-                    "$ref": "#/$defs/EstimatedCharges"
-                },
-                "proposalSummary": {
-                    "$ref": "#/$defs/ProposalSummary"
-                },
-                "status": {
-                    "$ref": "#/$defs/AgreementStatus"
+                "tags": {
+                    "$ref": "#/$defs/TagList"
                 }
             }
         },
-        "ResourceId": {
-            "type": "string"
-        },
-        "Acceptor": {
-            "type": "object",
-            "properties": {
-                "accountId": {
-                    "$ref": "#/$defs/AWSAccountId"
-                }
-            }
-        },
-        "AWSAccountId": {
-            "type": "string"
-        },
-        "Proposer": {
-            "type": "object",
-            "properties": {
-                "accountId": {
-                    "$ref": "#/$defs/AWSAccountId"
-                }
-            }
-        },
-        "Timestamp": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "AgreementType": {
-            "type": "string"
-        },
-        "EstimatedCharges": {
-            "type": "object",
-            "properties": {
-                "currencyCode": {
-                    "$ref": "#/$defs/CurrencyCode"
-                },
-                "agreementValue": {
-                    "$ref": "#/$defs/BoundedString"
-                }
-            }
-        },
-        "CurrencyCode": {
-            "type": "string"
-        },
-        "BoundedString": {
-            "type": "string"
-        },
-        "ProposalSummary": {
-            "type": "object",
-            "properties": {
-                "resources": {
-                    "$ref": "#/$defs/Resources"
-                },
-                "offerId": {
-                    "$ref": "#/$defs/OfferId"
-                }
-            }
-        },
-        "Resources": {
+        "TagList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/Resource"
+                "$ref": "#/$defs/Tag"
             }
         },
-        "Resource": {
+        "Tag": {
             "type": "object",
             "properties": {
-                "id": {
-                    "$ref": "#/$defs/ResourceId"
-                },
-                "type": {
-                    "$ref": "#/$defs/AgreementResourceType"
-                }
-            }
-        },
-        "AgreementResourceType": {
-            "type": "string"
-        },
-        "OfferId": {
-            "type": "string"
-        },
-        "AgreementStatus": {
-            "enum": [
-                "ACTIVE",
-                "ARCHIVED",
-                "CANCELLED",
-                "EXPIRED",
-                "RENEWED",
-                "REPLACED",
-                "ROLLED_BACK",
-                "SUPERSEDED",
-                "TERMINATED"
-            ]
-        },
-        "DescribeAgreementInput": {
-            "type": "object",
-            "properties": {
-                "agreementId": {
-                    "$ref": "#/$defs/ResourceId"
-                }
-            }
-        },
-        "GetAgreementTermsOutput": {
-            "type": "object",
-            "properties": {
-                "acceptedTerms": {
-                    "$ref": "#/$defs/AcceptedTermList"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "AcceptedTermList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/AcceptedTerm"
-            }
-        },
-        "AcceptedTerm": {
-            "type": "object",
-            "properties": {
-                "legalTerm": {
-                    "$ref": "#/$defs/LegalTerm"
-                },
-                "supportTerm": {
-                    "$ref": "#/$defs/SupportTerm"
-                },
-                "renewalTerm": {
-                    "$ref": "#/$defs/RenewalTerm"
-                },
-                "usageBasedPricingTerm": {
-                    "$ref": "#/$defs/UsageBasedPricingTerm"
-                },
-                "configurableUpfrontPricingTerm": {
-                    "$ref": "#/$defs/ConfigurableUpfrontPricingTerm"
-                },
-                "byolPricingTerm": {
-                    "$ref": "#/$defs/ByolPricingTerm"
-                },
-                "recurringPaymentTerm": {
-                    "$ref": "#/$defs/RecurringPaymentTerm"
-                },
-                "validityTerm": {
-                    "$ref": "#/$defs/ValidityTerm"
-                },
-                "paymentScheduleTerm": {
-                    "$ref": "#/$defs/PaymentScheduleTerm"
-                },
-                "freeTrialPricingTerm": {
-                    "$ref": "#/$defs/FreeTrialPricingTerm"
-                },
-                "fixedUpfrontPricingTerm": {
-                    "$ref": "#/$defs/FixedUpfrontPricingTerm"
-                }
-            }
-        },
-        "LegalTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                },
-                "documents": {
-                    "$ref": "#/$defs/DocumentList"
-                }
-            }
-        },
-        "UnversionedTermType": {
-            "type": "string"
-        },
-        "DocumentList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/DocumentItem"
-            }
-        },
-        "DocumentItem": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "url": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "version": {
-                    "$ref": "#/$defs/BoundedString"
-                }
-            }
-        },
-        "SupportTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                },
-                "refundPolicy": {
-                    "$ref": "#/$defs/BoundedString"
-                }
-            }
-        },
-        "RenewalTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                },
-                "configuration": {
-                    "$ref": "#/$defs/RenewalTermConfiguration"
-                }
-            }
-        },
-        "RenewalTermConfiguration": {
-            "type": "object",
-            "properties": {
-                "enableAutoRenew": {
-                    "$ref": "#/$defs/Boolean"
-                }
-            }
-        },
-        "Boolean": {
-            "type": "boolean"
-        },
-        "UsageBasedPricingTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                },
-                "currencyCode": {
-                    "$ref": "#/$defs/CurrencyCode"
-                },
-                "rateCards": {
-                    "$ref": "#/$defs/UsageBasedRateCardList"
-                }
-            }
-        },
-        "UsageBasedRateCardList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/UsageBasedRateCardItem"
-            }
-        },
-        "UsageBasedRateCardItem": {
-            "type": "object",
-            "properties": {
-                "rateCard": {
-                    "$ref": "#/$defs/RateCardList"
-                }
-            }
-        },
-        "RateCardList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/RateCardItem"
-            }
-        },
-        "RateCardItem": {
-            "type": "object",
-            "properties": {
-                "dimensionKey": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "price": {
-                    "$ref": "#/$defs/BoundedString"
-                }
-            }
-        },
-        "ConfigurableUpfrontPricingTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                },
-                "currencyCode": {
-                    "$ref": "#/$defs/CurrencyCode"
-                },
-                "rateCards": {
-                    "$ref": "#/$defs/ConfigurableUpfrontRateCardList"
-                },
-                "configuration": {
-                    "$ref": "#/$defs/ConfigurableUpfrontPricingTermConfiguration"
-                }
-            }
-        },
-        "ConfigurableUpfrontRateCardList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ConfigurableUpfrontRateCardItem"
-            }
-        },
-        "ConfigurableUpfrontRateCardItem": {
-            "type": "object",
-            "properties": {
-                "selector": {
-                    "$ref": "#/$defs/Selector"
-                },
-                "constraints": {
-                    "$ref": "#/$defs/Constraints"
-                },
-                "rateCard": {
-                    "$ref": "#/$defs/RateCardList"
-                }
-            }
-        },
-        "Selector": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/BoundedString"
+                "key": {
+                    "$ref": "#/$defs/smithy.api#String"
                 },
                 "value": {
-                    "$ref": "#/$defs/BoundedString"
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },
-        "Constraints": {
+        "ListTagsForResourceInput": {
             "type": "object",
             "properties": {
-                "multipleDimensionSelection": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "quantityConfiguration": {
-                    "$ref": "#/$defs/BoundedString"
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
-        "ConfigurableUpfrontPricingTermConfiguration": {
-            "type": "object",
-            "properties": {
-                "selectorValue": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "dimensions": {
-                    "$ref": "#/$defs/DimensionList"
-                }
-            }
-        },
-        "DimensionList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Dimension"
-            }
-        },
-        "Dimension": {
-            "type": "object",
-            "properties": {
-                "dimensionKey": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "dimensionValue": {
-                    "$ref": "#/$defs/ZeroValueInteger"
-                }
-            }
-        },
-        "ZeroValueInteger": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ByolPricingTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                }
-            }
-        },
-        "RecurringPaymentTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                },
-                "currencyCode": {
-                    "$ref": "#/$defs/CurrencyCode"
-                },
-                "billingPeriod": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "price": {
-                    "$ref": "#/$defs/BoundedString"
-                }
-            }
-        },
-        "ValidityTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                },
-                "agreementDuration": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "agreementStartDate": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "agreementEndDate": {
-                    "$ref": "#/$defs/Timestamp"
-                }
-            }
-        },
-        "PaymentScheduleTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                },
-                "currencyCode": {
-                    "$ref": "#/$defs/CurrencyCode"
-                },
-                "schedule": {
-                    "$ref": "#/$defs/ScheduleList"
-                }
-            }
-        },
-        "ScheduleList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ScheduleItem"
-            }
-        },
-        "ScheduleItem": {
-            "type": "object",
-            "properties": {
-                "chargeDate": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "chargeAmount": {
-                    "$ref": "#/$defs/BoundedString"
-                }
-            }
-        },
-        "FreeTrialPricingTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                },
-                "duration": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "grants": {
-                    "$ref": "#/$defs/GrantList"
-                }
-            }
-        },
-        "GrantList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/GrantItem"
-            }
-        },
-        "GrantItem": {
-            "type": "object",
-            "properties": {
-                "dimensionKey": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "maxQuantity": {
-                    "$ref": "#/$defs/PositiveIntegerWithDefaultValueOne"
-                }
-            }
-        },
-        "PositiveIntegerWithDefaultValueOne": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "FixedUpfrontPricingTerm": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/$defs/UnversionedTermType"
-                },
-                "currencyCode": {
-                    "$ref": "#/$defs/CurrencyCode"
-                },
-                "duration": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "price": {
-                    "$ref": "#/$defs/BoundedString"
-                },
-                "grants": {
-                    "$ref": "#/$defs/GrantList"
-                }
-            }
-        },
-        "NextToken": {
+        "Arn": {
             "type": "string"
         },
-        "GetAgreementTermsInput": {
+        "TagResourceOutput": {
             "type": "object",
             "properties": {
-                "agreementId": {
-                    "$ref": "#/$defs/ResourceId"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "statusCode": {
+                    "$ref": "#/$defs/smithy.api#Integer"
                 }
             }
         },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "SearchAgreementsOutput": {
+        "TagResourceInput": {
             "type": "object",
             "properties": {
-                "agreementViewSummaries": {
-                    "$ref": "#/$defs/AgreementViewSummaryList"
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
                 },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "tags": {
+                    "$ref": "#/$defs/TagList"
                 }
             }
         },
-        "AgreementViewSummaryList": {
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "StringList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/AgreementViewSummary"
+                "$ref": "#/$defs/smithy.api#String"
             }
-        },
-        "AgreementViewSummary": {
-            "type": "object",
-            "properties": {
-                "agreementId": {
-                    "$ref": "#/$defs/ResourceId"
-                },
-                "acceptanceTime": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "startTime": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "endTime": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "agreementType": {
-                    "$ref": "#/$defs/AgreementType"
-                },
-                "acceptor": {
-                    "$ref": "#/$defs/Acceptor"
-                },
-                "proposer": {
-                    "$ref": "#/$defs/Proposer"
-                },
-                "proposalSummary": {
-                    "$ref": "#/$defs/ProposalSummary"
-                },
-                "status": {
-                    "$ref": "#/$defs/AgreementStatus"
-                }
-            }
-        },
-        "SearchAgreementsInput": {
-            "type": "object",
-            "properties": {
-                "catalog": {
-                    "$ref": "#/$defs/Catalog"
-                },
-                "filters": {
-                    "$ref": "#/$defs/FilterList"
-                },
-                "sort": {
-                    "$ref": "#/$defs/Sort"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "Catalog": {
-            "type": "string"
-        },
-        "FilterList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Filter"
-            }
-        },
-        "Filter": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "#/$defs/FilterName"
-                },
-                "values": {
-                    "$ref": "#/$defs/FilterValueList"
-                }
-            }
-        },
-        "FilterName": {
-            "type": "string"
-        },
-        "FilterValueList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/FilterValue"
-            }
-        },
-        "FilterValue": {
-            "type": "string"
-        },
-        "Sort": {
-            "type": "object",
-            "properties": {
-                "sortBy": {
-                    "$ref": "#/$defs/SortBy"
-                },
-                "sortOrder": {
-                    "$ref": "#/$defs/SortOrder"
-                }
-            }
-        },
-        "SortBy": {
-            "type": "string"
-        },
-        "SortOrder": {
-            "enum": [
-                "ASCENDING",
-                "DESCENDING"
-            ]
         }
     },
     "aws": {
@@ -983,7 +391,7 @@
                                                                 {
                                                                     "conditions": [],
                                                                     "endpoint": {
-                                                                        "url": "https://agreement-marketplace-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                        "url": "https://social-messaging-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                         "properties": {},
                                                                         "headers": {}
                                                                     },
@@ -1041,7 +449,7 @@
                                                                 {
                                                                     "conditions": [],
                                                                     "endpoint": {
-                                                                        "url": "https://agreement-marketplace-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                        "url": "https://social-messaging-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                                         "properties": {},
                                                                         "headers": {}
                                                                     },
@@ -1099,7 +507,7 @@
                                                                 {
                                                                     "conditions": [],
                                                                     "endpoint": {
-                                                                        "url": "https://agreement-marketplace.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                        "url": "https://social-messaging.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                         "properties": {},
                                                                         "headers": {}
                                                                     },
@@ -1125,7 +533,7 @@
                                                 {
                                                     "conditions": [],
                                                     "endpoint": {
-                                                        "url": "https://agreement-marketplace.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "url": "https://social-messaging.{Region}.{PartitionResult#dnsSuffix}",
                                                         "properties": {},
                                                         "headers": {}
                                                     },

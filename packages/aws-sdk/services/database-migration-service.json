@@ -12,7 +12,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "AddTagsToResource"
+                        "X-Amz-Target": "AmazonDMSv20160101.AddTagsToResource"
                     }
                 },
                 "schema": {
@@ -41,7 +41,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ApplyPendingMaintenanceAction"
+                        "X-Amz-Target": "AmazonDMSv20160101.ApplyPendingMaintenanceAction"
                     }
                 },
                 "schema": {
@@ -70,7 +70,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "BatchStartRecommendations"
+                        "X-Amz-Target": "AmazonDMSv20160101.BatchStartRecommendations"
                     }
                 },
                 "schema": {
@@ -99,7 +99,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CancelReplicationTaskAssessmentRun"
+                        "X-Amz-Target": "AmazonDMSv20160101.CancelReplicationTaskAssessmentRun"
                     }
                 },
                 "schema": {
@@ -118,6 +118,35 @@
             }
         },
         {
+            "name": "CreateDataMigration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateDataMigration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDataMigrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDataMigrationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateDataProvider",
             "config": {
                 "http": {
@@ -128,7 +157,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CreateDataProvider"
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateDataProvider"
                     }
                 },
                 "schema": {
@@ -157,7 +186,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CreateEndpoint"
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateEndpoint"
                     }
                 },
                 "schema": {
@@ -186,7 +215,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CreateEventSubscription"
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateEventSubscription"
                     }
                 },
                 "schema": {
@@ -215,7 +244,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CreateFleetAdvisorCollector"
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateFleetAdvisorCollector"
                     }
                 },
                 "schema": {
@@ -244,7 +273,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CreateInstanceProfile"
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateInstanceProfile"
                     }
                 },
                 "schema": {
@@ -273,7 +302,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CreateMigrationProject"
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateMigrationProject"
                     }
                 },
                 "schema": {
@@ -302,7 +331,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CreateReplicationConfig"
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateReplicationConfig"
                     }
                 },
                 "schema": {
@@ -331,7 +360,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CreateReplicationInstance"
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateReplicationInstance"
                     }
                 },
                 "schema": {
@@ -360,7 +389,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CreateReplicationSubnetGroup"
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateReplicationSubnetGroup"
                     }
                 },
                 "schema": {
@@ -389,7 +418,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "CreateReplicationTask"
+                        "X-Amz-Target": "AmazonDMSv20160101.CreateReplicationTask"
                     }
                 },
                 "schema": {
@@ -418,7 +447,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteCertificate"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteCertificate"
                     }
                 },
                 "schema": {
@@ -447,7 +476,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteConnection"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteConnection"
                     }
                 },
                 "schema": {
@@ -466,6 +495,35 @@
             }
         },
         {
+            "name": "DeleteDataMigration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteDataMigration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDataMigrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDataMigrationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteDataProvider",
             "config": {
                 "http": {
@@ -476,7 +534,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteDataProvider"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteDataProvider"
                     }
                 },
                 "schema": {
@@ -505,7 +563,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteEndpoint"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteEndpoint"
                     }
                 },
                 "schema": {
@@ -534,7 +592,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteEventSubscription"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteEventSubscription"
                     }
                 },
                 "schema": {
@@ -563,7 +621,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteFleetAdvisorCollector"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteFleetAdvisorCollector"
                     }
                 },
                 "schema": {
@@ -592,7 +650,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteFleetAdvisorDatabases"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteFleetAdvisorDatabases"
                     }
                 },
                 "schema": {
@@ -621,7 +679,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteInstanceProfile"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteInstanceProfile"
                     }
                 },
                 "schema": {
@@ -650,7 +708,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteMigrationProject"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteMigrationProject"
                     }
                 },
                 "schema": {
@@ -679,7 +737,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteReplicationConfig"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteReplicationConfig"
                     }
                 },
                 "schema": {
@@ -708,7 +766,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteReplicationInstance"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteReplicationInstance"
                     }
                 },
                 "schema": {
@@ -737,7 +795,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteReplicationSubnetGroup"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteReplicationSubnetGroup"
                     }
                 },
                 "schema": {
@@ -766,7 +824,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteReplicationTask"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteReplicationTask"
                     }
                 },
                 "schema": {
@@ -795,7 +853,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DeleteReplicationTaskAssessmentRun"
+                        "X-Amz-Target": "AmazonDMSv20160101.DeleteReplicationTaskAssessmentRun"
                     }
                 },
                 "schema": {
@@ -824,7 +882,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeAccountAttributes"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeAccountAttributes"
                     }
                 },
                 "schema": {
@@ -853,7 +911,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeApplicableIndividualAssessments"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeApplicableIndividualAssessments"
                     }
                 },
                 "schema": {
@@ -882,7 +940,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeCertificates"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeCertificates"
                     }
                 },
                 "schema": {
@@ -911,7 +969,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeConnections"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeConnections"
                     }
                 },
                 "schema": {
@@ -940,7 +998,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeConversionConfiguration"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeConversionConfiguration"
                     }
                 },
                 "schema": {
@@ -959,6 +1017,35 @@
             }
         },
         {
+            "name": "DescribeDataMigrations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeDataMigrations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDataMigrationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDataMigrationsMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeDataProviders",
             "config": {
                 "http": {
@@ -969,7 +1056,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeDataProviders"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeDataProviders"
                     }
                 },
                 "schema": {
@@ -998,7 +1085,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeEndpoints"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeEndpoints"
                     }
                 },
                 "schema": {
@@ -1027,7 +1114,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeEndpointSettings"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeEndpointSettings"
                     }
                 },
                 "schema": {
@@ -1056,7 +1143,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeEndpointTypes"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeEndpointTypes"
                     }
                 },
                 "schema": {
@@ -1085,7 +1172,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeEngineVersions"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeEngineVersions"
                     }
                 },
                 "schema": {
@@ -1114,7 +1201,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeEventCategories"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeEventCategories"
                     }
                 },
                 "schema": {
@@ -1143,7 +1230,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeEvents"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeEvents"
                     }
                 },
                 "schema": {
@@ -1172,7 +1259,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeEventSubscriptions"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeEventSubscriptions"
                     }
                 },
                 "schema": {
@@ -1201,7 +1288,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeExtensionPackAssociations"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeExtensionPackAssociations"
                     }
                 },
                 "schema": {
@@ -1230,7 +1317,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeFleetAdvisorCollectors"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeFleetAdvisorCollectors"
                     }
                 },
                 "schema": {
@@ -1259,7 +1346,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeFleetAdvisorDatabases"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeFleetAdvisorDatabases"
                     }
                 },
                 "schema": {
@@ -1288,7 +1375,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeFleetAdvisorLsaAnalysis"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeFleetAdvisorLsaAnalysis"
                     }
                 },
                 "schema": {
@@ -1317,7 +1404,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeFleetAdvisorSchemaObjectSummary"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeFleetAdvisorSchemaObjectSummary"
                     }
                 },
                 "schema": {
@@ -1346,7 +1433,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeFleetAdvisorSchemas"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeFleetAdvisorSchemas"
                     }
                 },
                 "schema": {
@@ -1375,7 +1462,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeInstanceProfiles"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeInstanceProfiles"
                     }
                 },
                 "schema": {
@@ -1404,7 +1491,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeMetadataModelAssessments"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeMetadataModelAssessments"
                     }
                 },
                 "schema": {
@@ -1433,7 +1520,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeMetadataModelConversions"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeMetadataModelConversions"
                     }
                 },
                 "schema": {
@@ -1462,7 +1549,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeMetadataModelExportsAsScript"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeMetadataModelExportsAsScript"
                     }
                 },
                 "schema": {
@@ -1491,7 +1578,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeMetadataModelExportsToTarget"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeMetadataModelExportsToTarget"
                     }
                 },
                 "schema": {
@@ -1520,7 +1607,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeMetadataModelImports"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeMetadataModelImports"
                     }
                 },
                 "schema": {
@@ -1549,7 +1636,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeMigrationProjects"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeMigrationProjects"
                     }
                 },
                 "schema": {
@@ -1578,7 +1665,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeOrderableReplicationInstances"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeOrderableReplicationInstances"
                     }
                 },
                 "schema": {
@@ -1607,7 +1694,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribePendingMaintenanceActions"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribePendingMaintenanceActions"
                     }
                 },
                 "schema": {
@@ -1636,7 +1723,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeRecommendationLimitations"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeRecommendationLimitations"
                     }
                 },
                 "schema": {
@@ -1665,7 +1752,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeRecommendations"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeRecommendations"
                     }
                 },
                 "schema": {
@@ -1694,7 +1781,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeRefreshSchemasStatus"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeRefreshSchemasStatus"
                     }
                 },
                 "schema": {
@@ -1723,7 +1810,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeReplicationConfigs"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeReplicationConfigs"
                     }
                 },
                 "schema": {
@@ -1752,7 +1839,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeReplicationInstances"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeReplicationInstances"
                     }
                 },
                 "schema": {
@@ -1781,7 +1868,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeReplicationInstanceTaskLogs"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeReplicationInstanceTaskLogs"
                     }
                 },
                 "schema": {
@@ -1810,7 +1897,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeReplications"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeReplications"
                     }
                 },
                 "schema": {
@@ -1839,7 +1926,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeReplicationSubnetGroups"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeReplicationSubnetGroups"
                     }
                 },
                 "schema": {
@@ -1868,7 +1955,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeReplicationTableStatistics"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeReplicationTableStatistics"
                     }
                 },
                 "schema": {
@@ -1897,7 +1984,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeReplicationTaskAssessmentResults"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeReplicationTaskAssessmentResults"
                     }
                 },
                 "schema": {
@@ -1926,7 +2013,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeReplicationTaskAssessmentRuns"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeReplicationTaskAssessmentRuns"
                     }
                 },
                 "schema": {
@@ -1955,7 +2042,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeReplicationTaskIndividualAssessments"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeReplicationTaskIndividualAssessments"
                     }
                 },
                 "schema": {
@@ -1984,7 +2071,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeReplicationTasks"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeReplicationTasks"
                     }
                 },
                 "schema": {
@@ -2013,7 +2100,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeSchemas"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeSchemas"
                     }
                 },
                 "schema": {
@@ -2042,7 +2129,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "DescribeTableStatistics"
+                        "X-Amz-Target": "AmazonDMSv20160101.DescribeTableStatistics"
                     }
                 },
                 "schema": {
@@ -2071,7 +2158,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ExportMetadataModelAssessment"
+                        "X-Amz-Target": "AmazonDMSv20160101.ExportMetadataModelAssessment"
                     }
                 },
                 "schema": {
@@ -2100,7 +2187,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ImportCertificate"
+                        "X-Amz-Target": "AmazonDMSv20160101.ImportCertificate"
                     }
                 },
                 "schema": {
@@ -2129,7 +2216,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
+                        "X-Amz-Target": "AmazonDMSv20160101.ListTagsForResource"
                     }
                 },
                 "schema": {
@@ -2158,7 +2245,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ModifyConversionConfiguration"
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyConversionConfiguration"
                     }
                 },
                 "schema": {
@@ -2177,6 +2264,35 @@
             }
         },
         {
+            "name": "ModifyDataMigration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyDataMigration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyDataMigrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyDataMigrationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ModifyDataProvider",
             "config": {
                 "http": {
@@ -2187,7 +2303,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ModifyDataProvider"
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyDataProvider"
                     }
                 },
                 "schema": {
@@ -2216,7 +2332,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ModifyEndpoint"
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyEndpoint"
                     }
                 },
                 "schema": {
@@ -2245,7 +2361,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ModifyEventSubscription"
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyEventSubscription"
                     }
                 },
                 "schema": {
@@ -2274,7 +2390,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ModifyInstanceProfile"
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyInstanceProfile"
                     }
                 },
                 "schema": {
@@ -2303,7 +2419,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ModifyMigrationProject"
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyMigrationProject"
                     }
                 },
                 "schema": {
@@ -2332,7 +2448,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ModifyReplicationConfig"
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyReplicationConfig"
                     }
                 },
                 "schema": {
@@ -2361,7 +2477,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ModifyReplicationInstance"
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyReplicationInstance"
                     }
                 },
                 "schema": {
@@ -2390,7 +2506,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ModifyReplicationSubnetGroup"
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyReplicationSubnetGroup"
                     }
                 },
                 "schema": {
@@ -2419,7 +2535,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ModifyReplicationTask"
+                        "X-Amz-Target": "AmazonDMSv20160101.ModifyReplicationTask"
                     }
                 },
                 "schema": {
@@ -2448,7 +2564,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "MoveReplicationTask"
+                        "X-Amz-Target": "AmazonDMSv20160101.MoveReplicationTask"
                     }
                 },
                 "schema": {
@@ -2477,7 +2593,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "RebootReplicationInstance"
+                        "X-Amz-Target": "AmazonDMSv20160101.RebootReplicationInstance"
                     }
                 },
                 "schema": {
@@ -2506,7 +2622,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "RefreshSchemas"
+                        "X-Amz-Target": "AmazonDMSv20160101.RefreshSchemas"
                     }
                 },
                 "schema": {
@@ -2535,7 +2651,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ReloadReplicationTables"
+                        "X-Amz-Target": "AmazonDMSv20160101.ReloadReplicationTables"
                     }
                 },
                 "schema": {
@@ -2564,7 +2680,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "ReloadTables"
+                        "X-Amz-Target": "AmazonDMSv20160101.ReloadTables"
                     }
                 },
                 "schema": {
@@ -2593,7 +2709,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "RemoveTagsFromResource"
+                        "X-Amz-Target": "AmazonDMSv20160101.RemoveTagsFromResource"
                     }
                 },
                 "schema": {
@@ -2622,7 +2738,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "RunFleetAdvisorLsaAnalysis"
+                        "X-Amz-Target": "AmazonDMSv20160101.RunFleetAdvisorLsaAnalysis"
                     }
                 },
                 "schema": {
@@ -2641,6 +2757,35 @@
             }
         },
         {
+            "name": "StartDataMigration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonDMSv20160101.StartDataMigration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDataMigrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDataMigrationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "StartExtensionPackAssociation",
             "config": {
                 "http": {
@@ -2651,7 +2796,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartExtensionPackAssociation"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartExtensionPackAssociation"
                     }
                 },
                 "schema": {
@@ -2680,7 +2825,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartMetadataModelAssessment"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartMetadataModelAssessment"
                     }
                 },
                 "schema": {
@@ -2709,7 +2854,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartMetadataModelConversion"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartMetadataModelConversion"
                     }
                 },
                 "schema": {
@@ -2738,7 +2883,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartMetadataModelExportAsScript"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartMetadataModelExportAsScript"
                     }
                 },
                 "schema": {
@@ -2767,7 +2912,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartMetadataModelExportToTarget"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartMetadataModelExportToTarget"
                     }
                 },
                 "schema": {
@@ -2796,7 +2941,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartMetadataModelImport"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartMetadataModelImport"
                     }
                 },
                 "schema": {
@@ -2825,7 +2970,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartRecommendations"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartRecommendations"
                     }
                 },
                 "schema": {
@@ -2854,7 +2999,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartReplication"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartReplication"
                     }
                 },
                 "schema": {
@@ -2883,7 +3028,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartReplicationTask"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartReplicationTask"
                     }
                 },
                 "schema": {
@@ -2912,7 +3057,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartReplicationTaskAssessment"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartReplicationTaskAssessment"
                     }
                 },
                 "schema": {
@@ -2941,7 +3086,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StartReplicationTaskAssessmentRun"
+                        "X-Amz-Target": "AmazonDMSv20160101.StartReplicationTaskAssessmentRun"
                     }
                 },
                 "schema": {
@@ -2960,6 +3105,35 @@
             }
         },
         {
+            "name": "StopDataMigration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonDMSv20160101.StopDataMigration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopDataMigrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopDataMigrationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "StopReplication",
             "config": {
                 "http": {
@@ -2970,7 +3144,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StopReplication"
+                        "X-Amz-Target": "AmazonDMSv20160101.StopReplication"
                     }
                 },
                 "schema": {
@@ -2999,7 +3173,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "StopReplicationTask"
+                        "X-Amz-Target": "AmazonDMSv20160101.StopReplicationTask"
                     }
                 },
                 "schema": {
@@ -3028,7 +3202,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "TestConnection"
+                        "X-Amz-Target": "AmazonDMSv20160101.TestConnection"
                     }
                 },
                 "schema": {
@@ -3057,7 +3231,7 @@
                     "route": "/",
                     "type": "json",
                     "headers": {
-                        "X-Amz-Target": "UpdateSubscriptionsToEventBridge"
+                        "X-Amz-Target": "AmazonDMSv20160101.UpdateSubscriptionsToEventBridge"
                     }
                 },
                 "schema": {
@@ -3362,6 +3536,196 @@
                 }
             }
         },
+        "CreateDataMigrationResponse": {
+            "type": "object",
+            "properties": {
+                "DataMigration": {
+                    "$ref": "#/$defs/DataMigration"
+                }
+            }
+        },
+        "DataMigration": {
+            "type": "object",
+            "properties": {
+                "DataMigrationName": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataMigrationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataMigrationCreateTime": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                },
+                "DataMigrationStartTime": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                },
+                "DataMigrationEndTime": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                },
+                "ServiceAccessRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "MigrationProjectArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataMigrationType": {
+                    "$ref": "#/$defs/MigrationTypeValue"
+                },
+                "DataMigrationSettings": {
+                    "$ref": "#/$defs/DataMigrationSettings"
+                },
+                "SourceDataSettings": {
+                    "$ref": "#/$defs/SourceDataSettings"
+                },
+                "DataMigrationStatistics": {
+                    "$ref": "#/$defs/DataMigrationStatistics"
+                },
+                "DataMigrationStatus": {
+                    "$ref": "#/$defs/String"
+                },
+                "PublicIpAddresses": {
+                    "$ref": "#/$defs/PublicIpAddressList"
+                },
+                "LastFailureMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "StopReason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Iso8601DateTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "MigrationTypeValue": {
+            "enum": [
+                "FULL_LOAD",
+                "CDC",
+                "FULL_LOAD_AND_CDC"
+            ]
+        },
+        "DataMigrationSettings": {
+            "type": "object",
+            "properties": {
+                "NumberOfJobs": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "CloudwatchLogsEnabled": {
+                    "$ref": "#/$defs/BooleanOptional"
+                },
+                "SelectionRules": {
+                    "$ref": "#/$defs/SecretString"
+                }
+            }
+        },
+        "IntegerOptional": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BooleanOptional": {
+            "type": "boolean"
+        },
+        "SecretString": {
+            "type": "string"
+        },
+        "SourceDataSettings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SourceDataSetting"
+            }
+        },
+        "SourceDataSetting": {
+            "type": "object",
+            "properties": {
+                "CDCStartPosition": {
+                    "$ref": "#/$defs/String"
+                },
+                "CDCStartTime": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                },
+                "CDCStopTime": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                },
+                "SlotName": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DataMigrationStatistics": {
+            "type": "object",
+            "properties": {
+                "TablesLoaded": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ElapsedTimeMillis": {
+                    "$ref": "#/$defs/Long"
+                },
+                "TablesLoading": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "FullLoadPercentage": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "CDCLatency": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "TablesQueued": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "TablesErrored": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                },
+                "StopTime": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "PublicIpAddressList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "CreateDataMigrationMessage": {
+            "type": "object",
+            "properties": {
+                "DataMigrationName": {
+                    "$ref": "#/$defs/String"
+                },
+                "MigrationProjectIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataMigrationType": {
+                    "$ref": "#/$defs/MigrationTypeValue"
+                },
+                "ServiceAccessRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "EnableCloudwatchLogs": {
+                    "$ref": "#/$defs/BooleanOptional"
+                },
+                "SourceDataSettings": {
+                    "$ref": "#/$defs/SourceDataSettings"
+                },
+                "NumberOfJobs": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "SelectionRules": {
+                    "$ref": "#/$defs/SecretString"
+                }
+            }
+        },
         "CreateDataProviderResponse": {
             "type": "object",
             "properties": {
@@ -3392,10 +3756,6 @@
                     "$ref": "#/$defs/DataProviderSettings"
                 }
             }
-        },
-        "Iso8601DateTime": {
-            "type": "string",
-            "format": "date-time"
         },
         "DataProviderSettings": {
             "type": "object",
@@ -3439,10 +3799,6 @@
                     "$ref": "#/$defs/String"
                 }
             }
-        },
-        "IntegerOptional": {
-            "type": "integer",
-            "format": "int32"
         },
         "PostgreSqlDataProviderSettings": {
             "type": "object",
@@ -3937,9 +4293,6 @@
                 "PARQUET_2_0"
             ]
         },
-        "BooleanOptional": {
-            "type": "boolean"
-        },
         "DatePartitionSequenceValue": {
             "enum": [
                 "YYYYMMDD",
@@ -4032,9 +4385,6 @@
                     "$ref": "#/$defs/BooleanOptional"
                 }
             }
-        },
-        "SecretString": {
-            "type": "string"
         },
         "NestingLevelValue": {
             "enum": [
@@ -5387,13 +5737,6 @@
                 }
             }
         },
-        "MigrationTypeValue": {
-            "enum": [
-                "FULL_LOAD",
-                "CDC",
-                "FULL_LOAD_AND_CDC"
-            ]
-        },
         "ComputeConfig": {
             "type": "object",
             "properties": {
@@ -5853,10 +6196,6 @@
                 }
             }
         },
-        "Long": {
-            "type": "integer",
-            "format": "int64"
-        },
         "CreateReplicationTaskMessage": {
             "type": "object",
             "properties": {
@@ -5994,6 +6333,22 @@
                     "$ref": "#/$defs/String"
                 },
                 "ReplicationInstanceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteDataMigrationResponse": {
+            "type": "object",
+            "properties": {
+                "DataMigration": {
+                    "$ref": "#/$defs/DataMigration"
+                }
+            }
+        },
+        "DeleteDataMigrationMessage": {
+            "type": "object",
+            "properties": {
+                "DataMigrationIdentifier": {
                     "$ref": "#/$defs/String"
                 }
             }
@@ -6357,6 +6712,46 @@
             "properties": {
                 "MigrationProjectIdentifier": {
                     "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeDataMigrationsResponse": {
+            "type": "object",
+            "properties": {
+                "DataMigrations": {
+                    "$ref": "#/$defs/DataMigrations"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                }
+            }
+        },
+        "DataMigrations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataMigration"
+            }
+        },
+        "Marker": {
+            "type": "string"
+        },
+        "DescribeDataMigrationsMessage": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                },
+                "WithoutSettings": {
+                    "$ref": "#/$defs/BooleanOptional"
+                },
+                "WithoutStatistics": {
+                    "$ref": "#/$defs/BooleanOptional"
                 }
             }
         },
@@ -8575,6 +8970,43 @@
                 }
             }
         },
+        "ModifyDataMigrationResponse": {
+            "type": "object",
+            "properties": {
+                "DataMigration": {
+                    "$ref": "#/$defs/DataMigration"
+                }
+            }
+        },
+        "ModifyDataMigrationMessage": {
+            "type": "object",
+            "properties": {
+                "DataMigrationIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataMigrationName": {
+                    "$ref": "#/$defs/String"
+                },
+                "EnableCloudwatchLogs": {
+                    "$ref": "#/$defs/BooleanOptional"
+                },
+                "ServiceAccessRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataMigrationType": {
+                    "$ref": "#/$defs/MigrationTypeValue"
+                },
+                "SourceDataSettings": {
+                    "$ref": "#/$defs/SourceDataSettings"
+                },
+                "NumberOfJobs": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "SelectionRules": {
+                    "$ref": "#/$defs/SecretString"
+                }
+            }
+        },
         "ModifyDataProviderResponse": {
             "type": "object",
             "properties": {
@@ -9136,6 +9568,32 @@
                 }
             }
         },
+        "StartDataMigrationResponse": {
+            "type": "object",
+            "properties": {
+                "DataMigration": {
+                    "$ref": "#/$defs/DataMigration"
+                }
+            }
+        },
+        "StartDataMigrationMessage": {
+            "type": "object",
+            "properties": {
+                "DataMigrationIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "StartType": {
+                    "$ref": "#/$defs/StartReplicationMigrationTypeValue"
+                }
+            }
+        },
+        "StartReplicationMigrationTypeValue": {
+            "enum": [
+                "RELOAD_TARGET",
+                "RESUME_PROCESSING",
+                "START_REPLICATION"
+            ]
+        },
         "StartExtensionPackAssociationResponse": {
             "type": "object",
             "properties": {
@@ -9408,6 +9866,22 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/String"
+            }
+        },
+        "StopDataMigrationResponse": {
+            "type": "object",
+            "properties": {
+                "DataMigration": {
+                    "$ref": "#/$defs/DataMigration"
+                }
+            }
+        },
+        "StopDataMigrationMessage": {
+            "type": "object",
+            "properties": {
+                "DataMigrationIdentifier": {
+                    "$ref": "#/$defs/String"
+                }
             }
         },
         "StopReplicationResponse": {

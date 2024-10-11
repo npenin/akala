@@ -328,7 +328,7 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
                         route: '/',
                         // auth: { mode: { type: 'header', name: 'Authorization' } },
                         type: 'json',
-                        headers: { 'X-Amz-Target': op.target.substring(urn.length) },
+                        headers: { 'X-Amz-Target': serviceEntry[0].substring(urn.length) + '.' + op.target.substring(urn.length) },
                     } as Processors.HttpConfiguration,
                     schema: {
                         resultSchema: toSchema(urn, (operation as SmithyOperation)?.output, smithy, schemaCache),
