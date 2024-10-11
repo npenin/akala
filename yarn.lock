@@ -88,8 +88,21 @@ __metadata:
   resolution: "@akala/aws-sdk@workspace:packages/aws-sdk"
   dependencies:
     "@akala/commands": "workspace:^"
+    "@akala/core": "workspace:^"
   languageName: unknown
   linkType: soft
+
+"@akala/cli@npm:^2.14.33":
+  version: 2.14.33
+  resolution: "@akala/cli@npm:2.14.33"
+  dependencies:
+    "@akala/core": "npm:^18.1.0"
+    reflect-metadata: "npm:^0.2.2"
+  bin:
+    akala: ./dist/esm/cli.js
+  checksum: 10/58f82ddfb1f71ec72a9e1ac2607832a4b46ee92577646be5d86c4bba7e8480447621d6e765fdf0d2a24c38cbab35319116f395768e0ee7449b24e9fe57d8a32a
+  languageName: node
+  linkType: hard
 
 "@akala/cli@workspace:^, @akala/cli@workspace:packages/cli":
   version: 0.0.0-use.local
@@ -154,6 +167,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@akala/commands@npm:^8.2.23":
+  version: 8.2.23
+  resolution: "@akala/commands@npm:8.2.23"
+  dependencies:
+    "@akala/cli": "npm:^2.14.33"
+    "@akala/core": "npm:^18.1.0"
+    "@akala/json-rpc-ws": "npm:^10.5.36"
+    ajv: "npm:^8.17.1"
+    debug: "npm:^4.3.7"
+    path-to-regexp: "npm:^8.1.0"
+    reflect-metadata: "npm:^0.2.2"
+    ws: "npm:^8.18.0"
+  bin:
+    ac: dist/esm/cli.mjs
+  checksum: 10/d6c4043fcd909a61800323ae0b075ed58a1336fce4689030817da183cc0c5f7c94b92473ca5620262f219c627aeb2800afd8bb037d7544bf1b4e7850aa669ac6
+  languageName: node
+  linkType: hard
+
 "@akala/commands@workspace:^, @akala/commands@workspace:packages/commands":
   version: 0.0.0-use.local
   resolution: "@akala/commands@workspace:packages/commands"
@@ -180,6 +211,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@akala/config@npm:^4.0.71":
+  version: 4.0.71
+  resolution: "@akala/config@npm:4.0.71"
+  dependencies:
+    "@akala/commands": "npm:^8.2.23"
+    "@akala/core": "npm:^18.1.0"
+  peerDependencies:
+    "@akala/pm": "*"
+  peerDependenciesMeta:
+    "@akala/pm":
+      optional: true
+  bin:
+    uci2: ./dist/cli.js
+  checksum: 10/a618d056df292b70516904746e1d9b4cb3f1f950434eb82b198b101dc631a99c69abeb50432acc50702cb572ba3dee8cf91850d7fed48fe72c206dc67453fda2
+  languageName: node
+  linkType: hard
+
 "@akala/config@workspace:^, @akala/config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@akala/config@workspace:packages/config"
@@ -197,6 +245,17 @@ __metadata:
     uci2: ./dist/cli.js
   languageName: unknown
   linkType: soft
+
+"@akala/core@npm:^18.1.0":
+  version: 18.1.0
+  resolution: "@akala/core@npm:18.1.0"
+  dependencies:
+    debug: "npm:^4.3.7"
+    path-to-regexp: "npm:^8.1.0"
+    reflect-metadata: "npm:^0.2.2"
+  checksum: 10/b51cdf567da6c7f88d44fc65f2e9d45d98dd177f22d3a16d7b9963d243c964bfe90871008f42627288055c43a7153a5f303098acd7a934f440fd73950c0f9cdb
+  languageName: node
+  linkType: hard
 
 "@akala/core@workspace:^, @akala/core@workspace:packages/core":
   version: 0.0.0-use.local
@@ -266,6 +325,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@akala/json-rpc-ws@npm:^10.5.36":
+  version: 10.5.36
+  resolution: "@akala/json-rpc-ws@npm:10.5.36"
+  dependencies:
+    "@akala/core": "npm:^18.1.0"
+    debug: "npm:^4.3.7"
+    reflect-metadata: "npm:^0.2.2"
+    ws: "npm:^8.18.0"
+  checksum: 10/59e171eeb55a80b7341aa653bf44d98ca2612163be1158abd1a496ed9de4d66a8559a254c86309789c45898b8898c88add5ea645ec40b979424bd6efd12f7f20
+  languageName: node
+  linkType: hard
+
 "@akala/json-rpc-ws@workspace:^, @akala/json-rpc-ws@workspace:packages/json-rpc-ws":
   version: 0.0.0-use.local
   resolution: "@akala/json-rpc-ws@workspace:packages/json-rpc-ws"
@@ -314,7 +385,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/pm@npm:^9.2.1, @akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
+"@akala/pm@npm:^9.2.1":
+  version: 9.3.18
+  resolution: "@akala/pm@npm:9.3.18"
+  dependencies:
+    "@akala/cli": "npm:^2.14.33"
+    "@akala/commands": "npm:^8.2.23"
+    "@akala/config": "npm:^4.0.71"
+    "@akala/core": "npm:^18.1.0"
+    "@akala/json-rpc-ws": "npm:^10.5.36"
+    reflect-metadata: "npm:^0.2.2"
+    source-map-support: "npm:^0.5.21"
+  bin:
+    pm: dist/esm/cli.js
+    pm-fork: dist/esm/fork.js
+  checksum: 10/a46df29b6aad5b6cedf6e501ec2befc909d021030d467adee5dd1ddec3d5cbee64415041d2cae6d7c72d599a6200d9212986e30bf169aa0ced25e18996bcf919
+  languageName: node
+  linkType: hard
+
+"@akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
   version: 0.0.0-use.local
   resolution: "@akala/pm@workspace:packages/pm"
   dependencies:
@@ -7573,6 +7662,13 @@ __metadata:
     lru-cache: "npm:^10.2.0"
     minipass: "npm:^5.0.0 || ^6.0.2 || ^7.0.0"
   checksum: 10/5e8845c159261adda6f09814d7725683257fcc85a18f329880ab4d7cc1d12830967eae5d5894e453f341710d5484b8fdbbd4d75181b4d6e1eb2f4dc7aeadc434
+  languageName: node
+  linkType: hard
+
+"path-to-regexp@npm:^8.1.0":
+  version: 8.2.0
+  resolution: "path-to-regexp@npm:8.2.0"
+  checksum: 10/23378276a172b8ba5f5fb824475d1818ca5ccee7bbdb4674701616470f23a14e536c1db11da9c9e6d82b82c556a817bbf4eee6e41b9ed20090ef9427cbb38e13
   languageName: node
   linkType: hard
 

@@ -2,19 +2,20 @@
     "name": "@akala/aws-sdk",
     "version": "0.0.2",
     "private": true,
-    "main": "dist/esm/index.js",
-    "types": "dist/esm/index.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "type": "module",
     "exports": {
         ".": {
             "import": {
-                "types": "./dist/esm/index.d.ts",
-                "default": "./dist/esm/index.js"
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
             }
         }
     },
     "devDependencies": {
-        "@akala/commands": "workspace:^"
+        "@akala/commands": "workspace:^",
+        "@akala/core": "workspace:^"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\"",
