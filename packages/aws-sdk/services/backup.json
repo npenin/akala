@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LegalHoldId": "route.LegalHoldId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CancelLegalHold"
-                    }
+                    "method": "DELETE",
+                    "route": "/legal-holds/{LegalHoldId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CancelLegalHoldOutput"
                     },
                     "inject": [
+                        "param.0.LegalHoldId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,14 +35,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateBackupPlan"
-                    }
+                    "method": "PUT",
+                    "route": "/backup/plans"
                 },
                 "schema": {
                     "resultSchema": {
@@ -64,20 +60,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupPlanId": "route.BackupPlanId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateBackupSelection"
-                    }
+                    "method": "PUT",
+                    "route": "/backup/plans/{BackupPlanId}/selections"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateBackupSelectionOutput"
                     },
                     "inject": [
+                        "param.0.BackupPlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +89,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateBackupVault"
-                    }
+                    "method": "PUT",
+                    "route": "/backup-vaults/{BackupVaultName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateBackupVaultOutput"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,14 +118,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFramework"
-                    }
+                    "route": "/audit/frameworks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -151,14 +143,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateLegalHold"
-                    }
+                    "route": "/legal-holds"
                 },
                 "schema": {
                     "resultSchema": {
@@ -180,20 +168,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateLogicallyAirGappedBackupVault"
-                    }
+                    "method": "PUT",
+                    "route": "/logically-air-gapped-backup-vaults/{BackupVaultName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateLogicallyAirGappedBackupVaultOutput"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,14 +197,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateReportPlan"
-                    }
+                    "route": "/audit/report-plans"
                 },
                 "schema": {
                     "resultSchema": {
@@ -238,14 +222,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateRestoreTestingPlan"
-                    }
+                    "method": "PUT",
+                    "route": "/restore-testing/plans"
                 },
                 "schema": {
                     "resultSchema": {
@@ -267,20 +247,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreTestingPlanName": "route.RestoreTestingPlanName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateRestoreTestingSelection"
-                    }
+                    "method": "PUT",
+                    "route": "/restore-testing/plans/{RestoreTestingPlanName}/selections"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateRestoreTestingSelectionOutput"
                     },
                     "inject": [
+                        "param.0.RestoreTestingPlanName",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +276,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupPlanId": "route.BackupPlanId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteBackupPlan"
-                    }
+                    "method": "DELETE",
+                    "route": "/backup/plans/{BackupPlanId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteBackupPlanOutput"
                     },
                     "inject": [
+                        "param.0.BackupPlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +305,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupPlanId": "route.BackupPlanId",
+                            "SelectionId": "route.SelectionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteBackupSelection"
-                    }
+                    "method": "DELETE",
+                    "route": "/backup/plans/{BackupPlanId}/selections/{SelectionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupPlanId",
+                        "param.0.SelectionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +336,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteBackupVault"
-                    }
+                    "method": "DELETE",
+                    "route": "/backup-vaults/{BackupVaultName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +365,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteBackupVaultAccessPolicy"
-                    }
+                    "method": "DELETE",
+                    "route": "/backup-vaults/{BackupVaultName}/access-policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +394,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteBackupVaultLockConfiguration"
-                    }
+                    "method": "DELETE",
+                    "route": "/backup-vaults/{BackupVaultName}/vault-lock"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +423,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteBackupVaultNotifications"
-                    }
+                    "method": "DELETE",
+                    "route": "/backup-vaults/{BackupVaultName}/notification-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +452,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FrameworkName": "route.FrameworkName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFramework"
-                    }
+                    "method": "DELETE",
+                    "route": "/audit/frameworks/{FrameworkName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FrameworkName",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +481,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "RecoveryPointArn": "route.RecoveryPointArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteRecoveryPoint"
-                    }
+                    "method": "DELETE",
+                    "route": "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
+                        "param.0.RecoveryPointArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +512,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ReportPlanName": "route.ReportPlanName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteReportPlan"
-                    }
+                    "method": "DELETE",
+                    "route": "/audit/report-plans/{ReportPlanName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ReportPlanName",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +541,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreTestingPlanName": "route.RestoreTestingPlanName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteRestoreTestingPlan"
-                    }
+                    "method": "DELETE",
+                    "route": "/restore-testing/plans/{RestoreTestingPlanName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.RestoreTestingPlanName",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +570,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreTestingPlanName": "route.RestoreTestingPlanName",
+                            "RestoreTestingSelectionName": "route.RestoreTestingSelectionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteRestoreTestingSelection"
-                    }
+                    "method": "DELETE",
+                    "route": "/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.RestoreTestingPlanName",
+                        "param.0.RestoreTestingSelectionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +601,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupJobId": "route.BackupJobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeBackupJob"
-                    }
+                    "method": "GET",
+                    "route": "/backup-jobs/{BackupJobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeBackupJobOutput"
                     },
                     "inject": [
+                        "param.0.BackupJobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +630,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeBackupVault"
-                    }
+                    "method": "GET",
+                    "route": "/backup-vaults/{BackupVaultName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeBackupVaultOutput"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +659,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CopyJobId": "route.CopyJobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeCopyJob"
-                    }
+                    "method": "GET",
+                    "route": "/copy-jobs/{CopyJobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeCopyJobOutput"
                     },
                     "inject": [
+                        "param.0.CopyJobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +688,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FrameworkName": "route.FrameworkName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeFramework"
-                    }
+                    "method": "GET",
+                    "route": "/audit/frameworks/{FrameworkName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeFrameworkOutput"
                     },
                     "inject": [
+                        "param.0.FrameworkName",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,14 +717,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeGlobalSettings"
-                    }
+                    "method": "GET",
+                    "route": "/global-settings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -760,20 +742,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeProtectedResource"
-                    }
+                    "method": "GET",
+                    "route": "/resources/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeProtectedResourceOutput"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +771,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "RecoveryPointArn": "route.RecoveryPointArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeRecoveryPoint"
-                    }
+                    "method": "GET",
+                    "route": "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeRecoveryPointOutput"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
+                        "param.0.RecoveryPointArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,14 +802,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeRegionSettings"
-                    }
+                    "method": "GET",
+                    "route": "/account-settings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -847,20 +827,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ReportJobId": "route.ReportJobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeReportJob"
-                    }
+                    "method": "GET",
+                    "route": "/audit/report-jobs/{ReportJobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeReportJobOutput"
                     },
                     "inject": [
+                        "param.0.ReportJobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +856,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ReportPlanName": "route.ReportPlanName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeReportPlan"
-                    }
+                    "method": "GET",
+                    "route": "/audit/report-plans/{ReportPlanName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeReportPlanOutput"
                     },
                     "inject": [
+                        "param.0.ReportPlanName",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +885,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreJobId": "route.RestoreJobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeRestoreJob"
-                    }
+                    "method": "GET",
+                    "route": "/restore-jobs/{RestoreJobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeRestoreJobOutput"
                     },
                     "inject": [
+                        "param.0.RestoreJobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +914,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "RecoveryPointArn": "route.RecoveryPointArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateRecoveryPoint"
-                    }
+                    "route": "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/disassociate"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
+                        "param.0.RecoveryPointArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +945,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "RecoveryPointArn": "route.RecoveryPointArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateRecoveryPointFromParent"
-                    }
+                    "method": "DELETE",
+                    "route": "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/parentAssociation"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
+                        "param.0.RecoveryPointArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +976,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupPlanId": "route.BackupPlanId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ExportBackupPlanTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/backup/plans/{BackupPlanId}/toTemplate"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ExportBackupPlanTemplateOutput"
                     },
                     "inject": [
+                        "param.0.BackupPlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +1005,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupPlanId": "route.BackupPlanId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBackupPlan"
-                    }
+                    "method": "GET",
+                    "route": "/backup/plans/{BackupPlanId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetBackupPlanOutput"
                     },
                     "inject": [
+                        "param.0.BackupPlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,14 +1034,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBackupPlanFromJSON"
-                    }
+                    "route": "/backup/template/json/toPlan"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1079,20 +1059,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupPlanTemplateId": "route.BackupPlanTemplateId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBackupPlanFromTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/backup/template/plans/{BackupPlanTemplateId}/toPlan"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetBackupPlanFromTemplateOutput"
                     },
                     "inject": [
+                        "param.0.BackupPlanTemplateId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1088,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupPlanId": "route.BackupPlanId",
+                            "SelectionId": "route.SelectionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBackupSelection"
-                    }
+                    "method": "GET",
+                    "route": "/backup/plans/{BackupPlanId}/selections/{SelectionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetBackupSelectionOutput"
                     },
                     "inject": [
+                        "param.0.BackupPlanId",
+                        "param.0.SelectionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1119,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBackupVaultAccessPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/backup-vaults/{BackupVaultName}/access-policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetBackupVaultAccessPolicyOutput"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1148,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBackupVaultNotifications"
-                    }
+                    "method": "GET",
+                    "route": "/backup-vaults/{BackupVaultName}/notification-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetBackupVaultNotificationsOutput"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1177,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LegalHoldId": "route.LegalHoldId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLegalHold"
-                    }
+                    "method": "GET",
+                    "route": "/legal-holds/{LegalHoldId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLegalHoldOutput"
                     },
                     "inject": [
+                        "param.0.LegalHoldId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1206,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "RecoveryPointArn": "route.RecoveryPointArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRecoveryPointRestoreMetadata"
-                    }
+                    "method": "GET",
+                    "route": "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/restore-metadata"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetRecoveryPointRestoreMetadataOutput"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
+                        "param.0.RecoveryPointArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1237,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreJobId": "route.RestoreJobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRestoreJobMetadata"
-                    }
+                    "method": "GET",
+                    "route": "/restore-jobs/{RestoreJobId}/metadata"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetRestoreJobMetadataOutput"
                     },
                     "inject": [
+                        "param.0.RestoreJobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,14 +1266,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRestoreTestingInferredMetadata"
-                    }
+                    "method": "GET",
+                    "route": "/restore-testing/inferred-metadata"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1311,20 +1291,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreTestingPlanName": "route.RestoreTestingPlanName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRestoreTestingPlan"
-                    }
+                    "method": "GET",
+                    "route": "/restore-testing/plans/{RestoreTestingPlanName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetRestoreTestingPlanOutput"
                     },
                     "inject": [
+                        "param.0.RestoreTestingPlanName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1320,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreTestingPlanName": "route.RestoreTestingPlanName",
+                            "RestoreTestingSelectionName": "route.RestoreTestingSelectionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRestoreTestingSelection"
-                    }
+                    "method": "GET",
+                    "route": "/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetRestoreTestingSelectionOutput"
                     },
                     "inject": [
+                        "param.0.RestoreTestingPlanName",
+                        "param.0.RestoreTestingSelectionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,14 +1351,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSupportedResourceTypes"
-                    }
+                    "method": "GET",
+                    "route": "/supported-resource-types"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1398,14 +1376,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBackupJobs"
-                    }
+                    "method": "GET",
+                    "route": "/backup-jobs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1427,14 +1401,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBackupJobSummaries"
-                    }
+                    "method": "GET",
+                    "route": "/audit/backup-job-summaries"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1456,14 +1426,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBackupPlans"
-                    }
+                    "method": "GET",
+                    "route": "/backup/plans"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1485,14 +1451,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBackupPlanTemplates"
-                    }
+                    "method": "GET",
+                    "route": "/backup/template/plans"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1514,20 +1476,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupPlanId": "route.BackupPlanId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBackupPlanVersions"
-                    }
+                    "method": "GET",
+                    "route": "/backup/plans/{BackupPlanId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListBackupPlanVersionsOutput"
                     },
                     "inject": [
+                        "param.0.BackupPlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1505,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupPlanId": "route.BackupPlanId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBackupSelections"
-                    }
+                    "method": "GET",
+                    "route": "/backup/plans/{BackupPlanId}/selections"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListBackupSelectionsOutput"
                     },
                     "inject": [
+                        "param.0.BackupPlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,14 +1534,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBackupVaults"
-                    }
+                    "method": "GET",
+                    "route": "/backup-vaults"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1601,14 +1559,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCopyJobs"
-                    }
+                    "method": "GET",
+                    "route": "/copy-jobs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1630,14 +1584,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCopyJobSummaries"
-                    }
+                    "method": "GET",
+                    "route": "/audit/copy-job-summaries"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1659,14 +1609,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFrameworks"
-                    }
+                    "method": "GET",
+                    "route": "/audit/frameworks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1688,14 +1634,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLegalHolds"
-                    }
+                    "method": "GET",
+                    "route": "/legal-holds"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1717,14 +1659,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProtectedResources"
-                    }
+                    "method": "GET",
+                    "route": "/resources"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1746,20 +1684,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProtectedResourcesByBackupVault"
-                    }
+                    "method": "GET",
+                    "route": "/backup-vaults/{BackupVaultName}/resources"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListProtectedResourcesByBackupVaultOutput"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,20 +1713,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListRecoveryPointsByBackupVault"
-                    }
+                    "method": "GET",
+                    "route": "/backup-vaults/{BackupVaultName}/recovery-points"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListRecoveryPointsByBackupVaultOutput"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,20 +1742,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LegalHoldId": "route.LegalHoldId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListRecoveryPointsByLegalHold"
-                    }
+                    "method": "GET",
+                    "route": "/legal-holds/{LegalHoldId}/recovery-points"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListRecoveryPointsByLegalHoldOutput"
                     },
                     "inject": [
+                        "param.0.LegalHoldId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1833,20 +1771,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListRecoveryPointsByResource"
-                    }
+                    "method": "GET",
+                    "route": "/resources/{ResourceArn}/recovery-points"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListRecoveryPointsByResourceOutput"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,14 +1800,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListReportJobs"
-                    }
+                    "method": "GET",
+                    "route": "/audit/report-jobs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1891,14 +1825,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListReportPlans"
-                    }
+                    "method": "GET",
+                    "route": "/audit/report-plans"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1920,14 +1850,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListRestoreJobs"
-                    }
+                    "method": "GET",
+                    "route": "/restore-jobs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1949,20 +1875,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListRestoreJobsByProtectedResource"
-                    }
+                    "method": "GET",
+                    "route": "/resources/{ResourceArn}/restore-jobs"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListRestoreJobsByProtectedResourceOutput"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1978,14 +1904,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListRestoreJobSummaries"
-                    }
+                    "method": "GET",
+                    "route": "/audit/restore-job-summaries"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2007,14 +1929,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListRestoreTestingPlans"
-                    }
+                    "method": "GET",
+                    "route": "/restore-testing/plans"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2036,20 +1954,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreTestingPlanName": "route.RestoreTestingPlanName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListRestoreTestingSelections"
-                    }
+                    "method": "GET",
+                    "route": "/restore-testing/plans/{RestoreTestingPlanName}/selections"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListRestoreTestingSelectionsOutput"
                     },
                     "inject": [
+                        "param.0.RestoreTestingPlanName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2065,20 +1983,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTags"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsOutput"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2094,20 +2012,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutBackupVaultAccessPolicy"
-                    }
+                    "method": "PUT",
+                    "route": "/backup-vaults/{BackupVaultName}/access-policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2123,20 +2041,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutBackupVaultLockConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/backup-vaults/{BackupVaultName}/vault-lock"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2152,20 +2070,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutBackupVaultNotifications"
-                    }
+                    "method": "PUT",
+                    "route": "/backup-vaults/{BackupVaultName}/notification-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2181,20 +2099,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreJobId": "route.RestoreJobId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutRestoreValidationResult"
-                    }
+                    "method": "PUT",
+                    "route": "/restore-jobs/{RestoreJobId}/validations"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.RestoreJobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2210,14 +2128,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartBackupJob"
-                    }
+                    "method": "PUT",
+                    "route": "/backup-jobs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2239,14 +2153,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartCopyJob"
-                    }
+                    "method": "PUT",
+                    "route": "/copy-jobs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2268,20 +2178,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ReportPlanName": "route.ReportPlanName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartReportJob"
-                    }
+                    "route": "/audit/report-jobs/{ReportPlanName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartReportJobOutput"
                     },
                     "inject": [
+                        "param.0.ReportPlanName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2297,14 +2207,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartRestoreJob"
-                    }
+                    "method": "PUT",
+                    "route": "/restore-jobs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2326,20 +2232,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupJobId": "route.BackupJobId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StopBackupJob"
-                    }
+                    "route": "/backup-jobs/{BackupJobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.BackupJobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2355,20 +2261,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2384,20 +2290,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "route": "/untag/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2413,20 +2319,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupPlanId": "route.BackupPlanId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateBackupPlan"
-                    }
+                    "route": "/backup/plans/{BackupPlanId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateBackupPlanOutput"
                     },
                     "inject": [
+                        "param.0.BackupPlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2442,20 +2348,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FrameworkName": "route.FrameworkName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFramework"
-                    }
+                    "method": "PUT",
+                    "route": "/audit/frameworks/{FrameworkName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateFrameworkOutput"
                     },
                     "inject": [
+                        "param.0.FrameworkName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2471,14 +2377,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateGlobalSettings"
-                    }
+                    "method": "PUT",
+                    "route": "/global-settings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2500,20 +2402,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "RecoveryPointArn": "route.RecoveryPointArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateRecoveryPointLifecycle"
-                    }
+                    "route": "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateRecoveryPointLifecycleOutput"
                     },
                     "inject": [
+                        "param.0.BackupVaultName",
+                        "param.0.RecoveryPointArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2529,14 +2433,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateRegionSettings"
-                    }
+                    "method": "PUT",
+                    "route": "/account-settings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2558,20 +2458,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ReportPlanName": "route.ReportPlanName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateReportPlan"
-                    }
+                    "method": "PUT",
+                    "route": "/audit/report-plans/{ReportPlanName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateReportPlanOutput"
                     },
                     "inject": [
+                        "param.0.ReportPlanName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2587,20 +2487,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreTestingPlanName": "route.RestoreTestingPlanName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateRestoreTestingPlan"
-                    }
+                    "method": "PUT",
+                    "route": "/restore-testing/plans/{RestoreTestingPlanName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateRestoreTestingPlanOutput"
                     },
                     "inject": [
+                        "param.0.RestoreTestingPlanName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2616,20 +2516,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RestoreTestingPlanName": "route.RestoreTestingPlanName",
+                            "RestoreTestingSelectionName": "route.RestoreTestingSelectionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateRestoreTestingSelection"
-                    }
+                    "method": "PUT",
+                    "route": "/restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateRestoreTestingSelectionOutput"
                     },
                     "inject": [
+                        "param.0.RestoreTestingPlanName",
+                        "param.0.RestoreTestingSelectionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -6987,318 +6889,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://backup-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://backup-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://backup.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://backup.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://backup-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://backup-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://backup.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://backup.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

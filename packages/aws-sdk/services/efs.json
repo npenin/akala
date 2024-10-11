@@ -6,14 +6,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateAccessPoint"
-                    }
+                    "route": "/2015-02-01/access-points"
                 },
                 "schema": {
                     "resultSchema": {
@@ -35,14 +31,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFileSystem"
-                    }
+                    "route": "/2015-02-01/file-systems"
                 },
                 "schema": {
                     "resultSchema": {
@@ -64,14 +56,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateMountTarget"
-                    }
+                    "route": "/2015-02-01/mount-targets"
                 },
                 "schema": {
                     "resultSchema": {
@@ -93,20 +81,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SourceFileSystemId": "route.SourceFileSystemId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateReplicationConfiguration"
-                    }
+                    "route": "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ReplicationConfigurationDescription"
                     },
                     "inject": [
+                        "param.0.SourceFileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +110,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateTags"
-                    }
+                    "route": "/2015-02-01/create-tags/{FileSystemId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,20 +139,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "AccessPointId": "route.AccessPointId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteAccessPoint"
-                    }
+                    "method": "DELETE",
+                    "route": "/2015-02-01/access-points/{AccessPointId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.AccessPointId",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,20 +168,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFileSystem"
-                    }
+                    "method": "DELETE",
+                    "route": "/2015-02-01/file-systems/{FileSystemId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,20 +197,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFileSystemPolicy"
-                    }
+                    "method": "DELETE",
+                    "route": "/2015-02-01/file-systems/{FileSystemId}/policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,20 +226,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "MountTargetId": "route.MountTargetId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteMountTarget"
-                    }
+                    "method": "DELETE",
+                    "route": "/2015-02-01/mount-targets/{MountTargetId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.MountTargetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,20 +255,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SourceFileSystemId": "route.SourceFileSystemId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteReplicationConfiguration"
-                    }
+                    "method": "DELETE",
+                    "route": "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.SourceFileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +284,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteTags"
-                    }
+                    "route": "/2015-02-01/delete-tags/{FileSystemId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,14 +313,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeAccessPoints"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/access-points"
                 },
                 "schema": {
                     "resultSchema": {
@@ -354,14 +338,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeAccountPreferences"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/account-preferences"
                 },
                 "schema": {
                     "resultSchema": {
@@ -383,20 +363,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeBackupPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/file-systems/{FileSystemId}/backup-policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BackupPolicyDescription"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +392,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeFileSystemPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/file-systems/{FileSystemId}/policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FileSystemPolicyDescription"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,14 +421,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeFileSystems"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/file-systems"
                 },
                 "schema": {
                     "resultSchema": {
@@ -470,20 +446,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeLifecycleConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/file-systems/{FileSystemId}/lifecycle-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/LifecycleConfigurationDescription"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,14 +475,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeMountTargets"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/mount-targets"
                 },
                 "schema": {
                     "resultSchema": {
@@ -528,20 +500,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "MountTargetId": "route.MountTargetId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeMountTargetSecurityGroups"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/mount-targets/{MountTargetId}/security-groups"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeMountTargetSecurityGroupsResponse"
                     },
                     "inject": [
+                        "param.0.MountTargetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,14 +529,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeReplicationConfigurations"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/file-systems/replication-configurations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -586,20 +554,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeTags"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/tags/{FileSystemId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeTagsResponse"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +583,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/2015-02-01/resource-tags/{ResourceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +612,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "MountTargetId": "route.MountTargetId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ModifyMountTargetSecurityGroups"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-02-01/mount-targets/{MountTargetId}/security-groups"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.MountTargetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,14 +641,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutAccountPreferences"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-02-01/account-preferences"
                 },
                 "schema": {
                     "resultSchema": {
@@ -702,20 +666,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutBackupPolicy"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-02-01/file-systems/{FileSystemId}/backup-policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BackupPolicyDescription"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +695,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutFileSystemPolicy"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-02-01/file-systems/{FileSystemId}/policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FileSystemPolicyDescription"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +724,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutLifecycleConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-02-01/file-systems/{FileSystemId}/lifecycle-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/LifecycleConfigurationDescription"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +753,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/2015-02-01/resource-tags/{ResourceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +782,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/2015-02-01/resource-tags/{ResourceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +811,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFileSystem"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-02-01/file-systems/{FileSystemId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FileSystemDescription"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +840,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FileSystemId": "route.FileSystemId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFileSystemProtection"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-02-01/file-systems/{FileSystemId}/protection"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FileSystemProtectionDescription"
                     },
                     "inject": [
+                        "param.0.FileSystemId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2051,318 +2015,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://elasticfilesystem-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://elasticfilesystem-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://elasticfilesystem.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://elasticfilesystem.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://elasticfilesystem-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://elasticfilesystem-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://elasticfilesystem.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://elasticfilesystem.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

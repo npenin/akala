@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SnapshotId": "route.SnapshotId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CompleteSnapshot"
-                    }
+                    "route": "/snapshots/completion/{SnapshotId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CompleteSnapshotResponse"
                     },
                     "inject": [
+                        "param.0.SnapshotId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +35,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SnapshotId": "route.SnapshotId",
+                            "BlockIndex": "route.BlockIndex",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSnapshotBlock"
-                    }
+                    "method": "GET",
+                    "route": "/snapshots/{SnapshotId}/blocks/{BlockIndex}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSnapshotBlockResponse"
                     },
                     "inject": [
+                        "param.0.SnapshotId",
+                        "param.0.BlockIndex",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +66,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SecondSnapshotId": "route.SecondSnapshotId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListChangedBlocks"
-                    }
+                    "method": "GET",
+                    "route": "/snapshots/{SecondSnapshotId}/changedblocks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListChangedBlocksResponse"
                     },
                     "inject": [
+                        "param.0.SecondSnapshotId",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +95,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SnapshotId": "route.SnapshotId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSnapshotBlocks"
-                    }
+                    "method": "GET",
+                    "route": "/snapshots/{SnapshotId}/blocks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListSnapshotBlocksResponse"
                     },
                     "inject": [
+                        "param.0.SnapshotId",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +124,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SnapshotId": "route.SnapshotId",
+                            "BlockIndex": "route.BlockIndex",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutSnapshotBlock"
-                    }
+                    "method": "PUT",
+                    "route": "/snapshots/{SnapshotId}/blocks/{BlockIndex}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutSnapshotBlockResponse"
                     },
                     "inject": [
+                        "param.0.SnapshotId",
+                        "param.0.BlockIndex",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,14 +155,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartSnapshot"
-                    }
+                    "route": "/snapshots"
                 },
                 "schema": {
                     "resultSchema": {
@@ -614,318 +614,320 @@
             "format": "int32"
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://ebs-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://ebs-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://ebs.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://ebs.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://ebs-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://ebs-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://ebs.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://ebs.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

@@ -6,14 +6,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateAwsAccountWithPartnerAccount"
-                    }
+                    "route": "/partner-accounts"
                 },
                 "schema": {
                     "resultSchema": {
@@ -35,20 +31,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateMulticastGroupWithFuotaTask"
-                    }
+                    "method": "PUT",
+                    "route": "/fuota-tasks/{Id}/multicast-group"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateMulticastGroupWithFuotaTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +60,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateWirelessDeviceWithFuotaTask"
-                    }
+                    "method": "PUT",
+                    "route": "/fuota-tasks/{Id}/wireless-device"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateWirelessDeviceWithFuotaTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +89,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateWirelessDeviceWithMulticastGroup"
-                    }
+                    "method": "PUT",
+                    "route": "/multicast-groups/{Id}/wireless-device"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateWirelessDeviceWithMulticastGroupResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +118,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateWirelessDeviceWithThing"
-                    }
+                    "method": "PUT",
+                    "route": "/wireless-devices/{Id}/thing"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateWirelessDeviceWithThingResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,20 +147,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateWirelessGatewayWithCertificate"
-                    }
+                    "method": "PUT",
+                    "route": "/wireless-gateways/{Id}/certificate"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateWirelessGatewayWithCertificateResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,20 +176,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateWirelessGatewayWithThing"
-                    }
+                    "method": "PUT",
+                    "route": "/wireless-gateways/{Id}/thing"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateWirelessGatewayWithThingResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,20 +205,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CancelMulticastGroupSession"
-                    }
+                    "method": "DELETE",
+                    "route": "/multicast-groups/{Id}/session"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CancelMulticastGroupSessionResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,14 +234,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDestination"
-                    }
+                    "route": "/destinations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -267,14 +259,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDeviceProfile"
-                    }
+                    "route": "/device-profiles"
                 },
                 "schema": {
                     "resultSchema": {
@@ -296,14 +284,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFuotaTask"
-                    }
+                    "route": "/fuota-tasks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -325,14 +309,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateMulticastGroup"
-                    }
+                    "route": "/multicast-groups"
                 },
                 "schema": {
                     "resultSchema": {
@@ -354,14 +334,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateNetworkAnalyzerConfiguration"
-                    }
+                    "route": "/network-analyzer-configurations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -383,14 +359,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateServiceProfile"
-                    }
+                    "route": "/service-profiles"
                 },
                 "schema": {
                     "resultSchema": {
@@ -412,14 +384,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateWirelessDevice"
-                    }
+                    "route": "/wireless-devices"
                 },
                 "schema": {
                     "resultSchema": {
@@ -441,14 +409,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateWirelessGateway"
-                    }
+                    "route": "/wireless-gateways"
                 },
                 "schema": {
                     "resultSchema": {
@@ -470,20 +434,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateWirelessGatewayTask"
-                    }
+                    "route": "/wireless-gateways/{Id}/tasks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateWirelessGatewayTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,14 +463,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateWirelessGatewayTaskDefinition"
-                    }
+                    "route": "/wireless-gateway-task-definitions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -528,20 +488,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDestination"
-                    }
+                    "method": "DELETE",
+                    "route": "/destinations/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteDestinationResponse"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +517,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDeviceProfile"
-                    }
+                    "method": "DELETE",
+                    "route": "/device-profiles/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteDeviceProfileResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +546,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFuotaTask"
-                    }
+                    "method": "DELETE",
+                    "route": "/fuota-tasks/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteFuotaTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +575,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteMulticastGroup"
-                    }
+                    "method": "DELETE",
+                    "route": "/multicast-groups/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteMulticastGroupResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +604,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationName": "route.ConfigurationName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteNetworkAnalyzerConfiguration"
-                    }
+                    "method": "DELETE",
+                    "route": "/network-analyzer-configurations/{ConfigurationName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteNetworkAnalyzerConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationName",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +633,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteQueuedMessages"
-                    }
+                    "method": "DELETE",
+                    "route": "/wireless-devices/{Id}/data"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteQueuedMessagesResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +662,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteServiceProfile"
-                    }
+                    "method": "DELETE",
+                    "route": "/service-profiles/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteServiceProfileResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +691,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteWirelessDevice"
-                    }
+                    "method": "DELETE",
+                    "route": "/wireless-devices/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteWirelessDeviceResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +720,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteWirelessDeviceImportTask"
-                    }
+                    "method": "DELETE",
+                    "route": "/wireless_device_import_task/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteWirelessDeviceImportTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +749,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteWirelessGateway"
-                    }
+                    "method": "DELETE",
+                    "route": "/wireless-gateways/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteWirelessGatewayResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +778,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteWirelessGatewayTask"
-                    }
+                    "method": "DELETE",
+                    "route": "/wireless-gateways/{Id}/tasks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteWirelessGatewayTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +807,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteWirelessGatewayTaskDefinition"
-                    }
+                    "method": "DELETE",
+                    "route": "/wireless-gateway-task-definitions/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteWirelessGatewayTaskDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +836,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeregisterWirelessDevice"
-                    }
+                    "method": "PATCH",
+                    "route": "/wireless-devices/{Identifier}/deregister"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeregisterWirelessDeviceResponse"
                     },
                     "inject": [
+                        "param.0.Identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +865,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PartnerAccountId": "route.PartnerAccountId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateAwsAccountFromPartnerAccount"
-                    }
+                    "method": "DELETE",
+                    "route": "/partner-accounts/{PartnerAccountId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateAwsAccountFromPartnerAccountResponse"
                     },
                     "inject": [
+                        "param.0.PartnerAccountId",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +894,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "MulticastGroupId": "route.MulticastGroupId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateMulticastGroupFromFuotaTask"
-                    }
+                    "method": "DELETE",
+                    "route": "/fuota-tasks/{Id}/multicast-groups/{MulticastGroupId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateMulticastGroupFromFuotaTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
+                        "param.0.MulticastGroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +925,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "WirelessDeviceId": "route.WirelessDeviceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateWirelessDeviceFromFuotaTask"
-                    }
+                    "method": "DELETE",
+                    "route": "/fuota-tasks/{Id}/wireless-devices/{WirelessDeviceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateWirelessDeviceFromFuotaTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
+                        "param.0.WirelessDeviceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +956,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "WirelessDeviceId": "route.WirelessDeviceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateWirelessDeviceFromMulticastGroup"
-                    }
+                    "method": "DELETE",
+                    "route": "/multicast-groups/{Id}/wireless-devices/{WirelessDeviceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateWirelessDeviceFromMulticastGroupResponse"
                     },
                     "inject": [
+                        "param.0.Id",
+                        "param.0.WirelessDeviceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +987,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateWirelessDeviceFromThing"
-                    }
+                    "method": "DELETE",
+                    "route": "/wireless-devices/{Id}/thing"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateWirelessDeviceFromThingResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1016,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateWirelessGatewayFromCertificate"
-                    }
+                    "method": "DELETE",
+                    "route": "/wireless-gateways/{Id}/certificate"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateWirelessGatewayFromCertificateResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1045,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateWirelessGatewayFromThing"
-                    }
+                    "method": "DELETE",
+                    "route": "/wireless-gateways/{Id}/thing"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateWirelessGatewayFromThingResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1074,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDestination"
-                    }
+                    "method": "GET",
+                    "route": "/destinations/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDestinationResponse"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1103,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDeviceProfile"
-                    }
+                    "method": "GET",
+                    "route": "/device-profiles/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDeviceProfileResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,14 +1132,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEventConfigurationByResourceTypes"
-                    }
+                    "method": "GET",
+                    "route": "/event-configurations-resource-types"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1195,20 +1157,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFuotaTask"
-                    }
+                    "method": "GET",
+                    "route": "/fuota-tasks/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFuotaTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,14 +1186,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLogLevelsByResourceTypes"
-                    }
+                    "method": "GET",
+                    "route": "/log-levels"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1253,14 +1211,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMetricConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/metric-configuration"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1282,14 +1236,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMetrics"
-                    }
+                    "route": "/metrics"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1311,20 +1261,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMulticastGroup"
-                    }
+                    "method": "GET",
+                    "route": "/multicast-groups/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMulticastGroupResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1290,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMulticastGroupSession"
-                    }
+                    "method": "GET",
+                    "route": "/multicast-groups/{Id}/session"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMulticastGroupSessionResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1319,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationName": "route.ConfigurationName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetNetworkAnalyzerConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/network-analyzer-configurations/{ConfigurationName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetNetworkAnalyzerConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1348,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PartnerAccountId": "route.PartnerAccountId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPartnerAccount"
-                    }
+                    "method": "GET",
+                    "route": "/partner-accounts/{PartnerAccountId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPartnerAccountResponse"
                     },
                     "inject": [
+                        "param.0.PartnerAccountId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1377,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceIdentifier": "route.ResourceIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPosition"
-                    }
+                    "method": "GET",
+                    "route": "/positions/{ResourceIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPositionResponse"
                     },
                     "inject": [
+                        "param.0.ResourceIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1406,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceIdentifier": "route.ResourceIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPositionConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/position-configurations/{ResourceIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPositionConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.ResourceIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,14 +1435,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPositionEstimate"
-                    }
+                    "route": "/position-estimate"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1514,20 +1460,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResourceEventConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/event-configurations/{Identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetResourceEventConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.Identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1489,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceIdentifier": "route.ResourceIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResourceLogLevel"
-                    }
+                    "method": "GET",
+                    "route": "/log-levels/{ResourceIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetResourceLogLevelResponse"
                     },
                     "inject": [
+                        "param.0.ResourceIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,20 +1518,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceIdentifier": "route.ResourceIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResourcePosition"
-                    }
+                    "method": "GET",
+                    "route": "/resource-positions/{ResourceIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetResourcePositionResponse"
                     },
                     "inject": [
+                        "param.0.ResourceIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1601,14 +1547,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetServiceEndpoint"
-                    }
+                    "method": "GET",
+                    "route": "/service-endpoint"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1630,20 +1572,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetServiceProfile"
-                    }
+                    "method": "GET",
+                    "route": "/service-profiles/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetServiceProfileResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1659,20 +1601,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWirelessDevice"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-devices/{Identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWirelessDeviceResponse"
                     },
                     "inject": [
+                        "param.0.Identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,20 +1630,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWirelessDeviceImportTask"
-                    }
+                    "method": "GET",
+                    "route": "/wireless_device_import_task/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWirelessDeviceImportTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,20 +1659,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WirelessDeviceId": "route.WirelessDeviceId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWirelessDeviceStatistics"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-devices/{WirelessDeviceId}/statistics"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWirelessDeviceStatisticsResponse"
                     },
                     "inject": [
+                        "param.0.WirelessDeviceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1746,20 +1688,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWirelessGateway"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-gateways/{Identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWirelessGatewayResponse"
                     },
                     "inject": [
+                        "param.0.Identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,20 +1717,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWirelessGatewayCertificate"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-gateways/{Id}/certificate"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWirelessGatewayCertificateResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,20 +1746,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWirelessGatewayFirmwareInformation"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-gateways/{Id}/firmware-information"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWirelessGatewayFirmwareInformationResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1833,20 +1775,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WirelessGatewayId": "route.WirelessGatewayId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWirelessGatewayStatistics"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-gateways/{WirelessGatewayId}/statistics"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWirelessGatewayStatisticsResponse"
                     },
                     "inject": [
+                        "param.0.WirelessGatewayId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,20 +1804,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWirelessGatewayTask"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-gateways/{Id}/tasks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWirelessGatewayTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1891,20 +1833,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWirelessGatewayTaskDefinition"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-gateway-task-definitions/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWirelessGatewayTaskDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,14 +1862,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDestinations"
-                    }
+                    "method": "GET",
+                    "route": "/destinations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1949,14 +1887,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDeviceProfiles"
-                    }
+                    "method": "GET",
+                    "route": "/device-profiles"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1978,14 +1912,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDevicesForWirelessDeviceImportTask"
-                    }
+                    "method": "GET",
+                    "route": "/wireless_device_import_task"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2007,14 +1937,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEventConfigurations"
-                    }
+                    "method": "GET",
+                    "route": "/event-configurations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2036,14 +1962,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFuotaTasks"
-                    }
+                    "method": "GET",
+                    "route": "/fuota-tasks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2065,14 +1987,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMulticastGroups"
-                    }
+                    "method": "GET",
+                    "route": "/multicast-groups"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2094,20 +2012,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMulticastGroupsByFuotaTask"
-                    }
+                    "method": "GET",
+                    "route": "/fuota-tasks/{Id}/multicast-groups"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListMulticastGroupsByFuotaTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2123,14 +2041,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListNetworkAnalyzerConfigurations"
-                    }
+                    "method": "GET",
+                    "route": "/network-analyzer-configurations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2152,14 +2066,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListPartnerAccounts"
-                    }
+                    "method": "GET",
+                    "route": "/partner-accounts"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2181,14 +2091,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListPositionConfigurations"
-                    }
+                    "method": "GET",
+                    "route": "/position-configurations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2210,20 +2116,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListQueuedMessages"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-devices/{Id}/data"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListQueuedMessagesResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2239,14 +2145,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListServiceProfiles"
-                    }
+                    "method": "GET",
+                    "route": "/service-profiles"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2268,14 +2170,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2297,14 +2195,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListWirelessDeviceImportTasks"
-                    }
+                    "method": "GET",
+                    "route": "/wireless_device_import_tasks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2326,14 +2220,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListWirelessDevices"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-devices"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2355,14 +2245,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListWirelessGateways"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-gateways"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2384,14 +2270,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListWirelessGatewayTaskDefinitions"
-                    }
+                    "method": "GET",
+                    "route": "/wireless-gateway-task-definitions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2413,20 +2295,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceIdentifier": "route.ResourceIdentifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutPositionConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/position-configurations/{ResourceIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutPositionConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.ResourceIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2442,20 +2324,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceIdentifier": "route.ResourceIdentifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutResourceLogLevel"
-                    }
+                    "method": "PUT",
+                    "route": "/log-levels/{ResourceIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutResourceLogLevelResponse"
                     },
                     "inject": [
+                        "param.0.ResourceIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2471,14 +2353,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ResetAllResourceLogLevels"
-                    }
+                    "method": "DELETE",
+                    "route": "/log-levels"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2500,20 +2378,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceIdentifier": "route.ResourceIdentifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ResetResourceLogLevel"
-                    }
+                    "method": "DELETE",
+                    "route": "/log-levels/{ResourceIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ResetResourceLogLevelResponse"
                     },
                     "inject": [
+                        "param.0.ResourceIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2529,20 +2407,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SendDataToMulticastGroup"
-                    }
+                    "route": "/multicast-groups/{Id}/data"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SendDataToMulticastGroupResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2558,20 +2436,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SendDataToWirelessDevice"
-                    }
+                    "route": "/wireless-devices/{Id}/data"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SendDataToWirelessDeviceResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2587,20 +2465,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartBulkAssociateWirelessDeviceWithMulticastGroup"
-                    }
+                    "method": "PATCH",
+                    "route": "/multicast-groups/{Id}/bulk"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartBulkAssociateWirelessDeviceWithMulticastGroupResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2616,20 +2494,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartBulkDisassociateWirelessDeviceFromMulticastGroup"
-                    }
+                    "route": "/multicast-groups/{Id}/bulk"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartBulkDisassociateWirelessDeviceFromMulticastGroupResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2645,20 +2523,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartFuotaTask"
-                    }
+                    "method": "PUT",
+                    "route": "/fuota-tasks/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartFuotaTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2674,20 +2552,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartMulticastGroupSession"
-                    }
+                    "method": "PUT",
+                    "route": "/multicast-groups/{Id}/session"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartMulticastGroupSessionResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2703,14 +2581,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartSingleWirelessDeviceImportTask"
-                    }
+                    "route": "/wireless_single_device_import_task"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2732,14 +2606,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartWirelessDeviceImportTask"
-                    }
+                    "route": "/wireless_device_import_task"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2761,14 +2631,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2790,20 +2656,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TestWirelessDevice"
-                    }
+                    "route": "/wireless-devices/{Id}/test"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TestWirelessDeviceResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2819,14 +2685,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2848,20 +2710,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDestination"
-                    }
+                    "method": "PATCH",
+                    "route": "/destinations/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateDestinationResponse"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -2877,14 +2739,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEventConfigurationByResourceTypes"
-                    }
+                    "method": "PATCH",
+                    "route": "/event-configurations-resource-types"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2906,20 +2764,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFuotaTask"
-                    }
+                    "method": "PATCH",
+                    "route": "/fuota-tasks/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateFuotaTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2935,14 +2793,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateLogLevelsByResourceTypes"
-                    }
+                    "route": "/log-levels"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2964,14 +2818,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateMetricConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/metric-configuration"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2993,20 +2843,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateMulticastGroup"
-                    }
+                    "method": "PATCH",
+                    "route": "/multicast-groups/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateMulticastGroupResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -3022,20 +2872,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationName": "route.ConfigurationName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateNetworkAnalyzerConfiguration"
-                    }
+                    "method": "PATCH",
+                    "route": "/network-analyzer-configurations/{ConfigurationName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateNetworkAnalyzerConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationName",
                         "param.0"
                     ],
                     "$defs": {
@@ -3051,20 +2901,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PartnerAccountId": "route.PartnerAccountId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdatePartnerAccount"
-                    }
+                    "method": "PATCH",
+                    "route": "/partner-accounts/{PartnerAccountId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdatePartnerAccountResponse"
                     },
                     "inject": [
+                        "param.0.PartnerAccountId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3080,20 +2930,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceIdentifier": "route.ResourceIdentifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdatePosition"
-                    }
+                    "method": "PATCH",
+                    "route": "/positions/{ResourceIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdatePositionResponse"
                     },
                     "inject": [
+                        "param.0.ResourceIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -3109,20 +2959,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateResourceEventConfiguration"
-                    }
+                    "method": "PATCH",
+                    "route": "/event-configurations/{Identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateResourceEventConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.Identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -3138,20 +2988,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceIdentifier": "route.ResourceIdentifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateResourcePosition"
-                    }
+                    "method": "PATCH",
+                    "route": "/resource-positions/{ResourceIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateResourcePositionResponse"
                     },
                     "inject": [
+                        "param.0.ResourceIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -3167,20 +3017,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateWirelessDevice"
-                    }
+                    "method": "PATCH",
+                    "route": "/wireless-devices/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateWirelessDeviceResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -3196,20 +3046,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateWirelessDeviceImportTask"
-                    }
+                    "method": "PATCH",
+                    "route": "/wireless_device_import_task/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateWirelessDeviceImportTaskResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -3225,20 +3075,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateWirelessGateway"
-                    }
+                    "method": "PATCH",
+                    "route": "/wireless-gateways/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateWirelessGatewayResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -9224,318 +9074,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://api.iotwireless-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://api.iotwireless-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://api.iotwireless.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://api.iotwireless.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://api.iotwireless-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://api.iotwireless-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://api.iotwireless.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://api.iotwireless.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

@@ -6,20 +6,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "VersionId": "route.VersionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AbortDocumentVersionUpload"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/documents/{DocumentId}/versions/{VersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.DocumentId",
+                        "param.0.VersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +37,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "UserId": "route.UserId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ActivateUser"
-                    }
+                    "route": "/api/v1/users/{UserId}/activation"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ActivateUserResponse"
                     },
                     "inject": [
+                        "param.0.UserId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +66,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AddResourcePermissions"
-                    }
+                    "route": "/api/v1/resources/{ResourceId}/permissions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AddResourcePermissionsResponse"
                     },
                     "inject": [
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +95,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "VersionId": "route.VersionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateComment"
-                    }
+                    "route": "/api/v1/documents/{DocumentId}/versions/{VersionId}/comment"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateCommentResponse"
                     },
                     "inject": [
+                        "param.0.DocumentId",
+                        "param.0.VersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +126,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCustomMetadata"
-                    }
+                    "method": "PUT",
+                    "route": "/api/v1/resources/{ResourceId}/customMetadata"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateCustomMetadataResponse"
                     },
                     "inject": [
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,14 +155,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFolder"
-                    }
+                    "route": "/api/v1/folders"
                 },
                 "schema": {
                     "resultSchema": {
@@ -180,20 +180,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateLabels"
-                    }
+                    "method": "PUT",
+                    "route": "/api/v1/resources/{ResourceId}/labels"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateLabelsResponse"
                     },
                     "inject": [
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,20 +209,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "OrganizationId": "route.OrganizationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateNotificationSubscription"
-                    }
+                    "route": "/api/v1/organizations/{OrganizationId}/subscriptions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateNotificationSubscriptionResponse"
                     },
                     "inject": [
+                        "param.0.OrganizationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,14 +238,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateUser"
-                    }
+                    "route": "/api/v1/users"
                 },
                 "schema": {
                     "resultSchema": {
@@ -267,20 +263,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "UserId": "route.UserId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeactivateUser"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/users/{UserId}/activation"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.UserId",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +292,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "VersionId": "route.VersionId",
+                            "CommentId": "route.CommentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteComment"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/documents/{DocumentId}/versions/{VersionId}/comment/{CommentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.DocumentId",
+                        "param.0.VersionId",
+                        "param.0.CommentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +325,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCustomMetadata"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/resources/{ResourceId}/customMetadata"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteCustomMetadataResponse"
                     },
                     "inject": [
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +354,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDocument"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/documents/{DocumentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.DocumentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +383,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "VersionId": "route.VersionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDocumentVersion"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/documentVersions/{DocumentId}/versions/{VersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.DocumentId",
+                        "param.0.VersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +414,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FolderId": "route.FolderId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFolder"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/folders/{FolderId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FolderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +443,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FolderId": "route.FolderId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFolderContents"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/folders/{FolderId}/contents"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FolderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +472,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteLabels"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/resources/{ResourceId}/labels"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteLabelsResponse"
                     },
                     "inject": [
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +501,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "OrganizationId": "route.OrganizationId",
+                            "SubscriptionId": "route.SubscriptionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteNotificationSubscription"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/organizations/{OrganizationId}/subscriptions/{SubscriptionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.OrganizationId",
+                        "param.0.SubscriptionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +532,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "UserId": "route.UserId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteUser"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/users/{UserId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.UserId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,14 +561,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeActivities"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/activities"
                 },
                 "schema": {
                     "resultSchema": {
@@ -586,20 +586,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "VersionId": "route.VersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeComments"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/documents/{DocumentId}/versions/{VersionId}/comments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeCommentsResponse"
                     },
                     "inject": [
+                        "param.0.DocumentId",
+                        "param.0.VersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +617,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeDocumentVersions"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/documents/{DocumentId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeDocumentVersionsResponse"
                     },
                     "inject": [
+                        "param.0.DocumentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +646,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FolderId": "route.FolderId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeFolderContents"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/folders/{FolderId}/contents"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeFolderContentsResponse"
                     },
                     "inject": [
+                        "param.0.FolderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,14 +675,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeGroups"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/groups"
                 },
                 "schema": {
                     "resultSchema": {
@@ -702,20 +700,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "OrganizationId": "route.OrganizationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeNotificationSubscriptions"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/organizations/{OrganizationId}/subscriptions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeNotificationSubscriptionsResponse"
                     },
                     "inject": [
+                        "param.0.OrganizationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +729,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeResourcePermissions"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/resources/{ResourceId}/permissions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeResourcePermissionsResponse"
                     },
                     "inject": [
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,14 +758,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeRootFolders"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/me/root"
                 },
                 "schema": {
                     "resultSchema": {
@@ -789,14 +783,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeUsers"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/users"
                 },
                 "schema": {
                     "resultSchema": {
@@ -818,14 +808,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCurrentUser"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/me"
                 },
                 "schema": {
                     "resultSchema": {
@@ -847,20 +833,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDocument"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/documents/{DocumentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDocumentResponse"
                     },
                     "inject": [
+                        "param.0.DocumentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +862,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDocumentPath"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/documents/{DocumentId}/path"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDocumentPathResponse"
                     },
                     "inject": [
+                        "param.0.DocumentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +891,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "VersionId": "route.VersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDocumentVersion"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/documents/{DocumentId}/versions/{VersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDocumentVersionResponse"
                     },
                     "inject": [
+                        "param.0.DocumentId",
+                        "param.0.VersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +922,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FolderId": "route.FolderId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFolder"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/folders/{FolderId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFolderResponse"
                     },
                     "inject": [
+                        "param.0.FolderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +951,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FolderId": "route.FolderId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFolderPath"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/folders/{FolderId}/path"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFolderPathResponse"
                     },
                     "inject": [
+                        "param.0.FolderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,14 +980,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResources"
-                    }
+                    "method": "GET",
+                    "route": "/api/v1/resources"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1021,14 +1005,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "InitiateDocumentVersionUpload"
-                    }
+                    "route": "/api/v1/documents"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1050,20 +1030,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RemoveAllResourcePermissions"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/resources/{ResourceId}/permissions"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1059,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceId": "route.ResourceId",
+                            "PrincipalId": "route.PrincipalId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RemoveResourcePermission"
-                    }
+                    "method": "DELETE",
+                    "route": "/api/v1/resources/{ResourceId}/permissions/{PrincipalId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceId",
+                        "param.0.PrincipalId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1090,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RestoreDocumentVersions"
-                    }
+                    "route": "/api/v1/documentVersions/restore/{DocumentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.DocumentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,14 +1119,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SearchResources"
-                    }
+                    "route": "/api/v1/search"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1166,20 +1144,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDocument"
-                    }
+                    "method": "PATCH",
+                    "route": "/api/v1/documents/{DocumentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.DocumentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1173,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DocumentId": "route.DocumentId",
+                            "VersionId": "route.VersionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDocumentVersion"
-                    }
+                    "method": "PATCH",
+                    "route": "/api/v1/documents/{DocumentId}/versions/{VersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.DocumentId",
+                        "param.0.VersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1204,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FolderId": "route.FolderId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFolder"
-                    }
+                    "method": "PATCH",
+                    "route": "/api/v1/folders/{FolderId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FolderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1233,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "UserId": "route.UserId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateUser"
-                    }
+                    "method": "PATCH",
+                    "route": "/api/v1/users/{UserId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateUserResponse"
                     },
                     "inject": [
+                        "param.0.UserId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3592,318 +3572,320 @@
             ]
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://workdocs-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://workdocs-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://workdocs.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://workdocs.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://workdocs-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://workdocs-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://workdocs.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://workdocs.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TargetDistributionId": "route.TargetDistributionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateAlias"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/distribution/{TargetDistributionId}/associate-alias"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.TargetDistributionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +35,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PrimaryDistributionId": "route.PrimaryDistributionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CopyDistribution"
-                    }
+                    "route": "/2020-05-31/distribution/{PrimaryDistributionId}/copy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CopyDistributionResult"
                     },
                     "inject": [
+                        "param.0.PrimaryDistributionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,14 +64,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCachePolicy"
-                    }
+                    "route": "/2020-05-31/cache-policy"
                 },
                 "schema": {
                     "resultSchema": {
@@ -93,14 +89,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCloudFrontOriginAccessIdentity"
-                    }
+                    "route": "/2020-05-31/origin-access-identity/cloudfront"
                 },
                 "schema": {
                     "resultSchema": {
@@ -122,14 +114,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateContinuousDeploymentPolicy"
-                    }
+                    "route": "/2020-05-31/continuous-deployment-policy"
                 },
                 "schema": {
                     "resultSchema": {
@@ -151,14 +139,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDistribution"
-                    }
+                    "route": "/2020-05-31/distribution"
                 },
                 "schema": {
                     "resultSchema": {
@@ -180,14 +164,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDistributionWithTags"
-                    }
+                    "route": "/2020-05-31/distribution"
                 },
                 "schema": {
                     "resultSchema": {
@@ -209,14 +189,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFieldLevelEncryptionConfig"
-                    }
+                    "route": "/2020-05-31/field-level-encryption"
                 },
                 "schema": {
                     "resultSchema": {
@@ -238,14 +214,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFieldLevelEncryptionProfile"
-                    }
+                    "route": "/2020-05-31/field-level-encryption-profile"
                 },
                 "schema": {
                     "resultSchema": {
@@ -267,14 +239,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFunction"
-                    }
+                    "route": "/2020-05-31/function"
                 },
                 "schema": {
                     "resultSchema": {
@@ -296,20 +264,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DistributionId": "route.DistributionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateInvalidation"
-                    }
+                    "route": "/2020-05-31/distribution/{DistributionId}/invalidation"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateInvalidationResult"
                     },
                     "inject": [
+                        "param.0.DistributionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,14 +293,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKeyGroup"
-                    }
+                    "route": "/2020-05-31/key-group"
                 },
                 "schema": {
                     "resultSchema": {
@@ -354,14 +318,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKeyValueStore"
-                    }
+                    "route": "/2020-05-31/key-value-store"
                 },
                 "schema": {
                     "resultSchema": {
@@ -383,20 +343,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DistributionId": "route.DistributionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateMonitoringSubscription"
-                    }
+                    "route": "/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateMonitoringSubscriptionResult"
                     },
                     "inject": [
+                        "param.0.DistributionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,14 +372,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateOriginAccessControl"
-                    }
+                    "route": "/2020-05-31/origin-access-control"
                 },
                 "schema": {
                     "resultSchema": {
@@ -441,14 +397,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateOriginRequestPolicy"
-                    }
+                    "route": "/2020-05-31/origin-request-policy"
                 },
                 "schema": {
                     "resultSchema": {
@@ -470,14 +422,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreatePublicKey"
-                    }
+                    "route": "/2020-05-31/public-key"
                 },
                 "schema": {
                     "resultSchema": {
@@ -499,14 +447,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateRealtimeLogConfig"
-                    }
+                    "route": "/2020-05-31/realtime-log-config"
                 },
                 "schema": {
                     "resultSchema": {
@@ -528,14 +472,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateResponseHeadersPolicy"
-                    }
+                    "route": "/2020-05-31/response-headers-policy"
                 },
                 "schema": {
                     "resultSchema": {
@@ -557,14 +497,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateStreamingDistribution"
-                    }
+                    "route": "/2020-05-31/streaming-distribution"
                 },
                 "schema": {
                     "resultSchema": {
@@ -586,14 +522,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateStreamingDistributionWithTags"
-                    }
+                    "route": "/2020-05-31/streaming-distribution"
                 },
                 "schema": {
                     "resultSchema": {
@@ -615,20 +547,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCachePolicy"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/cache-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +576,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCloudFrontOriginAccessIdentity"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/origin-access-identity/cloudfront/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +605,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteContinuousDeploymentPolicy"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/continuous-deployment-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +634,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDistribution"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/distribution/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +663,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFieldLevelEncryptionConfig"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/field-level-encryption/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +692,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFieldLevelEncryptionProfile"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/field-level-encryption-profile/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +721,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFunction"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/function/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +750,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKeyGroup"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/key-group/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +779,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKeyValueStore"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/key-value-store/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +808,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DistributionId": "route.DistributionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteMonitoringSubscription"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteMonitoringSubscriptionResult"
                     },
                     "inject": [
+                        "param.0.DistributionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +837,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteOriginAccessControl"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/origin-access-control/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +866,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteOriginRequestPolicy"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/origin-request-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +895,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeletePublicKey"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/public-key/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,14 +924,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteRealtimeLogConfig"
-                    }
+                    "route": "/2020-05-31/delete-realtime-log-config"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1021,20 +949,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteResponseHeadersPolicy"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/response-headers-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +978,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteStreamingDistribution"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-05-31/streaming-distribution/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1007,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeFunction"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/function/{Name}/describe"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeFunctionResult"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1036,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeKeyValueStore"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/key-value-store/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeKeyValueStoreResult"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1065,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCachePolicy"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/cache-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCachePolicyResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1094,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCachePolicyConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/cache-policy/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCachePolicyConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1123,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCloudFrontOriginAccessIdentity"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/origin-access-identity/cloudfront/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCloudFrontOriginAccessIdentityResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1152,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCloudFrontOriginAccessIdentityConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/origin-access-identity/cloudfront/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCloudFrontOriginAccessIdentityConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1181,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetContinuousDeploymentPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/continuous-deployment-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetContinuousDeploymentPolicyResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1210,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetContinuousDeploymentPolicyConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/continuous-deployment-policy/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetContinuousDeploymentPolicyConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1239,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDistribution"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distribution/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDistributionResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1268,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDistributionConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distribution/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDistributionConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1297,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFieldLevelEncryption"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/field-level-encryption/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFieldLevelEncryptionResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1326,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFieldLevelEncryptionConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/field-level-encryption/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFieldLevelEncryptionConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1355,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFieldLevelEncryptionProfile"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/field-level-encryption-profile/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFieldLevelEncryptionProfileResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1384,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFieldLevelEncryptionProfileConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/field-level-encryption-profile/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFieldLevelEncryptionProfileConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,20 +1413,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFunction"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/function/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFunctionResult"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -1514,20 +1442,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DistributionId": "route.DistributionId",
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetInvalidation"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distribution/{DistributionId}/invalidation/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetInvalidationResult"
                     },
                     "inject": [
+                        "param.0.DistributionId",
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1473,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKeyGroup"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/key-group/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKeyGroupResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,20 +1502,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKeyGroupConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/key-group/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKeyGroupConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1601,20 +1531,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DistributionId": "route.DistributionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMonitoringSubscription"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMonitoringSubscriptionResult"
                     },
                     "inject": [
+                        "param.0.DistributionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1630,20 +1560,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetOriginAccessControl"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/origin-access-control/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetOriginAccessControlResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1659,20 +1589,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetOriginAccessControlConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/origin-access-control/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetOriginAccessControlConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,20 +1618,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetOriginRequestPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/origin-request-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetOriginRequestPolicyResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,20 +1647,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetOriginRequestPolicyConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/origin-request-policy/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetOriginRequestPolicyConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1746,20 +1676,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPublicKey"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/public-key/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPublicKeyResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,20 +1705,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPublicKeyConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/public-key/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPublicKeyConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,14 +1734,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRealtimeLogConfig"
-                    }
+                    "route": "/2020-05-31/get-realtime-log-config"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1833,20 +1759,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResponseHeadersPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/response-headers-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetResponseHeadersPolicyResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,20 +1788,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResponseHeadersPolicyConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/response-headers-policy/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetResponseHeadersPolicyConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1891,20 +1817,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetStreamingDistribution"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/streaming-distribution/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetStreamingDistributionResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,20 +1846,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetStreamingDistributionConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/streaming-distribution/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetStreamingDistributionConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1949,14 +1875,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCachePolicies"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/cache-policy"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1978,14 +1900,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCloudFrontOriginAccessIdentities"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/origin-access-identity/cloudfront"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2007,14 +1925,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListConflictingAliases"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/conflicting-alias"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2036,14 +1950,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListContinuousDeploymentPolicies"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/continuous-deployment-policy"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2065,14 +1975,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDistributions"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distribution"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2094,20 +2000,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CachePolicyId": "route.CachePolicyId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDistributionsByCachePolicyId"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distributionsByCachePolicyId/{CachePolicyId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDistributionsByCachePolicyIdResult"
                     },
                     "inject": [
+                        "param.0.CachePolicyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2123,20 +2029,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "KeyGroupId": "route.KeyGroupId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDistributionsByKeyGroup"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distributionsByKeyGroupId/{KeyGroupId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDistributionsByKeyGroupResult"
                     },
                     "inject": [
+                        "param.0.KeyGroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2152,20 +2058,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "OriginRequestPolicyId": "route.OriginRequestPolicyId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDistributionsByOriginRequestPolicyId"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distributionsByOriginRequestPolicyId/{OriginRequestPolicyId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDistributionsByOriginRequestPolicyIdResult"
                     },
                     "inject": [
+                        "param.0.OriginRequestPolicyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2181,14 +2087,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDistributionsByRealtimeLogConfig"
-                    }
+                    "route": "/2020-05-31/distributionsByRealtimeLogConfig"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2210,20 +2112,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResponseHeadersPolicyId": "route.ResponseHeadersPolicyId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDistributionsByResponseHeadersPolicyId"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distributionsByResponseHeadersPolicyId/{ResponseHeadersPolicyId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDistributionsByResponseHeadersPolicyIdResult"
                     },
                     "inject": [
+                        "param.0.ResponseHeadersPolicyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2239,20 +2141,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WebACLId": "route.WebACLId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDistributionsByWebACLId"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distributionsByWebACLId/{WebACLId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDistributionsByWebACLIdResult"
                     },
                     "inject": [
+                        "param.0.WebACLId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2268,14 +2170,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFieldLevelEncryptionConfigs"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/field-level-encryption"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2297,14 +2195,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFieldLevelEncryptionProfiles"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/field-level-encryption-profile"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2326,14 +2220,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFunctions"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/function"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2355,20 +2245,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DistributionId": "route.DistributionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListInvalidations"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/distribution/{DistributionId}/invalidation"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListInvalidationsResult"
                     },
                     "inject": [
+                        "param.0.DistributionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2384,14 +2274,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKeyGroups"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/key-group"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2413,14 +2299,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKeyValueStores"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/key-value-store"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2442,14 +2324,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListOriginAccessControls"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/origin-access-control"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2471,14 +2349,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListOriginRequestPolicies"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/origin-request-policy"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2500,14 +2374,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListPublicKeys"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/public-key"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2529,14 +2399,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListRealtimeLogConfigs"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/realtime-log-config"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2558,14 +2424,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListResponseHeadersPolicies"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/response-headers-policy"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2587,14 +2449,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListStreamingDistributions"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/streaming-distribution"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2616,14 +2474,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/2020-05-31/tagging"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2645,20 +2499,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PublishFunction"
-                    }
+                    "route": "/2020-05-31/function/{Name}/publish"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PublishFunctionResult"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -2674,14 +2528,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/2020-05-31/tagging"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2703,20 +2553,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TestFunction"
-                    }
+                    "route": "/2020-05-31/function/{Name}/test"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TestFunctionResult"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -2732,14 +2582,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "route": "/2020-05-31/tagging"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2761,20 +2607,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateCachePolicy"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/cache-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateCachePolicyResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2790,20 +2636,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateCloudFrontOriginAccessIdentity"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/origin-access-identity/cloudfront/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateCloudFrontOriginAccessIdentityResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2819,20 +2665,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateContinuousDeploymentPolicy"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/continuous-deployment-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateContinuousDeploymentPolicyResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2848,20 +2694,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDistribution"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/distribution/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateDistributionResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2877,20 +2723,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDistributionWithStagingConfig"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/distribution/{Id}/promote-staging-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateDistributionWithStagingConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2906,20 +2752,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFieldLevelEncryptionConfig"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/field-level-encryption/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateFieldLevelEncryptionConfigResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2935,20 +2781,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFieldLevelEncryptionProfile"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/field-level-encryption-profile/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateFieldLevelEncryptionProfileResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2964,20 +2810,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFunction"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/function/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateFunctionResult"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -2993,20 +2839,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateKeyGroup"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/key-group/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateKeyGroupResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -3022,20 +2868,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateKeyValueStore"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/key-value-store/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateKeyValueStoreResult"
                     },
                     "inject": [
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -3051,20 +2897,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateOriginAccessControl"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/origin-access-control/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateOriginAccessControlResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -3080,20 +2926,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateOriginRequestPolicy"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/origin-request-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateOriginRequestPolicyResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -3109,20 +2955,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdatePublicKey"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/public-key/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdatePublicKeyResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -3138,14 +2984,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateRealtimeLogConfig"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/realtime-log-config"
                 },
                 "schema": {
                     "resultSchema": {
@@ -3167,20 +3009,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateResponseHeadersPolicy"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/response-headers-policy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateResponseHeadersPolicyResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -3196,20 +3038,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateStreamingDistribution"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-05-31/streaming-distribution/{Id}/config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateStreamingDistributionResult"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -8678,471 +8520,473 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://cloudfront.amazonaws.com",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "cloudfront",
-                                                "signingRegion": "us-east-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
+                                "properties": {},
+                                "headers": {}
                             },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://cloudfront-fips.amazonaws.com",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "cloudfront",
-                                                "signingRegion": "us-east-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws-cn"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://cloudfront.cn-northwest-1.amazonaws.com.cn",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "cloudfront",
-                                                "signingRegion": "cn-northwest-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://cloudfront-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://cloudfront-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                                                "aws"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://cloudfront.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://cloudfront.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "cloudfront",
+                                                    "signingRegion": "us-east-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
                                     },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://cloudfront.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://cloudfront-fips.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "cloudfront",
+                                                    "signingRegion": "us-east-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws-cn"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://cloudfront.cn-northwest-1.amazonaws.com.cn",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "cloudfront",
+                                                    "signingRegion": "cn-northwest-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://cloudfront-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://cloudfront-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://cloudfront.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://cloudfront.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

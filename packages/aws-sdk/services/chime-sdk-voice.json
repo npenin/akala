@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociatePhoneNumbersWithVoiceConnector"
-                    }
+                    "route": "/voice-connectors/{VoiceConnectorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociatePhoneNumbersWithVoiceConnectorResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +35,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorGroupId": "route.VoiceConnectorGroupId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociatePhoneNumbersWithVoiceConnectorGroup"
-                    }
+                    "route": "/voice-connector-groups/{VoiceConnectorGroupId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociatePhoneNumbersWithVoiceConnectorGroupResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorGroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,14 +64,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchDeletePhoneNumber"
-                    }
+                    "route": "/phone-numbers"
                 },
                 "schema": {
                     "resultSchema": {
@@ -93,14 +89,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchUpdatePhoneNumber"
-                    }
+                    "route": "/phone-numbers"
                 },
                 "schema": {
                     "resultSchema": {
@@ -122,14 +114,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreatePhoneNumberOrder"
-                    }
+                    "route": "/phone-number-orders"
                 },
                 "schema": {
                     "resultSchema": {
@@ -151,20 +139,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateProxySession"
-                    }
+                    "route": "/voice-connectors/{VoiceConnectorId}/proxy-sessions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateProxySessionResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,14 +168,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSipMediaApplication"
-                    }
+                    "route": "/sip-media-applications"
                 },
                 "schema": {
                     "resultSchema": {
@@ -209,20 +193,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipMediaApplicationId": "route.SipMediaApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSipMediaApplicationCall"
-                    }
+                    "route": "/sip-media-applications/{SipMediaApplicationId}/calls"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSipMediaApplicationCallResponse"
                     },
                     "inject": [
+                        "param.0.SipMediaApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,14 +222,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSipRule"
-                    }
+                    "route": "/sip-rules"
                 },
                 "schema": {
                     "resultSchema": {
@@ -267,14 +247,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateVoiceConnector"
-                    }
+                    "route": "/voice-connectors"
                 },
                 "schema": {
                     "resultSchema": {
@@ -296,14 +272,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateVoiceConnectorGroup"
-                    }
+                    "route": "/voice-connector-groups"
                 },
                 "schema": {
                     "resultSchema": {
@@ -325,14 +297,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateVoiceProfile"
-                    }
+                    "route": "/voice-profiles"
                 },
                 "schema": {
                     "resultSchema": {
@@ -354,14 +322,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateVoiceProfileDomain"
-                    }
+                    "route": "/voice-profile-domains"
                 },
                 "schema": {
                     "resultSchema": {
@@ -383,20 +347,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PhoneNumberId": "route.PhoneNumberId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeletePhoneNumber"
-                    }
+                    "method": "DELETE",
+                    "route": "/phone-numbers/{PhoneNumberId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.PhoneNumberId",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +376,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "ProxySessionId": "route.ProxySessionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteProxySession"
-                    }
+                    "method": "DELETE",
+                    "route": "/voice-connectors/{VoiceConnectorId}/proxy-sessions/{ProxySessionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
+                        "param.0.ProxySessionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +407,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipMediaApplicationId": "route.SipMediaApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSipMediaApplication"
-                    }
+                    "method": "DELETE",
+                    "route": "/sip-media-applications/{SipMediaApplicationId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.SipMediaApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +436,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipRuleId": "route.SipRuleId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSipRule"
-                    }
+                    "method": "DELETE",
+                    "route": "/sip-rules/{SipRuleId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.SipRuleId",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +465,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceConnector"
-                    }
+                    "method": "DELETE",
+                    "route": "/voice-connectors/{VoiceConnectorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +494,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceConnectorEmergencyCallingConfiguration"
-                    }
+                    "method": "DELETE",
+                    "route": "/voice-connectors/{VoiceConnectorId}/emergency-calling-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +523,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorGroupId": "route.VoiceConnectorGroupId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceConnectorGroup"
-                    }
+                    "method": "DELETE",
+                    "route": "/voice-connector-groups/{VoiceConnectorGroupId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorGroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +552,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceConnectorOrigination"
-                    }
+                    "method": "DELETE",
+                    "route": "/voice-connectors/{VoiceConnectorId}/origination"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +581,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceConnectorProxy"
-                    }
+                    "method": "DELETE",
+                    "route": "/voice-connectors/{VoiceConnectorId}/programmable-numbers/proxy"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +610,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceConnectorStreamingConfiguration"
-                    }
+                    "method": "DELETE",
+                    "route": "/voice-connectors/{VoiceConnectorId}/streaming-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +639,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceConnectorTermination"
-                    }
+                    "method": "DELETE",
+                    "route": "/voice-connectors/{VoiceConnectorId}/termination"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +668,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceConnectorTerminationCredentials"
-                    }
+                    "route": "/voice-connectors/{VoiceConnectorId}/termination/credentials"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +697,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceProfileId": "route.VoiceProfileId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceProfile"
-                    }
+                    "method": "DELETE",
+                    "route": "/voice-profiles/{VoiceProfileId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceProfileId",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +726,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceProfileDomainId": "route.VoiceProfileDomainId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceProfileDomain"
-                    }
+                    "method": "DELETE",
+                    "route": "/voice-profile-domains/{VoiceProfileDomainId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceProfileDomainId",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +755,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociatePhoneNumbersFromVoiceConnector"
-                    }
+                    "route": "/voice-connectors/{VoiceConnectorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociatePhoneNumbersFromVoiceConnectorResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +784,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorGroupId": "route.VoiceConnectorGroupId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociatePhoneNumbersFromVoiceConnectorGroup"
-                    }
+                    "route": "/voice-connector-groups/{VoiceConnectorGroupId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociatePhoneNumbersFromVoiceConnectorGroupResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorGroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,14 +813,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGlobalSettings"
-                    }
+                    "method": "GET",
+                    "route": "/settings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -876,20 +838,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PhoneNumberId": "route.PhoneNumberId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPhoneNumber"
-                    }
+                    "method": "GET",
+                    "route": "/phone-numbers/{PhoneNumberId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPhoneNumberResponse"
                     },
                     "inject": [
+                        "param.0.PhoneNumberId",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +867,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PhoneNumberOrderId": "route.PhoneNumberOrderId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPhoneNumberOrder"
-                    }
+                    "method": "GET",
+                    "route": "/phone-number-orders/{PhoneNumberOrderId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPhoneNumberOrderResponse"
                     },
                     "inject": [
+                        "param.0.PhoneNumberOrderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,14 +896,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPhoneNumberSettings"
-                    }
+                    "method": "GET",
+                    "route": "/settings/phone-number"
                 },
                 "schema": {
                     "resultSchema": {
@@ -963,20 +921,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "ProxySessionId": "route.ProxySessionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetProxySession"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/proxy-sessions/{ProxySessionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetProxySessionResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
+                        "param.0.ProxySessionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +952,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipMediaApplicationId": "route.SipMediaApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSipMediaApplication"
-                    }
+                    "method": "GET",
+                    "route": "/sip-media-applications/{SipMediaApplicationId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSipMediaApplicationResponse"
                     },
                     "inject": [
+                        "param.0.SipMediaApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +981,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipMediaApplicationId": "route.SipMediaApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSipMediaApplicationAlexaSkillConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/sip-media-applications/{SipMediaApplicationId}/alexa-skill-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSipMediaApplicationAlexaSkillConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.SipMediaApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1010,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipMediaApplicationId": "route.SipMediaApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSipMediaApplicationLoggingConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/sip-media-applications/{SipMediaApplicationId}/logging-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSipMediaApplicationLoggingConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.SipMediaApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1039,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipRuleId": "route.SipRuleId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSipRule"
-                    }
+                    "method": "GET",
+                    "route": "/sip-rules/{SipRuleId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSipRuleResponse"
                     },
                     "inject": [
+                        "param.0.SipRuleId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1068,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "SpeakerSearchTaskId": "route.SpeakerSearchTaskId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSpeakerSearchTask"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSpeakerSearchTaskResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
+                        "param.0.SpeakerSearchTaskId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1099,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceConnector"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceConnectorResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1128,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceConnectorEmergencyCallingConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/emergency-calling-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceConnectorEmergencyCallingConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1157,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorGroupId": "route.VoiceConnectorGroupId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceConnectorGroup"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connector-groups/{VoiceConnectorGroupId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceConnectorGroupResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorGroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1186,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceConnectorLoggingConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/logging-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceConnectorLoggingConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1215,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceConnectorOrigination"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/origination"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceConnectorOriginationResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1244,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceConnectorProxy"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/programmable-numbers/proxy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceConnectorProxyResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1273,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceConnectorStreamingConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/streaming-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceConnectorStreamingConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1302,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceConnectorTermination"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/termination"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceConnectorTerminationResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1331,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceConnectorTerminationHealth"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/termination/health"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceConnectorTerminationHealthResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1360,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceProfileId": "route.VoiceProfileId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceProfile"
-                    }
+                    "method": "GET",
+                    "route": "/voice-profiles/{VoiceProfileId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceProfileResponse"
                     },
                     "inject": [
+                        "param.0.VoiceProfileId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1389,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceProfileDomainId": "route.VoiceProfileDomainId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceProfileDomain"
-                    }
+                    "method": "GET",
+                    "route": "/voice-profile-domains/{VoiceProfileDomainId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceProfileDomainResponse"
                     },
                     "inject": [
+                        "param.0.VoiceProfileDomainId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1418,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "VoiceToneAnalysisTaskId": "route.VoiceToneAnalysisTaskId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceToneAnalysisTask"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceToneAnalysisTaskResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
+                        "param.0.VoiceToneAnalysisTaskId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,14 +1449,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAvailableVoiceConnectorRegions"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connector-regions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1514,14 +1474,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListPhoneNumberOrders"
-                    }
+                    "method": "GET",
+                    "route": "/phone-number-orders"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1543,14 +1499,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListPhoneNumbers"
-                    }
+                    "method": "GET",
+                    "route": "/phone-numbers"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1572,20 +1524,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProxySessions"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/proxy-sessions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListProxySessionsResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1601,14 +1553,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSipMediaApplications"
-                    }
+                    "method": "GET",
+                    "route": "/sip-media-applications"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1630,14 +1578,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSipRules"
-                    }
+                    "method": "GET",
+                    "route": "/sip-rules"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1659,14 +1603,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSupportedPhoneNumberCountries"
-                    }
+                    "method": "GET",
+                    "route": "/phone-number-countries"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1688,14 +1628,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1717,14 +1653,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListVoiceConnectorGroups"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connector-groups"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1746,14 +1678,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListVoiceConnectors"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1775,20 +1703,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListVoiceConnectorTerminationCredentials"
-                    }
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/termination/credentials"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListVoiceConnectorTerminationCredentialsResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,14 +1732,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListVoiceProfileDomains"
-                    }
+                    "method": "GET",
+                    "route": "/voice-profile-domains"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1833,14 +1757,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListVoiceProfiles"
-                    }
+                    "method": "GET",
+                    "route": "/voice-profiles"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1862,20 +1782,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipMediaApplicationId": "route.SipMediaApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutSipMediaApplicationAlexaSkillConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/sip-media-applications/{SipMediaApplicationId}/alexa-skill-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutSipMediaApplicationAlexaSkillConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.SipMediaApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1891,20 +1811,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipMediaApplicationId": "route.SipMediaApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutSipMediaApplicationLoggingConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/sip-media-applications/{SipMediaApplicationId}/logging-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutSipMediaApplicationLoggingConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.SipMediaApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,20 +1840,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutVoiceConnectorEmergencyCallingConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/voice-connectors/{VoiceConnectorId}/emergency-calling-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutVoiceConnectorEmergencyCallingConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1949,20 +1869,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutVoiceConnectorLoggingConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/voice-connectors/{VoiceConnectorId}/logging-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutVoiceConnectorLoggingConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1978,20 +1898,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutVoiceConnectorOrigination"
-                    }
+                    "method": "PUT",
+                    "route": "/voice-connectors/{VoiceConnectorId}/origination"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutVoiceConnectorOriginationResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2007,20 +1927,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutVoiceConnectorProxy"
-                    }
+                    "method": "PUT",
+                    "route": "/voice-connectors/{VoiceConnectorId}/programmable-numbers/proxy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutVoiceConnectorProxyResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2036,20 +1956,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutVoiceConnectorStreamingConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/voice-connectors/{VoiceConnectorId}/streaming-configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutVoiceConnectorStreamingConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2065,20 +1985,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutVoiceConnectorTermination"
-                    }
+                    "method": "PUT",
+                    "route": "/voice-connectors/{VoiceConnectorId}/termination"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutVoiceConnectorTerminationResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2094,20 +2014,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutVoiceConnectorTerminationCredentials"
-                    }
+                    "route": "/voice-connectors/{VoiceConnectorId}/termination/credentials"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2123,20 +2043,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PhoneNumberId": "route.PhoneNumberId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RestorePhoneNumber"
-                    }
+                    "route": "/phone-numbers/{PhoneNumberId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RestorePhoneNumberResponse"
                     },
                     "inject": [
+                        "param.0.PhoneNumberId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2152,14 +2072,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SearchAvailablePhoneNumbers"
-                    }
+                    "method": "GET",
+                    "route": "/search"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2181,20 +2097,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartSpeakerSearchTask"
-                    }
+                    "route": "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartSpeakerSearchTaskResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2210,20 +2126,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartVoiceToneAnalysisTask"
-                    }
+                    "route": "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartVoiceToneAnalysisTaskResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2239,20 +2155,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "SpeakerSearchTaskId": "route.SpeakerSearchTaskId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StopSpeakerSearchTask"
-                    }
+                    "route": "/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
+                        "param.0.SpeakerSearchTaskId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2268,20 +2186,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "VoiceToneAnalysisTaskId": "route.VoiceToneAnalysisTaskId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StopVoiceToneAnalysisTask"
-                    }
+                    "route": "/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
+                        "param.0.VoiceToneAnalysisTaskId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2297,14 +2217,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2326,14 +2242,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "route": "/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2355,14 +2267,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateGlobalSettings"
-                    }
+                    "method": "PUT",
+                    "route": "/settings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2384,20 +2292,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PhoneNumberId": "route.PhoneNumberId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdatePhoneNumber"
-                    }
+                    "route": "/phone-numbers/{PhoneNumberId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdatePhoneNumberResponse"
                     },
                     "inject": [
+                        "param.0.PhoneNumberId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2413,14 +2321,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdatePhoneNumberSettings"
-                    }
+                    "method": "PUT",
+                    "route": "/settings/phone-number"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2442,20 +2346,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "ProxySessionId": "route.ProxySessionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateProxySession"
-                    }
+                    "route": "/voice-connectors/{VoiceConnectorId}/proxy-sessions/{ProxySessionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateProxySessionResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
+                        "param.0.ProxySessionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2471,20 +2377,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipMediaApplicationId": "route.SipMediaApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSipMediaApplication"
-                    }
+                    "method": "PUT",
+                    "route": "/sip-media-applications/{SipMediaApplicationId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSipMediaApplicationResponse"
                     },
                     "inject": [
+                        "param.0.SipMediaApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2500,20 +2406,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipMediaApplicationId": "route.SipMediaApplicationId",
+                            "TransactionId": "route.TransactionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSipMediaApplicationCall"
-                    }
+                    "route": "/sip-media-applications/{SipMediaApplicationId}/calls/{TransactionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSipMediaApplicationCallResponse"
                     },
                     "inject": [
+                        "param.0.SipMediaApplicationId",
+                        "param.0.TransactionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2529,20 +2437,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SipRuleId": "route.SipRuleId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSipRule"
-                    }
+                    "method": "PUT",
+                    "route": "/sip-rules/{SipRuleId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSipRuleResponse"
                     },
                     "inject": [
+                        "param.0.SipRuleId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2558,20 +2466,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateVoiceConnector"
-                    }
+                    "method": "PUT",
+                    "route": "/voice-connectors/{VoiceConnectorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateVoiceConnectorResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2587,20 +2495,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceConnectorGroupId": "route.VoiceConnectorGroupId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateVoiceConnectorGroup"
-                    }
+                    "method": "PUT",
+                    "route": "/voice-connector-groups/{VoiceConnectorGroupId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateVoiceConnectorGroupResponse"
                     },
                     "inject": [
+                        "param.0.VoiceConnectorGroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2616,20 +2524,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceProfileId": "route.VoiceProfileId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateVoiceProfile"
-                    }
+                    "method": "PUT",
+                    "route": "/voice-profiles/{VoiceProfileId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateVoiceProfileResponse"
                     },
                     "inject": [
+                        "param.0.VoiceProfileId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2645,20 +2553,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "VoiceProfileDomainId": "route.VoiceProfileDomainId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateVoiceProfileDomain"
-                    }
+                    "method": "PUT",
+                    "route": "/voice-profile-domains/{VoiceProfileDomainId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateVoiceProfileDomainResponse"
                     },
                     "inject": [
+                        "param.0.VoiceProfileDomainId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2674,14 +2582,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ValidateE911Address"
-                    }
+                    "route": "/emergency-calling/address"
                 },
                 "schema": {
                     "resultSchema": {
@@ -5812,354 +5716,356 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                                "type": "error"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": {
-                                        "ref": "Endpoint"
-                                    },
-                                    "properties": {},
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "isSet",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ]
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "aws.partition",
-                                        "argv": [
-                                            {
-                                                "ref": "Region"
-                                            }
-                                        ],
-                                        "assign": "PartitionResult"
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseFIPS"
-                                                    },
-                                                    true
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseDualStack"
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            true,
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsFIPS"
-                                                                ]
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            true,
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsDualStack"
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ],
-                                                "rules": [
-                                                    {
-                                                        "conditions": [],
-                                                        "rules": [
-                                                            {
-                                                                "conditions": [],
-                                                                "endpoint": {
-                                                                    "url": "https://voice-chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                                    "properties": {},
-                                                                    "headers": {}
-                                                                },
-                                                                "type": "endpoint"
-                                                            }
-                                                        ],
-                                                        "type": "tree"
-                                                    }
-                                                ],
-                                                "type": "tree"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                                "type": "error"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseFIPS"
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsFIPS"
-                                                                ]
-                                                            },
-                                                            true
-                                                        ]
-                                                    }
-                                                ],
-                                                "rules": [
-                                                    {
-                                                        "conditions": [],
-                                                        "rules": [
-                                                            {
-                                                                "conditions": [],
-                                                                "endpoint": {
-                                                                    "url": "https://voice-chime-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                                    "properties": {},
-                                                                    "headers": {}
-                                                                },
-                                                                "type": "endpoint"
-                                                            }
-                                                        ],
-                                                        "type": "tree"
-                                                    }
-                                                ],
-                                                "type": "tree"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "error": "FIPS is enabled but this partition does not support FIPS",
-                                                "type": "error"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseDualStack"
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            true,
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsDualStack"
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ],
-                                                "rules": [
-                                                    {
-                                                        "conditions": [],
-                                                        "rules": [
-                                                            {
-                                                                "conditions": [],
-                                                                "endpoint": {
-                                                                    "url": "https://voice-chime.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                                    "properties": {},
-                                                                    "headers": {}
-                                                                },
-                                                                "type": "endpoint"
-                                                            }
-                                                        ],
-                                                        "type": "tree"
-                                                    }
-                                                ],
-                                                "type": "tree"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "error": "DualStack is enabled but this partition does not support DualStack",
-                                                "type": "error"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://voice-chime.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    }
-                                ],
-                                "type": "tree"
-                            }
-                        ],
-                        "type": "tree"
-                    },
-                    {
-                        "conditions": [],
-                        "error": "Invalid Configuration: Missing Region",
-                        "type": "error"
-                    }
-                ],
-                "type": "tree"
-            }
-        ]
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                    "type": "error"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": {
+                                            "ref": "Endpoint"
+                                        },
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "isSet",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "aws.partition",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                }
+                                            ],
+                                            "assign": "PartitionResult"
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseDualStack"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                true,
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsFIPS"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                true,
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsDualStack"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "rules": [
+                                                                {
+                                                                    "conditions": [],
+                                                                    "endpoint": {
+                                                                        "url": "https://voice-chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                        "properties": {},
+                                                                        "headers": {}
+                                                                    },
+                                                                    "type": "endpoint"
+                                                                }
+                                                            ],
+                                                            "type": "tree"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsFIPS"
+                                                                    ]
+                                                                },
+                                                                true
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "rules": [
+                                                                {
+                                                                    "conditions": [],
+                                                                    "endpoint": {
+                                                                        "url": "https://voice-chime-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                        "properties": {},
+                                                                        "headers": {}
+                                                                    },
+                                                                    "type": "endpoint"
+                                                                }
+                                                            ],
+                                                            "type": "tree"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "FIPS is enabled but this partition does not support FIPS",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseDualStack"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                true,
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsDualStack"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "rules": [
+                                                                {
+                                                                    "conditions": [],
+                                                                    "endpoint": {
+                                                                        "url": "https://voice-chime.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                        "properties": {},
+                                                                        "headers": {}
+                                                                    },
+                                                                    "type": "endpoint"
+                                                                }
+                                                            ],
+                                                            "type": "tree"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "DualStack is enabled but this partition does not support DualStack",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://voice-chime.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                }
+                            ],
+                            "type": "tree"
+                        },
+                        {
+                            "conditions": [],
+                            "error": "Invalid Configuration: Missing Region",
+                            "type": "error"
+                        }
+                    ],
+                    "type": "tree"
+                }
+            ]
+        }
     }
 }

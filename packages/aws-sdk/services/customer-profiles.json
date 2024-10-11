@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AddProfileKey"
-                    }
+                    "route": "/domains/{DomainName}/profiles/keys"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AddProfileKeyResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +35,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "CalculatedAttributeName": "route.CalculatedAttributeName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCalculatedAttributeDefinition"
-                    }
+                    "route": "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateCalculatedAttributeDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.CalculatedAttributeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +66,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDomain"
-                    }
+                    "route": "/domains/{DomainName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateDomainResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +95,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "EventStreamName": "route.EventStreamName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateEventStream"
-                    }
+                    "route": "/domains/{DomainName}/event-streams/{EventStreamName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateEventStreamResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.EventStreamName",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +126,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateIntegrationWorkflow"
-                    }
+                    "route": "/domains/{DomainName}/workflows/integrations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateIntegrationWorkflowResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,20 +155,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateProfile"
-                    }
+                    "route": "/domains/{DomainName}/profiles"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateProfileResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,20 +184,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "CalculatedAttributeName": "route.CalculatedAttributeName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCalculatedAttributeDefinition"
-                    }
+                    "method": "DELETE",
+                    "route": "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteCalculatedAttributeDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.CalculatedAttributeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,20 +215,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDomain"
-                    }
+                    "method": "DELETE",
+                    "route": "/domains/{DomainName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteDomainResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,20 +244,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "EventStreamName": "route.EventStreamName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEventStream"
-                    }
+                    "method": "DELETE",
+                    "route": "/domains/{DomainName}/event-streams/{EventStreamName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteEventStreamResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.EventStreamName",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,20 +275,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteIntegration"
-                    }
+                    "route": "/domains/{DomainName}/integrations/delete"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteIntegrationResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +304,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteProfile"
-                    }
+                    "route": "/domains/{DomainName}/profiles/delete"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteProfileResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +333,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteProfileKey"
-                    }
+                    "route": "/domains/{DomainName}/profiles/keys/delete"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteProfileKeyResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +362,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteProfileObject"
-                    }
+                    "route": "/domains/{DomainName}/profiles/objects/delete"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteProfileObjectResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +391,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "ObjectTypeName": "route.ObjectTypeName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteProfileObjectType"
-                    }
+                    "method": "DELETE",
+                    "route": "/domains/{DomainName}/object-types/{ObjectTypeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteProfileObjectTypeResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.ObjectTypeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +422,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "WorkflowId": "route.WorkflowId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteWorkflow"
-                    }
+                    "method": "DELETE",
+                    "route": "/domains/{DomainName}/workflows/{WorkflowId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteWorkflowResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.WorkflowId",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +453,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DetectProfileObjectType"
-                    }
+                    "route": "/domains/{DomainName}/detect/object-types"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DetectProfileObjectTypeResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +482,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAutoMergingPreview"
-                    }
+                    "route": "/domains/{DomainName}/identity-resolution-jobs/auto-merging-preview"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAutoMergingPreviewResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +511,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "CalculatedAttributeName": "route.CalculatedAttributeName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCalculatedAttributeDefinition"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCalculatedAttributeDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.CalculatedAttributeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +542,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "ProfileId": "route.ProfileId",
+                            "CalculatedAttributeName": "route.CalculatedAttributeName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCalculatedAttributeForProfile"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/profile/{ProfileId}/calculated-attributes/{CalculatedAttributeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCalculatedAttributeForProfileResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.ProfileId",
+                        "param.0.CalculatedAttributeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +575,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDomain"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDomainResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +604,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "EventStreamName": "route.EventStreamName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEventStream"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/event-streams/{EventStreamName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEventStreamResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.EventStreamName",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +635,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "JobId": "route.JobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetIdentityResolutionJob"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/identity-resolution-jobs/{JobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetIdentityResolutionJobResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.JobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +666,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetIntegration"
-                    }
+                    "route": "/domains/{DomainName}/integrations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetIntegrationResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +695,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMatches"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/matches"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMatchesResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +724,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "ObjectTypeName": "route.ObjectTypeName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetProfileObjectType"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/object-types/{ObjectTypeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetProfileObjectTypeResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.ObjectTypeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +755,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateId": "route.TemplateId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetProfileObjectTypeTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/templates/{TemplateId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetProfileObjectTypeTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateId",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +784,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSimilarProfiles"
-                    }
+                    "route": "/domains/{DomainName}/matches"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSimilarProfilesResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +813,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "WorkflowId": "route.WorkflowId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWorkflow"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/workflows/{WorkflowId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWorkflowResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.WorkflowId",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +844,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "WorkflowId": "route.WorkflowId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWorkflowSteps"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/workflows/{WorkflowId}/steps"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWorkflowStepsResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.WorkflowId",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,14 +875,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAccountIntegrations"
-                    }
+                    "route": "/integrations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -876,20 +900,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCalculatedAttributeDefinitions"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/calculated-attributes"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListCalculatedAttributeDefinitionsResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +929,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "ProfileId": "route.ProfileId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCalculatedAttributesForProfile"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/profile/{ProfileId}/calculated-attributes"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListCalculatedAttributesForProfileResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.ProfileId",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,14 +960,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDomains"
-                    }
+                    "method": "GET",
+                    "route": "/domains"
                 },
                 "schema": {
                     "resultSchema": {
@@ -963,20 +985,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEventStreams"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/event-streams"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListEventStreamsResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +1014,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListIdentityResolutionJobs"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/identity-resolution-jobs"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListIdentityResolutionJobsResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +1043,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListIntegrations"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/integrations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListIntegrationsResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1072,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProfileObjects"
-                    }
+                    "route": "/domains/{DomainName}/profiles/objects"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListProfileObjectsResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1101,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProfileObjectTypes"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/object-types"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListProfileObjectTypesResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,14 +1130,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProfileObjectTypeTemplates"
-                    }
+                    "method": "GET",
+                    "route": "/templates"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1137,20 +1155,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListRuleBasedMatches"
-                    }
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/profiles/ruleBasedMatches"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListRuleBasedMatchesResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1184,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1213,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListWorkflows"
-                    }
+                    "route": "/domains/{DomainName}/workflows"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListWorkflowsResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1242,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "MergeProfiles"
-                    }
+                    "route": "/domains/{DomainName}/profiles/objects/merge"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/MergeProfilesResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1271,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutIntegration"
-                    }
+                    "method": "PUT",
+                    "route": "/domains/{DomainName}/integrations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutIntegrationResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1300,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutProfileObject"
-                    }
+                    "method": "PUT",
+                    "route": "/domains/{DomainName}/profiles/objects"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutProfileObjectResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1329,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "ObjectTypeName": "route.ObjectTypeName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutProfileObjectType"
-                    }
+                    "method": "PUT",
+                    "route": "/domains/{DomainName}/object-types/{ObjectTypeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutProfileObjectTypeResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.ObjectTypeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1360,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SearchProfiles"
-                    }
+                    "route": "/domains/{DomainName}/profiles/search"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SearchProfilesResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1389,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TagResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1418,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UntagResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1447,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "CalculatedAttributeName": "route.CalculatedAttributeName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateCalculatedAttributeDefinition"
-                    }
+                    "method": "PUT",
+                    "route": "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateCalculatedAttributeDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
+                        "param.0.CalculatedAttributeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1478,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDomain"
-                    }
+                    "method": "PUT",
+                    "route": "/domains/{DomainName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateDomainResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,20 +1507,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateProfile"
-                    }
+                    "method": "PUT",
+                    "route": "/domains/{DomainName}/profiles"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateProfileResponse"
                     },
                     "inject": [
+                        "param.0.DomainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -5262,318 +5284,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://profile-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://profile-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://profile.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://profile.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://profile-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://profile-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://profile.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://profile.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

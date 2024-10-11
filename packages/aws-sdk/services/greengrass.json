@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateRoleToGroup"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/groups/{GroupId}/role"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateRoleToGroupResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,14 +35,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateServiceRoleToAccount"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/servicerole"
                 },
                 "schema": {
                     "resultSchema": {
@@ -64,14 +60,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateConnectorDefinition"
-                    }
+                    "route": "/greengrass/definition/connectors"
                 },
                 "schema": {
                     "resultSchema": {
@@ -93,20 +85,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConnectorDefinitionId": "route.ConnectorDefinitionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateConnectorDefinitionVersion"
-                    }
+                    "route": "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateConnectorDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.ConnectorDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,14 +114,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCoreDefinition"
-                    }
+                    "route": "/greengrass/definition/cores"
                 },
                 "schema": {
                     "resultSchema": {
@@ -151,20 +139,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreDefinitionId": "route.CoreDefinitionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCoreDefinitionVersion"
-                    }
+                    "route": "/greengrass/definition/cores/{CoreDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateCoreDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.CoreDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,20 +168,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDeployment"
-                    }
+                    "route": "/greengrass/groups/{GroupId}/deployments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateDeploymentResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,14 +197,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDeviceDefinition"
-                    }
+                    "route": "/greengrass/definition/devices"
                 },
                 "schema": {
                     "resultSchema": {
@@ -238,20 +222,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DeviceDefinitionId": "route.DeviceDefinitionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDeviceDefinitionVersion"
-                    }
+                    "route": "/greengrass/definition/devices/{DeviceDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateDeviceDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.DeviceDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,14 +251,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFunctionDefinition"
-                    }
+                    "route": "/greengrass/definition/functions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -296,20 +276,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionDefinitionId": "route.FunctionDefinitionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFunctionDefinitionVersion"
-                    }
+                    "route": "/greengrass/definition/functions/{FunctionDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateFunctionDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.FunctionDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,14 +305,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateGroup"
-                    }
+                    "route": "/greengrass/groups"
                 },
                 "schema": {
                     "resultSchema": {
@@ -354,20 +330,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateGroupCertificateAuthority"
-                    }
+                    "route": "/greengrass/groups/{GroupId}/certificateauthorities"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateGroupCertificateAuthorityResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +359,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateGroupVersion"
-                    }
+                    "route": "/greengrass/groups/{GroupId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateGroupVersionResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,14 +388,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateLoggerDefinition"
-                    }
+                    "route": "/greengrass/definition/loggers"
                 },
                 "schema": {
                     "resultSchema": {
@@ -441,20 +413,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LoggerDefinitionId": "route.LoggerDefinitionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateLoggerDefinitionVersion"
-                    }
+                    "route": "/greengrass/definition/loggers/{LoggerDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateLoggerDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.LoggerDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,14 +442,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateResourceDefinition"
-                    }
+                    "route": "/greengrass/definition/resources"
                 },
                 "schema": {
                     "resultSchema": {
@@ -499,20 +467,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceDefinitionId": "route.ResourceDefinitionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateResourceDefinitionVersion"
-                    }
+                    "route": "/greengrass/definition/resources/{ResourceDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateResourceDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.ResourceDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,14 +496,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSoftwareUpdateJob"
-                    }
+                    "route": "/greengrass/updates"
                 },
                 "schema": {
                     "resultSchema": {
@@ -557,14 +521,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSubscriptionDefinition"
-                    }
+                    "route": "/greengrass/definition/subscriptions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -586,20 +546,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SubscriptionDefinitionId": "route.SubscriptionDefinitionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSubscriptionDefinitionVersion"
-                    }
+                    "route": "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSubscriptionDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.SubscriptionDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +575,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConnectorDefinitionId": "route.ConnectorDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteConnectorDefinition"
-                    }
+                    "method": "DELETE",
+                    "route": "/greengrass/definition/connectors/{ConnectorDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteConnectorDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.ConnectorDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +604,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreDefinitionId": "route.CoreDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCoreDefinition"
-                    }
+                    "method": "DELETE",
+                    "route": "/greengrass/definition/cores/{CoreDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteCoreDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.CoreDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +633,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DeviceDefinitionId": "route.DeviceDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDeviceDefinition"
-                    }
+                    "method": "DELETE",
+                    "route": "/greengrass/definition/devices/{DeviceDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteDeviceDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.DeviceDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +662,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionDefinitionId": "route.FunctionDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFunctionDefinition"
-                    }
+                    "method": "DELETE",
+                    "route": "/greengrass/definition/functions/{FunctionDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteFunctionDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.FunctionDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +691,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteGroup"
-                    }
+                    "method": "DELETE",
+                    "route": "/greengrass/groups/{GroupId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteGroupResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +720,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LoggerDefinitionId": "route.LoggerDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteLoggerDefinition"
-                    }
+                    "method": "DELETE",
+                    "route": "/greengrass/definition/loggers/{LoggerDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteLoggerDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.LoggerDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +749,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceDefinitionId": "route.ResourceDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteResourceDefinition"
-                    }
+                    "method": "DELETE",
+                    "route": "/greengrass/definition/resources/{ResourceDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteResourceDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.ResourceDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +778,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SubscriptionDefinitionId": "route.SubscriptionDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSubscriptionDefinition"
-                    }
+                    "method": "DELETE",
+                    "route": "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteSubscriptionDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.SubscriptionDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +807,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateRoleFromGroup"
-                    }
+                    "method": "DELETE",
+                    "route": "/greengrass/groups/{GroupId}/role"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateRoleFromGroupResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,14 +836,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateServiceRoleFromAccount"
-                    }
+                    "method": "DELETE",
+                    "route": "/greengrass/servicerole"
                 },
                 "schema": {
                     "resultSchema": {
@@ -905,20 +861,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAssociatedRole"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/groups/{GroupId}/role"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAssociatedRoleResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +890,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BulkDeploymentId": "route.BulkDeploymentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBulkDeploymentStatus"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/bulk/deployments/{BulkDeploymentId}/status"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetBulkDeploymentStatusResponse"
                     },
                     "inject": [
+                        "param.0.BulkDeploymentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +919,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ThingName": "route.ThingName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConnectivityInfo"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/things/{ThingName}/connectivityInfo"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetConnectivityInfoResponse"
                     },
                     "inject": [
+                        "param.0.ThingName",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +948,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConnectorDefinitionId": "route.ConnectorDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConnectorDefinition"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/connectors/{ConnectorDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetConnectorDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.ConnectorDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +977,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConnectorDefinitionId": "route.ConnectorDefinitionId",
+                            "ConnectorDefinitionVersionId": "route.ConnectorDefinitionVersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConnectorDefinitionVersion"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions/{ConnectorDefinitionVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetConnectorDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.ConnectorDefinitionId",
+                        "param.0.ConnectorDefinitionVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1008,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreDefinitionId": "route.CoreDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCoreDefinition"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/cores/{CoreDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCoreDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.CoreDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1037,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreDefinitionId": "route.CoreDefinitionId",
+                            "CoreDefinitionVersionId": "route.CoreDefinitionVersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCoreDefinitionVersion"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/cores/{CoreDefinitionId}/versions/{CoreDefinitionVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCoreDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.CoreDefinitionId",
+                        "param.0.CoreDefinitionVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1068,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "DeploymentId": "route.DeploymentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDeploymentStatus"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/groups/{GroupId}/deployments/{DeploymentId}/status"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDeploymentStatusResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
+                        "param.0.DeploymentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1099,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DeviceDefinitionId": "route.DeviceDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDeviceDefinition"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/devices/{DeviceDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDeviceDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.DeviceDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1128,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DeviceDefinitionId": "route.DeviceDefinitionId",
+                            "DeviceDefinitionVersionId": "route.DeviceDefinitionVersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDeviceDefinitionVersion"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/devices/{DeviceDefinitionId}/versions/{DeviceDefinitionVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDeviceDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.DeviceDefinitionId",
+                        "param.0.DeviceDefinitionVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1159,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionDefinitionId": "route.FunctionDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFunctionDefinition"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/functions/{FunctionDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFunctionDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.FunctionDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1188,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionDefinitionId": "route.FunctionDefinitionId",
+                            "FunctionDefinitionVersionId": "route.FunctionDefinitionVersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFunctionDefinitionVersion"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/functions/{FunctionDefinitionId}/versions/{FunctionDefinitionVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFunctionDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.FunctionDefinitionId",
+                        "param.0.FunctionDefinitionVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1219,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGroup"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/groups/{GroupId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetGroupResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1248,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "CertificateAuthorityId": "route.CertificateAuthorityId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGroupCertificateAuthority"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/groups/{GroupId}/certificateauthorities/{CertificateAuthorityId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetGroupCertificateAuthorityResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
+                        "param.0.CertificateAuthorityId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1279,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGroupCertificateConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/groups/{GroupId}/certificateauthorities/configuration/expiry"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetGroupCertificateConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1308,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "GroupVersionId": "route.GroupVersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGroupVersion"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/groups/{GroupId}/versions/{GroupVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetGroupVersionResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
+                        "param.0.GroupVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1339,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LoggerDefinitionId": "route.LoggerDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLoggerDefinition"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/loggers/{LoggerDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLoggerDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.LoggerDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1368,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LoggerDefinitionId": "route.LoggerDefinitionId",
+                            "LoggerDefinitionVersionId": "route.LoggerDefinitionVersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLoggerDefinitionVersion"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/loggers/{LoggerDefinitionId}/versions/{LoggerDefinitionVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLoggerDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.LoggerDefinitionId",
+                        "param.0.LoggerDefinitionVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1399,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceDefinitionId": "route.ResourceDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResourceDefinition"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/resources/{ResourceDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetResourceDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.ResourceDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1428,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceDefinitionId": "route.ResourceDefinitionId",
+                            "ResourceDefinitionVersionId": "route.ResourceDefinitionVersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResourceDefinitionVersion"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/resources/{ResourceDefinitionId}/versions/{ResourceDefinitionVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetResourceDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.ResourceDefinitionId",
+                        "param.0.ResourceDefinitionVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,14 +1459,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetServiceRoleForAccount"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/servicerole"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1514,20 +1484,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SubscriptionDefinitionId": "route.SubscriptionDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSubscriptionDefinition"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSubscriptionDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.SubscriptionDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1513,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SubscriptionDefinitionId": "route.SubscriptionDefinitionId",
+                            "SubscriptionDefinitionVersionId": "route.SubscriptionDefinitionVersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSubscriptionDefinitionVersion"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}/versions/{SubscriptionDefinitionVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSubscriptionDefinitionVersionResponse"
                     },
                     "inject": [
+                        "param.0.SubscriptionDefinitionId",
+                        "param.0.SubscriptionDefinitionVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,20 +1544,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ThingName": "route.ThingName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetThingRuntimeConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/things/{ThingName}/runtimeconfig"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetThingRuntimeConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.ThingName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1601,20 +1573,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BulkDeploymentId": "route.BulkDeploymentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBulkDeploymentDetailedReports"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/bulk/deployments/{BulkDeploymentId}/detailed-reports"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListBulkDeploymentDetailedReportsResponse"
                     },
                     "inject": [
+                        "param.0.BulkDeploymentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1630,14 +1602,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBulkDeployments"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/bulk/deployments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1659,14 +1627,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListConnectorDefinitions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/connectors"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1688,20 +1652,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConnectorDefinitionId": "route.ConnectorDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListConnectorDefinitionVersions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/connectors/{ConnectorDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListConnectorDefinitionVersionsResponse"
                     },
                     "inject": [
+                        "param.0.ConnectorDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,14 +1681,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCoreDefinitions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/cores"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1746,20 +1706,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreDefinitionId": "route.CoreDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCoreDefinitionVersions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/cores/{CoreDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListCoreDefinitionVersionsResponse"
                     },
                     "inject": [
+                        "param.0.CoreDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,20 +1735,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDeployments"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/groups/{GroupId}/deployments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDeploymentsResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,14 +1764,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDeviceDefinitions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/devices"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1833,20 +1789,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DeviceDefinitionId": "route.DeviceDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDeviceDefinitionVersions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/devices/{DeviceDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDeviceDefinitionVersionsResponse"
                     },
                     "inject": [
+                        "param.0.DeviceDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,14 +1818,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFunctionDefinitions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/functions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1891,20 +1843,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionDefinitionId": "route.FunctionDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFunctionDefinitionVersions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/functions/{FunctionDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListFunctionDefinitionVersionsResponse"
                     },
                     "inject": [
+                        "param.0.FunctionDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,20 +1872,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListGroupCertificateAuthorities"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/groups/{GroupId}/certificateauthorities"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListGroupCertificateAuthoritiesResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1949,14 +1901,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListGroups"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/groups"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1978,20 +1926,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListGroupVersions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/groups/{GroupId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListGroupVersionsResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2007,14 +1955,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLoggerDefinitions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/loggers"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2036,20 +1980,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LoggerDefinitionId": "route.LoggerDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLoggerDefinitionVersions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/loggers/{LoggerDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListLoggerDefinitionVersionsResponse"
                     },
                     "inject": [
+                        "param.0.LoggerDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2065,14 +2009,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListResourceDefinitions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/resources"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2094,20 +2034,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceDefinitionId": "route.ResourceDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListResourceDefinitionVersions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/resources/{ResourceDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListResourceDefinitionVersionsResponse"
                     },
                     "inject": [
+                        "param.0.ResourceDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2123,14 +2063,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSubscriptionDefinitions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/subscriptions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2152,20 +2088,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SubscriptionDefinitionId": "route.SubscriptionDefinitionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSubscriptionDefinitionVersions"
-                    }
+                    "method": "GET",
+                    "route": "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListSubscriptionDefinitionVersionsResponse"
                     },
                     "inject": [
+                        "param.0.SubscriptionDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2181,20 +2117,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2210,20 +2146,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ResetDeployments"
-                    }
+                    "route": "/greengrass/groups/{GroupId}/deployments/$reset"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ResetDeploymentsResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2239,14 +2175,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartBulkDeployment"
-                    }
+                    "route": "/greengrass/bulk/deployments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2268,20 +2200,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "BulkDeploymentId": "route.BulkDeploymentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StopBulkDeployment"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/bulk/deployments/{BulkDeploymentId}/$stop"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StopBulkDeploymentResponse"
                     },
                     "inject": [
+                        "param.0.BulkDeploymentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2297,20 +2229,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2326,20 +2258,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2355,20 +2287,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ThingName": "route.ThingName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateConnectivityInfo"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/things/{ThingName}/connectivityInfo"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateConnectivityInfoResponse"
                     },
                     "inject": [
+                        "param.0.ThingName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2384,20 +2316,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConnectorDefinitionId": "route.ConnectorDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateConnectorDefinition"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/definition/connectors/{ConnectorDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateConnectorDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.ConnectorDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2413,20 +2345,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreDefinitionId": "route.CoreDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateCoreDefinition"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/definition/cores/{CoreDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateCoreDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.CoreDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2442,20 +2374,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DeviceDefinitionId": "route.DeviceDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDeviceDefinition"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/definition/devices/{DeviceDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateDeviceDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.DeviceDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2471,20 +2403,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionDefinitionId": "route.FunctionDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFunctionDefinition"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/definition/functions/{FunctionDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateFunctionDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.FunctionDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2500,20 +2432,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateGroup"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/groups/{GroupId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateGroupResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2529,20 +2461,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GroupId": "route.GroupId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateGroupCertificateConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/groups/{GroupId}/certificateauthorities/configuration/expiry"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateGroupCertificateConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.GroupId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2558,20 +2490,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LoggerDefinitionId": "route.LoggerDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateLoggerDefinition"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/definition/loggers/{LoggerDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateLoggerDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.LoggerDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2587,20 +2519,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceDefinitionId": "route.ResourceDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateResourceDefinition"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/definition/resources/{ResourceDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateResourceDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.ResourceDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2616,20 +2548,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SubscriptionDefinitionId": "route.SubscriptionDefinitionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSubscriptionDefinition"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/definition/subscriptions/{SubscriptionDefinitionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSubscriptionDefinitionResponse"
                     },
                     "inject": [
+                        "param.0.SubscriptionDefinitionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2645,20 +2577,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ThingName": "route.ThingName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateThingRuntimeConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/greengrass/things/{ThingName}/runtimeconfig"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateThingRuntimeConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.ThingName",
                         "param.0"
                     ],
                     "$defs": {
@@ -5939,410 +5871,412 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://greengrass-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
+                                },
+                                "properties": {},
+                                "headers": {}
                             },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://greengrass-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
                                                     },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "stringEquals",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "Region"
-                                                            },
-                                                            "us-gov-east-1"
-                                                        ]
-                                                    }
-                                                ],
-                                                "endpoint": {
-                                                    "url": "https://greengrass.us-gov-east-1.amazonaws.com",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            },
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "stringEquals",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "Region"
-                                                            },
-                                                            "us-gov-west-1"
-                                                        ]
-                                                    }
-                                                ],
-                                                "endpoint": {
-                                                    "url": "https://greengrass.us-gov-west-1.amazonaws.com",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://greengrass-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://greengrass.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "Region"
-                                            },
-                                            "dataplane-us-gov-east-1"
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://greengrass-ats.iot.us-gov-east-1.amazonaws.com",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "greengrass",
-                                                "signingRegion": "us-gov-east-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
                                 },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "Region"
-                                            },
-                                            "dataplane-us-gov-west-1"
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://greengrass-ats.iot.us-gov-west-1.amazonaws.com",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "greengrass",
-                                                "signingRegion": "us-gov-west-1"
-                                            }
-                                        ]
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Region"
+                                                                },
+                                                                "us-gov-east-1"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://greengrass.us-gov-east-1.amazonaws.com",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Region"
+                                                                },
+                                                                "us-gov-west-1"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://greengrass.us-gov-west-1.amazonaws.com",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://greengrass-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://greengrass.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                },
+                                                "dataplane-us-gov-east-1"
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://greengrass-ats.iot.us-gov-east-1.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "greengrass",
+                                                    "signingRegion": "us-gov-east-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
                                     },
-                                    "headers": {}
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://greengrass.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                },
+                                                "dataplane-us-gov-west-1"
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://greengrass-ats.iot.us-gov-west-1.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "greengrass",
+                                                    "signingRegion": "us-gov-west-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://greengrass.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

@@ -5,20 +5,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchPutPropertyValues"
-                    }
+                    "route": "/workspaces/{workspaceId}/entity-properties"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BatchPutPropertyValuesResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -34,20 +34,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "metadataTransferJobId": "route.metadataTransferJobId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CancelMetadataTransferJob"
-                    }
+                    "method": "PUT",
+                    "route": "/metadata-transfer-jobs/{metadataTransferJobId}/cancel"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CancelMetadataTransferJobResponse"
                     },
                     "inject": [
+                        "param.0.metadataTransferJobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -63,20 +63,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "componentTypeId": "route.componentTypeId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateComponentType"
-                    }
+                    "route": "/workspaces/{workspaceId}/component-types/{componentTypeId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateComponentTypeResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.componentTypeId",
                         "param.0"
                     ],
                     "$defs": {
@@ -92,20 +94,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateEntity"
-                    }
+                    "route": "/workspaces/{workspaceId}/entities"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateEntityResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -121,14 +123,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateMetadataTransferJob"
-                    }
+                    "route": "/metadata-transfer-jobs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -150,20 +148,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateScene"
-                    }
+                    "route": "/workspaces/{workspaceId}/scenes"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSceneResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -179,20 +177,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "syncSource": "route.syncSource",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSyncJob"
-                    }
+                    "route": "/workspaces/{workspaceId}/sync-jobs/{syncSource}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSyncJobResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.syncSource",
                         "param.0"
                     ],
                     "$defs": {
@@ -208,20 +208,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateWorkspace"
-                    }
+                    "route": "/workspaces/{workspaceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateWorkspaceResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -237,20 +237,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "componentTypeId": "route.componentTypeId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteComponentType"
-                    }
+                    "method": "DELETE",
+                    "route": "/workspaces/{workspaceId}/component-types/{componentTypeId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteComponentTypeResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.componentTypeId",
                         "param.0"
                     ],
                     "$defs": {
@@ -266,20 +268,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "entityId": "route.entityId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEntity"
-                    }
+                    "method": "DELETE",
+                    "route": "/workspaces/{workspaceId}/entities/{entityId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteEntityResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.entityId",
                         "param.0"
                     ],
                     "$defs": {
@@ -295,20 +299,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "sceneId": "route.sceneId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteScene"
-                    }
+                    "method": "DELETE",
+                    "route": "/workspaces/{workspaceId}/scenes/{sceneId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteSceneResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.sceneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -324,20 +330,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "syncSource": "route.syncSource",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSyncJob"
-                    }
+                    "method": "DELETE",
+                    "route": "/workspaces/{workspaceId}/sync-jobs/{syncSource}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteSyncJobResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.syncSource",
                         "param.0"
                     ],
                     "$defs": {
@@ -353,20 +361,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteWorkspace"
-                    }
+                    "method": "DELETE",
+                    "route": "/workspaces/{workspaceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteWorkspaceResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -382,14 +390,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ExecuteQuery"
-                    }
+                    "route": "/queries/execution"
                 },
                 "schema": {
                     "resultSchema": {
@@ -411,20 +415,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "componentTypeId": "route.componentTypeId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetComponentType"
-                    }
+                    "method": "GET",
+                    "route": "/workspaces/{workspaceId}/component-types/{componentTypeId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetComponentTypeResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.componentTypeId",
                         "param.0"
                     ],
                     "$defs": {
@@ -440,20 +446,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "entityId": "route.entityId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEntity"
-                    }
+                    "method": "GET",
+                    "route": "/workspaces/{workspaceId}/entities/{entityId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEntityResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.entityId",
                         "param.0"
                     ],
                     "$defs": {
@@ -469,20 +477,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "metadataTransferJobId": "route.metadataTransferJobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMetadataTransferJob"
-                    }
+                    "method": "GET",
+                    "route": "/metadata-transfer-jobs/{metadataTransferJobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMetadataTransferJobResponse"
                     },
                     "inject": [
+                        "param.0.metadataTransferJobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -498,14 +506,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPricingPlan"
-                    }
+                    "method": "GET",
+                    "route": "/pricingplan"
                 },
                 "schema": {
                     "resultSchema": {
@@ -527,20 +531,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPropertyValue"
-                    }
+                    "route": "/workspaces/{workspaceId}/entity-properties/value"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPropertyValueResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -556,20 +560,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPropertyValueHistory"
-                    }
+                    "route": "/workspaces/{workspaceId}/entity-properties/history"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPropertyValueHistoryResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -585,20 +589,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "sceneId": "route.sceneId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetScene"
-                    }
+                    "method": "GET",
+                    "route": "/workspaces/{workspaceId}/scenes/{sceneId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSceneResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.sceneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -614,20 +620,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "syncSource": "route.syncSource",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSyncJob"
-                    }
+                    "method": "GET",
+                    "route": "/sync-jobs/{syncSource}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSyncJobResponse"
                     },
                     "inject": [
+                        "param.0.syncSource",
                         "param.0"
                     ],
                     "$defs": {
@@ -643,20 +649,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWorkspace"
-                    }
+                    "method": "GET",
+                    "route": "/workspaces/{workspaceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWorkspaceResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -672,20 +678,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "entityId": "route.entityId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListComponents"
-                    }
+                    "route": "/workspaces/{workspaceId}/entities/{entityId}/components-list"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListComponentsResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.entityId",
                         "param.0"
                     ],
                     "$defs": {
@@ -701,20 +709,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListComponentTypes"
-                    }
+                    "route": "/workspaces/{workspaceId}/component-types-list"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListComponentTypesResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -730,20 +738,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEntities"
-                    }
+                    "route": "/workspaces/{workspaceId}/entities-list"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListEntitiesResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -759,14 +767,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMetadataTransferJobs"
-                    }
+                    "route": "/metadata-transfer-jobs-list"
                 },
                 "schema": {
                     "resultSchema": {
@@ -788,20 +792,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProperties"
-                    }
+                    "route": "/workspaces/{workspaceId}/properties-list"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListPropertiesResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -817,20 +821,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListScenes"
-                    }
+                    "route": "/workspaces/{workspaceId}/scenes-list"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListScenesResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -846,20 +850,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSyncJobs"
-                    }
+                    "route": "/workspaces/{workspaceId}/sync-jobs-list"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListSyncJobsResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -875,20 +879,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "syncSource": "route.syncSource",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSyncResources"
-                    }
+                    "route": "/workspaces/{workspaceId}/sync-jobs/{syncSource}/resources-list"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListSyncResourcesResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.syncSource",
                         "param.0"
                     ],
                     "$defs": {
@@ -904,14 +910,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "route": "/tags-list"
                 },
                 "schema": {
                     "resultSchema": {
@@ -933,14 +935,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListWorkspaces"
-                    }
+                    "route": "/workspaces-list"
                 },
                 "schema": {
                     "resultSchema": {
@@ -962,14 +960,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -991,14 +985,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1020,20 +1010,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "componentTypeId": "route.componentTypeId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateComponentType"
-                    }
+                    "method": "PUT",
+                    "route": "/workspaces/{workspaceId}/component-types/{componentTypeId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateComponentTypeResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.componentTypeId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1049,20 +1041,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "entityId": "route.entityId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEntity"
-                    }
+                    "method": "PUT",
+                    "route": "/workspaces/{workspaceId}/entities/{entityId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateEntityResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.entityId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1078,14 +1072,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdatePricingPlan"
-                    }
+                    "route": "/pricingplan"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1107,20 +1097,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "sceneId": "route.sceneId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateScene"
-                    }
+                    "method": "PUT",
+                    "route": "/workspaces/{workspaceId}/scenes/{sceneId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSceneResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
+                        "param.0.sceneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1136,20 +1128,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "workspaceId": "route.workspaceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateWorkspace"
-                    }
+                    "method": "PUT",
+                    "route": "/workspaces/{workspaceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateWorkspaceResponse"
                     },
                     "inject": [
+                        "param.0.workspaceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -4201,318 +4193,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://iottwinmaker-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://iottwinmaker-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://iottwinmaker.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://iottwinmaker.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://iottwinmaker-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://iottwinmaker-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://iottwinmaker.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://iottwinmaker.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

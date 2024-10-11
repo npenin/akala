@@ -6,14 +6,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateApiKey"
-                    }
+                    "route": "/apikeys"
                 },
                 "schema": {
                     "resultSchema": {
@@ -35,20 +31,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateAuthorizer"
-                    }
+                    "route": "/restapis/{restApiId}/authorizers"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Authorizer"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +60,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainName": "route.domainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateBasePathMapping"
-                    }
+                    "route": "/domainnames/{domainName}/basepathmappings"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BasePathMapping"
                     },
                     "inject": [
+                        "param.0.domainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +89,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDeployment"
-                    }
+                    "route": "/restapis/{restApiId}/deployments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Deployment"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +118,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDocumentationPart"
-                    }
+                    "route": "/restapis/{restApiId}/documentation/parts"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DocumentationPart"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,20 +147,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDocumentationVersion"
-                    }
+                    "route": "/restapis/{restApiId}/documentation/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DocumentationVersion"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,14 +176,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDomainName"
-                    }
+                    "route": "/domainnames"
                 },
                 "schema": {
                     "resultSchema": {
@@ -209,20 +201,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateModel"
-                    }
+                    "route": "/restapis/{restApiId}/models"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Model"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,20 +230,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateRequestValidator"
-                    }
+                    "route": "/restapis/{restApiId}/requestvalidators"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RequestValidator"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,20 +259,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "parentId": "route.parentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateResource"
-                    }
+                    "route": "/restapis/{restApiId}/resources/{parentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Resource"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.parentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,14 +290,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateRestApi"
-                    }
+                    "route": "/restapis"
                 },
                 "schema": {
                     "resultSchema": {
@@ -325,20 +315,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateStage"
-                    }
+                    "route": "/restapis/{restApiId}/stages"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Stage"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,14 +344,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateUsagePlan"
-                    }
+                    "route": "/usageplans"
                 },
                 "schema": {
                     "resultSchema": {
@@ -383,20 +369,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "usagePlanId": "route.usagePlanId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateUsagePlanKey"
-                    }
+                    "route": "/usageplans/{usagePlanId}/keys"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UsagePlanKey"
                     },
                     "inject": [
+                        "param.0.usagePlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,14 +398,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateVpcLink"
-                    }
+                    "route": "/vpclinks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -441,20 +423,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "apiKey": "route.apiKey",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteApiKey"
-                    }
+                    "method": "DELETE",
+                    "route": "/apikeys/{apiKey}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.apiKey",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +452,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "authorizerId": "route.authorizerId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteAuthorizer"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/authorizers/{authorizerId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.authorizerId",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +483,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainName": "route.domainName",
+                            "basePath": "route.basePath",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteBasePathMapping"
-                    }
+                    "method": "DELETE",
+                    "route": "/domainnames/{domainName}/basepathmappings/{basePath}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.domainName",
+                        "param.0.basePath",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +514,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "clientCertificateId": "route.clientCertificateId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteClientCertificate"
-                    }
+                    "method": "DELETE",
+                    "route": "/clientcertificates/{clientCertificateId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.clientCertificateId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +543,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "deploymentId": "route.deploymentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDeployment"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/deployments/{deploymentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.deploymentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +574,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "documentationPartId": "route.documentationPartId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDocumentationPart"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/documentation/parts/{documentationPartId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.documentationPartId",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +605,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "documentationVersion": "route.documentationVersion",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDocumentationVersion"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/documentation/versions/{documentationVersion}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.documentationVersion",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +636,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainName": "route.domainName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDomainName"
-                    }
+                    "method": "DELETE",
+                    "route": "/domainnames/{domainName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.domainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +665,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "responseType": "route.responseType",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteGatewayResponse"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/gatewayresponses/{responseType}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.responseType",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +696,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteIntegration"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +729,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "statusCode": "route.statusCode",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteIntegrationResponse"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
+                        "param.0.statusCode",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +764,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteMethod"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +797,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "statusCode": "route.statusCode",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteMethodResponse"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
+                        "param.0.statusCode",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +832,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "modelName": "route.modelName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteModel"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/models/{modelName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.modelName",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +863,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "requestValidatorId": "route.requestValidatorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteRequestValidator"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/requestvalidators/{requestValidatorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.requestValidatorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +894,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +925,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteRestApi"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +954,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "stageName": "route.stageName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteStage"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/stages/{stageName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.stageName",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +985,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "usagePlanId": "route.usagePlanId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteUsagePlan"
-                    }
+                    "method": "DELETE",
+                    "route": "/usageplans/{usagePlanId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.usagePlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +1014,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "usagePlanId": "route.usagePlanId",
+                            "keyId": "route.keyId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteUsagePlanKey"
-                    }
+                    "method": "DELETE",
+                    "route": "/usageplans/{usagePlanId}/keys/{keyId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.usagePlanId",
+                        "param.0.keyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +1045,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "vpcLinkId": "route.vpcLinkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVpcLink"
-                    }
+                    "method": "DELETE",
+                    "route": "/vpclinks/{vpcLinkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.vpcLinkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1074,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "stageName": "route.stageName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "FlushStageAuthorizersCache"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/stages/{stageName}/cache/authorizers"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.stageName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1105,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "stageName": "route.stageName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "FlushStageCache"
-                    }
+                    "method": "DELETE",
+                    "route": "/restapis/{restApiId}/stages/{stageName}/cache/data"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.stageName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,14 +1136,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GenerateClientCertificate"
-                    }
+                    "route": "/clientcertificates"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1137,14 +1161,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAccount"
-                    }
+                    "method": "GET",
+                    "route": "/account"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1166,20 +1186,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "apiKey": "route.apiKey",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApiKey"
-                    }
+                    "method": "GET",
+                    "route": "/apikeys/{apiKey}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ApiKey"
                     },
                     "inject": [
+                        "param.0.apiKey",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,14 +1215,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApiKeys"
-                    }
+                    "method": "GET",
+                    "route": "/apikeys"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1224,20 +1240,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "authorizerId": "route.authorizerId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAuthorizer"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/authorizers/{authorizerId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Authorizer"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.authorizerId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1271,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAuthorizers"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/authorizers"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Authorizers"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1300,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainName": "route.domainName",
+                            "basePath": "route.basePath",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBasePathMapping"
-                    }
+                    "method": "GET",
+                    "route": "/domainnames/{domainName}/basepathmappings/{basePath}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BasePathMapping"
                     },
                     "inject": [
+                        "param.0.domainName",
+                        "param.0.basePath",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1331,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainName": "route.domainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBasePathMappings"
-                    }
+                    "method": "GET",
+                    "route": "/domainnames/{domainName}/basepathmappings"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BasePathMappings"
                     },
                     "inject": [
+                        "param.0.domainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1360,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "clientCertificateId": "route.clientCertificateId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetClientCertificate"
-                    }
+                    "method": "GET",
+                    "route": "/clientcertificates/{clientCertificateId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ClientCertificate"
                     },
                     "inject": [
+                        "param.0.clientCertificateId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,14 +1389,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetClientCertificates"
-                    }
+                    "method": "GET",
+                    "route": "/clientcertificates"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1398,20 +1414,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "deploymentId": "route.deploymentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDeployment"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/deployments/{deploymentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Deployment"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.deploymentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1445,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDeployments"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/deployments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Deployments"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1474,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "documentationPartId": "route.documentationPartId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDocumentationPart"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/documentation/parts/{documentationPartId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DocumentationPart"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.documentationPartId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,20 +1505,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDocumentationParts"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/documentation/parts"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DocumentationParts"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1514,20 +1534,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "documentationVersion": "route.documentationVersion",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDocumentationVersion"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/documentation/versions/{documentationVersion}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DocumentationVersion"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.documentationVersion",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1565,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDocumentationVersions"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/documentation/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DocumentationVersions"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,20 +1594,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainName": "route.domainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDomainName"
-                    }
+                    "method": "GET",
+                    "route": "/domainnames/{domainName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DomainName"
                     },
                     "inject": [
+                        "param.0.domainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1601,14 +1623,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDomainNames"
-                    }
+                    "method": "GET",
+                    "route": "/domainnames"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1630,20 +1648,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "stageName": "route.stageName",
+                            "exportType": "route.exportType",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetExport"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/stages/{stageName}/exports/{exportType}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ExportResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.stageName",
+                        "param.0.exportType",
                         "param.0"
                     ],
                     "$defs": {
@@ -1659,20 +1681,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "responseType": "route.responseType",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGatewayResponse"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/gatewayresponses/{responseType}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GatewayResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.responseType",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,20 +1712,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGatewayResponses"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/gatewayresponses"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GatewayResponses"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,20 +1741,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetIntegration"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Integration"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
                         "param.0"
                     ],
                     "$defs": {
@@ -1746,20 +1774,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "statusCode": "route.statusCode",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetIntegrationResponse"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/IntegrationResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
+                        "param.0.statusCode",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,20 +1809,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMethod"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Method"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,20 +1842,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "statusCode": "route.statusCode",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMethodResponse"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/MethodResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
+                        "param.0.statusCode",
                         "param.0"
                     ],
                     "$defs": {
@@ -1833,20 +1877,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "modelName": "route.modelName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetModel"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/models/{modelName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Model"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.modelName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,20 +1908,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetModels"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/models"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Models"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1891,20 +1937,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "modelName": "route.modelName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetModelTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/models/{modelName}/default_template"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Template"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.modelName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,20 +1968,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "requestValidatorId": "route.requestValidatorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRequestValidator"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/requestvalidators/{requestValidatorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RequestValidator"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.requestValidatorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1949,20 +1999,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRequestValidators"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/requestvalidators"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RequestValidators"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1978,20 +2028,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResource"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Resource"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2007,20 +2059,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResources"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/resources"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Resources"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2036,20 +2088,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRestApi"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RestApi"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2065,14 +2117,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRestApis"
-                    }
+                    "method": "GET",
+                    "route": "/restapis"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2094,20 +2142,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "stageName": "route.stageName",
+                            "sdkType": "route.sdkType",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSdk"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/stages/{stageName}/sdks/{sdkType}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SdkResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.stageName",
+                        "param.0.sdkType",
                         "param.0"
                     ],
                     "$defs": {
@@ -2123,20 +2175,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "id": "route.id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSdkType"
-                    }
+                    "method": "GET",
+                    "route": "/sdktypes/{id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SdkType"
                     },
                     "inject": [
+                        "param.0.id",
                         "param.0"
                     ],
                     "$defs": {
@@ -2152,14 +2204,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSdkTypes"
-                    }
+                    "method": "GET",
+                    "route": "/sdktypes"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2181,20 +2229,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "stageName": "route.stageName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetStage"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/stages/{stageName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Stage"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.stageName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2210,20 +2260,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetStages"
-                    }
+                    "method": "GET",
+                    "route": "/restapis/{restApiId}/stages"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Stages"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2239,20 +2289,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetTags"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Tags"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2268,20 +2318,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "usagePlanId": "route.usagePlanId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetUsage"
-                    }
+                    "method": "GET",
+                    "route": "/usageplans/{usagePlanId}/usage"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Usage"
                     },
                     "inject": [
+                        "param.0.usagePlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2297,20 +2347,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "usagePlanId": "route.usagePlanId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetUsagePlan"
-                    }
+                    "method": "GET",
+                    "route": "/usageplans/{usagePlanId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UsagePlan"
                     },
                     "inject": [
+                        "param.0.usagePlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2326,20 +2376,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "usagePlanId": "route.usagePlanId",
+                            "keyId": "route.keyId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetUsagePlanKey"
-                    }
+                    "method": "GET",
+                    "route": "/usageplans/{usagePlanId}/keys/{keyId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UsagePlanKey"
                     },
                     "inject": [
+                        "param.0.usagePlanId",
+                        "param.0.keyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2355,20 +2407,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "usagePlanId": "route.usagePlanId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetUsagePlanKeys"
-                    }
+                    "method": "GET",
+                    "route": "/usageplans/{usagePlanId}/keys"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UsagePlanKeys"
                     },
                     "inject": [
+                        "param.0.usagePlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2384,14 +2436,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetUsagePlans"
-                    }
+                    "method": "GET",
+                    "route": "/usageplans"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2413,20 +2461,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "vpcLinkId": "route.vpcLinkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVpcLink"
-                    }
+                    "method": "GET",
+                    "route": "/vpclinks/{vpcLinkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/VpcLink"
                     },
                     "inject": [
+                        "param.0.vpcLinkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2442,14 +2490,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVpcLinks"
-                    }
+                    "method": "GET",
+                    "route": "/vpclinks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2471,14 +2515,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ImportApiKeys"
-                    }
+                    "route": "/apikeys"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2500,20 +2540,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ImportDocumentationParts"
-                    }
+                    "method": "PUT",
+                    "route": "/restapis/{restApiId}/documentation/parts"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DocumentationPartIds"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2529,14 +2569,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ImportRestApi"
-                    }
+                    "route": "/restapis"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2558,20 +2594,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "responseType": "route.responseType",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutGatewayResponse"
-                    }
+                    "method": "PUT",
+                    "route": "/restapis/{restApiId}/gatewayresponses/{responseType}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GatewayResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.responseType",
                         "param.0"
                     ],
                     "$defs": {
@@ -2587,20 +2625,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutIntegration"
-                    }
+                    "method": "PUT",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Integration"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
                         "param.0"
                     ],
                     "$defs": {
@@ -2616,20 +2658,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "statusCode": "route.statusCode",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutIntegrationResponse"
-                    }
+                    "method": "PUT",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/IntegrationResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
+                        "param.0.statusCode",
                         "param.0"
                     ],
                     "$defs": {
@@ -2645,20 +2693,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutMethod"
-                    }
+                    "method": "PUT",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Method"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
                         "param.0"
                     ],
                     "$defs": {
@@ -2674,20 +2726,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "statusCode": "route.statusCode",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutMethodResponse"
-                    }
+                    "method": "PUT",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/MethodResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
+                        "param.0.statusCode",
                         "param.0"
                     ],
                     "$defs": {
@@ -2703,20 +2761,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutRestApi"
-                    }
+                    "method": "PUT",
+                    "route": "/restapis/{restApiId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RestApi"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2732,20 +2790,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "method": "PUT",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2761,20 +2819,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "authorizerId": "route.authorizerId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TestInvokeAuthorizer"
-                    }
+                    "route": "/restapis/{restApiId}/authorizers/{authorizerId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TestInvokeAuthorizerResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.authorizerId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2790,20 +2850,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TestInvokeMethod"
-                    }
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TestInvokeMethodResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
                         "param.0"
                     ],
                     "$defs": {
@@ -2819,20 +2883,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2848,14 +2912,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAccount"
-                    }
+                    "method": "PATCH",
+                    "route": "/account"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2877,20 +2937,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "apiKey": "route.apiKey",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateApiKey"
-                    }
+                    "method": "PATCH",
+                    "route": "/apikeys/{apiKey}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ApiKey"
                     },
                     "inject": [
+                        "param.0.apiKey",
                         "param.0"
                     ],
                     "$defs": {
@@ -2906,20 +2966,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "authorizerId": "route.authorizerId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAuthorizer"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/authorizers/{authorizerId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Authorizer"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.authorizerId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2935,20 +2997,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainName": "route.domainName",
+                            "basePath": "route.basePath",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateBasePathMapping"
-                    }
+                    "method": "PATCH",
+                    "route": "/domainnames/{domainName}/basepathmappings/{basePath}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BasePathMapping"
                     },
                     "inject": [
+                        "param.0.domainName",
+                        "param.0.basePath",
                         "param.0"
                     ],
                     "$defs": {
@@ -2964,20 +3028,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "clientCertificateId": "route.clientCertificateId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateClientCertificate"
-                    }
+                    "method": "PATCH",
+                    "route": "/clientcertificates/{clientCertificateId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ClientCertificate"
                     },
                     "inject": [
+                        "param.0.clientCertificateId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2993,20 +3057,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "deploymentId": "route.deploymentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDeployment"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/deployments/{deploymentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Deployment"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.deploymentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3022,20 +3088,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "documentationPartId": "route.documentationPartId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDocumentationPart"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/documentation/parts/{documentationPartId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DocumentationPart"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.documentationPartId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3051,20 +3119,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "documentationVersion": "route.documentationVersion",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDocumentationVersion"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/documentation/versions/{documentationVersion}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DocumentationVersion"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.documentationVersion",
                         "param.0"
                     ],
                     "$defs": {
@@ -3080,20 +3150,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainName": "route.domainName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDomainName"
-                    }
+                    "method": "PATCH",
+                    "route": "/domainnames/{domainName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DomainName"
                     },
                     "inject": [
+                        "param.0.domainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -3109,20 +3179,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "responseType": "route.responseType",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateGatewayResponse"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/gatewayresponses/{responseType}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GatewayResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.responseType",
                         "param.0"
                     ],
                     "$defs": {
@@ -3138,20 +3210,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateIntegration"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Integration"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
                         "param.0"
                     ],
                     "$defs": {
@@ -3167,20 +3243,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "statusCode": "route.statusCode",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateIntegrationResponse"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/integration/responses/{statusCode}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/IntegrationResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
+                        "param.0.statusCode",
                         "param.0"
                     ],
                     "$defs": {
@@ -3196,20 +3278,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateMethod"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Method"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
                         "param.0"
                     ],
                     "$defs": {
@@ -3225,20 +3311,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "httpMethod": "route.httpMethod",
+                            "statusCode": "route.statusCode",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateMethodResponse"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}/methods/{httpMethod}/responses/{statusCode}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/MethodResponse"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
+                        "param.0.httpMethod",
+                        "param.0.statusCode",
                         "param.0"
                     ],
                     "$defs": {
@@ -3254,20 +3346,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "modelName": "route.modelName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateModel"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/models/{modelName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Model"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.modelName",
                         "param.0"
                     ],
                     "$defs": {
@@ -3283,20 +3377,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "requestValidatorId": "route.requestValidatorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateRequestValidator"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/requestvalidators/{requestValidatorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RequestValidator"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.requestValidatorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3312,20 +3408,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "resourceId": "route.resourceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateResource"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/resources/{resourceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Resource"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.resourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3341,20 +3439,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateRestApi"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RestApi"
                     },
                     "inject": [
+                        "param.0.restApiId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3370,20 +3468,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "restApiId": "route.restApiId",
+                            "stageName": "route.stageName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateStage"
-                    }
+                    "method": "PATCH",
+                    "route": "/restapis/{restApiId}/stages/{stageName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Stage"
                     },
                     "inject": [
+                        "param.0.restApiId",
+                        "param.0.stageName",
                         "param.0"
                     ],
                     "$defs": {
@@ -3399,20 +3499,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "usagePlanId": "route.usagePlanId",
+                            "keyId": "route.keyId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateUsage"
-                    }
+                    "method": "PATCH",
+                    "route": "/usageplans/{usagePlanId}/keys/{keyId}/usage"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Usage"
                     },
                     "inject": [
+                        "param.0.usagePlanId",
+                        "param.0.keyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3428,20 +3530,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "usagePlanId": "route.usagePlanId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateUsagePlan"
-                    }
+                    "method": "PATCH",
+                    "route": "/usageplans/{usagePlanId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UsagePlan"
                     },
                     "inject": [
+                        "param.0.usagePlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3457,20 +3559,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "vpcLinkId": "route.vpcLinkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateVpcLink"
-                    }
+                    "method": "PATCH",
+                    "route": "/vpclinks/{vpcLinkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/VpcLink"
                     },
                     "inject": [
+                        "param.0.vpcLinkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -6998,318 +7100,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://apigateway-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://apigateway-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://apigateway.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://apigateway.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://apigateway-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://apigateway-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://apigateway.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://apigateway.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

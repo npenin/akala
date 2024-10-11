@@ -6,14 +6,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateApp"
-                    }
+                    "route": "/apps"
                 },
                 "schema": {
                     "resultSchema": {
@@ -35,20 +31,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateBackendEnvironment"
-                    }
+                    "route": "/apps/{appId}/backendenvironments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateBackendEnvironmentResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +60,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateBranch"
-                    }
+                    "route": "/apps/{appId}/branches"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateBranchResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +89,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDeployment"
-                    }
+                    "route": "/apps/{appId}/branches/{branchName}/deployments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateDeploymentResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +120,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDomainAssociation"
-                    }
+                    "route": "/apps/{appId}/domains"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateDomainAssociationResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,20 +149,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateWebhook"
-                    }
+                    "route": "/apps/{appId}/webhooks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateWebhookResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,20 +178,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteApp"
-                    }
+                    "method": "DELETE",
+                    "route": "/apps/{appId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteAppResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,20 +207,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "environmentName": "route.environmentName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteBackendEnvironment"
-                    }
+                    "method": "DELETE",
+                    "route": "/apps/{appId}/backendenvironments/{environmentName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteBackendEnvironmentResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.environmentName",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,20 +238,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteBranch"
-                    }
+                    "method": "DELETE",
+                    "route": "/apps/{appId}/branches/{branchName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteBranchResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,20 +269,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "domainName": "route.domainName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDomainAssociation"
-                    }
+                    "method": "DELETE",
+                    "route": "/apps/{appId}/domains/{domainName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteDomainAssociationResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.domainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +300,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "jobId": "route.jobId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteJob"
-                    }
+                    "method": "DELETE",
+                    "route": "/apps/{appId}/branches/{branchName}/jobs/{jobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteJobResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
+                        "param.0.jobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +333,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "webhookId": "route.webhookId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteWebhook"
-                    }
+                    "method": "DELETE",
+                    "route": "/webhooks/{webhookId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteWebhookResult"
                     },
                     "inject": [
+                        "param.0.webhookId",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +362,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GenerateAccessLogs"
-                    }
+                    "route": "/apps/{appId}/accesslogs"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GenerateAccessLogsResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +391,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApp"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAppResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +420,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "artifactId": "route.artifactId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetArtifactUrl"
-                    }
+                    "method": "GET",
+                    "route": "/artifacts/{artifactId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetArtifactUrlResult"
                     },
                     "inject": [
+                        "param.0.artifactId",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +449,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "environmentName": "route.environmentName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBackendEnvironment"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}/backendenvironments/{environmentName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetBackendEnvironmentResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.environmentName",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +480,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBranch"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}/branches/{branchName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetBranchResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +511,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "domainName": "route.domainName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDomainAssociation"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}/domains/{domainName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDomainAssociationResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.domainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +542,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "jobId": "route.jobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetJob"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}/branches/{branchName}/jobs/{jobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetJobResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
+                        "param.0.jobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +575,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "webhookId": "route.webhookId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWebhook"
-                    }
+                    "method": "GET",
+                    "route": "/webhooks/{webhookId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWebhookResult"
                     },
                     "inject": [
+                        "param.0.webhookId",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,14 +604,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListApps"
-                    }
+                    "method": "GET",
+                    "route": "/apps"
                 },
                 "schema": {
                     "resultSchema": {
@@ -615,20 +629,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "jobId": "route.jobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListArtifacts"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}/branches/{branchName}/jobs/{jobId}/artifacts"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListArtifactsResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
+                        "param.0.jobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +662,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBackendEnvironments"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}/backendenvironments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListBackendEnvironmentsResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +691,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListBranches"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}/branches"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListBranchesResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +720,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDomainAssociations"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}/domains"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDomainAssociationsResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +749,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListJobs"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}/branches/{branchName}/jobs"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListJobsResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +780,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +809,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListWebhooks"
-                    }
+                    "method": "GET",
+                    "route": "/apps/{appId}/webhooks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListWebhooksResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +838,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartDeployment"
-                    }
+                    "route": "/apps/{appId}/branches/{branchName}/deployments/start"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartDeploymentResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +869,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartJob"
-                    }
+                    "route": "/apps/{appId}/branches/{branchName}/jobs"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartJobResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +900,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "jobId": "route.jobId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StopJob"
-                    }
+                    "method": "DELETE",
+                    "route": "/apps/{appId}/branches/{branchName}/jobs/{jobId}/stop"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StopJobResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
+                        "param.0.jobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +933,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TagResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +962,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UntagResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +991,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateApp"
-                    }
+                    "route": "/apps/{appId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateAppResult"
                     },
                     "inject": [
+                        "param.0.appId",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +1020,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "branchName": "route.branchName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateBranch"
-                    }
+                    "route": "/apps/{appId}/branches/{branchName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateBranchResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.branchName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +1051,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "appId": "route.appId",
+                            "domainName": "route.domainName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDomainAssociation"
-                    }
+                    "route": "/apps/{appId}/domains/{domainName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateDomainAssociationResult"
                     },
                     "inject": [
+                        "param.0.appId",
+                        "param.0.domainName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1082,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "webhookId": "route.webhookId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateWebhook"
-                    }
+                    "route": "/webhooks/{webhookId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateWebhookResult"
                     },
                     "inject": [
+                        "param.0.webhookId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3101,318 +3133,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://amplify-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://amplify-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://amplify.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://amplify.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://amplify-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://amplify-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://amplify.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://amplify.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

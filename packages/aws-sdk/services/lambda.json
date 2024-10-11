@@ -6,20 +6,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LayerName": "route.LayerName",
+                            "VersionNumber": "route.VersionNumber",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AddLayerVersionPermission"
-                    }
+                    "route": "/2018-10-31/layers/{LayerName}/versions/{VersionNumber}/policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AddLayerVersionPermissionResponse"
                     },
                     "inject": [
+                        "param.0.LayerName",
+                        "param.0.VersionNumber",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +37,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AddPermission"
-                    }
+                    "route": "/2015-03-31/functions/{FunctionName}/policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AddPermissionResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +66,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateAlias"
-                    }
+                    "route": "/2015-03-31/functions/{FunctionName}/aliases"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AliasConfiguration"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,14 +95,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCodeSigningConfig"
-                    }
+                    "route": "/2020-04-22/code-signing-configs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -122,14 +120,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateEventSourceMapping"
-                    }
+                    "route": "/2015-03-31/event-source-mappings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -151,14 +145,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFunction"
-                    }
+                    "route": "/2015-03-31/functions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -180,20 +170,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFunctionUrlConfig"
-                    }
+                    "route": "/2021-10-31/functions/{FunctionName}/url"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateFunctionUrlConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,20 +199,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteAlias"
-                    }
+                    "method": "DELETE",
+                    "route": "/2015-03-31/functions/{FunctionName}/aliases/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FunctionName",
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,20 +230,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CodeSigningConfigArn": "route.CodeSigningConfigArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCodeSigningConfig"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteCodeSigningConfigResponse"
                     },
                     "inject": [
+                        "param.0.CodeSigningConfigArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,20 +259,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "UUID": "route.UUID",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEventSourceMapping"
-                    }
+                    "method": "DELETE",
+                    "route": "/2015-03-31/event-source-mappings/{UUID}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/EventSourceMappingConfiguration"
                     },
                     "inject": [
+                        "param.0.UUID",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +288,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFunction"
-                    }
+                    "method": "DELETE",
+                    "route": "/2015-03-31/functions/{FunctionName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +317,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFunctionCodeSigningConfig"
-                    }
+                    "method": "DELETE",
+                    "route": "/2020-06-30/functions/{FunctionName}/code-signing-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +346,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFunctionConcurrency"
-                    }
+                    "method": "DELETE",
+                    "route": "/2017-10-31/functions/{FunctionName}/concurrency"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +375,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFunctionEventInvokeConfig"
-                    }
+                    "method": "DELETE",
+                    "route": "/2019-09-25/functions/{FunctionName}/event-invoke-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +404,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFunctionUrlConfig"
-                    }
+                    "method": "DELETE",
+                    "route": "/2021-10-31/functions/{FunctionName}/url"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +433,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LayerName": "route.LayerName",
+                            "VersionNumber": "route.VersionNumber",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteLayerVersion"
-                    }
+                    "method": "DELETE",
+                    "route": "/2018-10-31/layers/{LayerName}/versions/{VersionNumber}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.LayerName",
+                        "param.0.VersionNumber",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +464,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteProvisionedConcurrencyConfig"
-                    }
+                    "method": "DELETE",
+                    "route": "/2019-09-30/functions/{FunctionName}/provisioned-concurrency"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,14 +493,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAccountSettings"
-                    }
+                    "method": "GET",
+                    "route": "/2016-08-19/account-settings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -528,20 +518,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "Name": "route.Name",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAlias"
-                    }
+                    "method": "GET",
+                    "route": "/2015-03-31/functions/{FunctionName}/aliases/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AliasConfiguration"
                     },
                     "inject": [
+                        "param.0.FunctionName",
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +549,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CodeSigningConfigArn": "route.CodeSigningConfigArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCodeSigningConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCodeSigningConfigResponse"
                     },
                     "inject": [
+                        "param.0.CodeSigningConfigArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +578,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "UUID": "route.UUID",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEventSourceMapping"
-                    }
+                    "method": "GET",
+                    "route": "/2015-03-31/event-source-mappings/{UUID}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/EventSourceMappingConfiguration"
                     },
                     "inject": [
+                        "param.0.UUID",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +607,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFunction"
-                    }
+                    "method": "GET",
+                    "route": "/2015-03-31/functions/{FunctionName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFunctionResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +636,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFunctionCodeSigningConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-06-30/functions/{FunctionName}/code-signing-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFunctionCodeSigningConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +665,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFunctionConcurrency"
-                    }
+                    "method": "GET",
+                    "route": "/2019-09-30/functions/{FunctionName}/concurrency"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFunctionConcurrencyResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +694,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFunctionConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/2015-03-31/functions/{FunctionName}/configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FunctionConfiguration"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +723,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFunctionEventInvokeConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2019-09-25/functions/{FunctionName}/event-invoke-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FunctionEventInvokeConfig"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +752,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFunctionRecursionConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2024-08-31/functions/{FunctionName}/recursion-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFunctionRecursionConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +781,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFunctionUrlConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2021-10-31/functions/{FunctionName}/url"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFunctionUrlConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +810,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LayerName": "route.LayerName",
+                            "VersionNumber": "route.VersionNumber",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLayerVersion"
-                    }
+                    "method": "GET",
+                    "route": "/2018-10-31/layers/{LayerName}/versions/{VersionNumber}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLayerVersionResponse"
                     },
                     "inject": [
+                        "param.0.LayerName",
+                        "param.0.VersionNumber",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,14 +841,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLayerVersionByArn"
-                    }
+                    "method": "GET",
+                    "route": "/2018-10-31/layers"
                 },
                 "schema": {
                     "resultSchema": {
@@ -876,20 +866,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LayerName": "route.LayerName",
+                            "VersionNumber": "route.VersionNumber",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLayerVersionPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/2018-10-31/layers/{LayerName}/versions/{VersionNumber}/policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLayerVersionPolicyResponse"
                     },
                     "inject": [
+                        "param.0.LayerName",
+                        "param.0.VersionNumber",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +897,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/2015-03-31/functions/{FunctionName}/policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPolicyResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +926,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetProvisionedConcurrencyConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2019-09-30/functions/{FunctionName}/provisioned-concurrency"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetProvisionedConcurrencyConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +955,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRuntimeManagementConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2021-07-20/functions/{FunctionName}/runtime-management-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetRuntimeManagementConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +984,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "Invoke"
-                    }
+                    "route": "/2015-03-31/functions/{FunctionName}/invocations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/InvocationResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +1013,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "InvokeAsync"
-                    }
+                    "route": "/2014-11-13/functions/{FunctionName}/invoke-async"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/InvokeAsyncResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1042,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "InvokeWithResponseStream"
-                    }
+                    "route": "/2021-11-15/functions/{FunctionName}/response-streaming-invocations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/InvokeWithResponseStreamResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1071,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAliases"
-                    }
+                    "method": "GET",
+                    "route": "/2015-03-31/functions/{FunctionName}/aliases"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListAliasesResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,14 +1100,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCodeSigningConfigs"
-                    }
+                    "method": "GET",
+                    "route": "/2020-04-22/code-signing-configs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1137,14 +1125,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEventSourceMappings"
-                    }
+                    "method": "GET",
+                    "route": "/2015-03-31/event-source-mappings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1166,20 +1150,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFunctionEventInvokeConfigs"
-                    }
+                    "method": "GET",
+                    "route": "/2019-09-25/functions/{FunctionName}/event-invoke-config/list"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListFunctionEventInvokeConfigsResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,14 +1179,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFunctions"
-                    }
+                    "method": "GET",
+                    "route": "/2015-03-31/functions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1224,20 +1204,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CodeSigningConfigArn": "route.CodeSigningConfigArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFunctionsByCodeSigningConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}/functions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListFunctionsByCodeSigningConfigResponse"
                     },
                     "inject": [
+                        "param.0.CodeSigningConfigArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1233,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFunctionUrlConfigs"
-                    }
+                    "method": "GET",
+                    "route": "/2021-10-31/functions/{FunctionName}/urls"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListFunctionUrlConfigsResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,14 +1262,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLayers"
-                    }
+                    "method": "GET",
+                    "route": "/2018-10-31/layers"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1311,20 +1287,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LayerName": "route.LayerName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLayerVersions"
-                    }
+                    "method": "GET",
+                    "route": "/2018-10-31/layers/{LayerName}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListLayerVersionsResponse"
                     },
                     "inject": [
+                        "param.0.LayerName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1316,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProvisionedConcurrencyConfigs"
-                    }
+                    "method": "GET",
+                    "route": "/2019-09-30/functions/{FunctionName}/provisioned-concurrency"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListProvisionedConcurrencyConfigsResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1345,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Resource": "route.Resource",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTags"
-                    }
+                    "method": "GET",
+                    "route": "/2017-03-31/tags/{Resource}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsResponse"
                     },
                     "inject": [
+                        "param.0.Resource",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1374,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListVersionsByFunction"
-                    }
+                    "method": "GET",
+                    "route": "/2015-03-31/functions/{FunctionName}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListVersionsByFunctionResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1403,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LayerName": "route.LayerName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PublishLayerVersion"
-                    }
+                    "route": "/2018-10-31/layers/{LayerName}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PublishLayerVersionResponse"
                     },
                     "inject": [
+                        "param.0.LayerName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1432,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PublishVersion"
-                    }
+                    "route": "/2015-03-31/functions/{FunctionName}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FunctionConfiguration"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,20 +1461,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutFunctionCodeSigningConfig"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-06-30/functions/{FunctionName}/code-signing-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutFunctionCodeSigningConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1514,20 +1490,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutFunctionConcurrency"
-                    }
+                    "method": "PUT",
+                    "route": "/2017-10-31/functions/{FunctionName}/concurrency"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/Concurrency"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1519,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutFunctionEventInvokeConfig"
-                    }
+                    "method": "PUT",
+                    "route": "/2019-09-25/functions/{FunctionName}/event-invoke-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FunctionEventInvokeConfig"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,20 +1548,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutFunctionRecursionConfig"
-                    }
+                    "method": "PUT",
+                    "route": "/2024-08-31/functions/{FunctionName}/recursion-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutFunctionRecursionConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1601,20 +1577,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutProvisionedConcurrencyConfig"
-                    }
+                    "method": "PUT",
+                    "route": "/2019-09-30/functions/{FunctionName}/provisioned-concurrency"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutProvisionedConcurrencyConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1630,20 +1606,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutRuntimeManagementConfig"
-                    }
+                    "method": "PUT",
+                    "route": "/2021-07-20/functions/{FunctionName}/runtime-management-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutRuntimeManagementConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1659,20 +1635,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LayerName": "route.LayerName",
+                            "VersionNumber": "route.VersionNumber",
+                            "StatementId": "route.StatementId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RemoveLayerVersionPermission"
-                    }
+                    "method": "DELETE",
+                    "route": "/2018-10-31/layers/{LayerName}/versions/{VersionNumber}/policy/{StatementId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.LayerName",
+                        "param.0.VersionNumber",
+                        "param.0.StatementId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,20 +1668,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "StatementId": "route.StatementId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RemovePermission"
-                    }
+                    "method": "DELETE",
+                    "route": "/2015-03-31/functions/{FunctionName}/policy/{StatementId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.FunctionName",
+                        "param.0.StatementId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,20 +1699,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Resource": "route.Resource",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/2017-03-31/tags/{Resource}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Resource",
                         "param.0"
                     ],
                     "$defs": {
@@ -1746,20 +1728,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Resource": "route.Resource",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/2017-03-31/tags/{Resource}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.Resource",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,20 +1757,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAlias"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-03-31/functions/{FunctionName}/aliases/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AliasConfiguration"
                     },
                     "inject": [
+                        "param.0.FunctionName",
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,20 +1788,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CodeSigningConfigArn": "route.CodeSigningConfigArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateCodeSigningConfig"
-                    }
+                    "method": "PUT",
+                    "route": "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateCodeSigningConfigResponse"
                     },
                     "inject": [
+                        "param.0.CodeSigningConfigArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1833,20 +1817,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "UUID": "route.UUID",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEventSourceMapping"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-03-31/event-source-mappings/{UUID}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/EventSourceMappingConfiguration"
                     },
                     "inject": [
+                        "param.0.UUID",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,20 +1846,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFunctionCode"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-03-31/functions/{FunctionName}/code"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FunctionConfiguration"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1891,20 +1875,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFunctionConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/2015-03-31/functions/{FunctionName}/configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FunctionConfiguration"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,20 +1904,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFunctionEventInvokeConfig"
-                    }
+                    "route": "/2019-09-25/functions/{FunctionName}/event-invoke-config"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/FunctionEventInvokeConfig"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1949,20 +1933,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FunctionName": "route.FunctionName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFunctionUrlConfig"
-                    }
+                    "method": "PUT",
+                    "route": "/2021-10-31/functions/{FunctionName}/url"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateFunctionUrlConfigResponse"
                     },
                     "inject": [
+                        "param.0.FunctionName",
                         "param.0"
                     ],
                     "$defs": {
@@ -4518,7 +4502,7 @@
             "type": "object",
             "properties": {
                 "MasterRegion": {
-                    "$ref": "#/$defs/mainRegion"
+                    "$ref": "#/$defs/MasterRegion"
                 },
                 "FunctionVersion": {
                     "$ref": "#/$defs/FunctionVersion"
@@ -5416,318 +5400,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://lambda-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://lambda-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://lambda.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://lambda.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://lambda-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://lambda-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://lambda.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://lambda.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

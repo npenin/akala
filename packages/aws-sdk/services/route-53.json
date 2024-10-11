@@ -6,20 +6,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ActivateKeySigningKey"
-                    }
+                    "route": "/2013-04-01/keysigningkey/{HostedZoneId}/{Name}/activate"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ActivateKeySigningKeyResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +37,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateVPCWithHostedZone"
-                    }
+                    "route": "/2013-04-01/hostedzone/{HostedZoneId}/associatevpc"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateVPCWithHostedZoneResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +66,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ChangeCidrCollection"
-                    }
+                    "route": "/2013-04-01/cidrcollection/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ChangeCidrCollectionResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +95,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ChangeResourceRecordSets"
-                    }
+                    "route": "/2013-04-01/hostedzone/{HostedZoneId}/rrset"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ChangeResourceRecordSetsResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +124,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceType": "route.ResourceType",
+                            "ResourceId": "route.ResourceId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ChangeTagsForResource"
-                    }
+                    "route": "/2013-04-01/tags/{ResourceType}/{ResourceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ChangeTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceType",
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,14 +155,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCidrCollection"
-                    }
+                    "route": "/2013-04-01/cidrcollection"
                 },
                 "schema": {
                     "resultSchema": {
@@ -180,14 +180,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateHealthCheck"
-                    }
+                    "route": "/2013-04-01/healthcheck"
                 },
                 "schema": {
                     "resultSchema": {
@@ -209,14 +205,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateHostedZone"
-                    }
+                    "route": "/2013-04-01/hostedzone"
                 },
                 "schema": {
                     "resultSchema": {
@@ -238,14 +230,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKeySigningKey"
-                    }
+                    "route": "/2013-04-01/keysigningkey"
                 },
                 "schema": {
                     "resultSchema": {
@@ -267,14 +255,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateQueryLoggingConfig"
-                    }
+                    "route": "/2013-04-01/queryloggingconfig"
                 },
                 "schema": {
                     "resultSchema": {
@@ -296,14 +280,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateReusableDelegationSet"
-                    }
+                    "route": "/2013-04-01/delegationset"
                 },
                 "schema": {
                     "resultSchema": {
@@ -325,14 +305,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateTrafficPolicy"
-                    }
+                    "route": "/2013-04-01/trafficpolicy"
                 },
                 "schema": {
                     "resultSchema": {
@@ -354,14 +330,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateTrafficPolicyInstance"
-                    }
+                    "route": "/2013-04-01/trafficpolicyinstance"
                 },
                 "schema": {
                     "resultSchema": {
@@ -383,20 +355,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateTrafficPolicyVersion"
-                    }
+                    "route": "/2013-04-01/trafficpolicy/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateTrafficPolicyVersionResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +384,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateVPCAssociationAuthorization"
-                    }
+                    "route": "/2013-04-01/hostedzone/{HostedZoneId}/authorizevpcassociation"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateVPCAssociationAuthorizationResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +413,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeactivateKeySigningKey"
-                    }
+                    "route": "/2013-04-01/keysigningkey/{HostedZoneId}/{Name}/deactivate"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeactivateKeySigningKeyResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +444,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCidrCollection"
-                    }
+                    "method": "DELETE",
+                    "route": "/2013-04-01/cidrcollection/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteCidrCollectionResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +473,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HealthCheckId": "route.HealthCheckId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteHealthCheck"
-                    }
+                    "method": "DELETE",
+                    "route": "/2013-04-01/healthcheck/{HealthCheckId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteHealthCheckResponse"
                     },
                     "inject": [
+                        "param.0.HealthCheckId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +502,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteHostedZone"
-                    }
+                    "method": "DELETE",
+                    "route": "/2013-04-01/hostedzone/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteHostedZoneResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +531,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKeySigningKey"
-                    }
+                    "method": "DELETE",
+                    "route": "/2013-04-01/keysigningkey/{HostedZoneId}/{Name}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteKeySigningKeyResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
+                        "param.0.Name",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +562,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteQueryLoggingConfig"
-                    }
+                    "method": "DELETE",
+                    "route": "/2013-04-01/queryloggingconfig/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteQueryLoggingConfigResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +591,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteReusableDelegationSet"
-                    }
+                    "method": "DELETE",
+                    "route": "/2013-04-01/delegationset/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteReusableDelegationSetResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +620,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "Version": "route.Version",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteTrafficPolicy"
-                    }
+                    "method": "DELETE",
+                    "route": "/2013-04-01/trafficpolicy/{Id}/{Version}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteTrafficPolicyResponse"
                     },
                     "inject": [
+                        "param.0.Id",
+                        "param.0.Version",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +651,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteTrafficPolicyInstance"
-                    }
+                    "method": "DELETE",
+                    "route": "/2013-04-01/trafficpolicyinstance/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteTrafficPolicyInstanceResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +680,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVPCAssociationAuthorization"
-                    }
+                    "route": "/2013-04-01/hostedzone/{HostedZoneId}/deauthorizevpcassociation"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteVPCAssociationAuthorizationResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +709,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisableHostedZoneDNSSEC"
-                    }
+                    "route": "/2013-04-01/hostedzone/{HostedZoneId}/disable-dnssec"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisableHostedZoneDNSSECResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +738,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateVPCFromHostedZone"
-                    }
+                    "route": "/2013-04-01/hostedzone/{HostedZoneId}/disassociatevpc"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateVPCFromHostedZoneResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +767,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "EnableHostedZoneDNSSEC"
-                    }
+                    "route": "/2013-04-01/hostedzone/{HostedZoneId}/enable-dnssec"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/EnableHostedZoneDNSSECResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +796,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Type": "route.Type",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAccountLimit"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/accountlimit/{Type}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAccountLimitResponse"
                     },
                     "inject": [
+                        "param.0.Type",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +825,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetChange"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/change/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetChangeResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,14 +854,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCheckerIpRanges"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/checkeripranges"
                 },
                 "schema": {
                     "resultSchema": {
@@ -905,20 +879,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDNSSEC"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/hostedzone/{HostedZoneId}/dnssec"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDNSSECResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,14 +908,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGeoLocation"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/geolocation"
                 },
                 "schema": {
                     "resultSchema": {
@@ -963,20 +933,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HealthCheckId": "route.HealthCheckId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetHealthCheck"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/healthcheck/{HealthCheckId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetHealthCheckResponse"
                     },
                     "inject": [
+                        "param.0.HealthCheckId",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,14 +962,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetHealthCheckCount"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/healthcheckcount"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1021,20 +987,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HealthCheckId": "route.HealthCheckId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetHealthCheckLastFailureReason"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/healthcheck/{HealthCheckId}/lastfailurereason"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetHealthCheckLastFailureReasonResponse"
                     },
                     "inject": [
+                        "param.0.HealthCheckId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1016,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HealthCheckId": "route.HealthCheckId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetHealthCheckStatus"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/healthcheck/{HealthCheckId}/status"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetHealthCheckStatusResponse"
                     },
                     "inject": [
+                        "param.0.HealthCheckId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1045,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetHostedZone"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/hostedzone/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetHostedZoneResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,14 +1074,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetHostedZoneCount"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/hostedzonecount"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1137,20 +1099,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "Type": "route.Type",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetHostedZoneLimit"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/hostedzonelimit/{HostedZoneId}/{Type}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetHostedZoneLimitResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
+                        "param.0.Type",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1130,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetQueryLoggingConfig"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/queryloggingconfig/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetQueryLoggingConfigResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1159,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetReusableDelegationSet"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/delegationset/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetReusableDelegationSetResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1188,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DelegationSetId": "route.DelegationSetId",
+                            "Type": "route.Type",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetReusableDelegationSetLimit"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/reusabledelegationsetlimit/{DelegationSetId}/{Type}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetReusableDelegationSetLimitResponse"
                     },
                     "inject": [
+                        "param.0.DelegationSetId",
+                        "param.0.Type",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1219,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "Version": "route.Version",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetTrafficPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/trafficpolicy/{Id}/{Version}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetTrafficPolicyResponse"
                     },
                     "inject": [
+                        "param.0.Id",
+                        "param.0.Version",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1250,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetTrafficPolicyInstance"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/trafficpolicyinstance/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetTrafficPolicyInstanceResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,14 +1279,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetTrafficPolicyInstanceCount"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/trafficpolicyinstancecount"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1340,20 +1304,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CollectionId": "route.CollectionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCidrBlocks"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/cidrcollection/{CollectionId}/cidrblocks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListCidrBlocksResponse"
                     },
                     "inject": [
+                        "param.0.CollectionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,14 +1333,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCidrCollections"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/cidrcollection"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1398,20 +1358,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CollectionId": "route.CollectionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCidrLocations"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/cidrcollection/{CollectionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListCidrLocationsResponse"
                     },
                     "inject": [
+                        "param.0.CollectionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,14 +1387,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListGeoLocations"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/geolocations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1456,14 +1412,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListHealthChecks"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/healthcheck"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1485,14 +1437,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListHostedZones"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/hostedzone"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1514,14 +1462,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListHostedZonesByName"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/hostedzonesbyname"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1543,14 +1487,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListHostedZonesByVPC"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/hostedzonesbyvpc"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1572,14 +1512,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListQueryLoggingConfigs"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/queryloggingconfig"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1601,20 +1537,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListResourceRecordSets"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/hostedzone/{HostedZoneId}/rrset"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListResourceRecordSetsResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1630,14 +1566,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListReusableDelegationSets"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/delegationset"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1659,20 +1591,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceType": "route.ResourceType",
+                            "ResourceId": "route.ResourceId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/tags/{ResourceType}/{ResourceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceType",
+                        "param.0.ResourceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,20 +1622,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceType": "route.ResourceType",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResources"
-                    }
+                    "route": "/2013-04-01/tags/{ResourceType}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourcesResponse"
                     },
                     "inject": [
+                        "param.0.ResourceType",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,14 +1651,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTrafficPolicies"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/trafficpolicies"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1746,14 +1676,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTrafficPolicyInstances"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/trafficpolicyinstances"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1775,14 +1701,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTrafficPolicyInstancesByHostedZone"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/trafficpolicyinstances/hostedzone"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1804,14 +1726,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTrafficPolicyInstancesByPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/trafficpolicyinstances/trafficpolicy"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1833,20 +1751,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTrafficPolicyVersions"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/trafficpolicies/{Id}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTrafficPolicyVersionsResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,20 +1780,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HostedZoneId": "route.HostedZoneId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListVPCAssociationAuthorizations"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/hostedzone/{HostedZoneId}/authorizevpcassociation"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListVPCAssociationAuthorizationsResponse"
                     },
                     "inject": [
+                        "param.0.HostedZoneId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1891,14 +1809,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TestDNSAnswer"
-                    }
+                    "method": "GET",
+                    "route": "/2013-04-01/testdnsanswer"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1920,20 +1834,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "HealthCheckId": "route.HealthCheckId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateHealthCheck"
-                    }
+                    "route": "/2013-04-01/healthcheck/{HealthCheckId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateHealthCheckResponse"
                     },
                     "inject": [
+                        "param.0.HealthCheckId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1949,20 +1863,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateHostedZoneComment"
-                    }
+                    "route": "/2013-04-01/hostedzone/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateHostedZoneCommentResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -1978,20 +1892,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "Version": "route.Version",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateTrafficPolicyComment"
-                    }
+                    "route": "/2013-04-01/trafficpolicy/{Id}/{Version}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateTrafficPolicyCommentResponse"
                     },
                     "inject": [
+                        "param.0.Id",
+                        "param.0.Version",
                         "param.0"
                     ],
                     "$defs": {
@@ -2007,20 +1923,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateTrafficPolicyInstance"
-                    }
+                    "route": "/2013-04-01/trafficpolicyinstance/{Id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateTrafficPolicyInstanceResponse"
                     },
                     "inject": [
+                        "param.0.Id",
                         "param.0"
                     ],
                     "$defs": {
@@ -5196,777 +5112,779 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://route53.amazonaws.com",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "route53",
-                                                "signingRegion": "us-east-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
+                                "properties": {},
+                                "headers": {}
                             },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://route53-fips.amazonaws.com",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "route53",
-                                                "signingRegion": "us-east-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws-cn"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://route53.amazonaws.com.cn",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "route53",
-                                                "signingRegion": "cn-northwest-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws-us-gov"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://route53.us-gov.amazonaws.com",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "route53",
-                                                "signingRegion": "us-gov-west-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws-us-gov"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://route53.us-gov.amazonaws.com",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "route53",
-                                                "signingRegion": "us-gov-west-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws-iso"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://route53.c2s.ic.gov",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "route53",
-                                                "signingRegion": "us-iso-east-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws-iso-b"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://route53.sc2s.sgov.gov",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "route53",
-                                                "signingRegion": "us-isob-east-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws-iso-e"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://route53.cloud.adc-e.uk",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "route53",
-                                                "signingRegion": "eu-isoe-west-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws-iso-f"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://route53.csp.hci.ic.gov",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "route53",
-                                                "signingRegion": "us-isof-south-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://route53-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://route53-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                                                "aws"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://route53.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://route53.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "route53",
+                                                    "signingRegion": "us-east-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
                                     },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://route53.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://route53-fips.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "route53",
+                                                    "signingRegion": "us-east-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws-cn"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://route53.amazonaws.com.cn",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "route53",
+                                                    "signingRegion": "cn-northwest-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws-us-gov"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://route53.us-gov.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "route53",
+                                                    "signingRegion": "us-gov-west-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws-us-gov"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://route53.us-gov.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "route53",
+                                                    "signingRegion": "us-gov-west-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws-iso"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://route53.c2s.ic.gov",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "route53",
+                                                    "signingRegion": "us-iso-east-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws-iso-b"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://route53.sc2s.sgov.gov",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "route53",
+                                                    "signingRegion": "us-isob-east-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws-iso-e"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://route53.cloud.adc-e.uk",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "route53",
+                                                    "signingRegion": "eu-isoe-west-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws-iso-f"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://route53.csp.hci.ic.gov",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "route53",
+                                                    "signingRegion": "us-isof-south-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://route53-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://route53-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://route53.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://route53.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

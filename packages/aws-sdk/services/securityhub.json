@@ -6,14 +6,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AcceptAdministratorInvitation"
-                    }
+                    "route": "/administrator"
                 },
                 "schema": {
                     "resultSchema": {
@@ -35,14 +31,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AcceptInvitation"
-                    }
+                    "route": "/master"
                 },
                 "schema": {
                     "resultSchema": {
@@ -64,14 +56,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchDeleteAutomationRules"
-                    }
+                    "route": "/automationrules/delete"
                 },
                 "schema": {
                     "resultSchema": {
@@ -93,14 +81,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchDisableStandards"
-                    }
+                    "route": "/standards/deregister"
                 },
                 "schema": {
                     "resultSchema": {
@@ -122,14 +106,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchEnableStandards"
-                    }
+                    "route": "/standards/register"
                 },
                 "schema": {
                     "resultSchema": {
@@ -151,14 +131,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchGetAutomationRules"
-                    }
+                    "route": "/automationrules/get"
                 },
                 "schema": {
                     "resultSchema": {
@@ -180,14 +156,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchGetConfigurationPolicyAssociations"
-                    }
+                    "route": "/configurationPolicyAssociation/batchget"
                 },
                 "schema": {
                     "resultSchema": {
@@ -209,14 +181,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchGetSecurityControls"
-                    }
+                    "route": "/securityControls/batchGet"
                 },
                 "schema": {
                     "resultSchema": {
@@ -238,14 +206,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchGetStandardsControlAssociations"
-                    }
+                    "route": "/associations/batchGet"
                 },
                 "schema": {
                     "resultSchema": {
@@ -267,14 +231,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchImportFindings"
-                    }
+                    "route": "/findings/import"
                 },
                 "schema": {
                     "resultSchema": {
@@ -296,14 +256,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchUpdateAutomationRules"
-                    }
+                    "method": "PATCH",
+                    "route": "/automationrules/update"
                 },
                 "schema": {
                     "resultSchema": {
@@ -325,14 +281,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchUpdateFindings"
-                    }
+                    "method": "PATCH",
+                    "route": "/findings/batchupdate"
                 },
                 "schema": {
                     "resultSchema": {
@@ -354,14 +306,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchUpdateStandardsControlAssociations"
-                    }
+                    "method": "PATCH",
+                    "route": "/associations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -383,14 +331,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateActionTarget"
-                    }
+                    "route": "/actionTargets"
                 },
                 "schema": {
                     "resultSchema": {
@@ -412,14 +356,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateAutomationRule"
-                    }
+                    "route": "/automationrules/create"
                 },
                 "schema": {
                     "resultSchema": {
@@ -441,14 +381,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateConfigurationPolicy"
-                    }
+                    "route": "/configurationPolicy/create"
                 },
                 "schema": {
                     "resultSchema": {
@@ -470,14 +406,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFindingAggregator"
-                    }
+                    "route": "/findingAggregator/create"
                 },
                 "schema": {
                     "resultSchema": {
@@ -499,14 +431,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateInsight"
-                    }
+                    "route": "/insights"
                 },
                 "schema": {
                     "resultSchema": {
@@ -528,14 +456,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateMembers"
-                    }
+                    "route": "/members"
                 },
                 "schema": {
                     "resultSchema": {
@@ -557,14 +481,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeclineInvitations"
-                    }
+                    "route": "/invitations/decline"
                 },
                 "schema": {
                     "resultSchema": {
@@ -586,20 +506,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ActionTargetArn": "route.ActionTargetArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteActionTarget"
-                    }
+                    "method": "DELETE",
+                    "route": "/actionTargets{/ActionTargetArn*}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteActionTargetResponse"
                     },
                     "inject": [
+                        "param.0.ActionTargetArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +535,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteConfigurationPolicy"
-                    }
+                    "method": "DELETE",
+                    "route": "/configurationPolicy/{Identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteConfigurationPolicyResponse"
                     },
                     "inject": [
+                        "param.0.Identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +564,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FindingAggregatorArn": "route.FindingAggregatorArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFindingAggregator"
-                    }
+                    "method": "DELETE",
+                    "route": "/findingAggregator/delete{/FindingAggregatorArn*}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteFindingAggregatorResponse"
                     },
                     "inject": [
+                        "param.0.FindingAggregatorArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +593,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "InsightArn": "route.InsightArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteInsight"
-                    }
+                    "method": "DELETE",
+                    "route": "/insights{/InsightArn*}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteInsightResponse"
                     },
                     "inject": [
+                        "param.0.InsightArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,14 +622,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteInvitations"
-                    }
+                    "route": "/invitations/delete"
                 },
                 "schema": {
                     "resultSchema": {
@@ -731,14 +647,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteMembers"
-                    }
+                    "route": "/members/delete"
                 },
                 "schema": {
                     "resultSchema": {
@@ -760,14 +672,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeActionTargets"
-                    }
+                    "route": "/actionTargets/get"
                 },
                 "schema": {
                     "resultSchema": {
@@ -789,14 +697,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeHub"
-                    }
+                    "method": "GET",
+                    "route": "/accounts"
                 },
                 "schema": {
                     "resultSchema": {
@@ -818,14 +722,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeOrganizationConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/organization/configuration"
                 },
                 "schema": {
                     "resultSchema": {
@@ -847,14 +747,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeProducts"
-                    }
+                    "method": "GET",
+                    "route": "/products"
                 },
                 "schema": {
                     "resultSchema": {
@@ -876,14 +772,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeStandards"
-                    }
+                    "method": "GET",
+                    "route": "/standards"
                 },
                 "schema": {
                     "resultSchema": {
@@ -905,20 +797,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "StandardsSubscriptionArn": "route.StandardsSubscriptionArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeStandardsControls"
-                    }
+                    "method": "GET",
+                    "route": "/standards/controls{/StandardsSubscriptionArn*}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeStandardsControlsResponse"
                     },
                     "inject": [
+                        "param.0.StandardsSubscriptionArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +826,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ProductSubscriptionArn": "route.ProductSubscriptionArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisableImportFindingsForProduct"
-                    }
+                    "method": "DELETE",
+                    "route": "/productSubscriptions{/ProductSubscriptionArn*}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisableImportFindingsForProductResponse"
                     },
                     "inject": [
+                        "param.0.ProductSubscriptionArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,14 +855,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisableOrganizationAdminAccount"
-                    }
+                    "route": "/organization/admin/disable"
                 },
                 "schema": {
                     "resultSchema": {
@@ -992,14 +880,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisableSecurityHub"
-                    }
+                    "method": "DELETE",
+                    "route": "/accounts"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1021,14 +905,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateFromAdministratorAccount"
-                    }
+                    "route": "/administrator/disassociate"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1050,14 +930,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateFromMasterAccount"
-                    }
+                    "route": "/master/disassociate"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1079,14 +955,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateMembers"
-                    }
+                    "route": "/members/disassociate"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1108,14 +980,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "EnableImportFindingsForProduct"
-                    }
+                    "route": "/productSubscriptions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1137,14 +1005,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "EnableOrganizationAdminAccount"
-                    }
+                    "route": "/organization/admin/enable"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1166,14 +1030,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "EnableSecurityHub"
-                    }
+                    "route": "/accounts"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1195,14 +1055,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAdministratorAccount"
-                    }
+                    "method": "GET",
+                    "route": "/administrator"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1224,20 +1080,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConfigurationPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/configurationPolicy/get/{Identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetConfigurationPolicyResponse"
                     },
                     "inject": [
+                        "param.0.Identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,14 +1109,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConfigurationPolicyAssociation"
-                    }
+                    "route": "/configurationPolicyAssociation/get"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1282,14 +1134,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEnabledStandards"
-                    }
+                    "route": "/standards/get"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1311,20 +1159,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "FindingAggregatorArn": "route.FindingAggregatorArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFindingAggregator"
-                    }
+                    "method": "GET",
+                    "route": "/findingAggregator/get{/FindingAggregatorArn*}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFindingAggregatorResponse"
                     },
                     "inject": [
+                        "param.0.FindingAggregatorArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,14 +1188,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFindingHistory"
-                    }
+                    "route": "/findingHistory/get"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1369,14 +1213,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFindings"
-                    }
+                    "route": "/findings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1398,20 +1238,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "InsightArn": "route.InsightArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetInsightResults"
-                    }
+                    "method": "GET",
+                    "route": "/insights/results{/InsightArn*}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetInsightResultsResponse"
                     },
                     "inject": [
+                        "param.0.InsightArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,14 +1267,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetInsights"
-                    }
+                    "route": "/insights/get"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1456,14 +1292,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetInvitationsCount"
-                    }
+                    "method": "GET",
+                    "route": "/invitations/count"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1485,14 +1317,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMasterAccount"
-                    }
+                    "method": "GET",
+                    "route": "/master"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1514,14 +1342,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMembers"
-                    }
+                    "route": "/members/get"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1543,14 +1367,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSecurityControlDefinition"
-                    }
+                    "method": "GET",
+                    "route": "/securityControl/definition"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1572,14 +1392,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "InviteMembers"
-                    }
+                    "route": "/members/invite"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1601,14 +1417,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAutomationRules"
-                    }
+                    "method": "GET",
+                    "route": "/automationrules/list"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1630,14 +1442,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListConfigurationPolicies"
-                    }
+                    "method": "GET",
+                    "route": "/configurationPolicy/list"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1659,14 +1467,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListConfigurationPolicyAssociations"
-                    }
+                    "route": "/configurationPolicyAssociation/list"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1688,14 +1492,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEnabledProductsForImport"
-                    }
+                    "method": "GET",
+                    "route": "/productSubscriptions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1717,14 +1517,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFindingAggregators"
-                    }
+                    "method": "GET",
+                    "route": "/findingAggregator/list"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1746,14 +1542,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListInvitations"
-                    }
+                    "method": "GET",
+                    "route": "/invitations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1775,14 +1567,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMembers"
-                    }
+                    "method": "GET",
+                    "route": "/members"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1804,14 +1592,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListOrganizationAdminAccounts"
-                    }
+                    "method": "GET",
+                    "route": "/organization/admin"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1833,14 +1617,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSecurityControlDefinitions"
-                    }
+                    "method": "GET",
+                    "route": "/securityControls/definitions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1862,14 +1642,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListStandardsControlAssociations"
-                    }
+                    "method": "GET",
+                    "route": "/associations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1891,20 +1667,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,14 +1696,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartConfigurationPolicyAssociation"
-                    }
+                    "route": "/configurationPolicyAssociation/associate"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1949,14 +1721,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartConfigurationPolicyDisassociation"
-                    }
+                    "route": "/configurationPolicyAssociation/disassociate"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1978,20 +1746,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TagResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2007,20 +1775,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UntagResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2036,20 +1804,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ActionTargetArn": "route.ActionTargetArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateActionTarget"
-                    }
+                    "method": "PATCH",
+                    "route": "/actionTargets{/ActionTargetArn*}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateActionTargetResponse"
                     },
                     "inject": [
+                        "param.0.ActionTargetArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2065,20 +1833,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateConfigurationPolicy"
-                    }
+                    "method": "PATCH",
+                    "route": "/configurationPolicy/{Identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateConfigurationPolicyResponse"
                     },
                     "inject": [
+                        "param.0.Identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2094,14 +1862,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFindingAggregator"
-                    }
+                    "method": "PATCH",
+                    "route": "/findingAggregator/update"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2123,14 +1887,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFindings"
-                    }
+                    "method": "PATCH",
+                    "route": "/findings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2152,20 +1912,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "InsightArn": "route.InsightArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateInsight"
-                    }
+                    "method": "PATCH",
+                    "route": "/insights{/InsightArn*}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateInsightResponse"
                     },
                     "inject": [
+                        "param.0.InsightArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2181,14 +1941,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateOrganizationConfiguration"
-                    }
+                    "route": "/organization/configuration"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2210,14 +1966,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSecurityControl"
-                    }
+                    "method": "PATCH",
+                    "route": "/securityControl/update"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2239,14 +1991,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSecurityHubConfiguration"
-                    }
+                    "method": "PATCH",
+                    "route": "/accounts"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2268,20 +2016,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "StandardsControlArn": "route.StandardsControlArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateStandardsControl"
-                    }
+                    "method": "PATCH",
+                    "route": "/standards/control{/StandardsControlArn*}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateStandardsControlResponse"
                     },
                     "inject": [
+                        "param.0.StandardsControlArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -18839,318 +18587,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://securityhub-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://securityhub-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://securityhub.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://securityhub.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://securityhub-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://securityhub-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://securityhub.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://securityhub.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

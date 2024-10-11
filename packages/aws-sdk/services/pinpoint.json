@@ -6,14 +6,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateApp"
-                    }
+                    "route": "/v1/apps"
                 },
                 "schema": {
                     "resultSchema": {
@@ -35,20 +31,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCampaign"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/campaigns"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateCampaignResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +60,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateEmailTemplate"
-                    }
+                    "route": "/v1/templates/{TemplateName}/email"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateEmailTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +89,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateExportJob"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/jobs/export"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateExportJobResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +118,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateImportJob"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/jobs/import"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateImportJobResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,20 +147,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateInAppTemplate"
-                    }
+                    "route": "/v1/templates/{TemplateName}/inapp"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateInAppTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,20 +176,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateJourney"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/journeys"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateJourneyResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,20 +205,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreatePushTemplate"
-                    }
+                    "route": "/v1/templates/{TemplateName}/push"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreatePushTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,14 +234,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateRecommenderConfiguration"
-                    }
+                    "route": "/v1/recommenders"
                 },
                 "schema": {
                     "resultSchema": {
@@ -267,20 +259,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSegment"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/segments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSegmentResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +288,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSmsTemplate"
-                    }
+                    "route": "/v1/templates/{TemplateName}/sms"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSmsTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +317,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateVoiceTemplate"
-                    }
+                    "route": "/v1/templates/{TemplateName}/voice"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateVoiceTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +346,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteAdmChannel"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/channels/adm"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteAdmChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +375,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteApnsChannel"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteApnsChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +404,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteApnsSandboxChannel"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns_sandbox"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteApnsSandboxChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +433,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteApnsVoipChannel"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns_voip"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteApnsVoipChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +462,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteApnsVoipSandboxChannel"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns_voip_sandbox"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteApnsVoipSandboxChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +491,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteApp"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteAppResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +520,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteBaiduChannel"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/channels/baidu"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteBaiduChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +549,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "CampaignId": "route.CampaignId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCampaign"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/campaigns/{CampaignId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteCampaignResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.CampaignId",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +580,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEmailChannel"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/channels/email"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteEmailChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +609,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEmailTemplate"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/templates/{TemplateName}/email"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteEmailTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +638,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "EndpointId": "route.EndpointId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEndpoint"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/endpoints/{EndpointId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteEndpointResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.EndpointId",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +669,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEventStream"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/eventstream"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteEventStreamResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +698,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteGcmChannel"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/channels/gcm"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteGcmChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +727,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteInAppTemplate"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/templates/{TemplateName}/inapp"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteInAppTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +756,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JourneyId": "route.JourneyId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteJourney"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/journeys/{JourneyId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteJourneyResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JourneyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +787,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeletePushTemplate"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/templates/{TemplateName}/push"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeletePushTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +816,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RecommenderId": "route.RecommenderId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteRecommenderConfiguration"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/recommenders/{RecommenderId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteRecommenderConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.RecommenderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +845,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "SegmentId": "route.SegmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSegment"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/segments/{SegmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteSegmentResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.SegmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +876,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSmsChannel"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/channels/sms"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteSmsChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +905,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSmsTemplate"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/templates/{TemplateName}/sms"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteSmsTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +934,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "UserId": "route.UserId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteUserEndpoints"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/users/{UserId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteUserEndpointsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.UserId",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +965,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceChannel"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/apps/{ApplicationId}/channels/voice"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteVoiceChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +994,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVoiceTemplate"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/templates/{TemplateName}/voice"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteVoiceTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +1023,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAdmChannel"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels/adm"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAdmChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1052,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApnsChannel"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetApnsChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1081,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApnsSandboxChannel"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns_sandbox"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetApnsSandboxChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1110,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApnsVoipChannel"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns_voip"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetApnsVoipChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1139,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApnsVoipSandboxChannel"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns_voip_sandbox"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetApnsVoipSandboxChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1168,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApp"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAppResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1197,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "KpiName": "route.KpiName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApplicationDateRangeKpi"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/kpis/daterange/{KpiName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetApplicationDateRangeKpiResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.KpiName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1228,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApplicationSettings"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/settings"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetApplicationSettingsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,14 +1257,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetApps"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1282,20 +1282,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBaiduChannel"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels/baidu"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetBaiduChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1311,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "CampaignId": "route.CampaignId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCampaign"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/campaigns/{CampaignId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCampaignResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.CampaignId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1342,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "CampaignId": "route.CampaignId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCampaignActivities"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/activities"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCampaignActivitiesResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.CampaignId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1373,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "CampaignId": "route.CampaignId",
+                            "KpiName": "route.KpiName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCampaignDateRangeKpi"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/kpis/daterange/{KpiName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCampaignDateRangeKpiResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.CampaignId",
+                        "param.0.KpiName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1406,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCampaigns"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/campaigns"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCampaignsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1435,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "CampaignId": "route.CampaignId",
+                            "Version": "route.Version",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCampaignVersion"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/versions/{Version}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCampaignVersionResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.CampaignId",
+                        "param.0.Version",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1468,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "CampaignId": "route.CampaignId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCampaignVersions"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/campaigns/{CampaignId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCampaignVersionsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.CampaignId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,20 +1499,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetChannels"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetChannelsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1514,20 +1528,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEmailChannel"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels/email"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEmailChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1557,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEmailTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/v1/templates/{TemplateName}/email"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEmailTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,20 +1586,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "EndpointId": "route.EndpointId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEndpoint"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/endpoints/{EndpointId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEndpointResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.EndpointId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1601,20 +1617,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEventStream"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/eventstream"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEventStreamResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1630,20 +1646,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JobId": "route.JobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetExportJob"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/jobs/export/{JobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetExportJobResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1659,20 +1677,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetExportJobs"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/jobs/export"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetExportJobsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,20 +1706,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGcmChannel"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels/gcm"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetGcmChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,20 +1735,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JobId": "route.JobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetImportJob"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/jobs/import/{JobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetImportJobResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1746,20 +1766,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetImportJobs"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/jobs/import"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetImportJobsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,20 +1795,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "EndpointId": "route.EndpointId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetInAppMessages"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/endpoints/{EndpointId}/inappmessages"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetInAppMessagesResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.EndpointId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,20 +1826,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetInAppTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/v1/templates/{TemplateName}/inapp"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetInAppTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1833,20 +1855,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JourneyId": "route.JourneyId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetJourney"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/journeys/{JourneyId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetJourneyResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JourneyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,20 +1886,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JourneyId": "route.JourneyId",
+                            "KpiName": "route.KpiName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetJourneyDateRangeKpi"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/journeys/{JourneyId}/kpis/daterange/{KpiName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetJourneyDateRangeKpiResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JourneyId",
+                        "param.0.KpiName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1891,20 +1919,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JourneyId": "route.JourneyId",
+                            "JourneyActivityId": "route.JourneyActivityId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetJourneyExecutionActivityMetrics"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/journeys/{JourneyId}/activities/{JourneyActivityId}/execution-metrics"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetJourneyExecutionActivityMetricsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JourneyId",
+                        "param.0.JourneyActivityId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,20 +1952,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JourneyId": "route.JourneyId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetJourneyExecutionMetrics"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/journeys/{JourneyId}/execution-metrics"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetJourneyExecutionMetricsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JourneyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1949,20 +1983,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JourneyId": "route.JourneyId",
+                            "RunId": "route.RunId",
+                            "JourneyActivityId": "route.JourneyActivityId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetJourneyRunExecutionActivityMetrics"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/journeys/{JourneyId}/runs/{RunId}/activities/{JourneyActivityId}/execution-metrics"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetJourneyRunExecutionActivityMetricsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JourneyId",
+                        "param.0.RunId",
+                        "param.0.JourneyActivityId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1978,20 +2018,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JourneyId": "route.JourneyId",
+                            "RunId": "route.RunId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetJourneyRunExecutionMetrics"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/journeys/{JourneyId}/runs/{RunId}/execution-metrics"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetJourneyRunExecutionMetricsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JourneyId",
+                        "param.0.RunId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2007,20 +2051,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JourneyId": "route.JourneyId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetJourneyRuns"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/journeys/{JourneyId}/runs"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetJourneyRunsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JourneyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2036,20 +2082,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPushTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/v1/templates/{TemplateName}/push"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetPushTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2065,20 +2111,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RecommenderId": "route.RecommenderId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRecommenderConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/v1/recommenders/{RecommenderId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetRecommenderConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.RecommenderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2094,14 +2140,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRecommenderConfigurations"
-                    }
+                    "method": "GET",
+                    "route": "/v1/recommenders"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2123,20 +2165,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "SegmentId": "route.SegmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSegment"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/segments/{SegmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSegmentResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.SegmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2152,20 +2196,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "SegmentId": "route.SegmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSegmentExportJobs"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/segments/{SegmentId}/jobs/export"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSegmentExportJobsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.SegmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2181,20 +2227,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "SegmentId": "route.SegmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSegmentImportJobs"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/segments/{SegmentId}/jobs/import"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSegmentImportJobsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.SegmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2210,20 +2258,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSegments"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/segments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSegmentsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2239,20 +2287,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "SegmentId": "route.SegmentId",
+                            "Version": "route.Version",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSegmentVersion"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/segments/{SegmentId}/versions/{Version}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSegmentVersionResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.SegmentId",
+                        "param.0.Version",
                         "param.0"
                     ],
                     "$defs": {
@@ -2268,20 +2320,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "SegmentId": "route.SegmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSegmentVersions"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/segments/{SegmentId}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSegmentVersionsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.SegmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2297,20 +2351,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSmsChannel"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels/sms"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSmsChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2326,20 +2380,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSmsTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/v1/templates/{TemplateName}/sms"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSmsTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2355,20 +2409,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "UserId": "route.UserId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetUserEndpoints"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/users/{UserId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetUserEndpointsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.UserId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2384,20 +2440,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceChannel"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/channels/voice"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2413,20 +2469,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVoiceTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/v1/templates/{TemplateName}/voice"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVoiceTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2442,20 +2498,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListJourneys"
-                    }
+                    "method": "GET",
+                    "route": "/v1/apps/{ApplicationId}/journeys"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListJourneysResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2471,20 +2527,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/v1/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2500,14 +2556,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTemplates"
-                    }
+                    "method": "GET",
+                    "route": "/v1/templates"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2529,20 +2581,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "TemplateType": "route.TemplateType",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTemplateVersions"
-                    }
+                    "method": "GET",
+                    "route": "/v1/templates/{TemplateName}/{TemplateType}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTemplateVersionsResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
+                        "param.0.TemplateType",
                         "param.0"
                     ],
                     "$defs": {
@@ -2558,14 +2612,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PhoneNumberValidate"
-                    }
+                    "route": "/v1/phone/number/validate"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2587,20 +2637,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutEvents"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/events"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutEventsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2616,20 +2666,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutEventStream"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/eventstream"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutEventStreamResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2645,20 +2695,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "AttributeType": "route.AttributeType",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RemoveAttributes"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/attributes/{AttributeType}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RemoveAttributesResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.AttributeType",
                         "param.0"
                     ],
                     "$defs": {
@@ -2674,20 +2726,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SendMessages"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/messages"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SendMessagesResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2703,20 +2755,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SendOTPMessage"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/otp"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SendOTPMessageResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2732,20 +2784,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SendUsersMessages"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/users-messages"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SendUsersMessagesResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2761,20 +2813,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/v1/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2790,20 +2842,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2819,20 +2871,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAdmChannel"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/channels/adm"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateAdmChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2848,20 +2900,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateApnsChannel"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateApnsChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2877,20 +2929,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateApnsSandboxChannel"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns_sandbox"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateApnsSandboxChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2906,20 +2958,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateApnsVoipChannel"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns_voip"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateApnsVoipChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2935,20 +2987,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateApnsVoipSandboxChannel"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/channels/apns_voip_sandbox"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateApnsVoipSandboxChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2964,20 +3016,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateApplicationSettings"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/settings"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateApplicationSettingsResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2993,20 +3045,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateBaiduChannel"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/channels/baidu"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateBaiduChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3022,20 +3074,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "CampaignId": "route.CampaignId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateCampaign"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/campaigns/{CampaignId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateCampaignResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.CampaignId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3051,20 +3105,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEmailChannel"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/channels/email"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateEmailChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3080,20 +3134,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEmailTemplate"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/templates/{TemplateName}/email"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateEmailTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -3109,20 +3163,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "EndpointId": "route.EndpointId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEndpoint"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/endpoints/{EndpointId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateEndpointResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.EndpointId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3138,20 +3194,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEndpointsBatch"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/endpoints"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateEndpointsBatchResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3167,20 +3223,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateGcmChannel"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/channels/gcm"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateGcmChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3196,20 +3252,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateInAppTemplate"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/templates/{TemplateName}/inapp"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateInAppTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -3225,20 +3281,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JourneyId": "route.JourneyId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateJourney"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/journeys/{JourneyId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateJourneyResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JourneyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3254,20 +3312,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "JourneyId": "route.JourneyId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateJourneyState"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/journeys/{JourneyId}/state"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateJourneyStateResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.JourneyId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3283,20 +3343,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdatePushTemplate"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/templates/{TemplateName}/push"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdatePushTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -3312,20 +3372,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "RecommenderId": "route.RecommenderId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateRecommenderConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/recommenders/{RecommenderId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateRecommenderConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.RecommenderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3341,20 +3401,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "SegmentId": "route.SegmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSegment"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/segments/{SegmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSegmentResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
+                        "param.0.SegmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3370,20 +3432,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSmsChannel"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/channels/sms"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSmsChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3399,20 +3461,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSmsTemplate"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/templates/{TemplateName}/sms"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSmsTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -3428,20 +3490,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "TemplateType": "route.TemplateType",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateTemplateActiveVersion"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/templates/{TemplateName}/{TemplateType}/active-version"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateTemplateActiveVersionResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
+                        "param.0.TemplateType",
                         "param.0"
                     ],
                     "$defs": {
@@ -3457,20 +3521,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateVoiceChannel"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/apps/{ApplicationId}/channels/voice"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateVoiceChannelResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -3486,20 +3550,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateName": "route.TemplateName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateVoiceTemplate"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/templates/{TemplateName}/voice"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateVoiceTemplateResponse"
                     },
                     "inject": [
+                        "param.0.TemplateName",
                         "param.0"
                     ],
                     "$defs": {
@@ -3515,20 +3579,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ApplicationId": "route.ApplicationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "VerifyOTPMessage"
-                    }
+                    "route": "/v1/apps/{ApplicationId}/verify-otp"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/VerifyOTPMessageResponse"
                     },
                     "inject": [
+                        "param.0.ApplicationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -11097,425 +11161,427 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://pinpoint-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
+                                },
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://pinpoint-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://pinpoint.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://pinpoint-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://pinpoint-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://pinpoint.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                },
+                                                "us-east-1"
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://pinpoint.us-east-1.amazonaws.com",
+                                        "properties": {},
+                                        "headers": {}
                                     },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "Region"
-                                            },
-                                            "us-east-1"
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://pinpoint.us-east-1.amazonaws.com",
-                                    "properties": {},
-                                    "headers": {}
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "Region"
-                                            },
-                                            "us-west-2"
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://pinpoint.us-west-2.amazonaws.com",
-                                    "properties": {},
-                                    "headers": {}
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                },
+                                                "us-west-2"
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://pinpoint.us-west-2.amazonaws.com",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "Region"
-                                            },
-                                            "us-gov-west-1"
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://pinpoint.us-gov-west-1.amazonaws.com",
-                                    "properties": {},
-                                    "headers": {}
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                },
+                                                "us-gov-west-1"
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://pinpoint.us-gov-west-1.amazonaws.com",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            "aws",
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://pinpoint.{Region}.amazonaws.com",
-                                    "properties": {},
-                                    "headers": {}
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                "aws",
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://pinpoint.{Region}.amazonaws.com",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            "aws-us-gov",
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://pinpoint.{Region}.amazonaws.com",
-                                    "properties": {},
-                                    "headers": {}
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                "aws-us-gov",
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://pinpoint.{Region}.amazonaws.com",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://pinpoint.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://pinpoint.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

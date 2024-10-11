@@ -6,14 +6,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateConfigurationSet"
-                    }
+                    "route": "/v1/email/configuration-sets"
                 },
                 "schema": {
                     "resultSchema": {
@@ -35,20 +31,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateConfigurationSetEventDestination"
-                    }
+                    "route": "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateConfigurationSetEventDestinationResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationSetName",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,14 +60,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDedicatedIpPool"
-                    }
+                    "route": "/v1/email/dedicated-ip-pools"
                 },
                 "schema": {
                     "resultSchema": {
@@ -93,14 +85,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDeliverabilityTestReport"
-                    }
+                    "route": "/v1/email/deliverability-dashboard/test"
                 },
                 "schema": {
                     "resultSchema": {
@@ -122,14 +110,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateEmailIdentity"
-                    }
+                    "route": "/v1/email/identities"
                 },
                 "schema": {
                     "resultSchema": {
@@ -151,20 +135,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteConfigurationSet"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/email/configuration-sets/{ConfigurationSetName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteConfigurationSetResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationSetName",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,20 +164,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "EventDestinationName": "route.EventDestinationName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteConfigurationSetEventDestination"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteConfigurationSetEventDestinationResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationSetName",
+                        "param.0.EventDestinationName",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,20 +195,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PoolName": "route.PoolName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDedicatedIpPool"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/email/dedicated-ip-pools/{PoolName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteDedicatedIpPoolResponse"
                     },
                     "inject": [
+                        "param.0.PoolName",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,20 +224,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "EmailIdentity": "route.EmailIdentity",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEmailIdentity"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/email/identities/{EmailIdentity}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteEmailIdentityResponse"
                     },
                     "inject": [
+                        "param.0.EmailIdentity",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,14 +253,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAccount"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/account"
                 },
                 "schema": {
                     "resultSchema": {
@@ -296,14 +278,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBlacklistReports"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/deliverability-dashboard/blacklist-report"
                 },
                 "schema": {
                     "resultSchema": {
@@ -325,20 +303,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConfigurationSet"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/configuration-sets/{ConfigurationSetName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetConfigurationSetResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationSetName",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +332,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConfigurationSetEventDestinations"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetConfigurationSetEventDestinationsResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationSetName",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +361,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Ip": "route.Ip",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDedicatedIp"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/dedicated-ips/{Ip}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDedicatedIpResponse"
                     },
                     "inject": [
+                        "param.0.Ip",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,14 +390,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDedicatedIps"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/dedicated-ips"
                 },
                 "schema": {
                     "resultSchema": {
@@ -441,14 +415,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDeliverabilityDashboardOptions"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/deliverability-dashboard"
                 },
                 "schema": {
                     "resultSchema": {
@@ -470,20 +440,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ReportId": "route.ReportId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDeliverabilityTestReport"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/deliverability-dashboard/test-reports/{ReportId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDeliverabilityTestReportResponse"
                     },
                     "inject": [
+                        "param.0.ReportId",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +469,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CampaignId": "route.CampaignId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDomainDeliverabilityCampaign"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/deliverability-dashboard/campaigns/{CampaignId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDomainDeliverabilityCampaignResponse"
                     },
                     "inject": [
+                        "param.0.CampaignId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +498,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Domain": "route.Domain",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDomainStatisticsReport"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/deliverability-dashboard/statistics-report/{Domain}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDomainStatisticsReportResponse"
                     },
                     "inject": [
+                        "param.0.Domain",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +527,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "EmailIdentity": "route.EmailIdentity",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEmailIdentity"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/identities/{EmailIdentity}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEmailIdentityResponse"
                     },
                     "inject": [
+                        "param.0.EmailIdentity",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,14 +556,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListConfigurationSets"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/configuration-sets"
                 },
                 "schema": {
                     "resultSchema": {
@@ -615,14 +581,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDedicatedIpPools"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/dedicated-ip-pools"
                 },
                 "schema": {
                     "resultSchema": {
@@ -644,14 +606,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDeliverabilityTestReports"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/deliverability-dashboard/test-reports"
                 },
                 "schema": {
                     "resultSchema": {
@@ -673,20 +631,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "SubscribedDomain": "route.SubscribedDomain",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDomainDeliverabilityCampaigns"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/deliverability-dashboard/domains/{SubscribedDomain}/campaigns"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDomainDeliverabilityCampaignsResponse"
                     },
                     "inject": [
+                        "param.0.SubscribedDomain",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,14 +660,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEmailIdentities"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/identities"
                 },
                 "schema": {
                     "resultSchema": {
@@ -731,14 +685,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/v1/email/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -760,14 +710,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutAccountDedicatedIpWarmupAttributes"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/account/dedicated-ips/warmup"
                 },
                 "schema": {
                     "resultSchema": {
@@ -789,14 +735,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutAccountSendingAttributes"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/account/sending"
                 },
                 "schema": {
                     "resultSchema": {
@@ -818,20 +760,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutConfigurationSetDeliveryOptions"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/configuration-sets/{ConfigurationSetName}/delivery-options"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutConfigurationSetDeliveryOptionsResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationSetName",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +789,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutConfigurationSetReputationOptions"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/configuration-sets/{ConfigurationSetName}/reputation-options"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutConfigurationSetReputationOptionsResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationSetName",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +818,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutConfigurationSetSendingOptions"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/configuration-sets/{ConfigurationSetName}/sending"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutConfigurationSetSendingOptionsResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationSetName",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +847,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutConfigurationSetTrackingOptions"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/configuration-sets/{ConfigurationSetName}/tracking-options"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutConfigurationSetTrackingOptionsResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationSetName",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +876,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Ip": "route.Ip",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutDedicatedIpInPool"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/dedicated-ips/{Ip}/pool"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutDedicatedIpInPoolResponse"
                     },
                     "inject": [
+                        "param.0.Ip",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +905,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Ip": "route.Ip",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutDedicatedIpWarmupAttributes"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/dedicated-ips/{Ip}/warmup"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutDedicatedIpWarmupAttributesResponse"
                     },
                     "inject": [
+                        "param.0.Ip",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,14 +934,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutDeliverabilityDashboardOption"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/deliverability-dashboard"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1021,20 +959,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "EmailIdentity": "route.EmailIdentity",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutEmailIdentityDkimAttributes"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/identities/{EmailIdentity}/dkim"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutEmailIdentityDkimAttributesResponse"
                     },
                     "inject": [
+                        "param.0.EmailIdentity",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +988,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "EmailIdentity": "route.EmailIdentity",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutEmailIdentityFeedbackAttributes"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/identities/{EmailIdentity}/feedback"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutEmailIdentityFeedbackAttributesResponse"
                     },
                     "inject": [
+                        "param.0.EmailIdentity",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1017,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "EmailIdentity": "route.EmailIdentity",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutEmailIdentityMailFromAttributes"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/identities/{EmailIdentity}/mail-from"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutEmailIdentityMailFromAttributesResponse"
                     },
                     "inject": [
+                        "param.0.EmailIdentity",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,14 +1046,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SendEmail"
-                    }
+                    "route": "/v1/email/outbound-emails"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1137,14 +1071,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/v1/email/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1166,14 +1096,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/email/tags"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1195,20 +1121,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "EventDestinationName": "route.EventDestinationName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateConfigurationSetEventDestination"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateConfigurationSetEventDestinationResponse"
                     },
                     "inject": [
+                        "param.0.ConfigurationSetName",
+                        "param.0.EventDestinationName",
                         "param.0"
                     ],
                     "$defs": {
@@ -2968,318 +2896,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://email-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://email-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://email.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://email.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://email-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://email-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://email.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://email.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

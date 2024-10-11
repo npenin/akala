@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AcceptAdministratorInvitation"
-                    }
+                    "route": "/detector/{DetectorId}/administrator"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AcceptAdministratorInvitationResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +35,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AcceptInvitation"
-                    }
+                    "route": "/detector/{DetectorId}/master"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AcceptInvitationResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +64,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ArchiveFindings"
-                    }
+                    "route": "/detector/{DetectorId}/findings/archive"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ArchiveFindingsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,14 +93,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDetector"
-                    }
+                    "route": "/detector"
                 },
                 "schema": {
                     "resultSchema": {
@@ -122,20 +118,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateFilter"
-                    }
+                    "route": "/detector/{DetectorId}/filter"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateFilterResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,20 +147,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateIPSet"
-                    }
+                    "route": "/detector/{DetectorId}/ipset"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateIPSetResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,14 +176,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateMalwareProtectionPlan"
-                    }
+                    "route": "/malware-protection-plan"
                 },
                 "schema": {
                     "resultSchema": {
@@ -209,20 +201,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateMembers"
-                    }
+                    "route": "/detector/{DetectorId}/member"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateMembersResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,20 +230,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreatePublishingDestination"
-                    }
+                    "route": "/detector/{DetectorId}/publishingDestination"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreatePublishingDestinationResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,20 +259,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSampleFindings"
-                    }
+                    "route": "/detector/{DetectorId}/findings/create"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSampleFindingsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +288,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateThreatIntelSet"
-                    }
+                    "route": "/detector/{DetectorId}/threatintelset"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateThreatIntelSetResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,14 +317,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeclineInvitations"
-                    }
+                    "route": "/invitation/decline"
                 },
                 "schema": {
                     "resultSchema": {
@@ -354,20 +342,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDetector"
-                    }
+                    "method": "DELETE",
+                    "route": "/detector/{DetectorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteDetectorResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +371,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "FilterName": "route.FilterName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteFilter"
-                    }
+                    "method": "DELETE",
+                    "route": "/detector/{DetectorId}/filter/{FilterName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteFilterResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.FilterName",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,14 +402,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteInvitations"
-                    }
+                    "route": "/invitation/delete"
                 },
                 "schema": {
                     "resultSchema": {
@@ -441,20 +427,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "IpSetId": "route.IpSetId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteIPSet"
-                    }
+                    "method": "DELETE",
+                    "route": "/detector/{DetectorId}/ipset/{IpSetId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteIPSetResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.IpSetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +458,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "MalwareProtectionPlanId": "route.MalwareProtectionPlanId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteMalwareProtectionPlan"
-                    }
+                    "method": "DELETE",
+                    "route": "/malware-protection-plan/{MalwareProtectionPlanId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.MalwareProtectionPlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +487,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteMembers"
-                    }
+                    "route": "/detector/{DetectorId}/member/delete"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteMembersResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +516,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "DestinationId": "route.DestinationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeletePublishingDestination"
-                    }
+                    "method": "DELETE",
+                    "route": "/detector/{DetectorId}/publishingDestination/{DestinationId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeletePublishingDestinationResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.DestinationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +547,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "ThreatIntelSetId": "route.ThreatIntelSetId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteThreatIntelSet"
-                    }
+                    "method": "DELETE",
+                    "route": "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteThreatIntelSetResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.ThreatIntelSetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +578,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeMalwareScans"
-                    }
+                    "route": "/detector/{DetectorId}/malware-scans"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeMalwareScansResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +607,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeOrganizationConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/admin"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeOrganizationConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +636,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "DestinationId": "route.DestinationId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribePublishingDestination"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/publishingDestination/{DestinationId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribePublishingDestinationResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.DestinationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,14 +667,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisableOrganizationAdminAccount"
-                    }
+                    "route": "/admin/disable"
                 },
                 "schema": {
                     "resultSchema": {
@@ -702,20 +692,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateFromAdministratorAccount"
-                    }
+                    "route": "/detector/{DetectorId}/administrator/disassociate"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateFromAdministratorAccountResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +721,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateFromMasterAccount"
-                    }
+                    "route": "/detector/{DetectorId}/master/disassociate"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateFromMasterAccountResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +750,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateMembers"
-                    }
+                    "route": "/detector/{DetectorId}/member/disassociate"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateMembersResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,14 +779,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "EnableOrganizationAdminAccount"
-                    }
+                    "route": "/admin/enable"
                 },
                 "schema": {
                     "resultSchema": {
@@ -818,20 +804,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAdministratorAccount"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/administrator"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAdministratorAccountResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +833,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCoverageStatistics"
-                    }
+                    "route": "/detector/{DetectorId}/coverage/statistics"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCoverageStatisticsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +862,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDetector"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDetectorResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +891,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "FilterName": "route.FilterName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFilter"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/filter/{FilterName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFilterResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.FilterName",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +922,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFindings"
-                    }
+                    "route": "/detector/{DetectorId}/findings/get"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFindingsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +951,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetFindingsStatistics"
-                    }
+                    "route": "/detector/{DetectorId}/findings/statistics"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetFindingsStatisticsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,14 +980,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetInvitationsCount"
-                    }
+                    "method": "GET",
+                    "route": "/invitation/count"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1021,20 +1005,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "IpSetId": "route.IpSetId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetIPSet"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/ipset/{IpSetId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetIPSetResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.IpSetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1036,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "MalwareProtectionPlanId": "route.MalwareProtectionPlanId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMalwareProtectionPlan"
-                    }
+                    "method": "GET",
+                    "route": "/malware-protection-plan/{MalwareProtectionPlanId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMalwareProtectionPlanResponse"
                     },
                     "inject": [
+                        "param.0.MalwareProtectionPlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1065,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMalwareScanSettings"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/malware-scan-settings"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMalwareScanSettingsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1094,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMasterAccount"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/master"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMasterAccountResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1123,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMemberDetectors"
-                    }
+                    "route": "/detector/{DetectorId}/member/detector/get"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMemberDetectorsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1152,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMembers"
-                    }
+                    "route": "/detector/{DetectorId}/member/get"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMembersResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,14 +1181,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetOrganizationStatistics"
-                    }
+                    "method": "GET",
+                    "route": "/organization/statistics"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1224,20 +1206,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRemainingFreeTrialDays"
-                    }
+                    "route": "/detector/{DetectorId}/freeTrial/daysRemaining"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetRemainingFreeTrialDaysResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1235,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "ThreatIntelSetId": "route.ThreatIntelSetId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetThreatIntelSet"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetThreatIntelSetResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.ThreatIntelSetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1266,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetUsageStatistics"
-                    }
+                    "route": "/detector/{DetectorId}/usage/statistics"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetUsageStatisticsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1295,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "InviteMembers"
-                    }
+                    "route": "/detector/{DetectorId}/member/invite"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/InviteMembersResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1324,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCoverage"
-                    }
+                    "route": "/detector/{DetectorId}/coverage"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListCoverageResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,14 +1353,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDetectors"
-                    }
+                    "method": "GET",
+                    "route": "/detector"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1398,20 +1378,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFilters"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/filter"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListFiltersResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1407,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListFindings"
-                    }
+                    "route": "/detector/{DetectorId}/findings"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListFindingsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,14 +1436,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListInvitations"
-                    }
+                    "method": "GET",
+                    "route": "/invitation"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1485,20 +1461,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListIPSets"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/ipset"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListIPSetsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1514,14 +1490,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMalwareProtectionPlans"
-                    }
+                    "method": "GET",
+                    "route": "/malware-protection-plan"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1543,20 +1515,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMembers"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/member"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListMembersResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,14 +1544,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListOrganizationAdminAccounts"
-                    }
+                    "method": "GET",
+                    "route": "/admin"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1601,20 +1569,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListPublishingDestinations"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/publishingDestination"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListPublishingDestinationsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1630,20 +1598,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1659,20 +1627,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListThreatIntelSets"
-                    }
+                    "method": "GET",
+                    "route": "/detector/{DetectorId}/threatintelset"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListThreatIntelSetsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,14 +1656,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartMalwareScan"
-                    }
+                    "route": "/malware-scan/start"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1717,20 +1681,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartMonitoringMembers"
-                    }
+                    "route": "/detector/{DetectorId}/member/start"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartMonitoringMembersResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1746,20 +1710,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StopMonitoringMembers"
-                    }
+                    "route": "/detector/{DetectorId}/member/stop"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StopMonitoringMembersResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,20 +1739,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TagResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,20 +1768,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UnarchiveFindings"
-                    }
+                    "route": "/detector/{DetectorId}/findings/unarchive"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UnarchiveFindingsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1833,20 +1797,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UntagResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,20 +1826,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDetector"
-                    }
+                    "route": "/detector/{DetectorId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateDetectorResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1891,20 +1855,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "FilterName": "route.FilterName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFilter"
-                    }
+                    "route": "/detector/{DetectorId}/filter/{FilterName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateFilterResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.FilterName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,20 +1886,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateFindingsFeedback"
-                    }
+                    "route": "/detector/{DetectorId}/findings/feedback"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateFindingsFeedbackResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1949,20 +1915,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "IpSetId": "route.IpSetId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateIPSet"
-                    }
+                    "route": "/detector/{DetectorId}/ipset/{IpSetId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateIPSetResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.IpSetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1978,20 +1946,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "MalwareProtectionPlanId": "route.MalwareProtectionPlanId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateMalwareProtectionPlan"
-                    }
+                    "method": "PATCH",
+                    "route": "/malware-protection-plan/{MalwareProtectionPlanId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.MalwareProtectionPlanId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2007,20 +1975,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateMalwareScanSettings"
-                    }
+                    "route": "/detector/{DetectorId}/malware-scan-settings"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateMalwareScanSettingsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2036,20 +2004,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateMemberDetectors"
-                    }
+                    "route": "/detector/{DetectorId}/member/detector/update"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateMemberDetectorsResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2065,20 +2033,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateOrganizationConfiguration"
-                    }
+                    "route": "/detector/{DetectorId}/admin"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateOrganizationConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2094,20 +2062,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "DestinationId": "route.DestinationId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdatePublishingDestination"
-                    }
+                    "route": "/detector/{DetectorId}/publishingDestination/{DestinationId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdatePublishingDestinationResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.DestinationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2123,20 +2093,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "DetectorId": "route.DetectorId",
+                            "ThreatIntelSetId": "route.ThreatIntelSetId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateThreatIntelSet"
-                    }
+                    "route": "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateThreatIntelSetResponse"
                     },
                     "inject": [
+                        "param.0.DetectorId",
+                        "param.0.ThreatIntelSetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -6130,7 +6102,7 @@
             "type": "object",
             "properties": {
                 "Master": {
-                    "$ref": "#/$defs/main"
+                    "$ref": "#/$defs/Master"
                 }
             }
         },
@@ -7892,343 +7864,345 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://guardduty-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "stringEquals",
-                                                        "argv": [
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "name"
-                                                                ]
-                                                            },
-                                                            "aws-us-gov"
-                                                        ]
-                                                    }
-                                                ],
-                                                "endpoint": {
-                                                    "url": "https://guardduty.{Region}.amazonaws.com",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://guardduty-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://guardduty.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://guardduty.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://guardduty-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "name"
+                                                                    ]
+                                                                },
+                                                                "aws-us-gov"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://guardduty.{Region}.amazonaws.com",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://guardduty-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://guardduty.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://guardduty.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

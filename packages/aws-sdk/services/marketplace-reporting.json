@@ -1,94 +1,5 @@
 {
-    "name": "sagemaker-geospatial",
-    "commands": [
-        {
-            "name": "ListTagsForResource",
-            "config": {
-                "http": {
-                    "inject": [
-                        {
-                            "ResourceArn": "route.ResourceArn",
-                            "...": "query"
-                        }
-                    ],
-                    "method": "GET",
-                    "route": "/tags/{ResourceArn}"
-                },
-                "schema": {
-                    "resultSchema": {
-                        "$ref": "#/$defs/ListTagsForResourceResponse"
-                    },
-                    "inject": [
-                        "param.0.ResourceArn",
-                        "param.0"
-                    ],
-                    "$defs": {
-                        "param.0": {
-                            "$ref": "#/$defs/ListTagsForResourceRequest"
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "name": "TagResource",
-            "config": {
-                "http": {
-                    "inject": [
-                        {
-                            "ResourceArn": "route.ResourceArn",
-                            "...": "body"
-                        }
-                    ],
-                    "method": "PUT",
-                    "route": "/tags/{ResourceArn}"
-                },
-                "schema": {
-                    "resultSchema": {
-                        "$ref": "#/$defs/TagResourceResponse"
-                    },
-                    "inject": [
-                        "param.0.ResourceArn",
-                        "param.0"
-                    ],
-                    "$defs": {
-                        "param.0": {
-                            "$ref": "#/$defs/TagResourceRequest"
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "name": "UntagResource",
-            "config": {
-                "http": {
-                    "inject": [
-                        {
-                            "ResourceArn": "route.ResourceArn",
-                            "...": "body"
-                        }
-                    ],
-                    "method": "DELETE",
-                    "route": "/tags/{ResourceArn}"
-                },
-                "schema": {
-                    "resultSchema": {
-                        "$ref": "#/$defs/UntagResourceResponse"
-                    },
-                    "inject": [
-                        "param.0.ResourceArn",
-                        "param.0"
-                    ],
-                    "$defs": {
-                        "param.0": {
-                            "$ref": "#/$defs/UntagResourceRequest"
-                        }
-                    }
-                }
-            }
-        }
-    ],
+    "name": "aws-marketplace",
     "$defs": {
         "smithy.api#Unit": {
             "type": "object"
@@ -134,67 +45,6 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "Tags": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/smithy.api#String"
-            }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "Arn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
-        "TagResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "UntagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
-        "UntagResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "TagKeys": {
-                    "$ref": "#/$defs/TagKeyList"
-                }
-            }
-        },
-        "TagKeyList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/smithy.api#String"
-            }
         }
     },
     "aws": {
@@ -381,7 +231,7 @@
                                                                 {
                                                                     "conditions": [],
                                                                     "endpoint": {
-                                                                        "url": "https://sagemaker-geospatial-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                        "url": "https://reporting-marketplace-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                         "properties": {},
                                                                         "headers": {}
                                                                     },
@@ -439,7 +289,7 @@
                                                                 {
                                                                     "conditions": [],
                                                                     "endpoint": {
-                                                                        "url": "https://sagemaker-geospatial-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                        "url": "https://reporting-marketplace-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                                         "properties": {},
                                                                         "headers": {}
                                                                     },
@@ -497,7 +347,7 @@
                                                                 {
                                                                     "conditions": [],
                                                                     "endpoint": {
-                                                                        "url": "https://sagemaker-geospatial.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                        "url": "https://reporting-marketplace.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                                         "properties": {},
                                                                         "headers": {}
                                                                     },
@@ -523,7 +373,7 @@
                                                 {
                                                     "conditions": [],
                                                     "endpoint": {
-                                                        "url": "https://sagemaker-geospatial.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "url": "https://reporting-marketplace.{Region}.{PartitionResult#dnsSuffix}",
                                                         "properties": {},
                                                         "headers": {}
                                                     },

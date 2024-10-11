@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "queryId": "route.queryId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CancelGremlinQuery"
-                    }
+                    "method": "DELETE",
+                    "route": "/gremlin/status/{queryId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CancelGremlinQueryOutput"
                     },
                     "inject": [
+                        "param.0.queryId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +35,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "loadId": "route.loadId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CancelLoaderJob"
-                    }
+                    "method": "DELETE",
+                    "route": "/loader/{loadId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CancelLoaderJobOutput"
                     },
                     "inject": [
+                        "param.0.loadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +64,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "id": "route.id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CancelMLDataProcessingJob"
-                    }
+                    "method": "DELETE",
+                    "route": "/ml/dataprocessing/{id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CancelMLDataProcessingJobOutput"
                     },
                     "inject": [
+                        "param.0.id",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +93,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "id": "route.id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CancelMLModelTrainingJob"
-                    }
+                    "method": "DELETE",
+                    "route": "/ml/modeltraining/{id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CancelMLModelTrainingJobOutput"
                     },
                     "inject": [
+                        "param.0.id",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +122,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "id": "route.id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CancelMLModelTransformJob"
-                    }
+                    "method": "DELETE",
+                    "route": "/ml/modeltransform/{id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CancelMLModelTransformJobOutput"
                     },
                     "inject": [
+                        "param.0.id",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,20 +151,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "queryId": "route.queryId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CancelOpenCypherQuery"
-                    }
+                    "method": "DELETE",
+                    "route": "/opencypher/status/{queryId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CancelOpenCypherQueryOutput"
                     },
                     "inject": [
+                        "param.0.queryId",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,14 +180,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateMLEndpoint"
-                    }
+                    "route": "/ml/endpoints"
                 },
                 "schema": {
                     "resultSchema": {
@@ -209,20 +205,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "id": "route.id",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteMLEndpoint"
-                    }
+                    "method": "DELETE",
+                    "route": "/ml/endpoints/{id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteMLEndpointOutput"
                     },
                     "inject": [
+                        "param.0.id",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,14 +234,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeletePropertygraphStatistics"
-                    }
+                    "method": "DELETE",
+                    "route": "/propertygraph/statistics"
                 },
                 "schema": {
                     "resultSchema": {
@@ -267,14 +259,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSparqlStatistics"
-                    }
+                    "method": "DELETE",
+                    "route": "/sparql/statistics"
                 },
                 "schema": {
                     "resultSchema": {
@@ -296,14 +284,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ExecuteFastReset"
-                    }
+                    "route": "/system"
                 },
                 "schema": {
                     "resultSchema": {
@@ -325,14 +309,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ExecuteGremlinExplainQuery"
-                    }
+                    "route": "/gremlin/explain"
                 },
                 "schema": {
                     "resultSchema": {
@@ -354,14 +334,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ExecuteGremlinProfileQuery"
-                    }
+                    "route": "/gremlin/profile"
                 },
                 "schema": {
                     "resultSchema": {
@@ -383,14 +359,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ExecuteGremlinQuery"
-                    }
+                    "route": "/gremlin"
                 },
                 "schema": {
                     "resultSchema": {
@@ -412,14 +384,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ExecuteOpenCypherExplainQuery"
-                    }
+                    "route": "/opencypher/explain"
                 },
                 "schema": {
                     "resultSchema": {
@@ -441,14 +409,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ExecuteOpenCypherQuery"
-                    }
+                    "route": "/opencypher"
                 },
                 "schema": {
                     "resultSchema": {
@@ -470,14 +434,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEngineStatus"
-                    }
+                    "method": "GET",
+                    "route": "/status"
                 },
                 "schema": {
                     "resultSchema": {
@@ -499,20 +459,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "queryId": "route.queryId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGremlinQueryStatus"
-                    }
+                    "method": "GET",
+                    "route": "/gremlin/status/{queryId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetGremlinQueryStatusOutput"
                     },
                     "inject": [
+                        "param.0.queryId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +488,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "loadId": "route.loadId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLoaderJobStatus"
-                    }
+                    "method": "GET",
+                    "route": "/loader/{loadId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLoaderJobStatusOutput"
                     },
                     "inject": [
+                        "param.0.loadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +517,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "id": "route.id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMLDataProcessingJob"
-                    }
+                    "method": "GET",
+                    "route": "/ml/dataprocessing/{id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMLDataProcessingJobOutput"
                     },
                     "inject": [
+                        "param.0.id",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +546,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "id": "route.id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMLEndpoint"
-                    }
+                    "method": "GET",
+                    "route": "/ml/endpoints/{id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMLEndpointOutput"
                     },
                     "inject": [
+                        "param.0.id",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +575,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "id": "route.id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMLModelTrainingJob"
-                    }
+                    "method": "GET",
+                    "route": "/ml/modeltraining/{id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMLModelTrainingJobOutput"
                     },
                     "inject": [
+                        "param.0.id",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +604,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "id": "route.id",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMLModelTransformJob"
-                    }
+                    "method": "GET",
+                    "route": "/ml/modeltransform/{id}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMLModelTransformJobOutput"
                     },
                     "inject": [
+                        "param.0.id",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +633,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "queryId": "route.queryId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetOpenCypherQueryStatus"
-                    }
+                    "method": "GET",
+                    "route": "/opencypher/status/{queryId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetOpenCypherQueryStatusOutput"
                     },
                     "inject": [
+                        "param.0.queryId",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,14 +662,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPropertygraphStatistics"
-                    }
+                    "method": "GET",
+                    "route": "/propertygraph/statistics"
                 },
                 "schema": {
                     "resultSchema": {
@@ -731,14 +687,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPropertygraphStream"
-                    }
+                    "method": "GET",
+                    "route": "/propertygraph/stream"
                 },
                 "schema": {
                     "resultSchema": {
@@ -760,14 +712,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetPropertygraphSummary"
-                    }
+                    "method": "GET",
+                    "route": "/propertygraph/statistics/summary"
                 },
                 "schema": {
                     "resultSchema": {
@@ -789,14 +737,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRDFGraphSummary"
-                    }
+                    "method": "GET",
+                    "route": "/rdf/statistics/summary"
                 },
                 "schema": {
                     "resultSchema": {
@@ -818,14 +762,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSparqlStatistics"
-                    }
+                    "method": "GET",
+                    "route": "/sparql/statistics"
                 },
                 "schema": {
                     "resultSchema": {
@@ -847,14 +787,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSparqlStream"
-                    }
+                    "method": "GET",
+                    "route": "/sparql/stream"
                 },
                 "schema": {
                     "resultSchema": {
@@ -876,14 +812,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListGremlinQueries"
-                    }
+                    "method": "GET",
+                    "route": "/gremlin/status"
                 },
                 "schema": {
                     "resultSchema": {
@@ -905,14 +837,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLoaderJobs"
-                    }
+                    "method": "GET",
+                    "route": "/loader"
                 },
                 "schema": {
                     "resultSchema": {
@@ -934,14 +862,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMLDataProcessingJobs"
-                    }
+                    "method": "GET",
+                    "route": "/ml/dataprocessing"
                 },
                 "schema": {
                     "resultSchema": {
@@ -963,14 +887,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMLEndpoints"
-                    }
+                    "method": "GET",
+                    "route": "/ml/endpoints"
                 },
                 "schema": {
                     "resultSchema": {
@@ -992,14 +912,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMLModelTrainingJobs"
-                    }
+                    "method": "GET",
+                    "route": "/ml/modeltraining"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1021,14 +937,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMLModelTransformJobs"
-                    }
+                    "method": "GET",
+                    "route": "/ml/modeltransform"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1050,14 +962,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListOpenCypherQueries"
-                    }
+                    "method": "GET",
+                    "route": "/opencypher/status"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1079,14 +987,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ManagePropertygraphStatistics"
-                    }
+                    "route": "/propertygraph/statistics"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1108,14 +1012,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ManageSparqlStatistics"
-                    }
+                    "route": "/sparql/statistics"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1137,14 +1037,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartLoaderJob"
-                    }
+                    "route": "/loader"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1166,14 +1062,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartMLDataProcessingJob"
-                    }
+                    "route": "/ml/dataprocessing"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1195,14 +1087,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartMLModelTrainingJob"
-                    }
+                    "route": "/ml/modeltraining"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1224,14 +1112,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartMLModelTransformJob"
-                    }
+                    "route": "/ml/modeltransform"
                 },
                 "schema": {
                     "resultSchema": {
@@ -3071,354 +2955,356 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                                "type": "error"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": {
-                                        "ref": "Endpoint"
-                                    },
-                                    "properties": {},
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "isSet",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ]
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "aws.partition",
-                                        "argv": [
-                                            {
-                                                "ref": "Region"
-                                            }
-                                        ],
-                                        "assign": "PartitionResult"
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseFIPS"
-                                                    },
-                                                    true
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseDualStack"
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            true,
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsFIPS"
-                                                                ]
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            true,
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsDualStack"
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ],
-                                                "rules": [
-                                                    {
-                                                        "conditions": [],
-                                                        "rules": [
-                                                            {
-                                                                "conditions": [],
-                                                                "endpoint": {
-                                                                    "url": "https://neptune-db-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                                    "properties": {},
-                                                                    "headers": {}
-                                                                },
-                                                                "type": "endpoint"
-                                                            }
-                                                        ],
-                                                        "type": "tree"
-                                                    }
-                                                ],
-                                                "type": "tree"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                                "type": "error"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseFIPS"
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsFIPS"
-                                                                ]
-                                                            },
-                                                            true
-                                                        ]
-                                                    }
-                                                ],
-                                                "rules": [
-                                                    {
-                                                        "conditions": [],
-                                                        "rules": [
-                                                            {
-                                                                "conditions": [],
-                                                                "endpoint": {
-                                                                    "url": "https://neptune-db-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                                    "properties": {},
-                                                                    "headers": {}
-                                                                },
-                                                                "type": "endpoint"
-                                                            }
-                                                        ],
-                                                        "type": "tree"
-                                                    }
-                                                ],
-                                                "type": "tree"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "error": "FIPS is enabled but this partition does not support FIPS",
-                                                "type": "error"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseDualStack"
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            true,
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsDualStack"
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ],
-                                                "rules": [
-                                                    {
-                                                        "conditions": [],
-                                                        "rules": [
-                                                            {
-                                                                "conditions": [],
-                                                                "endpoint": {
-                                                                    "url": "https://neptune-db.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                                    "properties": {},
-                                                                    "headers": {}
-                                                                },
-                                                                "type": "endpoint"
-                                                            }
-                                                        ],
-                                                        "type": "tree"
-                                                    }
-                                                ],
-                                                "type": "tree"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "error": "DualStack is enabled but this partition does not support DualStack",
-                                                "type": "error"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://neptune-db.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    }
-                                ],
-                                "type": "tree"
-                            }
-                        ],
-                        "type": "tree"
-                    },
-                    {
-                        "conditions": [],
-                        "error": "Invalid Configuration: Missing Region",
-                        "type": "error"
-                    }
-                ],
-                "type": "tree"
-            }
-        ]
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                    "type": "error"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": {
+                                            "ref": "Endpoint"
+                                        },
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "isSet",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "aws.partition",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                }
+                                            ],
+                                            "assign": "PartitionResult"
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseDualStack"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                true,
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsFIPS"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                true,
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsDualStack"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "rules": [
+                                                                {
+                                                                    "conditions": [],
+                                                                    "endpoint": {
+                                                                        "url": "https://neptune-db-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                        "properties": {},
+                                                                        "headers": {}
+                                                                    },
+                                                                    "type": "endpoint"
+                                                                }
+                                                            ],
+                                                            "type": "tree"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsFIPS"
+                                                                    ]
+                                                                },
+                                                                true
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "rules": [
+                                                                {
+                                                                    "conditions": [],
+                                                                    "endpoint": {
+                                                                        "url": "https://neptune-db-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                        "properties": {},
+                                                                        "headers": {}
+                                                                    },
+                                                                    "type": "endpoint"
+                                                                }
+                                                            ],
+                                                            "type": "tree"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "FIPS is enabled but this partition does not support FIPS",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseDualStack"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                true,
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsDualStack"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "rules": [
+                                                                {
+                                                                    "conditions": [],
+                                                                    "endpoint": {
+                                                                        "url": "https://neptune-db.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                        "properties": {},
+                                                                        "headers": {}
+                                                                    },
+                                                                    "type": "endpoint"
+                                                                }
+                                                            ],
+                                                            "type": "tree"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "DualStack is enabled but this partition does not support DualStack",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://neptune-db.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                }
+                            ],
+                            "type": "tree"
+                        },
+                        {
+                            "conditions": [],
+                            "error": "Invalid Configuration: Missing Region",
+                            "type": "error"
+                        }
+                    ],
+                    "type": "tree"
+                }
+            ]
+        }
     }
 }

@@ -1,24 +1,49 @@
 {
     "commands": [
         {
+            "name": "CreateStarterMappingTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/createmappingstarttemplate"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateStarterMappingTemplateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateStarterMappingTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetTransformerJob",
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "transformerJobId": "route.transformerJobId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetTransformerJob"
-                    }
+                    "method": "GET",
+                    "route": "/transformer-jobs/{transformerJobId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetTransformerJobResponse"
                     },
                     "inject": [
+                        "param.0.transformerJobId",
                         "param.0"
                     ],
                     "$defs": {
@@ -34,20 +59,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceARN": "route.ResourceARN",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{ResourceARN}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceARN",
                         "param.0"
                     ],
                     "$defs": {
@@ -63,14 +88,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartTransformerJob"
-                    }
+                    "route": "/transformer-jobs"
                 },
                 "schema": {
                     "resultSchema": {
@@ -92,20 +113,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceARN": "route.ResourceARN",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{ResourceARN}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceARN",
                         "param.0"
                     ],
                     "$defs": {
@@ -117,18 +138,39 @@
             }
         },
         {
+            "name": "TestConversion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/testconversion"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TestConversionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TestConversionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "TestMapping",
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TestMapping"
-                    }
+                    "route": "/testmapping"
                 },
                 "schema": {
                     "resultSchema": {
@@ -150,14 +192,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TestParsing"
-                    }
+                    "route": "/testparsing"
                 },
                 "schema": {
                     "resultSchema": {
@@ -179,20 +217,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceARN": "route.ResourceARN",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{ResourceARN}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceARN",
                         "param.0"
                     ],
                     "$defs": {
@@ -250,31 +288,26 @@
             "type": "string",
             "format": "binary"
         },
-        "GetTransformerJobResponse": {
+        "CreateStarterMappingTemplateResponse": {
             "type": "object",
             "properties": {
-                "status": {
-                    "$ref": "#/$defs/TransformerJobStatus"
-                },
-                "outputFiles": {
-                    "$ref": "#/$defs/S3LocationList"
-                },
-                "message": {
+                "mappingTemplate": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },
-        "TransformerJobStatus": {
-            "enum": [
-                "RUNNING",
-                "SUCCEEDED",
-                "FAILED"
-            ]
-        },
-        "S3LocationList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/S3Location"
+        "CreateStarterMappingTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "outputSampleLocation": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "mappingType": {
+                    "$ref": "#/$defs/MappingType"
+                },
+                "templateDetails": {
+                    "$ref": "#/$defs/TemplateDetails"
+                }
             }
         },
         "S3Location": {
@@ -294,161 +327,16 @@
         "S3Key": {
             "type": "string"
         },
-        "GetTransformerJobRequest": {
-            "type": "object",
-            "properties": {
-                "transformerJobId": {
-                    "$ref": "#/$defs/TransformerJobId"
-                },
-                "transformerId": {
-                    "$ref": "#/$defs/TransformerId"
-                }
-            }
-        },
-        "TransformerJobId": {
-            "type": "string"
-        },
-        "TransformerId": {
-            "type": "string"
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/TagList"
-                }
-            }
-        },
-        "TagList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Tag"
-            }
-        },
-        "Tag": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "$ref": "#/$defs/TagKey"
-                },
-                "Value": {
-                    "$ref": "#/$defs/TagValue"
-                }
-            }
-        },
-        "TagKey": {
-            "type": "string"
-        },
-        "TagValue": {
-            "type": "string"
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceARN": {
-                    "$ref": "#/$defs/AmazonResourceName"
-                }
-            }
-        },
-        "AmazonResourceName": {
-            "type": "string"
-        },
-        "StartTransformerJobResponse": {
-            "type": "object",
-            "properties": {
-                "transformerJobId": {
-                    "$ref": "#/$defs/TransformerJobId"
-                }
-            }
-        },
-        "StartTransformerJobRequest": {
-            "type": "object",
-            "properties": {
-                "inputFile": {
-                    "$ref": "#/$defs/S3Location"
-                },
-                "outputLocation": {
-                    "$ref": "#/$defs/S3Location"
-                },
-                "transformerId": {
-                    "$ref": "#/$defs/TransformerId"
-                },
-                "clientToken": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "TagResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceARN": {
-                    "$ref": "#/$defs/AmazonResourceName"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/TagList"
-                }
-            }
-        },
-        "TestMappingResponse": {
-            "type": "object",
-            "properties": {
-                "mappedFileContent": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "TestMappingRequest": {
-            "type": "object",
-            "properties": {
-                "inputFileContent": {
-                    "$ref": "#/$defs/TestMappingInputFileContent"
-                },
-                "mappingTemplate": {
-                    "$ref": "#/$defs/MappingTemplate"
-                },
-                "fileFormat": {
-                    "$ref": "#/$defs/FileFormat"
-                }
-            }
-        },
-        "TestMappingInputFileContent": {
-            "type": "string"
-        },
-        "MappingTemplate": {
-            "type": "string"
-        },
-        "FileFormat": {
+        "MappingType": {
             "enum": [
-                "XML",
-                "JSON"
+                "JSONATA",
+                "XSLT"
             ]
         },
-        "TestParsingResponse": {
+        "TemplateDetails": {
             "type": "object",
             "properties": {
-                "parsedFileContent": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "TestParsingRequest": {
-            "type": "object",
-            "properties": {
-                "inputFile": {
-                    "$ref": "#/$defs/S3Location"
-                },
-                "fileFormat": {
-                    "$ref": "#/$defs/FileFormat"
-                },
-                "ediType": {
-                    "$ref": "#/$defs/EdiType"
-                }
-            }
-        },
-        "EdiType": {
-            "type": "object",
-            "properties": {
-                "x12Details": {
+                "x12": {
                     "$ref": "#/$defs/X12Details"
                 }
             }
@@ -551,6 +439,281 @@
                 "VERSION_5010_HIPAA"
             ]
         },
+        "GetTransformerJobResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/TransformerJobStatus"
+                },
+                "outputFiles": {
+                    "$ref": "#/$defs/S3LocationList"
+                },
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "TransformerJobStatus": {
+            "enum": [
+                "RUNNING",
+                "SUCCEEDED",
+                "FAILED"
+            ]
+        },
+        "S3LocationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/S3Location"
+            }
+        },
+        "GetTransformerJobRequest": {
+            "type": "object",
+            "properties": {
+                "transformerJobId": {
+                    "$ref": "#/$defs/TransformerJobId"
+                },
+                "transformerId": {
+                    "$ref": "#/$defs/TransformerId"
+                }
+            }
+        },
+        "TransformerJobId": {
+            "type": "string"
+        },
+        "TransformerId": {
+            "type": "string"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "StartTransformerJobResponse": {
+            "type": "object",
+            "properties": {
+                "transformerJobId": {
+                    "$ref": "#/$defs/TransformerJobId"
+                }
+            }
+        },
+        "StartTransformerJobRequest": {
+            "type": "object",
+            "properties": {
+                "inputFile": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "outputLocation": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "transformerId": {
+                    "$ref": "#/$defs/TransformerId"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TestConversionResponse": {
+            "type": "object",
+            "properties": {
+                "convertedFileContent": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "validationMessages": {
+                    "$ref": "#/$defs/ValidationMessages"
+                }
+            }
+        },
+        "ValidationMessages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "TestConversionRequest": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/ConversionSource"
+                },
+                "target": {
+                    "$ref": "#/$defs/ConversionTarget"
+                }
+            }
+        },
+        "ConversionSource": {
+            "type": "object",
+            "properties": {
+                "fileFormat": {
+                    "$ref": "#/$defs/ConversionSourceFormat"
+                },
+                "inputFile": {
+                    "$ref": "#/$defs/InputFileSource"
+                }
+            }
+        },
+        "ConversionSourceFormat": {
+            "enum": [
+                "JSON",
+                "XML"
+            ]
+        },
+        "InputFileSource": {
+            "type": "object",
+            "properties": {
+                "fileContent": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ConversionTarget": {
+            "type": "object",
+            "properties": {
+                "fileFormat": {
+                    "$ref": "#/$defs/ConversionTargetFormat"
+                },
+                "formatDetails": {
+                    "$ref": "#/$defs/ConversionTargetFormatDetails"
+                },
+                "outputSampleFile": {
+                    "$ref": "#/$defs/OutputSampleFileSource"
+                }
+            }
+        },
+        "ConversionTargetFormat": {
+            "enum": [
+                "X12"
+            ]
+        },
+        "ConversionTargetFormatDetails": {
+            "type": "object",
+            "properties": {
+                "x12": {
+                    "$ref": "#/$defs/X12Details"
+                }
+            }
+        },
+        "OutputSampleFileSource": {
+            "type": "object",
+            "properties": {
+                "fileLocation": {
+                    "$ref": "#/$defs/S3Location"
+                }
+            }
+        },
+        "TestMappingResponse": {
+            "type": "object",
+            "properties": {
+                "mappedFileContent": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "TestMappingRequest": {
+            "type": "object",
+            "properties": {
+                "inputFileContent": {
+                    "$ref": "#/$defs/TestMappingInputFileContent"
+                },
+                "mappingTemplate": {
+                    "$ref": "#/$defs/MappingTemplate"
+                },
+                "fileFormat": {
+                    "$ref": "#/$defs/FileFormat"
+                }
+            }
+        },
+        "TestMappingInputFileContent": {
+            "type": "string"
+        },
+        "MappingTemplate": {
+            "type": "string"
+        },
+        "FileFormat": {
+            "enum": [
+                "XML",
+                "JSON",
+                "NOT_USED"
+            ]
+        },
+        "TestParsingResponse": {
+            "type": "object",
+            "properties": {
+                "parsedFileContent": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "TestParsingRequest": {
+            "type": "object",
+            "properties": {
+                "inputFile": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "fileFormat": {
+                    "$ref": "#/$defs/FileFormat"
+                },
+                "ediType": {
+                    "$ref": "#/$defs/EdiType"
+                }
+            }
+        },
+        "EdiType": {
+            "type": "object",
+            "properties": {
+                "x12Details": {
+                    "$ref": "#/$defs/X12Details"
+                }
+            }
+        },
         "UntagResourceRequest": {
             "type": "object",
             "properties": {
@@ -569,354 +732,356 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                                "type": "error"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": {
-                                        "ref": "Endpoint"
-                                    },
-                                    "properties": {},
-                                    "headers": {}
-                                },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "isSet",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ]
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "aws.partition",
-                                        "argv": [
-                                            {
-                                                "ref": "Region"
-                                            }
-                                        ],
-                                        "assign": "PartitionResult"
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseFIPS"
-                                                    },
-                                                    true
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseDualStack"
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            true,
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsFIPS"
-                                                                ]
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            true,
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsDualStack"
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ],
-                                                "rules": [
-                                                    {
-                                                        "conditions": [],
-                                                        "rules": [
-                                                            {
-                                                                "conditions": [],
-                                                                "endpoint": {
-                                                                    "url": "https://b2bi-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                                    "properties": {},
-                                                                    "headers": {}
-                                                                },
-                                                                "type": "endpoint"
-                                                            }
-                                                        ],
-                                                        "type": "tree"
-                                                    }
-                                                ],
-                                                "type": "tree"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                                "type": "error"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseFIPS"
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsFIPS"
-                                                                ]
-                                                            },
-                                                            true
-                                                        ]
-                                                    }
-                                                ],
-                                                "rules": [
-                                                    {
-                                                        "conditions": [],
-                                                        "rules": [
-                                                            {
-                                                                "conditions": [],
-                                                                "endpoint": {
-                                                                    "url": "https://b2bi-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                                    "properties": {},
-                                                                    "headers": {}
-                                                                },
-                                                                "type": "endpoint"
-                                                            }
-                                                        ],
-                                                        "type": "tree"
-                                                    }
-                                                ],
-                                                "type": "tree"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "error": "FIPS is enabled but this partition does not support FIPS",
-                                                "type": "error"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseDualStack"
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            true,
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsDualStack"
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ],
-                                                "rules": [
-                                                    {
-                                                        "conditions": [],
-                                                        "rules": [
-                                                            {
-                                                                "conditions": [],
-                                                                "endpoint": {
-                                                                    "url": "https://b2bi.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                                    "properties": {},
-                                                                    "headers": {}
-                                                                },
-                                                                "type": "endpoint"
-                                                            }
-                                                        ],
-                                                        "type": "tree"
-                                                    }
-                                                ],
-                                                "type": "tree"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "error": "DualStack is enabled but this partition does not support DualStack",
-                                                "type": "error"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://b2bi.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    }
-                                ],
-                                "type": "tree"
-                            }
-                        ],
-                        "type": "tree"
-                    },
-                    {
-                        "conditions": [],
-                        "error": "Invalid Configuration: Missing Region",
-                        "type": "error"
-                    }
-                ],
-                "type": "tree"
-            }
-        ]
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                    "type": "error"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": {
+                                            "ref": "Endpoint"
+                                        },
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "isSet",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "aws.partition",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                }
+                                            ],
+                                            "assign": "PartitionResult"
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseDualStack"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                true,
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsFIPS"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                true,
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsDualStack"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "rules": [
+                                                                {
+                                                                    "conditions": [],
+                                                                    "endpoint": {
+                                                                        "url": "https://b2bi-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                        "properties": {},
+                                                                        "headers": {}
+                                                                    },
+                                                                    "type": "endpoint"
+                                                                }
+                                                            ],
+                                                            "type": "tree"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsFIPS"
+                                                                    ]
+                                                                },
+                                                                true
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "rules": [
+                                                                {
+                                                                    "conditions": [],
+                                                                    "endpoint": {
+                                                                        "url": "https://b2bi-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                        "properties": {},
+                                                                        "headers": {}
+                                                                    },
+                                                                    "type": "endpoint"
+                                                                }
+                                                            ],
+                                                            "type": "tree"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "FIPS is enabled but this partition does not support FIPS",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseDualStack"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                true,
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsDualStack"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "rules": [
+                                                                {
+                                                                    "conditions": [],
+                                                                    "endpoint": {
+                                                                        "url": "https://b2bi.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                        "properties": {},
+                                                                        "headers": {}
+                                                                    },
+                                                                    "type": "endpoint"
+                                                                }
+                                                            ],
+                                                            "type": "tree"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "DualStack is enabled but this partition does not support DualStack",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://b2bi.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                }
+                            ],
+                            "type": "tree"
+                        },
+                        {
+                            "conditions": [],
+                            "error": "Invalid Configuration: Missing Region",
+                            "type": "error"
+                        }
+                    ],
+                    "type": "tree"
+                }
+            ]
+        }
     }
 }

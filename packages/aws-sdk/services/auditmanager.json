@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateAssessmentReportEvidenceFolder"
-                    }
+                    "method": "PUT",
+                    "route": "/assessments/{assessmentId}/associateToAssessmentReport"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateAssessmentReportEvidenceFolderResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +35,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchAssociateAssessmentReportEvidence"
-                    }
+                    "method": "PUT",
+                    "route": "/assessments/{assessmentId}/batchAssociateToAssessmentReport"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BatchAssociateAssessmentReportEvidenceResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +64,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchCreateDelegationByAssessment"
-                    }
+                    "route": "/assessments/{assessmentId}/delegations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BatchCreateDelegationByAssessmentResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +93,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchDeleteDelegationByAssessment"
-                    }
+                    "method": "PUT",
+                    "route": "/assessments/{assessmentId}/delegations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BatchDeleteDelegationByAssessmentResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +122,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchDisassociateAssessmentReportEvidence"
-                    }
+                    "method": "PUT",
+                    "route": "/assessments/{assessmentId}/batchDisassociateFromAssessmentReport"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BatchDisassociateAssessmentReportEvidenceResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,20 +151,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "controlSetId": "route.controlSetId",
+                            "controlId": "route.controlId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchImportEvidenceToAssessmentControl"
-                    }
+                    "route": "/assessments/{assessmentId}/controlSets/{controlSetId}/controls/{controlId}/evidence"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BatchImportEvidenceToAssessmentControlResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
+                        "param.0.controlSetId",
+                        "param.0.controlId",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,14 +184,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateAssessment"
-                    }
+                    "route": "/assessments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -209,14 +209,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateAssessmentFramework"
-                    }
+                    "route": "/assessmentFrameworks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -238,20 +234,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateAssessmentReport"
-                    }
+                    "route": "/assessments/{assessmentId}/reports"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateAssessmentReportResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,14 +263,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateControl"
-                    }
+                    "route": "/controls"
                 },
                 "schema": {
                     "resultSchema": {
@@ -296,20 +288,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteAssessment"
-                    }
+                    "method": "DELETE",
+                    "route": "/assessments/{assessmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteAssessmentResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +317,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "frameworkId": "route.frameworkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteAssessmentFramework"
-                    }
+                    "method": "DELETE",
+                    "route": "/assessmentFrameworks/{frameworkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteAssessmentFrameworkResponse"
                     },
                     "inject": [
+                        "param.0.frameworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +346,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "requestId": "route.requestId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteAssessmentFrameworkShare"
-                    }
+                    "method": "DELETE",
+                    "route": "/assessmentFrameworkShareRequests/{requestId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteAssessmentFrameworkShareResponse"
                     },
                     "inject": [
+                        "param.0.requestId",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +375,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "assessmentReportId": "route.assessmentReportId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteAssessmentReport"
-                    }
+                    "method": "DELETE",
+                    "route": "/assessments/{assessmentId}/reports/{assessmentReportId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteAssessmentReportResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
+                        "param.0.assessmentReportId",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +406,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "controlId": "route.controlId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteControl"
-                    }
+                    "method": "DELETE",
+                    "route": "/controls/{controlId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteControlResponse"
                     },
                     "inject": [
+                        "param.0.controlId",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,14 +435,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeregisterAccount"
-                    }
+                    "route": "/account/deregisterAccount"
                 },
                 "schema": {
                     "resultSchema": {
@@ -470,14 +460,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeregisterOrganizationAdminAccount"
-                    }
+                    "route": "/account/deregisterOrganizationAdminAccount"
                 },
                 "schema": {
                     "resultSchema": {
@@ -499,20 +485,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateAssessmentReportEvidenceFolder"
-                    }
+                    "method": "PUT",
+                    "route": "/assessments/{assessmentId}/disassociateFromAssessmentReport"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateAssessmentReportEvidenceFolderResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,14 +514,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAccountStatus"
-                    }
+                    "method": "GET",
+                    "route": "/account/status"
                 },
                 "schema": {
                     "resultSchema": {
@@ -557,20 +539,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAssessment"
-                    }
+                    "method": "GET",
+                    "route": "/assessments/{assessmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAssessmentResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +568,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "frameworkId": "route.frameworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAssessmentFramework"
-                    }
+                    "method": "GET",
+                    "route": "/assessmentFrameworks/{frameworkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAssessmentFrameworkResponse"
                     },
                     "inject": [
+                        "param.0.frameworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +597,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "assessmentReportId": "route.assessmentReportId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAssessmentReportUrl"
-                    }
+                    "method": "GET",
+                    "route": "/assessments/{assessmentId}/reports/{assessmentReportId}/url"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAssessmentReportUrlResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
+                        "param.0.assessmentReportId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +628,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetChangeLogs"
-                    }
+                    "method": "GET",
+                    "route": "/assessments/{assessmentId}/changelogs"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetChangeLogsResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +657,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "controlId": "route.controlId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetControl"
-                    }
+                    "method": "GET",
+                    "route": "/controls/{controlId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetControlResponse"
                     },
                     "inject": [
+                        "param.0.controlId",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,14 +686,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDelegations"
-                    }
+                    "method": "GET",
+                    "route": "/delegations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -731,20 +711,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "controlSetId": "route.controlSetId",
+                            "evidenceFolderId": "route.evidenceFolderId",
+                            "evidenceId": "route.evidenceId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEvidence"
-                    }
+                    "method": "GET",
+                    "route": "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}/evidence/{evidenceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEvidenceResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
+                        "param.0.controlSetId",
+                        "param.0.evidenceFolderId",
+                        "param.0.evidenceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +746,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "controlSetId": "route.controlSetId",
+                            "evidenceFolderId": "route.evidenceFolderId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEvidenceByEvidenceFolder"
-                    }
+                    "method": "GET",
+                    "route": "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}/evidence"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEvidenceByEvidenceFolderResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
+                        "param.0.controlSetId",
+                        "param.0.evidenceFolderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,14 +779,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEvidenceFileUploadUrl"
-                    }
+                    "method": "GET",
+                    "route": "/evidenceFileUploadUrl"
                 },
                 "schema": {
                     "resultSchema": {
@@ -818,20 +804,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "controlSetId": "route.controlSetId",
+                            "evidenceFolderId": "route.evidenceFolderId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEvidenceFolder"
-                    }
+                    "method": "GET",
+                    "route": "/assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders/{evidenceFolderId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEvidenceFolderResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
+                        "param.0.controlSetId",
+                        "param.0.evidenceFolderId",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +837,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEvidenceFoldersByAssessment"
-                    }
+                    "method": "GET",
+                    "route": "/assessments/{assessmentId}/evidenceFolders"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEvidenceFoldersByAssessmentResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +866,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "controlSetId": "route.controlSetId",
+                            "controlId": "route.controlId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEvidenceFoldersByAssessmentControl"
-                    }
+                    "method": "GET",
+                    "route": "/assessments/{assessmentId}/evidenceFolders-by-assessment-control/{controlSetId}/{controlId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEvidenceFoldersByAssessmentControlResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
+                        "param.0.controlSetId",
+                        "param.0.controlId",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,14 +899,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetInsights"
-                    }
+                    "method": "GET",
+                    "route": "/insights"
                 },
                 "schema": {
                     "resultSchema": {
@@ -934,20 +924,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetInsightsByAssessment"
-                    }
+                    "method": "GET",
+                    "route": "/insights/assessments/{assessmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetInsightsByAssessmentResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,14 +953,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetOrganizationAdminAccount"
-                    }
+                    "method": "GET",
+                    "route": "/account/organizationAdminAccount"
                 },
                 "schema": {
                     "resultSchema": {
@@ -992,14 +978,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetServicesInScope"
-                    }
+                    "method": "GET",
+                    "route": "/services"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1021,20 +1003,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "attribute": "route.attribute",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSettings"
-                    }
+                    "method": "GET",
+                    "route": "/settings/{attribute}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSettingsResponse"
                     },
                     "inject": [
+                        "param.0.attribute",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,14 +1032,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAssessmentControlInsightsByControlDomain"
-                    }
+                    "method": "GET",
+                    "route": "/insights/controls-by-assessment"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1079,14 +1057,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAssessmentFrameworks"
-                    }
+                    "method": "GET",
+                    "route": "/assessmentFrameworks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1108,14 +1082,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAssessmentFrameworkShareRequests"
-                    }
+                    "method": "GET",
+                    "route": "/assessmentFrameworkShareRequests"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1137,14 +1107,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAssessmentReports"
-                    }
+                    "method": "GET",
+                    "route": "/assessmentReports"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1166,14 +1132,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAssessments"
-                    }
+                    "method": "GET",
+                    "route": "/assessments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1195,14 +1157,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListControlDomainInsights"
-                    }
+                    "method": "GET",
+                    "route": "/insights/control-domains"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1224,14 +1182,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListControlDomainInsightsByAssessment"
-                    }
+                    "method": "GET",
+                    "route": "/insights/control-domains-by-assessment"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1253,14 +1207,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListControlInsightsByControlDomain"
-                    }
+                    "method": "GET",
+                    "route": "/insights/controls"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1282,14 +1232,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListControls"
-                    }
+                    "method": "GET",
+                    "route": "/controls"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1311,14 +1257,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKeywordsForDataSource"
-                    }
+                    "method": "GET",
+                    "route": "/dataSourceKeywords"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1340,14 +1282,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListNotifications"
-                    }
+                    "method": "GET",
+                    "route": "/notifications"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1369,20 +1307,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,14 +1336,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RegisterAccount"
-                    }
+                    "route": "/account/registerAccount"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1427,14 +1361,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RegisterOrganizationAdminAccount"
-                    }
+                    "route": "/account/registerOrganizationAdminAccount"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1456,20 +1386,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "frameworkId": "route.frameworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartAssessmentFrameworkShare"
-                    }
+                    "route": "/assessmentFrameworks/{frameworkId}/shareRequests"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartAssessmentFrameworkShareResponse"
                     },
                     "inject": [
+                        "param.0.frameworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,20 +1415,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TagResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1514,20 +1444,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UntagResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1473,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAssessment"
-                    }
+                    "method": "PUT",
+                    "route": "/assessments/{assessmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateAssessmentResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,20 +1502,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "controlSetId": "route.controlSetId",
+                            "controlId": "route.controlId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAssessmentControl"
-                    }
+                    "method": "PUT",
+                    "route": "/assessments/{assessmentId}/controlSets/{controlSetId}/controls/{controlId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateAssessmentControlResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
+                        "param.0.controlSetId",
+                        "param.0.controlId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1601,20 +1535,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "controlSetId": "route.controlSetId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAssessmentControlSetStatus"
-                    }
+                    "method": "PUT",
+                    "route": "/assessments/{assessmentId}/controlSets/{controlSetId}/status"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateAssessmentControlSetStatusResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
+                        "param.0.controlSetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1630,20 +1566,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "frameworkId": "route.frameworkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAssessmentFramework"
-                    }
+                    "method": "PUT",
+                    "route": "/assessmentFrameworks/{frameworkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateAssessmentFrameworkResponse"
                     },
                     "inject": [
+                        "param.0.frameworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1659,20 +1595,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "requestId": "route.requestId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAssessmentFrameworkShare"
-                    }
+                    "method": "PUT",
+                    "route": "/assessmentFrameworkShareRequests/{requestId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateAssessmentFrameworkShareResponse"
                     },
                     "inject": [
+                        "param.0.requestId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,20 +1624,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "assessmentId": "route.assessmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAssessmentStatus"
-                    }
+                    "method": "PUT",
+                    "route": "/assessments/{assessmentId}/status"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateAssessmentStatusResponse"
                     },
                     "inject": [
+                        "param.0.assessmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,20 +1653,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "controlId": "route.controlId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateControl"
-                    }
+                    "method": "PUT",
+                    "route": "/controls/{controlId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateControlResponse"
                     },
                     "inject": [
+                        "param.0.controlId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1746,14 +1682,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSettings"
-                    }
+                    "method": "PUT",
+                    "route": "/settings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1775,14 +1707,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ValidateAssessmentReportIntegrity"
-                    }
+                    "route": "/assessmentReports/integrity"
                 },
                 "schema": {
                     "resultSchema": {
@@ -5036,318 +4964,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://auditmanager-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://auditmanager-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://auditmanager.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://auditmanager.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://auditmanager-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://auditmanager-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://auditmanager.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://auditmanager.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

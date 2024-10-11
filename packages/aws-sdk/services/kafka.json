@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchAssociateScramSecret"
-                    }
+                    "route": "/v1/clusters/{ClusterArn}/scram-secrets"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BatchAssociateScramSecretResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +35,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "BatchDisassociateScramSecret"
-                    }
+                    "method": "PATCH",
+                    "route": "/v1/clusters/{ClusterArn}/scram-secrets"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/BatchDisassociateScramSecretResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,14 +64,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCluster"
-                    }
+                    "route": "/v1/clusters"
                 },
                 "schema": {
                     "resultSchema": {
@@ -93,14 +89,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateClusterV2"
-                    }
+                    "route": "/api/v2/clusters"
                 },
                 "schema": {
                     "resultSchema": {
@@ -122,14 +114,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateConfiguration"
-                    }
+                    "route": "/v1/configurations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -151,14 +139,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateReplicator"
-                    }
+                    "route": "/replication/v1/replicators"
                 },
                 "schema": {
                     "resultSchema": {
@@ -180,14 +164,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateVpcConnection"
-                    }
+                    "route": "/v1/vpc-connection"
                 },
                 "schema": {
                     "resultSchema": {
@@ -209,20 +189,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCluster"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/clusters/{ClusterArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteClusterResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,20 +218,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteClusterPolicy"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/clusters/{ClusterArn}/policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteClusterPolicyResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,20 +247,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Arn": "route.Arn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteConfiguration"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/configurations/{Arn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.Arn",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +276,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ReplicatorArn": "route.ReplicatorArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteReplicator"
-                    }
+                    "method": "DELETE",
+                    "route": "/replication/v1/replicators/{ReplicatorArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteReplicatorResponse"
                     },
                     "inject": [
+                        "param.0.ReplicatorArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +305,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Arn": "route.Arn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteVpcConnection"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/vpc-connection/{Arn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteVpcConnectionResponse"
                     },
                     "inject": [
+                        "param.0.Arn",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +334,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeCluster"
-                    }
+                    "method": "GET",
+                    "route": "/v1/clusters/{ClusterArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeClusterResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +363,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterOperationArn": "route.ClusterOperationArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeClusterOperation"
-                    }
+                    "method": "GET",
+                    "route": "/v1/operations/{ClusterOperationArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeClusterOperationResponse"
                     },
                     "inject": [
+                        "param.0.ClusterOperationArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +392,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterOperationArn": "route.ClusterOperationArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeClusterOperationV2"
-                    }
+                    "method": "GET",
+                    "route": "/api/v2/operations/{ClusterOperationArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeClusterOperationV2Response"
                     },
                     "inject": [
+                        "param.0.ClusterOperationArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +421,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeClusterV2"
-                    }
+                    "method": "GET",
+                    "route": "/api/v2/clusters/{ClusterArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeClusterV2Response"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +450,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Arn": "route.Arn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeConfiguration"
-                    }
+                    "method": "GET",
+                    "route": "/v1/configurations/{Arn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.Arn",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +479,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Arn": "route.Arn",
+                            "Revision": "route.Revision",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeConfigurationRevision"
-                    }
+                    "method": "GET",
+                    "route": "/v1/configurations/{Arn}/revisions/{Revision}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeConfigurationRevisionResponse"
                     },
                     "inject": [
+                        "param.0.Arn",
+                        "param.0.Revision",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +510,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ReplicatorArn": "route.ReplicatorArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeReplicator"
-                    }
+                    "method": "GET",
+                    "route": "/replication/v1/replicators/{ReplicatorArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeReplicatorResponse"
                     },
                     "inject": [
+                        "param.0.ReplicatorArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +539,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Arn": "route.Arn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeVpcConnection"
-                    }
+                    "method": "GET",
+                    "route": "/v1/vpc-connection/{Arn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DescribeVpcConnectionResponse"
                     },
                     "inject": [
+                        "param.0.Arn",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +568,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetBootstrapBrokers"
-                    }
+                    "method": "GET",
+                    "route": "/v1/clusters/{ClusterArn}/bootstrap-brokers"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetBootstrapBrokersResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +597,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetClusterPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/v1/clusters/{ClusterArn}/policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetClusterPolicyResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,14 +626,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCompatibleKafkaVersions"
-                    }
+                    "method": "GET",
+                    "route": "/v1/compatible-kafka-versions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -673,20 +651,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListClientVpcConnections"
-                    }
+                    "method": "GET",
+                    "route": "/v1/clusters/{ClusterArn}/client-vpc-connections"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListClientVpcConnectionsResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +680,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListClusterOperations"
-                    }
+                    "method": "GET",
+                    "route": "/v1/clusters/{ClusterArn}/operations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListClusterOperationsResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +709,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListClusterOperationsV2"
-                    }
+                    "method": "GET",
+                    "route": "/api/v2/clusters/{ClusterArn}/operations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListClusterOperationsV2Response"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,14 +738,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListClusters"
-                    }
+                    "method": "GET",
+                    "route": "/v1/clusters"
                 },
                 "schema": {
                     "resultSchema": {
@@ -789,14 +763,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListClustersV2"
-                    }
+                    "method": "GET",
+                    "route": "/api/v2/clusters"
                 },
                 "schema": {
                     "resultSchema": {
@@ -818,20 +788,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Arn": "route.Arn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListConfigurationRevisions"
-                    }
+                    "method": "GET",
+                    "route": "/v1/configurations/{Arn}/revisions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListConfigurationRevisionsResponse"
                     },
                     "inject": [
+                        "param.0.Arn",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,14 +817,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListConfigurations"
-                    }
+                    "method": "GET",
+                    "route": "/v1/configurations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -876,14 +842,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKafkaVersions"
-                    }
+                    "method": "GET",
+                    "route": "/v1/kafka-versions"
                 },
                 "schema": {
                     "resultSchema": {
@@ -905,20 +867,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListNodes"
-                    }
+                    "method": "GET",
+                    "route": "/v1/clusters/{ClusterArn}/nodes"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListNodesResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,14 +896,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListReplicators"
-                    }
+                    "method": "GET",
+                    "route": "/replication/v1/replicators"
                 },
                 "schema": {
                     "resultSchema": {
@@ -963,20 +921,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListScramSecrets"
-                    }
+                    "method": "GET",
+                    "route": "/v1/clusters/{ClusterArn}/scram-secrets"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListScramSecretsResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +950,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/v1/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,14 +979,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListVpcConnections"
-                    }
+                    "method": "GET",
+                    "route": "/v1/vpc-connections"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1050,20 +1004,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutClusterPolicy"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutClusterPolicyResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1033,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RebootBroker"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/reboot-broker"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RebootBrokerResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1062,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RejectClientVpcConnection"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/client-vpc-connection"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RejectClientVpcConnectionResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1091,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/v1/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1120,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/v1/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1149,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateBrokerCount"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/nodes/count"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateBrokerCountResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1178,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateBrokerStorage"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/nodes/storage"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateBrokerStorageResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1207,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateBrokerType"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/nodes/type"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateBrokerTypeResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1236,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateClusterConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/configuration"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateClusterConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1265,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateClusterKafkaVersion"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/version"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateClusterKafkaVersionResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1294,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "Arn": "route.Arn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/configurations/{Arn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.Arn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1323,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateConnectivity"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/connectivity"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateConnectivityResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1352,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateMonitoring"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/monitoring"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateMonitoringResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1381,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ReplicatorArn": "route.ReplicatorArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateReplicationInfo"
-                    }
+                    "method": "PUT",
+                    "route": "/replication/v1/replicators/{ReplicatorArn}/replication-info"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateReplicationInfoResponse"
                     },
                     "inject": [
+                        "param.0.ReplicatorArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1410,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSecurity"
-                    }
+                    "method": "PATCH",
+                    "route": "/v1/clusters/{ClusterArn}/security"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSecurityResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,20 +1439,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ClusterArn": "route.ClusterArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateStorage"
-                    }
+                    "method": "PUT",
+                    "route": "/v1/clusters/{ClusterArn}/storage"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateStorageResponse"
                     },
                     "inject": [
+                        "param.0.ClusterArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -4563,343 +4517,345 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://kafka-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "stringEquals",
-                                                        "argv": [
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "name"
-                                                                ]
-                                                            },
-                                                            "aws-us-gov"
-                                                        ]
-                                                    }
-                                                ],
-                                                "endpoint": {
-                                                    "url": "https://kafka.{Region}.amazonaws.com",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://kafka-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://kafka.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://kafka.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://kafka-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "name"
+                                                                    ]
+                                                                },
+                                                                "aws-us-gov"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://kafka.{Region}.amazonaws.com",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://kafka-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://kafka.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://kafka.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

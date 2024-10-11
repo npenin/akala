@@ -6,14 +6,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateEnvironment"
-                    }
+                    "route": "/environment"
                 },
                 "schema": {
                     "resultSchema": {
@@ -35,20 +31,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKxChangeset"
-                    }
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}/changesets"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateKxChangesetResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +62,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKxCluster"
-                    }
+                    "route": "/kx/environments/{environmentId}/clusters"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateKxClusterResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +91,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKxDatabase"
-                    }
+                    "route": "/kx/environments/{environmentId}/databases"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateKxDatabaseResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +120,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKxDataview"
-                    }
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}/dataviews"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateKxDataviewResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,14 +151,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKxEnvironment"
-                    }
+                    "route": "/kx/environments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -180,20 +176,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKxScalingGroup"
-                    }
+                    "route": "/kx/environments/{environmentId}/scalingGroups"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateKxScalingGroupResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,20 +205,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKxUser"
-                    }
+                    "route": "/kx/environments/{environmentId}/users"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateKxUserResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,20 +234,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateKxVolume"
-                    }
+                    "route": "/kx/environments/{environmentId}/kxvolumes"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateKxVolumeResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,20 +263,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEnvironment"
-                    }
+                    "method": "DELETE",
+                    "route": "/environment/{environmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteEnvironmentResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +292,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "clusterName": "route.clusterName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKxCluster"
-                    }
+                    "method": "DELETE",
+                    "route": "/kx/environments/{environmentId}/clusters/{clusterName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteKxClusterResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.clusterName",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +323,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "clusterName": "route.clusterName",
+                            "nodeId": "route.nodeId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKxClusterNode"
-                    }
+                    "method": "DELETE",
+                    "route": "/kx/environments/{environmentId}/clusters/{clusterName}/nodes/{nodeId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteKxClusterNodeResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.clusterName",
+                        "param.0.nodeId",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +356,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKxDatabase"
-                    }
+                    "method": "DELETE",
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteKxDatabaseResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +387,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "dataviewName": "route.dataviewName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKxDataview"
-                    }
+                    "method": "DELETE",
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}/dataviews/{dataviewName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteKxDataviewResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
+                        "param.0.dataviewName",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +420,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKxEnvironment"
-                    }
+                    "method": "DELETE",
+                    "route": "/kx/environments/{environmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteKxEnvironmentResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +449,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "scalingGroupName": "route.scalingGroupName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKxScalingGroup"
-                    }
+                    "method": "DELETE",
+                    "route": "/kx/environments/{environmentId}/scalingGroups/{scalingGroupName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteKxScalingGroupResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.scalingGroupName",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +480,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "userName": "route.userName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKxUser"
-                    }
+                    "method": "DELETE",
+                    "route": "/kx/environments/{environmentId}/users/{userName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteKxUserResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.userName",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +511,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "volumeName": "route.volumeName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteKxVolume"
-                    }
+                    "method": "DELETE",
+                    "route": "/kx/environments/{environmentId}/kxvolumes/{volumeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteKxVolumeResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.volumeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +542,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEnvironment"
-                    }
+                    "method": "GET",
+                    "route": "/environment/{environmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEnvironmentResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +571,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "changesetId": "route.changesetId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKxChangeset"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}/changesets/{changesetId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKxChangesetResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
+                        "param.0.changesetId",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +604,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "clusterName": "route.clusterName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKxCluster"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/clusters/{clusterName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKxClusterResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.clusterName",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +635,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKxConnectionString"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/connectionString"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKxConnectionStringResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +664,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKxDatabase"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKxDatabaseResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +695,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "dataviewName": "route.dataviewName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKxDataview"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}/dataviews/{dataviewName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKxDataviewResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
+                        "param.0.dataviewName",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +728,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKxEnvironment"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKxEnvironmentResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +757,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "scalingGroupName": "route.scalingGroupName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKxScalingGroup"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/scalingGroups/{scalingGroupName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKxScalingGroupResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.scalingGroupName",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +788,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "userName": "route.userName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKxUser"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/users/{userName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKxUserResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.userName",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +819,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "volumeName": "route.volumeName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetKxVolume"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/kxvolumes/{volumeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetKxVolumeResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.volumeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,14 +850,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEnvironments"
-                    }
+                    "method": "GET",
+                    "route": "/environment"
                 },
                 "schema": {
                     "resultSchema": {
@@ -847,20 +875,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKxChangesets"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}/changesets"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListKxChangesetsResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +906,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "clusterName": "route.clusterName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKxClusterNodes"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/clusters/{clusterName}/nodes"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListKxClusterNodesResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.clusterName",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +937,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKxClusters"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/clusters"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListKxClustersResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +966,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKxDatabases"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/databases"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListKxDatabasesResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +995,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKxDataviews"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}/dataviews"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListKxDataviewsResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,14 +1026,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKxEnvironments"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1021,20 +1051,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKxScalingGroups"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/scalingGroups"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListKxScalingGroupsResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1080,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKxUsers"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/users"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListKxUsersResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1109,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListKxVolumes"
-                    }
+                    "method": "GET",
+                    "route": "/kx/environments/{environmentId}/kxvolumes"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListKxVolumesResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1138,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1167,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TagResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1196,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UntagResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1225,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEnvironment"
-                    }
+                    "method": "PUT",
+                    "route": "/environment/{environmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateEnvironmentResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1254,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "clusterName": "route.clusterName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateKxClusterCodeConfiguration"
-                    }
+                    "method": "PUT",
+                    "route": "/kx/environments/{environmentId}/clusters/{clusterName}/configuration/code"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateKxClusterCodeConfigurationResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.clusterName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1285,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "clusterName": "route.clusterName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateKxClusterDatabases"
-                    }
+                    "method": "PUT",
+                    "route": "/kx/environments/{environmentId}/clusters/{clusterName}/configuration/databases"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateKxClusterDatabasesResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.clusterName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1316,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateKxDatabase"
-                    }
+                    "method": "PUT",
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateKxDatabaseResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1347,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "databaseName": "route.databaseName",
+                            "dataviewName": "route.dataviewName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateKxDataview"
-                    }
+                    "method": "PUT",
+                    "route": "/kx/environments/{environmentId}/databases/{databaseName}/dataviews/{dataviewName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateKxDataviewResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.databaseName",
+                        "param.0.dataviewName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1380,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateKxEnvironment"
-                    }
+                    "method": "PUT",
+                    "route": "/kx/environments/{environmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateKxEnvironmentResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1409,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateKxEnvironmentNetwork"
-                    }
+                    "method": "PUT",
+                    "route": "/kx/environments/{environmentId}/network"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateKxEnvironmentNetworkResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1438,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "userName": "route.userName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateKxUser"
-                    }
+                    "method": "PUT",
+                    "route": "/kx/environments/{environmentId}/users/{userName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateKxUserResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.userName",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1469,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "environmentId": "route.environmentId",
+                            "volumeName": "route.volumeName",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateKxVolume"
-                    }
+                    "method": "PATCH",
+                    "route": "/kx/environments/{environmentId}/kxvolumes/{volumeName}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateKxVolumeResponse"
                     },
                     "inject": [
+                        "param.0.environmentId",
+                        "param.0.volumeName",
                         "param.0"
                     ],
                     "$defs": {
@@ -4811,318 +4855,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://finspace-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://finspace-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://finspace.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://finspace.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://finspace-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://finspace-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://finspace.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://finspace.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

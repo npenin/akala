@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateLenses"
-                    }
+                    "method": "PATCH",
+                    "route": "/workloads/{WorkloadId}/associateLenses"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +35,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateProfiles"
-                    }
+                    "method": "PATCH",
+                    "route": "/workloads/{WorkloadId}/associateProfiles"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +64,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LensAlias": "route.LensAlias",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateLensShare"
-                    }
+                    "route": "/lenses/{LensAlias}/shares"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateLensShareOutput"
                     },
                     "inject": [
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +93,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LensAlias": "route.LensAlias",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateLensVersion"
-                    }
+                    "route": "/lenses/{LensAlias}/versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateLensVersionOutput"
                     },
                     "inject": [
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +122,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateMilestone"
-                    }
+                    "route": "/workloads/{WorkloadId}/milestones"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateMilestoneOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,14 +151,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateProfile"
-                    }
+                    "route": "/profiles"
                 },
                 "schema": {
                     "resultSchema": {
@@ -180,20 +176,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ProfileArn": "route.ProfileArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateProfileShare"
-                    }
+                    "route": "/profiles/{ProfileArn}/shares"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateProfileShareOutput"
                     },
                     "inject": [
+                        "param.0.ProfileArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,14 +205,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateReviewTemplate"
-                    }
+                    "route": "/reviewTemplates"
                 },
                 "schema": {
                     "resultSchema": {
@@ -238,20 +230,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateTemplateShare"
-                    }
+                    "route": "/templates/shares/{TemplateArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateTemplateShareOutput"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,14 +259,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateWorkload"
-                    }
+                    "route": "/workloads"
                 },
                 "schema": {
                     "resultSchema": {
@@ -296,20 +284,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateWorkloadShare"
-                    }
+                    "route": "/workloads/{WorkloadId}/shares"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateWorkloadShareOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +313,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LensAlias": "route.LensAlias",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteLens"
-                    }
+                    "method": "DELETE",
+                    "route": "/lenses/{LensAlias}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +342,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LensAlias": "route.LensAlias",
+                            "ShareId": "route.ShareId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteLensShare"
-                    }
+                    "method": "DELETE",
+                    "route": "/lenses/{LensAlias}/shares/{ShareId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.LensAlias",
+                        "param.0.ShareId",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +373,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ProfileArn": "route.ProfileArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteProfile"
-                    }
+                    "method": "DELETE",
+                    "route": "/profiles/{ProfileArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ProfileArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +402,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ProfileArn": "route.ProfileArn",
+                            "ShareId": "route.ShareId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteProfileShare"
-                    }
+                    "method": "DELETE",
+                    "route": "/profiles/{ProfileArn}/shares/{ShareId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.ProfileArn",
+                        "param.0.ShareId",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +433,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteReviewTemplate"
-                    }
+                    "method": "DELETE",
+                    "route": "/reviewTemplates/{TemplateArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +462,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "ShareId": "route.ShareId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteTemplateShare"
-                    }
+                    "method": "DELETE",
+                    "route": "/templates/shares/{TemplateArn}/{ShareId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
+                        "param.0.ShareId",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +493,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteWorkload"
-                    }
+                    "method": "DELETE",
+                    "route": "/workloads/{WorkloadId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +522,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "ShareId": "route.ShareId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteWorkloadShare"
-                    }
+                    "method": "DELETE",
+                    "route": "/workloads/{WorkloadId}/shares/{ShareId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.ShareId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +553,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateLenses"
-                    }
+                    "method": "PATCH",
+                    "route": "/workloads/{WorkloadId}/disassociateLenses"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +582,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateProfiles"
-                    }
+                    "method": "PATCH",
+                    "route": "/workloads/{WorkloadId}/disassociateProfiles"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +611,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LensAlias": "route.LensAlias",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ExportLens"
-                    }
+                    "method": "GET",
+                    "route": "/lenses/{LensAlias}/export"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ExportLensOutput"
                     },
                     "inject": [
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +640,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "LensAlias": "route.LensAlias",
+                            "QuestionId": "route.QuestionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAnswer"
-                    }
+                    "method": "GET",
+                    "route": "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers/{QuestionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAnswerOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.LensAlias",
+                        "param.0.QuestionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,14 +673,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConsolidatedReport"
-                    }
+                    "method": "GET",
+                    "route": "/consolidatedReport"
                 },
                 "schema": {
                     "resultSchema": {
@@ -702,14 +698,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGlobalSettings"
-                    }
+                    "method": "GET",
+                    "route": "/global-settings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -731,20 +723,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LensAlias": "route.LensAlias",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLens"
-                    }
+                    "method": "GET",
+                    "route": "/lenses/{LensAlias}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLensOutput"
                     },
                     "inject": [
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +752,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "LensAlias": "route.LensAlias",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLensReview"
-                    }
+                    "method": "GET",
+                    "route": "/workloads/{WorkloadId}/lensReviews/{LensAlias}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLensReviewOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +783,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "LensAlias": "route.LensAlias",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLensReviewReport"
-                    }
+                    "method": "GET",
+                    "route": "/workloads/{WorkloadId}/lensReviews/{LensAlias}/report"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLensReviewReportOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +814,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LensAlias": "route.LensAlias",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLensVersionDifference"
-                    }
+                    "method": "GET",
+                    "route": "/lenses/{LensAlias}/versionDifference"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLensVersionDifferenceOutput"
                     },
                     "inject": [
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +843,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "MilestoneNumber": "route.MilestoneNumber",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetMilestone"
-                    }
+                    "method": "GET",
+                    "route": "/workloads/{WorkloadId}/milestones/{MilestoneNumber}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetMilestoneOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.MilestoneNumber",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +874,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ProfileArn": "route.ProfileArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetProfile"
-                    }
+                    "method": "GET",
+                    "route": "/profiles/{ProfileArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetProfileOutput"
                     },
                     "inject": [
+                        "param.0.ProfileArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,14 +903,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetProfileTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/profileTemplate"
                 },
                 "schema": {
                     "resultSchema": {
@@ -934,20 +928,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetReviewTemplate"
-                    }
+                    "method": "GET",
+                    "route": "/reviewTemplates/{TemplateArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetReviewTemplateOutput"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +957,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "LensAlias": "route.LensAlias",
+                            "QuestionId": "route.QuestionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetReviewTemplateAnswer"
-                    }
+                    "method": "GET",
+                    "route": "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers/{QuestionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetReviewTemplateAnswerOutput"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
+                        "param.0.LensAlias",
+                        "param.0.QuestionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +990,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "LensAlias": "route.LensAlias",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetReviewTemplateLensReview"
-                    }
+                    "method": "GET",
+                    "route": "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetReviewTemplateLensReviewOutput"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +1021,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetWorkload"
-                    }
+                    "method": "GET",
+                    "route": "/workloads/{WorkloadId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetWorkloadOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,14 +1050,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ImportLens"
-                    }
+                    "method": "PUT",
+                    "route": "/importLens"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1079,20 +1075,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "LensAlias": "route.LensAlias",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAnswers"
-                    }
+                    "method": "GET",
+                    "route": "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListAnswersOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1106,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCheckDetails"
-                    }
+                    "route": "/workloads/{WorkloadId}/checks"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListCheckDetailsOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1135,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCheckSummaries"
-                    }
+                    "route": "/workloads/{WorkloadId}/checkSummaries"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListCheckSummariesOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,14 +1164,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLenses"
-                    }
+                    "method": "GET",
+                    "route": "/lenses"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1195,20 +1189,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "LensAlias": "route.LensAlias",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLensReviewImprovements"
-                    }
+                    "method": "GET",
+                    "route": "/workloads/{WorkloadId}/lensReviews/{LensAlias}/improvements"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListLensReviewImprovementsOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1220,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLensReviews"
-                    }
+                    "method": "GET",
+                    "route": "/workloads/{WorkloadId}/lensReviews"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListLensReviewsOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1249,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "LensAlias": "route.LensAlias",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLensShares"
-                    }
+                    "method": "GET",
+                    "route": "/lenses/{LensAlias}/shares"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListLensSharesOutput"
                     },
                     "inject": [
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1278,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListMilestones"
-                    }
+                    "route": "/workloads/{WorkloadId}/milestonesSummaries"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListMilestonesOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,14 +1307,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListNotifications"
-                    }
+                    "route": "/notifications"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1340,14 +1332,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProfileNotifications"
-                    }
+                    "method": "GET",
+                    "route": "/profileNotifications"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1369,14 +1357,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProfiles"
-                    }
+                    "method": "GET",
+                    "route": "/profileSummaries"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1398,20 +1382,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ProfileArn": "route.ProfileArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProfileShares"
-                    }
+                    "method": "GET",
+                    "route": "/profiles/{ProfileArn}/shares"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListProfileSharesOutput"
                     },
                     "inject": [
+                        "param.0.ProfileArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1411,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "LensAlias": "route.LensAlias",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListReviewTemplateAnswers"
-                    }
+                    "method": "GET",
+                    "route": "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListReviewTemplateAnswersOutput"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,14 +1442,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListReviewTemplates"
-                    }
+                    "method": "GET",
+                    "route": "/reviewTemplates"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1485,14 +1467,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListShareInvitations"
-                    }
+                    "method": "GET",
+                    "route": "/shareInvitations"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1514,20 +1492,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadArn": "route.WorkloadArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{WorkloadArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1521,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTemplateShares"
-                    }
+                    "method": "GET",
+                    "route": "/templates/shares/{TemplateArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTemplateSharesOutput"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,14 +1550,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListWorkloads"
-                    }
+                    "route": "/workloadsSummaries"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1601,20 +1575,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListWorkloadShares"
-                    }
+                    "method": "GET",
+                    "route": "/workloads/{WorkloadId}/shares"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListWorkloadSharesOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1630,20 +1604,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadArn": "route.WorkloadArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{WorkloadArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TagResourceOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1659,20 +1633,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadArn": "route.WorkloadArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{WorkloadArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UntagResourceOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,20 +1662,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "LensAlias": "route.LensAlias",
+                            "QuestionId": "route.QuestionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAnswer"
-                    }
+                    "method": "PATCH",
+                    "route": "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers/{QuestionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateAnswerOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.LensAlias",
+                        "param.0.QuestionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,14 +1695,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateGlobalSettings"
-                    }
+                    "method": "PATCH",
+                    "route": "/global-settings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1746,20 +1720,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateIntegration"
-                    }
+                    "route": "/workloads/{WorkloadId}/updateIntegration"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,20 +1749,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "LensAlias": "route.LensAlias",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateLensReview"
-                    }
+                    "method": "PATCH",
+                    "route": "/workloads/{WorkloadId}/lensReviews/{LensAlias}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateLensReviewOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,20 +1780,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ProfileArn": "route.ProfileArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateProfile"
-                    }
+                    "method": "PATCH",
+                    "route": "/profiles/{ProfileArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateProfileOutput"
                     },
                     "inject": [
+                        "param.0.ProfileArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1833,20 +1809,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateReviewTemplate"
-                    }
+                    "method": "PATCH",
+                    "route": "/reviewTemplates/{TemplateArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateReviewTemplateOutput"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,20 +1838,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "LensAlias": "route.LensAlias",
+                            "QuestionId": "route.QuestionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateReviewTemplateAnswer"
-                    }
+                    "method": "PATCH",
+                    "route": "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers/{QuestionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateReviewTemplateAnswerOutput"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
+                        "param.0.LensAlias",
+                        "param.0.QuestionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1891,20 +1871,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "LensAlias": "route.LensAlias",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateReviewTemplateLensReview"
-                    }
+                    "method": "PATCH",
+                    "route": "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateReviewTemplateLensReviewOutput"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,20 +1902,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ShareInvitationId": "route.ShareInvitationId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateShareInvitation"
-                    }
+                    "method": "PATCH",
+                    "route": "/shareInvitations/{ShareInvitationId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateShareInvitationOutput"
                     },
                     "inject": [
+                        "param.0.ShareInvitationId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1949,20 +1931,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateWorkload"
-                    }
+                    "method": "PATCH",
+                    "route": "/workloads/{WorkloadId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateWorkloadOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1978,20 +1960,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "ShareId": "route.ShareId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateWorkloadShare"
-                    }
+                    "method": "PATCH",
+                    "route": "/workloads/{WorkloadId}/shares/{ShareId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateWorkloadShareOutput"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.ShareId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2007,20 +1991,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "LensAlias": "route.LensAlias",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpgradeLensReview"
-                    }
+                    "method": "PUT",
+                    "route": "/workloads/{WorkloadId}/lensReviews/{LensAlias}/upgrade"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -2036,20 +2022,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "WorkloadId": "route.WorkloadId",
+                            "ProfileArn": "route.ProfileArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpgradeProfileVersion"
-                    }
+                    "method": "PUT",
+                    "route": "/workloads/{WorkloadId}/profiles/{ProfileArn}/upgrade"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.WorkloadId",
+                        "param.0.ProfileArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2065,20 +2053,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "TemplateArn": "route.TemplateArn",
+                            "LensAlias": "route.LensAlias",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpgradeReviewTemplateLensReview"
-                    }
+                    "method": "PUT",
+                    "route": "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/upgrade"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.TemplateArn",
+                        "param.0.LensAlias",
                         "param.0"
                     ],
                     "$defs": {
@@ -6374,318 +6364,320 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://wellarchitected-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://wellarchitected-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://wellarchitected.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://wellarchitected.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://wellarchitected-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://wellarchitected-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://wellarchitected.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://wellarchitected.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

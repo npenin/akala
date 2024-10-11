@@ -6,20 +6,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "AttachmentId": "route.AttachmentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AcceptAttachment"
-                    }
+                    "route": "/attachments/{AttachmentId}/accept"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AcceptAttachmentResponse"
                     },
                     "inject": [
+                        "param.0.AttachmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +35,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateConnectPeer"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/connect-peer-associations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateConnectPeerResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +64,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateCustomerGateway"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/customer-gateway-associations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateCustomerGatewayResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +93,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateLink"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/link-associations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateLinkResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +122,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateTransitGatewayConnectPeer"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/transit-gateway-connect-peer-associations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateTransitGatewayConnectPeerResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,14 +151,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateConnectAttachment"
-                    }
+                    "route": "/connect-attachments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -180,20 +176,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateConnection"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/connections"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateConnectionResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,14 +205,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateConnectPeer"
-                    }
+                    "route": "/connect-peers"
                 },
                 "schema": {
                     "resultSchema": {
@@ -238,14 +230,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateCoreNetwork"
-                    }
+                    "route": "/core-networks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -267,20 +255,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateDevice"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/devices"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateDeviceResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,14 +284,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateGlobalNetwork"
-                    }
+                    "route": "/global-networks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -325,20 +309,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateLink"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/links"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateLinkResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +338,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSite"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/sites"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSiteResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,14 +367,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSiteToSiteVpnAttachment"
-                    }
+                    "route": "/site-to-site-vpn-attachments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -412,14 +392,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateTransitGatewayPeering"
-                    }
+                    "route": "/transit-gateway-peerings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -441,14 +417,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateTransitGatewayRouteTableAttachment"
-                    }
+                    "route": "/transit-gateway-route-table-attachments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -470,14 +442,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateVpcAttachment"
-                    }
+                    "route": "/vpc-attachments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -499,20 +467,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "AttachmentId": "route.AttachmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteAttachment"
-                    }
+                    "method": "DELETE",
+                    "route": "/attachments/{AttachmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteAttachmentResponse"
                     },
                     "inject": [
+                        "param.0.AttachmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +496,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "ConnectionId": "route.ConnectionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteConnection"
-                    }
+                    "method": "DELETE",
+                    "route": "/global-networks/{GlobalNetworkId}/connections/{ConnectionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteConnectionResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.ConnectionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +527,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConnectPeerId": "route.ConnectPeerId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteConnectPeer"
-                    }
+                    "method": "DELETE",
+                    "route": "/connect-peers/{ConnectPeerId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteConnectPeerResponse"
                     },
                     "inject": [
+                        "param.0.ConnectPeerId",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +556,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCoreNetwork"
-                    }
+                    "method": "DELETE",
+                    "route": "/core-networks/{CoreNetworkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteCoreNetworkResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +585,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "PolicyVersionId": "route.PolicyVersionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteCoreNetworkPolicyVersion"
-                    }
+                    "method": "DELETE",
+                    "route": "/core-networks/{CoreNetworkId}/core-network-policy-versions/{PolicyVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteCoreNetworkPolicyVersionResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
+                        "param.0.PolicyVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +616,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "DeviceId": "route.DeviceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteDevice"
-                    }
+                    "method": "DELETE",
+                    "route": "/global-networks/{GlobalNetworkId}/devices/{DeviceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteDeviceResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.DeviceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +647,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteGlobalNetwork"
-                    }
+                    "method": "DELETE",
+                    "route": "/global-networks/{GlobalNetworkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteGlobalNetworkResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +676,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "LinkId": "route.LinkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteLink"
-                    }
+                    "method": "DELETE",
+                    "route": "/global-networks/{GlobalNetworkId}/links/{LinkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteLinkResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.LinkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +707,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PeeringId": "route.PeeringId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeletePeering"
-                    }
+                    "method": "DELETE",
+                    "route": "/peerings/{PeeringId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeletePeeringResponse"
                     },
                     "inject": [
+                        "param.0.PeeringId",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +736,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteResourcePolicy"
-                    }
+                    "method": "DELETE",
+                    "route": "/resource-policy/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteResourcePolicyResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +765,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "SiteId": "route.SiteId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSite"
-                    }
+                    "method": "DELETE",
+                    "route": "/global-networks/{GlobalNetworkId}/sites/{SiteId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteSiteResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.SiteId",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +796,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "TransitGatewayArn": "route.TransitGatewayArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeregisterTransitGateway"
-                    }
+                    "method": "DELETE",
+                    "route": "/global-networks/{GlobalNetworkId}/transit-gateway-registrations/{TransitGatewayArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeregisterTransitGatewayResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.TransitGatewayArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,14 +827,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DescribeGlobalNetworks"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -876,20 +852,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "ConnectPeerId": "route.ConnectPeerId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateConnectPeer"
-                    }
+                    "method": "DELETE",
+                    "route": "/global-networks/{GlobalNetworkId}/connect-peer-associations/{ConnectPeerId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateConnectPeerResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.ConnectPeerId",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +883,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "CustomerGatewayArn": "route.CustomerGatewayArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateCustomerGateway"
-                    }
+                    "method": "DELETE",
+                    "route": "/global-networks/{GlobalNetworkId}/customer-gateway-associations/{CustomerGatewayArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateCustomerGatewayResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.CustomerGatewayArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +914,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateLink"
-                    }
+                    "method": "DELETE",
+                    "route": "/global-networks/{GlobalNetworkId}/link-associations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateLinkResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +943,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "TransitGatewayConnectPeerArn": "route.TransitGatewayConnectPeerArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateTransitGatewayConnectPeer"
-                    }
+                    "method": "DELETE",
+                    "route": "/global-networks/{GlobalNetworkId}/transit-gateway-connect-peer-associations/{TransitGatewayConnectPeerArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateTransitGatewayConnectPeerResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.TransitGatewayConnectPeerArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +974,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "PolicyVersionId": "route.PolicyVersionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ExecuteCoreNetworkChangeSet"
-                    }
+                    "route": "/core-networks/{CoreNetworkId}/core-network-change-sets/{PolicyVersionId}/execute"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ExecuteCoreNetworkChangeSetResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
+                        "param.0.PolicyVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +1005,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "AttachmentId": "route.AttachmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConnectAttachment"
-                    }
+                    "method": "GET",
+                    "route": "/connect-attachments/{AttachmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetConnectAttachmentResponse"
                     },
                     "inject": [
+                        "param.0.AttachmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1034,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConnections"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/connections"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetConnectionsResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1063,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ConnectPeerId": "route.ConnectPeerId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConnectPeer"
-                    }
+                    "method": "GET",
+                    "route": "/connect-peers/{ConnectPeerId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetConnectPeerResponse"
                     },
                     "inject": [
+                        "param.0.ConnectPeerId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1092,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetConnectPeerAssociations"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/connect-peer-associations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetConnectPeerAssociationsResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1121,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCoreNetwork"
-                    }
+                    "method": "GET",
+                    "route": "/core-networks/{CoreNetworkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCoreNetworkResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1150,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "PolicyVersionId": "route.PolicyVersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCoreNetworkChangeEvents"
-                    }
+                    "method": "GET",
+                    "route": "/core-networks/{CoreNetworkId}/core-network-change-events/{PolicyVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCoreNetworkChangeEventsResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
+                        "param.0.PolicyVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1181,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "PolicyVersionId": "route.PolicyVersionId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCoreNetworkChangeSet"
-                    }
+                    "method": "GET",
+                    "route": "/core-networks/{CoreNetworkId}/core-network-change-sets/{PolicyVersionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCoreNetworkChangeSetResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
+                        "param.0.PolicyVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1212,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCoreNetworkPolicy"
-                    }
+                    "method": "GET",
+                    "route": "/core-networks/{CoreNetworkId}/core-network-policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCoreNetworkPolicyResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1241,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetCustomerGatewayAssociations"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/customer-gateway-associations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetCustomerGatewayAssociationsResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1270,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetDevices"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/devices"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetDevicesResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1299,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLinkAssociations"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/link-associations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLinkAssociationsResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1328,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLinks"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/links"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLinksResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1357,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetNetworkResourceCounts"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/network-resource-count"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetNetworkResourceCountsResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1386,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetNetworkResourceRelationships"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/network-resource-relationships"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetNetworkResourceRelationshipsResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1415,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetNetworkResources"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/network-resources"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetNetworkResourcesResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1444,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetNetworkRoutes"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/network-routes"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetNetworkRoutesResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,20 +1473,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetNetworkTelemetry"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/network-telemetry"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetNetworkTelemetryResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1514,20 +1502,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetResourcePolicy"
-                    }
+                    "method": "GET",
+                    "route": "/resource-policy/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetResourcePolicyResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1531,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "RouteAnalysisId": "route.RouteAnalysisId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetRouteAnalysis"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/route-analyses/{RouteAnalysisId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetRouteAnalysisResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.RouteAnalysisId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,20 +1562,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSites"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/sites"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSitesResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1601,20 +1591,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "AttachmentId": "route.AttachmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSiteToSiteVpnAttachment"
-                    }
+                    "method": "GET",
+                    "route": "/site-to-site-vpn-attachments/{AttachmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSiteToSiteVpnAttachmentResponse"
                     },
                     "inject": [
+                        "param.0.AttachmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1630,20 +1620,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetTransitGatewayConnectPeerAssociations"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/transit-gateway-connect-peer-associations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetTransitGatewayConnectPeerAssociationsResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1659,20 +1649,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "PeeringId": "route.PeeringId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetTransitGatewayPeering"
-                    }
+                    "method": "GET",
+                    "route": "/transit-gateway-peerings/{PeeringId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetTransitGatewayPeeringResponse"
                     },
                     "inject": [
+                        "param.0.PeeringId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,20 +1678,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetTransitGatewayRegistrations"
-                    }
+                    "method": "GET",
+                    "route": "/global-networks/{GlobalNetworkId}/transit-gateway-registrations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetTransitGatewayRegistrationsResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,20 +1707,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "AttachmentId": "route.AttachmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetTransitGatewayRouteTableAttachment"
-                    }
+                    "method": "GET",
+                    "route": "/transit-gateway-route-table-attachments/{AttachmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetTransitGatewayRouteTableAttachmentResponse"
                     },
                     "inject": [
+                        "param.0.AttachmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1746,20 +1736,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "AttachmentId": "route.AttachmentId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetVpcAttachment"
-                    }
+                    "method": "GET",
+                    "route": "/vpc-attachments/{AttachmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetVpcAttachmentResponse"
                     },
                     "inject": [
+                        "param.0.AttachmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,14 +1765,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAttachments"
-                    }
+                    "method": "GET",
+                    "route": "/attachments"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1804,14 +1790,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListConnectPeers"
-                    }
+                    "method": "GET",
+                    "route": "/connect-peers"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1833,20 +1815,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCoreNetworkPolicyVersions"
-                    }
+                    "method": "GET",
+                    "route": "/core-networks/{CoreNetworkId}/core-network-policy-versions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListCoreNetworkPolicyVersionsResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,14 +1844,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListCoreNetworks"
-                    }
+                    "method": "GET",
+                    "route": "/core-networks"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1891,14 +1869,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListOrganizationServiceAccessStatus"
-                    }
+                    "method": "GET",
+                    "route": "/organizations/service-access"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1920,14 +1894,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "query"
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListPeerings"
-                    }
+                    "method": "GET",
+                    "route": "/peerings"
                 },
                 "schema": {
                     "resultSchema": {
@@ -1949,20 +1919,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1978,20 +1948,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutCoreNetworkPolicy"
-                    }
+                    "route": "/core-networks/{CoreNetworkId}/core-network-policy"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutCoreNetworkPolicyResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2007,20 +1977,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PutResourcePolicy"
-                    }
+                    "route": "/resource-policy/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PutResourcePolicyResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2036,20 +2006,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RegisterTransitGateway"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/transit-gateway-registrations"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RegisterTransitGatewayResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2065,20 +2035,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "AttachmentId": "route.AttachmentId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RejectAttachment"
-                    }
+                    "route": "/attachments/{AttachmentId}/reject"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RejectAttachmentResponse"
                     },
                     "inject": [
+                        "param.0.AttachmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2094,20 +2064,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "PolicyVersionId": "route.PolicyVersionId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RestoreCoreNetworkPolicyVersion"
-                    }
+                    "route": "/core-networks/{CoreNetworkId}/core-network-policy-versions/{PolicyVersionId}/restore"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RestoreCoreNetworkPolicyVersionResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
+                        "param.0.PolicyVersionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2123,14 +2095,10 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        "body"
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartOrganizationServiceAccessUpdate"
-                    }
+                    "route": "/organizations/service-access"
                 },
                 "schema": {
                     "resultSchema": {
@@ -2152,20 +2120,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "StartRouteAnalysis"
-                    }
+                    "route": "/global-networks/{GlobalNetworkId}/route-analyses"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/StartRouteAnalysisResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2181,20 +2149,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TagResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2210,20 +2178,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{ResourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UntagResourceResponse"
                     },
                     "inject": [
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2239,20 +2207,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "ConnectionId": "route.ConnectionId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateConnection"
-                    }
+                    "method": "PATCH",
+                    "route": "/global-networks/{GlobalNetworkId}/connections/{ConnectionId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateConnectionResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.ConnectionId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2268,20 +2238,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "CoreNetworkId": "route.CoreNetworkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateCoreNetwork"
-                    }
+                    "method": "PATCH",
+                    "route": "/core-networks/{CoreNetworkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateCoreNetworkResponse"
                     },
                     "inject": [
+                        "param.0.CoreNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2297,20 +2267,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "DeviceId": "route.DeviceId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateDevice"
-                    }
+                    "method": "PATCH",
+                    "route": "/global-networks/{GlobalNetworkId}/devices/{DeviceId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateDeviceResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.DeviceId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2326,20 +2298,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateGlobalNetwork"
-                    }
+                    "method": "PATCH",
+                    "route": "/global-networks/{GlobalNetworkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateGlobalNetworkResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2355,20 +2327,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "LinkId": "route.LinkId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateLink"
-                    }
+                    "method": "PATCH",
+                    "route": "/global-networks/{GlobalNetworkId}/links/{LinkId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateLinkResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.LinkId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2384,20 +2358,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateNetworkResourceMetadata"
-                    }
+                    "method": "PATCH",
+                    "route": "/global-networks/{GlobalNetworkId}/network-resources/{ResourceArn}/metadata"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateNetworkResourceMetadataResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.ResourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2413,20 +2389,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "GlobalNetworkId": "route.GlobalNetworkId",
+                            "SiteId": "route.SiteId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSite"
-                    }
+                    "method": "PATCH",
+                    "route": "/global-networks/{GlobalNetworkId}/sites/{SiteId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSiteResponse"
                     },
                     "inject": [
+                        "param.0.GlobalNetworkId",
+                        "param.0.SiteId",
                         "param.0"
                     ],
                     "$defs": {
@@ -2442,20 +2420,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "AttachmentId": "route.AttachmentId",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateVpcAttachment"
-                    }
+                    "method": "PATCH",
+                    "route": "/vpc-attachments/{AttachmentId}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateVpcAttachmentResponse"
                     },
                     "inject": [
+                        "param.0.AttachmentId",
                         "param.0"
                     ],
                     "$defs": {
@@ -6762,420 +6740,422 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseDualStack": {
+                    "builtIn": "AWS::UseDualStack",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                    "type": "Boolean"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseDualStack": {
-                "builtIn": "AWS::UseDualStack",
-                "required": true,
-                "default": false,
-                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-                "type": "Boolean"
-            },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseDualStack"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
                         },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws"
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://networkmanager.us-west-2.amazonaws.com",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "networkmanager",
-                                                "signingRegion": "us-west-2"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseDualStack"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
+                                "properties": {},
+                                "headers": {}
                             },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "stringEquals",
-                                        "argv": [
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "name"
-                                                ]
-                                            },
-                                            "aws-us-gov"
-                                        ]
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
+                                                },
+                                                "aws"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://networkmanager.us-west-2.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "networkmanager",
+                                                    "signingRegion": "us-west-2"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
                                     },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            false
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            false
-                                        ]
-                                    }
-                                ],
-                                "endpoint": {
-                                    "url": "https://networkmanager.us-gov-west-1.amazonaws.com",
-                                    "properties": {
-                                        "authSchemes": [
-                                            {
-                                                "name": "sigv4",
-                                                "signingName": "networkmanager",
-                                                "signingRegion": "us-gov-west-1"
-                                            }
-                                        ]
-                                    },
-                                    "headers": {}
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    },
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://networkmanager-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "stringEquals",
+                                            "argv": [
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "name"
+                                                    ]
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://networkmanager-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                                                "aws-us-gov"
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseDualStack"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    true,
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsDualStack"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://networkmanager.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
                                                 },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "endpoint": {
+                                        "url": "https://networkmanager.us-gov-west-1.amazonaws.com",
+                                        "properties": {
+                                            "authSchemes": [
+                                                {
+                                                    "name": "sigv4",
+                                                    "signingName": "networkmanager",
+                                                    "signingRegion": "us-gov-west-1"
+                                                }
+                                            ]
+                                        },
+                                        "headers": {}
                                     },
-                                    {
-                                        "conditions": [],
-                                        "error": "DualStack is enabled but this partition does not support DualStack",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://networkmanager.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                                    "type": "endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://networkmanager-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://networkmanager-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseDualStack"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        true,
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsDualStack"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://networkmanager.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "DualStack is enabled but this partition does not support DualStack",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://networkmanager.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }

@@ -6,20 +6,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AcceptPredictions"
-                    }
+                    "method": "PUT",
+                    "route": "/v2/domains/{domainIdentifier}/assets/{identifier}/accept-predictions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AcceptPredictionsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -35,20 +37,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AcceptSubscriptionRequest"
-                    }
+                    "method": "PUT",
+                    "route": "/v2/domains/{domainIdentifier}/subscription-requests/{identifier}/accept"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AcceptSubscriptionRequestOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -64,20 +68,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "entityType": "route.entityType",
+                            "entityIdentifier": "route.entityIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AddEntityOwner"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/addOwner"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AddEntityOwnerOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.entityType",
+                        "param.0.entityIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -93,20 +101,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "entityType": "route.entityType",
+                            "entityIdentifier": "route.entityIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AddPolicyGrant"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/policies/managed/{entityType}/{entityIdentifier}/addGrant"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AddPolicyGrantOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.entityType",
+                        "param.0.entityIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -122,20 +134,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "environmentRoleArn": "route.environmentRoleArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "AssociateEnvironmentRole"
-                    }
+                    "method": "PUT",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/roles/{environmentRoleArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/AssociateEnvironmentRoleOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
+                        "param.0.environmentRoleArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -151,20 +167,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CancelSubscription"
-                    }
+                    "method": "PUT",
+                    "route": "/v2/domains/{domainIdentifier}/subscriptions/{identifier}/cancel"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CancelSubscriptionOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -180,20 +198,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "assetIdentifier": "route.assetIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateAssetFilter"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/assets/{assetIdentifier}/filters"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateAssetFilterOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.assetIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -209,20 +229,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateEnvironment"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/environments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateEnvironmentOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -238,20 +258,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateEnvironmentAction"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateEnvironmentActionOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -267,20 +289,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateEnvironmentProfile"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/environment-profiles"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateEnvironmentProfileOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -296,20 +318,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateGroupProfile"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/group-profiles"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateGroupProfileOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -325,20 +347,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateListingChangeSet"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/listings/change-set"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateListingChangeSetOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -354,20 +376,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateProject"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/projects"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateProjectOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -383,20 +405,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "projectIdentifier": "route.projectIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateProjectMembership"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/projects/{projectIdentifier}/createMembership"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateProjectMembershipOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.projectIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -412,20 +436,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSubscriptionGrant"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/subscription-grants"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSubscriptionGrantOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -441,20 +465,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSubscriptionRequest"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/subscription-requests"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSubscriptionRequestOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -470,20 +494,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateSubscriptionTarget"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/subscription-targets"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateSubscriptionTargetOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -499,20 +525,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "CreateUserProfile"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/user-profiles"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/CreateUserProfileOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -528,20 +554,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "assetIdentifier": "route.assetIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteAssetFilter"
-                    }
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/assets/{assetIdentifier}/filters/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.assetIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -557,20 +587,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEnvironment"
-                    }
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -586,20 +618,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEnvironmentAction"
-                    }
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -615,20 +651,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteEnvironmentProfile"
-                    }
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/environment-profiles/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -644,20 +682,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteProject"
-                    }
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/projects/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteProjectOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -673,20 +713,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "projectIdentifier": "route.projectIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteProjectMembership"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/projects/{projectIdentifier}/deleteMembership"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteProjectMembershipOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.projectIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -702,20 +744,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSubscriptionGrant"
-                    }
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/subscription-grants/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteSubscriptionGrantOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -731,20 +775,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSubscriptionRequest"
-                    }
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/subscription-requests/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -760,20 +806,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteSubscriptionTarget"
-                    }
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/subscription-targets/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "type": "object"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -789,20 +839,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "entityType": "route.entityType",
+                            "entityIdentifier": "route.entityIdentifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DeleteTimeSeriesDataPoints"
-                    }
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DeleteTimeSeriesDataPointsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.entityType",
+                        "param.0.entityIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -818,20 +872,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "environmentRoleArn": "route.environmentRoleArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "DisassociateEnvironmentRole"
-                    }
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/roles/{environmentRoleArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/DisassociateEnvironmentRoleOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
+                        "param.0.environmentRoleArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -847,20 +905,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "assetIdentifier": "route.assetIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetAssetFilter"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/assets/{assetIdentifier}/filters/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetAssetFilterOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.assetIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -876,20 +938,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEnvironment"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEnvironmentOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -905,20 +969,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEnvironmentAction"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEnvironmentActionOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -934,20 +1002,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEnvironmentBlueprint"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environment-blueprints/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEnvironmentBlueprintOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -963,20 +1033,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEnvironmentCredentials"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/credentials"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEnvironmentCredentialsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -992,20 +1064,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetEnvironmentProfile"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environment-profiles/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetEnvironmentProfileOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1021,20 +1095,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "groupIdentifier": "route.groupIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetGroupProfile"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/group-profiles/{groupIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetGroupProfileOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.groupIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1050,20 +1126,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetIamPortalLoginUrl"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/get-portal-login-url"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetIamPortalLoginUrlOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1079,20 +1155,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetLineageNode"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/lineage/nodes/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetLineageNodeOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1108,20 +1186,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetProject"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/projects/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetProjectOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1137,20 +1217,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSubscription"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/subscriptions/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSubscriptionOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1166,20 +1248,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSubscriptionGrant"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/subscription-grants/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSubscriptionGrantOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1195,20 +1279,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSubscriptionRequestDetails"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/subscription-requests/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSubscriptionRequestDetailsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1224,20 +1310,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetSubscriptionTarget"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/subscription-targets/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetSubscriptionTargetOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1253,20 +1343,26 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "entityType": "route.entityType",
+                            "entityIdentifier": "route.entityIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetTimeSeriesDataPoint"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetTimeSeriesDataPointOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.entityType",
+                        "param.0.entityIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1282,20 +1378,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "userIdentifier": "route.userIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "GetUserProfile"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/user-profiles/{userIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/GetUserProfileOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.userIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1311,20 +1409,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "assetIdentifier": "route.assetIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAssetFilters"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/assets/{assetIdentifier}/filters"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListAssetFiltersOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.assetIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1340,20 +1440,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListAssetRevisions"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/assets/{identifier}/revisions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListAssetRevisionsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1369,20 +1471,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDataProductRevisions"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/data-products/{identifier}/revisions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDataProductRevisionsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1398,20 +1502,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListDataSourceRunActivities"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/data-source-runs/{identifier}/activities"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListDataSourceRunActivitiesOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1427,20 +1533,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "entityType": "route.entityType",
+                            "entityIdentifier": "route.entityIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEntityOwners"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/owners"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListEntityOwnersOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.entityType",
+                        "param.0.entityIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1456,20 +1566,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEnvironmentActions"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListEnvironmentActionsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1485,20 +1597,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEnvironmentBlueprints"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environment-blueprints"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListEnvironmentBlueprintsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1514,20 +1626,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEnvironmentProfiles"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environment-profiles"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListEnvironmentProfilesOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1543,20 +1655,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListEnvironments"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environments"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListEnvironmentsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1572,20 +1684,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListLineageNodeHistory"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/lineage/nodes/{identifier}/history"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListLineageNodeHistoryOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1601,20 +1715,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListNotifications"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/notifications"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListNotificationsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1630,20 +1744,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "entityType": "route.entityType",
+                            "entityIdentifier": "route.entityIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListPolicyGrants"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/policies/managed/{entityType}/{entityIdentifier}/grants"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListPolicyGrantsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.entityType",
+                        "param.0.entityIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1659,20 +1777,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "projectIdentifier": "route.projectIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProjectMemberships"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/projects/{projectIdentifier}/memberships"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListProjectMembershipsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.projectIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1688,20 +1808,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListProjects"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/projects"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListProjectsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1717,20 +1837,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSubscriptionGrants"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/subscription-grants"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListSubscriptionGrantsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1746,20 +1866,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSubscriptionRequests"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/subscription-requests"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListSubscriptionRequestsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1775,20 +1895,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSubscriptions"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/subscriptions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListSubscriptionsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1804,20 +1924,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListSubscriptionTargets"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/subscription-targets"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListSubscriptionTargetsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1833,20 +1955,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTagsForResource"
-                    }
+                    "method": "GET",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTagsForResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -1862,20 +1984,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "entityType": "route.entityType",
+                            "entityIdentifier": "route.entityIdentifier",
+                            "...": "query"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "ListTimeSeriesDataPoints"
-                    }
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/ListTimeSeriesDataPointsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.entityType",
+                        "param.0.entityIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1891,20 +2017,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PostLineageEvent"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/lineage/events"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PostLineageEventOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1920,20 +2046,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "entityType": "route.entityType",
+                            "entityIdentifier": "route.entityIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "PostTimeSeriesDataPoints"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/PostTimeSeriesDataPointsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.entityType",
+                        "param.0.entityIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1949,20 +2079,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RejectPredictions"
-                    }
+                    "method": "PUT",
+                    "route": "/v2/domains/{domainIdentifier}/assets/{identifier}/reject-predictions"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RejectPredictionsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -1978,20 +2110,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RejectSubscriptionRequest"
-                    }
+                    "method": "PUT",
+                    "route": "/v2/domains/{domainIdentifier}/subscription-requests/{identifier}/reject"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RejectSubscriptionRequestOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2007,20 +2141,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "entityType": "route.entityType",
+                            "entityIdentifier": "route.entityIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RemoveEntityOwner"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/removeOwner"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RemoveEntityOwnerOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.entityType",
+                        "param.0.entityIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2036,20 +2174,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "entityType": "route.entityType",
+                            "entityIdentifier": "route.entityIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RemovePolicyGrant"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/policies/managed/{entityType}/{entityIdentifier}/removeGrant"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RemovePolicyGrantOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.entityType",
+                        "param.0.entityIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2065,20 +2207,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "RevokeSubscription"
-                    }
+                    "method": "PUT",
+                    "route": "/v2/domains/{domainIdentifier}/subscriptions/{identifier}/revoke"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/RevokeSubscriptionOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2094,20 +2238,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "Search"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/search"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SearchOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2123,20 +2267,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SearchGroupProfiles"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/search-group-profiles"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SearchGroupProfilesOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2152,20 +2296,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SearchListings"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/listings/search"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SearchListingsOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2181,20 +2325,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SearchTypes"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/types-search"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SearchTypesOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2210,20 +2354,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "SearchUserProfiles"
-                    }
+                    "route": "/v2/domains/{domainIdentifier}/search-user-profiles"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/SearchUserProfilesOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2239,20 +2383,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
                     "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "TagResource"
-                    }
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/TagResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2268,20 +2412,20 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UntagResource"
-                    }
+                    "method": "DELETE",
+                    "route": "/tags/{resourceArn}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UntagResourceResponse"
                     },
                     "inject": [
+                        "param.0.resourceArn",
                         "param.0"
                     ],
                     "$defs": {
@@ -2297,20 +2441,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "assetIdentifier": "route.assetIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateAssetFilter"
-                    }
+                    "method": "PATCH",
+                    "route": "/v2/domains/{domainIdentifier}/assets/{assetIdentifier}/filters/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateAssetFilterOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.assetIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2326,20 +2474,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEnvironment"
-                    }
+                    "method": "PATCH",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateEnvironmentOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2355,20 +2505,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEnvironmentAction"
-                    }
+                    "method": "PATCH",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateEnvironmentActionOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2384,20 +2538,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateEnvironmentProfile"
-                    }
+                    "method": "PATCH",
+                    "route": "/v2/domains/{domainIdentifier}/environment-profiles/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateEnvironmentProfileOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2413,20 +2569,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "groupIdentifier": "route.groupIdentifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateGroupProfile"
-                    }
+                    "method": "PUT",
+                    "route": "/v2/domains/{domainIdentifier}/group-profiles/{groupIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateGroupProfileOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.groupIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2442,20 +2600,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateProject"
-                    }
+                    "method": "PATCH",
+                    "route": "/v2/domains/{domainIdentifier}/projects/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateProjectOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2471,20 +2631,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "assetIdentifier": "route.assetIdentifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSubscriptionGrantStatus"
-                    }
+                    "method": "PATCH",
+                    "route": "/v2/domains/{domainIdentifier}/subscription-grants/{identifier}/status/{assetIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSubscriptionGrantStatusOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
+                        "param.0.assetIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2500,20 +2664,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSubscriptionRequest"
-                    }
+                    "method": "PATCH",
+                    "route": "/v2/domains/{domainIdentifier}/subscription-requests/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSubscriptionRequestOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2529,20 +2695,24 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "environmentIdentifier": "route.environmentIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateSubscriptionTarget"
-                    }
+                    "method": "PATCH",
+                    "route": "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/subscription-targets/{identifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateSubscriptionTargetOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.environmentIdentifier",
+                        "param.0.identifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -2558,20 +2728,22 @@
             "config": {
                 "http": {
                     "inject": [
-                        "param.0"
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "userIdentifier": "route.userIdentifier",
+                            "...": "body"
+                        }
                     ],
-                    "method": "POST",
-                    "route": "/",
-                    "type": "json",
-                    "headers": {
-                        "X-Amz-Target": "UpdateUserProfile"
-                    }
+                    "method": "PUT",
+                    "route": "/v2/domains/{domainIdentifier}/user-profiles/{userIdentifier}"
                 },
                 "schema": {
                     "resultSchema": {
                         "$ref": "#/$defs/UpdateUserProfileOutput"
                     },
                     "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.userIdentifier",
                         "param.0"
                     ],
                     "$defs": {
@@ -9499,251 +9671,253 @@
             }
         }
     },
-    "state": {
-        "version": "1.0",
-        "parameters": {
-            "Region": {
-                "builtIn": "AWS::Region",
-                "required": false,
-                "documentation": "The AWS region used to dispatch the request.",
-                "type": "String"
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                },
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                }
             },
-            "UseFIPS": {
-                "builtIn": "AWS::UseFIPS",
-                "required": true,
-                "default": false,
-                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-                "type": "Boolean"
-            },
-            "Endpoint": {
-                "builtIn": "SDK::Endpoint",
-                "required": false,
-                "documentation": "Override the endpoint used to send this request",
-                "type": "String"
-            }
-        },
-        "rules": [
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Endpoint"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "booleanEquals",
-                                "argv": [
-                                    {
-                                        "ref": "UseFIPS"
-                                    },
-                                    true
-                                ]
-                            }
-                        ],
-                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
-                        "type": "error"
-                    },
-                    {
-                        "conditions": [],
-                        "endpoint": {
-                            "url": {
-                                "ref": "Endpoint"
-                            },
-                            "properties": {},
-                            "headers": {}
-                        },
-                        "type": "endpoint"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [
-                    {
-                        "fn": "isSet",
-                        "argv": [
-                            {
-                                "ref": "Region"
-                            }
-                        ]
-                    }
-                ],
-                "rules": [
-                    {
-                        "conditions": [
-                            {
-                                "fn": "aws.partition",
-                                "argv": [
-                                    {
-                                        "ref": "Region"
-                                    }
-                                ],
-                                "assign": "PartitionResult"
-                            }
-                        ],
-                        "rules": [
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            true,
-                                            {
-                                                "fn": "getAttr",
-                                                "argv": [
-                                                    {
-                                                        "ref": "PartitionResult"
-                                                    },
-                                                    "supportsDualStack"
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "ref": "UseFIPS"
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [
-                                                    {
-                                                        "fn": "booleanEquals",
-                                                        "argv": [
-                                                            {
-                                                                "fn": "getAttr",
-                                                                "argv": [
-                                                                    {
-                                                                        "ref": "PartitionResult"
-                                                                    },
-                                                                    "supportsFIPS"
-                                                                ]
-                                                            },
-                                                            true
-                                                        ]
-                                                    }
-                                                ],
-                                                "rules": [
-                                                    {
-                                                        "conditions": [],
-                                                        "endpoint": {
-                                                            "url": "https://datazone-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                            "properties": {},
-                                                            "headers": {}
-                                                        },
-                                                        "type": "endpoint"
-                                                    }
-                                                ],
-                                                "type": "tree"
-                                            },
-                                            {
-                                                "conditions": [],
-                                                "error": "FIPS is enabled but this partition does not support FIPS",
-                                                "type": "error"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "endpoint": {
-                                            "url": "https://datazone.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                            "properties": {},
-                                            "headers": {}
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
                                         },
-                                        "type": "endpoint"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "fn": "booleanEquals",
-                                        "argv": [
-                                            {
-                                                "ref": "UseFIPS"
-                                            },
-                                            true
-                                        ]
-                                    }
-                                ],
-                                "rules": [
-                                    {
-                                        "conditions": [
-                                            {
-                                                "fn": "booleanEquals",
-                                                "argv": [
-                                                    {
-                                                        "fn": "getAttr",
-                                                        "argv": [
-                                                            {
-                                                                "ref": "PartitionResult"
-                                                            },
-                                                            "supportsFIPS"
-                                                        ]
-                                                    },
-                                                    true
-                                                ]
-                                            }
-                                        ],
-                                        "rules": [
-                                            {
-                                                "conditions": [],
-                                                "endpoint": {
-                                                    "url": "https://datazone-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                    "properties": {},
-                                                    "headers": {}
-                                                },
-                                                "type": "endpoint"
-                                            }
-                                        ],
-                                        "type": "tree"
-                                    },
-                                    {
-                                        "conditions": [],
-                                        "error": "FIPS is enabled but this partition does not support FIPS",
-                                        "type": "error"
-                                    }
-                                ],
-                                "type": "tree"
-                            },
-                            {
-                                "conditions": [],
-                                "endpoint": {
-                                    "url": "https://datazone.{Region}.{PartitionResult#dnsSuffix}",
-                                    "properties": {},
-                                    "headers": {}
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
                                 },
-                                "type": "endpoint"
-                            }
-                        ],
-                        "type": "tree"
-                    }
-                ],
-                "type": "tree"
-            },
-            {
-                "conditions": [],
-                "error": "Invalid Configuration: Missing Region",
-                "type": "error"
-            }
-        ]
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "aws.partition",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ],
+                                    "assign": "PartitionResult"
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                true,
+                                                {
+                                                    "fn": "getAttr",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "PartitionResult"
+                                                        },
+                                                        "supportsDualStack"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsFIPS"
+                                                                    ]
+                                                                },
+                                                                true
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "endpoint": {
+                                                                "url": "https://datazone-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "properties": {},
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "FIPS is enabled but this partition does not support FIPS",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "endpoint": {
+                                                "url": "https://datazone.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "properties": {},
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                true
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "fn": "getAttr",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "PartitionResult"
+                                                                },
+                                                                "supportsFIPS"
+                                                            ]
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://datazone-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "error": "FIPS is enabled but this partition does not support FIPS",
+                                            "type": "error"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "endpoint": {
+                                        "url": "https://datazone.{Region}.{PartitionResult#dnsSuffix}",
+                                        "properties": {},
+                                        "headers": {}
+                                    },
+                                    "type": "endpoint"
+                                }
+                            ],
+                            "type": "tree"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "error": "Invalid Configuration: Missing Region",
+                    "type": "error"
+                }
+            ]
+        }
     }
 }
