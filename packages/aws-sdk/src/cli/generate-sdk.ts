@@ -314,6 +314,10 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
                             resultSchema: toSchema(urn, (operation as SmithyOperation)?.output, smithy, schemaCache),
                             inject: [].concat(route.parameters.map(p => 'param.0.' + p.name), ['param.0']),
                             $defs: { 'param.0': toSchema(urn, (operation as SmithyOperation)?.input, smithy, schemaCache) }
+                        },
+                        cli: {
+                            inject: ["options"],
+                            options: Object.fromEntries(Object.entries(resolve(smithy, (operation as SmithyOperation).input) || {}).map(e => [e[0], {}]))
                         }
                     }
                 }
