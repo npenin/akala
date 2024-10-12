@@ -16,6 +16,9 @@ export { Triggers };
 
 export { Configurations, Configuration, GenericConfiguration, ExtendedConfigurations }
 
+import { handlers } from './protocol-handler.js';
+export { handlers as protocolHandlers }
+
 // import * as cli from './cli'
 export { NetSocketAdapter } from './net-socket-adapter.js'
 import commands from './commands.js'
