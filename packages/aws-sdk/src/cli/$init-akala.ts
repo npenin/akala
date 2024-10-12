@@ -1,5 +1,6 @@
-import { Metadata, metadataPluginHandler, tsPluginHandler, FileGenerator } from '@akala/commands'
+import { Metadata, metadataPluginHandler, tsPluginHandler, FileGenerator, protocolHandlers } from '@akala/commands'
 import { Policy } from '../iam.js';
+import { Processors } from '@akala/commands';
 
 export default async function $initAkala()
 {
@@ -14,6 +15,16 @@ export default async function $initAkala()
     {
         if (meta['aws'])
             await FileGenerator.write(output, `export const awsPermissions = ${JSON.stringify(meta['aws'].permissions)}`);
+    })
+
+    protocolHandlers.useProtocol('aws:', (url, result) =>
+    {
+        if (!url.host)
+            throw new Error('The url is espected of the form aws://<service>');
+
+        result.getMetadata = () => import(`../../services/${url.host}.json`);
+        result.processor = new Processors.HttpClient();
+        return Promise.resolve(result);
     })
 }
 
