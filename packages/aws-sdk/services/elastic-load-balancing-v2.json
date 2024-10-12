@@ -3393,6 +3393,9 @@
                 },
                 "AnomalyDetection": {
                     "$ref": "#/$defs/AnomalyDetection"
+                },
+                "AdministrativeOverride": {
+                    "$ref": "#/$defs/AdministrativeOverride"
                 }
             }
         },
@@ -3461,6 +3464,36 @@
             "enum": [
                 "YES",
                 "NO"
+            ]
+        },
+        "AdministrativeOverride": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/TargetAdministrativeOverrideStateEnum"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/TargetAdministrativeOverrideReasonEnum"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "TargetAdministrativeOverrideStateEnum": {
+            "enum": [
+                "UNKNOWN",
+                "NO_OVERRIDE",
+                "ZONAL_SHIFT_ACTIVE",
+                "ZONAL_SHIFT_DELEGATED_TO_DNS"
+            ]
+        },
+        "TargetAdministrativeOverrideReasonEnum": {
+            "enum": [
+                "INTERNAL_ERROR",
+                "NO_OVERRIDE_ENGAGED",
+                "ZONAL_SHIFT_ENGAGED",
+                "ZONAL_SHIFT_DELEGATED_TO_DNS"
             ]
         },
         "DescribeTargetHealthInput": {
