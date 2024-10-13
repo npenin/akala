@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Prepare
         id: prepare
@@ -25,15 +25,14 @@ jobs:
           fi
 
           echo ::set-output name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-          echo ::set-output name=docker_platforms::linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/ppc64le
+          echo ::set-output name=docker_platforms::linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
           echo ::set-output name=docker_image::${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}
 
-        # https://github.com/crazy-max/ghaction-docker-buildx
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v3
-        with:
-          version: latest
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Docker Setup Buildx
+        uses: docker/setup-buildx-action@v3.7.1
 
       - name: Environment
         run: |
@@ -49,6 +48,8 @@ jobs:
         # https://github.com/actions/checkout
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Docker Buildx (no push)
         run: |
