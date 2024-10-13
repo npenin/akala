@@ -242,13 +242,14 @@ export class BuildWatcherAndSetter<T extends object> extends ExpressionVisitor
                 {
                     const previousSetter = this.eval(expression.lhs);
                     const formatterGetter = BuildWatcherAndSetter.formatWatcher(previousSetter.watcher, this, expression);
+                    this.getter = formatterGetter.getter;
                     // let settingsGetter: WatchGetter<T, any>;
                     // if (expression.settings)
                     //     settingsGetter = new BuildWatcherAndSetter().eval(expression.settings).watcher
 
                     // let formatterInstance: ReversibleFormatter<unknown, unknown>;
-
-                    setter = (target: T, value: TValue) => previousSetter.setter(target, ((formatterGetter.formatterInstance || (formatterGetter.formatterInstance = new formatter(formatterGetter.settings?.(target, null)))) as ReversibleFormatter<unknown, unknown>).unformat(value));
+                    if (previousSetter)
+                        setter = (target: T, value: TValue) => previousSetter.setter(target, ((formatterGetter.formatterInstance || (formatterGetter.formatterInstance = new formatter(formatterGetter.settings?.(target, null)))) as ReversibleFormatter<unknown, unknown>).unformat(value));
                 }
                 else
                 {
