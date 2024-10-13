@@ -4,6 +4,8 @@
 
 @mixin buttons($colorName, $config, $filled: false, $colorScheme) {
 
+    @include colors.colorPalette('main-color', $colorName, $config);
+
     border-radius: var(--border-radius);
     --border-width: 1px;
     border: none;
@@ -14,8 +16,6 @@
 
     --border-color: var(--color);
     color: var(--color);
-
-    @include colors.colorPalette('main-color', $colorName, $config);
 
     @if not $filled {
 
