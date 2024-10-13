@@ -5,7 +5,9 @@ import { AuthenticationMethodReference } from "../../../model/session.js";
 export default async function (this: State, deviceId: string, userId: string, expiresOn?: Date, authenticationMethod?: AuthenticationMethodReference, connectionId?: string)
 {
     let session = await this.store.Session.where('userId', BinaryOperator.Equal, userId).where('deviceId', BinaryOperator.Equal, deviceId).firstOrDefault();
-    if (session && session.expiresOn > new Date() && (!connectionId || session.id == connectionId))
+    console.log(session);
+    console.log(connectionId);
+    if (session && (session.expiresOn > new Date() || !session.expiresOn) && (!connectionId || session.id == connectionId))
     {
         //already valid existing session
         return session;
