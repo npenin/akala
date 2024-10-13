@@ -62,7 +62,8 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
 
             if (trigger?.contains(target) || this.element.contains(target))
                 return;
-            this.element.hidePopover();
+            if (this.element.checkVisibility())
+                this.element.hidePopover();
         }));
         coco.get('change').emit({ oldValue: undefined, value: coco.getValue() });
     }
