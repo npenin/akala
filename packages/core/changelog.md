@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* updated from undefined to '' 68f146e
+* binding formatters 907ab5d
+* handle multiple formatter parsing e7f3aca
 
 
 
