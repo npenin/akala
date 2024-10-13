@@ -109,7 +109,7 @@
 
 
 @function wacg($color) {
-    @return round((color.red($color) * 299) + (color.green($color) * 587) + (color.blue($color) * 114) / 1000);
+    @return round((color.channel($color, 'red', $space: rgb) * 299) + (color.channel($color, 'green', $space: rgb) * 587) + (color.channel($color, 'blue', $space: rgb) * 114) / 1000);
 }
 
 @function wacg-contrast-pass($color1, $color2) {
@@ -180,8 +180,8 @@
                 );
 
 
-            $contrastWithWhite: color.whiteness(map.get($config, 'colors', 'light')) - color.whiteness(map.get($config, 'colors', $colorNameVariant));
-            $contrastWithBlack: color.blackness(map.get($config, 'colors', 'dark')) - color.blackness(map.get($config, 'colors', $colorNameVariant));
+            $contrastWithWhite: color.channel(map.get($config, 'colors', 'light'), 'whiteness', $space: hwb) - color.channel(map.get($config, 'colors', $colorNameVariant), 'whiteness', $space: hwb);
+            $contrastWithBlack: color.channel(map.get($config, 'colors', 'dark'), 'blackness', $space: hwb) - color.channel(map.get($config, 'colors', $colorNameVariant), 'blackness', $space: hwb);
 
             @if($contrastWithBlack>$contrastWithWhite) {
                 @if(map.get($colorVariations, darker)) {
@@ -242,8 +242,8 @@
 
         $variants: lightnesses($colorName, map.get($config, lightnesses));
 
-        $color-brightness: round((color.red($color) * 299) + (color.green($color) * 587) + (color.blue($color) * 114) / 1000);
-        $light-color: round((color.red(white) * 299) + (color.green(white) * 587) + (color.blue(white) * 114) / 1000);
+        $color-brightness: wacg($color);
+        $light-color: wacg(white);
 
         :root {
             @include colorPalette(#{$colorName}, $colorName, $config);
