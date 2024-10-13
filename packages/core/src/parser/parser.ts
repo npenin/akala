@@ -426,7 +426,7 @@ export class Parser
 
         const result = new FormatExpression(lhs, item[1], settings);
         result.$$length = lhs.$$length + item[0].length + ((settings && settings.$$length + 1) || 0);
-        return result;
+        return this.tryParseOperator(expression, result, true, reset);
     }
 
     public tryParseOperator(expression: string, lhs: ExpressionsWithLength, parseFormatter: boolean, reset?: () => void)
