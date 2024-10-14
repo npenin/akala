@@ -12,6 +12,9 @@ RUN ["yarn"]
 ENV PATH=/usr/src/akala/node_modules/.bin:${PATH}
 ENV NODE_ENV=production
 ENV DEBUG=*
-ENTRYPOINT ["yarn" ,"pm-fork", "node_modules/@akala/pm/commands.json", "pm"]
+RUN ["node", "/usr/src/akala/node_modules/.bin/akala", "plugins", "add", "@akala/config/akala"]
+RUN ["node", "/usr/src/akala/node_modules/.bin/akala", "plugins", "add", "@akala/commands/akala"]
+RUN ["node", "/usr/src/akala/node_modules/.bin/akala", "plugins", "add", "@akala/pm/akala"]
+ENTRYPOINT ["node", "/usr/src/akala/node_modules/.bin/akala", "pm", "start", "pm", "--keepAttached"]
 CMD [ "tcp", "--tcpPort=31416"]
 EXPOSE 31416
