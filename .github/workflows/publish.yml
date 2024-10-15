@@ -55,8 +55,6 @@ jobs:
     needs: publish
     runs-on: ubuntu-latest
     steps:
-      - name: update dependencies
-        run: yarn workspace akala-docker up '@akala/*'
       - name: Prepare
         id: prepare
         run: |
@@ -95,8 +93,9 @@ jobs:
         # https://github.com/actions/checkout
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: true
+
+      - name: update dependencies
+        run: yarn workspace akala-docker up '@akala/*'
 
       - name: Docker Buildx (no push)
         run: |
