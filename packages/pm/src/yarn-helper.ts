@@ -23,14 +23,14 @@ export default
     {
         async install(packageName: string, path?: string): Promise<void>
         {
-            await spawnAsync(npm, { cwd: path }, 'add', packageName, '--production')
+            await spawnAsync(npm, { cwd: path }, 'add', packageName)
         },
         async update(packageName: string, path?: string): Promise<void>
         {
-            await spawnAsync(npm, { cwd: path }, 'upgrade', packageName, '--production')
+            await spawnAsync(npm, { cwd: path }, 'upgrade', packageName)
         },
         async link(packageName: string, path?: string): Promise<void>
         {
-            await spawnAsync(npm, { cwd: path }, 'link', packageName, '--production')
+            await spawnAsync(npm, { cwd: path }, 'link', packageName)
         }
     }
