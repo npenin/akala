@@ -9,7 +9,7 @@ WORKDIR /usr/src/akala
 RUN ["apk", "add", "coreutils"]
 RUN ["yarn", "set", "version", "berry"]
 RUN ["yarn", "config", "set", "nodeLinker", "node-modules"]
-RUN ["yarn"]
+RUN ["yarn", "add", "@akala/pm"]
 ENV PATH=/usr/src/akala/node_modules/.bin:${PATH}
 ENV NODE_ENV=production
 ENV DEBUG=*
