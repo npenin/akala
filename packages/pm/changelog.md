@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* map returns the mapped name b312b00
+* dependency support e09bc39
+* switch from require to import 3890d27
 
 
 
