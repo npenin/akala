@@ -106,7 +106,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     {
         if (!container && def.dependencies?.length)
         {
-            var missingDeps = def.dependencies.filter(d => !this.config.mapping[d]);
+            var missingDeps = def.dependencies.filter(d => !this.config.containers[d] && !this.config.mapping[d]);
             if (missingDeps.length > 0)
                 throw new ErrorWithStatus(404, `Some dependencies are missing to start ${options.name}:\n\t-${missingDeps.join('\n\t-')}`);
 
