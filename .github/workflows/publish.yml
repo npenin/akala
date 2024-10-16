@@ -59,19 +59,19 @@ jobs:
         id: prepare
         run: |
           if [[ $GITHUB_REF == refs/tags/* ]]; then
-            echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
+            echo name=version::${GITHUB_REF#refs/tags/v} >> $GITHUB_OUTPUT
           elif [[ $GITHUB_REF == refs/heads/main ]]; then
-            echo ::set-output name=version::latest
+            echo name=version::latest  >> $GITHUB_OUTPUT
           elif [[ $GITHUB_REF == refs/heads/* ]]; then
-            echo ::set-output name=version::${GITHUB_REF#refs/heads/}
+            echo name=version::${GITHUB_REF#refs/heads/} >> $GITHUB_OUTPUT
           else
-            echo ::set-output name=version::snapshot
+            echo name=version::snapshot
           fi
 
-          echo ::set-output name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-          # echo ::set-output name=docker_platforms::linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
-          echo ::set-output name=docker_platforms::linux/amd64,linux/arm64/v8
-          echo ::set-output name=docker_image::${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}
+          echo name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ') >> $GITHUB_OUTPUT
+          # echo name=docker_platforms::linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8 >> $GITHUB_OUTPUT
+          echo name=docker_platforms::linux/amd64,linux/arm64/v8 >> $GITHUB_OUTPUT
+          echo name=docker_image::${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }} >> $GITHUB_OUTPUT
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
