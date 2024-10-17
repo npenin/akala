@@ -40,9 +40,9 @@ export class Cli
     public readonly program: NamespaceMiddleware<{ [key: string]: string | number | boolean | string[]; }>;
     public readonly promise: Promise<unknown>;
 
-    constructor(public readonly cliContainer: Container<void>, commands: Metadata.Command[], processor: ICommandProcessor, program: NamespaceMiddleware)
+    constructor(public readonly cliContainer: Container<void>, commands: Metadata.Container, processor: ICommandProcessor, program: NamespaceMiddleware)
     {
-        registerCommands(commands, processor, cliContainer);
+        registerCommands(commands.commands, processor, cliContainer);
 
         program.format(async r =>
         {
@@ -83,8 +83,8 @@ export class Cli
 
         cliContainer.processor.useMiddleware(51, options.processor);
 
-        const commands = await FileSystem.discoverMetaCommands(commandsPath, options);
-        return new Cli(cliContainer, commands, options.processor, program);
+        const container = await FileSystem.discoverMetaCommands(commandsPath, options);
+        return new Cli(cliContainer, container, options.processor, program);
 
     }
 

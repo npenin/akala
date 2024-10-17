@@ -27,20 +27,20 @@ export default async function generate(folder?: string, name?: string, outputFil
     discoveryOptions.recursive = true;
     discoveryOptions.ignoreFileWithNoDefaultExport = true;
 
-    var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), discoveryOptions);
+    var container = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), discoveryOptions);
 
     var result: jsonObject = { paths: {} };
     result.openapi = '3.1.0';
-    result.info = { title: 'openAPI documentation for ' + commands.name, version: '' };
-    for (var i = 0; i < commands.length; i++)
+    result.info = { title: 'openAPI documentation for ' + container.name, version: '' };
+    for (var i = 0; i < container.commands.length; i++)
     {
-        if (commands[i].config?.http)
+        if (container.commands[i].config?.http)
         {
-            result.paths[commands[i].config.http.route] = result.paths[commands[i].config.http.route] || {};
-            var action: jsonObject = result.paths[commands[i].config.http.route][commands[i].config.http.method] = { parameters: [] };
+            result.paths[container.commands[i].config.http.route] = result.paths[container.commands[i].config.http.route] || {};
+            var action: jsonObject = result.paths[container.commands[i].config.http.route][container.commands[i].config.http.method] = { parameters: [] };
             // var keys: Key[] = [].concat(pathToRegexp(commands[i].config.http.route).keys);
             var hasBody = false;
-            action.parameters = commands[i].config.http.inject.map(p =>
+            action.parameters = container.commands[i].config.http.inject.map(p =>
             {
                 if (typeof p == 'string')
                     if (p.startsWith('route.'))
@@ -67,7 +67,7 @@ export default async function generate(folder?: string, name?: string, outputFil
             if (hasBody)
             {
                 var content = { schema: { type: 'object', properties: {} } };
-                switch (commands[i].config.http.type)
+                switch (container.commands[i].config.http.type)
                 {
                     default:
                     case 'json':
@@ -83,10 +83,10 @@ export default async function generate(folder?: string, name?: string, outputFil
                         action.content = { 'text/json': content }
                         break;
                 }
-                commands[i].config.http.inject.forEach((p, i) =>
+                container.commands[i].config.http.inject.forEach((p, i) =>
                 {
                     if (typeof p == 'string' && p.startsWith('body.'))
-                        content.schema.properties[p.substring('body.'.length)] = commands[i].config.schema?.inject[i] ? commands[i].config.schema?.$defs[commands[i].config.schema?.inject[i] as string] : {};
+                        content.schema.properties[p.substring('body.'.length)] = container.commands[i].config.schema?.inject[i] ? container.commands[i].config.schema?.$defs[container.commands[i].config.schema?.inject[i] as string] : {};
                 });
             }
         }

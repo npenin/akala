@@ -14,7 +14,6 @@ import { handlers, parseQueryString } from '../protocol-handler.js';
 import { stat } from 'fs/promises';
 import os from 'node:os'
 import { fileURLToPath, pathToFileURL } from 'url';
-import { SchemaObject } from 'ajv';
 
 async function protocolHandler(url: URL)
 {
@@ -82,7 +81,9 @@ async function resolveFolder(require: NodeRequire, request: string)
             return;
         try
         {
-            if ((await fs.stat(path.join(p, request), {})).isDirectory())
+            if (!p.endsWith('/'))
+                p += '/'
+            if (!(await fs.stat(path.join(p, request), {})).isDirectory())
                 result = path.join(p, request);
         }
         catch (e)
@@ -108,7 +109,7 @@ export class FileSystem extends CommandProcessor
 
         const commands = await this.discoverMetaCommands(root, options);
 
-        registerCommands(commands, options.processor, container);
+        registerCommands(commands.commands, options.processor, container);
 
         if (fs)
             fs.root = options.relativeTo;
@@ -117,7 +118,7 @@ export class FileSystem extends CommandProcessor
             container.name = commands.name;
     }
 
-    public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string, stateless?: boolean, $defs?: Record<string, SchemaObject> }>
+    public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Container>
     {
         // console.trace(`discovering commands in ${root}`)
         const log = akala.logger('commands:fs:discovery');
@@ -167,7 +168,7 @@ export class FileSystem extends CommandProcessor
             const cmdRequire = createRequire(path.resolve(root));
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             const metacontainer: Metadata.Container & { extends?: string[] } = await importJson(path.resolve(root));
-            const commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
+            metacontainer.commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
             let globalDefs = metacontainer.$defs;
             if (metacontainer.extends && metacontainer.extends.length)
             {
@@ -184,10 +185,10 @@ export class FileSystem extends CommandProcessor
                     else
                         var parentCommands = await this.discoverMetaCommands(await resolveFolder(cmdRequire, subPath), { ...options, isDirectory: undefined, relativeTo: cmdRequire.resolve(subPath) });
                     if (parentCommands.stateless)
-                        Object.defineProperty(commands, 'stateless', { enumerable: false, value: parentCommands.stateless });
-                    await eachAsync(parentCommands, async c =>
+                        Object.defineProperty(metacontainer, 'stateless', { enumerable: false, value: parentCommands.stateless });
+                    await eachAsync(parentCommands.commands, async c =>
                     {
-                        if (commands.find(c2 => c.name == c2.name))
+                        if (metacontainer.commands.find(c2 => c.name == c2.name))
                             return;
                         if (c.config?.fs?.path)
                             c.config.fs.path = path.resolve(path.dirname(await resolveFolder(cmdRequire, subPath)), c.config.fs.path);
@@ -202,7 +203,7 @@ export class FileSystem extends CommandProcessor
                         {
                             const f = await fs.open(c.config.fs.source);
                             await f.close();
-                            commands.push(c);
+                            metacontainer.commands.push(c);
                         }
                         catch (e)
                         {
@@ -216,8 +217,8 @@ export class FileSystem extends CommandProcessor
             }
             // if ('$defs' in metacontainer && typeof metacontainer.$defs == 'object')
             //     Object.defineProperty(commands, '$defs', { enumerable: false, value: globalDefs });
-            Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });
-            return commands;
+            // Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });
+            return metacontainer;
         }
         else if (existsSync(path.join(root, 'package.json')))
         {
@@ -233,8 +234,7 @@ export class FileSystem extends CommandProcessor
         else if (existsSync(path.join(root, 'commands.json')))
             return this.discoverMetaCommands(path.join(root, 'commands.json'), { processor: options.processor, isDirectory: false });
 
-        const commands: Metadata.Command[] = [];
-
+        const metacontainer: Metadata.Container = { name: '', commands: [] }
         const files = await fs.readdir(root, { withFileTypes: true });
         const relativeTo = options.relativeTo;
         await akala.eachAsync(files, async f =>
@@ -360,7 +360,7 @@ export class FileSystem extends CommandProcessor
                     if (!cmd.config[''])
                         cmd.config[''] = { inject: [] };
 
-                    commands.push(cmd);
+                    metacontainer.commands.push(cmd);
                 }
                 else if (f.name.endsWith('.json'))
                 {
@@ -370,7 +370,7 @@ export class FileSystem extends CommandProcessor
                         try
                         {
                             const cmd: FSCommand = await importJson(path.resolve(path.join(root, f.name)));
-                            commands.push(cmd);
+                            metacontainer.commands.push(cmd);
                         }
                         catch (e)
                         {
@@ -382,15 +382,16 @@ export class FileSystem extends CommandProcessor
             }
             else
                 if (f.isDirectory() && options && options.recursive)
-                    commands.push(...(await FileSystem.discoverMetaCommands(path.join(root, f.name), options)).map(c => ({ name: (options.flatten ? '' : (f.name + '.')) + c.name, config: c.config })));
+                    metacontainer.commands.push(...(await FileSystem.discoverMetaCommands(path.join(root, f.name), options)).commands.map(c => ({ name: (options.flatten ? '' : (f.name + '.')) + c.name, config: c.config })));
         }, false);
 
-        return commands.sort((a, b) =>
+        metacontainer.commands.sort((a, b) =>
         {
             if (a.name < b.name) return -1;
             if (a.name > b.name) return 1;
             return 0;
         });
+        return metacontainer;
     }
 
     public async handle(origin: Container<unknown>, command: FSCommand, param: { param: unknown[], _trigger?: string }): MiddlewarePromise

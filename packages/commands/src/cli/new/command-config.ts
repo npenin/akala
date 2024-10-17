@@ -7,8 +7,8 @@ import { outputHelper, write } from "../new.js";
 
 export default async function (name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string)
 {
-    var cmds = await Processors.FileSystem.discoverMetaCommands(destination, { relativeTo: process.cwd(), processor: new Processors.FileSystem(destination), ignoreFileWithNoDefaultExport: true });
-    const cmd = cmds.find(c => c.name == name);
+    var container = await Processors.FileSystem.discoverMetaCommands(destination, { relativeTo: process.cwd(), processor: new Processors.FileSystem(destination), ignoreFileWithNoDefaultExport: true });
+    const cmd = container.commands.find(c => c.name == name);
     if (!cmd)
         throw new ErrorWithStatus(44, `No command with name ${name} could be found in ${destination}`)
 

@@ -1,11 +1,9 @@
-import { Container } from '../model/container.js';
 import * as path from 'path'
 import { DocConfiguration, jsonObject } from '../metadata/index.js';
 import { FileSystemConfiguration } from '../processors/fs.js';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
 import { resolveToTypeScript } from './generate-ts-from-schema.js';
-import { metadata } from '../generator.js';
 import { Metadata, Processors } from '../index.js';
 import { eachAsync, MiddlewareCompositeWithPriorityAsync } from '@akala/core';
 import { JsonSchema } from '../jsonschema.js';
@@ -164,16 +162,13 @@ export default async function generate(name?: string, folder?: string, outputFil
     folder = folder || process.cwd();
     if (!name)
         options.name = toCamelCase(path.basename(folder, path.extname(folder)));
-    const container = new Container(options.name, {});
 
     let output: Writable;
     let outputFolder: string;
 
     ({ output, outputFolder, outputFile } = await outputHelper(outputFile, 'commands.ts', true));
 
-    await Processors.FileSystem.discoverCommands(folder, container);
-
-    const meta = metadata(container);
+    const meta = await Processors.FileSystem.discoverMetaCommands(folder);
 
     let hasFs = !!meta.commands.find(cmd => !!cmd.config.fs);
 

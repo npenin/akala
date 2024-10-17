@@ -128,10 +128,10 @@ describe('test helpers', function ()
     it('should interpret json properly', async function ()
     {
         var cmds = await FileSystem.discoverMetaCommands(import.meta.resolve('../../commands.json'));
-        assert.strictEqual(cmds.length, 8);
+        assert.strictEqual(cmds.commands.length, 8);
         // debugger;
         var cmds2 = await FileSystem.discoverMetaCommands(import.meta.resolve('../../src/test/metadata.json'));
-        assert.strictEqual(cmds2.length, 11);
-        assert.strictEqual(cmds2.reduce((prev, current) => prev + (cmds.find(cmd => cmd.name == current.name) ? '' : current.name), ''), 'dummy$initstart')
+        assert.strictEqual(cmds2.commands.length, 11);
+        assert.strictEqual(cmds2.commands.reduce((prev, current) => prev + (cmds.commands.find(cmd => cmd.name == current.name) ? '' : current.name), ''), 'dummy$initstart')
     })
 })

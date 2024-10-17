@@ -36,9 +36,9 @@ export default async function generate(options: Partial<DiscoveryOptions>, folde
     }));
 
     var commands = await Processors.FileSystem.discoverMetaCommands(path.resolve(folder), Object.assign({ relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new Processors.FileSystem(outputFolder) }, options));
-    meta.commands = commands;
-    if (commands.name)
-        meta.name = commands.name;
+    Object.assign(meta, commands);
+    if (!commands.name && name)
+        meta.name = name;
     meta.$schema = 'https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json';
 
     try

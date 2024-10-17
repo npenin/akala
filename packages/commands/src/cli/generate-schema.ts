@@ -121,15 +121,15 @@ export default async function generate(folder?: string, name?: string, outputFil
     //         configPath = null;
     // }
     // while (configPath);
-    var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), discoveryOptions);
-    const result = { name: commands.name, commands, $schema: 'https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json' };
+    var container = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), discoveryOptions);
+    const result = { ...container, $schema: 'https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json' };
     const defs: { local: Record<string, { id: string, isDynamic: boolean, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> } = {
         local: {}, global: {
             SharedArrayBuffer: { id: 'SharedArrayBuffer', promise: Promise.resolve({ type: "array", $id: 'SharedArrayBuffer', items: { type: 'number' } }) }
         }
     };
 
-    const paths = commands.filter(c => c.name == 'restart').map(cmd => ({ path: path.resolve(!discoveryOptions.isDirectory ? path.dirname(folder) : folder, cmd.config.fs?.source || cmd.config.fs.path), cmd }));
+    const paths = container.commands.map(cmd => ({ path: path.resolve(!discoveryOptions.isDirectory ? path.dirname(folder) : folder, cmd.config.fs?.source || cmd.config.fs.path), cmd }));
     const program = ts.createProgram(paths.map(c => c.path), finalConfig.options);
     const checker = program.getTypeChecker();
     await Promise.all(paths.map(async c =>
