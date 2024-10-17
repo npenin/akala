@@ -83,7 +83,7 @@ export interface SidecarMap
 
 import getRandomName from './commands/name.js';
 import sidecarSingleton, { sidecar } from "./sidecar.js";
-import start from "./cli-commands/start-self.js";
+import start from "./cli-commands/start.js";
 export { sidecar, sidecarSingleton };
 export { getRandomName };
 export { start };

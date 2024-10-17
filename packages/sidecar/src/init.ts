@@ -50,7 +50,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     const stateStoreConfig = config.get<StoreConfiguration | string | StoreConfiguration[]>('store');
 
     context.logger.debug('connecting to pm...');
-    if (typeof remotePm != 'string' && typeof remotePm != 'number')
+    if (typeof remotePm != 'string')
         sidecar.pm = remotePm;
     else
     {

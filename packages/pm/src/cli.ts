@@ -3,7 +3,7 @@ import { Processors, NetSocketAdapter, Metadata, Container, proxy, Triggers, Cli
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
 import { platform } from 'os';
-import start from './cli-commands/start-self.js'
+import start from './cli-commands/start.js'
 import { Readable } from 'stream';
 
 import State, { StateConfiguration } from './state.js';

@@ -1,4 +1,3 @@
-import State from '../state.js';
 import { join, isAbsolute, basename, resolve } from "path";
 import { existsSync, promises as fs } from "fs";
 import pmContainer from '../container.js';
@@ -13,7 +12,7 @@ type mapReturn = Unpromise<ReturnType<typeof map>>;
 const log = logger('discover');
 
 
-export default async function discover(this: State, packageName: string, folder: string, pm: pmContainer.container): Promise<mapReturn[] | mapReturn>
+export default async function discover(packageName: string, folder: string, pm: pmContainer.container): Promise<mapReturn[] | mapReturn>
 {
     // eslint-disable-next-line prefer-rest-params
     log.debug(arguments);
