@@ -4,7 +4,7 @@ import cookie from 'cookie'
 
 export class CookieMiddleware implements MiddlewareAsync<[Request, Response, ...unknown[]]>
 {
-    constructor(private options: cookie.CookieParseOptions)
+    constructor(private options: cookie.ParseOptions)
     {
 
     }
