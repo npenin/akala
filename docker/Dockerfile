@@ -3,6 +3,7 @@ ENV NODE_ENV=production
 WORKDIR /usr/src/akala
 # RUN npm i -g yarn
 COPY package.json package.json
+COPY ash.sh /usr/bin/-S
 RUN mkdir /root/.yarn && ln -s /usr/src/akala/.yarn /root/.yarn
 VOLUME ["/usr/src/akala/build"]
 WORKDIR /usr/src/akala
