@@ -1,6 +1,6 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
 import { CommandProcessor, StructuredParameters } from '../model/processor.js'
-import { Command } from '../metadata/index.js';
+import { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
@@ -24,7 +24,7 @@ async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
 
     return {
         processor: new JsonRpc(connection),
-        getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     }
