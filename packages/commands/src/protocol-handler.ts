@@ -20,7 +20,7 @@ import { ICommandProcessor, Metadata } from "./index.browser.js";
 //     return result;
 // }
 
-export type HandlerResult<T> = { processor: T, getMetadata(): Promise<Metadata.Command[]> };
+export type HandlerResult<T> = { processor: T, getMetadata(): Promise<Metadata.Container> };
 export type handler<T> = (arg1: URL, arg2: HandlerResult<T>) => Promise<void>
 
 export const handlers = new UrlHandler<[URL, HandlerResult<ICommandProcessor>]>();

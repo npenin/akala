@@ -48,7 +48,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                 cliContainer.processor.useMiddleware(51, handler.processor);
 
                 const commands = await handler.getMetadata();
-                const init = commands.find(c => c.name == '$init-akala');
+                const init = commands.commands.find(c => c.name == '$init-akala');
                 if (init)
                 {
                     cliContainer.processor.useMiddleware(1, {
@@ -68,7 +68,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                     });
                 }
 
-                registerCommands(commands, handler.processor, cliContainer);
+                registerCommands(commands.commands, handler.processor, cliContainer);
                 await cliContainer.attach(Triggers.cli, program.command(name));
 
                 containers.register(name, cliContainer);
