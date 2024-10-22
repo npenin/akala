@@ -3,11 +3,11 @@ ENV NODE_ENV=production
 WORKDIR /usr/src/akala
 # RUN npm i -g yarn
 COPY package.json package.json
-COPY ash.sh /usr/bin/env
+# COPY ash.sh /usr/bin/ash-env
 RUN mkdir /root/.yarn && ln -s /usr/src/akala/.yarn /root/.yarn
 VOLUME ["/usr/src/akala/build"]
 WORKDIR /usr/src/akala
-RUN ["apk", "add", "coreutils"]
+RUN ["apk", "--update", "add", "coreutils"]
 RUN ["yarn", "set", "version", "berry"]
 RUN ["yarn", "config", "set", "nodeLinker", "node-modules"]
 RUN ["yarn", "add", "@akala/pm"]
