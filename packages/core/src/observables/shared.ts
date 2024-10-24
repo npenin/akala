@@ -40,24 +40,24 @@ export class PipeEvent<T extends unknown[], U extends unknown[], TReturnType, TO
     // }
 }
 
-export class ReplayEvent<T extends unknown[]> extends Event<T>
+export class ReplayEvent<T extends unknown[], TReturnType> extends Event<T, TReturnType>
 {
     private buffer: T[];
 
-    constructor(private bufferLength: number, maxListeners: number)
+    constructor(private bufferLength: number, maxListeners: number, combineReturnTypes?: (args: TReturnType[]) => TReturnType)
     {
-        super(maxListeners, noop);
+        super(maxListeners, combineReturnTypes);
     }
 
-    emit(...args: T): void
+    emit(...args: T): TReturnType
     {
         this.buffer.push(args);
         while (this.buffer.length > this.bufferLength)
             this.buffer.shift();
-        super.emit(...args);
+        return super.emit(...args);
     }
 
-    addListener(listener: (...args: T) => void, options?: { once?: boolean; }): () => boolean
+    addListener(listener: (...args: T) => TReturnType, options?: { once?: boolean; }): () => boolean
     {
         if (options.once && this.buffer.length > 0)
         {
@@ -72,6 +72,15 @@ export class ReplayEvent<T extends unknown[]> extends Event<T>
     // {
     //     return new PipeEvent(this, map, noop);
     // }
+}
+
+export class ReplayAsyncEvent<T extends unknown[], TReturnType> extends ReplayEvent<T, Promise<TReturnType>>
+{
+    constructor(bufferLength: number, maxListeners: number, combineReturnTypes: Event<T, TReturnType>['combineReturnTypes'])
+    {
+        super(bufferLength, maxListeners, (promises) => Promise.all(promises).then((returns) => combineReturnTypes(returns)));
+    }
+
 }
 
 export class ValuedEvent<T extends unknown[], TReturnType, TOptions extends { once?: boolean }> implements IEventSink<T, TReturnType, TOptions>
