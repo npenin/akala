@@ -8,8 +8,7 @@ import { Readable } from 'stream';
 
 import { spawnAsync } from './cli-helper.js';
 import State, { StateConfiguration } from './state.js';
-import { CliContext, ErrorMessage, NamespaceMiddleware, unparse } from '@akala/cli';
-import { InteractError } from './index.js';
+import { CliContext, ErrorMessage, InteractError, NamespaceMiddleware, unparse } from '@akala/cli';
 import { ObservableObject, Parser } from '@akala/core';
 import module from 'module'
 import commands from './container.js';

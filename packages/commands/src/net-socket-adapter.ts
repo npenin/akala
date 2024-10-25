@@ -4,7 +4,7 @@ import * as jsonrpcws from '@akala/json-rpc-ws';
 import { EventEmitter } from 'events';
 import { handlers } from './protocol-handler.js';
 import { JsonRpc } from './processors/jsonrpc.js';
-import { Command } from './metadata/command.js';
+import { Container } from './metadata/container.js';
 
 handlers.useProtocol('tcp', async (url) =>
 {
@@ -14,7 +14,7 @@ handlers.useProtocol('tcp', async (url) =>
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
 
     return {
-        processor: new JsonRpc(connection), getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata.commands) : reject(err)
         ))
     };
@@ -27,7 +27,7 @@ handlers.useProtocol('tcps', async (url) =>
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
 
     return {
-        processor: new JsonRpc(connection), getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     };
@@ -41,7 +41,7 @@ handlers.useProtocol('unix', async (url) =>
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
 
     return {
-        processor: new JsonRpc(connection), getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', undefined, (err, metadata) =>
+        processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', undefined, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     };
@@ -55,7 +55,7 @@ handlers.useProtocol('unixs', async (url) =>
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
 
     return {
-        processor: new JsonRpc(connection), getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', undefined, (err, metadata) =>
+        processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', undefined, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     };
