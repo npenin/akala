@@ -15,7 +15,7 @@ handlers.useProtocol('tcp', async (url) =>
 
     return {
         processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
-            typeof (err) == 'undefined' ? resolve(metadata.commands) : reject(err)
+            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     };
 });
