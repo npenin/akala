@@ -43,8 +43,74 @@ async function protocolHandler(url: URL)
     return { processor: new FileSystem(options.relativeTo), getMetadata: () => FileSystem.discoverMetaCommands(p, options) }
 }
 
+
 handlers.useProtocol('fs', protocolHandler);
 handlers.useProtocol('file', protocolHandler);
+handlers.useProtocol('npm',
+    async function npmHandler(url: URL)
+    {
+        let options: DiscoveryOptions = url.search && Object.fromEntries(url.searchParams.entries()) || {};
+        if (url.searchParams.has('ignoreFileWithNoDefaultExport'))
+            options.ignoreFileWithNoDefaultExport = !!url.searchParams.get('ignoreFileWithNoDefaultExport') && url.searchParams.get('ignoreFileWithNoDefaultExport').toLocaleLowerCase() !== 'false';
+        else
+            options.ignoreFileWithNoDefaultExport = true;
+
+        let p: string = 'node_modules/' + url.host;
+        if (p.endsWith('/'))
+            p = p.substring(0, p.length - 1);
+
+        if (os.platform() == 'win32')
+            p += url.pathname.substring(1);
+        else
+            p += url.pathname;
+
+        if (typeof (options.isDirectory) === 'undefined')
+        {
+            try
+            {
+                const stats = await stat(p);
+                options.isDirectory = stats.isDirectory();
+            }
+            catch (e)
+            {
+                if (e.code == 'ENOENT')
+                {
+                    const cwd = process.cwd();
+                    const maxUp = cwd.split(path.sep).length;
+                    let tmpP = p;
+                    for (let i = 1; i <= maxUp; i++)
+                    {
+                        if (i == maxUp)
+                            throw e;
+                        tmpP = '../' + tmpP;
+                        try
+                        {
+                            const stats = await stat(tmpP);
+                            options.isDirectory = stats.isDirectory();
+                            p = tmpP;
+                            break;
+                        }
+                        catch (e)
+                        {
+                            if (e.code != 'ENOENT')
+                                throw e;
+                        }
+                    }
+                }
+            }
+        }
+
+        console.log(p);
+
+        if (typeof (options.relativeTo) === 'undefined')
+            if (!options.isDirectory)
+                options.relativeTo = path.dirname(p);
+            else
+                options.relativeTo = p;
+
+        return { processor: new FileSystem(options.relativeTo), getMetadata: () => FileSystem.discoverMetaCommands(p, options) }
+    });
+
 
 
 export interface FileSystemConfiguration extends Metadata.Configuration
