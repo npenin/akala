@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* move connect function to index.browser 8ee952e
+* tcp metadata resolution 453049f
 
 
 
