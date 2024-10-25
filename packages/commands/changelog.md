@@ -3,7 +3,12 @@
 
 ### Bug Fixes
 
-* tcp metadata resolution 453049f
+* remove extra logging 9886049
+
+
+### Features
+
+* add npm protocol handler ae8481f
 
 
 
