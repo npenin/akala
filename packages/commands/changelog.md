@@ -3,13 +3,7 @@
 
 ### Bug Fixes
 
-* build 08df919
-* improve handlers typing 1573110
-
-
-### Features
-
-* add connect function 2bf1187
+* move connect function to index.browser 8ee952e
 
 
 
