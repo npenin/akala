@@ -1,5 +1,4 @@
-import { Container, Metadata, NetSocketAdapter, Processors, registerCommands, ServeMetadata, ConnectionPreference, Cli } from "@akala/commands";
-import { Socket } from "net";
+import { Container, Metadata, ServeMetadata, ConnectionPreference } from "@akala/commands";
 import { module } from "@akala/core";
 
 export { spawnAsync } from './cli-helper.js'
@@ -18,20 +17,6 @@ export { State }
 export default function interact(message: string, as?: string): void
 {
     throw new InteractError(message, as);
-}
-
-export async function pm(socketPath?: string): Promise<Container<unknown>>
-{
-    if (socketPath)
-    {
-        const pmSocket = new Socket();
-        const pm = new Container('pm', null, new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(pmSocket))));
-        pmSocket.connect(socketPath);
-        const metaContainer: Metadata.Container = await pm.handle(pm, Cli.Metadata, { param: [] }).then(err => { throw err }, res => res);
-        registerCommands(metaContainer.commands, null, pm);
-        return pm;
-    }
-    return new Container('pm', {});
 }
 
 export async function connect(name: string, container?: pmContainer & Container<void>): Promise<{ connect: Promise<ServeMetadata>, container: Metadata.Container }>
