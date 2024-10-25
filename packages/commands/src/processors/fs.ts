@@ -100,8 +100,6 @@ handlers.useProtocol('npm',
             }
         }
 
-        console.log(p);
-
         if (typeof (options.relativeTo) === 'undefined')
             if (!options.isDirectory)
                 options.relativeTo = path.dirname(p);
