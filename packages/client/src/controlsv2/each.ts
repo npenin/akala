@@ -94,7 +94,7 @@ export class Each extends Control
                         case "init":
                             for (let i = 0; i < arg.newItems.length; i++)
                             {
-                                const item = (this.template.cloneNode(true) as HTMLElement).firstElementChild as HTMLElement;
+                                const item = this.template instanceof DocumentFragment ? (this.template.cloneNode(true) as DocumentFragment).firstElementChild as HTMLElement : this.template.cloneNode(true) as HTMLElement;
                                 const options = {};
                                 Binding.defineProperty(options, this.indexPropertyName, i);
                                 Binding.defineProperty(options, this.valuePropertyName, arg.newItems[i]);
