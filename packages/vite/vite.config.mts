@@ -12,9 +12,9 @@ export default {
     plugins: [
         akala({
             auth: {
-                path: '@akala/authentication/commands.json',
+                path: 'npm:///@akala/authentication/commands.json',
                 init: ['file', null, 'my-very-secret-key']
-            }
+            },
         }, [{
             priority: 0, processor: new Processors.AuthHandler(async (container, command, params) =>
             {
@@ -36,12 +36,12 @@ export default {
                         // console.log(param, i);
                         if (param === 'auth')
                             params.auth = params.param[i];
-                        if (param.startsWith('auth.'))
+                        if ((param as string).startsWith('auth.'))
                         {
                             if (!params.auth)
                                 params.auth = {}
                             // console.log(params.param)
-                            ObservableObject.setValue(params, parser.parse(param), params.param[i]);
+                            ObservableObject.setValue(params, parser.parse(param as string), params.param[i]);
                         }
                     });
                     if (command.config.auth?.required)
