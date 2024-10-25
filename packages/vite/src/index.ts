@@ -1,10 +1,10 @@
-import { CommandMetadataProcessorSignature } from '@akala/commands';
+import { CommandMetadataProcessorSignature, protocolHandlers, registerCommands } from '@akala/commands';
 import { Container, Processors } from '@akala/commands'
 import { SocketAdapter, SocketAdapterEventMap } from '@akala/json-rpc-ws';
 import { MiddlewareAsync } from '@akala/core'
 import { readFile } from 'fs/promises';
 import { Plugin, ViteDevServer } from 'vite';
-import { fileURLToPath } from 'url'
+import { fileURLToPath, pathToFileURL } from 'url'
 
 export class ViteSocketAdapter implements SocketAdapter
 {
@@ -82,7 +82,7 @@ export function plugin(options: Record<string, { path: string, init?: unknown[],
         {
             if (ctx.file.endsWith('.html'))
             {
-                ctx.server.hot.send('template-reload', { path: ctx.file.substring(process.cwd().length + 1), content: await ctx.read() })
+                ctx.server.ws.send('template-reload', { path: ctx.file.substring(process.cwd().length + 1), content: await ctx.read() })
                 return [];
             }
         },
@@ -91,7 +91,9 @@ export function plugin(options: Record<string, { path: string, init?: unknown[],
             const container = new Container('all', null);
             const promise = Promise.all(Object.entries(options).map(async ([name, { path, init, processors: containerProcessors }]) =>
             {
-                const subContainer = new Container(name, {})
+                const { processor, getMetadata } = await protocolHandlers.process(URL.canParse(path) ? new URL(path) : pathToFileURL(path), { processor: null, getMetadata: null })
+                const meta = await getMetadata();
+                const subContainer = new Container(meta.name, {})
                 // console.log(processors);
                 if (processors)
                     processors.forEach(p => 'priority' in p ? subContainer.processor.useMiddleware(p.priority, p.processor) : subContainer.processor.useMiddleware(20, p));
@@ -99,8 +101,11 @@ export function plugin(options: Record<string, { path: string, init?: unknown[],
                 if (containerProcessors)
                     containerProcessors.forEach(p => 'priority' in p ? subContainer.processor.useMiddleware(p.priority, p.processor) : subContainer.processor.useMiddleware(20, p));
                 // console.log('discovering commands in', path);
-                await Processors.FileSystem.discoverCommands(path, subContainer);
+                // await Processors.FileSystem.discoverCommands(path, subContainer);
                 // console.log('registering commands in', subContainer.name);
+
+                registerCommands(meta.commands, processor, subContainer);
+
                 container.register(subContainer);
                 if (init)
                 {
