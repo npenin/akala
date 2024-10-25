@@ -16,8 +16,8 @@ export { Triggers };
 
 export { Configurations, Configuration, GenericConfiguration, ExtendedConfigurations }
 
-import { handlers } from './protocol-handler.js';
-export { handlers as protocolHandlers }
+import { handlers, HandlerResult } from './protocol-handler.js';
+export { handlers as protocolHandlers, HandlerResult }
 
 // import * as cli from './cli'
 export { NetSocketAdapter } from './net-socket-adapter.js'
@@ -34,6 +34,27 @@ export { generatorPlugin as tsPluginHandler } from './cli/generate-metadata.js'
 export { generatorPlugin as metadataPluginHandler } from './cli/generate.js'
 
 export const FileGenerator = { outputHelper, write };
+
+
+export async function connect(socketPath?: string | URL, resolvedMetadata?: Metadata.Container): Promise<Container<unknown>>
+{
+    if (socketPath)
+    {
+        const { processor, getMetadata } = await handlers.process(new URL(socketPath), { processor: null, getMetadata: null })
+
+        // const pmSocket = new Socket();
+
+
+        const meta = resolvedMetadata || await getMetadata();
+        const container = new Container(meta.name, null, processor);
+
+        // pmSocket.connect(socketPath);
+        // const metaContainer: Metadata.Container = await pm.handle(pm, Cli.Metadata, { param: [] }).then(err => { throw err }, res => res);
+        registerCommands(meta.commands, null, container);
+        return container;
+    }
+    return new Container('pm', {});
+}
 
 export class Cli
 {
