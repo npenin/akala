@@ -12,6 +12,9 @@ import { CommandProcessor } from './model/processor.js'
 export { Processors, Metadata }
 export { ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
 import $metadata from './commands/$metadata.js'
+import { handlers } from './protocol-handler.js'
+import { Container } from './model/container.js'
+import { registerCommands } from './generator.js'
 export { CommandProcessor };
 
 export { ConfigurationMap } from './metadata/configurations.js'
@@ -21,4 +24,15 @@ export const Triggers = {};
 export class Cli
 {
     public static Metadata = $metadata;
+}
+
+export async function connect(socketPath: string | URL, resolvedMetadata?: Metadata.Container): Promise<Container<unknown>>
+{
+    const { processor, getMetadata } = await handlers.process(new URL(socketPath), { processor: null, getMetadata: null })
+
+    const meta = resolvedMetadata || await getMetadata();
+    const container = new Container(meta.name, null, processor);
+
+    registerCommands(meta.commands, null, container);
+    return container;
 }
