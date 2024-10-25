@@ -17,6 +17,6 @@ ENV DEBUG=*
 RUN ["akala", "plugins", "add", "@akala/config/akala"]
 RUN ["akala", "plugins", "add", "@akala/commands/akala"]
 RUN ["akala", "plugins", "add", "@akala/pm/akala"]
-ENTRYPOINT ["akala", "pm", "start", "pm", "--keepAttached"]
+ENTRYPOINT ["yarn", "start"]
 CMD [ "tcp", "--tcpPort=31416"]
 EXPOSE 31416
