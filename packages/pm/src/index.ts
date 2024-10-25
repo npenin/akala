@@ -15,22 +15,6 @@ export { pmContainer as Container, };
 import State from './state.js'
 export { State }
 
-export class InteractError extends Error
-{
-    public readonly code = 'INTERACT';
-
-    constructor(message: string, public as?: string)
-    {
-        super(message);
-    }
-
-    public toJSON(): Record<string, unknown>
-    {
-        return { code: this.code, message: this.message, as: this.as };
-    }
-}
-
-
 export default function interact(message: string, as?: string): void
 {
     throw new InteractError(message, as);
@@ -84,6 +68,7 @@ export interface SidecarMap
 import getRandomName from './commands/name.js';
 import sidecarSingleton, { sidecar } from "./sidecar.js";
 import start from "./cli-commands/start.js";
+import { InteractError } from "@akala/cli";
 export { sidecar, sidecarSingleton };
 export { getRandomName };
 export { start };
