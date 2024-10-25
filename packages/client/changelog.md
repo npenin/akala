@@ -1,9 +1,9 @@
 #  (2024-10-25)
 
 
-### Bug Fixes
+### Features
 
-* handle both template and non template content cbc395f
+* add support for NameNodeMap binding 2726e5f
 
 
 
