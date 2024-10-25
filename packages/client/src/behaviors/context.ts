@@ -107,24 +107,25 @@ export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T
 
     private static extend<T extends object>(target: T, extension: Partial<T>)
     {
-        each(extension, (value, key) =>
-        {
-            if (typeof value !== 'object' || !target[key])
-                target[key] = value!;
-            else if (target[key] instanceof NamedNodeMap)
-                each(value, (value, attrName) =>
-                {
-                    if (typeof attrName !== 'string')
-                        throw new Error('cannot set a non attribute string key: ' + attrName.toString());
-                    if (typeof value !== 'string')
-                        throw new Error('cannot set a non string to an attribute (' + attrName + '): ' + value.toString());
-                    const attr = document.createAttribute(attrName);
-                    attr.value = value;
-                    (target[key] as NamedNodeMap).setNamedItem(attr)
-                })
-            else
-                DataBind.extend(target[key] as any, value);
-        });
+        if (target instanceof NamedNodeMap)
+            each(extension, (value, attrName) =>
+            {
+                if (typeof attrName !== 'string')
+                    throw new Error('cannot set a non attribute string key: ' + attrName.toString());
+                if (typeof value !== 'string')
+                    throw new Error('cannot set a non string to an attribute (' + attrName + '): ' + value.toString());
+                const attr = document.createAttribute(attrName);
+                attr.value = value;
+                target.setNamedItem(attr)
+            })
+        else
+            each(extension, (value, key) =>
+            {
+                if (typeof value !== 'object' || !target[key])
+                    target[key] = value!;
+                else
+                    DataBind.extend(target[key] as any, value);
+            });
     }
 
     getContext(item: HTMLElement, options?: T)
