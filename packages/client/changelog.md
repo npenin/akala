@@ -1,9 +1,9 @@
 #  (2024-10-25)
 
 
-### Features
+### Bug Fixes
 
-* add support for NameNodeMap binding 2726e5f
+* NamedNodeMap support 92d7c98
 
 
 
