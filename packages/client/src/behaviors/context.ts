@@ -111,6 +111,17 @@ export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T
         {
             if (typeof value !== 'object' || !target[key])
                 target[key] = value!;
+            else if (target[key] instanceof NamedNodeMap)
+                each(value, (value, attrName) =>
+                {
+                    if (typeof attrName !== 'string')
+                        throw new Error('cannot set a non attribute string key: ' + attrName.toString());
+                    if (typeof value !== 'string')
+                        throw new Error('cannot set a non string to an attribute (' + attrName + '): ' + value.toString());
+                    const attr = document.createAttribute(attrName);
+                    attr.value = value;
+                    (target[key] as NamedNodeMap).setNamedItem(attr)
+                })
             else
                 DataBind.extend(target[key] as any, value);
         });
