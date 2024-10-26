@@ -351,24 +351,44 @@ export class BuildWatcherAndSetter<T extends object> extends ExpressionVisitor
     public visitNew<T>(expression: NewExpression<T>): StrictExpressions
     {
         const source = this.getter;
-        const result: WatchGetter<object, [PropertyKey, any]>[] = [];
+        const result: (WatchGetter<object, [PropertyKey, any]>)[] | (WatchGetter<object, any>)[] = [];
         const evaluator = new EvaluatorAsFunction();
         this.visitEnumerable(expression.init, () => { }, (arg0) =>
         {
-            const member = evaluator.eval<PropertyKey>(this.visit(arg0.member));
-            this.getter = source;
             this.visit(arg0.source);
             const getter = this.getter;
-            result.push((target, watcher) => [member(target), getter(target, watcher)])
+            switch (expression.newType)
+            {
+                case '{':
+                    const member = evaluator.eval<PropertyKey>(this.visit(arg0.member));
+                    this.getter = source;
+                    result.push((target, watcher) => [member(target), getter(target, watcher)] as const)
+                    break;
+                case '[':
+                    result.push((target, watcher) => getter(target, watcher) as any)
+                    break;
+            }
             this.getter = source;
 
             return arg0;
         });
 
-        this.getter = (target, watcher) =>
+        switch (expression.newType)
         {
-            return Object.fromEntries(result.map(r => r(target, watcher)));
-        };
+            case "{":
+                this.getter = (target, watcher) =>
+                {
+                    return Object.fromEntries(result.map(r => r(target, watcher)));
+                };
+                break;
+            case "[":
+                this.getter = (target, watcher) =>
+                {
+                    return result.map(r => r(target, watcher));
+                };
+            default:
+                throw new Error('Invalid new type');
+        }
 
         return expression;
     }
