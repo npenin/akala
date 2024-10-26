@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* array evaluation 6552229
+* array evaluation 6a58c2c
 
 
 
