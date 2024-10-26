@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* parseCSV 33b38d2
+* array evaluation 6552229
 
 
 
