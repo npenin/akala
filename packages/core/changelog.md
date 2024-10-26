@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* allow array formatter parsing 29b90a6
+* parseCSV 33b38d2
 
 
 
