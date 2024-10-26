@@ -542,7 +542,7 @@ export class Parser
         }, ']');
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return new ParsedArray(length, ...results.map((v, i) => new MemberExpression<any, number, any>(v as TypedExpression<any>, new ParsedNumber(i.toString()), false)));
+        return this.tryParseOperator(expression.substring(length), new ParsedArray(length, ...results.map((v, i) => new MemberExpression<any, number, any>(v as TypedExpression<any>, new ParsedNumber(i.toString()), false))), true);
     }
 
     public parseString(expression: string, start: string, parseFormatter: boolean)
