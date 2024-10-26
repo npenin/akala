@@ -386,6 +386,7 @@ export class BuildWatcherAndSetter<T extends object> extends ExpressionVisitor
                 {
                     return result.map(r => r(target, watcher));
                 };
+                break;
             default:
                 throw new Error('Invalid new type');
         }
