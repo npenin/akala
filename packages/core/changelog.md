@@ -1,9 +1,9 @@
-#  (2024-10-24)
+#  (2024-10-26)
 
 
 ### Bug Fixes
 
-* allow replay event to return data e9c6e82
+* allow array formatter parsing 29b90a6
 
 
 
