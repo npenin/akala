@@ -609,6 +609,7 @@ export class Parser
         {
             const item = parseItem(expression);
 
+            length += item.$$length;
             // if (item instanceof Function || item instanceof ParsedBinary)
             //     isFunction = true;
 
