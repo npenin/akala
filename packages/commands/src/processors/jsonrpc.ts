@@ -7,8 +7,41 @@ import { Readable } from 'stream';
 import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger } from '@akala/core';
 import { HandlerResult, handlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
+import { NetSocketAdapter } from '../net-socket-adapter.js';
+import { Socket } from 'net';
+import { TLSSocket } from 'tls';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
+
+handlers.useProtocol('jsonrpc+tcp', async function (url, result)
+{
+    const socket = new Socket();
+    await new Promise<void>(resolve => socket.connect({ host: url.host, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve));
+
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+
+    return Object.assign(result, {
+        processor: new JsonRpc(connection),
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+        ))
+    });
+});
+handlers.useProtocol('jsonrpc+tcp+tls', async function (url, result)
+{
+    const socket = new Socket();
+    const tlsSocket = new TLSSocket(socket);
+    await new Promise<void>(resolve => tlsSocket.connect({ host: url.host, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve));
+
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket));
+
+    return Object.assign(result, {
+        processor: new JsonRpc(connection),
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+        ))
+    });
+});
 
 async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
 {
