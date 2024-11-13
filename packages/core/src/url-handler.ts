@@ -44,7 +44,7 @@ export class UrlHandler<T extends [URL, Partial<TResult>, ...unknown[]], TResult
     {
         let error = await this.protocol.handle(...context);
         while (error === 'loop')
-            error = await this.protocol.handle(...context);
+            error = await this.handle(...context);
         if (error)
             return error;
         error = await this.host.handle(...context);
@@ -91,8 +91,11 @@ export namespace UrlHandler
             }
             else if (context[0].protocol.startsWith(this.protocol + '+'))
             {
-                context[0].protocol = context[0].protocol.substring(this.protocol.length + 2);
-                return Promise.resolve('loop');
+                return super.handle(...context).then(error => error, () => 
+                {
+                    context[0].protocol = context[0].protocol.substring(this.protocol.length + 2);
+                    return 'loop'
+                });
             }
             return;
         }
