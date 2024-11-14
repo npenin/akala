@@ -1,9 +1,11 @@
-#  (2024-10-26)
+#  (2024-11-14)
 
 
 ### Bug Fixes
 
-* array evaluation 6a58c2c
+* urlhandler behavior bd5a8cd
+* UrlHandler has the result as the last parameter 0b0981d
+* urlhandler last parameter assigment a0f5315
 
 
 
