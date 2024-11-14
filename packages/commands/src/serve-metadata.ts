@@ -1,7 +1,7 @@
 import { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
-import type { ServeOptions } from './cli/serve.js';
+import { type ServeOptions } from './cli/serve.js';
 import { NetSocketAdapter } from "./net-socket-adapter.js";
 import { registerCommands } from './generator.js'
 import { CommandProcessor, ICommandProcessor } from './model/processor.js';
@@ -184,42 +184,66 @@ export function parseMetadata(connectionString: string, tls?: boolean): ServeMet
         return { socket: [{ port: Number(port), host: host }] };
 }
 
-export default function serveMetadata(context: ServeOptions): ServeMetadata
+export default function serveMetadata(context: ServeOptions): Record<string, object>
 {
     let args = context.args;
     if (!args || args.length == 0)
         args = ['local'];
-    const metadata: ServeMetadata = {};
 
+    const result: Record<string, object> = {};
+
+    let options: object;
+    if (context.options.key)
+        options = { key: context.options.key, cert: context.options.cert };
+    else
+        options = {};
+
+    let socketPath: string;
     if (args.indexOf('local') > -1)
     {
-        let socketPath: string;
         if (platform() == 'win32')
-            socketPath = '\\\\?\\pipe\\' + context.options.socketName.replace(/\//g, '\\');
+            if (context.options.key)
+                socketPath = 'jsonrpc+unix+tls://\\\\?\\pipe\\' + context.options.socketName.replace(/\//g, '\\');
+            else
+                socketPath = 'jsonrpc+unix://\\\\?\\pipe\\' + context.options.socketName.replace(/\//g, '\\');
         else
-            socketPath = join(process.cwd(), context.options.socketName.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
-        metadata.socket = [{ path: socketPath }];
+            if (context.options.key)
+                socketPath = 'jsonrpc+unix+tls://' + join(process.cwd(), context.options.socketName.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
+            else
+                socketPath = 'jsonrpc+unix://' + join(process.cwd(), context.options.socketName.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
+
+        result[socketPath] = options
+        // metadata.socket = [{ path: socketPath }];
     }
 
 
     if (args.indexOf('tcp') > -1)
     {
-        if (!metadata['socket'])
-            metadata['socket'] = [];
         if (isNaN(Number(context.options.tcpPort)) && context.options.tcpPort)
         {
             const indexOfColon = context.options.tcpPort.lastIndexOf(':');
             if (indexOfColon > -1)
             {
-                const host = context.options.tcpPort.substr(0, indexOfColon);
-                const port = Number(context.options.tcpPort.substr(indexOfColon + 1))
-                metadata.socket.push({ port, host });
+                const host = context.options.tcpPort.substring(0, indexOfColon);
+                const port = Number(context.options.tcpPort.substring(indexOfColon + 1))
+                if (context.options.key)
+                    socketPath = 'jsonrpc+tcp+tls://' + host + ':' + port;
+                else
+                    socketPath = 'jsonrpc+tcp://' + host + ':' + port;
             }
             else
-                metadata.socket.push({ path: context.options.tcpPort });
+                if (context.options.key)
+                    socketPath = 'jsonrpc+unix+tls://' + context.options.tcpPort
+                else
+                    socketPath = 'jsonrpc+unix://' + context.options.tcpPort
         }
         else
-            metadata.socket.push({ port: Number(context.options.tcpPort) });
+            if (context.options.key)
+                socketPath = 'jsonrpc+tcp+tls://0.0.0.0:' + context.options.tcpPort
+            else
+                socketPath = 'jsonrpc+tcp://0.0.0.0:' + context.options.tcpPort
+
+        result[socketPath] = options
     }
 
     if (args.indexOf('http') > -1 || args.indexOf('ws') > -1)
@@ -237,20 +261,20 @@ export default function serveMetadata(context: ServeOptions): ServeMetadata
         if (context.options.cert && context.options.key)
         {
             if (~args.indexOf('ws'))
-                metadata.wss = [{ port, cert: context.options.cert, key: context.options.key }];
+                result['wss://0.0.0.0:' + port] = options
             if (~args.indexOf('http'))
-                metadata.https = [{ port, cert: context.options.cert, key: context.options.key }];
+                result['https://0.0.0.0:' + port] = options
         }
         else
         {
             if (~args.indexOf('ws'))
-                metadata.ws = [{ port }];
+                result['ws://0.0.0.0:' + port] = options
             if (~args.indexOf('http'))
-                metadata.http = [{ port }];
+                result['http://0.0.0.0:' + port] = options
         }
 
     }
-    return metadata;
+    return result;
 }
 
 serveMetadata.$inject = ['$container', 'options'];

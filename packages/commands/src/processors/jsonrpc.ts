@@ -5,11 +5,11 @@ import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
 import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger } from '@akala/core';
-import { HandlerResult, handlers } from '../protocol-handler.js';
+import { HandlerResult, handlers, serverHandlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 import { NetSocketAdapter } from '../net-socket-adapter.js';
-import { Socket } from 'net';
-import { TLSSocket } from 'tls';
+import { Socket, Server, ServerOpts } from 'net';
+import { TLSSocket, Server as TLSServer, TlsOptions } from 'tls';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
@@ -27,6 +27,20 @@ handlers.useProtocol('jsonrpc+tcp', async function (url, result)
         ))
     });
 });
+
+serverHandlers.useProtocol('jsonrpc+tcp', async function (url: URL | string, container: Container<unknown>, options: ServerOpts & { signal: AbortSignal })
+{
+    const server = new Server(options, (socket) =>
+    {
+        socket.setDefaultEncoding('utf8');
+        container.attach(JsonRpc.trigger, new NetSocketAdapter(socket));
+    });
+    if (!(url instanceof URL))
+        url = new URL(url);
+    server.listen(url);
+    options.signal.addEventListener('abort', () => server.close((err => { console.error(err) })));
+})
+
 handlers.useProtocol('jsonrpc+tcp+tls', async function (url, result)
 {
     const socket = new Socket();
@@ -42,6 +56,76 @@ handlers.useProtocol('jsonrpc+tcp+tls', async function (url, result)
         ))
     });
 });
+
+serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string, container: Container<unknown>, options: TlsOptions & { signal: AbortSignal })
+{
+    const server = new TLSServer(options, (socket) =>
+    {
+        socket.setDefaultEncoding('utf8');
+        container.attach(JsonRpc.trigger, new NetSocketAdapter(socket));
+    });
+    if (!(url instanceof URL))
+        url = new URL(url);
+    server.listen(url);
+    options.signal.addEventListener('abort', () => server.close((err => { console.error(err) })));
+})
+
+handlers.useProtocol('jsonrpc+unix', async function (url, result)
+{
+    const socket = new Socket();
+    await new Promise<void>(resolve => socket.connect({ path: url.host + url.pathname }, resolve));
+
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+
+    return Object.assign(result, {
+        processor: new JsonRpc(connection),
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+        ))
+    });
+});
+
+serverHandlers.useProtocol('jsonrpc+unix', async function (url: URL | string, container: Container<unknown>, options: ServerOpts & { signal: AbortSignal })
+{
+    const server = new Server(options, (socket) =>
+    {
+        socket.setDefaultEncoding('utf8');
+        container.attach(JsonRpc.trigger, new NetSocketAdapter(socket));
+    });
+    if (!(url instanceof URL))
+        url = new URL(url);
+    server.listen(url.host + url.pathname);
+    options.signal.addEventListener('abort', () => server.close((err => { console.error(err) })));
+})
+
+handlers.useProtocol('jsonrpc+unix+tls', async function (url, result)
+{
+    const socket = new Socket();
+    const tlsSocket = new TLSSocket(socket);
+    await new Promise<void>(resolve => tlsSocket.connect({ path: url.host + url.pathname }, resolve));
+
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket));
+
+    return Object.assign(result, {
+        processor: new JsonRpc(connection),
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+        ))
+    });
+});
+
+serverHandlers.useProtocol('jsonrpc+unix+tls', async function (url: URL | string, container: Container<unknown>, options: TlsOptions & { signal: AbortSignal })
+{
+    const server = new TLSServer(options, (socket) =>
+    {
+        socket.setDefaultEncoding('utf8');
+        container.attach(JsonRpc.trigger, new NetSocketAdapter(socket));
+    });
+    if (!(url instanceof URL))
+        url = new URL(url);
+    server.listen(url.host + url.pathname);
+    options.signal.addEventListener('abort', () => server.close((err => { console.error(err) })));
+})
 
 async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
 {

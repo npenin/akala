@@ -1,18 +1,14 @@
 import serve from '../cli/serve.js';
-import serveMetadata, { ServeMetadataWithSignal } from '../serve-metadata.js';
+import serveMetadata from '../serve-metadata.js';
 import { Container } from '../model/container.js';
 import { ServeOptions } from '../index.js';
 
-export default async function $serve(container: Container<unknown>, options: ServeOptions | ServeMetadataWithSignal, signal?: AbortSignal)
+export default async function $serve(container: Container<unknown>, options: ServeOptions | string[], signal?: AbortSignal)
 {
-
     if ('args' in options)
-        options = serveMetadata(options);
-    if (signal)
-        options.signal = signal;
-
-    signal = options.signal;
-    await serve(container, options);
+        await serve(container, serveMetadata(options), signal);
+    else
+        await serve(container, options, signal);
 }
 
 $serve.$inject = ['$container', 'param.0'];

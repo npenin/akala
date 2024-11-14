@@ -16,8 +16,8 @@ export { Triggers };
 
 export { Configurations, Configuration, GenericConfiguration, ExtendedConfigurations }
 
-import { handlers, HandlerResult } from './protocol-handler.js';
-export { handlers as protocolHandlers, HandlerResult }
+import { handlers, HandlerResult, serverHandlers, ServerHandler } from './protocol-handler.js';
+export { handlers as protocolHandlers, serverHandlers, ServerHandler, HandlerResult }
 
 // import * as cli from './cli'
 export { NetSocketAdapter } from './net-socket-adapter.js'
@@ -26,7 +26,7 @@ import $metadata from './commands/$metadata.js'
 import { stat } from 'fs/promises'
 import { dirname } from 'path'
 import { Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
-export { default as serve, ServeOptions, serverHandlers, ServerHandler, getOrCreateServerAndListen, getOrCreateSecureServerAndListen } from './cli/serve.js'
+export { default as serve, ServeOptions } from './cli/serve.js'
 import { outputHelper, write } from './cli/new.js';
 import { Readable } from 'stream';
 

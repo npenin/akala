@@ -1,11 +1,6 @@
-import { NetConnectOpts, Server } from 'node:net';
 import { Container } from '../model/container.js';
-import { unlink } from 'fs';
-import { NetSocketAdapter } from '../net-socket-adapter.js';
-import { eachAsync, SimpleInjector, noop } from '@akala/core';
-import { SecureContextOptions, Server as tlsServer } from 'tls';
-import { ServeMetadataWithSignal } from '../serve-metadata.js';
-import { JsonRpc } from '../processors/jsonrpc.js';
+import { eachAsync } from '@akala/core';
+import { serverHandlers } from '../protocol-handler.js';
 
 export interface ServeOptions
 {
@@ -19,102 +14,81 @@ export interface ServeOptions
     args: ('local' | 'http' | 'ws' | 'tcp')[];
 }
 
-export const serverHandlers = new SimpleInjector();
+// function getOrCreateServer(connectionString: string, container: Container<unknown>)
+// {
+//     var sockets = container.resolve<Record<string, Server>>('$sockets');
+//     if (!sockets)
+//         sockets = container.register('$sockets', {});
+//     if (connectionString in sockets)
+//         return sockets[connectionString];
+//     return sockets[connectionString] = new Server();
+// }
 
-export type ServerHandler<T = { signal: AbortSignal }> = (container: Container<unknown>, options: T) => Promise<void>
+// function getOrCreateSecureServer(options: NetConnectOpts & SecureContextOptions, container: Container<unknown>)
+// {
+//     var sockets = container.resolve<Record<string, tlsServer>>('$ssockets');
+//     if (!sockets)
+//         sockets = container.register('$ssockets', {});
+//     const connectionString = getConnectionString(options);
+//     if (connectionString in sockets)
+//         return sockets[connectionString];
+//     return sockets[connectionString] = new tlsServer();
+// }
 
-function getOrCreateServer(connectionString: string, container: Container<unknown>)
-{
-    var sockets = container.resolve<Record<string, Server>>('$sockets');
-    if (!sockets)
-        sockets = container.register('$sockets', {});
-    if (connectionString in sockets)
-        return sockets[connectionString];
-    return sockets[connectionString] = new Server();
-}
+// export async function getOrCreateServerAndListen(options: NetConnectOpts, container: Container<unknown>)
+// {
+//     const connectionString = getConnectionString(options);
+//     const server = getOrCreateServer(connectionString, container);
 
-function getOrCreateSecureServer(options: NetConnectOpts & SecureContextOptions, container: Container<unknown>)
-{
-    var sockets = container.resolve<Record<string, tlsServer>>('$ssockets');
-    if (!sockets)
-        sockets = container.register('$ssockets', {});
-    const connectionString = getConnectionString(options);
-    if (connectionString in sockets)
-        return sockets[connectionString];
-    return sockets[connectionString] = new tlsServer();
-}
+//     options.signal.addEventListener('abort', () =>
+//     {
+//         if ('path' in options)
+//             unlink(options.path, noop)
+//     });
 
-export async function getOrCreateServerAndListen(options: NetConnectOpts, container: Container<unknown>)
-{
-    const connectionString = getConnectionString(options);
-    const server = getOrCreateServer(connectionString, container);
+//     await new Promise<void>((resolve, reject) =>
+//     {
+//         server.once('error', reject);
+//         server.listen(options, resolve);
+//         console.log(`listening on ${connectionString}`);
+//     });
 
-    options.signal.addEventListener('abort', () =>
-    {
-        if ('path' in options)
-            unlink(options.path, noop)
-    });
-
-    await new Promise<void>((resolve, reject) =>
-    {
-        server.once('error', reject);
-        server.listen(options, resolve);
-        console.log(`listening on ${connectionString}`);
-    });
-
-    return server;
-}
+//     return server;
+// }
 
 
-export async function getOrCreateSecureServerAndListen(options: NetConnectOpts, container: Container<unknown>)
-{
-    const server = getOrCreateSecureServer(options, container);
+// export async function getOrCreateSecureServerAndListen(options: NetConnectOpts, container: Container<unknown>)
+// {
+//     const server = getOrCreateSecureServer(options, container);
 
-    await new Promise<void>((resolve, reject) =>
-    {
-        server.once('error', reject);
-        server.listen(options, resolve);
-        const connectionString = getConnectionString(options);
-        console.log(`listening on ${connectionString}`);
-    });
+//     await new Promise<void>((resolve, reject) =>
+//     {
+//         server.once('error', reject);
+//         server.listen(options, resolve);
+//         const connectionString = getConnectionString(options);
+//         console.log(`listening on ${connectionString}`);
+//     });
 
-    return server;
-}
+//     return server;
+// }
 
-function getConnectionString(options: NetConnectOpts): string
-{
-    if ('port' in options)
-        return (options.host || '0.0.0.0') + ':' + options.port;
-    if ('path' in options)
-        return options.path;
-    return options;
-}
+// function getConnectionString(options: NetConnectOpts): string
+// {
+//     if ('port' in options)
+//         return (options.host || '0.0.0.0') + ':' + options.port;
+//     if ('path' in options)
+//         return options.path;
+//     return options;
+// }
 
-serverHandlers.register<ServerHandler<NetConnectOpts>>('socket', async (container, options) =>
-{
-    const server = await getOrCreateServerAndListen(options, container);
-    server.addListener('connection', (socket) =>
-    {
-        socket.setDefaultEncoding('utf8');
-        container.attach(JsonRpc.trigger, new NetSocketAdapter(socket));
-    });
-});
-
-export default async function <T = void>(container: Container<T>, options: ServeMetadataWithSignal)
+export default async function <T = void>(container: Container<T>, options: string[] | Record<string, object>, signal?: AbortSignal)
 {
     var failed: Error = null;
 
-    await eachAsync(options, (opt, name) =>
-    {
-        if (Array.isArray(opt))
-        {
-            const handler = serverHandlers.resolve<ServerHandler<NetConnectOpts>>(name);
-            if (!handler)
-                return Promise.reject(new Error('no such handler ' + name + ' is known'))
-            return eachAsync(opt, (opt) => handler(container, { signal: options.signal, ...opt }), true);
-        }
-        return Promise.resolve();
-    }, true)
+    if (Array.isArray(options))
+        await eachAsync(options, url => serverHandlers.process(new URL(url), container, { signal }));
+    else
+        await eachAsync(options, (options, url) => serverHandlers.process(new URL(url), container, { ...options, signal }))
 
     if (failed)
     {
