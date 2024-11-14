@@ -5,7 +5,7 @@ import { Routable } from "./router/route.js";
 
 type MiddlewareError = 'break' | 'loop' | void;
 
-export class UrlHandler<T extends [URL, Partial<TResult>, ...unknown[]], TResult extends object = object> implements MiddlewareAsync<T>
+export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult>], TResult = object> implements MiddlewareAsync<T>
 {
     protocol: MiddlewareCompositeAsync<T, MiddlewareError>;
     host: MiddlewareCompositeAsync<T>;
