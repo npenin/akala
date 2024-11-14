@@ -123,14 +123,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     container.unregister('$metadata');
     container.register(configure(config)(new SelfDefinedCommand(metadata, '$metadata', ['$container', 'param.0'])));
 
-    if (this.config.setup.packages.length > 0)
-    {
-        for (const pkg of this.config.setup.packages)
-        {
-            await container.dispatch('install', pkg);
-        }
-    }
-    if (this.config.setup.packages.length > 0)
+    if (this.config.setup?.packages?.length > 0)
     {
         for (const pkg of this.config.setup.packages)
         {

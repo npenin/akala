@@ -26,9 +26,9 @@ export class Cli
     public static Metadata = $metadata;
 }
 
-export async function connect(socketPath: string | URL, resolvedMetadata?: Metadata.Container): Promise<Container<unknown>>
+export async function connect(socketPath: string | URL, signal: AbortSignal, resolvedMetadata?: Metadata.Container): Promise<Container<unknown>>
 {
-    const { processor, getMetadata } = await handlers.process(new URL(socketPath), { processor: null, getMetadata: null })
+    const { processor, getMetadata } = await handlers.process(new URL(socketPath), { signal }, {})
 
     const meta = resolvedMetadata || await getMetadata();
     const container = new Container(meta.name, null, processor);

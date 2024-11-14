@@ -1,12 +1,12 @@
 import { program as root, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
 import { SimpleInjector, mapAsync } from "@akala/core"
 import commands from "./commands.js";
-import { ICommandProcessor, registerCommands, ServeOptions, Triggers } from "./index.js";
+import { registerCommands, ServeOptions, Triggers } from "./index.js";
 import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
 import { dirname, isAbsolute, resolve } from "node:path";
-import { HandlerResult, handlers } from "./protocol-handler.js";
+import { handlers } from "./protocol-handler.js";
 import { pathToFileURL } from "node:url";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { with: { type: 'json' } }).then(x => x.default)
 
@@ -40,10 +40,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                         uri = new URL('file://' + path);
                     }
                 }
-                let handler: HandlerResult<ICommandProcessor> = {
-                    processor: null, getMetadata() { return Promise.resolve(null) }
-                };
-                await handlers.process(uri, handler)
+                const handler = await handlers.process(uri, null, {})
 
                 cliContainer.processor.useMiddleware(51, handler.processor);
 
@@ -85,7 +82,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
         if (URL.canParse(context.options.path))
         {
             const url = new URL(context.options.path);
-            await handlers.protocol.process(url, { processor: null, getMetadata: () => void 0 })
+            await handlers.protocol.process(url, { signal: context.abort.signal }, { processor: null, getMetadata: () => void 0 })
         }
         else
         {

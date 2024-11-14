@@ -5,6 +5,7 @@ import { ServeOptions } from '../index.js';
 
 export default async function $serve(container: Container<unknown>, options: ServeOptions | string[], signal?: AbortSignal)
 {
+    console.log(options);
     if ('args' in options)
         await serve(container, serveMetadata(options), signal);
     else

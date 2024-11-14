@@ -9,7 +9,7 @@ describe('test log processing', function ()
 {
     it('should handle basics', async function ()
     {
-        const processor = new LogEventProcessor(new Pipe(calculator), function (_, cmd)
+        const processor = new LogEventProcessor(new Pipe(calculator), null, function (_, cmd)
         {
             processingCalled = cmd;
             return Promise.resolve();

@@ -30,14 +30,14 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult>], TResult
     {
         const handler = new UrlHandler.Protocol<T>(protocol);
         this.protocol.useMiddleware(handler);
-        return handler.use((...context) => action(...context).then(result => { if (typeof result !== 'undefined') Object.assign(context[context.length - 1], result) }));
+        return handler.use((...context) => action(...context).then(result => { if (typeof result !== 'undefined') Object.assign(context[context.length - 1] || {}, result) }));
     }
 
     public useHost(host: string, action: (...args: T) => Promise<TResult>)
     {
         const handler = new UrlHandler.Host<T>(host);
         this.host.useMiddleware(handler);
-        return handler.use((...context) => action(...context).then(result => { if (typeof result !== 'undefined') Object.assign(context[context.length - 1], result) }));
+        return handler.use((...context) => action(...context).then(result => { if (typeof result !== 'undefined') Object.assign(context[context.length - 1] || {}, result) }));
     }
 
     public async handle(...context: T): MiddlewarePromise

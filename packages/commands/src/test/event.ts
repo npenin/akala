@@ -8,7 +8,7 @@ describe('test event processing', function ()
 {
     it('should handle basics', async function ()
     {
-        const processor = new EventProcessor(new Pipe(calculator));
+        const processor = new EventProcessor(new Pipe(calculator), null);
         const calculator2 = new Container(calculator.name, calculator.state);
         calculator2.processor.useMiddleware(3, processor);
         registerCommands(metadata(calculator).commands, null, calculator2);

@@ -1,78 +1,46 @@
-import { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
 import { type ServeOptions } from './cli/serve.js';
-import { NetSocketAdapter } from "./net-socket-adapter.js";
 import { registerCommands } from './generator.js'
-import { CommandProcessor, ICommandProcessor } from './model/processor.js';
-import { HttpClient, JsonRpc } from './processors/index.js';
-import net from 'net'
-import ws from 'ws'
-import { ErrorWithStatus, SimpleInjector } from '@akala/core';
+import { ICommandProcessor } from './model/processor.js';
+import { ErrorWithStatus } from '@akala/core';
 import { Container } from './model/container.js';
-import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
-import * as jsonrpc from '@akala/json-rpc-ws';
 import { ConnectionPreference } from './serve-metadata.browser.js';
+import { handlers } from './protocol-handler.js';
 
-type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
+export type ServeMetadata = Record<string, object>
 
-export interface ServeMetadataWithSignal extends ServeMetadata
+export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...protocolOrder: string[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
 {
-    signal?: AbortSignal;
-}
+    if (!protocolOrder || !protocolOrder.length)
+        protocolOrder = ['jsonrpc+unix+tls', 'jsonrpc+unix', 'jsonrpc+unix+tls', 'jsonrpc+tcp+tls', 'jsonrpc+tcp', 'wss', 'ws', 'https', 'http'];
 
-export type ServeMetadata = { [key in keyof ServeMetadataMap]?: ServeMetadataMap[key][] }
-
-export interface ServeMetadataMap
-{
-    socket: NetConnectOpts;
-    ssocket: NetConnectOpts & TlsConnectOpts;
-    https: NetConnectOpts & TlsConnectOpts;
-    http: NetConnectOpts;
-    wss: NetConnectOpts & TlsConnectOpts;
-    ws: NetConnectOpts;
-}
-
-export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
-{
-    if (!orders || !orders.length)
-        orders = ['ssocket', 'socket', 'wss', 'ws', 'https', 'http'];
-    const orderedOptions = orders.map(order =>
+    const optionsEntries = Object.entries(options);
+    const orderedOptions = protocolOrder.map(order =>
     {
-        if (options[order])
-        {
-            if (order === 'socket' || order == 'ssocket')
-                if (settings?.preferRemote)
-                    if (options[order].find(s => !isIpcConnectOption(s)))
-                        return options[order].filter(s => !isIpcConnectOption(s));
-                    else
-                        return options[order];
-                else if (options[order].find(s => isIpcConnectOption(s)))
-                    return options[order].filter(s => isIpcConnectOption(s));
-                else
-                    return options[order];
-            return options[order];
-        }
+        let entry: (typeof optionsEntries)[number]
+        if (entry = optionsEntries.find(e => e[0].startsWith(order)))
+            return entry;
     });
     const container = new Container<T>(settings?.metadata?.name || 'proxy', undefined);
-    let processor: CommandProcessor;
+    let processor: ICommandProcessor;
+    let preferredIndex: number = 0;
     do
     {
-        const preferredIndex = orderedOptions.findIndex(options => options);
+        preferredIndex = orderedOptions.findIndex((option, i) => i >= preferredIndex && option);
         if (preferredIndex === -1)
             throw new ErrorWithStatus(404, 'no matching connection preference was found');
 
         try
         {
-            if (orders.length == 0)
+            if (protocolOrder.length == 0)
                 throw new ErrorWithStatus(404, 'No valid connection option could be found')
-            processor = await connectWith(orderedOptions[preferredIndex][0], settings?.host, orders[preferredIndex], settings?.signal, settings?.container)
+            processor = await connectWith(orderedOptions[preferredIndex][0], orderedOptions[preferredIndex][1], settings?.signal, settings?.container)
             break;
         }
         catch (e)
         {
             console.warn(e);
-            orders.shift();
         }
     }
     // eslint-disable-next-line no-constant-condition
@@ -89,102 +57,21 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
 
 }
 
-export async function connectWith<T>(options: NetConnectOpts, host: string, medium: keyof ServeMetadata, signal: AbortSignal, container?: Container<T>): Promise<CommandProcessor>
+export async function connectWith<T>(connectionString: string, options: object, signal: AbortSignal, container?: Container<T>): Promise<ICommandProcessor>
 {
-    switch (medium)
+    const { processor, getMetadata } = await handlers.process(new URL(connectionString), { signal, ...options }, {})
+
+    if (container)
     {
-        case 'socket':
-            {
-                const socket = await new Promise<net.Socket>((resolve, reject) =>
-                {
-                    if (!isIpcConnectOption(options) && host)
-                        options.host = host;
-                    const socket = net.connect(options, function ()
-                    {
-                        console.log('connected to ' + JSON.stringify(options));
-                        resolve(socket)
-                    }).on('error', reject);
-                });
-                signal?.addEventListener('abort', () => socket.end());
-                return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), container));
-            }
-        case 'ssocket':
-            {
-                const tlsOptions = options as TlsConnectOpts;
-                const ssocket = await new Promise<TLSSocket>((resolve, reject) =>
-                {
-                    if (!isIpcConnectOption(tlsOptions) && host)
-                        tlsOptions.host = tlsOptions.host || host;
-                    tlsOptions['servername'] = tlsOptions['host'] || host;
-                    const socket = tlsconnect(tlsOptions, function ()
-                    {
-                        if (!socket.authorized)
-                        {
-                            reject(socket.authorizationError);
-                            return;
-                        }
-                        console.log('securely connected to ' + JSON.stringify(options));
-                        resolve(socket)
-                    }).on('error', reject);
-                });
-                signal?.addEventListener('abort', () => ssocket.end());
-                return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(ssocket), container));
-            }
-        case 'http':
-        case 'https':
-            {
-                let path: string;
-                if (isIpcConnectOption(options))
-                    path = options.path;
-                else
-                    path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-                const injector = new SimpleInjector(container);
-                injector.register('$resolveUrl', urlPath => new URL(urlPath, path).toString());
-                return new HttpClient(injector);
-            }
-        case 'ws':
-        case 'wss':
-            {
-                let path: string;
-                if (isIpcConnectOption(options))
-                    path = options.path;
-                else
-                    path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-                const wsconnection = new ws(path);
-                signal?.addEventListener('abort', () => wsconnection.close());
-                return new JsonRpc(JsonRpc.getConnection(new jsonrpc.ws.SocketAdapter(wsconnection), container));
-            }
-        default:
-            // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars
-            const x: never = medium;
-            throw new Error('Invalid medium type ' + x);
+        const meta = await getMetadata();
+        registerCommands(meta.commands, null, container);
     }
 
+    return processor;
+
 }
 
-function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOpts
-{
-    return typeof options['path'] !== 'undefined';
-}
-
-export function parseMetadata(connectionString: string, tls?: boolean): ServeMetadata 
-{
-    const remote = /^(?:([^:]+):)?(\d+)$/.exec(connectionString);
-    if (!remote)
-        if (tls)
-            return { ssocket: [{ path: connectionString }] };
-        else
-            return { socket: [{ path: connectionString }] }
-
-    const host = remote[1];
-    const port = remote[2];
-    if (tls)
-        return { ssocket: [{ port: Number(port), host: host }] };
-    else
-        return { socket: [{ port: Number(port), host: host }] };
-}
-
-export default function serveMetadata(context: ServeOptions): Record<string, object>
+export default function serveMetadata(context: ServeOptions): ServeMetadata
 {
     let args = context.args;
     if (!args || args.length == 0)

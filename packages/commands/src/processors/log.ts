@@ -7,10 +7,11 @@ export class LogEventProcessor extends EventProcessor
     public name = 'log-event';
 
     constructor(processor: ICommandProcessor,
+        signal?: AbortSignal,
         preExecute?: (...args: CommandMetadataProcessorSignature<unknown>) => void,
         postExecute?: (...args: [...CommandMetadataProcessorSignature<unknown>, unknown]) => void)
     {
-        super(processor);
+        super(processor, signal);
         if (preExecute)
             this.on('processing', preExecute);
         if (postExecute)
@@ -26,7 +27,7 @@ export class LogProcessor extends CommandProcessor
     }
 }
 
-handlers.useProtocol('log', (_url, inner) =>
+handlers.useProtocol('log', (_url, options, inner) =>
 {
-    return Promise.resolve({ processor: new LogEventProcessor(inner.processor, (...args) => console.log(args), (...args) => console.log(args)), getMetadata: inner.getMetadata });
+    return Promise.resolve({ processor: new LogEventProcessor(inner.processor, options?.signal, (...args) => console.log(args), (...args) => console.log(args)), getMetadata: inner.getMetadata });
 })

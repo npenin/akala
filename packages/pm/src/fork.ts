@@ -8,7 +8,7 @@ import { IpcAdapter } from "./ipc-adapter.js";
 import { logger, Logger, module as coreModule, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
-import { Processors, Triggers, ServeMetadata, Cli, registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters, Container, CommandProcessor, serveMetadata, connectByPreference, Metadata, ServeMetadataWithSignal } from '@akala/commands';
+import { Processors, Triggers, ServeMetadata, Cli, registerCommands, SelfDefinedCommand, StructuredParameters, Container, CommandProcessor, serveMetadata, connectByPreference, Metadata } from '@akala/commands';
 import { fileURLToPath } from 'url';
 import commands from './container.js';
 
@@ -119,7 +119,7 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
                         else
                         {
                             if (c.options.pmSocket)
-                                pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls);
+                                pmConnectInfo = { [c.options.pmSocket]: {} };
                             else
                                 pmConnectInfo = serveMetadata({ args: ['local'], options: { socketName: 'pm' } })
                             const x = await connectByPreference(pmConnectInfo, { metadata: pmMeta, container: cliContainer, signal: controller.signal });
@@ -168,10 +168,10 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
 
                     try
                     {
-                        const serveArgs: ServeMetadataWithSignal = await pm.dispatch('connect', c.options.name);
+                        const serveArgs = await pm.dispatch('connect', c.options.name);
                         // console.log(serveArgs)
-                        serveArgs.signal = controller.signal;
-                        await cliContainer.dispatch('$serve', serveArgs);
+                        // serveArgs.signal = controller.signal;
+                        await cliContainer.dispatch('$serve', serveArgs, controller.signal);
                     }
                     catch (e)
                     {

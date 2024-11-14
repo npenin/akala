@@ -65,7 +65,7 @@ describe('test jsonrpcws processing', function ()
     it('should work with proxy commands', async function ()
     {
         const container = metadata(calculator);
-        const calculatorProxy = proxy(container, new LogEventProcessor(new JsonRpc(client.getConnection()), function (container, cmd, args)
+        const calculatorProxy = proxy(container, new LogEventProcessor(new JsonRpc(client.getConnection()), null, function (container, cmd, args)
         {
             console.log(args);
         }));

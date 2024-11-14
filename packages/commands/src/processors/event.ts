@@ -5,7 +5,7 @@ import { Command } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { handlers } from '../protocol-handler.js';
 
-handlers.useProtocol('event', async (_url, inner) => ({ processor: new EventProcessor(inner.processor), getMetadata: inner.getMetadata }));
+handlers.useProtocol('event', async (_url, options, inner) => ({ processor: new EventProcessor(inner.processor, options.signal), getMetadata: inner.getMetadata }));
 
 export class EventProcessor extends EventEmitter<{
     processing: Event<CommandMetadataProcessorSignature<unknown>, void>,
@@ -19,9 +19,10 @@ export class EventProcessor extends EventEmitter<{
     public readonly requiresCommandName: false = false;
 
 
-    constructor(public readonly processor: ICommandProcessor)
+    constructor(public readonly processor: ICommandProcessor, signal?: AbortSignal)
     {
         super();
+        signal?.addEventListener('abort', () => this[Symbol.dispose](), { once: true })
     }
 
     async handle(origin: Container<unknown>, command: Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
