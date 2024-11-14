@@ -83,7 +83,8 @@ cli.preAction(async c =>
                 {
                     d.readFile({ encoding: 'utf-8' }).then(d => JSON.parse(d)).then((config: StateConfiguration) =>
                     {
-                        netsocket.connect(config.mapping.pm.connect.socket[0]);
+                        const connectOptions = Object.keys(config.mapping.pm.connect)
+                        netsocket.connect(connectOptions[0]);
                     }).finally(() => d.close());
                 }, e =>
                 {

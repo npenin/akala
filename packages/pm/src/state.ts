@@ -2,7 +2,6 @@ import { Container } from "@akala/commands";
 import { ChildProcess } from "child_process";
 import { Event, SerializableObject } from "@akala/core";
 import { SocketAdapter } from "@akala/json-rpc-ws";
-import { ServeMetadata } from "@akala/commands";
 import { ProxyConfiguration } from "@akala/config";
 
 export default interface State
@@ -18,6 +17,7 @@ export interface StateConfiguration
     containers: { [key: string]: SidecarMetadata }
     mapping: { [key: string]: SidecarConfiguration }
     plugins: string[];
+    setup: { packages: string[] };
 }
 
 export interface SidecarMetadata
@@ -33,9 +33,10 @@ export interface SidecarConfiguration<T extends string | SerializableObject = Se
 {
     cli?: string[];
     container: string;
-    connect?: ServeMetadata;
+    connect?: Record<string, object>;
     cwd?: string;
     config?: T;
+    autostart?: boolean
 }
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any

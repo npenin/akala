@@ -35,7 +35,7 @@ const tableChars = {
 const truncate = '…';
 
 type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean, help: boolean };
-export default function (_config, program: NamespaceMiddleware<{ configFile: string, verbose: boolean }>)
+export default async function (_config, program: NamespaceMiddleware<{ configFile: string, verbose: boolean }>)
 {
     const cli = program.command('pm').state<{ pm?: StateConfiguration }>().options<CliOptions>({
         output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' },
@@ -89,10 +89,10 @@ export default function (_config, program: NamespaceMiddleware<{ configFile: str
                 {
                     try
                     {
-                        if (c.state?.pm)
-                            netsocket.connect(c.state.pm.mapping.pm.connect.socket[0]);
-                        else
-                            netsocket.destroy(Object.assign(new Error(), { code: 'ENOENT' }))
+                        // if (c.state?.pm)
+                        //     netsocket.connect(c.state.pm.mapping.pm.connect.socket[0]);
+                        // else
+                        netsocket.destroy(Object.assign(new Error(), { code: 'ENOENT' }))
                     }
                     catch (e)
                     {

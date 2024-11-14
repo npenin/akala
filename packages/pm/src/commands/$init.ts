@@ -100,6 +100,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     {
         this.config.set('containers', { pm: { commandable: true, stateless: false, path: fileURLToPath(new URL('../../../commands.json', import.meta.url)) } });
         this.config.set('mapping', { pm: { cwd: process.cwd(), container: 'pm' } })
+        this.config.set('setup', { packages: [] })
         this.config.set('plugins', [])
     }
 
@@ -122,6 +123,20 @@ export default async function (this: State, container: RunningContainer & pmCont
     container.unregister('$metadata');
     container.register(configure(config)(new SelfDefinedCommand(metadata, '$metadata', ['$container', 'param.0'])));
 
+    if (this.config.setup.packages.length > 0)
+    {
+        for (const pkg of this.config.setup.packages)
+        {
+            await container.dispatch('install', pkg);
+        }
+    }
+    if (this.config.setup.packages.length > 0)
+    {
+        for (const pkg of this.config.setup.packages)
+        {
+            await container.dispatch('install', pkg);
+        }
+    }
 
     this.processes[container.name] = container;
     container.running = true;

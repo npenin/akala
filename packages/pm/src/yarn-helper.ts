@@ -25,6 +25,10 @@ export default
         {
             await spawnAsync(npm, { cwd: path }, 'add', packageName)
         },
+        async uninstall(packageName: string, path?: string): Promise<void>
+        {
+            await spawnAsync(npm, { cwd: path }, 'remove', packageName)
+        },
         async update(packageName: string, path?: string): Promise<void>
         {
             await spawnAsync(npm, { cwd: path }, 'upgrade', packageName)

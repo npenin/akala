@@ -2,26 +2,31 @@
     "name": "pm",
     "commands": [
         {
-            "name": "config",
+            "name": "$init-akala",
             "config": {
                 "fs": {
-                    "path": "dist/esm/cli-commands/config.js",
-                    "source": "src/cli-commands/config.ts",
+                    "path": "dist/esm/cli-commands/$init-akala.js",
+                    "source": "src/cli-commands/$init-akala.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
+                        "param.0"
                     ]
                 },
                 "cli": {
                     "inject": [
-                        "param.0",
-                        "options"
+                        "options.pmSock"
+                    ],
+                    "options": {
+                        "pmSock": {
+                            "aliases": [
+                                "pm-sock"
+                            ],
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": [
+                        "param.0"
                     ]
                 }
             }
@@ -317,6 +322,31 @@
                         "context"
                     ],
                     "usage": "start pm"
+                }
+            }
+        },
+        {
+            "name": "uninstall",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli-commands/uninstall.js",
+                    "source": "src/cli-commands/uninstall.ts",
+                    "inject": [
+                        "param.0",
+                        "$container"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "$container"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "$container"
+                    ]
                 }
             }
         },

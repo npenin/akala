@@ -1,10 +1,10 @@
 import { ErrorWithStatus } from "@akala/core";
-import { serveMetadata, ServeMetadata, ServeOptions } from "@akala/commands";
+import { serveMetadata, ServeOptions } from "@akala/commands";
 import State from '../state.js';
 
-export default async function connect(this: State, name: string): Promise<ServeMetadata>
+export default async function connect(this: State, name: string): Promise<Record<string, object>>
 export default async function connect(this: State, name: string, context?: ServeOptions): Promise<void>
-export default async function connect(this: State, name: string, context?: ServeOptions): Promise<ServeMetadata | void>
+export default async function connect(this: State, name: string, context?: ServeOptions): Promise<Record<string, object> | void>
 {
     let mapping = this.config.mapping[name];
     if (!mapping)
