@@ -38,7 +38,7 @@ serverHandlers.useProtocol('jsonrpc+tcp', async function (url: URL | string, con
     if (!(url instanceof URL))
         url = new URL(url);
     server.listen(url);
-    options.signal.addEventListener('abort', () => server.close((err => { console.error(err) })));
+    options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
 handlers.useProtocol('jsonrpc+tcp+tls', async function (url, result)
@@ -67,7 +67,7 @@ serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string,
     if (!(url instanceof URL))
         url = new URL(url);
     server.listen(url);
-    options.signal.addEventListener('abort', () => server.close((err => { console.error(err) })));
+    options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
 handlers.useProtocol('jsonrpc+unix', async function (url, result)
@@ -95,7 +95,7 @@ serverHandlers.useProtocol('jsonrpc+unix', async function (url: URL | string, co
     if (!(url instanceof URL))
         url = new URL(url);
     server.listen(url.host + url.pathname);
-    options.signal.addEventListener('abort', () => server.close((err => { console.error(err) })));
+    options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
 handlers.useProtocol('jsonrpc+unix+tls', async function (url, result)
@@ -124,7 +124,7 @@ serverHandlers.useProtocol('jsonrpc+unix+tls', async function (url: URL | string
     if (!(url instanceof URL))
         url = new URL(url);
     server.listen(url.host + url.pathname);
-    options.signal.addEventListener('abort', () => server.close((err => { console.error(err) })));
+    options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
 async function handler(url: URL): Promise<HandlerResult<JsonRpc>>

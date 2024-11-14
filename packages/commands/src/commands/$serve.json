@@ -4,11 +4,12 @@
         "inject": [
             "container",
             "options",
-            "args"
+            "signal"
         ],
         "options": {
             "container": "The to-be-served container",
             "options": "The serve options",
+            "signal": "An AbortSignal to stop the server",
             "args": "The transports used to serve the container (default available transports are http, tcp, local, ws).\nws, http and tcp have they secured counterparts available if cert and key options are provided."
         },
         "description": "Serves the `container` with different transports based on the provided options. \n\nDefault available transports are http, tcp, local, ws).\n  ws, http and tcp have they secured counterparts available if cert and key options are provided."
@@ -17,7 +18,7 @@
         "inject": [
             "$container",
             "options",
-            "context.args"
+            "context.signal"
         ],
         "options": {
             "tcpPort": {

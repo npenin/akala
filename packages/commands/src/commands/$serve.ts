@@ -12,4 +12,4 @@ export default async function $serve(container: Container<unknown>, options: Ser
         await serve(container, options, signal);
 }
 
-$serve.$inject = ['$container', 'param.0'];
+$serve.$inject = ['$container', 'param.0', 'param.1'];
