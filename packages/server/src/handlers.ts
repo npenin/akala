@@ -1,18 +1,17 @@
-import { ServerHandler, serverHandlers, getOrCreateServerAndListen, getOrCreateSecureServerAndListen } from "@akala/commands";
+import { serverHandlers } from "@akala/commands";
 import { NetConnectOpts } from "net";
 import * as ws from 'ws'
 import * as jsonrpcws from '@akala/json-rpc-ws';
 
 import https from 'https';
-import http from 'http';
+import http, { ServerOptions } from 'http';
 import { trigger } from "./triggers/http.js";
-import { SecureContextOptions } from "tls";
 import { Processors } from "@akala/commands";
+import http2, { Http2Server } from "http2";
 
-serverHandlers.register<ServerHandler<NetConnectOpts>>('http', async (container, options) =>
+serverHandlers.useProtocol('http', async (url, container, options: (ServerOptions) & { signal: AbortSignal }) =>
 {
-    const server: http.Server | https.Server // | Http2SecureServer | Http2Server;
-        = http.createServer();
+    const server: http.Server = http.createServer(options);
 
     container.register('$webServer', server);
     container.register('$masterRouter', container.attach(trigger, server));
@@ -20,32 +19,58 @@ serverHandlers.register<ServerHandler<NetConnectOpts>>('http', async (container,
     await new Promise<void>((resolve, reject) =>
     {
         server.once('error', reject);
-        getOrCreateServerAndListen(options, container).then(result => server.listen(result, resolve), reject);
+
+        if (url.pathname)
+            server.listen(url.host + url.pathname, resolve);
+        options.signal.addEventListener('abort', () => { server.close(); server.closeAllConnections(); });
+    });
+});
+serverHandlers.useProtocol('http2', async (url, container, options: (http2.ServerOptions) & { signal: AbortSignal }) =>
+{
+    const server: Http2Server = http2.createServer(options);
+
+    container.register('$webServer', server);
+    container.register('$masterRouter', container.attach(trigger, server));
+
+    await new Promise<void>((resolve, reject) =>
+    {
+        server.once('error', reject);
+
+        if (url.pathname)
+            server.listen(url.host + url.pathname, resolve);
+        else
+            server.listen({ host: url.host, port: url.port }, resolve)
+        options.signal.addEventListener('abort', () => { server.close(); });
     });
 });
 
-serverHandlers.register<ServerHandler<NetConnectOpts & SecureContextOptions>>('https', async (container, options) =>
+serverHandlers.useProtocol<https.ServerOptions | http2.ServerOptions>('https', async (url, container, options,) =>
 {
-    let server: https.Server;// | Http2SecureServer | Http2Server;
+    // let server: https.Server | Http2SecureServer | Http2Server;
 
-    const tlsServer = getOrCreateSecureServerAndListen(options, container)
+    const server = http2.createSecureServer(options)
 
-    server = container.resolve('$webServer');
-    if (server == null)
+    container.register('$webServer', server);
+    container.register('$masterRouter', container.attach(trigger, server));
+
+    await new Promise<void>((resolve, reject) =>
     {
-        await serverHandlers.resolve<ServerHandler<NetConnectOpts>>('http')(container, tlsServer as unknown as NetConnectOpts);
-        server = container.resolve('$webServer');
-    }
+        server.once('error', reject);
+
+        if (url.pathname)
+            server.listen(url.host + url.pathname, resolve);
+        options.signal.addEventListener('abort', () => { server.close(); });
+    });
 });
 
-serverHandlers.register<ServerHandler<NetConnectOpts>>('ws', async (container, options) =>
+serverHandlers.useProtocol<NetConnectOpts>('ws', async (url, container, options) =>
 {
     let server: http.Server | https.Server;// | Http2SecureServer | Http2Server;
 
     server = container.resolve('$webServer');
     if (server == null)
     {
-        var stop = await serverHandlers.resolve<ServerHandler<NetConnectOpts>>('http')(container, options);
+        await serverHandlers.process(new URL(url.toString().replace(/^ws:/, 'http:')), container, options);
         server = container.resolve('$webServer');
     }
 
@@ -55,19 +80,17 @@ serverHandlers.register<ServerHandler<NetConnectOpts>>('ws', async (container, o
     {
         container.attach(Processors.JsonRpc.trigger, new jsonrpcws.ws.SocketAdapter(socket));
     })
-
-    return stop;
 });
 
 
-serverHandlers.register<ServerHandler<NetConnectOpts>>('wss', async (container, options) =>
+serverHandlers.useProtocol<NetConnectOpts>('wss', async (url, container, options) =>
 {
     let server: http.Server | https.Server;// | Http2SecureServer | Http2Server;
 
     server = container.resolve('$webServer');
     if (server == null)
     {
-        var stop = await serverHandlers.resolve<ServerHandler<NetConnectOpts>>('https')(container, options);
+        await serverHandlers.process(new URL(url.toString().replace(/^wss:/, 'https:')), container, options);
         server = container.resolve('$webServer');
     }
 
@@ -77,6 +100,4 @@ serverHandlers.register<ServerHandler<NetConnectOpts>>('wss', async (container, 
     {
         container.attach(Processors.JsonRpc.trigger, new jsonrpcws.ws.SocketAdapter(socket));
     })
-
-    return stop;
 });
