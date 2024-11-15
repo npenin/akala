@@ -195,5 +195,3 @@ export default async function start(this: State, pm: pmContainer.container & Con
         return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
     }
 }
-
-start.$inject = ['$container', 'param.0', 'options']
