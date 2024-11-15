@@ -3,7 +3,12 @@
 
 ### Bug Fixes
 
-* missing signal option in handler 87be0b4
+* update commands c5553b1
+
+
+### Features
+
+* add autostart support a85d615
 
 
 
