@@ -89,9 +89,11 @@ export function plugin(options: Record<string, { path: string, init?: unknown[],
         configureServer(server)
         {
             const container = new Container('all', null);
+            const abort = new AbortController();
+            server.ws.on('close', () => abort.abort('exiting...'))
             const promise = Promise.all(Object.entries(options).map(async ([name, { path, init, processors: containerProcessors }]) =>
             {
-                const { processor, getMetadata } = await protocolHandlers.process(URL.canParse(path) ? new URL(path) : pathToFileURL(path), { processor: null, getMetadata: null })
+                const { processor, getMetadata } = await protocolHandlers.process(URL.canParse(path) ? new URL(path) : pathToFileURL(path), { signal: abort.signal }, {})
                 const meta = await getMetadata();
                 const subContainer = new Container(meta.name, {})
                 // console.log(processors);
