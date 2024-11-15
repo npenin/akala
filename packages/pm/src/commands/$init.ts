@@ -7,6 +7,7 @@ import { EventEmitter } from 'events';
 import { CliContext } from '@akala/cli';
 import { Configuration } from '@akala/config';
 import { fileURLToPath } from 'url';
+import { eachAsync } from '@akala/core';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
@@ -129,6 +130,14 @@ export default async function (this: State, container: RunningContainer & pmCont
         {
             await container.dispatch('install', pkg);
         }
+    }
+
+    if (this.config.mapping)
+    {
+        await eachAsync(this.config.mapping.extract(), async (mapping, name) =>
+        {
+            await container.dispatch('start', name, { autostart: true, wait: true }, { args: mapping.cli })
+        });
     }
 
     this.processes[container.name] = container;
