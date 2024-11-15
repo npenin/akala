@@ -1,15 +1,10 @@
-#  (2024-11-14)
+#  (2024-11-15)
 
 
-### Features
+### Bug Fixes
 
-* serverHandlers now uses UrlHandler dde9e63
-* support jsonrpc+tcp and jsonrpc+tcp+tls protocols 66606cb
-
-
-### BREAKING CHANGES
-
-* many functions have been removed related to starting a server
+* missing signal option in handler 87be0b4
+* pm start 68100ef
 
 
 
