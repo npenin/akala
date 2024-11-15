@@ -1,11 +1,9 @@
-#  (2024-11-14)
+#  (2024-11-15)
 
 
 ### Bug Fixes
 
-* urlhandler behavior bd5a8cd
-* UrlHandler has the result as the last parameter 0b0981d
-* urlhandler last parameter assigment a0f5315
+* missing signal option in handler 87be0b4
 
 
 
