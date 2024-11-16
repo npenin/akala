@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add error support 63961f5
+* localhost connection 9e147ee
 
 
 
