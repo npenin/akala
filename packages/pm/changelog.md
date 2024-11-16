@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* proper akala pm startup 6ccfcf3
+* add more logs for troubleshooting 8d61887
 
 
 
