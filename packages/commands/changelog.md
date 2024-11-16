@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* localhost connection 9e147ee
+* confusion between host and hostname e05f574
 
 
 
