@@ -1,9 +1,9 @@
-#  (2024-11-15)
+#  (2024-11-16)
 
 
 ### Bug Fixes
 
-* missing signal option in handler 87be0b4
+* url handler result 0e8345d
 
 
 
