@@ -16,7 +16,7 @@ type OnlyArray<T> = Extract<T, unknown[]>;
 handlers.useProtocol('jsonrpc+tcp', async function (url, options)
 {
     const socket = new Socket();
-    await new Promise<void>(resolve => socket.connect({ host: url.host, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve));
+    await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ host: url.host, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
     options?.signal?.addEventListener('abort', () => socket.end());
@@ -50,7 +50,7 @@ handlers.useProtocol('jsonrpc+tcp+tls', async function (url, result)
 {
     const socket = new Socket();
     const tlsSocket = new TLSSocket(socket);
-    await new Promise<void>(resolve => tlsSocket.connect({ host: url.host, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve));
+    await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ host: url.host, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket));
 
@@ -78,7 +78,8 @@ serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string,
 handlers.useProtocol('jsonrpc+unix', async function (url, result)
 {
     const socket = new Socket();
-    await new Promise<void>(resolve => socket.connect({ path: url.host + url.pathname }, resolve));
+
+    await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ path: url.host + url.pathname }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
 
@@ -107,7 +108,7 @@ handlers.useProtocol('jsonrpc+unix+tls', async function (url, result)
 {
     const socket = new Socket();
     const tlsSocket = new TLSSocket(socket);
-    await new Promise<void>(resolve => tlsSocket.connect({ path: url.host + url.pathname }, resolve));
+    await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ path: url.host + url.pathname }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket));
 
