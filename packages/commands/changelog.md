@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* jsonrpc+tcp server 0eb787a
+* add error support 63961f5
 
 
 
