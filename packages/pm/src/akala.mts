@@ -7,9 +7,11 @@ import { Readable } from 'stream';
 import { spawnAsync } from './cli-helper.js';
 import State, { StateConfiguration } from './state.js';
 import { CliContext, ErrorMessage, InteractError, NamespaceMiddleware, unparse } from '@akala/cli';
-import { eachAsync, ObservableObject, Parser } from '@akala/core';
+import { eachAsync, logger, ObservableObject, Parser } from '@akala/core';
 import module from 'module'
 import commands from './container.js';
+
+const log = logger('akala:pm');
 
 const require = module.createRequire(import.meta.url);
 
@@ -78,12 +80,16 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                             return;
                         try
                         {
+                            log.verbose('trying to connect to ' + connectionString);
                             container = await connect(new URL(connectionString), c.abort.signal, metaContainer);
                         }
                         catch (e)
                         {
+                            log.silly('failed to connect to ' + connectionString);
+                            log.silly(e)
                             if (e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
                                 return;
+                            log.error(e);
                             throw e;
                         }
 
