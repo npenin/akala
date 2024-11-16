@@ -9,7 +9,7 @@ import { Trigger } from '../model/trigger.js'
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
-export async function handler(url: URL): Promise<HandlerResult<JsonRpcBrowser>>
+export async function handler(url: URL, options: { signal: AbortSignal }): Promise<HandlerResult<JsonRpcBrowser>>
 {
     const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve) =>
     {
@@ -20,6 +20,7 @@ export async function handler(url: URL): Promise<HandlerResult<JsonRpcBrowser>>
         });
     });
     const connection = JsonRpcBrowser.getConnection(socket);
+    options?.signal?.addEventListener('abort', () => socket.close());
 
     return {
         processor: new JsonRpcBrowser(connection),

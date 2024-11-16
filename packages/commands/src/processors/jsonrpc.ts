@@ -13,19 +13,20 @@ import { TLSSocket, Server as TLSServer, TlsOptions } from 'tls';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
-handlers.useProtocol('jsonrpc+tcp', async function (url, result)
+handlers.useProtocol('jsonrpc+tcp', async function (url, options)
 {
     const socket = new Socket();
     await new Promise<void>(resolve => socket.connect({ host: url.host, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve));
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+    options?.signal?.addEventListener('abort', () => socket.end());
 
-    return Object.assign(result, {
+    return {
         processor: new JsonRpc(connection),
         getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
-    });
+    };
 });
 
 serverHandlers.useProtocol('jsonrpc+tcp', async function (url: URL | string, container: Container<unknown>, options: ServerOpts & { signal: AbortSignal })
@@ -37,7 +38,11 @@ serverHandlers.useProtocol('jsonrpc+tcp', async function (url: URL | string, con
     });
     if (!(url instanceof URL))
         url = new URL(url);
-    server.listen(url);
+
+    if (url.host == '0.0.0.0' || url.host == '*')
+        await new Promise(resolve => server.listen(url.port ? Number(url.port) : 31416, () => resolve));
+    else
+        await new Promise(resolve => server.listen({ host: url.host, port: url.port ? Number(url.port) : 31416 }, () => resolve));
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
