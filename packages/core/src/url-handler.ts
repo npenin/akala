@@ -23,7 +23,7 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult>], TResult
      */
     public process(...context: T): Promise<TResult>
     {
-        return this.handle(...context).then(v => { throw v }, () => context[1] as TResult);
+        return this.handle(...context).then(v => { throw v }, () => context[context.length - 1] as TResult);
     }
 
     public useProtocol(protocol: string, action: (...args: T) => Promise<TResult>)
