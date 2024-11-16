@@ -39,7 +39,7 @@ serverHandlers.useProtocol('http2', async (url, container, options: (http2.Serve
         if (url.pathname)
             server.listen(url.host + url.pathname, resolve);
         else
-            server.listen({ host: url.host, port: url.port }, resolve)
+            server.listen({ host: url.hostname, port: url.port }, resolve)
         options.signal.addEventListener('abort', () => { server.close(); });
     });
 });

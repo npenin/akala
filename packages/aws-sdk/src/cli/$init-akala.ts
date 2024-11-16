@@ -19,10 +19,10 @@ export default async function $initAkala()
 
     protocolHandlers.useProtocol('aws:', (url, _options, result) =>
     {
-        if (!url.host)
+        if (!url.hostname)
             throw new Error('The url is espected of the form aws://<service>');
 
-        result.getMetadata = () => import(`../../services/${url.host}.json`);
+        result.getMetadata = () => import(`../../services/${url.hostname}.json`);
         result.processor = new Processors.HttpClient();
         return Promise.resolve(result as HandlerResult<ICommandProcessor>);
     })

@@ -40,7 +40,7 @@ export function sign(accessKey: string, region: string, service: string)
         function getHeader(name: string): string
         {
             if (name == 'host')
-                return (url as URL).host;
+                return (url as URL).hostname;
             if (!request.headers)
                 request.headers = {};
             if (Array.isArray(request.headers))

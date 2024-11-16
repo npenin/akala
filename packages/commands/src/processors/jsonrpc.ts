@@ -16,10 +16,10 @@ type OnlyArray<T> = Extract<T, unknown[]>;
 handlers.useProtocol('jsonrpc+tcp', async function (url, options)
 {
     const socket = new Socket();
-    if (url.host == '0.0.0.0' || url.host == '*')
+    if (url.hostname == '0.0.0.0' || url.hostname == '*')
         await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
     else
-        await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ host: url.host, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
+        await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ host: url.hostname, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
     options?.signal?.addEventListener('abort', () => socket.end());
@@ -43,10 +43,10 @@ serverHandlers.useProtocol('jsonrpc+tcp', async function (url: URL | string, con
     if (!(url instanceof URL))
         url = new URL(url);
 
-    if (url.host == '0.0.0.0' || url.host == '*')
+    if (url.hostname == '0.0.0.0' || url.hostname == '*')
         await new Promise(resolve => server.listen(url.port ? Number(url.port) : 31416, () => resolve));
     else
-        await new Promise(resolve => server.listen({ host: url.host, port: url.port ? Number(url.port) : 31416 }, () => resolve));
+        await new Promise(resolve => server.listen({ host: url.hostname, port: url.port ? Number(url.port) : 31416 }, () => resolve));
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
@@ -54,10 +54,10 @@ handlers.useProtocol('jsonrpc+tcp+tls', async function (url, result)
 {
     const socket = new Socket();
     const tlsSocket = new TLSSocket(socket);
-    if (url.host == '0.0.0.0' || url.host == '*')
+    if (url.hostname == '0.0.0.0' || url.hostname == '*')
         await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
     else
-        await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ host: url.host, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
+        await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ host: url.hostname, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket));
 
@@ -86,7 +86,7 @@ handlers.useProtocol('jsonrpc+unix', async function (url, result)
 {
     const socket = new Socket();
 
-    await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ path: url.host + url.pathname }, resolve) });
+    await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ path: url.hostname + url.pathname }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
 
@@ -107,7 +107,7 @@ serverHandlers.useProtocol('jsonrpc+unix', async function (url: URL | string, co
     });
     if (!(url instanceof URL))
         url = new URL(url);
-    server.listen(url.host + url.pathname);
+    server.listen(url.hostname + url.pathname);
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
@@ -115,7 +115,7 @@ handlers.useProtocol('jsonrpc+unix+tls', async function (url, result)
 {
     const socket = new Socket();
     const tlsSocket = new TLSSocket(socket);
-    await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ path: url.host + url.pathname }, resolve) });
+    await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ path: url.hostname + url.pathname }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket));
 
@@ -136,7 +136,7 @@ serverHandlers.useProtocol('jsonrpc+unix+tls', async function (url: URL | string
     });
     if (!(url instanceof URL))
         url = new URL(url);
-    server.listen(url.host + url.pathname);
+    server.listen(url.hostname + url.pathname);
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 

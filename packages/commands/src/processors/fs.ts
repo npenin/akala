@@ -23,7 +23,7 @@ async function protocolHandler(url: URL)
     else
         options.ignoreFileWithNoDefaultExport = true;
 
-    let p: string = url.host;
+    let p: string = url.hostname;
     if (os.platform() == 'win32')
         p += url.pathname.substring(1);
     else
@@ -55,7 +55,7 @@ handlers.useProtocol('npm',
         else
             options.ignoreFileWithNoDefaultExport = true;
 
-        let p: string = 'node_modules/' + url.host;
+        let p: string = 'node_modules/' + url.hostname;
         if (p.endsWith('/'))
             p = p.substring(0, p.length - 1);
 
