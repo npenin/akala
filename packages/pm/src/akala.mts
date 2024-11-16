@@ -1,7 +1,5 @@
 import * as path from 'path'
-import { Processors, NetSocketAdapter, Metadata, Container, ICommandProcessor, proxy, Triggers, Cli } from '@akala/commands';
-import { Socket } from 'net';
-import { TLSSocket } from 'tls';
+import { Processors, Metadata, Container, ICommandProcessor, Triggers, Cli, connect } from '@akala/commands';
 import { platform, homedir } from 'os';
 import start from './commands/start.js'
 import { Readable } from 'stream';
@@ -9,7 +7,7 @@ import { Readable } from 'stream';
 import { spawnAsync } from './cli-helper.js';
 import State, { StateConfiguration } from './state.js';
 import { CliContext, ErrorMessage, InteractError, NamespaceMiddleware, unparse } from '@akala/cli';
-import { ObservableObject, Parser } from '@akala/core';
+import { eachAsync, ObservableObject, Parser } from '@akala/core';
 import module from 'module'
 import commands from './container.js';
 
@@ -52,108 +50,47 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
             return start.call({ config: c.state.pm } as unknown as State, null, 'pm', { name: 'pm', ...c.options }, c);
         });
 
-    let socket: Socket;
-    let processor: Processors.JsonRpc;
-    let metaContainer: Metadata.Container;
+    let metaContainer = commands.meta;
     let container: Container<unknown>;
     cli.preAction(async c =>
     {
         process.stdin.pause();
         process.stdin.setEncoding('utf8');
-        if (!socket)
+        if (!container)
         {
-            const netsocket = socket = new Socket();
-            if (c.options.tls)
+            if (c.options.pmSock)
             {
-                socket = new TLSSocket(socket, {});
-            }
-
-            await new Promise<void>((resolve, reject) =>
-            {
-                if (c.options.pmSock)
+                if (typeof (c.options.pmSock) == 'string')
                 {
-                    if (typeof (c.options.pmSock) == 'string')
-                    {
-                        const indexOfColon = c.options.pmSock.indexOf(':');
-                        if (indexOfColon > -1)
-                            netsocket.connect(Number(c.options.pmSock.substring(indexOfColon + 1)), c.options.pmSock.substring(0, indexOfColon));
-                        else
-                            netsocket.connect(c.options.pmSock);
-                    }
-                    else
-                        netsocket.connect(c.options.pmSock as number);
+                    container = await connect(c.options.pmSock, c.abort.signal, metaContainer);
                 }
-                else if (platform() == 'win32')
-                    netsocket.connect('\\\\?\\pipe\\pm')
                 else
-                {
-                    try
-                    {
-                        // if (c.state?.pm)
-                        //     netsocket.connect(c.state.pm.mapping.pm.connect.socket[0]);
-                        // else
-                        netsocket.destroy(Object.assign(new Error(), { code: 'ENOENT' }))
-                    }
-                    catch (e)
-                    {
-                        if (e.code != 'MODULE_NOT_FOUND')
-                            reject(e);
-                        else
-                        {
-                            e.code = 'ENOENT';
-                            socket.destroy(e);
-                        }
-
-                    }
-                }
-                if (c.options.tls)
-                {
-                    // socket.on('data', function (e) { console.log(e) });
-                    socket.connect({} as any);
-                    netsocket.on('error', function (e)
-                    {
-                        console.log(e);
-                    });
-                    socket.on('error', function (e)
-                    {
-                        console.log(e);
-                    });
-                }
-                socket.on('connect', async function ()
-                {
-                    resolve();
-                    socket.setEncoding('utf-8');
-                });
-                socket.on('error', async (e: Error & { code?: string }) =>
-                {
-                    if (c.options.help)
-                        resolve();
-                    else
-                    {
-                        if (e.code === 'ENOENT' || e.code == 'ECONNREFUSED') 
-                        {
-                            // return tryLocalProcessing(c).catch(() =>
-                            // {
-                            resolve();
-                            // reject(new Error('pm is not started'));
-                            // });
-                        }
-                        else
-                            reject(e);
-                    }
-                });
-            });
-        }
-        if (socket.readyState == 'open')
-        {
-            if (!processor)
-                processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
-            if (!metaContainer)
-                metaContainer = commands.meta;
-            if (!container)
+                    container = await connect(new URL('jsonrpc+tcp://localhost:' + c.options.pmSock), c.abort.signal, metaContainer);
+            }
+            else if (platform() == 'win32')
+                container = await connect(new URL('jsonrpc+unix://\\\\?\\pipe\\pm'), c.abort.signal, metaContainer);
+            else
             {
-                container = proxy(metaContainer, processor);
+                if (c.state?.pm?.mapping.pm?.connect)
+                    await eachAsync(c.state.pm.mapping.pm.connect, async (config, connectionString) =>
+                    {
+                        if (container)
+                            return;
+                        try
+                        {
+                            container = await connect(new URL(connectionString), c.abort.signal, metaContainer);
+                        }
+                        catch (e)
+                        {
+                            if (e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
+                                return;
+                            throw e;
+                        }
 
+                    })
+            }
+            if (container)
+            {
                 container.unregister(Cli.Metadata.name);
                 container.register(Metadata.extractCommandMetadata(Cli.Metadata));
 
@@ -225,8 +162,6 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
             result.pipe(process.stdout);
             return new Promise((resolve) => result.on('close', resolve));
         }
-        if (socket)
-            socket.end();
 
         return formatResult(result, context.options.output);
     });
