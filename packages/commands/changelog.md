@@ -3,7 +3,12 @@
 
 ### Bug Fixes
 
-* connectByPreference 08999c8
+* remove container from ConnectionPreference 3f27285
+
+
+### BREAKING CHANGES
+
+* remove container from ConnectionPreference
 
 
 
