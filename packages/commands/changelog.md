@@ -1,9 +1,9 @@
-#  (2024-11-16)
+#  (2024-11-17)
 
 
 ### Bug Fixes
 
-* confusion between host and hostname e05f574
+* connectByPreference 08999c8
 
 
 
