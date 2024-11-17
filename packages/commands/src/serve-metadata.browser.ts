@@ -1,18 +1,11 @@
-// import type { IpcNetConnectOpts, NetConnectOpts } from 'node:net';
 import { registerCommands } from './generator.js'
-import { CommandProcessor, ICommandProcessor } from './model/processor.js';
-import { HttpClient } from './processors/index.js';
-import { SimpleInjector } from '@akala/core';
-import * as Metadata from './metadata/index.js';
+import { ICommandProcessor } from './model/processor.js';
+import { ErrorWithStatus } from '@akala/core';
 import { Container } from './model/container.js';
+import { handlers } from './protocol-handler.js';
+import { Metadata } from './index.browser.js';
 
-export interface ServeMetadata
-{
-    https?: { port: number, cert: string, key: string };
-    http?: { port: number };
-    ws?: { port: number };
-    wss?: { port: number, cert: string, key: string };
-}
+export type ServeMetadata = Record<string, object>
 
 export interface ConnectionPreference
 {
@@ -23,32 +16,37 @@ export interface ConnectionPreference
     signal?: AbortSignal;
 }
 
-export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
+export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...protocolOrder: string[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
 {
-    if (!orders)
-        orders = ['wss', 'ws', 'https', 'http'];
-    const orderedOptions = orders.map(order =>
+    if (!protocolOrder || !protocolOrder.length)
+        protocolOrder = ['jsonrpc+unix+tls', 'jsonrpc+unix', 'jsonrpc+unix+tls', 'jsonrpc+tcp+tls', 'jsonrpc+tcp', 'wss', 'ws', 'https', 'http'];
+
+    const optionsEntries = Object.entries(options);
+    const orderedOptions = protocolOrder.map(order =>
     {
-        if (options[order])
-            return options[order];
+        let entry: (typeof optionsEntries)[number]
+        if (entry = optionsEntries.find(e => e[0].startsWith(order)))
+            return entry;
     });
     const container = new Container<T>(settings?.metadata?.name || 'proxy', undefined);
-    let processor: CommandProcessor;
+    let processor: ICommandProcessor;
+    let preferredIndex: number = -1;
     do
     {
-        const preferredIndex = orderedOptions.findIndex(options => options);
+        preferredIndex = orderedOptions.findIndex((option, i) => i > preferredIndex && option);
         if (preferredIndex === -1)
-            throw new Error('no matching connection preference was found');
+            throw new ErrorWithStatus(404, 'no matching connection preference was found');
 
         try
         {
-            processor = await connectWith(orderedOptions[preferredIndex], settings?.host, orders[preferredIndex], settings?.container)
+            if (protocolOrder.length == 0)
+                throw new ErrorWithStatus(404, 'No valid connection option could be found')
+            processor = await connectWith(orderedOptions[preferredIndex][0], orderedOptions[preferredIndex][1], settings?.signal, settings?.container)
             break;
         }
         catch (e)
         {
             console.warn(e);
-            orders.shift();
         }
     }
     // eslint-disable-next-line no-constant-condition
@@ -65,50 +63,19 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
 
 }
 
-export type NetConnectOpts = IpcNetConnectOpts | TcpNetConnectOpts;
-type IpcNetConnectOpts = { path: string };
-type TcpNetConnectOpts = { host?: string, port?: number }
-
-export async function connectWith<T>(options: NetConnectOpts, host: string, medium: keyof ServeMetadata, container?: Container<T>): Promise<CommandProcessor>
+export async function connectWith<T>(connectionString: string, options: object, signal: AbortSignal, container?: Container<T>): Promise<ICommandProcessor>
 {
-    switch (medium)
+    const { processor, getMetadata } = await handlers.process(new URL(connectionString), { signal, ...options }, {})
+
+    if (container)
     {
-        case 'http':
-        case 'https':
-            {
-                let path: string;
-                if (isIpcConnectOption(options))
-                    path = options.path;
-                else
-                    path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-                const injector = new SimpleInjector(container);
-                injector.register('$resolveUrl', urlPath => new URL(urlPath, path).toString());
-                return new HttpClient(injector);
-            }
-        case 'ws':
-        case 'wss':
-            {
-                throw new Error('WebSocket are not yet supported');
-                // let path: string;
-                // if (isIpcConnectOption(options))
-                //     path = options.path;
-                // else
-                //     path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-                // return new JsonRpc(JsonRpc.getConnection(new jsonrpc.ws.SocketAdapter(new ws(path)), container), true);
-            }
-        default:
-            // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars
-            const x: never = medium;
-            throw new Error('Invalid medium type ' + x);
+        const meta = await getMetadata();
+        registerCommands(meta.commands, null, container);
     }
 
-}
+    return processor;
 
-function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOpts
-{
-    return typeof options['path'] !== 'undefined';
 }
-
 
 export default function serveMetadata(context): ServeMetadata
 {

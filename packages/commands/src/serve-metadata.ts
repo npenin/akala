@@ -24,10 +24,10 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
     });
     const container = new Container<T>(settings?.metadata?.name || 'proxy', undefined);
     let processor: ICommandProcessor;
-    let preferredIndex: number = 0;
+    let preferredIndex: number = -1;
     do
     {
-        preferredIndex = orderedOptions.findIndex((option, i) => i >= preferredIndex && option);
+        preferredIndex = orderedOptions.findIndex((option, i) => i > preferredIndex && option);
         if (preferredIndex === -1)
             throw new ErrorWithStatus(404, 'no matching connection preference was found');
 
