@@ -122,7 +122,7 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
                                 pmConnectInfo = { [c.options.pmSocket]: {} };
                             else
                                 pmConnectInfo = serveMetadata({ args: ['local'], options: { socketName: 'pm' } })
-                            const x = await connectByPreference(pmConnectInfo, { metadata: pmMeta, container: cliContainer, signal: controller.signal });
+                            const x = await connectByPreference(pmConnectInfo, { metadata: pmMeta, signal: controller.signal });
                             // controller.signal.addEventListener('abort', () => x.processor)
                             pm = x.container as Container<unknown> & pmDef.container;
                             pm.processor.useMiddleware(20, x.processor);
@@ -151,7 +151,7 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
                     {
                         if (!pmConnectInfo)
                             pmConnectInfo = await pm.dispatch('connect', 'pm');
-                        var pm2 = await connectByPreference(pmConnectInfo, { container: cliContainer, metadata: await cliContainer.dispatch('$metadata') });
+                        var pm2 = await connectByPreference(pmConnectInfo, { metadata: await cliContainer.dispatch('$metadata') });
                         pm2.container.processor.useMiddleware(20, pm2.processor);
                         pm2.container.unregister(Cli.Metadata.name);
                         pm2.container.register(Metadata.extractCommandMetadata(Cli.Metadata));
