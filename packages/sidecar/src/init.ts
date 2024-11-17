@@ -1,13 +1,11 @@
-import { connect, Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar } from '@akala/pm'
-import { Configuration } from '@akala/config'
+import { connect, Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar, meta as pmMeta } from '@akala/pm'
+import { Configuration, ProxyConfiguration } from '@akala/config'
 import { connectByPreference, Container, helper } from '@akala/commands'
 import { ContainerProxy as PubSubProxy } from '@akala/pubsub'
 import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
-import os from 'os'
-import path from 'path'
 import { Serializable, eachAsync, mapAsync, module } from '@akala/core';
 import { SerializableDefinition } from '@akala/storage'
-import { CliContext } from '@akala/cli'
+import { CliContext, OptionType } from '@akala/cli'
 import { connect as pubsubConnect, meta as MetaPubSub, Container as PubSubContainer } from '@akala/pubsub'
 
 export interface PubSubConfiguration
@@ -31,23 +29,25 @@ export interface Sidecar<T extends StoreDefinition = unknown>
     store?: StoreDefinition<T> & T;
 }
 
-export type SidecarConfiguration = string | { name: string, program: string };
+export type SidecarPluginConfiguration = { sidecar: string, optional: true, command: string, parameters: Serializable }[]
 
-export async function $init<T extends StoreDefinition>(context: CliContext, config: Configuration | string, remotePm?: string | (pm & Container<void>)): Promise<void>
+export type SidecarConfiguration = { pubsub?: PubSubConfiguration, store?: StoreConfiguration | string | StoreConfiguration[], plugins?: SidecarPluginConfiguration };
+
+export async function $init<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, Configuration>, config: ProxyConfiguration<SidecarConfiguration> | string, remotePm?: string | (pm & Container<void>)): Promise<void>
 {
     Object.assign(this, await app<T>(context, config, remotePm));
     context.logger.help('Your application is now ready !');
 }
 
-export default async function app<T extends StoreDefinition>(context: CliContext, config: Configuration | string, remotePm?: string | (pm & Container<void>)): Promise<Sidecar<T>>
+export default async function app<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, Configuration>, config: ProxyConfiguration<SidecarConfiguration> | string, remotePm?: string | (pm & Container<void>)): Promise<Sidecar<T>>
 {
     if (typeof config == 'undefined')
         throw new Error('configuration is required');
     if (typeof config == 'string')
         config = await Configuration.load(config);
     const sidecar: Sidecar<T> = {} as unknown as Sidecar<T>;
-    const pubsubConfig = config.get<string | PubSubConfiguration>('pubsub');
-    const stateStoreConfig = config.get<StoreConfiguration | string | StoreConfiguration[]>('store');
+    const pubsubConfig = config.pubsub?.extract();
+    const stateStoreConfig = config.store;
 
     context.logger.debug('connecting to pm...');
     if (typeof remotePm != 'string')
@@ -55,7 +55,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     else
     {
         //eslint-disable-next-line @typescript-eslint/no-var-requires
-        var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: (await import('@akala/pm/commands.json', { assert: { type: 'json' } })).default })
+        var result = await connectByPreference<void>(context.state.get('pm.mapping.pm.connect'), { host: remotePm, metadata: pmMeta })
         sidecar.pm = result.container as Container<void> & pm;
     }
 
@@ -116,7 +116,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
                 await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
                 {
                     await engine.init(Object.assign({}, stateStoreConfig.providerOptions, { path: context.currentWorkingDirectory }));
-                    Object.entries(stateStoreConfig.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model.extract()));
+                    Object.entries(stateStoreConfig.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model));
                     sidecar.store = Store.create<T>(engine, ...Object.keys(stateStoreConfig.models) as (Exclude<keyof T, number | symbol>)[]);
                 })();
             break;
