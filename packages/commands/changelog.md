@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* enable metadata command on connect ce7cb1e
+* undo d4484d3
 
 
 
