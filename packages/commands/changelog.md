@@ -1,14 +1,9 @@
-#  (2024-11-17)
+#  (2024-11-18)
 
 
 ### Bug Fixes
 
-* remove container from ConnectionPreference 3f27285
-
-
-### BREAKING CHANGES
-
-* remove container from ConnectionPreference
+* enable metadata command on connect ce7cb1e
 
 
 
