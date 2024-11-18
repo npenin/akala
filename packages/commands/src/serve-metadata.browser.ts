@@ -4,6 +4,7 @@ import { ErrorWithStatus } from '@akala/core';
 import { Container } from './model/container.js';
 import { handlers } from './protocol-handler.js';
 import { Metadata } from './index.browser.js';
+import $metadataCmd from './commands/$metadata.js';
 
 export type ServeMetadata = Record<string, object>
 
@@ -50,6 +51,9 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
     }
     // eslint-disable-next-line no-constant-condition
     while (true);
+
+    container.register($metadataCmd);
+
     if (settings?.metadata)
         registerCommands(settings.metadata.commands, processor, container);
     else
