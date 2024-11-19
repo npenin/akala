@@ -1,9 +1,9 @@
-#  (2024-11-18)
+#  (2024-11-19)
 
 
 ### Bug Fixes
 
-* undo d4484d3
+* connectWithPreference when no metadata is provided 7946a54
 
 
 
