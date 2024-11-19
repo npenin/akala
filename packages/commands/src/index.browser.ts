@@ -15,7 +15,9 @@ import $metadata from './commands/$metadata.js'
 import { handlers } from './protocol-handler.js'
 import { Container } from './model/container.js'
 import { registerCommands } from './generator.js'
+import $metadataCmd from './commands/$metadata.js'
 export { CommandProcessor };
+export { $metadataCmd, $metadata };
 
 export { ConfigurationMap } from './metadata/configurations.js'
 
