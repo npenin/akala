@@ -60,8 +60,10 @@ export default async function start(this: State, pm: pmContainer.container & Con
         cp.on('disconnect', function ()
         {
             if (!context.options.keepAttached)
+            {
                 cp.unref();
-            console.log('pm started');
+                console.log('pm started');
+            }
             resolve();
         })
     })
