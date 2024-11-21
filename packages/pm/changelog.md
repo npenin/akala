@@ -1,9 +1,10 @@
-#  (2024-11-19)
+#  (2024-11-21)
 
 
 ### Bug Fixes
 
-* connectWithPreference when no metadata is provided 7946a54
+* confusing message on pm stopped when keep attached d84d01e
+* pm default connect order 4aa1911
 
 
 
