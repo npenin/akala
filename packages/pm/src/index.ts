@@ -32,7 +32,7 @@ export async function connect(name: string, container?: pmContainer & Container<
     return { connect: container.dispatch('connect', name) as Promise<ServeMetadata>, container: { name, commands: metaContainer.commands.filter(c => c.name.startsWith(name + '.')).map(c => ({ name: c.name.substring(name.length + 1), config: c.config })) } };
 }
 
-export const defaultOrders: (keyof ServeMetadata)[] = ['ssocket', 'socket', 'wss', 'ws'];
+export const defaultOrders: (keyof ServeMetadata)[] = ['jsonrpc+unix+tls', 'jsonrpc+unix', 'jsonrpc+unix+tls', 'jsonrpc+tcp+tls', 'jsonrpc+tcp', 'wss', 'ws', 'https', 'http'];
 
 export type SideCarConnectionPreference = { [key in keyof SidecarMap]?: Partial<ConnectionPreference> & { orders?: (keyof ServeMetadata)[] } };
 
