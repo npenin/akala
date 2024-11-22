@@ -30,10 +30,12 @@ export class Cli
 
 export async function connect(socketPath: string | URL, signal: AbortSignal, resolvedMetadata?: Metadata.Container): Promise<Container<unknown>>
 {
-    const { processor, getMetadata } = await handlers.process(new URL(socketPath), { signal }, {})
+    const container = new Container('proxy', null);
+    const { processor, getMetadata } = await handlers.process(new URL(socketPath), { signal, container }, {})
 
     const meta = resolvedMetadata || await getMetadata();
-    const container = new Container(meta.name, null, processor);
+    container.name = meta.name;
+    container.processor.useMiddleware(20, processor);
 
     registerCommands(meta.commands, null, container);
     return container;

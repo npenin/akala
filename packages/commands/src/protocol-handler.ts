@@ -24,7 +24,7 @@ import { Container } from "./model/container.js";
 export type HandlerResult<T> = { processor: T, getMetadata(): Promise<Metadata.Container> };
 export type handler<T> = (arg1: URL, arg2: HandlerResult<T>) => Promise<void>
 
-export const handlers = new UrlHandler<[URL, { signal: AbortSignal }, Partial<HandlerResult<ICommandProcessor>>], HandlerResult<ICommandProcessor>>();
+export const handlers = new UrlHandler<[URL, { signal: AbortSignal, container?: Container<unknown> }, Partial<HandlerResult<ICommandProcessor>>], HandlerResult<ICommandProcessor>>();
 
 export type ServerHandler<T = { signal: AbortSignal }> = (container: Container<unknown>, options: T) => Promise<void>
 
