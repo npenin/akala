@@ -1,9 +1,10 @@
-#  (2024-11-19)
+#  (2024-11-22)
 
 
 ### Bug Fixes
 
-* connectWithPreference when no metadata is provided 7946a54
+* add container as an option in url handler 712e112
+* add more information in UnknownCommandError d0a1c08
 
 
 
