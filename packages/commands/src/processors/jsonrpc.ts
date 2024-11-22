@@ -13,7 +13,7 @@ import { TLSSocket, Server as TLSServer, TlsOptions } from 'tls';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
-handlers.useProtocol('jsonrpc+tcp', async function (url, options)
+handlers.useProtocol('jsonrpc+tcp', async function (url, options, result)
 {
     const socket = new Socket();
     if (url.hostname == '0.0.0.0' || url.hostname == '*')
@@ -21,7 +21,7 @@ handlers.useProtocol('jsonrpc+tcp', async function (url, options)
     else
         await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ host: url.hostname, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
 
-    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
 
     return {
@@ -50,7 +50,7 @@ serverHandlers.useProtocol('jsonrpc+tcp', async function (url: URL | string, con
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
-handlers.useProtocol('jsonrpc+tcp+tls', async function (url, result)
+handlers.useProtocol('jsonrpc+tcp+tls', async function (url, options, result)
 {
     const socket = new Socket();
     const tlsSocket = new TLSSocket(socket);
@@ -59,7 +59,8 @@ handlers.useProtocol('jsonrpc+tcp+tls', async function (url, result)
     else
         await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ host: url.hostname, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
 
-    const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket));
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket), options.container);
+    options?.signal?.addEventListener('abort', () => socket.end());
 
     return Object.assign(result, {
         processor: new JsonRpc(connection),
@@ -82,13 +83,14 @@ serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string,
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
-handlers.useProtocol('jsonrpc+unix', async function (url, result)
+handlers.useProtocol('jsonrpc+unix', async function (url, options, result)
 {
     const socket = new Socket();
 
     await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ path: url.hostname + url.pathname }, resolve) });
 
-    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket), options.container);
+    options?.signal?.addEventListener('abort', () => socket.end());
 
     return Object.assign(result, {
         processor: new JsonRpc(connection),
@@ -111,13 +113,14 @@ serverHandlers.useProtocol('jsonrpc+unix', async function (url: URL | string, co
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
-handlers.useProtocol('jsonrpc+unix+tls', async function (url, result)
+handlers.useProtocol('jsonrpc+unix+tls', async function (url, options, result)
 {
     const socket = new Socket();
     const tlsSocket = new TLSSocket(socket);
     await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ path: url.hostname + url.pathname }, resolve) });
 
-    const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket));
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket), options.container);
+    options?.signal?.addEventListener('abort', () => socket.end());
 
     return Object.assign(result, {
         processor: new JsonRpc(connection),
