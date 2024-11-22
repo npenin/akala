@@ -72,7 +72,7 @@ export class Container<TState> extends SimpleInjector implements MiddlewareAsync
             {
                 cmd = this.resolve(command);
                 if (!cmd)
-                    throw new UnknownCommandError(command);
+                    throw new UnknownCommandError(command, this);
                 if (cmd.name !== command)
                 {
                     const proc = this.resolve<Container<TState>>(command.substring(0, command.length - cmd.name.length - 1));
