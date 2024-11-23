@@ -89,7 +89,7 @@ describe('subframe', function ()
         assert.deepStrictEqual(obj.read(buffer, new Cursor(), {}), expected, 'frame writing and reading');
 
         var expected: SuperType = { type: 2, prop1: 17, sub: { length: 10, type: 1, sequenceNumber: 0, message: 'Buffer.from([0xff, 0xf5, 0x5f, 0x55]' } }
-        var buffer = Buffer.concat(parserWrite(obj, expected));
+        buffer = Buffer.concat(parserWrite(obj, expected));
         assert.deepStrictEqual(buffer, Buffer.from([17, 0, 2, 10, 0, 1, 0, 36, 66, 117, 102, 102, 101, 114, 46, 102, 114, 111, 109, 40, 91, 48, 120, 102, 102, 44, 32, 48, 120, 102, 53, 44, 32, 48, 120, 53, 102, 44, 32, 48, 120, 53, 53, 93]))
         assert.deepStrictEqual(obj.read(buffer, new Cursor(), {}), expected, 'frame writing and reading');
 

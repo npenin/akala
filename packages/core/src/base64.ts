@@ -69,11 +69,11 @@ function uint6ToB64(nUint6)
 
 export function base64UrlEncArr(aBytes: ArrayBuffer | Uint8Array): string
 {
-    return base64EncArr(aBytes).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '');
+    return base64EncArr(aBytes).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 export function base64UrlDecToArr(s: string): ArrayBuffer | Uint8Array
 {
-    s = s.replaceAll('-', '+').replaceAll('_', '/');
+    s = s.replace(/-/g, '+').replace(/_/g, '/');
     switch (s.length % 3)
     {
         case 0:
@@ -85,7 +85,7 @@ export function base64UrlDecToArr(s: string): ArrayBuffer | Uint8Array
             s += '==';
             break;
     }
-    return base64DecToArr(s.replaceAll('-', '+').replaceAll('_', '/'));
+    return base64DecToArr(s.replace(/-/g, '+').replace(/_/g, '/'));
 }
 
 export function extractPrivateKey(pem: string)
@@ -219,7 +219,7 @@ export function strToUTF8Arr(sDOMStr: string): ArrayBuffer
                                 : 6;
     }
 
-    const aBytes = new Uint8Array(nArrLen);
+    const aBytes = new ArrayBuffer(nArrLen);
 
     /* transcription… */
     let nIdx = 0;

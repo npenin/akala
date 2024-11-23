@@ -6,7 +6,7 @@ export async function hashPassword(state: State, password: string)
 {
     const salt = new Uint8Array(128);
     crypto.getRandomValues(salt);
-    return { salt: base64.base64EncArr(salt), password: await state.getHash(password, salt) };
+    return { salt: base64.base64EncArr(salt), password: await state.getHash(password, salt.buffer) };
 }
 
 export default async function (this: State, userName: string, password: string)
