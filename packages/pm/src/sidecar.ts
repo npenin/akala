@@ -6,7 +6,7 @@ import pm from './container.js'
 
 let instance: Sidecar;
 
-export default function (options?: { pm?: pm.container & Container<void> } & (Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference), noCache?: boolean): Sidecar
+export default function singleton(options?: { pm?: pm.container & Container<void>, container?: Container<unknown> } & (Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference), noCache?: boolean): Sidecar
 {
     return instance || (instance = sidecar(options, noCache));
 }
