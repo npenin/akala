@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add missing container in options 38206ea
+* add missing container in connectWithPreferences 42100ef
 
 
 
