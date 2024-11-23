@@ -11,7 +11,7 @@ export default function (options?: { pm?: pm.container & Container<void> } & (Om
     return instance || (instance = sidecar(options, noCache));
 }
 
-export function sidecar(options?: { pm?: pm.container & Container<void> } & (Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference), noCache?: boolean): Sidecar
+export function sidecar(options?: { pm?: pm.container & Container<void>, container?: Container<unknown> } & (Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference), noCache?: boolean): Sidecar
 {
     if (!options)
         options = {};
