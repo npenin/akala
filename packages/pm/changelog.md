@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* re-enable container in sidecar a3a0df2
+* add missing container in options 38206ea
 
 
 
