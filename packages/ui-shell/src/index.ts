@@ -31,7 +31,7 @@ enum HotKey
     Backspace
 }
 
-const containerPromise = connectByPreference({ socket: [{ port: 31416, host: 'localhost' }], ssocket: [{ port: 31417, host: 'home.dragon-angel.fr' }] }, { metadata: pmMeta }, 'socket').then(async c =>
+const containerPromise = connectByPreference({ 'jsonrpc+tcp://localhost:31416': {}, 'jsonrpc+tcp://home.dragon-angel.fr:31417': {} }, { metadata: pmMeta, container: null }).then(async c =>
 {
     return c.container
 });

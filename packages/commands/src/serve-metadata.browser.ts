@@ -12,6 +12,7 @@ export interface ConnectionPreference
     preferRemote?: boolean;
     host?: string;
     metadata: Metadata.Container;
+    container?: Container<unknown>;
     signal?: AbortSignal;
 }
 

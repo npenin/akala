@@ -13,6 +13,8 @@ export { State } from './state.js'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type * as _pm from '@akala/pm'
+import { connectByPreference, ConnectionPreference, ICommandProcessor } from '@akala/commands';
+import { ServeMetadata } from '@akala/commands';
 declare module '@akala/pm'
 {
     interface SidecarMap
@@ -23,20 +25,15 @@ declare module '@akala/pm'
 
 export { trigger } from './triggers/http.js'
 
-import * as commands from '@akala/commands'
-
-export function connect(options: commands.ServeMetadata, settings: {
-    preferRemote?: boolean;
-    host?: string;
-}, ...orders: (keyof commands.ServeMetadata)[])
+export function connect(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[])
     : Promise<{
         container: container.container;
-        processor: commands.ICommandProcessor;
+        processor: ICommandProcessor;
     }>
 {
     if (!settings)
-        settings = {};
-    return commands.connectByPreference(options, Object.assign({ metadata: require('../commands.json') }, settings), ...orders);
+        settings = { metadata: container.meta, container: null };
+    return connectByPreference(options, Object.assign({ metadata: container.meta }, settings), ...orders);
 }
 
 // export { Logger, logger, log } from '@akala/core/src/logger'
