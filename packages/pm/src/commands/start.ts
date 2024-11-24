@@ -195,6 +195,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 cp.stderr.off('data', gather);
             });
         }
+        if (options.wait)
+            await new Promise<void>(resolve => container.ready?.addListener(resolve));
         return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
     }
 }
