@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* switch from Cli.Metadata to $metadataCmd a236ae3
+* leverage config file option 3cfb2d2
 
 
 
