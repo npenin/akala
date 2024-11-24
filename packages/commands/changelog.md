@@ -1,9 +1,9 @@
-#  (2024-11-23)
+#  (2024-11-24)
 
 
 ### Bug Fixes
 
-* add missing container in connectWithPreferences 42100ef
+* add option to reigster remote commands on provided container a4c6102
 
 
 
