@@ -1,5 +1,5 @@
 import { connect, Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar, meta as pmMeta } from '@akala/pm'
-import { Configuration, ProxyConfiguration } from '@akala/config'
+import { ProxyConfiguration } from '@akala/config'
 import { connectByPreference, Container, helper } from '@akala/commands'
 import { ContainerProxy as PubSubProxy } from '@akala/pubsub'
 import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
@@ -33,21 +33,21 @@ export type SidecarPluginConfiguration = { sidecar: string, optional: true, comm
 
 export type SidecarConfiguration = { pubsub?: PubSubConfiguration, store?: StoreConfiguration | string | StoreConfiguration[], plugins?: SidecarPluginConfiguration };
 
-export async function $init<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, Configuration>, config: ProxyConfiguration<SidecarConfiguration> | string, remotePm?: string | (pm & Container<void>)): Promise<void>
+export async function $init<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, remotePm?: string | (pm & Container<void>)): Promise<void>
 {
-    Object.assign(this, await app<T>(context, config, remotePm));
+    Object.assign(this, await app<T>(context, remotePm));
     context.logger.help('Your application is now ready !');
 }
 
-export default async function app<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, Configuration>, config: ProxyConfiguration<SidecarConfiguration> | string, remotePm?: string | (pm & Container<void>)): Promise<Sidecar<T>>
+export default async function app<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, remotePm?: string | (pm & Container<void>)): Promise<Sidecar<T>>
 {
-    if (typeof config == 'undefined')
-        throw new Error('configuration is required');
-    if (typeof config == 'string')
-        config = await Configuration.load(config);
+    // if (typeof config == 'undefined')
+    //     throw new Error('configuration is required');
+    // if (typeof config == 'string')
+    //     config = await Configuration.load(config);
     const sidecar: Sidecar<T> = {} as unknown as Sidecar<T>;
-    const pubsubConfig = config.pubsub?.extract();
-    const stateStoreConfig = config.store;
+    const pubsubConfig = context.state.pubsub?.extract();
+    const stateStoreConfig = context.state.store;
 
     context.logger.debug('connecting to pm...');
     if (typeof remotePm != 'string')
@@ -126,7 +126,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
             throw new Error('Not support configuration type')
     }
 
-    const plugins = config.get<{ sidecar: string, optional: true, command: string, parameters: Serializable }[]>('plugins');
+    const plugins = context.state.get<{ sidecar: string, optional: true, command: string, parameters: Serializable }[]>('plugins');
     if (plugins && plugins.length)
     {
         var failedSidecars: string[] = [];
