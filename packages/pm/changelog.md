@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* leverage config file option 3cfb2d2
+* add autostart support 3313b6c
+* handle wait properly 6d76e2b
 
 
 
