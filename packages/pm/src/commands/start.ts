@@ -34,6 +34,15 @@ export default async function start(this: State, pm: pmContainer.container & Con
         else
             def = this.config.containers[instanceConfig.container];
 
+        if (typeof options.autostart !== 'undefined')
+            if (instanceConfig)
+                instanceConfig.autostart = options.autostart;
+            else
+            {
+                this.config.mapping.set(options.name || name, { container: name, autostart: options.autostart });
+                await this.config.commit()
+            }
+
         // eslint-disable-next-line no-var
         var container = this.processes[options.name || name];
         if (container && container.running)
