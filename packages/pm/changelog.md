@@ -1,9 +1,9 @@
-#  (2024-11-23)
+#  (2024-11-24)
 
 
 ### Bug Fixes
 
-* add missing container in connectWithPreferences 42100ef
+* switch from Cli.Metadata to $metadataCmd a236ae3
 
 
 
