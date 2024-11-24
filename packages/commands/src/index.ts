@@ -1,7 +1,7 @@
 export * from './index.browser.js'
 export * from './serve-metadata.js'
-import serveMetadata, { ServeMetadata, connectByPreference, connectWith } from './serve-metadata.js'
-export { ServeMetadata, connectByPreference, connectWith, serveMetadata };
+import serveMetadata, { ServeMetadata, connectByPreference } from './serve-metadata.js'
+export { ServeMetadata, connectByPreference, serveMetadata };
 import * as Triggers from './triggers/index.js'
 import * as Metadata from './metadata/index.js'
 import { Configurations, Configuration, GenericConfiguration, ExtendedConfigurations } from './metadata/index.js'

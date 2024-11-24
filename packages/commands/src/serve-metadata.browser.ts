@@ -64,18 +64,17 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
 
 }
 
-export async function connectWith<T>(connectionString: string, options: object, signal: AbortSignal, container?: Container<T>): Promise<ICommandProcessor>
+export async function connectWith<T>(connectionString: string, options: object & { registerRemoteCommands?: boolean }, signal: AbortSignal, container?: Container<T>): Promise<ICommandProcessor>
 {
     const { processor, getMetadata } = await handlers.process(new URL(connectionString), { signal, ...options, container }, {})
 
-    if (container)
+    if (container && options?.registerRemoteCommands)
     {
         const meta = await getMetadata();
         registerCommands(meta.commands, null, container);
     }
 
     return processor;
-
 }
 
 export default function serveMetadata(context): ServeMetadata
