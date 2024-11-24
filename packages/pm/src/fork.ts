@@ -11,6 +11,7 @@ import { Stats } from 'fs';
 import { Processors, Triggers, ServeMetadata, Cli, registerCommands, SelfDefinedCommand, StructuredParameters, Container, CommandProcessor, serveMetadata, connectByPreference, Metadata, $metadataCmd } from '@akala/commands';
 import { fileURLToPath } from 'url';
 import commands from './container.js';
+import Configuration from '@akala/config';
 
 var isPm = false;
 
@@ -65,6 +66,9 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
             return require(c.options.program);
 
         log = logger(c.options.name);
+
+        if (c.options.configFile)
+            c.state = await Configuration.load(c.options.configFile)
 
         cliContainer = new Container('cli', {});
 
