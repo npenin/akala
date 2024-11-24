@@ -31,7 +31,7 @@ export interface Sidecar<T extends StoreDefinition = unknown>
 
 export type SidecarPluginConfiguration = { sidecar: string, optional: true, command: string, parameters: Serializable }[]
 
-export type SidecarConfiguration = { pubsub?: PubSubConfiguration, store?: StoreConfiguration | string | StoreConfiguration[], plugins?: SidecarPluginConfiguration };
+export type SidecarConfiguration = { pubsub?: PubSubConfiguration, store?: StoreConfiguration, plugins?: SidecarPluginConfiguration };
 
 export async function $init<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, remotePm?: string | (pm & Container<void>)): Promise<void>
 {
@@ -47,7 +47,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     //     config = await Configuration.load(config);
     const sidecar: Sidecar<T> = {} as unknown as Sidecar<T>;
     const pubsubConfig = context.state.pubsub?.extract();
-    const stateStoreConfig = context.state.store;
+    const stateStoreConfig = context.state.store?.extract();
 
     context.logger.debug('connecting to pm...');
     if (typeof remotePm != 'string')
