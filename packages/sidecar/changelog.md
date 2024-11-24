@@ -3,12 +3,12 @@
 
 ### Bug Fixes
 
-* remove configuration as is now expected from context 70ecf47
+* simplify pubsub config 24a2c7c
 
 
 ### BREAKING CHANGES
 
-* config is not a sidecar parameter anymore
+* string or StoreDefinitionArray not supported anymore
 
 
 
