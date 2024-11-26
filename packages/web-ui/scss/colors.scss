@@ -68,7 +68,7 @@
     }
 
     @each $variation, $name in map.get($config, 'allColors', $colorName) {
-        @if(type-of($name) !=bool) {
+        @if(meta.type-of($name) !=bool) {
             #{"--"+$variableName+"-"+$variation}: string.unquote("var(--" + $name+")");
         }
     }
