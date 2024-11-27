@@ -221,7 +221,8 @@ export class LocationService extends EventEmitter<{ changing: Event<[path: strin
 
     public refresh()
     {
-        this.dispatch(this.current, false);
+        if (running)
+            this.dispatch(this.current, false);
     }
 
     public replace(path: string, state?: unknown, init?: boolean, dispatch?: boolean)
