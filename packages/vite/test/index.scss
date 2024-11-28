@@ -42,7 +42,6 @@ header {
 
 footer {
     padding: var(--gutter);
-    background-color: var(--accent-extra-light);
 }
 
 $config: (
@@ -79,9 +78,14 @@ aside.md-5 {
             --body-color: var(--dark);
         }
 
-        body {
+        body,
+        dialog {
             background-color: var(--body-background-color);
             color: var(--body-color);
+        }
+
+        footer {
+            background-color: var(--accent-lightest);
         }
     }
 
@@ -103,6 +107,10 @@ aside.md-5 {
                 background-color: var(--body-background-color);
                 color: var(--body-color);
             }
+        }
+
+        footer {
+            background-color: var(--accent-darkest);
         }
     }
 }
