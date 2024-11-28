@@ -4,7 +4,7 @@
 
 @mixin buttons($colorName, $config, $filled: false, $colorScheme) {
 
-    @include colors.colorPalette('main-color', $colorName, $config);
+    // @include colors.colorPalette('main-color', $colorName, $config);
 
     border-radius: var(--border-radius);
     --border-width: 1px;
@@ -20,29 +20,31 @@
     @if not $filled {
 
         @if $colorScheme=='light' {
-            --background-color: var(--main-color-lightest);
+            --background-color: var(--interact-lightest);
         }
 
         @else {
-            --background-color: var(--main-color-darkest);
+            --background-color: var(--interact-darkest);
         }
 
-        --color: var(--main-color);
+        --border-color: var(--background-color);
+        --color: var(--interact);
     }
 
     @else {
         @if $colorScheme=='light' {
 
-            --background-color: var(--main-color);
+            --background-color: var(--interact-color);
+            --color: var(--interact);
+            --border-color: var(--color);
         }
 
         @else {
-            --background-color: var(--main-color-darker);
-
+            --background-color: var(--interact);
+            --color: var(--interact-complement);
+            --border-color: var(--background-color);
         }
 
-        --border-color: var(--background-color);
-        --color: var(--main-color-max-contrast);
     }
 
 
@@ -58,15 +60,16 @@
 
         @else {
             @if $colorScheme=='light' {
-                --background-color: var(--main-color-lighter);
+                --background-color: var(--interact-lighter);
             }
 
             @else {
-                --background-color: var(--main-color);
+                --background-color: var(--interact-darker);
+                --color: var(--interact-complement);
             }
 
             --border-color: var(--background-color);
-            // --color: var(--main-color);
+            // --color: var(--interact);
         }
 
     }
@@ -75,18 +78,18 @@
     &.active:not(.disabled, :disabled),
     &:focus-visible {
         @if $colorScheme=='light' {
-            --background-color: var(--main-color-lighter);
+            --background-color: var(--interact-lighter);
         }
 
         @else {
-            --background-color: var(--main-color-darker);
+            --background-color: var(--interact-darker);
         }
 
-        --color: var(--main-color);
+        --color: var(--interact);
 
         @if not $filled {
             --border-color: var(--color);
-            --color: var(--main-color);
+            --color: var(--interact);
         }
 
         @else {
@@ -126,10 +129,10 @@
     &.borderless.primary:not(.disabled, :disabled) {
         background: none;
         box-shadow: none;
-        color: var(--main-color);
+        color: var(--interact);
 
         &:hover {
-            --main-color: var(--main-color-darker);
+            --interact: var(--interact-darker);
         }
     }
 
