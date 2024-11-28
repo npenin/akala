@@ -3,16 +3,30 @@
 @use 'radiobutton.scss';
 @use '../colors.scss';
 @use '../buttons.scss';
+@use '../layout.scss';
 
 @mixin form($config, $colorScheme) {
 
+    fieldset {
+        margin-inline: 0;
+        padding: var(--gutter);
+
+        .form-control {
+            @include layout.horizontal;
+
+            input,
+            select,
+            textarea {
+                flex-grow: 1;
+            }
+        }
+    }
 
     input,
     select,
-    textarea {
-
+    textarea,
+    fieldset {
         border-radius: var(--border-radius);
-        padding: var(--gutter);
         --border-color: var(--grey);
         border-color: var(--border-color);
         background-color: var(--background-color);
@@ -24,7 +38,13 @@
         @else {
             --background-color: var(--dark);
         }
+    }
 
+    input,
+    select,
+    textarea {
+
+        padding: var(--gutter);
         transition: all ease-in-out 0.1s;
         @content;
 
@@ -65,5 +85,28 @@
 
     input[type="submit"] {
         @include buttons.buttons(interact, $config, true, $colorScheme);
+    }
+}
+
+@mixin form-control-with-placeholder-label {
+    .form-control {
+        position: relative;
+
+        >label {
+            position: absolute;
+            color: var(--grey-darker);
+            top: calc(var(--gutter) / 2);
+            left: calc(var(--gutter) / 2);
+            transition: all 0.3s;
+            background-color: var(--background-color);
+            padding: 0 calc(var(--gutter) / 2);
+
+            &:has(+input:focus-visible),
+            &:has(+input:not(:placeholder-shown)) {
+                top: calc(var(--gutter) * -1 + 0.3em);
+                font-size: smaller;
+                color: var(--body-color);
+            }
+        }
     }
 }

@@ -109,6 +109,11 @@
 
     }
 
+    // @if(map.get($config, 'useLabelsAsPlaceHolders', 'true')=='true') {
+
+    @include form.form-control-with-placeholder-label;
+    // }
+
     @include menus.menu($colorScheme) {}
 
     @include chips.chip() {
