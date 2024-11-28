@@ -8,6 +8,7 @@ import { Signup } from './signup/signup.js';
 import { Login } from './login/login.js';
 import Home from './home.js';
 import { Popover } from '@akala/web-ui';
+import { DesignKit } from './design-kit/index.js';
 // import weather from './weather.js';
 
 
@@ -48,10 +49,11 @@ bootstrapModule.activate(['$rootScope', 'services.$outlet'], async (rootScope: S
     })
 
 
-    outlet.use('/', 'main', Home);
 
     outlet.use('/signup', 'main', Signup[outletDefinition]);
+    outlet.use('/design-kit', 'main', DesignKit[outletDefinition]);
     outlet.use('/login', 'main', Login[outletDefinition]);
+    outlet.use('/', 'main', Home);
 })
 
 bootstrapModule.ready(['services.$location', '$rootScope'], async function (location: LocationService, rootScope: IScope<any>)

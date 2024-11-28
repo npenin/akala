@@ -1,0 +1,65 @@
+<div style="display: flex;flex-direction: column;">
+    <input name="aaa-checkbox" value="aaa-checkbox" type="checkbox" />
+    <input name="aaa-color" value="aaa-color" type="color" />
+    <input name="aaa-date" value="aaa-date" type="date" />
+    <input name="aaa-datetime" value="aaa-datetime" type="datetime" />
+    <input name="aaa-datetime-local" value="aaa-datetime-local" type="datetime-local" />
+    <input name="aaa-email" value="aaa-email" type="email" />
+    <input name="aaa-file" value="aaa-file" type="file" />
+    <input name="aaa-image" value="aaa-image" type="image" />
+    <input name="aaa-month" value="aaa-month" type="month" />
+    <input name="aaa-number" value="aaa-number" type="number" />
+    <input name="aaa-password" value="aaa-password" type="password" />
+    <input name="aaa-radio" value="aaa-radio" type="radio" />
+    <input name="aaa-range" value="aaa-range" type="range" />
+    <input name="aaa-reset" value="aaa-reset" type="reset" />
+    <input name="aaa-search" value="aaa-search" type="search" />
+    <input name="aaa-submit" value="aaa-submit" type="submit" />
+    <input name="aaa-tel" value="aaa-tel" type="tel" />
+    <input name="aaa-text" value="aaa-text" type="text" />
+    <input name="aaa-time" value="aaa-time" type="time" />
+    <input name="aaa-url" value="aaa-url" type="url" />
+    <input name="aaa-week" value="aaa-week" type="week" />
+</div>
+
+<form>
+    <fieldset class="vertical">
+        <legend>Who are you ?</legend>
+        <div class="form-control">
+            <label for="bbb-input1">First name</label>
+            <input type="text" name="bbb-input1" id="bbb-input1" placeholder=" " />
+        </div>
+        <div class="form-control">
+            <label for="bbb-input2">Last name</label>
+            <input type="text" name="bbb-input2" id="bbb-input2" placeholder=" " />
+        </div>
+    </fieldset>
+</form>
+
+<input type="button" value="open dialog 1" on on-click="controller.openDialog('dialog1')">
+<dialog id="dialog1">
+    <legend>Test title</legend>
+
+    <footer>
+        <input type="button" value="Cancel" on on-click="controller.closeDialog('dialog1')" />
+        <input type="submit" value="OK" />
+    </footer>
+</dialog>
+<input type="button" value="open dialog 2" on on-click="controller.openDialog('dialog2')">
+<dialog id="dialog2" class="centered">
+    <legend>Test title</legend>
+
+    <footer>
+        <input type="button" value="Cancel" on on-click="controller.closeDialog('dialog2')" />
+        <input type="submit" value="OK" />
+    </footer>
+</dialog>
+<input type="button" value="open dialog 3" on on-click="controller.openDialog('dialog3')">
+<dialog id="dialog3" class="bottom">
+    <legend>Test title</legend>
+
+    <footer>
+        <input type="button" value="Cancel" on on-click="controller.closeDialog('dialog3')" />
+        <input type="submit" value="OK" />
+    </footer>
+</dialog>
