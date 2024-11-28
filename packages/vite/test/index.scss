@@ -94,10 +94,10 @@ aside.md-5 {
         @include theme.theme($config, $colorScheme: 'dark') using ($config, $colorScheme) {
             :root {
 
-                $accentLightAlpha: color.change(map.get($config, colors, accent), $alpha: 0.31);
+                $accentLightAlpha: color.change(map.get($config, colors, accent), $alpha: 0.12);
                 $secondAccentLightAlpha: color.change(map.get($config, colors, secondAccent), $alpha: 0.12);
 
-                --colored-gradient: linear-gradient(149deg, #{$accentLightAlpha} 0%, #{$secondAccentLightAlpha} 100%);
+                --colored-gradient: linear-gradient(149deg, #{$accentLightAlpha} 0%, var(--dark) 100%);
 
                 --grey-gradient: linear-gradient(355deg, var(--dark) 0%, var(--grey-dark) 100%);
 
@@ -107,10 +107,21 @@ aside.md-5 {
                 background-color: var(--body-background-color);
                 color: var(--body-color);
             }
+
+            dialog {
+                border-color: var(--accent-darkest);
+
+                footer {
+                    border-top-width: 1px;
+                    border-top-style: solid;
+                    border-top-color: var(--accent-darkest);
+                    margin-top: var(--gutter);
+                }
+            }
         }
 
         footer {
-            background-color: var(--accent-darkest);
+            background: var(--colored-gradient);
         }
     }
 }
