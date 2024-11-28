@@ -13,16 +13,24 @@ section:has(>h1, >h2, >h3, >h4, >h5, >h6) {
     justify-content: flex-start;
 }
 
-.vertical {
+@mixin vertical {
     display: flex;
     flex-direction: column;
     gap: var(--gutter);
 }
 
-.horizontal {
+@mixin horizontal {
     display: flex;
     flex-direction: row;
     gap: var(--gutter);
+}
+
+.horizontal {
+    @include horizontal;
+}
+
+.vertical {
+    @include vertical;
 }
 
 @mixin media-maxWidth($name, $config, $mediaName: screen) {
