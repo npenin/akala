@@ -1,0 +1,36 @@
+:root {
+    --card-border-radius: calc(var(--border-radius)/2);
+}
+
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-border-radius);
+    padding: var(--gutter);
+
+    &>header {
+        margin: calc(var(--gutter) * -1);
+        margin-bottom: 0;
+        padding: var(--gutter);
+
+        &+* {
+            margin-top: var(--gutter);
+        }
+    }
+
+    &>footer {
+        margin: calc(var(--gutter) * -1);
+        margin-top: 0;
+        padding: var(--gutter);
+    }
+
+    &.actionable.hovered:not(:disabled, .disabled),
+    &.actionable:hover:not(:disabled, .disabled) {
+        box-shadow: var(--shadow);
+    }
+
+    &.disabled,
+    &:disabled {
+        --border-color: var(--disabled-lighter);
+        color: var(--disabled-contrast);
+    }
+}

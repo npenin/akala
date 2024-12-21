@@ -1,0 +1,215 @@
+.text-color {
+    color: var(--color);
+}
+
+.bg-color {
+    background-color: var(--background-color);
+}
+
+.bg-colored-gradient {
+    background: var(--colored-gradient);
+}
+
+:root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --dark-gray: #3c3c43;
+    --light-gray: #F2F2F7;
+    --medium-gray: #D1D1D6;
+    --separator-gray: #C6C6C8;
+    --highlight-yellow: #FFFF00;
+    --blue-link: var(--accent, #007AFF);
+    --blue-selection: #D6E4FF;
+    --opaque-separator: #D1D1D6;
+    --secondary-background: var(--light-gray);
+    --light-background: #FFFFFF;
+    --dark-background: #1C1C1E;
+    --grid-color: #E5E5E5;
+    --shadow-color-light: #0000001a;
+    --shadow-color-dark: #00000099;
+    --disabled-text: #C6C6C8;
+    --highlight-color: var(--system-red);
+    --unemphasized-selected-text: #C6C6C8;
+    --unemphasized-selected-background: #E5E5E5;
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+    :root {
+        /* System Colors for Light Mode */
+        --system-red: #FF3B30;
+        --system-green: #34C759;
+        --system-blue: #007AFF;
+        --system-yellow: #FFCC00;
+        --system-orange: #FF9500;
+        --system-pink: #FF2D55;
+        --system-purple: #AF52DE;
+        --system-teal: #5AC8FA;
+        --system-indigo: #5856D6;
+        --system-gray: #8e8e93;
+        --system-gray2: #aeaeb2;
+        --system-gray3: #c7c7cc;
+        --system-gray4: #d1d1d6;
+        --system-gray5: #e5e5ea;
+        --system-gray6: #f2f2f7;
+
+        /* Label Colors */
+        --label-color: var(--black);
+        --secondary-label-color: var(--dark-gray);
+        --tertiary-label-color: var(--dark-gray);
+        --quaternary-label-color: var(--dark-gray);
+
+        /* Fill Colors */
+        --system-fill-color: var(--light-gray);
+        --secondary-system-fill-color: var(--medium-gray);
+        --tertiary-system-fill-color: var(--medium-gray);
+        --quaternary-system-fill-color: var(--separator-gray);
+
+        /* Text Colors */
+        --placeholder-text-color: var(--dark-gray);
+        --header-text-color: var(--black);
+
+        /* Background Colors */
+        --system-background-color: var(--light-background);
+        --secondary-system-background-color: var(--secondary-background);
+        --tertiary-system-background-color: var(--light-background);
+        --text-background-color: var(--white);
+
+        /* Grouped Background Colors */
+        --system-grouped-background-color: var(--secondary-background);
+        --secondary-system-grouped-background-color: var(--light-background);
+        --tertiary-system-grouped-background-color: var(--secondary-background);
+
+        /* Separator Colors */
+        --separator-color: var(--separator-gray);
+        --opaque-separator-color: var(--opaque-separator);
+
+        /* Link Colors */
+        --link-color: var(--blue-link);
+
+        /* Accent Colors */
+        --control-accent-color: var(--blue-link);
+        --control-color: var(--blue-link);
+        --highlight-color: var(--highlight-yellow);
+        --selected-control-color: var(--blue-link);
+        --selected-control-text-color: var(--white);
+        --find-highlight-color: var(--highlight-yellow);
+
+        /* Control Colors */
+        --control-background-color: var(--light-background);
+        --control-text-color: var(--black);
+        --disabled-control-text-color: var(--disabled-text);
+        --control-tint: var(--medium-gray);
+        --current-control-tint: var(--medium-gray);
+
+        /* Selection Colors */
+        --selection-color: var(--blue-selection);
+        --selected-content-background-color: var(--blue-selection);
+        --selected-text-background-color: var(--blue-selection);
+        --selected-text-color: var(--black);
+        --unemphasized-selected-content-background-color: var(--unemphasized-selected-background);
+        --unemphasized-selected-text-background-color: var(--unemphasized-selected-background);
+        --unemphasized-selected-text-color: var(--unemphasized-selected-text);
+
+        /* Other */
+        --grid-color: var(--grid-color);
+        --shadow-color: var(--shadow-color-light);
+        /* Light mode shadow */
+        --window-background-color: var(--light-background);
+        --window-frame-text-color: var(--dark-background);
+    }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --system-red: #FF453A;
+        --system-green: #30D158;
+        --system-blue: #0A84FF;
+        --system-yellow: #FFDD57;
+        --system-orange: #FF9F0A;
+        --system-pink: #FF2D55;
+        --system-purple: #AF52DE;
+        --system-teal: #64D2FF;
+        --system-indigo: #5E6AD2;
+
+        --system-gray: #8e8e93;
+        --system-gray2: #636366;
+        --system-gray3: #48484a;
+        --system-gray4: #3a3a3c;
+        --system-gray5: #2c2c2e;
+        --system-gray6: #1c1c1e;
+
+        /* Label Colors */
+        --label-color: var(--white);
+        --secondary-label-color: var(--light-gray);
+        --tertiary-label-color: var(--light-gray);
+        --quaternary-label-color: var(--light-gray);
+
+        /* Fill Colors */
+        --system-fill-color: var(--dark-background);
+        --secondary-system-fill-color: var(--medium-gray);
+        --tertiary-system-fill-color: var(--medium-gray);
+        --quaternary-system-fill-color: var(--separator-gray);
+
+        /* Text Colors */
+        --placeholder-text-color: var(--light-gray);
+        --header-text-color: var(--white);
+
+        /* Background Colors */
+        --system-background-color: var(--dark-background);
+        --secondary-system-background-color: var(--dark-gray);
+        --tertiary-system-background-color: var(--dark-gray);
+        --text-background-color: var(--black);
+
+        /* Grouped Background Colors */
+        --system-grouped-background-color: var(--dark-gray);
+        --secondary-system-grouped-background-color: var(--dark-gray);
+        --tertiary-system-grouped-background-color: var(--medium-gray);
+
+        /* Separator Colors */
+        --separator-color: var(--medium-gray);
+        --opaque-separator-color: var(--separator-gray);
+
+        /* Link Colors */
+        --link-color: var(--blue-link);
+
+        /* Accent Colors */
+        --control-accent-color: var(--blue-link);
+        --control-color: var(--blue-link);
+        --highlight-color: var(--highlight-yellow);
+        --selected-control-color: var(--blue-link);
+        --selected-control-text-color: var(--white);
+        --find-highlight-color: var(--highlight-yellow);
+
+        /* Control Colors */
+        --control-background-color: var(--dark-gray);
+        --control-text-color: var(--white);
+        --disabled-control-text-color: var(--disabled-text);
+        --control-tint: var(--medium-gray);
+        --current-control-tint: var(--medium-gray);
+
+        /* Selection Colors */
+        --selection-color: var(--blue-selection);
+        --selected-content-background-color: var(--blue-selection);
+        --selected-text-background-color: var(--blue-selection);
+        --selected-text-color: var(--white);
+        --unemphasized-selected-content-background-color: var(--unemphasized-selected-background);
+        --unemphasized-selected-text-background-color: var(--unemphasized-selected-background);
+        --unemphasized-selected-text-color: var(--unemphasized-selected-text);
+
+
+        /* Other */
+        --grid-color: var(--grid-color);
+        --shadow-color: var(--shadow-color-dark);
+        /* Dark mode shadow */
+        --window-background-color: var(--dark-background);
+        --window-frame-text-color: var(--light-background);
+    }
+}
+
+body,
+dialog {
+    color: var(--window-frame-text-color);
+    background-color: var(--window-background-color);
+}

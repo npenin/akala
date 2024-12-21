@@ -1,0 +1,274 @@
+@import "reset.css";
+@import "colors.css";
+@import 'hyperlinks.css';
+@import "layout.css";
+@import 'form/form.css';
+@import 'menus.css';
+@import 'dialogs.css';
+@import 'chips.css';
+@import 'cards.css';
+/* @import 'flex-grid.css'; */
+@import 'table.css';
+/* @import-tokens '../default-theme.tokens.json'; */
+
+@media screen and (--breakpoints-xs) {
+    .flex-xs {
+        composes: d-flex from './layout.css';
+
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-sm) {
+    .flex-sm {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-md) {
+    .flex-md {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-lg) {
+    .flex-lg {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-xl) {
+    .flex-xl {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-xxl) {
+    .flex-xxl {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-kkkk) {
+    .flex-kkkk {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-fullhd) {
+    .flex-fullhd {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-hd) {
+    .flex-hd {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-dvd) {
+    .flex-dvd {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-mobile-s) {
+    .flex-mobile-s {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-mobile-m) {
+    .flex-mobile-m {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-mobile-l) {
+    .flex-mobile-l {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-tablet) {
+    .flex-tablet {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-laptop) {
+    .flex-laptop {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+@media screen and (--breakpoints-laptop-l) {
+    .flex-laptop-l {
+        composes: d-flex from './layout.css';
+        flex-direction: column;
+
+        >* {
+            flex-basis: auto;
+        }
+    }
+}
+
+
+/* 
+@mixin init($config) {
+
+
+    @if(not map.has-key($config, 'colors', 'grey')) {
+        $grey: color.mix(map.get($config, 'colors', 'dark'), map.get($config, 'colors', 'light'));
+        $config: map.set($config, 'colors', 'grey', $grey);
+    }
+
+    $config: map.set($config, lightnesses, 'light', ("": 0));
+    $config: map.set($config, lightnesses, 'dark', ("": 0));
+
+
+    $config: colors.computeAllVariants($config);
+
+    $config: map.set($config, allColors, light, ("": true, "max-contrast":dark));
+    $config: map.set($config, allColors, dark, ("": true, "max-contrast":light));
+
+    @include colors.colors($config);
+
+    @include flex-grid.grid($config, 12);
+
+    @content($config);
+} */
+/* 
+@media screen and (max-width:dtcg('breakpoints.md')) {
+    :global(.akala-button) {
+        padding: var(--gutter);
+        height: 48px;
+    }
+} */
+
+:root,
+::backdrop,
+input::-webkit-calendar-picker-indicator {
+    --border-radius: 8px;
+    --gutter: 16px;
+    /* 
+    @if $colorScheme=='light' {
+        --shadow-color: rgba(from var(--grey) r g b 0.09);
+        --disabled: var(--grey-light);
+        --disabled-darker: hsl(from var(--grey) h s);
+        @include colors.colorPalette('disabled', 'grey-light', $config);
+    }
+
+    @else {
+        --shadow-color: rgba(from var(--grey-dark) r g b 0.39);
+        @include colors.colorPalette('disabled', 'grey-extra-dark', $config);
+
+    } */
+
+    --shadow: 0 0.188rem 0.75rem 0 var(--shadow-color);
+}
+
+.button,
+button,
+a.button,
+input[type="button"],
+input[type="reset"],
+button[type="button"],
+button[type="reset"],
+input::-webkit-file-upload-button,
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    composes: button-bordered from './buttons.module.css';
+    --interact: var(--control-accent-color);
+
+    padding: calc(var(--gutter)/2) var(--gutter);
+
+    @media screen and (--breakpoints-md) {
+
+        padding: var(--gutter);
+        height: 48px;
+    }
+}
+
+.button.primary,
+button.primary,
+a.button.primary,
+input[type="submit"],
+button[type="submit"] {
+    composes: button-filled from './buttons.module.css';
+}

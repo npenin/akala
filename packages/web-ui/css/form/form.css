@@ -1,0 +1,95 @@
+@import 'text-input.css';
+@import 'checkbox.css';
+@import 'radiobutton.css';
+
+input,
+select,
+textarea,
+fieldset,
+input::-webkit-inner-spin-button {
+    --border-color: var(--grey);
+}
+
+input,
+select,
+textarea,
+fieldset {
+    border-radius: var(--border-radius);
+    --border-color: var(--separator-color);
+    --background-color: var(--control-background-color);
+    --text-color: var(--control-text-color);
+    border-color: var(--border-color);
+    background-color: var(--background-color);
+}
+
+input,
+select,
+textarea {
+
+    padding: calc(var(--gutter) / 2) var(--gutter);
+    transition: all ease-in-out 0.1s;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+
+    &:hover:enabled,
+    &.hovered:enabled {
+        --border-color: var(--interact);
+
+        &:hover:enabled::-webkit-calendar-picker-indicator,
+        &.hovered:enabled::-webkit-calendar-picker-indicator,
+        &:hover:enabled::-webkit-inner-spin-button,
+        &.hovered:enabled::-webkit-inner-spin-button {
+            --border-color: var(--interact);
+
+        }
+    }
+
+    &::placeholder {
+        color: var(--placeholder);
+    }
+
+    &:disabled {
+        --background-color: var(--disabled-lighter);
+        --border-color: var(--disabled-lighter);
+        --color: var(--disabled-max-contrast);
+
+        &::placeholder {
+            color: var(--disabled);
+        }
+    }
+
+    &:focus-visible {
+        outline: none;
+        --border-color: var(--interact);
+    }
+
+}
+
+.placeholder-label {
+    .form-control {
+        position: relative;
+
+        >label:has(+input:not([type="checkbox"],
+                [type="color"],
+                [type="radio"],
+                [type="range"],
+                [type="reset"],
+                [type="search"],
+                [type="submit"])) {
+            position: absolute;
+            color: var(--grey-darker);
+            top: calc(var(--gutter) / 2);
+            left: calc(var(--gutter) / 2);
+            transition: all 0.3s;
+            background-color: var(--background-color);
+            padding: 0 calc(var(--gutter) / 2);
+
+            &:has(+input:focus-visible),
+            &:has(+input:not(:placeholder-shown)) {
+                top: calc(var(--gutter) * -1 + 0.3em);
+                font-size: smaller;
+                color: var(--body-color);
+            }
+        }
+    }
+}

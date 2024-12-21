@@ -1,0 +1,116 @@
+input[type="checkbox"],
+input[type="radio"] {
+    appearance: none;
+    border-radius: min(var(--border-radius), 6px);
+    padding: 0;
+    height: 1.2em;
+    width: 1.2em;
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+    margin: 0;
+
+    --background-color: light-dark(var(--light), var(--dark));
+    --color: light-dark(var(--grey), var(--grey-lighter));
+
+    --border-color: var(--color);
+
+
+    &:hover,
+    &.hovered {
+        --color: var(--interact);
+
+        --background-color: light-dark(var(--white), var(--black));
+    }
+
+    &:active {
+        --color: light-dark(var(--interact-lighter), var(--interact-darker));
+    }
+
+    &:checked {
+        --background-color: var(--interact);
+
+        --color: var(--interact-complement);
+
+        &::after {
+            content: "✓";
+            color: var(--color);
+            position: absolute;
+            display: block;
+            height: 1.1em;
+            width: 1.1em;
+            line-height: 1.1rem;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        &:hover:enabled,
+        &.hovered:enabled {
+
+            --background-color: light-dark(var(--interact-lighter), var(--interact-darker));
+            --color: var(--interact);
+        }
+
+        &:active {
+            --border-color: var(--interact);
+        }
+
+        &:disabled {
+
+            --background-color: var(--disabled-lighter);
+            --color: var(--disabled);
+            border-color: var(--color);
+        }
+    }
+
+    &:disabled {
+        --background-color: var(--disabled-lighter);
+        --color: var(--disabled);
+
+        --border-color: var(--disabled);
+
+    }
+}
+
+input[type="checkbox"]:checked {
+    --border-color: var(--background-color);
+}
+
+input[type="checkbox"].switch,
+.switch input[type="checkbox"] {
+    --size: 1.125rem;
+    --spacing: 1px;
+    font-size: var(--size);
+    height: 1em;
+    width: calc(2em - var(--spacing));
+    border-radius: calc(var(--size) * 2 / 3);
+    appearance: none;
+    margin-top: var(--spacing);
+    /* background-color: var(--background-color); */
+
+    &::after {
+        content: "";
+        border: none;
+        height: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
+        width: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
+        margin: var(--spacing);
+        margin-left: calc(var(--spacing) * 1.5);
+        border-radius: inherit;
+        display: block;
+        transition: all ease-in-out 0.1s;
+        background-color: var(--color);
+    }
+
+    &:checked {
+        &::after {
+            content: "";
+            margin-left: var(--size);
+            margin-top: calc(var(--spacing) + 0.25px);
+            border: none;
+            transition: all ease-in-out 0.1s;
+            transform: none;
+            height: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
+            width: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
+            border-color: var(--color);
+        }
+    }
+}

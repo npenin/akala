@@ -1,0 +1,30 @@
+@use 'sass:map';
+@use 'layout.scss';
+
+@mixin grid($config, $columns: 12) {
+    @each $name, $breakpoint in map.get($config, breakpoints) {
+        @for $i from 1 through $columns {
+            #{'.'+$name+'-'+$i} {
+                @extend %flex;
+
+                flex-basis: calc((100% - (($i - 1) * var(--gutter))) / ($columns / $i));
+
+                @include layout.media-maxWidth($name, $config) {
+
+                    flex-direction: column;
+
+                    >* {
+                        flex-basis: auto;
+                        flex-grow: unset;
+                    }
+                }
+            }
+        }
+
+        #{'.gte-'+$name} {
+            @include layout.media-maxWidth($name, $config) {
+                display: none;
+            }
+        }
+    }
+}

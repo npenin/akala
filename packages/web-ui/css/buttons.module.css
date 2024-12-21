@@ -1,0 +1,122 @@
+.button-filled {
+
+    border-radius: var(--border-radius);
+    --border-width: 1px;
+    border: none;
+
+
+    border-color: var(--border-color);
+    box-shadow: inset 0 0 0px var(--border-width) var(--border-color);
+
+    --border-color: var(--color);
+    color: var(--color);
+    background-color: var(--background-color);
+
+    --background-color: var(--interact);
+    --color: var(--interact-complement);
+    --border-color: light-dark(var(--color), var(--background-color));
+
+    &:hover:not(.disabled, :disabled),
+    &.hovered:not(.disabled) {
+        --background-color: light-dark(var(--interact-lighter), var(--interact-darker));
+        --color: var(--interact-complement);
+        --border-color: var(--background-color);
+    }
+
+    &:active:not(.disabled, :disabled),
+    &.active:not(.disabled, :disabled),
+    &:focus-visible {
+        --background-color: light-dark(var(--interact-lighter), var(--interact-darker));
+
+        --color: var(--interact);
+
+        --border-color: var(--background-color);
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    &.disabled,
+    &:disabled {
+
+        --background-color: var(--disabled-darker);
+
+        --color: var(--disabled);
+    }
+
+    &.borderless:not(.disabled, :disabled),
+    &.borderless.primary:not(.disabled, :disabled) {
+        background: none;
+        box-shadow: none;
+        color: var(--interact);
+
+        &:hover {
+            --interact: var(--interact-darker);
+        }
+    }
+
+    composes: akala-button from global;
+    composes: akala-button-filled from global;
+}
+
+
+.button-bordered {
+
+    border-radius: var(--border-radius);
+    --border-width: 1px;
+    /* border: none; */
+
+
+    border-color: var(--control-tint);
+    box-shadow: inset 0 0 0px var(--border-width) var(--control-tint);
+
+    --border-color: var(--color);
+    color: var(--color);
+    background-color: var(--background-color);
+
+    --background-color: var(--control-background-color);
+
+    --border-color: var(--background-color);
+    --color: var(--interact);
+
+    &:hover:not(.disabled, :disabled),
+    &.hovered:not(.disabled) {
+        --border-width: 2px;
+        --border-color: var(--interact);
+    }
+
+    &:active:not(.disabled, :disabled),
+    &.active:not(.disabled, :disabled),
+    &:focus-visible {
+        --background-color: light-dark(var(--interact-lighter), var(--interact-darker));
+
+        --border-color: var(--color);
+        --color: var(--interact);
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    &.disabled,
+    &:disabled {
+
+        --border-color: var(--color);
+        --color: var(--disabled);
+    }
+
+    &.borderless:not(.disabled, :disabled),
+    &.borderless.primary:not(.disabled, :disabled) {
+        background: none;
+        box-shadow: none;
+        color: var(--interact);
+
+        &:hover {
+            --interact: var(--interact-darker);
+        }
+
+        composes: akala-button from global;
+        composes: akala-button-bordered from global;
+    }
+}

@@ -1,0 +1,113 @@
+dialog {
+    border: 1px solid var(--accent-lightest);
+    border-radius: var(--border-radius);
+    position: fixed;
+    box-shadow: var(--shadow);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) var(--dialog-animation-transform-start);
+    padding: var(--gutter);
+
+    opacity: 0;
+    transition: all 0.5s allow-discrete;
+
+    &[open] {
+        opacity: 1;
+        transform: translateX(-50%) var(--dialog-animation-transform-end);
+
+        &::backdrop {
+            opacity: 1;
+        }
+    }
+
+    [aria-label="close"],
+    input[type="button"][aria-label="close"],
+    button[type="button"][aria-label="close"] {
+        float: right;
+        padding: calc(var(--gutter) / 2);
+        width: 2em;
+        height: calc(1em + var(--gutter));
+        line-height: 1em;
+    }
+
+    &.centered {
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) var(--dialog-animation-transform-start);
+
+        &[open] {
+            opacity: 1;
+            transform: translateX(-50%) var(--dialog-animation-transform-end);
+        }
+    }
+
+    &.bottom {
+        top: unset;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) var(--dialog-animation-transform-start);
+
+        &[open] {
+            opacity: 1;
+            transform: translateX(-50%) var(--dialog-animation-transform-end);
+        }
+    }
+
+    &::backdrop {
+        background-color: var(--shadow-color);
+        transition: inherit;
+        opacity: 0;
+        /* transition: all 2s allow-discrete; */
+        backdrop-filter: blur(var(--border-radius));
+    }
+
+    >footer {
+        margin-left: calc(var(--gutter) * -1);
+        margin-right: calc(var(--gutter) * -1);
+        margin-bottom: calc(var(--gutter) * -1);
+        margin-top: var(--gutter);
+        clear: right;
+    }
+}
+
+body:has(dialog[open]::backdrop) {
+    overflow: hidden;
+}
+
+:root {
+    --dialog-animation-transform-start: translateY(-50%);
+    --dialog-animation-transform-end: translateY(0);
+
+    dialog.centered {
+        --dialog-animation-transform-start: translateY(-100%);
+        --dialog-animation-transform-end: translateY(-50%);
+    }
+
+    dialog.bottom {
+        --dialog-animation-transform-start: translateY(50%);
+        --dialog-animation-transform-end: translateY(0);
+    }
+}
+
+@starting-style {
+    dialog::backdrop {
+        opacity: 1;
+    }
+
+    dialog[open] {
+        opacity: 0;
+        transform: translateX(-50%) var(--dialog-animation-transform-start);
+    }
+
+    dialog.centered[open] {
+        transform: translateX(-50%) var(--dialog-animation-transform-start);
+    }
+
+    dialog.bottom[open] {
+        transform: translateX(-50%) var(--dialog-animation-transform-start);
+    }
+
+    dialog[open]::backdrop {
+        opacity: 0;
+    }
+}
