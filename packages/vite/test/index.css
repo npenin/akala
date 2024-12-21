@@ -1,0 +1,112 @@
+@import '@akala/web-ui/css/theme.css';
+@import-tokens '@akala/web-ui/default-theme.tokens.json';
+
+/* @include theme.fixedMaxWidth(1024px); */
+
+
+:root {
+    --border-radius: 10px;
+
+    font-family: system-ui;
+
+}
+
+.bg-colored-gradient {
+    background: var(--colored-gradient);
+}
+
+.bg-grey-gradient {
+    background: var(--grey-gradient);
+}
+
+dialog {
+    margin: var(--gutter);
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+table {
+    th[scope="row"] {
+        font-style: italic;
+    }
+}
+
+header {
+    padding: 0 var(--gutter);
+    box-shadow: var(--shadow);
+}
+
+footer {
+    padding: var(--gutter);
+}
+
+body {
+    display: flex;
+}
+
+aside.md-5 {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 
+@include theme.init($config) using ($config) {
+
+    @include theme.theme($config, $colorScheme: 'light') using ($config, $colorScheme) {
+
+        :root {
+            $accentLightAlpha: color.change(map.get($config, colors, accent-extra-light), $alpha: 0.41);
+            $secondAccentLightAlpha: color.change(map.get($config, colors, secondAccent-extra-light), $alpha: 0.12);
+
+            --colored-gradient: linear-gradient(149deg, #{$accentLightAlpha} 0%, #{$secondAccentLightAlpha} 100%);
+
+            --grey-gradient: linear-gradient(-5deg, var(--grey-light) 0%, var(--light) 100%);
+
+            --body-background-color: #{color.scale(map.get($config, colors, light), $lightness: 20%)};
+            --body-color: var(--dark);
+        }
+
+        body,
+        dialog {
+            background-color: var(--body-background-color);
+            color: var(--body-color);
+        }
+
+        .card-container .card {
+            flex: 1 1 0px;
+        }
+    }
+
+    @include theme.darkmodesupport() {
+
+        @include theme.theme($config, $colorScheme: 'dark') using ($config, $colorScheme) {
+            :root {
+
+                $accentLightAlpha: color.change(map.get($config, colors, accent), $alpha: 0.12);
+                $secondAccentLightAlpha: color.change(map.get($config, colors, secondAccent), $alpha: 0.12);
+
+                --colored-gradient: linear-gradient(149deg, #{$accentLightAlpha} 0%, var(--dark) 100%);
+
+                --grey-gradient: linear-gradient(355deg, var(--dark) 0%, var(--grey-dark) 100%);
+
+                --body-background-color: #{color.scale(map.get($config, colors, dark), $lightness: -20%)};
+                --body-color: var(--light);
+
+                background-color: var(--body-background-color);
+                color: var(--body-color);
+            }
+
+            dialog {
+                border-color: var(--accent-darkest);
+
+                footer {
+                    border-top-width: 1px;
+                    border-top-style: solid;
+                    border-top-color: var(--accent-darkest);
+                }
+            }
+        }
+    }
+} */

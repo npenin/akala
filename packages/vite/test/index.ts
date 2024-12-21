@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import './index.scss'
+import './index.css'
 import { Container } from '@akala/commands'
 import { Event, EventEmitter, isPromiseLike } from '@akala/core';
 import { Scope as IScope, LocationService, Template, serviceModule, templateCache, templateFunction, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, outletDefinition, EventComposer, I18nComposer, webComponent, Each } from '@akala/client'

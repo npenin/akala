@@ -8,6 +8,12 @@ export default {
     build: {
         // generate .vite/manifest.json in outDir
         manifest: true,
+        outDir: 'vite-dist'
+    },
+    esbuild: {
+        supported: {
+            'top-level-await': true //browsers can handle top-level-await features
+        },
     },
     plugins: [
         akala({
