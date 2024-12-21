@@ -68,8 +68,8 @@ aside.md-5 {
     @include theme.theme($config, $colorScheme: 'light') using ($config, $colorScheme) {
 
         :root {
-            $accentLightAlpha: map.get($config, colors, accent-extra-light);
-            $secondAccentLightAlpha: map.get($config, colors, secondAccent-extra-light);
+            $accentLightAlpha: color.change(map.get($config, colors, accent-extra-light), $alpha: 0.31);
+            $secondAccentLightAlpha: color.change(map.get($config, colors, secondAccent-extra-light), $alpha: 0.12);
 
             --colored-gradient: linear-gradient(149deg, #{$accentLightAlpha} 0%, #{$secondAccentLightAlpha} 100%);
 
