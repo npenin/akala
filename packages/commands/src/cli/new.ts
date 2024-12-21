@@ -3,14 +3,19 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from "util";
 
-export async function outputHelper(outputFile: string | undefined, nameIfFolder: string, force: boolean, actionIfExists?: (exists: boolean) => void | Promise<void>)
+export async function outputHelper(outputFile: string | Writable | undefined, nameIfFolder: string, force: boolean, actionIfExists?: (exists: boolean) => void | Promise<void>)
 {
     let output: Writable = undefined;
     let exists = false;
     if (!outputFile)
     {
         output = process.stdout;
-        outputFile = '' as string;
+        outputFile = '';
+    }
+    else if (outputFile instanceof Writable)
+    {
+        output = outputFile;
+        outputFile = '';
     }
     else if (await promisify(fs.exists)(outputFile))
     {
