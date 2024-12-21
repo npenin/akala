@@ -21,7 +21,8 @@ dialog {
     }
 
     [aria-label="close"],
-    input[type="submit"][aria-label="close"] {
+    input[type="button"][aria-label="close"],
+    button[type="button"][aria-label="close"] {
         float: right;
         padding: calc(var(--gutter) / 2);
         width: 2em;
@@ -63,6 +64,8 @@ dialog {
         margin-left: calc(var(--gutter) * -1);
         margin-right: calc(var(--gutter) * -1);
         margin-bottom: calc(var(--gutter) * -1);
+        margin-top: var(--gutter);
+        clear: right;
     }
 }
 

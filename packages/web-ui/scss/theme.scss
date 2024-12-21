@@ -3,6 +3,7 @@
 @use "variables.scss";
 @use "reset.scss";
 @use "colors.scss";
+@forward "colors.scss";
 @use 'hyperlinks.scss';
 @use "buttons.scss";
 @use "layout.scss";
@@ -58,9 +59,9 @@
 
 @mixin theme($config, $interactColor: 'accent', $colorScheme) {
 
-
     :root,
-    ::backdrop {
+    ::backdrop,
+    input::-webkit-calendar-picker-indicator {
         --border-radius: 8px;
         --gutter: 16px;
 
@@ -82,30 +83,46 @@
 
     .button,
     button,
-    a.button {
-        @include buttons.buttons($interactColor, $config, false, $colorScheme) using ($config) {
-            @include colors.colorPalette('interact', $interactColor + '-' + $colorScheme, $config);
+    a.button,
+    input[type="button"],
+    input[type="reset"],
+    button[type="button"],
+    button[type="reset"],
+    input::-webkit-file-upload-button,
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button {
+        @include buttons.buttons($config, false, $colorScheme) using ($config) {
 
-            padding: calc(var(--gutter)/2) var(--gutter);
+            // @include colors.colorPalette($interactColor, $interactColor + '-' + $colorScheme, $config);
+            & {
+                padding: calc(var(--gutter)/2) var(--gutter);
 
-            @include layout.media-maxWidth(md, $config) {
+                @include layout.media-maxWidth(md, $config) {
 
-                padding: var(--gutter);
-                height: 48px;
+                    padding: var(--gutter);
+                    height: 48px;
+                }
             }
         }
+    }
 
-
-        &.primary {
-            @include buttons.buttons($interactColor, $config, true, $colorScheme);
-            @include colors.colorPalette('interact', $interactColor + '-' + $colorScheme, $config);
+    .button.primary,
+    button.primary,
+    a.button.primary,
+    input[type="submit"],
+    button[type="submit"] {
+        @include buttons.buttons($config, true, $colorScheme) using ($config) {
+            // @include colors.colorPalette('interact', $interactColor + '-' + $colorScheme, $config);
         }
     }
 
     @include form.form($config, $colorScheme) {
         @include colors.colorPalette('interact', $interactColor, $config);
-        --placeholder: var(--grey);
-        padding: calc(var(--gutter)/2) var(--gutter);
+
+        & {
+            --placeholder: var(--grey);
+            padding: calc(var(--gutter) / 2) var(--gutter);
+        }
 
     }
 

@@ -8,8 +8,8 @@
         appearance: none;
         border-radius: min(var(--border-radius), 6px);
         padding: 0;
-        height: 1rem;
-        width: 1rem;
+        height: 1.2em;
+        width: 1.2em;
         background-color: var(--background-color);
         border-color: var(--border-color);
         margin: 0;
@@ -54,17 +54,18 @@
         &:checked {
             --background-color: var(--interact);
 
-            --color: #{"var(--" + $colorScheme + ")"};
+            --color: var(--interact-complement);
 
             // --border-color: var(--background-color);
 
             &::after {
                 content: "✓";
+                color: var(--color);
                 position: absolute;
                 display: block;
-                height: calc(1em - 2px);
-                width: calc(1em - 2px);
-                line-height: 1rem;
+                height: 1.1em;
+                width: 1.1em;
+                line-height: 1.1rem;
                 font-size: 1rem;
                 text-align: center;
             }

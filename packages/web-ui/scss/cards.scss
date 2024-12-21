@@ -6,7 +6,24 @@
     .card {
         border: 1px solid var(--border-color);
         border-radius: var(--card-border-radius);
-        padding: 1em;
+        padding: var(--gutter);
+
+        &>header {
+            margin: calc(var(--gutter) * -1);
+            margin-bottom: 0;
+            padding: var(--gutter);
+
+            &+* {
+                margin-top: var(--gutter);
+            }
+        }
+
+        &>footer {
+            margin: calc(var(--gutter) * -1);
+            margin-top: 0;
+            padding: var(--gutter);
+        }
+
         @content;
 
         &.actionable.hovered:not(:disabled, .disabled),

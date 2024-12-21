@@ -1,1 +1,22 @@
-input[type="text"] {}
+input::-webkit-calendar-picker-indicator {
+    // color: var(--border-color);
+    mask-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik0yMCAzaC0xVjFoLTJ2Mkg3VjFINXYySDRjLTEuMSAwLTIgLjktMiAydjE2YzAgMS4xLjkgMiAyIDJoMTZjMS4xIDAgMi0uOSAyLTJWNWMwLTEuMS0uOS0yLTItMnptMCAxOEg0VjhoMTZ2MTN6Ii8+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgyNHYyNEgweiIvPjwvc3ZnPg==');
+    mask-repeat: no-repeat;
+    background: var(--body-color);
+}
+
+input:hover::-webkit-calendar-picker-indicator {
+    // color: var(--border-color);
+    background: var(--interact);
+}
+
+input[type="number"]::-webkit-textfield-decoration-container {
+    position: relative;
+    border: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    display: none;
+}

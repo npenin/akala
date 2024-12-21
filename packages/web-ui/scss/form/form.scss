@@ -10,11 +10,14 @@
     fieldset {
         margin-inline: 0;
         padding: var(--gutter);
+        border-width: 1px;
 
         .form-control {
             @include layout.horizontal;
+            align-items: center;
 
-            input,
+            input:not([type="checkbox"],
+                [type="radio"]),
             select,
             textarea {
                 flex-grow: 1;
@@ -25,9 +28,16 @@
     input,
     select,
     textarea,
+    fieldset,
+    input::-webkit-inner-spin-button {
+        --border-color: var(--grey);
+    }
+
+    input,
+    select,
+    textarea,
     fieldset {
         border-radius: var(--border-radius);
-        --border-color: var(--grey);
         border-color: var(--border-color);
         background-color: var(--background-color);
 
@@ -46,11 +56,21 @@
 
         padding: var(--gutter);
         transition: all ease-in-out 0.1s;
+        color: var(--body-color);
+        border: 1px solid var(--border-color);
         @content;
 
         &:hover:enabled,
         &.hovered:enabled {
             --border-color: var(--interact);
+
+            &:hover:enabled::-webkit-calendar-picker-indicator,
+            &.hovered:enabled::-webkit-calendar-picker-indicator,
+            &:hover:enabled::-webkit-inner-spin-button,
+            &.hovered:enabled::-webkit-inner-spin-button {
+                --border-color: var(--interact);
+
+            }
         }
 
         &::placeholder {
@@ -72,27 +92,23 @@
             --border-color: var(--interact);
         }
 
-        color: var(--color);
-        border: 1px solid var(--border-color);
     }
 
     @include checkbox.checkbox($config, $colorScheme);
     @include radiobutton.radio($colorScheme);
-
-    input[type="reset"] {
-        @include buttons.buttons(interact, $config, false, $colorScheme);
-    }
-
-    input[type="submit"] {
-        @include buttons.buttons(interact, $config, true, $colorScheme);
-    }
 }
 
 @mixin form-control-with-placeholder-label {
     .form-control {
         position: relative;
 
-        >label {
+        >label:has(+input:not([type="checkbox"],
+                [type="color"],
+                [type="radio"],
+                [type="range"],
+                [type="reset"],
+                [type="search"],
+                [type="submit"])) {
             position: absolute;
             color: var(--grey-darker);
             top: calc(var(--gutter) / 2);
