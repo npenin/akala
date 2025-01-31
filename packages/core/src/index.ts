@@ -16,6 +16,8 @@ export * from './middlewares/indexed-sync.js';
 export * from './factory.js';
 export * from './http.js';
 export * from './service.js';
+import sequencify, { Task, Tasks } from './sequencify.js';
+export { sequencify, Task, Tasks }
 // export { Bound, PossiblyBound } from './binder.js';
 export * from './event-emitter.js';
 export * from './parser/parser.js';

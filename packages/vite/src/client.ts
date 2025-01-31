@@ -50,7 +50,7 @@ class ViteSocketAdapter implements SocketAdapter
 
 if (import.meta.hot)
 {
-    import.meta.hot.on('template-reload', (data) =>
+    import.meta.hot?.on('template-reload', (data) =>
     {
         const f = templateCache.resolve<Promise<templateFunction> | templateFunction>(data.path);
         if (f)

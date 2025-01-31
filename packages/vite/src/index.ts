@@ -16,18 +16,18 @@ export class ViteSocketAdapter implements SocketAdapter
     close()
     {
         this.open = false;
-        return this.server.hot.close();
+        return this.server.ws.close();
     }
     send(data: any)
     {
-        this.server.hot.send('jsonrpc', data)
+        this.server.ws.send('jsonrpc', data)
     }
     on<const K extends keyof SocketAdapterEventMap>(event: K, handler: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
     {
         if (event == 'message')
-            this.server.hot.on('jsonrpc', handler);
+            this.server.ws.on('jsonrpc', handler);
         if (event == 'close')
-            this.server.hot.on('vite:ws:disconnect', () => { console.log('disconnect'); return handler(new CloseEvent('close', {}) as SocketAdapterEventMap[K]) });
+            this.server.ws.on('vite:ws:disconnect', () => { console.log('disconnect'); return handler(new CloseEvent('close', {}) as SocketAdapterEventMap[K]) });
     }
     once<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
     {
@@ -40,7 +40,7 @@ export class ViteSocketAdapter implements SocketAdapter
             }
             finally
             {
-                self.server.hot.off('jsonrpc', wrapper);
+                self.server.ws.off('jsonrpc', wrapper);
             }
         }
         this.on(event, wrapper);
@@ -48,7 +48,7 @@ export class ViteSocketAdapter implements SocketAdapter
     off<K extends keyof SocketAdapterEventMap>(event: K, handler?: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
     {
         if (event == 'message')
-            this.server.hot.off('jsonrpc', handler);
+            this.server.ws.off('jsonrpc', handler);
     }
     pipe(socket: SocketAdapter<unknown>): void
     {

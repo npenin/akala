@@ -174,7 +174,7 @@ creator.postcss = true;
 
 export default creator;
 
-function unquote(params: string): string
+export function unquote(params: string): string
 {
     if (params[0] == params[params.length - 1])
         return params.slice(1, params.length - 1).replaceAll('\\' + params[0], params[0]);

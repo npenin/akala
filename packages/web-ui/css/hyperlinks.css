@@ -1,17 +1,17 @@
 a {
-    color: var(--interact);
+    color: var(--control-accent-color);
     text-decoration: none;
 
     &:visited,
     &:hover,
     &.visited,
     &.hovered {
-        color: var(--interact);
+        color: var(--control-accent-color);
         text-decoration: underline;
     }
 
     &:active,
     &.clicked {
-        color: var(--interact-light);
+        color: hsl(from var(--control-accent-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
     }
 }

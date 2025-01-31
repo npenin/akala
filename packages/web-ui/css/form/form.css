@@ -61,6 +61,18 @@ input::-webkit-inner-spin-button {
 
 }
 
+input[type=file]::-webkit-file-upload-button {
+    margin-top: calc(var(--gutter-y) / -1);
+    margin-bottom: calc(var(--gutter-y) / -1);
+    margin-left: calc(var(--gutter-x) * -1);
+    margin-right: calc(var(--gutter-x));
+    height: calc(2em + var(--gutter-y));
+
+    z-index: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 .placeholder-label {
     .form-control {
         position: relative;

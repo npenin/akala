@@ -18,7 +18,7 @@
     --medium-gray: #D1D1D6;
     --separator-gray: #C6C6C8;
     --highlight-yellow: #FFFF00;
-    --blue-link: var(--accent, #007AFF);
+    --blue-link: var(--accent, var(--system-blue));
     --blue-selection: #D6E4FF;
     --opaque-separator: #D1D1D6;
     --secondary-background: var(--light-gray);
@@ -27,7 +27,6 @@
     --grid-color: #E5E5E5;
     --shadow-color-light: #0000001a;
     --shadow-color-dark: #00000099;
-    --disabled-text: #C6C6C8;
     --highlight-color: var(--system-red);
     --unemphasized-selected-text: #C6C6C8;
     --unemphasized-selected-background: #E5E5E5;
@@ -53,6 +52,24 @@
         --system-gray5: #e5e5ea;
         --system-gray6: #f2f2f7;
 
+        --system-red-wcag: max-contrast(var(--system-red), var(--white), var(--black));
+        --system-green-wcag: max-contrast(var(--system-green), var(--white), var(--black));
+        --system-blue-wcag: max-contrast(var(--system-blue), var(--white), var(--black));
+        --system-yellow-wcag: max-contrast(var(--system-yellow), var(--white), var(--black));
+        --system-orange-wcag: max-contrast(var(--system-orange), var(--white), var(--black));
+        --system-pink-wcag: max-contrast(var(--system-pink), var(--white), var(--black));
+        --system-purple-wcag: max-contrast(var(--system-purple), var(--white), var(--black));
+        --system-teal-wcag: max-contrast(var(--system-teal), var(--white), var(--black));
+        --system-indigo-wcag: max-contrast(var(--system-indigo), var(--white), var(--black));
+        --system-gray-wcag: max-contrast(var(--system-gray), var(--white), var(--black));
+        --system-gray2-wcag: max-contrast(var(--system-gray2), var(--white), var(--black));
+        --system-gray3-wcag: max-contrast(var(--system-gray3), var(--white), var(--black));
+        --system-gray4-wcag: max-contrast(var(--system-gray4), var(--white), var(--black));
+        --system-gray5-wcag: max-contrast(var(--system-gray5), var(--white), var(--black));
+        --system-gray6-wcag: max-contrast(var(--system-gray6), var(--white), var(--black));
+
+        --disabled-text: #3c3c434d;
+
         /* Label Colors */
         --label-color: var(--black);
         --secondary-label-color: var(--dark-gray);
@@ -62,7 +79,7 @@
         /* Fill Colors */
         --system-fill-color: var(--light-gray);
         --secondary-system-fill-color: var(--medium-gray);
-        --tertiary-system-fill-color: var(--medium-gray);
+        --tertiary-system-fill-color: var(--dark-gray);
         --quaternary-system-fill-color: var(--separator-gray);
 
         /* Text Colors */
@@ -89,6 +106,7 @@
 
         /* Accent Colors */
         --control-accent-color: var(--blue-link);
+        --control-accent-color-wcag: var(--system-blue);
         --control-color: var(--blue-link);
         --highlight-color: var(--highlight-yellow);
         --selected-control-color: var(--blue-link);
@@ -100,7 +118,7 @@
         --control-text-color: var(--black);
         --disabled-control-text-color: var(--disabled-text);
         --control-tint: var(--medium-gray);
-        --current-control-tint: var(--medium-gray);
+        --current-control-tint: rgb(from var(--control-accent-color) r g b / 0.15);
 
         /* Selection Colors */
         --selection-color: var(--blue-selection);
@@ -140,10 +158,46 @@
         --system-gray5: #2c2c2e;
         --system-gray6: #1c1c1e;
 
+        --system-red-wcag: var(--white);
+        /* White text */
+        --system-green-wcag: var(--white);
+        /* White text */
+        --system-blue-wcag: var(--white);
+        /* White text */
+        --system-yellow-wcag: var(--black);
+        /* Black text */
+        --system-orange-wcag: var(--black);
+        /* Black text */
+        --system-pink-wcag: var(--white);
+        /* White text */
+        --system-purple-wcag: var(--white);
+        /* White text */
+        --system-teal-wcag: var(--black);
+        /* Black text */
+        --system-indigo-wcag: var(--white);
+        /* White text */
+
+        --system-gray-wcag: var(--white);
+        /* White text */
+        --system-gray2-wcag: var(--white);
+        /* White text */
+        --system-gray3-wcag: var(--white);
+        /* White text */
+        --system-gray4-wcag: var(--white);
+        /* White text */
+        --system-gray5-wcag: var(--white);
+        /* White text */
+        --system-gray6-wcag: var(--white);
+        /* White text */
+        --disabled-text: #EBEBF54d;
+
+
+        --secondary-background: var(--dark-gray);
+
         /* Label Colors */
         --label-color: var(--white);
         --secondary-label-color: var(--light-gray);
-        --tertiary-label-color: var(--light-gray);
+        --tertiary-label-color: var(--dark-gray);
         --quaternary-label-color: var(--light-gray);
 
         /* Fill Colors */
@@ -187,7 +241,8 @@
         --control-text-color: var(--white);
         --disabled-control-text-color: var(--disabled-text);
         --control-tint: var(--medium-gray);
-        --current-control-tint: var(--medium-gray);
+        --current-control-tint: rgb(from var(--control-accent-color) r g b / 0.15);
+
 
         /* Selection Colors */
         --selection-color: var(--blue-selection);
