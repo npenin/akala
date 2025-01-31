@@ -221,26 +221,38 @@
     }
 } */
 
+
 :root,
 ::backdrop,
 input::-webkit-calendar-picker-indicator {
     --border-radius: 8px;
     --gutter: 16px;
+    color-scheme: light dark;
     /* 
     @if $colorScheme=='light' {
-        --shadow-color: rgba(from var(--grey) r g b 0.09);
-        --disabled: var(--grey-light);
-        --disabled-darker: hsl(from var(--grey) h s);
+        --shadow-color: rgba(from var(--gray) r g b 0.09);
+        --disabled: var(--gray-light);
+        --disabled-darker: hsl(from var(--gray) h s);
         @include colors.colorPalette('disabled', 'grey-light', $config);
     }
 
     @else {
-        --shadow-color: rgba(from var(--grey-dark) r g b 0.39);
+        --shadow-color: rgba(from var(--gray-dark) r g b 0.39);
         @include colors.colorPalette('disabled', 'grey-extra-dark', $config);
 
     } */
 
     --shadow: 0 0.188rem 0.75rem 0 var(--shadow-color);
+}
+
+.akala-button {
+    padding: calc(var(--gutter)/2) var(--gutter);
+
+    @media screen and (--breakpoints-md) {
+
+        padding: var(--gutter);
+        height: 48px;
+    }
 }
 
 .button,
@@ -254,15 +266,7 @@ input::-webkit-file-upload-button,
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {
     composes: button-bordered from './buttons.module.css';
-    --interact: var(--control-accent-color);
-
-    padding: calc(var(--gutter)/2) var(--gutter);
-
-    @media screen and (--breakpoints-md) {
-
-        padding: var(--gutter);
-        height: 48px;
-    }
+    composes: akala-button;
 }
 
 .button.primary,
@@ -271,4 +275,9 @@ a.button.primary,
 input[type="submit"],
 button[type="submit"] {
     composes: button-filled from './buttons.module.css';
+    composes: akala-button;
+}
+
+input:not([type="button"], [type="submit"], [type="reset"]) {
+    composes: form-control from './form/form.css'
 }

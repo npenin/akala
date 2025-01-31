@@ -7,13 +7,10 @@ select,
 textarea,
 fieldset,
 input::-webkit-inner-spin-button {
-    --border-color: var(--grey);
+    --border-color: var(--gray);
 }
 
-input,
-select,
-textarea,
-fieldset {
+.form-item {
     border-radius: var(--border-radius);
     --border-color: var(--separator-color);
     --background-color: var(--control-background-color);
@@ -22,9 +19,8 @@ fieldset {
     background-color: var(--background-color);
 }
 
-input,
-select,
-textarea {
+.form-control {
+    composes: form-item;
 
     padding: calc(var(--gutter) / 2) var(--gutter);
     transition: all ease-in-out 0.1s;
@@ -33,13 +29,13 @@ textarea {
 
     &:hover:enabled,
     &.hovered:enabled {
-        --border-color: var(--interact);
+        --border-color: var(--control-tint);
 
         &:hover:enabled::-webkit-calendar-picker-indicator,
         &.hovered:enabled::-webkit-calendar-picker-indicator,
         &:hover:enabled::-webkit-inner-spin-button,
         &.hovered:enabled::-webkit-inner-spin-button {
-            --border-color: var(--interact);
+            --border-color: var(--control-tint);
 
         }
     }
@@ -51,7 +47,7 @@ textarea {
     &:disabled {
         --background-color: var(--disabled-lighter);
         --border-color: var(--disabled-lighter);
-        --color: var(--disabled-max-contrast);
+        --color: var(--disabled-control-text-color);
 
         &::placeholder {
             color: var(--disabled);
@@ -77,7 +73,7 @@ textarea {
                 [type="search"],
                 [type="submit"])) {
             position: absolute;
-            color: var(--grey-darker);
+            color: var(--gray-darker);
             top: calc(var(--gutter) / 2);
             left: calc(var(--gutter) / 2);
             transition: all 0.3s;
