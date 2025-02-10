@@ -1,39 +1,325 @@
 <div class="vertical">
     <div class="vertical">
-        <input name="aaa-checkbox" value="aaa-checkbox" type="checkbox" />
-        <input name="aaa-color" value="aaa-color" type="color" />
-        <input name="aaa-date" value="aaa-date" type="date" />
-        <input name="aaa-datetime" value="aaa-datetime" type="datetime" />
-        <input name="aaa-datetime-local" value="aaa-datetime-local" type="datetime-local" />
-        <input name="aaa-email" value="aaa-email" type="email" />
-        <input name="aaa-file" value="aaa-file" type="file" />
-        <input name="aaa-image" value="aaa-image" type="image" />
-        <input name="aaa-month" value="aaa-month" type="month" />
-        <input name="aaa-number" value="aaa-number" type="number" />
-        <input name="aaa-password" value="aaa-password" type="password" />
-        <input name="aaa-radio" value="aaa-radio" type="radio" />
-        <input name="aaa-range" value="aaa-range" type="range" />
-        <input name="aaa-reset" value="aaa-reset" type="reset" />
-        <input name="aaa-search" value="aaa-search" type="search" />
-        <input name="aaa-submit" value="aaa-submit" type="submit" />
-        <input name="aaa-tel" value="aaa-tel" type="tel" />
-        <input name="aaa-text" value="aaa-text" type="text" />
-        <input name="aaa-time" value="aaa-time" type="time" />
-        <input name="aaa-url" value="aaa-url" type="url" />
-        <input name="aaa-week" value="aaa-week" type="week" />
+
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Normal</th>
+                    <th>Hovered</th>
+                    <th>Active</th>
+                    <th>Focused</th>
+                    <th>Hovered Active</th>
+                    <th>Disabled</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="6" style="text-align: center;">Checkbox</th>
+                </tr>
+                <tr>
+                    <th>Standard</th>
+                    <td><input type="checkbox" class="" name="aaa-checkbox0"></td>
+                    <td><input type="checkbox" class="hovered" name="aaa-checkbox1"></td>
+                    <td><input type="checkbox" class="active" name="aaa-checkbox2"></td>
+                    <td><input type="checkbox" class="focused" name="aaa-checkbox3"></td>
+                    <td><input type="checkbox" class="hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="checkbox" class="" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Checked</th>
+                    <td><input type="checkbox" checked class="" name="aaa-checkbox0"></td>
+                    <td><input type="checkbox" checked class="hovered" name="aaa-checkbox1"></td>
+                    <td><input type="checkbox" checked class="active" name="aaa-checkbox2"></td>
+                    <td><input type="checkbox" checked class="focused" name="aaa-checkbox3"></td>
+                    <td><input type="checkbox" checked class="hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="checkbox" checked class="" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr class="indeterminate">
+                    <th>Indeterminate</th>
+                    <td><input type="checkbox" class="" name="aaa-checkbox0"></td>
+                    <td><input type="checkbox" class="hovered" name="aaa-checkbox1"></td>
+                    <td><input type="checkbox" class="active" name="aaa-checkbox2"></td>
+                    <td><input type="checkbox" class="focused" name="aaa-checkbox3"></td>
+                    <td><input type="checkbox" class="hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="checkbox" class="" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr class="indeterminate">
+                    <th>Checked & Indeterminate</th>
+                    <td><input type="checkbox" checked class="" name="aaa-checkbox0"></td>
+                    <td><input type="checkbox" checked class="hovered" name="aaa-checkbox1"></td>
+                    <td><input type="checkbox" checked class="active" name="aaa-checkbox2"></td>
+                    <td><input type="checkbox" checked class="focused" name="aaa-checkbox3"></td>
+                    <td><input type="checkbox" checked class="hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="checkbox" checked class="" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th colspan="6" style="text-align: center;">Checkbox switch</th>
+                </tr>
+                <tr>
+                    <th>Standard</th>
+                    <td><input type="checkbox" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="checkbox" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="checkbox" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="checkbox" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="checkbox" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="checkbox" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Checked</th>
+                    <td><input type="checkbox" checked class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="checkbox" checked class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="checkbox" checked class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="checkbox" checked class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="checkbox" checked class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="checkbox" checked class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr class="indeterminate">
+                    <th>Indeterminate</th>
+                    <td><input type="checkbox" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="checkbox" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="checkbox" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="checkbox" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="checkbox" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="checkbox" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr class="indeterminate">
+                    <th>Checked & Indeterminate</th>
+                    <td><input type="checkbox" checked class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="checkbox" checked class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="checkbox" checked class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="checkbox" checked class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="checkbox" checked class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="checkbox" checked class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th colspan="6" style="text-align: center;">radio button</th>
+                </tr>
+                <tr>
+                    <th>Standard</th>
+                    <td><input type="radio" class="switch " name="aaa-radio0"></td>
+                    <td><input type="radio" class="switch hovered" name="aaa-radio1"></td>
+                    <td><input type="radio" class="switch active" name="aaa-radio2"></td>
+                    <td><input type="radio" class="switch focused" name="aaa-radio3"></td>
+                    <td><input type="radio" class="switch hovered active" name="aaa-radio4"></td>
+                    <td><input type="radio" class="switch" disabled name="aaa-radio5"></td>
+                </tr>
+                <tr>
+                    <th>Checked</th>
+                    <td><input type="radio" checked class="switch " name="aaa-radio0"></td>
+                    <td><input type="radio" checked class="switch hovered" name="aaa-radio1"></td>
+                    <td><input type="radio" checked class="switch active" name="aaa-radio2"></td>
+                    <td><input type="radio" checked class="switch focused" name="aaa-radio3"></td>
+                    <td><input type="radio" checked class="switch hovered active" name="aaa-radio4"></td>
+                    <td><input type="radio" checked class="switch" disabled name="aaa-radio5"></td>
+                </tr>
+                <tr class="indeterminate">
+                    <th>Indeterminate</th>
+                    <td><input type="radio" class="switch " name="aaa-radio10"></td>
+                    <td><input type="radio" class="switch hovered" name="aaa-radio11"></td>
+                    <td><input type="radio" class="switch active" name="aaa-radio12"></td>
+                    <td><input type="radio" class="switch focused" name="aaa-radio13"></td>
+                    <td><input type="radio" class="switch hovered active" name="aaa-radio14"></td>
+                    <td><input type="radio" class="switch" disabled name="aaa-radio15"></td>
+                </tr>
+                <tr class="indeterminate">
+                    <th>Checked & Indeterminate</th>
+                    <td><input type="radio" checked class="switch " name="aaa-radio10"></td>
+                    <td><input type="radio" checked class="switch hovered" name="aaa-radio11"></td>
+                    <td><input type="radio" checked class="switch active" name="aaa-radio12"></td>
+                    <td><input type="radio" checked class="switch focused" name="aaa-radio13"></td>
+                    <td><input type="radio" checked class="switch hovered active" name="aaa-radio14"></td>
+                    <td><input type="radio" checked class="switch" disabled name="aaa-radio15"></td>
+                </tr>
+                <tr>
+                    <th colspan="6" style="text-align: center;">Other inputs</th>
+                </tr>
+                <tr>
+                    <th>Color</th>
+                    <td><input type="color" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="color" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="color" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="color" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="color" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="color" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td><input type="date" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="date" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="date" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="date" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="date" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="date" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Date time</th>
+                    <td><input type="datetime" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="datetime" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="datetime" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="datetime" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="datetime" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="datetime" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Date time local</th>
+                    <td><input type="datetime-local" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="datetime-local" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="datetime-local" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="datetime-local" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="datetime-local" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="datetime-local" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><input type="email" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="email" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="email" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="email" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="email" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="email" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>File</th>
+                    <td><input type="file" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="file" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="file" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="file" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="file" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="file" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td><input type="image" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="image" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="image" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="image" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="image" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="image" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Month</th>
+                    <td><input type="month" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="month" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="month" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="month" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="month" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="month" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Number</th>
+                    <td><input type="number" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="number" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="number" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="number" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="number" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="number" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td><input type="password" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="password" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="password" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="password" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="password" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="password" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Range</th>
+                    <td><input type="range" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="range" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="range" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="range" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="range" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="range" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Reset</th>
+                    <td><input type="reset" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="reset" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="reset" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="reset" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="reset" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="reset" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Search</th>
+                    <td><input type="search" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="search" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="search" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="search" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="search" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="search" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Submit</th>
+                    <td><input type="submit" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="submit" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="submit" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="submit" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="submit" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="submit" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Tel</th>
+                    <td><input type="tel" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="tel" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="tel" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="tel" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="tel" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="tel" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Text</th>
+                    <td><input type="text" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="text" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="text" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="text" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="text" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="text" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <td><input type="time" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="time" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="time" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="time" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="time" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="time" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Url</th>
+                    <td><input type="url" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="url" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="url" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="url" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="url" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="url" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+                <tr>
+                    <th>Week</th>
+                    <td><input type="week" class="switch " name="aaa-checkbox0"></td>
+                    <td><input type="week" class="switch hovered" name="aaa-checkbox1"></td>
+                    <td><input type="week" class="switch active" name="aaa-checkbox2"></td>
+                    <td><input type="week" class="switch focused" name="aaa-checkbox3"></td>
+                    <td><input type="week" class="switch hovered active" name="aaa-checkbox4"></td>
+                    <td><input type="week" class="switch" disabled name="aaa-checkbox5"></td>
+                </tr>
+            </tbody>
+        </table>
 
         <form>
-            <fieldset class="vertical">
+            <fieldset class="vertical placeholder-label">
                 <legend>Who are you ?</legend>
-                <div class="form-control">
+                <div class="form-item">
                     <label for="bbb-input1">First name</label>
                     <input type="text" name="bbb-input1" id="bbb-input1" placeholder />
                 </div>
-                <div class="form-control">
+                <div class="form-item">
                     <label for="bbb-input2">Last name</label>
                     <input type="text" name="bbb-input2" id="bbb-input2" placeholder />
                 </div>
-                <div class="form-control">
+                <div>
                     <input type="checkbox" name="bbb-input3" id="bbb-input3" placeholder />
                     <label for="bbb-input3">Agree</label>
                 </div>
@@ -54,6 +340,18 @@
             <div class="card">aaaa<footer>footer</footer>
             </div>
             <div class="card">
+                <header>title</header>aaaa<footer>footer</footer>
+            </div>
+        </div>
+
+        <div class="horizontal card-container">
+            <div class="card actionable">aaaa</div>
+            <div class="card actionable">
+                <header>title</header>aaaa
+            </div>
+            <div class="card actionable">aaaa<footer>footer</footer>
+            </div>
+            <div class="card actionable">
                 <header>title</header>aaaa<footer>footer</footer>
             </div>
         </div>

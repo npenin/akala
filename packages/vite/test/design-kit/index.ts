@@ -1,16 +1,23 @@
-import { Scope as IScope, ScopeImpl, Page, page, LocationService } from '@akala/client'
-import { Container, Processors } from '@akala/commands';
-import { EventEmitter, Event } from '@akala/core';
+import { OutletService, Page, page, RootElement } from '@akala/client'
 import template from './index.html?raw'
 
-type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
+// type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
 
-@page({ template, 'inject': [ScopeImpl.injectionToken, '$modules.akala-services.$location'] })
+@page({ template, 'inject': [RootElement] })
 export class DesignKit extends Page
 {
-    constructor(scope: Scope, location: LocationService)
+    constructor(private el: HTMLElement)
     {
         super();
+
+    }
+
+    [OutletService.onLoad]()
+    {
+        this.el.querySelectorAll('.indeterminate input[type="checkbox"]').forEach((checkbox: HTMLInputElement) =>
+        {
+            checkbox.indeterminate = true;
+        });
     }
 
     openDialog(dialogId: string)
