@@ -7,56 +7,71 @@ select,
 textarea,
 fieldset,
 input::-webkit-inner-spin-button {
-    --border-color: var(--gray);
+    --border-color: var(--system-gray);
 }
 
 .form-item {
-    border-radius: var(--border-radius);
-    --border-color: var(--separator-color);
-    --background-color: var(--control-background-color);
-    --text-color: var(--control-text-color);
-    border-color: var(--border-color);
-    background-color: var(--background-color);
+
+    composes: interactive from '../interactive.module.css';
+
+    --item-border-width: 1px;
+    --item-border-style: solid;
+
+    --standard-item-background-color: light-dark(var(--light-background), var(--dark-gray));
+    --standard-item-text-color: var(--control-text-color);
+    --standard-item-border-color: var(--separator-gray);
+
+    --active-text-color: hsl(from var(--active-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
+    --active-border-color: var(--control-accent-color);
+
+    --focused-text-color: hsl(from var(--focused-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
+    --focused-border-color: var(--control-accent-color);
+
+    --hover-border-color: var(--hover-color);
+    --hover-text-color: hsl(from var(--hover-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
+
+    --disabled-background-color: var(--disabled-color);
+    --disabled-text-color: hsl(from var(--disabled-color) h 0 calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 30));
+    --disabled-border-color: var(--disabled-text-color);
+
+    --standard-item-box-shadow: 0px 0px 0px -2px var(--current-control-tint);
+    --focused-box-shadow: 0px 0px 5px 5px var(--current-control-tint);
+
+    transition: all ease-in-out 0.1s;
+
+    .form-item {
+        border-radius: inherit;
+        border-color: inherit;
+        background-color: transparent;
+    }
 }
 
 .form-control {
     composes: form-item;
-
-    padding: calc(var(--gutter) / 2) var(--gutter);
-    transition: all ease-in-out 0.1s;
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-
-    &:hover:enabled,
-    &.hovered:enabled {
-        --border-color: var(--control-tint);
-
-        &:hover:enabled::-webkit-calendar-picker-indicator,
-        &.hovered:enabled::-webkit-calendar-picker-indicator,
-        &:hover:enabled::-webkit-inner-spin-button,
-        &.hovered:enabled::-webkit-inner-spin-button {
-            --border-color: var(--control-tint);
-
-        }
-    }
+    padding: var(--gutter-y) var(--gutter-x);
 
     &::placeholder {
         color: var(--placeholder);
     }
 
-    &:disabled {
-        --background-color: var(--disabled-lighter);
-        --border-color: var(--disabled-lighter);
-        --color: var(--disabled-control-text-color);
+    &:hover:enabled,
+    &.hovered:enabled {
 
-        &::placeholder {
-            color: var(--disabled);
+        &::-webkit-calendar-picker-indicator,
+        &::-webkit-calendar-picker-indicator,
+        &::-webkit-inner-spin-button,
+        &::-webkit-inner-spin-button {
+            --border-color: var(--control-accent-color);
         }
     }
 
-    &:focus-visible {
+    &:disabled {
+        --placeholder: var(--disabled);
+    }
+
+    &:focus-visible,
+    &.focused {
         outline: none;
-        --border-color: var(--interact);
     }
 
 }
@@ -73,9 +88,123 @@ input[type=file]::-webkit-file-upload-button {
     border-bottom-right-radius: 0;
 }
 
+input[type="range"] {
+    appearance: none;
+    background-color: var(--control-background-color);
+    padding: 0;
+    width: 100%;
+    color: var(--control-accent-color);
+
+    height: max(var(--track-height), var(--thumb-height));
+
+    --thumb-size: 24px;
+    --thumb-height: var(--thumb-size);
+    --thumb-width: var(--thumb-size);
+    --track-height: 5px;
+    --progress-height: 10px;
+    --progress-shadow: 0 0 4px var(--current-control-tint) inset;
+    --thumb-shadow: 0 0 0 0px light-dark(var(--white), var(--black)) inset,
+        0 0 0 99px var(--control-accent-color) inset;
+    --thumb-shadow-disabled: 0 0 0 5px light-dark(var(--white), var(--black)) inset,
+        0 0 0 99px hsl(from var(--control-accent-color) h s calc(l+30)) inset;
+    --thumb-shadow-hover: 0 0 0 7px light-dark(var(--white), var(--black)) inset,
+        0 0 0 99px var(--control-accent-color) inset;
+    --thumb-shadow-active: 0 0 0 7px light-dark(var(--white), var(--black)) inset,
+        0 0 0 99px var(--control-accent-color) inset;
+    /* --thumb-center: calc((100% - var(--thumb-size)) * var(--value)/(var(--max) - var(--min)) + var(--thumb-size)/2); */
+
+    --clip-top: calc((var(--thumb-height) - var(--track-height)) * 0.5 - 0.5px);
+    --clip-bottom: calc(var(--thumb-height) - var(--clip-top));
+    --clip-further: calc(100% + 1px);
+    --clip-edges: 0.125em;
+    border: none;
+    background: none;
+
+    &:hover,
+    &.hovered {
+        &::-webkit-slider-runnable-track {
+            box-shadow: 0 0 calc(var(--track-height) / 3) 0 inset var(--control-accent-color);
+
+            @starting-style {
+                box-shadow: 0 0 0 0 inset var(--control-accent-color);
+            }
+        }
+    }
+
+    &::-webkit-slider-runnable-track {
+        border-radius: 12px;
+        max-height: var(--track-height);
+        background-color: var(--control-background-color);
+
+        transition: all 0.2s ease-out;
+
+
+        &::before {
+            content: attr('value');
+            position: relative;
+
+        }
+    }
+
+    &::-webkit-slider-thumb {
+        appearance: none;
+        margin-top: calc((var(--thumb-height) - var(--track-height)) / -2);
+        margin-bottom: calc((var(--thumb-height) - var(--track-height)) / -2);
+        height: var(--thumb-size);
+        width: var(--thumb-size);
+        border-radius: var(--thumb-size);
+
+        box-shadow: var(--thumb-shadow);
+        border: 1px solid var(--control-accent-color);
+
+        transition: all 0.12s ease-out,
+            left 0s;
+    }
+
+    &:not(:disabled)::-webkit-slider-thumb:hover {
+        box-shadow: var(--thumb-shadow-hover);
+    }
+
+    &:not(:disabled)::-webkit-slider-thumb:active {
+        box-shadow: var(--thumb-shadow-active);
+    }
+
+    &:disabled {
+        box-shadow: var(--thumb-shadow-disabled);
+
+        &::-webkit-slider-thumb {
+            pointer-events: none;
+            border-color: var(--disabled-color);
+        }
+    }
+}
+
 .placeholder-label {
-    .form-control {
+    .form-item:has(>label+input) {
         position: relative;
+
+        margin-top: 0.8em;
+
+        &:has(>input:hover),
+        &:has(>input.hovered) {
+            composes: item-hovered from '../interactive.module.css';
+        }
+
+        &:has(>input:active),
+        &:has(>input.active) {
+            composes: item-active from '../interactive.module.css';
+
+            &:has(>input:hover),
+            &:has(>input.hovered) {
+                composes: item-active from '../interactive.module.css';
+            }
+
+        }
+
+        &:has(>input:focus-visible),
+        &:has(>input.focused) {
+            composes: item-focus-visible from '../interactive.module.css';
+        }
 
         >label:has(+input:not([type="checkbox"],
                 [type="color"],
@@ -84,17 +213,23 @@ input[type=file]::-webkit-file-upload-button {
                 [type="reset"],
                 [type="search"],
                 [type="submit"])) {
+
             position: absolute;
-            color: var(--gray-darker);
-            top: calc(var(--gutter) / 2);
-            left: calc(var(--gutter) / 2);
+            color: var(--placeholder-text-color);
+            top: calc(var(--gutter-y));
+            left: calc(var(--gutter-x) / 2);
             transition: all 0.3s;
-            background-color: var(--background-color);
-            padding: 0 calc(var(--gutter) / 2);
+            /* background-color: var(--control-background-color); */
+            padding: 0 calc(var(--gutter-x) / 2);
+
+            &+input {
+                --item-border-style: none;
+                box-shadow: none;
+            }
 
             &:has(+input:focus-visible),
             &:has(+input:not(:placeholder-shown)) {
-                top: calc(var(--gutter) * -1 + 0.3em);
+                top: calc(var(--gutter-y) * -1 - 0.8em);
                 font-size: smaller;
                 color: var(--body-color);
             }

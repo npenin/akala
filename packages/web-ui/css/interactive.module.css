@@ -1,0 +1,103 @@
+.item-hovered {
+    --item-background-color: var(--hover-background-color, var(--standard-item-background-color));
+    --item-text-color: var(--hover-text-color, var(--standard-item-text-color));
+    --item-border-color: var(--hover-border-color, var(--standard-item-border-color));
+    --item-outline-width: var(--hover-outline-width, var(--standard-item-outline-width));
+    --item-outline-type: var(--hover-outline-type, var(--standard-item-outline-type));
+    --item-outline-color: var(--hover-outline-color, var(--standard-item-outline-color));
+    --item-text-decoration: var(--hover-text-decoration, var(--standard-item-text-decoration));
+    --item-box-shadow: var(--hover-box-shadow, var(--standard-item-box-shadow));
+}
+
+.item-active {
+    --item-background-color: var(--active-background-color, var(--standard-item-background-color));
+    --item-text-color: var(--active-text-color, var(--standard-item-text-color));
+    --item-border-color: var(--active-border-color, var(--standard-item-border-color));
+    --item-outline-width: var(--active-outline-width, var(--standard-item-outline-width));
+    --item-outline-type: var(--active-outline-type, var(--standard-item-outline-type));
+    --item-outline-color: var(--active-outline-color, var(--standard-item-outline-color));
+    --item-text-decoration: var(--active-text-decoration, var(--standard-item-text-decoration));
+    --item-box-shadow: var(--active-box-shadow, var(--standard-item-box-shadow));
+}
+
+.item-focus-visible {
+    --item-background-color: var(--focused-background-color, var(--standard-item-background-color));
+    --item-text-color: var(--focused-text-color, var(--standard-item-text-color));
+    --item-border-color: var(--focused-border-color, var(--standard-item-border-color));
+    --item-outline-color: var(--focused-outline-color, var(--standard-item-outline-color));
+    --item-outline-type: var(--focused-outline-type, var(--standard-item-outline-type));
+    --item-outline-width: var(--focused-outline-width, var(--standard-item-outline-width));
+    --item-text-decoration: var(--focused-text-decoration, var(--standard-item-text-decoration));
+    --item-box-shadow: var(--focused-box-shadow, var(--standard-item-box-shadow));
+}
+
+.item-disabled {
+    --item-background-color: var(--disabled-background-color, var(--standard-item-background-color));
+    --item-text-color: var(--disabled-text-color, var(--standard-item-text-color));
+    --item-border-color: var(--disabled-border-color, var(--standard-item-border-color));
+    --item-outline-width: var(--disabled-outline-width, var(--standard-item-outline-width));
+    --item-outline-type: var(--disabled-outline-type, var(--standard-item-outline-type));
+    --item-outline-color: var(--disabled-outline-color, var(--standard-item-outline-color));
+    --item-text-decoration: var(--disabled-text-decoration, var(--standard-item-text-decoration));
+    --item-box-shadow: var(--disabled-box-shadow, var(--standard-item-box-shadow));
+}
+
+.interactive {
+    --item-background-color: var(--standard-item-background-color);
+    --item-text-color: var(--standard-item-text-color);
+    --item-border-color: var(--standard-item-border-color);
+
+    --item-outline-color: var(--standard-item-outline-color);
+    --item-outline-type: var(--standard-item-outline-type, none);
+    --item-outline-width: var(--standard-item-outline-width, 0px);
+    --item-text-decoration: var(--standard-item-text-decoration, none);
+    --item-box-shadow: var(--standard-item-box-shadow, none);
+
+    --disabled-color: hsl(from var(--control-accent-color) h 0 calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 10));
+
+    --hover-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 20));
+
+    --focused-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 20));
+
+    --active-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 40));
+
+
+    background-color: var(--item-background-color);
+    color: var(--item-text-color);
+    border-radius: var(--item-border-radius, var(--border-radius));
+    text-decoration: var(--item-text-decoration);
+    outline: var(--item-outline-color) var(--item-outline-type) var(--item-outline-width);
+    border: var(--item-border-width, 0) var(--item-border-style, none) var(--item-border-color);
+    box-shadow: var(--item-box-shadow);
+
+    transition: all ease-in-out .2s;
+
+    &:hover,
+    &.hovered {
+        composes: item-hovered;
+    }
+
+    &:active,
+    &.active {
+        composes: item-active;
+
+        &:hover,
+        &.hovered {
+            composes: item-active;
+        }
+
+    }
+
+    &:focus-visible,
+    &.focused {
+        composes: item-focus-visible
+    }
+
+    &.disabled,
+    &:disabled,
+    &[disabled=""],
+    &[disabled="true"] {
+        composes: item-disabled;
+        pointer-events: none;
+    }
+}

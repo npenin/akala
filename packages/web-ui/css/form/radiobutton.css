@@ -1,22 +1,18 @@
 input[type="radio"] {
-    border-radius: 1em;
+    --border-radius: 1em;
 
     &:checked {
-        --background-color: light-dark(var(--light), var(--dark));
-        --color: var(--interact);
-    }
+        --item-background-color: light-dark(var(--light), var(--dark));
+        --item-text-color: var(--control-accent-color);
 
-    &::after,
-    &:checked::after {
-        content: "";
-    }
-
-    &::after {
-        transform: scale(0.6, 0.6);
-        transform-origin: 50% 50%;
-        border-radius: inherit;
-        height: 1em;
-        width: 1em;
-        background-color: var(--color);
+        &::after {
+            content: "";
+            transform: scale(0.6, 0.6);
+            transform-origin: 50% 50%;
+            border-radius: inherit;
+            height: 1em;
+            width: 1em;
+            background-color: var(--item-text-color);
+        }
     }
 }

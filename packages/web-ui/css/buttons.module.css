@@ -1,107 +1,7 @@
-.button-hovered {
-    --button-background-color: var(--hover-background-color, var(--standard-button-background-color));
-    --button-text-color: var(--hover-text-color, var(--standard-button-text-color));
-    --button-border-color: var(--hover-border-color, var(--standard-button-border-color));
-    --button-outline-width: var(--hover-outline-width, var(--standard-button-outline-width));
-    --button-outline-type: var(--hover-outline-type, var(--standard-button-outline-type));
-    --button-outline-color: var(--hover-outline-color, var(--standard-button-outline-color));
-    --button-text-decoration: var(--hover-text-decoration, var(--standard-text-decoration));
-}
-
-.button-active {
-    --button-background-color: var(--active-background-color, var(--standard-button-background-color));
-    --button-text-color: var(--active-text-color, var(--standard-button-text-color));
-    --button-border-color: var(--active-border-color, var(--standard-button-border-color));
-    --button-outline-width: var(--active-outline-width, var(--standard-button-outline-width));
-    --button-outline-type: var(--active-outline-type, var(--standard-button-outline-type));
-    --button-outline-color: var(--active-outline-color, var(--standard-button-outline-color));
-    --button-text-decoration: var(--active-text-decoration, var(--standard-text-decoration));
-}
-
-.button-focus-visible {
-    --button-background-color: var(--focused-background-color, var(--standard-button-background-color));
-    --button-text-color: var(--focused-text-color, var(--standard-button-text-color));
-    --button-border-color: var(--focused-border-color, var(--standard-button-border-color));
-    --button-outline-color: var(--focused-outline-color, var(--standard-button-outline-color));
-    --button-outline-type: var(--focused-outline-type, var(--standard-button-outline-type));
-    --button-outline-width: var(--focused-outline-width, var(--standard-button-outline-width));
-    --button-text-decoration: var(--focused-text-decoration, var(--standard-text-decoration));
-}
-
-.button-disabled {
-    --button-background-color: var(--disabled-background-color, var(--standard-button-background-color));
-    --button-text-color: var(--disabled-text-color, var(--standard-button-text-color));
-    --button-border-color: var(--disabled-border-color, var(--standard-button-border-color));
-    --button-outline-width: var(--disabled-outline-width, var(--standard-button-outline-width));
-    --button-outline-type: var(--disabled-outline-type, var(--standard-button-outline-type));
-    --button-outline-color: var(--disabled-outline-color, var(--standard-button-outline-color));
-    --button-text-decoration: var(--disabled-text-decoration, var(--standard-text-decoration));
-}
-
 .button-borderless {}
 
 .button {
-
-
-
-    --button-background-color: var(--standard-button-background-color);
-    --button-text-color: var(--standard-button-text-color);
-    --button-border-color: var(--standard-button-border-color);
-
-    --button-outline-color: var(--standard-button-outline-color);
-    --button-outline-type: var(--standard-button-outline-type, none);
-    --button-outline-width: var(--standard-button-outline-width, 0px);
-    --button-text-decoration: var(--standard-button-text-decoration, none);
-
-    --disabled-color: hsl(from var(--control-accent-color) h 0 calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 10));
-
-    --hover-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 20));
-
-    --focused-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 20));
-    /* --focused-text-color: hsl(from var(--standard-button-background-color) h 0 calc(50 - round(up, (l - 50) / 50) * 40)); */
-
-    --active-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 40));
-    /* --active-text-color: hsl(from var(--standard-button-text-color) h s calc(l + round(up, (l - 50) / 50) * 40)); */
-
-
-    background-color: var(--button-background-color);
-    color: var(--button-text-color);
-    border-radius: var(--button-border-radius, var(--border-radius));
-    text-decoration: var(--button-text-decoration);
-    outline: var(--button-outline-color) var(--button-outline-type) var(--button-outline-width);
-    border: var(--button-border-width, 0) var(--button-border-style, none) var(--button-border-color);
-
-
-    transition: all ease-in-out .1s;
-
-    &:hover,
-    &.hovered {
-        composes: button-hovered;
-    }
-
-    &:active,
-    &.active {
-        composes: button-active;
-
-        &:hover,
-        &.hovered {
-            composes: button-active;
-        }
-
-    }
-
-    &:focus-visible,
-    &.focused {
-        composes: button-focus-visible
-    }
-
-    &.disabled,
-    &:disabled,
-    &[disabled=""],
-    &[disabled="true"] {
-        composes: button-disabled;
-        pointer-events: none;
-    }
+    composes: interactive from './interactive.module.css';
 
     &.borderless:not(.disabled, :disabled),
     &.borderless.primary:not(.disabled, :disabled) {
@@ -121,8 +21,8 @@
     --focused-background-color: var(--focused-color);
     --hover-background-color: var(--hover-color);
 
-    --standard-button-background-color: var(--control-accent-color);
-    --standard-button-text-color: hsl(from var(--standard-button-background-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
+    --standard-item-background-color: var(--control-accent-color);
+    --standard-item-text-color: hsl(from var(--standard-item-background-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
 
     --active-background-color: var(--active-color);
     --active-text-color: hsl(from var(--active-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
@@ -140,12 +40,12 @@
 
 .button-outlined {
     composes: button akala-button from global akala-button-outlined from global;
-    --standard-button-background-color: var(--control-background-color);
-    --standard-button-border-color: var(--control-accent-color);
-    --standard-button-text-color: hsl(from var(--standard-button-background-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
-    --standard-button-outline-type: solid;
-    --standard-button-outline-width: 1px;
-    --standard-button-outline-color: var(--control-accent-color);
+    --standard-item-background-color: var(--control-background-color);
+    --standard-item-border-color: var(--control-accent-color);
+    --standard-item-text-color: hsl(from var(--standard-item-background-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
+    --standard-item-outline-type: solid;
+    --standard-item-outline-width: 1px;
+    --standard-item-outline-color: var(--control-accent-color);
 
     --active-outline-color: var(--active-color);
     --active-text-color: hsl(from var(--active-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
@@ -163,9 +63,9 @@
 
 .button-link {
     composes: button akala-button from global akala-button-link from global;
-    --standard-button-background-color: transparent;
-    --standard-button-border-color: transparent;
-    --standard-button-text-color: var(--control-accent-color);
+    --standard-item-background-color: transparent;
+    --standard-item-border-color: transparent;
+    --standard-item-text-color: var(--control-accent-color);
 
     --active-text-color: hsl(from var(--active-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
 
@@ -175,7 +75,7 @@
 
     --disabled-text-color: var(--disabled-control-text-color);
 
-    --standard-button-text-decoration: none;
-    --standard-button-outline-type: none;
-    --standard-button-border-style: none;
+    --standard-item-text-decoration: none;
+    --standard-item-outline-type: none;
+    --standard-item-border-style: none;
 }

@@ -13,7 +13,7 @@
 
 :root {
     --gutter-x: var(--gutter);
-    --gutter-y: var(--gutter);
+    --gutter-y: calc(var(--gutter)/2);
 }
 
 @media screen and (--breakpoints-xs) {
@@ -251,11 +251,9 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .akala-button {
-    padding: calc(var(--gutter)/2) var(--gutter);
+    padding: var(--gutter-y) var(--gutter-x);
 
     @media screen and (--breakpoints-md) {
-
-        padding: var(--gutter);
         height: 48px;
     }
 }

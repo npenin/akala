@@ -1,39 +1,41 @@
 input[type="checkbox"],
 input[type="radio"] {
+
     appearance: none;
-    border-radius: min(var(--border-radius), 6px);
-    padding: 0;
+    padding: 0 !important;
     height: 1.2em;
     width: 1.2em;
-    background-color: var(--background-color);
-    border-color: var(--border-color);
+    --standard-item-background-color: var(--control-background-color, var(--standard-background-color));
+    --standard-item-color: var(--control-border-color, var(--standard-border-color));
+    --standard-item-border-color: var(--control-text-color, var(--standard-text-color));
+
+    --control-border-radius: 6px;
+    --border-radius: min(var(--control-border-radius, 0px), 6px);
+
     margin: 0;
 
-    --background-color: light-dark(var(--light), var(--dark));
-    --color: light-dark(var(--gray), var(--gray-lighter));
-
-    --border-color: var(--color);
-
-
-    &:hover,
-    &.hovered {
-        --color: var(--interact);
-
-        --background-color: light-dark(var(--white), var(--black));
-    }
-
-    &:active {
-        --color: light-dark(var(--interact-lighter), var(--interact-darker));
-    }
-
     &:checked {
-        --background-color: var(--interact);
-
-        --color: var(--interact-complement);
+        --standard-item-background-color: var(--control-accent-color);
+        --standard-item-text-color: hsl(from var(--control-accent-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
 
         &::after {
             content: "✓";
-            color: var(--color);
+            color: inherit;
+            position: absolute;
+            display: block;
+            height: 1.1em;
+            width: 1.1em;
+            line-height: 1.1rem;
+            font-size: 1rem;
+            text-align: center;
+        }
+    }
+
+    &:indeterminate {
+
+        &::after {
+            content: "-";
+            color: inherit;
             position: absolute;
             display: block;
             height: 1.1em;
@@ -45,25 +47,26 @@ input[type="radio"] {
 
         &:hover:enabled,
         &.hovered:enabled {
-
-            --background-color: light-dark(var(--interact-lighter), var(--interact-darker));
-            --color: var(--interact);
+            --item-background-color: var(--hover-background-color, var(--standard-background-color));
+            --item-color: var(--hover-text-color, var(--standard-text-color));
+            --item-border-color: var(--hover-border-color, var(--standard-border-color));
         }
 
         &:active {
-            --border-color: var(--interact);
+            --item-background-color: var(--active-background-color, var(--standard-background-color));
+            --item-color: var(--active-text-color, var(--standard-text-color));
+            --item-border-color: var(--active-border-color, var(--standard-border-color));
         }
 
         &:disabled {
-
-            --background-color: var(--disabled-lighter);
-            --color: var(--disabled);
-            border-color: var(--color);
+            --item-background-color: var(--disabled-background-color, var(--standard-background-color));
+            --item-color: var(--disabled-text-color, var(--standard-text-color));
+            --item-border-color: var(--disabled-border-color, var(--standard-border-color));
         }
     }
 
     &:disabled {
-        --background-color: var(--disabled-lighter);
+        --background-color: var(--disabled-text-color);
         --color: var(--disabled);
 
         --border-color: var(--disabled);
@@ -82,9 +85,11 @@ input[type="checkbox"].switch,
     font-size: var(--size);
     height: 1em;
     width: calc(2em - var(--spacing));
-    border-radius: calc(var(--size) * 2 / 3);
+    border-radius: calc(var(--size) * 2 / 3) !important;
     appearance: none;
     margin-top: var(--spacing);
+    --item-border-color: var(--item-background-color);
+    --hover-text-color: var(--control-accent-color);
     /* background-color: var(--background-color); */
 
     &::after {
@@ -97,10 +102,13 @@ input[type="checkbox"].switch,
         border-radius: inherit;
         display: block;
         transition: all ease-in-out 0.1s;
-        background-color: var(--color);
+        background-color: var(--item-text-color);
     }
 
     &:checked {
+        /* --hover-background-color: var(--hover-color); */
+        --hover-text-color: var(--dark-gray);
+
         &::after {
             content: "";
             margin-left: var(--size);
@@ -108,9 +116,22 @@ input[type="checkbox"].switch,
             border: none;
             transition: all ease-in-out 0.1s;
             transform: none;
-            height: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
-            width: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
-            border-color: var(--color);
+            /* height: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
+            width: calc(var(--size) - var(--spacing) - var(--spacing) - 2px); */
+        }
+    }
+
+    &:indeterminate {
+        &::after {
+            content: "";
+            margin-left: calc(var(--size) / 2);
+            margin-top: calc(var(--spacing) + 0.25px);
+            border: none;
+            transition: all ease-in-out 0.1s;
+            transform: none;
+            /* height: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
+            width: calc(var(--size) - var(--spacing) - var(--spacing) - 2px); */
+            border-color: var(--item-border-color);
         }
     }
 }
