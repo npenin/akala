@@ -1,9 +1,9 @@
-#  (2024-11-24)
+#  (2025-02-10)
 
 
-### Bug Fixes
+### Features
 
-* add option to reigster remote commands on provided container a4c6102
+* handle stream as argument 6c04644
 
 
 
