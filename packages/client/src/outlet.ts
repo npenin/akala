@@ -13,6 +13,8 @@ export class OutletService
 {
     private routers: { [key: string]: Router } = {};
 
+    public static onLoad = Symbol('onLoad');
+
     constructor(private template: Template, router: Router, private location: Location)
     {
         location.on('changing', () =>
@@ -63,7 +65,7 @@ export class OutletService
         const p = partInstance();
         if (!p)
             return;
-        let controller: Partial<Disposable>;
+        let controller: Partial<Disposable & { templateReloaded(): void }>;
         let templateInstance: Partial<Disposable>;
         if (part?.controller)
             controller = part.controller(p.scope as TScope, p.element, params);
@@ -75,6 +77,8 @@ export class OutletService
                     templateInstance[Symbol.dispose]?.();
                 p.element.replaceChildren();
                 templateInstance = tpl(p.scope, p.element, controller);
+
+                controller?.[OutletService.onLoad]?.();
             }, true)
 
             if (controller)
@@ -123,7 +127,7 @@ export interface OutletDefined<TScope extends Scope<object>>
 export interface OutletDefinition<TScope extends Scope<object>>
 {
     template?: string | Promise<string>;
-    controller?(scope: TScope, element: HTMLElement | ShadowRoot, params: unknown): { [Symbol.dispose]?(): void };
+    controller?(scope: TScope, element: HTMLElement | ShadowRoot, params: unknown): { [Symbol.dispose]?(): void, templateReloaded?(): void };
 }
 
 export class OutletDefinitionBuilder<TScope extends Scope<object>> implements OutletDefinition<TScope>
