@@ -326,7 +326,7 @@
             </fieldset>
         </form>
 
-        <div class="horizontal">
+        <div class="horizontal button-grp">
             <input type="button" value="open top dialog" on on-click="controller.openDialog('dialog1')">
             <input type="button" value="open centered dialog" on on-click="controller.openDialog('dialog2')">
             <input type="button" value="open bottom dialog" on on-click="controller.openDialog('dialog3')">
@@ -406,6 +406,15 @@
                 <td><button class="primary focused">Play</button></td>
                 <td><button class="primary hovered active">Play</button></td>
                 <td><button class="primary" disabled>Play</button></td>
+            </tr>
+            <tr>
+                <th>Standard with icon</th>
+                <td><button class="primary"><i class="fa-solid fa-play"></i>Play</button></td>
+                <td><button class="primary hovered"><i class="fa-solid fa-play"></i>Play</button></td>
+                <td><button class="primary active"><i class="fa-solid fa-play"></i>Play</button></td>
+                <td><button class="primary focused"><i class="fa-solid fa-play"></i>Play</button></td>
+                <td><button class="primary hovered active"><i class="fa-solid fa-play"></i>Play</button></td>
+                <td><button class="primary" disabled><i class="fa-solid fa-play"></i>Play</button></td>
             </tr>
             <tr>
                 <th>Blue</th>
@@ -721,4 +730,166 @@
             </tr>
         </tbody>
     </table>
+
+    <h2>Menus</h2>
+    <div class="horizontal">
+
+        <menu>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a class="disabled" href="#">Contact</a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a href="#">Log out</a></li>
+        </menu>
+
+        <menu>
+            <li><a href="#"><i class="fa-solid fa-home"></i>Home</a></li>
+            <li><a href="#"><i class="fa-solid fa-question"></i>About</a></li>
+            <li><a class="disabled" href="#"><i class="fa-solid fa-user"></i>Contact</a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a href="#"><i class="fa-solid fa-power-off"></i>Log out</a></li>
+        </menu>
+    </div>
+
+    <h2>Navigation</h2>
+    <h3>Tree</h3>
+    <ul role="tree">
+        <li>/
+            <ul>
+                <li role="treeitem" aria-expanded="false">bin</li>
+                <li role="treeitem" aria-expanded="true">etc
+                    <ul>
+                        <li role="treeitem" aria-expanded="false">nginx</li>
+                        <li role="treeitem" aria-expanded="false">apache2</li>
+                    </ul>
+                </li>
+                <li role="treeitem" aria-expanded="false">home</li>
+                <li role="treeitem" aria-expanded="false">var
+
+                    <ul>
+                        <li role="treeitem" aria-expanded="false">log</li>
+                        <li role="treeitem" aria-expanded="false">lock</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <h3>Tabs</h3>
+    <nav class="tabs">
+        <ul role="tablist">
+            <li role="tab" aria-controls="panel-1" aria-selected="false">bin</li>
+            <li role="tab" aria-controls="panel-2" aria-selected="true">etc</li>
+            <li role="tab" class="disabled" aria-controls="panel-3" aria-selected="false">home</li>
+            <li role="tab" aria-controls="panel-4" aria-selected="false">var</li>
+        </ul>
+        <div id="panel-1" role="tabpanel">bin content</div>
+        <div id="panel-2" role="tabpanel" aria-current="true">etc content</div>
+        <div id="panel-3" role="tabpanel">home content</div>
+        <div id="panel-4" role="tabpanel">var content</div>
+    </nav>
+    <nav class="tabs">
+        <ul role="tablist" class="justify">
+            <li role="tab" aria-controls="panel-1" aria-selected="false">bin</li>
+            <li role="tab" aria-controls="panel-2" aria-selected="true">etc</li>
+            <li role="tab" class="disabled" aria-controls="panel-3" aria-selected="false">home</li>
+            <li role="tab" aria-controls="panel-4" aria-selected="false">var</li>
+        </ul>
+        <div id="panel-1" role="tabpanel">bin content</div>
+        <div id="panel-2" role="tabpanel" aria-current="true">etc content</div>
+        <div id="panel-3" role="tabpanel">home content</div>
+        <div id="panel-4" role="tabpanel">var content</div>
+    </nav>
+    <nav class="tabs">
+        <ul role="tablist" class="filled justify">
+            <li role="tab" aria-controls="panel-1" aria-selected="false">bin</li>
+            <li role="tab" aria-controls="panel-2" aria-selected="true">etc</li>
+            <li role="tab" class="disabled" aria-controls="panel-3" aria-selected="false">home</li>
+            <li role="tab" aria-controls="panel-4" aria-selected="false">var</li>
+        </ul>
+        <div id="panel-1" role="tabpanel">bin content</div>
+        <div id="panel-2" role="tabpanel" aria-current="true">etc content</div>
+        <div id="panel-3" role="tabpanel">home content</div>
+        <div id="panel-4" role="tabpanel">var content</div>
+    </nav>
+    <nav class="tabs">
+        <ul role="tablist" class="outlined justify">
+            <li role="tab" aria-controls="panel-1" aria-selected="false">bin</li>
+            <li role="tab" aria-controls="panel-2" aria-selected="true">etc</li>
+            <li role="tab" class="disabled" aria-controls="panel-3" aria-selected="false">home</li>
+            <li role="tab" aria-controls="panel-4" aria-selected="false">var</li>
+        </ul>
+        <div id="panel-1" role="tabpanel">bin content</div>
+        <div id="panel-2" role="tabpanel" aria-current="true">etc content</div>
+        <div id="panel-3" role="tabpanel">home content</div>
+        <div id="panel-4" role="tabpanel">var content</div>
+    </nav>
+
+    <h2>Toasts</h2>
+    <div class="toast-container condensed">
+        <div class="toast info">
+            <i class="fa-regular fa-question"></i>
+            <header>title</header>
+        </div>
+        <div class="toast warning">
+            <i class="fa-regular fa-exclamation"></i>
+            <header>title</header>
+            <main>text</main>
+        </div>
+        <div class="toast danger">
+            <i class="fa-regular fa-exclamation"></i>
+            <header>title</header>
+            <main>text</main>
+        </div>
+        <div class="toast success">
+            <i class="fa-solid fa-check"></i>
+            <header>title</header>
+            <main>text</main>
+        </div>
+
+        <div class="toast info">
+            <i class="fa-regular fa-question"></i>
+            <header>title</header>
+            <footer><button>OK</button></footer>
+        </div>
+        <div class="toast warning">
+            <i class="fa-regular fa-exclamation"></i>
+            <header>title</header>
+            <main>text</main>
+            <footer><button>OK</button></footer>
+        </div>
+        <div class="toast danger">
+            <i class="fa-regular fa-exclamation"></i>
+            <header>title</header>
+            <main>text</main>
+            <footer><button>OK</button><button class="primary">Retry</button></footer>
+        </div>
+        <div class="toast success">
+            <i class="fa-solid fa-check"></i>
+            <header>title</header>
+            <main>text</main>
+            <footer><button>OK</button></footer>
+        </div>
+    </div>
+    <h2>Badges</h2>
+    <div class="horizontal">
+        <button type="button">
+            Notifications <span class="badge bg">4</span>
+        </button>
+        <button type="button" class="primary">
+            Notifications <span class="badge bg danger">+99</span>
+        </button>
+        <button type="button" class="primary">
+            Notifications <span class="badge bg danger pin">+99</span>
+        </button>
+        <button type="button" class="primary">
+            Notifications <span class="badge bg danger pin"></span>
+        </button>
+        <button type="button" class="primary">
+            Notifications <span class="badge bg danger pin show-if-empty"></span>
+        </button>
+    </div>
 </div>

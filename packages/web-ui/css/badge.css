@@ -1,0 +1,32 @@
+.badge {
+
+    display: inline-block;
+    padding: var(--badge-padding-y, .35em) var(--badge-padding-x, .65em);
+    font-size: var(--badge-font-size, .75em);
+    font-weight: var(--badge-font-weight, 700);
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--badge-border-radius, var(--border-radius));
+
+    &.pin {
+        position: absolute;
+        transform: translate(50%, -50%);
+        top: 0;
+        right: 0;
+
+        &.show-if-empty:empty {
+            padding: .5em;
+            display: inline-block;
+        }
+    }
+
+    &:empty {
+        display: none;
+    }
+}
+
+*:has(.pin) {
+    position: relative;
+}

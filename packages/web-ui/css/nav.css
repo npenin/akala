@@ -1,0 +1,83 @@
+nav.tabs {
+    ul[role="tablist"] {
+        list-style-type: none;
+        composes: horizontal from './layout.css';
+        padding-left: 0;
+        column-gap: 0;
+        padding-left: var(--gutter-x);
+        margin-bottom: 0;
+        border-bottom: 1px solid var(--separator-color);
+        margin-right: 1px;
+
+        &.justify {
+            justify-content: space-between;
+
+            li[role="tab"] {
+                flex-grow: 1;
+            }
+        }
+
+
+        &.filled li[role="tab"] {
+            --standard-item-border-color: var(--separator-color);
+            --standard-item-background-color: var(--control-background-color);
+            /* --standard-item-border-color: var(--window-background-color); */
+        }
+
+        &.outlined li[role="tab"] {
+            --hover-color: var(--standard-item-background-color);
+            --hover-border-color: var(--control-accent-color);
+
+            &:hover,
+            &.hovered {
+                border-bottom-color: var(--hover-background-color, var(--standard-item-background-color));
+            }
+
+            /* --standard-item-border-color: var(--window-background-color); */
+        }
+
+        li[role="tab"] {
+            composes: interactive from './interactive.module.css';
+            padding: var(--gutter-y) var(--gutter-x);
+            border-radius: var(--tab-border-radius, var(--border-radius)) var(--tab-border-radius, var(--border-radius)) 0 0;
+            margin-right: -1px;
+            margin-bottom: -1px;
+            --item-border-width: 1px;
+            --item-border-style: solid;
+            --active-background-color: var(--window-background-color);
+            --active-text-color: var(--control-text-color);
+            --active-border-color: var(--separator-color);
+            --standard-item-border-color: transparent;
+            --hover-color: var(--control-accent-color);
+            --hover-background-color: var(--hover-color);
+            --hover-text-color: hsl(from var(--hover-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
+
+            --disabled-text-color: var(--disabled-control-text-color);
+
+
+            &[aria-selected="true"] {
+                composes: item-active from './interactive.module.css';
+                --hover-border-color: var(--separator-color);
+                border-bottom-color: var(--active-background-color);
+                --hover-color: var(--active-background-color);
+
+
+                &:hover,
+                &.hovered {
+                    border-bottom-color: var(--hover-background-color, var(--standard-item-background-color));
+                }
+            }
+        }
+    }
+
+    *[role="tabpanel"] {
+        display: none;
+        padding: var(--gutter-y) var(--gutter-x);
+
+        &[aria-current="true"] {
+            display: block;
+            border: 1px solid var(--separator-color);
+            border-top: 0;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 @import "reset.css";
 @import "colors.css";
-/* @import 'hyperlinks.css'; */
+@import "semantic-colors.css";
 @import "layout.css";
 @import 'form/form.css';
 @import 'menus.css';
@@ -9,11 +9,20 @@
 @import 'cards.css';
 /* @import 'flex-grid.css'; */
 @import 'table.css';
+@import 'tree.css';
+@import 'nav.css';
+@import 'toast.css';
+@import 'badge.css';
 /* @import-tokens '../default-theme.tokens.json'; */
 
 :root {
     --gutter-x: var(--gutter);
     --gutter-y: calc(var(--gutter)/2);
+    --condensed-gutter-x: calc(var(--gutter)/2);
+    --condensed-gutter-y: calc(var(--gutter)/4);
+    --aired-gutter-x: calc(var(--gutter)*2);
+    --aired-gutter-y: calc(var(--gutter)*4);
+    --code-font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 @media screen and (--breakpoints-xs) {
@@ -281,132 +290,70 @@ button[type="submit"] {
     composes: akala-button;
 }
 
-
-.button.blue.filled,
-button.blue.filled {
+.button.filled,
+button.filled {
     composes: button-filled from './buttons.module.css';
     composes: akala-button;
-    --control-accent-color: var(--system-blue);
 }
 
-.button.red.filled,
-button.red.filled {
-    composes: button-filled from './buttons.module.css';
+.button.outlined,
+button.outlined {
+    composes: button-outlined from './buttons.module.css';
     composes: akala-button;
+}
+
+.button-grp {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+
+    .button:not(:last-child),
+    input:not(:last-child) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .button:not(:first-child),
+    input:not(:first-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.red {
     --control-accent-color: var(--system-red);
 }
 
-.button.green.filled,
-button.green.filled {
-    composes: button-filled from './buttons.module.css';
-    composes: akala-button;
+.green {
     --control-accent-color: var(--system-green);
 }
 
-.button.yellow.filled,
-button.yellow.filled {
-    composes: button-filled from './buttons.module.css';
-    composes: akala-button;
+.yellow {
     --control-accent-color: var(--system-yellow);
 }
 
-.button.orange.filled,
-button.orange.filled {
-    composes: button-filled from './buttons.module.css';
-    composes: akala-button;
+.orange {
     --control-accent-color: var(--system-orange);
 }
 
-.button.pink.filled,
-button.pink.filled {
-    composes: button-filled from './buttons.module.css';
-    composes: akala-button;
+.pink {
     --control-accent-color: var(--system-pink);
 }
 
-.button.purple.filled,
-button.purple.filled {
-    composes: button-filled from './buttons.module.css';
-    composes: akala-button;
+.purple {
     --control-accent-color: var(--system-purple);
 }
 
-.button.teal.filled,
-button.teal.filled {
-    composes: button-filled from './buttons.module.css';
-    composes: akala-button;
+.teal {
     --control-accent-color: var(--system-teal);
 }
 
-.button.indigo.filled,
-button.indigo.filled {
-    composes: button-filled from './buttons.module.css';
-    composes: akala-button;
+.indigo {
     --control-accent-color: var(--system-indigo);
 }
 
-
-.button.blue.outlined,
-button.blue.outlined {
-    composes: button-outlined from './buttons.module.css';
-    composes: akala-button;
+.blue {
     --control-accent-color: var(--system-blue);
-}
-
-.button.red.outlined,
-button.red.outlined {
-    composes: button-outlined from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-red);
-}
-
-.button.green.outlined,
-button.green.outlined {
-    composes: button-outlined from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-green);
-}
-
-.button.yellow.outlined,
-button.yellow.outlined {
-    composes: button-outlined from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-yellow);
-}
-
-.button.orange.outlined,
-button.orange.outlined {
-    composes: button-outlined from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-orange);
-}
-
-.button.pink.outlined,
-button.pink.outlined {
-    composes: button-outlined from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-pink);
-}
-
-.button.purple.outlined,
-button.purple.outlined {
-    composes: button-outlined from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-purple);
-}
-
-.button.teal.outlined,
-button.teal.outlined {
-    composes: button-outlined from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-teal);
-}
-
-.button.indigo.outlined,
-button.indigo.outlined {
-    composes: button-outlined from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-indigo);
 }
 
 a[href],
@@ -415,78 +362,26 @@ button.link {
     composes: akala-button;
 }
 
-a[href].blue,
-.button.blue.link,
-button.blue.link {
-    composes: button-link from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-blue);
-}
-
-a[href].red,
-.button.red.link,
-button.red.link {
-    composes: button-link from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-red);
-}
-
-a[href].green,
-.button.green.link,
-button.green.link {
-    composes: button-link from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-green);
-}
-
-a[href].yellow,
-.button.yellow.link,
-button.yellow.link {
-    composes: button-link from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-yellow);
-}
-
-a[href].orange,
-.button.orange.link,
-button.orange.link {
-    composes: button-link from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-orange);
-}
-
-a[href].pink,
-.button.pink.link,
-button.pink.link {
-    composes: button-link from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-pink);
-}
-
-a[href].purple,
-.button.purple.link,
-button.purple.link {
-    composes: button-link from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-purple);
-}
-
-a[href].teal,
-.button.teal.link,
-button.teal.link {
-    composes: button-link from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-teal);
-}
-
-a[href].indigo,
-.button.indigo.link,
-button.indigo.link {
-    composes: button-link from './buttons.module.css';
-    composes: akala-button;
-    --control-accent-color: var(--system-indigo);
-}
-
 input:not([type="button"], [type="submit"], [type="reset"]) {
     composes: form-control from './form/form.css'
+}
+
+.condensed {
+    --gutter-x: var(--condensed-gutter-x);
+    --gutter-y: var(--condensed-gutter-y);
+}
+
+.aired {
+    --gutter-x: var(--aired-gutter-x);
+    --gutter-y: var(--aired-gutter-y);
+}
+
+.pill {
+    border-radius: 50%;
+}
+
+mark {
+    padding: .5ch;
+    color: var(--highlight-text-color, inherit);
+    background-color: var(--highlight-color);
 }

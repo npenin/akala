@@ -10,12 +10,17 @@
     --item-border-width: 1px;
 
     --item-border-radius: var(--card-border-radius);
-    padding: var(--gutter-y) var(--gutter-x);
+    padding: var(--gutter-x) var(--gutter-x);
 
     &>header {
         margin: calc(var(--gutter-y) * -1) calc(var(--gutter-x) * -1);
-        margin-bottom: 0;
+
+        &:not(:last-child) {
+            margin-bottom: 0;
+        }
+
         padding: var(--gutter-y) var(--gutter-x);
+        box-shadow: none;
 
         &+* {
             margin-top: var(--gutter-y);
@@ -29,11 +34,7 @@
     }
 
     &.actionable {
-        --standard-item-box-shadow: 0 0.188rem 0.75rem 0 rgb(from var(--black) r g b / 0.15);
-
-        @media screen and (prefers-color-scheme:dark) {
-            --standard-item-box-shadow: 0 0.188rem 0.75rem 0 rgb(from var(--black) r g b / 0.55);
-        }
+        --standard-item-box-shadow: 0 0.188rem 0.75rem 0 var(--shadow-color);
 
         --hover-box-shadow: 0 0.188rem 0.75rem 0 var(--current-control-tint);
     }

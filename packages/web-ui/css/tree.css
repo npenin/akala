@@ -1,0 +1,46 @@
+*[role="tree"] {
+    list-style-type: none;
+    --connector-margin-right: 10px;
+    --connector-left: calc(-1*var(--connector-margin-right) - 5px);
+    padding-left: calc(-1*var(--connector-left) + 5px);
+
+    li[role="treeitem"] {
+
+        position: relative;
+
+        /* Vertical dotted line */
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: var(--connector-left);
+            width: var(--connector-margin-right);
+            height: 100%;
+            border-left: 1px solid currentColor;
+        }
+
+        /* Horizontal connector */
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0.75em;
+            left: var(--connector-left);
+            width: var(--connector-margin-right);
+            border-top: 1px solid currentColor;
+        }
+
+        /* Remove vertical line for the last child */
+        &:last-child::before {
+            height: 0.75em;
+        }
+
+        &:not([aria-expanded="true"]) ul {
+            display: none;
+        }
+    }
+
+    ul {
+        list-style-type: inherit;
+        padding-left: calc(-1*var(--connector-left) + 5px);
+    }
+}

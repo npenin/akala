@@ -1,0 +1,51 @@
+.semantic-color {
+    --control-text-color: hsl(from var(--control-accent-color) h s calc(10 + (l * 0.4)));
+
+    @media screen and (prefers-color-scheme:light) {
+        --current-control-tint: hsl(from var(--control-accent-color) h s calc(70 + (l * 0.3)));
+        --shadow-color: hsl(from var(--control-accent-color) h s calc(70 + (l * 0.3)));
+    }
+
+    @media screen and (prefers-color-scheme:dark) {
+        --current-control-tint: hsl(from var(--control-accent-color) h s calc((l * 0.3)));
+        --shadow-color: hsl(from var(--control-accent-color) h s calc((l * 0.3)));
+    }
+}
+
+.danger {
+    --control-accent-color: var(--system-red);
+    composes: semantic-color;
+}
+
+.warning {
+    --control-accent-color: var(--system-yellow);
+    composes: semantic-color;
+}
+
+.success {
+    --control-accent-color: var(--system-green);
+    composes: semantic-color;
+}
+
+.info {
+    --control-accent-color: var(--system-blue);
+    composes: semantic-color;
+}
+
+.text {
+    composes: semantic-color;
+
+    color: var(--control-text-color);
+}
+
+.bg {
+    background-color: var(--control-accent-color);
+    color: hsl(from var(--control-accent-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
+}
+
+.text-bg {
+    composes: semantic-color;
+
+    color: var(--control-text-color);
+    background-color: var(--current-control-tint);
+}

@@ -79,6 +79,7 @@ input[type="checkbox"]:checked {
 }
 
 input[type="checkbox"].switch,
+input[type="checkbox"][role="switch"],
 .switch input[type="checkbox"] {
     --size: 1.125rem;
     --spacing: 1px;
@@ -88,7 +89,11 @@ input[type="checkbox"].switch,
     border-radius: calc(var(--size) * 2 / 3) !important;
     appearance: none;
     margin-top: var(--spacing);
-    --item-border-color: var(--item-background-color);
+
+    @media screen and (prefers-color-scheme:dark) {
+        --item-border-color: var(--item-background-color);
+    }
+
     --hover-text-color: var(--control-accent-color);
     /* background-color: var(--background-color); */
 

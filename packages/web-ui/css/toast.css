@@ -1,0 +1,40 @@
+.toast-container {
+
+    composes: vertical from './layout.css';
+
+    .toast {
+        composes: card from './cards.css';
+
+        display: grid;
+        grid-template-columns: calc(48px + var(--gutter-x)) 1fr;
+        grid-template-rows: auto auto auto;
+        /* --standard-item-border-color: var(--control-accent-color); */
+        --standard-item-background-color: var(--control-background-color);
+        --hover-box-shadow: 0 0 2px inset var(--control-accent-color);
+
+        >img,
+        >i {
+            border-radius: var(--icon-border-radius, var(--border-radius));
+            padding-top: var(--gutter-y);
+            padding-bottom: var(--gutter-y);
+            padding-right: var(--gutter-x);
+            line-height: 48px;
+            font-size: 32px;
+            color: var(--control-accent-color);
+            grid-column: 1;
+            grid-row: 1 / span 3;
+            text-align: center;
+        }
+
+        >header:last-child {
+            grid-row: 1 / span 3;
+        }
+
+        footer {
+            --hover-box-shadow: none;
+            --item-border-style: none;
+            --standard-item-background-color: unset;
+            justify-content: end;
+        }
+    }
+}
