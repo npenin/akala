@@ -1,5 +1,6 @@
 import { Binding, ExpressionsWithLength, ParsedAny, ParsedObject, ParsedString, Parser, SimpleInjector, Subscription, parser } from "@akala/core";
 import { Composer } from "../template.js";
+import { Control } from '../controlsv2/shared.js';
 
 const databound = new SimpleInjector();
 
@@ -19,7 +20,7 @@ export interface WebComponent
     attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
 }
 
-
+export type HtmlControlElement<T extends Partial<WebComponent> & Control, TElement extends HTMLElement = HTMLElement> = TElement & { control: T };
 
 export function webComponent(tagName: string, options?: ElementDefinitionOptions)
 {
@@ -31,7 +32,7 @@ export function webComponent(tagName: string, options?: ElementDefinitionOptions
 
         customElements.define(tagName, class extends parent
         {
-            control: T;
+            public readonly control: T;
             constructor()
             {
                 super();

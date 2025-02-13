@@ -36,7 +36,7 @@ export function service(name, ...toInject: string[])
 // import component, { webComponent } from './decorators/component.js';
 import { Container, ICommandProcessor, Metadata, StructuredParameters } from '@akala/commands';
 // export { component, webComponent };
-export { AttributeComposer, WebComponent, webComponent, wcObserve, databind } from './behaviors/shared.js'
+export { AttributeComposer, WebComponent, webComponent, wcObserve, databind, HtmlControlElement } from './behaviors/shared.js'
 
 export class LocalAfterRemoteProcessor implements ICommandProcessor
 {
