@@ -1148,17 +1148,46 @@
     </table>
 
     <h2>Popover</h2>
+    <h3>Dropdowns</h3>
     <div class="horizontal">
-
-        <kl-popover role="menu" trigger="#dd" placement="'bottom-start'" id="kldd" closeOnClickOutside="true">pwet
-            pwet</kl-popover>
-        <input id="dd" onfocus="kldd.showPopover()" />
 
         <label for="search">Search:</label>
 
-        <input is="kl-typeahead" id="search" role="combobox" aria-controls="suggestions" aria-expanded="true">
+        <input is="kl-typeahead" id="search" role="combobox" aria-controls="suggestions">
 
-        <kl-popover id="suggestions" role="listbox" placement="'bottom-start'" class="menu" closeOnClickOutside="true">
+        <kl-popover id="suggestions" role="listbox" placement="'bottom-start'" closeOnClickOutside="true">
+            <menu>
+                <li role="option" id="option1"><a href>Apple</a></li>
+                <li role="option" id="option2"><a href>Banana</a></li>
+                <li role="option" id="option3"><a href>Cherry</a></li>
+            </menu>
+        </kl-popover>
+
+
+        <div class="split-button">
+            <button class="filled">Action</button>
+            <button class="filled" id="dd-button" role="combobox" aria-controls="actions"
+                onclick="document.getElementById('actions').control.showPopover(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12"
+                    viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                    <path fill="currentColor"
+                        d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                </svg>
+            </button>
+
+        </div>
+
+        <button class="filled" id="dd-button2" role="combobox" aria-controls="actions"
+            onclick="document.getElementById('actions').control.showPopover(this)">
+            Action
+            <svg xmlns="http://www.w3.org/2000/svg" width="12"
+                viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <path fill="currentColor"
+                    d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+            </svg>
+        </button>
+
+        <kl-popover id="actions" role="listbox" placement="'bottom-end'" closeOnClickOutside="true">
             <menu>
                 <li role="option" id="option1"><a href>Apple</a></li>
                 <li role="option" id="option2"><a href>Banana</a></li>
@@ -1167,6 +1196,6 @@
         </kl-popover>
 
     </div>
-
+    <h3>Tooltips</h3>
     <div style="height:300px"></div>
 </div>
