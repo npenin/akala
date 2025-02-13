@@ -7,7 +7,7 @@ import { Processors } from '@akala/commands';
 import { Signup } from './signup/signup.js';
 import { Login } from './login/login.js';
 import Home from './home.js';
-import { Popover } from '@akala/web-ui';
+import { Popover, Typeahead } from '@akala/web-ui';
 import { DesignKit } from './design-kit/index.js';
 // import weather from './weather.js';
 
@@ -37,6 +37,7 @@ bootstrapModule.activate(['$rootScope', 'services.$outlet'], async (rootScope: S
     webComponent('kl-popover')(Popover);
     webComponent('kl-each')(Each);
     webComponent('ul-each', { extends: 'ul' })(Each);
+    webComponent('kl-typeahead', { extends: 'input' })(Typeahead);
 
     serviceModule.register('templateOptions', {
         $rootScope: rootScope, i18n: {
