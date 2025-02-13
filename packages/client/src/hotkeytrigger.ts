@@ -1,9 +1,9 @@
 import { Container, Trigger } from '@akala/commands'
 
-export default new Trigger<[], void>('keybinding', (container, options?: { warnOnUnkownCommand?: boolean }) =>
+export default new Trigger<[options?: Partial<{ element: HTMLElement, warnOnUnkownCommand?: boolean }>], void>('keybinding', (container, options) =>
 {
     let chord = container;
-    document.addEventListener('keydown', (ev) =>
+    (options?.element ?? document).addEventListener('keydown', (ev: KeyboardEvent) =>
     {
         let sequence = '';
         if (ev.ctrlKey)
