@@ -1,33 +1,6 @@
 import { Control, HtmlControlElement, wcObserve, HotKeyTrigger } from '@akala/client';
 import { Popover } from './popover.js';
 import { fromObject } from '@akala/commands';
-import { flip, Middleware, offset } from '@floating-ui/dom';
-
-export const parentSize: () => Middleware = () =>
-{
-    return {
-        name: 'parentSize',
-        fn(state)
-        {
-            if (state.strategy == 'absolute')
-            {
-                switch (state.placement)
-                {
-                    case 'top':
-                    case 'bottom':
-                    case 'top-start':
-                    case 'top-end':
-                    case 'bottom-start':
-                    case 'bottom-end':
-                        return { data: { minWidth: state.elements.reference.getBoundingClientRect().width } }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        },
-    }
-}
 
 @wcObserve('options')
 @wcObserve('aria-controls')
@@ -85,7 +58,7 @@ export class Typeahead extends Control<{ 'aria-controls': string, options: strin
             preventClick = true;
             const popover = document.getElementById(this.attrib('aria-controls')) as HtmlControlElement<Popover>;
             if (!popover.checkVisibility())
-                popover.control.showPopover(element, [parentSize(), flip(), offset({ mainAxis: 4 })]);
+                popover.control.showPopover(element);
             popover.addEventListener('toggle', () =>
             {
                 const currentItem = popover.querySelector('[role="option"][aria-activedescendant="true"]');
@@ -105,7 +78,7 @@ export class Typeahead extends Control<{ 'aria-controls': string, options: strin
                         popover.control.hidePopover();
                     else
                     {
-                        popover.control.showPopover(element, [parentSize(), flip(), offset({ mainAxis: 4 })]);
+                        popover.control.showPopover(element);
 
                         popover.addEventListener('toggle', () =>
                         {

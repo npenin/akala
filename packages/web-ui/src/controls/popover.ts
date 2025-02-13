@@ -1,7 +1,33 @@
 import { Control, wcObserve, pipefromEvent } from '@akala/client';
 import { BindingChangedEvent, pipe, Subscription } from '@akala/core';
-import { autoUpdate, computePosition, Middleware, Placement } from '@floating-ui/dom'
+import { autoUpdate, computePosition, flip, Middleware, offset, Placement } from '@floating-ui/dom'
 import css from './popover.css?inline'
+
+export const parentSize: () => Middleware = () =>
+{
+    return {
+        name: 'parentSize',
+        fn(state)
+        {
+            if (state.strategy == 'absolute')
+            {
+                switch (state.placement)
+                {
+                    case 'top':
+                    case 'bottom':
+                    case 'top-start':
+                    case 'top-end':
+                    case 'bottom-start':
+                    case 'bottom-end':
+                        return { data: { minWidth: state.elements.reference.getBoundingClientRect().width } }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        },
+    }
+}
 
 @wcObserve('placement')
 @wcObserve('middlewares')
@@ -13,7 +39,7 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
 
     private async placementChanged(trigger: Element, ev: BindingChangedEvent<Placement>, middlewares: Middleware[])
     {
-        const result = await computePosition(trigger, this.element, { placement: ev.value, middleware: middlewares });
+        const result = await computePosition(trigger, this.element, { placement: ev.value, middleware: [parentSize(), flip(), offset({ mainAxis: 4 })].concat(middlewares) });
         this.element.style.left = result.x + 'px';
         this.element.style.top = result.y + 'px';
         this.element.style.position = result.strategy;
@@ -23,7 +49,7 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
 
     private trigger: HTMLElement;
 
-    public showPopover(trigger: HTMLElement, middlewares: Middleware[])
+    public showPopover(trigger: HTMLElement, middlewares?: Middleware[])
     {
         this.trigger = trigger;
         console.log('show popover');
@@ -60,7 +86,7 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
 
         element.showPopover = () =>
         {
-            this.showPopover(document.querySelector(this.attrib('trigger')), this.bind('middlewares').getValue());
+            this.showPopover(document.querySelector(this.attrib('trigger')), this.bind('middlewares')?.getValue());
         }
 
         element.hidePopover = () =>

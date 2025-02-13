@@ -1,2 +1,2 @@
-export { Popover } from './popover.js'
-export { Typeahead } from './typeahead.js'
+export { Popover } from './controls/popover.js'
+export { Typeahead } from './controls/typeahead.js'
