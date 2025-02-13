@@ -9,6 +9,7 @@
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: var(--badge-border-radius, var(--border-radius));
+    align-self: center;
 
     &.pin {
         position: absolute;
@@ -29,4 +30,13 @@
 
 *:has(.pin) {
     position: relative;
+    margin-right: 1em;
+
+    &:has(.pin:empty) {
+        margin-right: 0;
+    }
+
+    &:has(.pin.show-if-empty:empty) {
+        margin-right: .25em;
+    }
 }

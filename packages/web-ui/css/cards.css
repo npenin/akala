@@ -10,27 +10,27 @@
     --item-border-width: 1px;
 
     --item-border-radius: var(--card-border-radius);
-    padding: var(--gutter-x) var(--gutter-x);
+    padding: var(--local-gutter-x) var(--local-gutter-x);
 
     &>header {
-        margin: calc(var(--gutter-y) * -1) calc(var(--gutter-x) * -1);
+        margin: calc(var(--local-gutter-y) * -1) calc(var(--local-gutter-x) * -1);
 
         &:not(:last-child) {
             margin-bottom: 0;
         }
 
-        padding: var(--gutter-y) var(--gutter-x);
+        padding: var(--local-gutter-y) var(--local-gutter-x);
         box-shadow: none;
 
         &+* {
-            margin-top: var(--gutter-y);
+            margin-top: var(--local-gutter-y);
         }
     }
 
     &>footer {
-        margin: calc(var(--gutter-y) * -1) calc(var(--gutter-x) * -1);
+        margin: calc(var(--local-gutter-y) * -1) calc(var(--local-gutter-x) * -1);
         margin-top: 0;
-        padding: var(--gutter-y) var(--gutter-x);
+        padding: var(--local-gutter-y) var(--local-gutter-x);
     }
 
     &.actionable {

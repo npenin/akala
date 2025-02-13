@@ -3,10 +3,13 @@ menu {
     padding: 0;
     border: 1px solid var(--separator-color);
     border-radius: var(--border-radius);
-    width: fit-content;
     --shadow-color: rgb(from var(--control-accent-color) r g b / 0.15);
     --shadow: 0 .188rem .75rem 0 var(--shadow-color);
     box-shadow: var(--shadow);
+
+    &::slotted {
+        width: 100%;
+    }
 
     >li {
         background-color: var(--control-background-color);
@@ -14,7 +17,7 @@ menu {
         --standard-item-text-color: var(--control-text-color);
         --item-border-radius: 0;
 
-        padding: var(--gutter-y) calc(var(--gutter-x)*2);
+        padding: var(--local-gutter-y) calc(var(--local-gutter-x)*2);
 
         &:first-child {
             border-top-right-radius: inherit;
@@ -54,7 +57,7 @@ menu {
         }
 
         >a:only-child {
-            padding: var(--gutter-y) calc(var(--gutter-x)*2);
+            padding: var(--local-gutter-y) calc(var(--local-gutter-x)*2);
             text-decoration: none;
             width: 100%;
             height: 100%;
@@ -63,6 +66,17 @@ menu {
             &>i:first-child {
                 width: 20px;
             }
+        }
+
+        &[aria-activedescendant="true"]>a:only-child {
+            --item-background-color: var(--hover-background-color, var(--standard-item-background-color));
+            --item-text-color: var(--hover-text-color, var(--standard-item-text-color));
+            --item-border-color: var(--hover-border-color, var(--standard-item-border-color));
+            --item-outline-width: var(--hover-outline-width, var(--standard-item-outline-width));
+            --item-outline-type: var(--hover-outline-type, var(--standard-item-outline-type));
+            --item-outline-color: var(--hover-outline-color, var(--standard-item-outline-color));
+            --item-text-decoration: var(--hover-text-decoration, var(--standard-item-text-decoration));
+            --item-box-shadow: var(--hover-box-shadow, var(--standard-item-box-shadow));
         }
 
         &>hr:only-child {

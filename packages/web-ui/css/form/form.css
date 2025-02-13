@@ -48,7 +48,7 @@ input::-webkit-inner-spin-button {
 
 .form-control {
     composes: form-item;
-    padding: var(--gutter-y) var(--gutter-x);
+    padding: var(--local-gutter-y) var(--local-gutter-x);
 
     &::placeholder {
         color: var(--placeholder);
@@ -77,11 +77,11 @@ input::-webkit-inner-spin-button {
 }
 
 input[type=file]::-webkit-file-upload-button {
-    margin-top: calc(var(--gutter-y) / -1);
-    margin-bottom: calc(var(--gutter-y) / -1);
-    margin-left: calc(var(--gutter-x) * -1);
-    margin-right: calc(var(--gutter-x));
-    height: calc(2em + var(--gutter-y));
+    margin-top: calc(var(--local-gutter-y) / -1);
+    margin-bottom: calc(var(--local-gutter-y) / -1);
+    margin-left: calc(var(--local-gutter-x) * -1);
+    margin-right: calc(var(--local-gutter-x));
+    height: calc(2em + var(--local-gutter-y));
 
     z-index: 1;
     border-top-right-radius: 0;
@@ -218,11 +218,11 @@ input[type="range"] {
 
             position: absolute;
             color: var(--placeholder-text-color);
-            top: calc(var(--gutter-y));
-            left: calc(var(--gutter-x) / 2);
+            top: calc(var(--local-gutter-y));
+            left: calc(var(--local-gutter-x) / 2);
             transition: all 0.3s;
             /* background-color: var(--control-background-color); */
-            padding: 0 calc(var(--gutter-x) / 2);
+            padding: 0 calc(var(--local-gutter-x) / 2);
 
             &+input {
                 --item-border-style: none;
@@ -231,7 +231,7 @@ input[type="range"] {
 
             &:has(+input:focus-visible),
             &:has(+input:not(:placeholder-shown)) {
-                top: calc(var(--gutter-y) * -1 - 0.8em);
+                top: calc(var(--local-gutter-y) * -1 - 0.8em);
                 font-size: smaller;
                 color: var(--body-color);
             }

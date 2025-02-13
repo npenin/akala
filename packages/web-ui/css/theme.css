@@ -1,6 +1,5 @@
 @import "reset.css";
 @import "colors.css";
-@import "semantic-colors.css";
 @import "layout.css";
 @import 'form/form.css';
 @import 'menus.css';
@@ -14,6 +13,22 @@
 @import 'toast.css';
 @import 'badge.css';
 /* @import-tokens '../default-theme.tokens.json'; */
+@import "semantic-colors.css";
+
+@property --local-gutter-x {
+    inherits: false;
+    initial-value: var(--gutter-x);
+}
+
+@property --local-gutter-y {
+    inherits: false;
+    initial-value: var(--gutter-y);
+}
+
+* {
+    --local-gutter-x: var(--gutter-x);
+    --local-gutter-y: var(--gutter-y);
+}
 
 :root {
     --gutter-x: var(--gutter);
@@ -260,7 +275,7 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .akala-button {
-    padding: var(--gutter-y) var(--gutter-x);
+    padding: var(--local-gutter-y) var(--local-gutter-x);
 
     @media screen and (--breakpoints-md) {
         height: 48px;
@@ -374,6 +389,16 @@ input:not([type="button"], [type="submit"], [type="reset"]) {
 .aired {
     --gutter-x: var(--aired-gutter-x);
     --gutter-y: var(--aired-gutter-y);
+}
+
+.local-condensed {
+    --local-gutter-x: var(--condensed-gutter-x);
+    --local-gutter-y: var(--condensed-gutter-y);
+}
+
+.local-aired {
+    --local-gutter-x: var(--aired-gutter-x);
+    --local-gutter-y: var(--aired-gutter-y);
 }
 
 .pill {

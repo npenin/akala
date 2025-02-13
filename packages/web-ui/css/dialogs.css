@@ -6,7 +6,7 @@ dialog {
     top: 0;
     left: 50%;
     transform: translateX(-50%) var(--dialog-animation-transform-start);
-    padding: var(--gutter-y) var(--gutter-x);
+    padding: var(--local-gutter-y) var(--local-gutter-x);
 
     opacity: 0;
     transition: all 0.5s allow-discrete;
@@ -24,9 +24,9 @@ dialog {
     input[type="button"][aria-label="close"],
     button[type="button"][aria-label="close"] {
         float: right;
-        padding: calc(var(--gutter-y) / 2) calc(var(--gutter-x) / 2);
+        padding: calc(var(--local-gutter-y) / 2) calc(var(--local-gutter-x) / 2);
         /* width: 2em; */
-        height: calc(1em + var(--gutter-y));
+        height: calc(1em + var(--local-gutter-y));
         line-height: 1em;
     }
 
@@ -62,10 +62,10 @@ dialog {
     }
 
     >footer {
-        margin-left: calc(var(--gutter-x) * -1);
-        margin-right: calc(var(--gutter-x) * -1);
-        margin-bottom: calc(var(--gutter-y) * -1);
-        margin-top: var(--gutter-y);
+        margin-left: calc(var(--local-gutter-x) * -1);
+        margin-right: calc(var(--local-gutter-x) * -1);
+        margin-bottom: calc(var(--local-gutter-y) * -1);
+        margin-top: var(--local-gutter-y);
         clear: right;
     }
 }

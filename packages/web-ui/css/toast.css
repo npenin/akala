@@ -4,9 +4,12 @@
 
     .toast {
         composes: card from './cards.css';
+        --local-gutter-x: inherit;
+        --local-gutter-y: inherit;
+
 
         display: grid;
-        grid-template-columns: calc(48px + var(--gutter-x)) 1fr;
+        grid-template-columns: calc(48px + var(--local-gutter-x)) 1fr;
         grid-template-rows: auto auto auto;
         /* --standard-item-border-color: var(--control-accent-color); */
         --standard-item-background-color: var(--control-background-color);
@@ -15,9 +18,9 @@
         >img,
         >i {
             border-radius: var(--icon-border-radius, var(--border-radius));
-            padding-top: var(--gutter-y);
-            padding-bottom: var(--gutter-y);
-            padding-right: var(--gutter-x);
+            padding-top: var(--local-gutter-y);
+            padding-bottom: var(--local-gutter-y);
+            padding-right: var(--local-gutter-x);
             line-height: 48px;
             font-size: 32px;
             color: var(--control-accent-color);
