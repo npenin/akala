@@ -2,3 +2,19 @@
     height: 100%;
     width: 100%;
 }
+
+.arrow {
+    transform: rotate(45deg);
+    --arrow-size: 8px;
+    background-color: inherit;
+    height: var(--arrow-size);
+    width: var(--arrow-size);
+    margin: calc(var(--arrow-size) / -2);
+}
+
+:host(.tooltip) {
+    padding: var(--local-gutter-y) var(--local-gutter-x) !important;
+    border-radius: var(--tooltip-border-radius, var(--border-radius)) !important;
+    top: 0px;
+    left: 0px;
+}
