@@ -154,7 +154,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
 
     getBindings<const TKey extends PropertyKey>(item: HTMLElement, options: T, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength)
     {
-        const binding = context.pipe<((...args: unknown[]) => unknown) | Record<string, (...args: unknown[]) => unknown>>(source);
+        const binding = context.pipe<((...args: unknown[]) => unknown) | Record<string, (...args: unknown[]) => unknown>>(source, false);
         const subs: Subscription[] = [];
         binding.onChanged(ev =>
         {
@@ -162,6 +162,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
             if (sub)
                 subs.push(sub);
         }, true);
+
         return [member, binding] as const
 
     }
