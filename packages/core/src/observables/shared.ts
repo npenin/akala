@@ -128,7 +128,7 @@ export class DebounceEvent<T extends unknown[], TOptions extends { once?: boolea
             {
                 if (timeout)
                     clearTimeout(timeout);
-                setTimeout(() => super.emit(...args), this.duration);
+                timeout = setTimeout(() => super.emit(...args), this.duration);
             });
     }
 }
