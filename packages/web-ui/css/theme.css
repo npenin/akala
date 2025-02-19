@@ -279,6 +279,7 @@ input::-webkit-calendar-picker-indicator {
 
     @media screen and (--breakpoints-md) {
         height: 48px;
+        align-items: center;
     }
 }
 
@@ -406,7 +407,6 @@ input:not([type="button"], [type="submit"], [type="reset"]) {
 }
 
 mark {
-    padding: .5ch;
-    color: var(--highlight-text-color, inherit);
+    color: var(--highlight-text-color, hsl(from var(--highlight-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50)));
     background-color: var(--highlight-color);
 }
