@@ -7,7 +7,7 @@ export { identity, negate, booleanize };
 import { Module, module } from '../helpers.js';
 import json from './json.js';
 import date from './date.js';
-import { Formatter, ReversibleFormatter, ReversibleFormatterFactory } from './common.js';
+import { FormatterFactory, ReversibleFormatter, ReversibleFormatterFactory } from './common.js';
 import { Debounce } from './debounce.js';
 
 
@@ -15,10 +15,10 @@ module('$formatters').register('#not', negate);
 module('$formatters').register('#bool', booleanize);
 module('$formatters').register('#json', json);
 module('$formatters').register('#date', date);
-module('$formatters').register('#debounce', Debounce);
 module('$formatters').register('#toDate', reverseFormatter(date));
+module('$formatters').register('#debounce', Debounce);
 
-export const formatters: Module & { resolve<T>(formatter: string extends `#${infer X}` ? `#${X} ` : never): (new (...args: unknown[]) => Formatter<T>) } = module('$formatters');
+export const formatters: Module & { resolve<T>(formatter: string extends `#${infer X}` ? `#${X} ` : never): FormatterFactory<T> } = module('$formatters');
 export function reverseFormatter<TResult, TOrigin, TSettings extends unknown[]>(formatter: ReversibleFormatterFactory<TResult, TOrigin, TSettings>): ReversibleFormatterFactory<TOrigin, TResult, TSettings>
 {
     return class Reversed implements ReversibleFormatter<TOrigin, TResult>
