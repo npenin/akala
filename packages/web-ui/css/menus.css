@@ -1,4 +1,8 @@
 menu {
+    composes: menu;
+}
+
+.menu {
     margin: 0;
     padding: 0;
     border: 1px solid var(--separator-color);
@@ -6,6 +10,7 @@ menu {
     --shadow-color: rgb(from var(--control-accent-color) r g b / 0.15);
     --shadow: 0 .188rem .75rem 0 var(--shadow-color);
     box-shadow: var(--shadow);
+    list-style: none;
 
     &::slotted {
         width: 100%;
@@ -20,8 +25,8 @@ menu {
         padding: var(--local-gutter-y) calc(var(--local-gutter-x)*2);
 
         &:first-child {
-            border-top-right-radius: inherit;
-            border-top-left-radius: inherit;
+            border-top-right-radius: var(--border-radius);
+            border-top-left-radius: var(--border-radius);
 
             &>a:only-child {
                 border-top-right-radius: inherit;
@@ -31,8 +36,8 @@ menu {
         }
 
         &:last-child {
-            border-bottom-right-radius: inherit;
-            border-bottom-left-radius: inherit;
+            border-bottom-right-radius: var(--border-radius);
+            border-bottom-left-radius: var(--border-radius);
 
             &>a:only-child {
                 border-bottom-right-radius: inherit;
@@ -41,6 +46,20 @@ menu {
         }
 
         &:has(>a:only-child) {
+            padding: 0;
+        }
+
+
+        &.selected>a:only-child {
+            composes: item-active from './interactive.module.css';
+        }
+
+        >a:only-child {
+            padding: var(--local-gutter-y) calc(var(--local-gutter-x)*2);
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+
             --standard-item-background-color: var(--control-background-color);
 
             @media screen and (prefers-color-scheme:light) {
@@ -53,30 +72,24 @@ menu {
             }
 
             --hover-text-color: hsl(from var(--hover-background-color) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
-            padding: 0;
-        }
 
-        >a:only-child {
-            padding: var(--local-gutter-y) calc(var(--local-gutter-x)*2);
-            text-decoration: none;
-            width: 100%;
-            height: 100%;
             --standard-item-text-color: var(--control-text-color);
+            --active-background-color: var(--active-color);
 
             &>i:first-child {
                 width: 20px;
             }
+
+            mark {
+                background-color: inherit !important;
+                font-weight: bold;
+                text-decoration: underline;
+                padding: 0;
+            }
         }
 
         &[aria-activedescendant="true"]>a:only-child {
-            --item-background-color: var(--hover-background-color, var(--standard-item-background-color));
-            --item-text-color: var(--hover-text-color, var(--standard-item-text-color));
-            --item-border-color: var(--hover-border-color, var(--standard-item-border-color));
-            --item-outline-width: var(--hover-outline-width, var(--standard-item-outline-width));
-            --item-outline-type: var(--hover-outline-type, var(--standard-item-outline-type));
-            --item-outline-color: var(--hover-outline-color, var(--standard-item-outline-color));
-            --item-text-decoration: var(--hover-text-decoration, var(--standard-item-text-decoration));
-            --item-box-shadow: var(--hover-box-shadow, var(--standard-item-box-shadow));
+            composes: item-hovered from './interactive.module.css';
         }
 
         &>hr:only-child {
