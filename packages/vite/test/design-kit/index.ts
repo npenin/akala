@@ -1,7 +1,7 @@
 import { OutletService, Page, page, RootElement, t } from '@akala/client'
 import template from './index.html?raw'
 import { TableConfig } from '@akala/web-ui';
-import { Binding, ObservableObject } from '@akala/core';
+import { Binding } from '@akala/core';
 
 // type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
 type Person = { id: number, age: number, name: string, email: string }
