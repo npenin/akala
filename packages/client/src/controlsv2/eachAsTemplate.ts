@@ -22,6 +22,7 @@ export class EachAsTemplate extends Control
 
     connectedCallback()
     {
+        super.connectedCallback();
         this.each = this.bind('each');
         if (!(this.element instanceof HTMLTemplateElement))
             throw new Error('This control is meant to be used with a template element');

@@ -63,41 +63,20 @@ export class LocalAfterRemoteProcessor implements ICommandProcessor
 export { FormInjector, FormComposer } from './behaviors/form.js'
 export { DataBind, DataContext } from './behaviors/context.js'
 export { EventComposer } from './behaviors/events.js'
+export { CssClass, CssClassComposer } from './behaviors/cssClass.js'
 export { I18nComposer } from './behaviors/i18n.js'
+export { TeardownManager } from './teardown-manager.js'
+export { ClientBindings } from './client-bindings.js'
+export * from './dom-helpers.js'
 
-export class TeardownManager
+
+export type IClientEventSink<TEvent extends Event> = IEventSink<[TEvent], void>
+export type IClientEvent<TEvent extends Event> = IEvent<[TEvent], void>
+export class ClientEvent<TEvent extends Event> extends klEvent<[TEvent], void> { }
+
+export function fromEvent<const TEventName extends keyof HTMLElementEventMap, TEvent extends Event = HTMLElementEventMap[TEventName]>(x: EventTarget, eventName: TEventName): IClientEventSink<TEvent>
 {
-    protected readonly subscriptions: Subscription[] = [];
-
-    [Symbol.dispose]()
-    {
-        this.subscriptions.forEach(s => s());
-        this.subscriptions.length = 0;
-    }
-
-    teardown<T extends Subscription | Disposable>(sub: T): T
-    {
-        if (Symbol.dispose in sub)
-        {
-            this.subscriptions.push(() =>
-            {
-                sub[Symbol.dispose]();
-                return true;
-            });
-        }
-        else
-            this.subscriptions.push(sub);
-        return sub;
-    }
-}
-
-export type IClientEventSink = IEventSink<[Event], void>
-export type IClientEvent = IEvent<[Event], void>
-export class ClientEvent extends klEvent<[Event], void> { }
-
-export function fromEvent(x: EventTarget, eventName: string): IClientEventSink
-{
-    const event = new ClientEvent();
+    const event = new ClientEvent<TEvent>();
     const handler = event.emit.bind(event);
     event[Symbol.dispose] = () =>
     {
@@ -108,11 +87,11 @@ export function fromEvent(x: EventTarget, eventName: string): IClientEventSink
     return event;
 }
 
-export function pipefromEvent(source: IEventSink<[boolean], void>, x: EventTarget, eventName: string): IClientEventSink
+export function pipefromEvent<const TEventName extends keyof HTMLElementEventMap, TEvent extends Event = HTMLElementEventMap[TEventName]>(source: IEventSink<[boolean], void>, x: EventTarget, eventName: TEventName): IClientEventSink<TEvent>
 {
-    const event = new ClientEvent();
+    const event = new ClientEvent<TEvent>();
     let sub: Subscription;
-    let clientEvent: IClientEventSink;
+    let clientEvent: IClientEventSink<TEvent>;
     source.addListener(ev =>
     {
         if (ev && !sub)

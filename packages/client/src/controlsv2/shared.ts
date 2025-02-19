@@ -1,45 +1,96 @@
-import { Binding, Event, Parser } from "@akala/core";
-import { DataContext, TeardownManager, WebComponent } from "../common.js";
+import { Binding, EmptyBinding, Event, Parser } from "@akala/core";
+import { DataContext, WebComponent } from "../common.js";
+import { TeardownManager } from '../teardown-manager.js';
+import { a } from "../dom-helpers.js";
 
-export class Control<TBindings extends Record<string, unknown> = Record<string, unknown>> extends TeardownManager implements Partial<WebComponent>
+export class Control<TBindings extends Record<string, unknown> = Record<string, unknown>, TElement extends HTMLElement = HTMLElement> extends TeardownManager implements Partial<WebComponent>
 {
-    constructor(protected readonly element: HTMLElement)
+    constructor(protected readonly element: TElement)
     {
         super();
     }
 
+    protected readonly attributeBindings: { [key in keyof TBindings]: Binding<string> } = {} as any;
     protected readonly bindings: { [key in keyof TBindings]: Binding<TBindings[key]> } = {} as any;
+
+
+    public attribute(name: string): string
+    public attribute(name: string, value: string): this
+    public attribute(record: Record<string, string>): this
+    public attribute(record: string[]): string[]
+    public attribute(name: string | string[] | Record<string, string>, value?: string | null)
+    public attribute(name: string | string[] | Record<string, string>, value?: string | null)
+    {
+        return a(this.element, name, value);
+    }
 
     attributeChangedCallback<const TKey extends keyof TBindings>(name: TKey, oldValue: string, newValue: string): void
     {
         if (this.bindings[name] && oldValue != newValue)
         {
             const oldBinding = this.bindings[name];
-            this.bindings[name] = DataContext.find(this.element).pipe(Parser.parameterLess.parse(newValue));
+            this.bindings[name] = DataContext.find(this.element).pipe(Parser.parameterLess.parse(newValue), false);
             this.bindings[name].set('change', (oldBinding.get('change') as Event<[{ oldValue: TBindings[TKey], value: TBindings[TKey] }]>).clone())
             this.bindings[name].emit('change', { value: this.bindings[name].getValue(), oldValue: oldBinding.getValue() })
             oldBinding[Symbol.dispose]();
         }
+        if (this.attributeBindings[name])
+        {
+            this.attributeBindings[name].setValue(newValue);
+        }
     }
 
-    public attrib(name: string): string
+    public bindAttribute<const TKey extends Extract<keyof TBindings, string>>(attributeName: TKey): Binding<string> 
     {
-        return this.element.getAttribute(name);
+        if (this.attributeBindings[attributeName])
+            return this.attributeBindings[attributeName];
+
+        return this.attributeBindings[attributeName] = new EmptyBinding<string>();
     }
 
+    public bind<const TKey extends Extract<keyof TBindings, string>>(attributeName: TKey, error: Error): Binding<TBindings[TKey]>
     public bind<const TKey extends Extract<keyof TBindings, string>>(attributeName: TKey): Binding<TBindings[TKey]> | null
+    public bind<const TKey extends Extract<keyof TBindings, string>>(attributeName: TKey, error?: Error): Binding<TBindings[TKey]> | null
     {
-        const attributeValue = this.element.getAttribute(attributeName);
+        const attributeValue = a(this.element, attributeName);
         if (!attributeValue)
-            return null;
+            if (error)
+                throw error;
+            else
+                return null;
         if (!Reflect.has(this.element, 'controller'))
         {
             // const controllerBinding = this.teardown(Binding.defineProperty(this.element, 'controller'));
-            return this.teardown(this.bindings[attributeName] = DataContext.find(this.element).pipe(Parser.parameterLess.parse(attributeValue || '')));
+            return this.teardown(this.bindings[attributeName] = DataContext.find(this.element).pipe(Parser.parameterLess.parse(attributeValue || ''), true));
 
         }
         if (!this.bindings[attributeName])
-            return this.teardown(this.bindings[attributeName] = DataContext.extend(DataContext.find(this.element), { controller: this.element['controller'] }).pipe(Parser.parameterLess.parse(attributeValue || '')));
+            return this.teardown(this.bindings[attributeName] = DataContext.extend(DataContext.find(this.element), { controller: this.element['controller'] }).pipe(Parser.parameterLess.parse(attributeValue || ''), true));
         return this.bindings[attributeName];
+    }
+
+    public connectedCallback(): void
+    {
+        if (this.subscriptions.length)
+            this[Symbol.dispose]();
+
+    }
+
+    public disconnectedCallback(): void
+    {
+        this[Symbol.dispose]();
+    }
+
+    public static nearest(node: Element, selector: string): Element
+    {
+        if (!selector)
+            return;
+        do
+        {
+            const result = node.querySelector(selector);
+            if (result)
+                return result;
+        }
+        while (node.parentElement);
     }
 }
