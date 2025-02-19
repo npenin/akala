@@ -34,7 +34,7 @@ export interface Composer<TOptions = unknown>
 {
     selector: string | string[];
     optionGetter(options: object): TOptions;
-    apply(items: HTMLElement, options?: TOptions, futureParent?: Element | ShadowRoot): Disposable;
+    apply(items: Element, options?: TOptions, futureParent?: Element | DocumentFragment): Disposable;
 }
 
 
@@ -193,12 +193,12 @@ export class Template
         return f;
     }
 
-    static composeAll(items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: { [key: string]: unknown }): Disposable
+    static composeAll(items: ArrayLike<Element>, root?: Element | DocumentFragment, options?: object): Disposable
     {
         return new CompositeDisposable(map(this.composers, (composer) => this.compose(composer, items, root, options && composer.optionGetter && composer.optionGetter(options))));
     }
 
-    static compose<TOptions>(composer: Composer<TOptions>, items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: TOptions): Disposable
+    static compose<TOptions>(composer: Composer<TOptions>, items: ArrayLike<Element>, root?: Element | DocumentFragment, options?: TOptions): Disposable
     {
         // data.$new = Scope.prototype.$new;
         // const instances: IControlInstance<unknown>[] = [];
@@ -210,7 +210,7 @@ export class Template
         {
             if (directlyComposable.includes(el))
                 return;
-            each(el.querySelectorAll(selector), async function (el: HTMLElement)
+            each(el.querySelectorAll(selector), async function (el)
             {
                 const closest = el.parentElement && el.parentElement.closest(selector);
                 let applyInnerTemplate = !!closest || !root;
@@ -252,6 +252,8 @@ export function filter<T extends Element = Element>(items: ArrayLike<T>, filter:
 {
     return grep(items, function (element)
     {
+        if (element instanceof DocumentFragment)
+            return false;
         if (typeof filter == 'string')
             return element.matches(filter);
         return !!filter.find(filter => element.matches(filter));
