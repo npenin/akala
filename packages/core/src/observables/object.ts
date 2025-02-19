@@ -1,7 +1,7 @@
 import { map } from "../each.js";
 import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent, Subscription } from "../event-emitter.js";
 import { Formatter, formatters, isReversible, ReversibleFormatter } from "../formatters/index.js";
-import { ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, Parser } from "../index.js";
+import { ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, ObservableArray, Parser } from "../index.js";
 import { EvaluatorAsFunction, ParsedFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
 import { BinaryOperator } from "../parser/expressions/binary-operator.js";
@@ -64,10 +64,11 @@ export class AsyncFormatter extends WatcherFormatter
 formatters.register('#async', AsyncFormatter);
 
 
-export class EventFormatter extends WatcherFormatter
+export class EventFormatter<T extends unknown[]> extends WatcherFormatter
 {
-    private event: Event;
-    private value: unknown[];
+    private event: Event<T>;
+    private value: T;
+    private sub?: Subscription;
 
     format(value: unknown)
     {
@@ -77,12 +78,13 @@ export class EventFormatter extends WatcherFormatter
         if (this.event !== value)
         {
             this.event = value;
+            this.sub?.();
             this.value = null;
         }
 
-        this.watcher.on(Symbol.dispose, value.addListener((...v) =>
+        this.watcher.on(Symbol.dispose, this.sub = value.addListener((...v) =>
         {
-            this.value = v;
+            this.value = v as T;
             this.watcher?.emit('change');
         }));
 
@@ -98,6 +100,25 @@ export class EventFormatter extends WatcherFormatter
 
 formatters.register('#event', EventFormatter);
 
+
+export default class Watch<T extends object> extends WatcherFormatter
+{
+    private value: T;
+
+    format(value: T)
+    {
+        if (value != this.value)
+        {
+            this.value = value;
+            ObservableObject.watchAll(value, this.watcher);
+            this.watcher.emit('change');
+        }
+        return this.value;
+    }
+
+};
+
+formatters.register('#watch', Watch);
 
 export class BindingFormatter extends WatcherFormatter
 {
@@ -473,7 +494,7 @@ export class BuildWatcherAndSetter<T extends object> extends ExpressionVisitor
     }
 }
 
-type Watcher = EventEmitter<{ 'change': Event<[source?: object]> }>;
+export type Watcher = EventEmitter<{ 'change': Event<[source?: object]> }>;
 
 type ObservableType<T extends object> = Record<keyof T, IEvent<[ObjectEvent<T>], void>>;
 
@@ -509,6 +530,8 @@ export class Binding<T> extends EventEmitter<{
         {
             subs.push((binding as Bound<T[typeof index]>)?.onChanged(ev =>
             {
+                if (!values)
+                    values = [] as T;
                 values[index] = ev.value;
                 combinedBinding.emit('change', { value: values, oldValue: null });
             }));
@@ -774,6 +797,68 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
             return target[watcher];
         this.target = target;
         Object.defineProperty(target, watcher, { value: this, enumerable: false, configurable: false })
+    }
+
+    public static watchAll<T extends object>(obj: T, watcher: Watcher): Subscription
+    {
+        if (Array.isArray(obj))
+        {
+            const oa = new ObservableArray(obj)
+            const sub = ObservableObject.watchAll(oa, watcher);
+            oa.init();
+            return sub;
+        }
+
+        let sub: Subscription;
+        if (obj instanceof ObservableArray)
+        {
+            const subs: Subscription[] = []
+            watcher.on(Symbol.dispose, sub = obj.addListener(ev =>
+            {
+                watcher.emit('change', obj);
+                switch (ev.action)
+                {
+                    case "pop":
+                        ev.oldItems.forEach(x => { subs.pop()(); });
+                        break;
+                    case "init":
+                    case "push":
+                        subs.push(...ev.newItems.map(x => ObservableObject.watchAll(x, watcher)))
+                        break;
+                    case "shift":
+                        ev.oldItems.forEach(x => { subs.shift()(); });
+                        break;
+                    case "unshift":
+                        subs.unshift(...ev.newItems.map(x => ObservableObject.watchAll(x, watcher)))
+                        break;
+                    case "replace":
+                        ev.replacedItems.forEach(x =>
+                        {
+                            subs.splice(x.index, 1, ObservableObject.watchAll(x.newItem, watcher))[0]();
+                        })
+                        break;
+                }
+            }));
+            return () =>
+            {
+                const result = sub();
+                subs.forEach(s => s());
+                return result;
+            };
+        }
+        if (obj instanceof Binding)
+        {
+            watcher.on(Symbol.dispose, sub = obj.onChanged(ev => watcher.emit('change', obj)));
+            return sub;
+        }
+
+        const oo = new ObservableObject(obj);
+        Object.entries(obj).forEach(e =>
+        {
+            oo.watch(watcher, e[0] as keyof T);
+            if (typeof e[1] == 'object')
+                ObservableObject.watchAll(e[1], watcher);
+        });
     }
 
     public watch<const TKey extends EventKeys<ObservableType<T>>>(watcher: Watcher, property: TKey)
