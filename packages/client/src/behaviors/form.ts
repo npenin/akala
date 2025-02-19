@@ -1,6 +1,8 @@
 import { Container } from "@akala/commands";
 import { Composer } from "../template.js";
-import { Injector } from "@akala/core";
+import { Binding, ExpressionsWithLength, Injector, Subscription } from "@akala/core";
+import { DataBind, DataBindPlugin } from "./context.js";
+import { fromEvent } from "../common.js";
 
 export class FormInjector extends Injector
 {
@@ -66,5 +68,26 @@ export class FormComposer implements Composer<Container<void>>
             }
         }
     }
-
 }
+
+export class InputValueComposer implements DataBindPlugin
+{
+    readonly selector: string = 'input';
+    getBindings<const TKey extends PropertyKey>(item: HTMLInputElement, binding: Binding<unknown>, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength): Subscription
+    {
+        if (member == 'value')
+        {
+            const event = fromEvent(item, 'input');
+            const sub = event.addListener(() => binding.setValue(item.value));
+            return () =>
+            {
+                const result = sub();
+                if (result)
+                    event[Symbol.dispose]();
+                return result;
+            }
+        }
+    }
+}
+
+DataBind.plugins.push(new InputValueComposer());
