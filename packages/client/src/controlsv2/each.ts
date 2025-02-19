@@ -109,6 +109,8 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
                         return { subscription: sub, item }
 
                     }
+                    if (typeof self.template == 'function')
+                        return template;
                     return template.cloneNode(true) as Element;
                 }
                 // observableArraySubscription = 
