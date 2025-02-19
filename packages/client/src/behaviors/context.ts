@@ -124,7 +124,7 @@ export class DataContext implements Composer<IDataContext>
 export interface DataBindPlugin
 {
     selector: string;
-    getBindings<const TKey extends PropertyKey>(item: HTMLElement, binding: Binding<unknown>, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength): Subscription;
+    getBindings<const TKey extends PropertyKey>(item: Element, binding: Binding<unknown>, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength): Subscription;
 }
 
 export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T> implements Composer<T>
@@ -167,13 +167,28 @@ export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T
 
     optionName = 'controller';
 
+    public static bind<T extends object>(item: Element, options: T)
+    {
+        const subs = Object.entries(options).flatMap(e =>
+        {
+            const sub = DataBind.applyInternal(item, e[0], e[1]);
+            if (e[1] instanceof Binding)
+                return [sub].concat(DataBind.plugins.map(plugin => plugin.getBindings(item, e[1], null, e[0], null)));
+            const exp = new MemberExpression<T, keyof T, T[keyof T]>(null, new ConstantExpression(e[0] as keyof T), true);
+            const subs = DataBind.plugins.map(plugin => plugin.getBindings(item, new Binding(options, exp), null, e[0], exp));
+
+            return [sub].concat(subs);
+        });
+        return () => subs.forEach(sub => sub && sub());
+    }
+
     apply(item: HTMLElement, options: T, root: Element | ShadowRoot): { [Symbol.dispose](): void; }
     {
         item['controller'] = options;
         return super.apply(item, options, root);
     }
 
-    getBindings<const TKey extends PropertyKey>(item: HTMLElement, options: T, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength): readonly [TKey, Binding<Record<string, (...args: unknown[]) => unknown> | ((...args: unknown[]) => unknown)>]
+    getBindings<const TKey extends PropertyKey>(item: Element, options: T, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength): readonly [TKey, Binding<Record<string, (...args: unknown[]) => unknown> | ((...args: unknown[]) => unknown)>]
     {
         const result = super.getBindings(item, options, context, member, source);
 
@@ -183,15 +198,21 @@ export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T
         return result;
     }
 
-    applyInternal<const TKey extends PropertyKey>(item: HTMLElement, options: T, subItem: TKey, value: unknown): Subscription | void
+    applyInternal<const TKey extends PropertyKey>(item: Element, options: T, subItem: TKey, value: unknown): Subscription | void
+    {
+        return DataBind.applyInternal(item, subItem, value);
+    }
+
+    public static applyInternal<const TKey extends PropertyKey, T>(item: Element, subItem: TKey, value: unknown): Subscription | void
     {
         if (subItem === '')
             DataBind.extend(item, value);
         else if (typeof item[subItem as any] == 'object' && typeof value == 'object')
             DataBind.extend(item[subItem as any], value);
         else if (value instanceof Binding)
-            value.onChanged(ev => item[subItem as any] = ev.value, true);
+            return value.onChanged(ev => DataBind.extend(item, { [subItem as any]: ev.value }), true);
         else
             item[subItem as any] = value;
     }
+
 }
