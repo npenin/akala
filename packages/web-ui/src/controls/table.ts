@@ -9,7 +9,7 @@ export interface TableConfig<T>
         data?: keyof T,
         render?: {
             filter?(): Node | null,
-            content?(item: Binding<T>): Binding<Node>
+            content?(item: Binding<T>): Binding<Node> | Node;
             header?: Node | DocumentFragment
         }
         filterType?: string
@@ -23,11 +23,11 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
         super.connectedCallback();
 
         const shadow = this.element.attachShadow({ mode: 'closed' });
+        this.inheritStylesheets(shadow);
         const table = shadow.appendChild(c.p(document.createElement('table'), document.createElement('thead')));
         const headerRow = table.tHead.appendChild(document.createElement('tr'));
 
         const dataBody = table.createTBody();
-
 
         const columnsBinding = this.bind('config')?.pipe<TableConfig<T>['columns']>(new BinaryExpression<TypedExpression<unknown[]>>(new MemberExpression(null, new ConstantExpression('columns'), true), BinaryOperator.Or, new ConstantExpression(Array.from(this.element.querySelectorAll('thead>tr')))), false)
 
