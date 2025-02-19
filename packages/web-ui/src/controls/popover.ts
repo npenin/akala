@@ -1,33 +1,7 @@
 import { Control, wcObserve, pipefromEvent } from '@akala/client';
 import { BindingChangedEvent, pipe, Subscription } from '@akala/core';
-import { autoUpdate, computePosition, flip, Middleware, offset, Placement } from '@floating-ui/dom'
+import { autoUpdate, computePosition, Middleware, Placement } from '@floating-ui/dom'
 import css from './popover.css?inline'
-
-export const parentSize: () => Middleware = () =>
-{
-    return {
-        name: 'parentSize',
-        fn(state)
-        {
-            if (state.strategy == 'absolute')
-            {
-                switch (state.placement)
-                {
-                    case 'top':
-                    case 'bottom':
-                    case 'top-start':
-                    case 'top-end':
-                    case 'bottom-start':
-                    case 'bottom-end':
-                        return { data: { minWidth: state.elements.reference.getBoundingClientRect().width } }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        },
-    }
-}
 
 @wcObserve('placement')
 @wcObserve('middlewares')
@@ -36,15 +10,58 @@ export const parentSize: () => Middleware = () =>
 export class Popover extends Control<{ placement: Placement, trigger: string, middlewares?: Middleware[], closeonclickoutside?: boolean }>
 {
     private visible?: Subscription;
+    private _arrow: HTMLElement;
+    private _middlewares: Middleware[] = [];
+
+    public get arrow() { return this._arrow; }
+    public get middlewares() { return this._middlewares; }
+    public set middlewares(value: Middleware[]) { this._middlewares = value; }
 
     private async placementChanged(trigger: Element, ev: BindingChangedEvent<Placement>, middlewares: Middleware[])
     {
-        const result = await computePosition(trigger, this.element, { placement: ev.value, middleware: [parentSize(), flip(), offset({ mainAxis: 4 })].concat(middlewares) });
-        this.element.style.left = result.x + 'px';
-        this.element.style.top = result.y + 'px';
+        const result = await computePosition(trigger, this.element, { placement: ev.value, middleware: this._middlewares.concat(middlewares) });
+        this.element.style.translate = result.x + 'px ' + result.y + 'px';
         this.element.style.position = result.strategy;
         result.middlewareData.parentSize?.minWidth && (this.element.style.minWidth = result.middlewareData.parentSize.minWidth + 'px');
         this.element.style.margin = '0';
+        if (result.middlewareData.arrow && this._arrow)
+        {
+            this._arrow.style.position = 'absolute';
+            this._arrow.style.removeProperty('top')
+            this._arrow.style.removeProperty('bottom')
+            this._arrow.style.removeProperty('left')
+            this._arrow.style.removeProperty('right')
+
+            console.log(result.middlewareData.arrow);
+
+            switch (result.placement)
+            {
+                case 'top':
+                case 'top-start':
+                case 'top-end':
+                    this._arrow.style.bottom = '0px';
+                    this._arrow.style.left = `max(calc(var(--tooltip-border-radius, var(--border-radius)) + (var(--arrow-size) / 2)), ${result.middlewareData.arrow.x}px)`;
+                    break;
+                case 'right':
+                case 'right-start':
+                case 'right-end':
+                    this._arrow.style.left = '0px';
+                    this._arrow.style.top = (result.middlewareData.arrow.y - result.y) + 'px';
+                    break;
+                case 'bottom':
+                case 'bottom-start':
+                case 'bottom-end':
+                    this._arrow.style.top = '0px';
+                    this._arrow.style.left = `max(calc(var(--tooltip-border-radius, var(--border-radius)) + (var(--arrow-size) / 2)), ${result.middlewareData.arrow.x}px)`;
+                    break;
+                case 'left':
+                case 'left-start':
+                case 'left-end':
+                    this._arrow.style.right = '0px';
+                    this._arrow.style.top = (result.middlewareData.arrow.y - result.y) + 'px';
+                    break;
+            }
+        }
     }
 
     private trigger: HTMLElement;
@@ -54,8 +71,8 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
         this.trigger = trigger;
         console.log('show popover');
         HTMLElement.prototype.showPopover.call(this.element);
-        this.visible = this.bind('placement').onChanged((ev) => this.placementChanged(trigger, ev, middlewares), true);
-        autoUpdate(trigger, this.element, () => this.placementChanged(trigger, { value: this.bind('placement').getValue(), oldValue: undefined }, middlewares))
+        this.visible = this.bind('placement')?.onChanged((ev) => this.placementChanged(trigger, ev, middlewares), true) ?? (() => true);
+        autoUpdate(trigger, this.element, () => this.placementChanged(trigger, { value: this.bind('placement')?.getValue(), oldValue: undefined }, middlewares))
     }
 
     public hidePopover()
@@ -86,7 +103,7 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
 
         element.showPopover = () =>
         {
-            this.showPopover(document.querySelector(this.attrib('trigger')), this.bind('middlewares')?.getValue());
+            this.showPopover(document.querySelector(this.attribute('trigger')), this.bind('middlewares')?.getValue());
         }
 
         element.hidePopover = () =>
@@ -96,19 +113,20 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
 
         element.togglePopover = (force?: boolean) =>
         {
-            return this.togglePopover(document.querySelector(this.attrib('trigger')), this.bind('middlewares')?.getValue(), force);
+            return this.togglePopover(document.querySelector(this.attribute('trigger')), this.bind('middlewares')?.getValue(), force);
         }
     }
 
     connectedCallback(): void
     {
+        super.connectedCallback();
         const coco = this.bind('closeonclickoutside');
         if (coco)
         {
             this.teardown(pipefromEvent(pipe(coco.get('change'), ev => [ev.value]), window, 'click').addListener((ev) =>
             {
                 const target = ev.target as HTMLElement;
-                const trigger = document.querySelector(this.attrib('trigger')) || this.trigger;
+                const trigger = document.querySelector(this.attribute('trigger')) || this.trigger;
 
                 if (trigger?.contains(target) || this.element.contains(target))
                     return;
@@ -122,6 +140,8 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
         const style = shadow.appendChild(document.createElement('style'));
         style.innerHTML = css;
 
+        this._arrow = shadow.appendChild(document.createElement('div'));
+        this._arrow.classList.add('arrow');
         shadow.appendChild(document.createElement('slot'));
     }
 }
