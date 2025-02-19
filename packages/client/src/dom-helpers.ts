@@ -1,4 +1,5 @@
 import { Binding } from "@akala/core";
+import { DataBind } from "./common.js";
 
 export function e<K extends keyof HTMLElementTagNameMap>(tagName: K, options?: ElementCreationOptions): HTMLElementTagNameMap[K]
 export function e(tagName: string, options?: ElementCreationOptions): HTMLElement
@@ -7,6 +8,10 @@ export function e(tagName: string, options?: ElementCreationOptions): HTMLElemen
     return document.createElement(tagName, options);
 }
 
+export function s<T extends object>(target: T, values: Partial<T>)
+{
+    return DataBind.extend(target, values);
+}
 
 export function a<T extends Element>(el: T, name: string): string
 export function a<T extends Element>(el: T, name: string, value: string): T
