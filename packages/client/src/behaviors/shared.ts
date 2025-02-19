@@ -98,7 +98,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
         return options[this.optionName];
     }
 
-    abstract getContext(item: HTMLElement, options?: T): Binding<unknown>;
+    abstract getContext(item: Element, options?: T): Binding<unknown>;
 
     readonly selector: string;
     readonly optionName: string;
@@ -113,9 +113,9 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
         return s.replace(/[A-Z]/g, letter => '-' + letter.toLowerCase());
     }
 
-    abstract applyInternal<const TKey extends PropertyKey>(item: HTMLElement, options: T, subItem: TKey, value: unknown): Subscription | void;
+    abstract applyInternal<const TKey extends PropertyKey>(item: Element, options: T, subItem: TKey, value: unknown): Subscription | void;
 
-    apply(item: HTMLElement, options: T, root: Element | ShadowRoot)
+    apply(item: Element, options: T, root: Element | ShadowRoot)
     {
         let bindings: Record<string, Binding<unknown>>;
 
@@ -152,7 +152,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
         }
     }
 
-    getBindings<const TKey extends PropertyKey>(item: HTMLElement, options: T, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength)
+    getBindings<const TKey extends PropertyKey>(item: Element, options: T, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength)
     {
         const binding = context.pipe<((...args: unknown[]) => unknown) | Record<string, (...args: unknown[]) => unknown>>(source, false);
         const subs: Subscription[] = [];
