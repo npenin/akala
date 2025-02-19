@@ -124,7 +124,7 @@ export class DebounceEvent<T extends unknown[], TOptions extends { once?: boolea
     {
         let timeout: ReturnType<typeof setTimeout>;
         if (!this.subscription)
-            this.subscription = this.source.addListener((...args) =>
+            this.subscription = this.source.addListener((...args: T) =>
             {
                 if (timeout)
                     clearTimeout(timeout);
