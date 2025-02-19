@@ -230,7 +230,7 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
         return !!this.listeners.length;
     }
 
-    addListener(listener: (...args: T) => TReturnType, options?: TOptions)
+    addListener(listener: (...args: T) => TReturnType, options?: TOptions): Subscription
     {
         if (this.maxListeners && this.listeners.length > this.maxListeners)
             throw new Error('Possible memory leak: too many listeners are registered');
