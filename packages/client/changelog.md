@@ -3,20 +3,15 @@
 
 ### Bug Fixes
 
-* specify trigger on pipe 99218ca
+* template provided by functions don't need to be cloned c328c85
 
 
 ### Features
 
-* add client bindings helper 90fe287
-* add DataBind plugins 10b000f
-* add dom helper (single letters) f1e88f3
-* add InputValue databind plugin 69ef957
-* add subscribe helper 7a89fae
-* allow to specify element watching for key bindings e4a2f1f
-* allow using Each without a specifc control 166952b
-* expose HtmlControlElement 4a948c7
-* template is less limiting on accepted elements ee63b89
+* add bind helper f18fd8a
+* add set function in dom helpers 518225a
+* give controls the posibility to inherit page stylesheet c0d239a
+* make attributecomposer more permissive e9da6f3
 
 
 
