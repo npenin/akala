@@ -56,7 +56,8 @@
     background-color: var(--current-control-tint);
 }
 
-table {
+table,
+:host(.table) {
 
     tr.danger,
     tr.success,
@@ -98,31 +99,37 @@ table {
     &.danger,
     &.success,
     &.info,
-    &.warning {
-
-        @media screen and (prefers-color-scheme:light) {
-            --desaturate-ratio: .4;
-            --current-control-tint: hsl(from var(--current-accent-color, var(--control-accent-color)) h s calc(70 + (l * 0.1))) !important;
-            --current-control-tint-striped: hsl(from var(--current-accent-color, var(--control-accent-color)) h s calc(75 + (l * 0.1))) !important;
-        }
-
-        @media screen and (prefers-color-scheme:dark) {
-            --desaturate-ratio: .2;
-            --current-control-tint: hsl(from var(--current-accent-color, var(--control-accent-color)) h s calc(20 + (l * 0.1))) !important;
-            --current-control-tint-striped: hsl(from var(--current-accent-color, var(--control-accent-color)) h s calc(10 + (l * 0.1))) !important;
-        }
-
-        --text-color: hsl(from var(--current-control-tint) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
-        --text-color-striped: hsl(from var(--current-control-tint-striped) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
-
+    &.warning,
+    &:host(.danger),
+    &:host(.success),
+    &:host(.info),
+    &:host(.warning) {
 
         td,
         th {
+
+            @media screen and (prefers-color-scheme:light) {
+                --desaturate-ratio: .4;
+                --current-control-tint: hsl(from var(--current-accent-color, var(--control-accent-color)) h s calc(70 + (l * 0.1))) !important;
+                --current-control-tint-striped: hsl(from var(--current-accent-color, var(--control-accent-color)) h s calc(75 + (l * 0.1))) !important;
+            }
+
+            @media screen and (prefers-color-scheme:dark) {
+                --desaturate-ratio: .2;
+                --current-control-tint: hsl(from var(--current-accent-color, var(--control-accent-color)) h s calc(20 + (l * 0.1))) !important;
+                --current-control-tint-striped: hsl(from var(--current-accent-color, var(--control-accent-color)) h s calc(10 + (l * 0.1))) !important;
+            }
+
+            --text-color: hsl(from var(--current-control-tint) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
+            --text-color-striped: hsl(from var(--current-control-tint-striped) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
+
+
             background-color: var(--current-control-tint);
             color: var(--text-color);
         }
 
-        &.striped {
+        &.striped,
+        &:host(.striped) {
 
             tbody>tr:nth-child(2n+1)>td,
             tbody>tr:nth-child(2n+1)>th {

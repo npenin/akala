@@ -1,5 +1,6 @@
 table,
-.table {
+.table,
+:host(.table) {
 
     th {
         font-weight: bold;
@@ -16,7 +17,8 @@ table,
         background: var(--background-color);
     }
 
-    &.striped {
+    &.striped,
+    &:host(.striped) {
 
         tbody>tr:nth-child(2n+1)>td,
         tbody>tr:nth-child(2n+1)>th {
