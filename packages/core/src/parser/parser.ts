@@ -6,7 +6,8 @@ import booleanize from '../formatters/booleanize.js';
 import { TernaryOperator } from './expressions/ternary-operator.js';
 import { TernaryExpression } from './expressions/ternary-expression.js';
 import type { ExpressionVisitor } from './expressions/visitors/expression-visitor.js';
-import { Formatter } from '../formatters/common.js';
+import { Formatter, FormatterFactory } from '../formatters/common.js';
+import { formatters } from '../formatters/index.js';
 
 
 const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;
@@ -111,7 +112,7 @@ function operatorLength(operator: BinaryOperator | TernaryOperator)
 
 export class FormatExpression<TOutput> extends Expression implements ParsedAny
 {
-    constructor(public readonly lhs: ExpressionsWithLength | (TypedExpression<unknown> & ParsedAny), public readonly formatter: string, public readonly settings: Expressions)
+    constructor(public readonly lhs: ExpressionsWithLength | (TypedExpression<unknown> & ParsedAny), public readonly formatter: new (...args: unknown[]) => Formatter<TOutput>, public readonly settings: Expressions)
     {
         super();
     }
@@ -318,7 +319,7 @@ export class Parser
 
     public parseNumber(expression: string, parseFormatter: boolean)
     {
-        const result = new ParsedNumber(/^[0-9.]/.exec(expression)[0]);
+        const result = new ParsedNumber(/^[0-9.]+/.exec(expression)[0]);
 
         return this.tryParseOperator(expression.substring(result.$$length), result, parseFormatter);
     }
@@ -410,7 +411,7 @@ export class Parser
 
     public parseFormatter(expression: string, lhs: ExpressionsWithLength, reset: () => void): ExpressionsWithLength
     {
-        const item = /^ *# *([\w0-9.$]+) */.exec(expression);
+        const item = /^ *# *([\w0-9\.\$]+) */.exec(expression);
         expression = expression.substring(item[0].length);
         // const formatter: FormatterFactory<unknown, ParsedOneOf> = module('$formatters').resolve('#' + item[1]);
         // if (!formatter)
@@ -424,7 +425,7 @@ export class Parser
             // settings = formatter.parse(expression.substring(1)) as ParsedObject;
         }
 
-        const result = new FormatExpression(lhs, item[1], settings);
+        const result = new FormatExpression(lhs, formatters.resolve<FormatterFactory<unknown>>('#' + item[1]), settings);
         result.$$length = lhs.$$length + item[0].length + ((settings && settings.$$length + 1) || 0);
         return this.tryParseOperator(expression, result, true, reset);
     }
@@ -452,7 +453,7 @@ export class Parser
                     rhs = this.parseAny(expression, parseFormatter, reset);
                     const member = new MemberExpression(lhs as TypedExpression<any>, rhs as TypedExpression<any>, false);
                     member.$$length = lhs.$$length + operator[0].length + rhs.$$length + operator[0].length;
-                    return member;
+                    return this.tryParseOperator(expression.substring(rhs.$$length + operator[0].length), member, parseFormatter, reset);
 
                 case '?.':
                 case '.':
