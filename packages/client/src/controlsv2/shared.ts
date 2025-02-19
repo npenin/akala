@@ -13,6 +13,28 @@ export class Control<TBindings extends Record<string, unknown> = Record<string, 
     protected readonly attributeBindings: { [key in keyof TBindings]: Binding<string> } = {} as any;
     protected readonly bindings: { [key in keyof TBindings]: Binding<TBindings[key]> } = {} as any;
 
+    protected inheritStylesheets(shadow: ShadowRoot)
+    {
+        shadow.adoptedStyleSheets = Array.from(document.styleSheets).map(sheet =>
+        {
+            // Create a new constructed stylesheet
+            const css = new CSSStyleSheet();
+
+            try
+            {
+                css.replaceSync(Array.from(sheet.cssRules).map(rule => rule.cssText).join("\n"));
+            } catch (e)
+            {
+                // Ignore CORS-restricted stylesheets
+            }
+            return css;
+        })
+
+        // document.querySelectorAll('style').forEach(style =>
+        // {
+        //     shadow.appendChild(style.cloneNode(true));
+        // })
+    }
 
     public attribute(name: string): string
     public attribute(name: string, value: string): this
