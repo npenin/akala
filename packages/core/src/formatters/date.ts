@@ -23,6 +23,8 @@ const formats = {
 
 export function formatParser(format: string)
 {
+    if (!format)
+        format = 'yyyy-MM-dd'
     return {
         format: function (value: Date)
         {
