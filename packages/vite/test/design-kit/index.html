@@ -1153,15 +1153,17 @@
 
         <label for="search">Search:</label>
 
-        <input is="kl-typeahead" id="search" role="combobox" aria-controls="suggestions">
+        <input is="kl-typeahead" id="search" role="combobox" aria-controls="suggestions" options="controller.typeahead">
 
-        <kl-popover id="suggestions" role="listbox" placement="'bottom-start'" closeOnClickOutside="true">
-            <menu>
-                <li role="option" id="option1"><a href>Apple</a></li>
-                <li role="option" id="option2"><a href>Banana</a></li>
-                <li role="option" id="option3"><a href>Cherry</a></li>
-            </menu>
-        </kl-popover>
+        <kl-dropdown id="suggestions" role="listbox" placement="'bottom-start'" closeOnClickOutside="true" class="menu">
+            <template>
+                <li role="option" klass="{selected: active#unbind }">
+                    <a href>
+                        <kl-mark data-bind needle="needle#unbind" text="item#unbind"></kl-mark>
+                    </a>
+                </li>
+            </template>
+        </kl-dropdown>
 
 
         <div class="split-button">
@@ -1187,15 +1189,30 @@
             </svg>
         </button>
 
-        <kl-popover id="actions" role="listbox" placement="'bottom-end'" closeOnClickOutside="true">
+        <kl-dropdown id="actions" role="listbox" placement="'bottom-end'" closeOnClickOutside="true">
             <menu>
                 <li role="option" id="option1"><a href>Apple</a></li>
                 <li role="option" id="option2"><a href>Banana</a></li>
                 <li role="option" id="option3"><a href>Cherry</a></li>
             </menu>
-        </kl-popover>
+        </kl-dropdown>
 
     </div>
     <h3>Tooltips</h3>
+    <div>
+        <div style="height:50px"></div>
+        <div id="tooltip-trigger" style=" display: inline; position: relative; left:150px" tooltip="#tooltip">Show me
+            the
+            tooltip</div>
+
+        <kl-tooltip id="tooltip" trigger="tooltip-trigger" placement="'bottom'" class="warning text-bg">
+            <span style="position: relative;">
+                This is a tooltip content.
+            </span>
+        </kl-tooltip>
+    </div>
+    <h2>Data tables</h2>
+    <kl-table config="controller.table1.config" data="controller.table1.data"></kl-table>
+    <input data-bind="{value: controller.table1.config.columns[0].title#debounce:500}" />
     <div style="height:300px"></div>
 </div>

@@ -2,12 +2,12 @@
 import './index.css'
 import { Container } from '@akala/commands'
 import { Event, EventEmitter, isPromiseLike } from '@akala/core';
-import { Scope as IScope, LocationService, Template, serviceModule, templateCache, templateFunction, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, outletDefinition, EventComposer, I18nComposer, webComponent, Each } from '@akala/client'
+import { Scope as IScope, LocationService, Template, serviceModule, templateCache, templateFunction, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, outletDefinition, EventComposer, I18nComposer, webComponent, Each, CssClassComposer } from '@akala/client'
 import { Processors } from '@akala/commands';
 import { Signup } from './signup/signup.js';
 import { Login } from './login/login.js';
 import Home from './home.js';
-import { Popover, Typeahead } from '@akala/web-ui';
+import { Dropdown, Mark, Popover, Table, Tooltip, TooltipComposer, Typeahead } from '@akala/web-ui';
 import { DesignKit } from './design-kit/index.js';
 // import weather from './weather.js';
 
@@ -33,11 +33,17 @@ bootstrapModule.activate(['$rootScope', 'services.$outlet'], async (rootScope: S
     Template.composers.push(new DataContext());
     Template.composers.push(new DataBind());
     Template.composers.push(new EventComposer());
+    Template.composers.push(new CssClassComposer());
     Template.composers.push(new I18nComposer());
+    Template.composers.push(new TooltipComposer());
     webComponent('kl-popover')(Popover);
     webComponent('kl-each')(Each);
     webComponent('ul-each', { extends: 'ul' })(Each);
     webComponent('kl-typeahead', { extends: 'input' })(Typeahead);
+    webComponent('kl-tooltip')(Tooltip);
+    webComponent('kl-dropdown')(Dropdown);
+    webComponent('kl-mark')(Mark);
+    webComponent('kl-table')(Table);
 
     serviceModule.register('templateOptions', {
         $rootScope: rootScope, i18n: {
