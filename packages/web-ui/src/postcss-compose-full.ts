@@ -1,10 +1,11 @@
 import { AnyNode, AtRule, Declaration, Helpers, Node, Plugin, PluginCreator, Root, Rule } from 'postcss';
 import selectorParser from 'postcss-selector-parser'
 import { readFile } from 'fs/promises'
-import { resolve, dirname } from 'path'
 import postcss from 'postcss';
 import { unquote } from './postcss-dtcg.js';
 import { lazy, sequencify, Task } from '@akala/core';
+import { dirname, resolve } from 'path/posix';
+import { fileURLToPath } from 'url';
 
 const selectorProcessor = selectorParser();
 
@@ -168,7 +169,9 @@ const creator: PluginCreator<{ composableClasses: ComposableClasses }> = (option
                     }
 
                     const selector = '.' + externalFile[1];
-                    const filePath = externalFile[2] ? externalFile[2] == 'global' ? 'global' : resolve(dirname(decl.source.input.from), unquote(externalFile[2])) : decl.source.input.from;
+                    const unquoted = externalFile[2] && unquote(externalFile[2])
+
+                    const filePath = externalFile[2] ? externalFile[2] == 'global' ? 'global' : unquoted.startsWith('.') ? resolve(unquoted, dirname(decl.source.input.from)) : fileURLToPath(import.meta.resolve(unquoted)) : decl.source.input.from;
                     const refTaskIds = [[filePath, selector, ''].join(':')]
 
                     if (filePath == 'global')
