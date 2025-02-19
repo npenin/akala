@@ -32,8 +32,6 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
             this._arrow.style.removeProperty('left')
             this._arrow.style.removeProperty('right')
 
-            console.log(result.middlewareData.arrow);
-
             switch (result.placement)
             {
                 case 'top':
@@ -69,7 +67,7 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
     public showPopover(trigger: HTMLElement, middlewares?: Middleware[])
     {
         this.trigger = trigger;
-        console.log('show popover');
+        // console.log('show popover');
         HTMLElement.prototype.showPopover.call(this.element);
         this.visible = this.bind('placement')?.onChanged((ev) => this.placementChanged(trigger, ev, middlewares), true) ?? (() => true);
         autoUpdate(trigger, this.element, () => this.placementChanged(trigger, { value: this.bind('placement')?.getValue(), oldValue: undefined }, middlewares))
@@ -78,15 +76,14 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
     public hidePopover()
     {
         this.trigger = null;
-        console.log('hide popover');
+        // console.log('hide popover');
         this.visible?.();
         HTMLElement.prototype.hidePopover.call(this.element);
     }
 
     public togglePopover(trigger: HTMLElement, middlewares: Middleware[], force?: boolean)
     {
-
-        console.log('toggle popover');
+        // console.log('toggle popover');
         if (HTMLElement.prototype.togglePopover.call(this.element, force))
         {
             this.visible = this.bind('placement').onChanged((ev) => this.placementChanged(trigger, ev, middlewares), true);
