@@ -1,4 +1,4 @@
-import { Module, eachAsync } from '@akala/core';
+import { Module, Subscription, eachAsync } from '@akala/core';
 import * as common from './common.js'
 import * as routing from './router.js'
 import { LocationService } from './locationService.js'
@@ -42,6 +42,25 @@ common.bootstrapModule.activate([], function ()
     common.bootstrapModule.register('$rootScope', new ScopeImpl());
 
 });
+
+export function subscribe<T extends Partial<{ [key in keyof HTMLElementEventMap]: (ev: HTMLElementEventMap[key]) => void }>>(item: HTMLElement, eventHandlers: T): Record<keyof T, Subscription>
+export function subscribe<T extends keyof HTMLElementEventMap>(item: HTMLElement, eventName: T, handler: (ev: HTMLElementEventMap[T]) => void): Subscription
+export function subscribe<T extends keyof HTMLElementEventMap>(item: HTMLElement, eventName: T | { [key in T]: (ev: HTMLElementEventMap[key]) => void }, handler?: (ev: HTMLElementEventMap[T]) => void): Subscription | Record<T, Subscription>
+{
+    if (typeof (eventName) == 'string' && handler)
+    {
+        item.addEventListener(eventName, handler);
+        let removed = false;
+        return () => { if (removed) return false; removed = true; item.removeEventListener(eventName, handler) };
+    }
+    else if (typeof (eventName) == 'object')
+    {
+        return Object.fromEntries(Object.entries(eventName).map(([eventName, handler]) =>
+        {
+            return [eventName, subscribe(item, eventName as T, handler as (ev: HTMLElementEventMap[T]) => void) as Subscription]
+        })) as Record<T, Subscription>;
+    }
+}
 
 export function load(...scripts: string[]): Promise<unknown>
 {
