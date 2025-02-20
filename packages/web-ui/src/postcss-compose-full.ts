@@ -171,7 +171,7 @@ const creator: PluginCreator<{ composableClasses: ComposableClasses }> = (option
                     const selector = '.' + externalFile[1];
                     const unquoted = externalFile[2] && unquote(externalFile[2])
 
-                    const filePath = externalFile[2] ? externalFile[2] == 'global' ? 'global' : unquoted.startsWith('.') ? resolve(unquoted, dirname(decl.source.input.from)) : fileURLToPath(import.meta.resolve(unquoted)) : decl.source.input.from;
+                    const filePath = externalFile[2] ? externalFile[2] == 'global' ? 'global' : unquoted.startsWith('.') ? resolve(dirname(decl.source.input.from), unquoted) : fileURLToPath(import.meta.resolve(unquoted)) : decl.source.input.from;
                     const refTaskIds = [[filePath, selector, ''].join(':')]
 
                     if (filePath == 'global')
@@ -187,6 +187,8 @@ const creator: PluginCreator<{ composableClasses: ComposableClasses }> = (option
                         {
                             const innerOptions = { composableClasses: { ...composableClasses, [filePath]: null }, tasks };
                             // const externalRoot = 
+                            // console.log(decl.source.input.from);
+                            // console.log(filePath);
                             (await (postcss(creator(innerOptions)).process(await readFile(filePath), { from: filePath })).async());
                             // externalRoot.root.walkRules(rule => plugin.Rule(rule, helper));
                             Object.assign(composableClasses, innerOptions.composableClasses);
@@ -368,6 +370,7 @@ const creator: PluginCreator<{ composableClasses: ComposableClasses }> = (option
                 catch (e)
                 {
                     console.error(taskId);
+                    console.error(e);
                     // console.log(taskId);
 
                     throw e;
