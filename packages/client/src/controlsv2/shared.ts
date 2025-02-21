@@ -1,6 +1,6 @@
 import { Binding, EmptyBinding, Event, Parser } from "@akala/core";
 import { DataContext, WebComponent } from "../common.js";
-import { TeardownManager } from '../teardown-manager.js';
+import { TeardownManager } from '@akala/core';
 import { a } from "../dom-helpers.js";
 
 export class Control<TBindings extends Record<string, unknown> = Record<string, unknown>, TElement extends HTMLElement = HTMLElement> extends TeardownManager implements Partial<WebComponent>

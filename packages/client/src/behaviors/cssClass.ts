@@ -2,7 +2,7 @@ import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPro
 import { AttributeComposer, databind } from './shared.js';
 import { DataContext } from './context.js';
 import { MaybeBound } from '../clientify.js';
-import { TeardownManager } from '../teardown-manager.js';
+import { TeardownManager } from '@akala/core';
 
 type classParamType = Binding<string> | Binding<string[]> | ParsedString | string[] | string | { [key: string]: boolean } | MaybeBound<{ [key: string]: boolean }>;
 

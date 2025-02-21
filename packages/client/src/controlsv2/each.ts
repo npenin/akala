@@ -2,7 +2,7 @@ import { Binding, EmptyBinding, ErrorWithStatus, HttpStatusCode, ObservableArray
 import { Control } from "./shared.js";
 import { Template } from "../template.js";
 import { DataContext } from "../common.js";
-import { TeardownManager } from '../teardown-manager.js';
+import { TeardownManager } from '@akala/core';
 import { a } from "../dom-helpers.js";
 
 export type Bound<T> = { [key in keyof T]: Binding<T[key]> };
