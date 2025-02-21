@@ -209,7 +209,7 @@ const creator: PluginCreator<{ composableClasses: ComposableClasses }> = (option
                     else
                         tasks[taskId].dep.push(...refTaskIds.filter(refTaskId => !tasks[taskId].dep.includes(refTaskId)))
 
-                    refTaskIds.forEach(refTaskId => tasks[refTaskId].rule.composedBy.push(tasks[taskId].rule.main));
+                    refTaskIds.forEach(refTaskId => tasks[refTaskId]?.rule.composedBy.push(tasks[taskId].rule.main));
 
                     // let parentRule = getParentOfType<Rule>(decl, 'rule');
                     // const taskList = lazy(() => Object.values(tasks))
@@ -405,43 +405,44 @@ const creator: PluginCreator<{ composableClasses: ComposableClasses }> = (option
             const movedRules: Rule[] = []
             Object.entries(nonLoadedFiles).map(([filePath, file]) =>
             {
-                Object.values(composableClasses[filePath]).forEach((localComposableClass: LocalComposableClass) =>
-                {
-                    Object.values(localComposableClass).forEach(r =>
+                if (composableClasses[filePath])
+                    Object.values(composableClasses[filePath]).forEach((localComposableClass: LocalComposableClass) =>
                     {
-                        if (tasks[r.taskId] && !isNested(r.main) && r.main.root().source.input.file !== root.source.input.file)
+                        Object.values(localComposableClass).forEach(r =>
                         {
-                            if (movedRules.includes(r.main))
-                                return;
-                            movedRules.push(r.main)
-                            // console.log(`moving ${r.main.selector} from ${r.main.source.input.file} to ${root.source.input.file}`)
-                            root.prepend(r.main);
-
-                            tasks[r.taskId].dep.forEach(r =>
+                            if (tasks[r.taskId] && !isNested(r.main) && r.main.root().source.input.file !== root.source.input.file)
                             {
-                                const subtask = tasks[r];
-                                if (movedRules.includes(subtask.rule.main))
+                                if (movedRules.includes(r.main))
                                     return;
-                                if (isNested(subtask.rule.main))
-                                    return;
-                                if (subtask.rule.main.root().source.input.file === root.source.input.file)
-                                {
-                                    // console.log('not moving ' + subtask.rule.taskId);
-                                    // console.log(getParentOfType(subtask.rule.main, 'rule'))
-                                    // console.log(subtask.rule.main.root().source.input.file, root.source.input.file)
-                                    return;
-                                }
-                                movedRules.push(subtask.rule.main)
-                                // console.log(`moving ${subtask.rule.main.selector} from ${subtask.rule.main.source.input.file} to ${root.source.input.file}`)
-                                root.append(subtask.rule.main);
+                                movedRules.push(r.main)
+                                // console.log(`moving ${r.main.selector} from ${r.main.source.input.file} to ${root.source.input.file}`)
+                                root.prepend(r.main);
 
-                            })
-                            // if (tasks[r.taskId] && !isNested(r.main) && r.main.root().source.input.file !== root.source.input.file)
-                            // {
-                            // }
-                        }
-                    })
-                });
+                                tasks[r.taskId].dep.forEach(r =>
+                                {
+                                    const subtask = tasks[r];
+                                    if (movedRules.includes(subtask.rule.main))
+                                        return;
+                                    if (isNested(subtask.rule.main))
+                                        return;
+                                    if (subtask.rule.main.root().source.input.file === root.source.input.file)
+                                    {
+                                        // console.log('not moving ' + subtask.rule.taskId);
+                                        // console.log(getParentOfType(subtask.rule.main, 'rule'))
+                                        // console.log(subtask.rule.main.root().source.input.file, root.source.input.file)
+                                        return;
+                                    }
+                                    movedRules.push(subtask.rule.main)
+                                    // console.log(`moving ${subtask.rule.main.selector} from ${subtask.rule.main.source.input.file} to ${root.source.input.file}`)
+                                    root.append(subtask.rule.main);
+
+                                })
+                                // if (tasks[r.taskId] && !isNested(r.main) && r.main.root().source.input.file !== root.source.input.file)
+                                // {
+                                // }
+                            }
+                        })
+                    });
             });
 
             // console.log(composableClasses['/home/nicolas/dev/akala/packages/web-ui/css/buttons.module.css']['.button']['']);
