@@ -1,4 +1,5 @@
 import { Event, Subscription } from "../event-emitter.js";
+import { watcher } from "./object.js";
 
 export type ObservableArrayPopEvent<T> =
     {
@@ -45,12 +46,19 @@ export interface ObservableArrayEventArgs<T>
     oldItems?: T[];
 }
 
-export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void>
+export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void, { triggerAtRegistration?: boolean, once?: boolean }>
 {
-    constructor(public readonly array: Array<T>)
+    public readonly array: Array<T>;
+    constructor(array: Array<T> | ObservableArray<T>)
     {
         super(Event.maxListeners, null);
+        if (watcher in array)
+            return array[watcher] as ObservableArray<T>;
+        this.array = array;
+        Object.defineProperty(array, watcher, { value: this, enumerable: false, configurable: false })
     }
+
+    public [watcher] = this;
 
     public get length() { return this.array.length; }
     public set length(value: number)
@@ -118,12 +126,17 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
         });
     }
 
-    public init(): void
+    public addListener(listener: (args_0: ObservableArrayEventMap<T>) => void, options?: { triggerAtRegistration?: boolean, once?: boolean }): Subscription
     {
-        this.emit({
-            action: 'init',
-            newItems: this.array.slice(0),
-        });
+        const sub = super.addListener(listener, options);
+
+        if (options?.triggerAtRegistration)
+            listener({
+                action: 'init',
+                newItems: this.array.slice(0)
+            })
+
+        return sub;
     }
 
     private subcription?: Subscription;
