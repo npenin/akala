@@ -1,0 +1,38 @@
+:host(.table) {
+
+    thead>tr>th {
+        white-space: nowrap;
+
+        .sort-container {
+            display: none;
+        }
+
+        &.sortable .sort-container {
+            padding-left: var(--local-gutter-x);
+            margin-left: auto;
+            display: inline-flex;
+            flex-direction: column;
+            color: var(--disabled-text);
+
+            >.fa-solid,
+            >.fa-regular,
+            >.fa-thin,
+            >.fa-light {
+                line-height: 8px;
+
+                &.sort-desc {
+                    margin-top: -6px;
+                }
+            }
+
+            &.sorted.asc>.sort-asc {
+                color: var(--text-color);
+            }
+
+            &.sorted.desc>.sort-desc {
+                color: var(--text-color);
+            }
+        }
+    }
+
+}
