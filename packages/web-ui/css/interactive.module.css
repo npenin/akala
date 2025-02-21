@@ -42,7 +42,8 @@
     --item-box-shadow: var(--disabled-box-shadow, var(--standard-item-box-shadow));
 }
 
-.interactive {
+.non-interactive {
+
     --item-background-color: var(--standard-item-background-color);
     --item-text-color: var(--standard-item-text-color);
     --item-border-color: var(--standard-item-border-color);
@@ -53,15 +54,6 @@
     --item-text-decoration: var(--standard-item-text-decoration, none);
     --item-box-shadow: var(--standard-item-box-shadow, none);
 
-    --disabled-color: hsl(from var(--control-accent-color) h 0 calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 10));
-
-    --hover-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 20));
-
-    --focused-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 20));
-
-    --active-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 40));
-
-
     background-color: var(--item-background-color);
     color: var(--item-text-color);
     border-radius: var(--item-border-radius, var(--border-radius));
@@ -69,6 +61,18 @@
     outline: var(--item-outline-color) var(--item-outline-type) var(--item-outline-width);
     border: var(--item-border-width, 0) var(--item-border-style, none) var(--item-border-color);
     box-shadow: var(--item-box-shadow);
+}
+
+.interactive {
+    composes: non-interactive;
+
+    --disabled-color: hsl(from var(--control-accent-color) h 0 calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 10));
+
+    --hover-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 20));
+
+    --focused-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 20));
+
+    --active-color: hsl(from var(--control-accent-color) h s calc(l - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 40));
 
     transition: all ease-in-out .2s;
 
