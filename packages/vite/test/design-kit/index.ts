@@ -88,7 +88,7 @@ const data: Person[] = [
     {
         "id": 14,
         "name": "Nathan",
-        "age": 39,
+        "age": 34,
         "email": "nathan@example.com"
     },
     {
@@ -100,7 +100,7 @@ const data: Person[] = [
     {
         "id": 16,
         "name": "Paul",
-        "age": 32,
+        "age": 34,
         "email": "paul@example.com"
     },
     {
@@ -146,18 +146,21 @@ export class DesignKit extends Page
 
     table1: { config: TableConfig<Person>, data: Person[] } = {
         config: {
+            sortAscClasses: ['fa-solid', 'fa-sort-asc'],
+            sortDescClasses: ['fa-solid', 'fa-sort-desc'],
             columns: [
-                { title: 'Name', render: { content(item) { return Binding.combineNamed({ name: item.pipe('name', true), email: item.pipe('email', true) }).pipe(ev => t(`${ev.value.name} (${ev.value.email})`), true) } } },
-                { title: 'Age', render: { content(item) { return item.pipe('age', true).pipe(ev => t(ev.value), true); } } }
+                { title: 'Name', sort: 'name', render: { content(item) { return Binding.combineNamed({ name: item.pipe('name'), email: item.pipe('email') }).pipe(ev => t(`${ev.value.name} (${ev.value.email})`)) } } },
+                { title: 'Age', data: 'age' }
             ]
         },
         data
     };
+
     table2: { config: TableConfig<Person>, data: Person[] } = {
         config: {
             columns: [
-                { title: 'Name', render: { content(item) { const el = a(e('input'), 'type', 'text'); DataBind.bind(el, { value: item.pipe('name', false) }); return el; } } },
-                { title: 'Age', render: { content(item) { return item.pipe('age', true).pipe(ev => t(ev.value), true); } } }
+                { title: 'Name', render: { content(item) { const el = a(e('input'), 'type', 'text'); DataBind.bind(el, { value: item.pipe('name') }); return el; } } },
+                { title: 'Age', render: { content(item) { return item.pipe('age').pipe(ev => t(ev.value)); } } }
             ]
         },
         data

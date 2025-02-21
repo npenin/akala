@@ -1149,7 +1149,7 @@
 
     <h2>Popover</h2>
     <h3>Dropdowns</h3>
-    <div class="horizontal">
+    <div class="horizontal" style="align-items: baseline;">
 
         <label for="search">Search:</label>
 
@@ -1212,12 +1212,12 @@
         </kl-tooltip>
     </div>
     <h2>Data tables</h2>
+    <input data-bind="{value: controller.table1.config.columns[0].title#debounce:500}" />
     <div class="horizontal">
         <kl-table class="table striped warning" config="controller.table1.config"
-            data="controller.table1.data"></kl-table>
+            data="table.localSort(controller.table1.data)"></kl-table>
         <div data-bind="{innerText: controller.table1.data#watch#json}"></div>
     </div>
-    <input data-bind="{value: controller.table1.config.columns[0].title#debounce:500}" />
     <kl-table config="controller.table2.config" data="controller.table2.data"></kl-table>
     <div style="height:300px"></div>
 </div>
