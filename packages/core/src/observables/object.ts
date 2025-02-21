@@ -1,5 +1,5 @@
 import { map } from "../each.js";
-import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent, Subscription } from "../event-emitter.js";
+import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent } from "../event-emitter.js";
 import { Formatter, formatters, isReversible, ReversibleFormatter } from "../formatters/index.js";
 import { ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, ObservableArray, Parser } from "../index.js";
 import { EvaluatorAsFunction, ParsedFunction } from "../parser/evaluator-as-function.js";
@@ -15,6 +15,7 @@ import { ParameterExpression } from "../parser/expressions/parameter-expression.
 import { TernaryExpression } from "../parser/expressions/ternary-expression.js";
 import { TernaryOperator } from "../parser/expressions/ternary-operator.js";
 import { ExpressionSimplifyer } from "../parser/expressions/visitors/expression-simplifyer.js";
+import { Subscription } from "../teardown-manager.js";
 
 export interface ObjectEvent<T>
 {
@@ -274,11 +275,11 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
             if (target instanceof Binding)
             {
                 if (watcher)
-                    // if (!this.boundObservables.includes(target))
-                    // {
-                    watcher.on(Symbol.dispose, target.onChanged(ev => watcher.emit('change', ev.value)))
-                //     this.boundObservables.push(target);
-                // }
+                    if (!this.boundObservables.includes(target))
+                    {
+                        watcher.on(Symbol.dispose, target.onChanged(ev => watcher.emit('change', ev.value)))
+                        this.boundObservables.push(target);
+                    }
                 const subTarget = target.getValue();
                 if (subTarget)
                     return new ObservableObject(subTarget).target;
@@ -342,8 +343,7 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
         return { watcher: this.getter as WatchGetter<T, TValue>, setter };
     }
 
-    // private boundObservables: unknown[];
-
+    private boundObservables: Binding<unknown>[] = [];
 
     private getter: WatchGetter<unknown, ObservableObject<any> | boolean | string | number | symbol | bigint | Function | undefined | unknown>;
 
