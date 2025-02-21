@@ -1,4 +1,5 @@
-import { Event, Subscription } from "../event-emitter.js";
+import { Event } from "../event-emitter.js";
+import { Subscription } from "../teardown-manager.js";
 import { watcher } from "./object.js";
 
 export type ObservableArrayPopEvent<T> =
@@ -124,6 +125,22 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
                     return { index: index, newItem: item, oldItem };
                 }),
         });
+    }
+
+    public sort(comparer?: (a: T, b: T) => number)
+    {
+        const notSorted = this.array.slice(0)
+        this.array.sort(comparer);
+        const event: ObservableArrayReplaceEvent<T> = {
+            action: 'replace',
+            replacedItems: this.array.map((x, i) => x == notSorted[i] ? null : ({
+                index: i,
+                oldItem: notSorted[i],
+                newItem: x
+            })).filter(x => x)
+        }
+        if (event.replacedItems.length)
+            this.emit(event)
     }
 
     public addListener(listener: (args_0: ObservableArrayEventMap<T>) => void, options?: { triggerAtRegistration?: boolean, once?: boolean }): Subscription
