@@ -74,6 +74,25 @@ export type IClientEventSink<TEvent extends Event> = IEventSink<[TEvent], void>
 export type IClientEvent<TEvent extends Event> = IEvent<[TEvent], void>
 export class ClientEvent<TEvent extends Event> extends klEvent<[TEvent], void> { }
 
+export function subscribe<T extends Partial<{ [key in keyof HTMLElementEventMap]: (ev: HTMLElementEventMap[key]) => void }>>(item: HTMLElement, eventHandlers: T): Record<keyof T, Subscription>
+export function subscribe<T extends keyof HTMLElementEventMap>(item: HTMLElement, eventName: T, handler: (ev: HTMLElementEventMap[T]) => void): Subscription
+export function subscribe<T extends keyof HTMLElementEventMap>(item: HTMLElement, eventName: T | { [key in T]: (ev: HTMLElementEventMap[key]) => void }, handler?: (ev: HTMLElementEventMap[T]) => void): Subscription | Record<T, Subscription>
+{
+    if (typeof (eventName) == 'string' && handler)
+    {
+        item.addEventListener(eventName, handler);
+        let removed = false;
+        return () => { if (removed) return false; removed = true; item.removeEventListener(eventName, handler) };
+    }
+    else if (typeof (eventName) == 'object')
+    {
+        return Object.fromEntries(Object.entries(eventName).map(([eventName, handler]) =>
+        {
+            return [eventName, subscribe(item, eventName as T, handler as (ev: HTMLElementEventMap[T]) => void) as Subscription]
+        })) as Record<T, Subscription>;
+    }
+}
+
 export function fromEvent<const TEventName extends keyof HTMLElementEventMap, TEvent extends Event = HTMLElementEventMap[TEventName]>(x: EventTarget, eventName: TEventName): IClientEventSink<TEvent>
 {
     const event = new ClientEvent<TEvent>();

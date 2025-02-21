@@ -2,7 +2,7 @@ import { Container } from "@akala/commands";
 import { Composer } from "../template.js";
 import { Binding, ExpressionsWithLength, Injector, Subscription } from "@akala/core";
 import { DataBind, DataBindPlugin } from "./context.js";
-import { fromEvent } from "../common.js";
+import { subscribe } from "../common.js";
 
 export class FormInjector extends Injector
 {
@@ -77,15 +77,7 @@ export class InputValueComposer implements DataBindPlugin
     {
         if (member == 'value')
         {
-            const event = fromEvent(item, 'input');
-            const sub = event.addListener(() => binding.setValue(item.value));
-            return () =>
-            {
-                const result = sub();
-                if (result)
-                    event[Symbol.dispose]();
-                return result;
-            }
+            return subscribe(item, 'input', () => binding.setValue(item.value));
         }
     }
 }
