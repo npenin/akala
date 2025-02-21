@@ -146,6 +146,7 @@ export class DesignKit extends Page
 
     table1: { config: TableConfig<Person>, data: Person[] } = {
         config: {
+            pageSize: 10,
             sortAscClasses: ['fa-solid', 'fa-sort-asc'],
             sortDescClasses: ['fa-solid', 'fa-sort-desc'],
             columns: [

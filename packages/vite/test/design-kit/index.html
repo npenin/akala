@@ -1215,7 +1215,7 @@
     <input data-bind="{value: controller.table1.config.columns[0].title#debounce:500}" />
     <div class="horizontal">
         <kl-table class="table striped warning" config="controller.table1.config"
-            data="table.localSort(controller.table1.data)"></kl-table>
+            data="table.localPage(table.localSort(controller.table1.data))"></kl-table>
         <div data-bind="{innerText: controller.table1.data#watch#json}"></div>
     </div>
     <kl-table config="controller.table2.config" data="controller.table2.data"></kl-table>
