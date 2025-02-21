@@ -82,8 +82,9 @@ export class Control<TBindings extends Record<string, unknown> = Record<string, 
                 return null;
         if (!Reflect.has(this.element, 'controller'))
         {
-            // const controllerBinding = this.teardown(Binding.defineProperty(this.element, 'controller'));
-            return this.teardown(this.bindings[attributeName] = DataContext.find(this.element).pipe(Parser.parameterLess.parse(attributeValue || '')));
+            if (!this.bindings[attributeName])
+                // const controllerBinding = this.teardown(Binding.defineProperty(this.element, 'controller'));
+                return this.teardown(this.bindings[attributeName] = DataContext.find(this.element).pipe(Parser.parameterLess.parse(attributeValue || '')));
 
         }
         if (!this.bindings[attributeName])
