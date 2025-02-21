@@ -17,8 +17,10 @@ export class TeardownManager
         this.subscriptions.length = 0;
     }
 
-    teardown<T extends Subscription | Disposable>(sub: T): T
+    teardown<T extends Subscription | Disposable | undefined | null>(sub: T): T
     {
+        if (!sub)
+            return sub;
         if (Symbol.dispose in sub)
         {
             this.subscriptions.push(() =>
