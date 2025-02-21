@@ -1,9 +1,9 @@
 import { map as mapAsync } from "./eachAsync.js";
+import { Subscription, TeardownManager } from "./teardown-manager.js";
 
 function noop() { }
 
 export type SpecialEvents = { [Symbol.dispose]: Event<[]> }
-export type Subscription = () => boolean
 export type EventKeys<T extends object> = { [key in keyof T]: T[key] extends IEvent<unknown[], unknown, unknown> ? key : never }[keyof T];
 
 type EventMap<T extends object> = { [key in EventKeys<T>]: AsEvent<T[key]> }
@@ -70,6 +70,12 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> i
     public get<const TEvent extends EventKeys<T>>(eventName: TEvent): AllEvents<T>[TEvent]
     {
         return this.events[eventName];// = event //as EventMap<AllEvents<T>>[TEvent];
+    }
+
+    public getOrCreate<const TEvent extends EventKeys<T>>(eventName: TEvent): AllEvents<T>[TEvent]
+    {
+        return this.events[eventName] || (this.events[eventName] = this.eventFactory(eventName));
+        ;// = event //as EventMap<AllEvents<T>>[TEvent];
     }
 
     public setMaxListeners<const TEvent extends AllEventKeys<T>>(maxListeners: number, event?: TEvent)
@@ -207,11 +213,42 @@ export type IEvent<T extends readonly unknown[], TReturnType, TOptions extends {
     pipe(event: IEvent<T, TReturnType, TOptions>): Subscription
 }
 
-export class Event<T extends readonly unknown[] = unknown[], TReturnType = void, TOptions extends { once?: boolean } = { once?: boolean }> implements IEvent<T, TReturnType, TOptions>
+export class Event<T extends readonly unknown[] = unknown[], TReturnType = void, TOptions extends { once?: boolean } = { once?: boolean }> extends TeardownManager implements IEvent<T, TReturnType, TOptions>
 {
+
+    public static combineNamed<T extends { [K in keyof T]?: T[K] | IEventSink<T[K] extends unknown[] ? T[K] : [T[K]], unknown> }>(obj: T): IEvent<[{ [K in keyof T]: T[K] extends IEventSink<infer X, unknown, unknown> ? X : T[K] }], void>
+    {
+        const entries = Object.entries(obj);
+        return new PipeEvent(Event.combine(...entries.map(e => e[1] as T[keyof T])), (...ev) =>
+        {
+            return [Object.fromEntries(entries.map((e, i) => [e[0], ev[i]])) as { [K in keyof T]: T[K] extends IEventSink<infer X, unknown> ? X : T[K] }];
+        }, null) as any;
+    }
+
+    public static combine<T extends unknown[]>(...events: { [K in keyof T]?: T[K] | IEventSink<T[K] extends unknown[] ? T[K] : [T[K]], unknown> }): IEventSink<T, void>
+    {
+        const combinedEvent = new ReplayEvent<T>(1, Event.maxListeners);
+        let values: T;
+
+        events = events.map(b => b instanceof Event ? b : new ReplayEvent(1, Event.maxListeners));
+
+        events.forEach((event, index) =>
+        {
+            combinedEvent.teardown((event as Event).addListener((...ev) =>
+            {
+                if (!values)
+                    values = [] as T;
+                values[index] = ev;
+                combinedEvent.emit(...values);
+            }));
+        });
+
+        return combinedEvent;
+    }
+
     constructor(public maxListeners = Event.maxListeners, protected readonly combineReturnTypes?: (args: TReturnType[]) => TReturnType)
     {
-
+        super();
     }
 
     public clone()
@@ -321,6 +358,79 @@ export class AsyncEvent<T extends unknown[] = unknown[], TReturnType = void> ext
     {
         return this.combineReturnTypes(await mapAsync(this.listeners, async listener => await listener(...args), true))
     }
+}
+
+
+export class PipeEvent<T extends unknown[], U extends unknown[], TReturnType, TOptions extends { once?: boolean }> extends Event<U, TReturnType, TOptions>
+{
+    protected subscription: ReturnType<IEventSink<T, TReturnType, TOptions>['addListener']>;
+
+    constructor(protected readonly source: IEventSink<T, TReturnType, TOptions>, private readonly map: (...args: T) => U, combineResults: (results: TReturnType[]) => TReturnType)
+    {
+        super(source.maxListeners, combineResults);
+    }
+
+    protected subscribeToSourceIfRequired()
+    {
+        if (!this.subscription)
+            this.subscription = this.source.addListener((...args) => super.emit(...this.map(...args)));
+    }
+
+    addListener(listener: (...args: U) => TReturnType, options?: TOptions): () => boolean
+    {
+        this.subscribeToSourceIfRequired();
+        return super.addListener(listener, options);
+    }
+
+    removeListener(listener: (...args: U) => TReturnType): boolean
+    {
+        const result = super.removeListener(listener);
+        if (result && !this.hasListeners && this.subscription)
+        {
+            this.subscription();
+            this.subscription = null;
+        }
+        return result;
+    }
+
+    // public pipe<V extends unknown[]>(map: (...args: U) => V,)
+    // {
+    //     return new PipeEvent(this, map, this.combineReturnTypes);
+    // }
+}
+
+export class ReplayEvent<T extends unknown[], TReturnType = void> extends Event<T, TReturnType>
+{
+    private buffer: T[] = [];
+
+    constructor(private bufferLength: number, maxListeners: number, combineReturnTypes?: (args: TReturnType[]) => TReturnType)
+    {
+        super(maxListeners, combineReturnTypes);
+    }
+
+    emit(...args: T): TReturnType
+    {
+        this.buffer.push(args);
+        while (this.buffer.length > this.bufferLength)
+            this.buffer.shift();
+        return super.emit(...args);
+    }
+
+    addListener(listener: (...args: T) => TReturnType, options?: { once?: boolean; }): () => boolean
+    {
+        if (options?.once && this.buffer.length > 0)
+        {
+            listener(...this.buffer[0]);
+            return () => true;
+        }
+        this.buffer.forEach(args => listener(...args));
+        return super.addListener(listener, options);
+    }
+
+    // public pipe<U extends unknown[]>(map: (...args: T) => U)
+    // {
+    //     return new PipeEvent(this, map, noop);
+    // }
 }
 
 
