@@ -3,7 +3,7 @@
 }
 
 .card {
-    composes: interactive from './interactive.module.css';
+    composes: non-interactive from './interactive.module.css';
 
     --standard-item-border-color: var(--separator-color);
     --item-border-style: solid;
@@ -34,9 +34,12 @@
     }
 
     &.actionable {
+        composes: interactive from './interactive.module.css';
+        cursor: pointer;
+
         --standard-item-box-shadow: 0 0.188rem 0.75rem 0 var(--shadow-color);
 
-        --hover-box-shadow: 0 0.188rem 0.75rem 0 var(--current-control-tint);
+        --hover-box-shadow: 0 0.188rem 1rem 0 var(--current-control-tint);
     }
 
     &.disabled,
