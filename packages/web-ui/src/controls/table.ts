@@ -1,5 +1,5 @@
 import { Bound, c, content, Control, CssClass, DataContext, e, Each, s, subscribe, t } from "@akala/client";
-import { Binding, Event, ObservableArray, ObservableObject, Parser, Subscription } from "@akala/core";
+import { Binding, EmptyBinding, Event, ObservableArray, ObservableObject, Parser, Subscription } from "@akala/core";
 import { BinaryExpression, BinaryOperator, ConstantExpression, MemberExpression, TypedExpression } from "@akala/core/expressions";
 import tableCss from './table.css?inline'
 
@@ -24,25 +24,18 @@ export type ColumnConfig<T> = {
 export interface TableConfig<T>
 {
     sortAscClasses?: string[]
-    sortDescClasses?: string[]
-    sort?: (arg: SortEventArgs<T>) => void,
-    page?: (arg: PageEventArg) => void,
+    sortDescClasses?: string[];
+    pageSize?: number;
     columns?: ColumnConfig<T>[]
 }
 
-export interface RunningTableConfig<T>
-{
-    columns?: ColumnConfig<T>[];
-    sort: Event<[SortEventArgs<T>]>;
-    page: Event<[PageEventArg]>;
-}
-
 const localSort = Symbol('local sort subscription');
+const localPage = Symbol('local page subscription');
 
 export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: TableConfig<T> }>
 {
     private sort: ObservableArray<SortEventArg<T>> = new ObservableArray([]);
-    // private page: Binding<PageEventArg> = new EmptyBinding();
+    private page: Binding<PageEventArg> = new EmptyBinding({ pageIndex: 0, pageSize: 10, startOffset: 0 });
 
     public static compare<T>(a: T, b: T): number
     {
@@ -204,8 +197,7 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
 
     public localSort(data: T[] | ObservableArray<T>): ObservableArray<T>
     {
-        if (Array.isArray(data))
-            data = new ObservableArray(data);
+        data = new ObservableArray(data);
 
         const columnIndices: Record<number, ColumnConfig<T>> = {};
 
@@ -213,61 +205,80 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
         {
             data[localSort] = this.sort.addListener(ev =>
             {
-                data.replaceArray(data.array.slice(0).sort((a, b) =>
+                data.sort((a, b) =>
                 {
                     return this.sort.array.reduce((previous, current) =>
                     {
-                        if (!previous)
-                            if (current.direction == 'none')
-                                return 0;
-                            else if (current.field)
-                                switch (current.direction)
-                                {
-                                    case "asc":
-                                        return Table.compare(a[current.field], b[current.field]);
-                                    case "desc":
-                                        return Table.compare(b[current.field], a[current.field]);
-                                }
-                            else if (typeof current.columnIndex == "number")
+                        if (previous)
+                            return previous;
+                        if (current.direction == 'none')
+                            return 0;
+                        else if (current.field)
+                            switch (current.direction)
                             {
-                                columnIndices[current.columnIndex] = columnIndices[current.columnIndex] || this.bind('config')?.pipe<ObservableArray<ColumnConfig<T>>>('columns').getValue()?.array[current.columnIndex];
-                                if (columnIndices[current.columnIndex])
+                                case "asc":
+                                    return Table.compare(a[current.field], b[current.field]);
+                                case "desc":
+                                    return Table.compare(b[current.field], a[current.field]);
+                            }
+                        else if (typeof current.columnIndex == "number")
+                        {
+                            columnIndices[current.columnIndex] = columnIndices[current.columnIndex] || this.bind('config')?.pipe<ObservableArray<ColumnConfig<T>>>('columns').getValue()?.array[current.columnIndex];
+                            if (columnIndices[current.columnIndex])
+                            {
+                                switch (typeof (columnIndices[current.columnIndex].sort))
                                 {
-                                    switch (typeof (columnIndices[current.columnIndex].sort))
-                                    {
-                                        case "undefined":
-                                        case "boolean":
-                                        case "object":
-                                            return 0;
-                                        case "string":
-                                        case "number":
-                                        case "symbol":
+                                    case "undefined":
+                                    case "boolean":
+                                    case "object":
+                                        return 0;
+                                    case "string":
+                                    case "number":
+                                    case "symbol":
 
-                                            switch (current.direction)
-                                            {
-                                                case "asc":
-                                                    return Table.compare(a[columnIndices[current.columnIndex].sort as keyof T], b[columnIndices[current.columnIndex].sort as keyof T]);
-                                                case "desc":
-                                                    return Table.compare(b[columnIndices[current.columnIndex].sort as keyof T], a[columnIndices[current.columnIndex].sort as keyof T]);
-                                            }
-                                        case "function":
-                                            switch (current.direction)
-                                            {
-                                                case "asc":
-                                                    return (columnIndices[current.columnIndex].sort as (a: T, b: T) => number)(a, b)
-                                                case "desc":
-                                                    return (columnIndices[current.columnIndex].sort as (a: T, b: T) => number)(b, a)
-                                            }
-                                    }
+                                        switch (current.direction)
+                                        {
+                                            case "asc":
+                                                return Table.compare(a[columnIndices[current.columnIndex].sort as keyof T], b[columnIndices[current.columnIndex].sort as keyof T]);
+                                            case "desc":
+                                                return Table.compare(b[columnIndices[current.columnIndex].sort as keyof T], a[columnIndices[current.columnIndex].sort as keyof T]);
+                                        }
+                                    case "function":
+                                        switch (current.direction)
+                                        {
+                                            case "asc":
+                                                return (columnIndices[current.columnIndex].sort as (a: T, b: T) => number)(a, b)
+                                            case "desc":
+                                                return (columnIndices[current.columnIndex].sort as (a: T, b: T) => number)(b, a)
+                                        }
                                 }
                             }
+                        }
                         return 0;
                     }, 0)
-                }));
+                });
             }, { triggerAtRegistration: true });
         }
 
         return data;
+    }
+
+    public localPage(data: T[] | ObservableArray<T>)
+    {
+        data = new ObservableArray(data);
+
+        if (!(localPage in data))
+        {
+            const pagedData = data[localPage] = new ObservableArray([])
+
+            pagedData.teardown(Event.combineNamed({ data, page: this.page.getOrCreate('change') }).addListener(ev =>
+            {
+                pagedData.replaceArray(data.array.slice(ev.page[0].value.startOffset, ev.page[0].value.startOffset + ev.page[0].value.pageSize))
+            }));
+            this.page.setValue(this.page.getValue());
+        }
+
+        return data[localPage];
     }
 
     public connectedCallback(): void
@@ -303,6 +314,8 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
                 return result;
 
             });
+
+        this.bind('config').pipe('pageSize').onChanged(ev => this.page.setValue({ ...this.page.getValue(), pageSize: typeof ev.value == 'undefined' ? 10 : ev.value }), true)
 
         Each.applyTemplate({
             container: headerRow,
@@ -358,8 +371,6 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
                                 switch (sort.getValue('direction'))
                                 {
                                     case "desc":
-                                        sort.setValue('direction', 'none');
-                                        break;
                                     case "none":
                                         sort.setValue('direction', 'asc');
                                         break;
@@ -381,8 +392,6 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
                                 switch (sort.getValue('direction'))
                                 {
                                     case "desc":
-                                        sort.setValue('direction', 'none');
-                                        break;
                                     case "none":
                                         sort.setValue('direction', 'asc');
                                         break;
