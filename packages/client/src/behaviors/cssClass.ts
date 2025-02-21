@@ -1,80 +1,10 @@
-import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike, each, Subscription } from '@akala/core'
+import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike, Subscription, map } from '@akala/core'
 import { AttributeComposer, databind } from './shared.js';
 import { DataContext } from './context.js';
+import { MaybeBound } from '../clientify.js';
+import { TeardownManager } from '../teardown-manager.js';
 
-function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
-{
-
-    if (typeof (item) == 'undefined')
-        return;
-    if (typeof (item) == 'string')
-        if (~item.indexOf(' '))
-            removeClass(element, item.split(' '));
-        else
-            element.classList.remove(item);
-    else if (item instanceof ParsedString)
-        return removeClass(element, item.value);
-    else if (item instanceof Binding)
-    {
-        removeClass(element, item.getValue())
-    }
-}
-
-type classParamType = Binding<string> | Binding<string[]> | ParsedString | string[] | string | { [key: string]: boolean };
-
-function addClass(element: HTMLElement, item: classParamType)
-{
-    if (typeof (item) == 'undefined')
-        return;
-    if (typeof (item) == 'string')
-    {
-        if (~item.indexOf(' '))
-            return addClass(element, item.split(' '));
-        element.classList.add(item);
-    }
-    else if (item instanceof ParsedString)
-        return addClass(element, item.value);
-    else if (item instanceof Binding)
-    {
-        let oldValue = null;
-        item.onChanged(async function (ev)
-        {
-            if (oldValue)
-                removeClass(element, oldValue);
-            if (isPromiseLike(ev.eventArgs.value))
-                ev.eventArgs.value.then(function (value)
-                {
-                    oldValue = value;
-                    addClass(element, value);
-                });
-            else
-            {
-                addClass(element, ev.eventArgs.value);
-                oldValue = ev.eventArgs.value;
-            }
-        });
-    }
-    else
-        each(item, function (toggle, key)
-        {
-            if (typeof (toggle) == 'string' && !isNaN(Number(key)))
-            {
-                addClass(element, toggle);
-            }
-            else if (toggle instanceof Binding)
-                toggle.onChanged(function (ev)
-                {
-                    if (ev.value)
-                        addClass(element, key as string);
-                    else
-                        removeClass(element, key as string);
-                });
-            else if (toggle)
-                addClass(element, key as string);
-            else
-                removeClass(element, key as string);
-        })
-}
+type classParamType = Binding<string> | Binding<string[]> | ParsedString | string[] | string | { [key: string]: boolean } | MaybeBound<{ [key: string]: boolean }>;
 
 export class CssClassComposer extends AttributeComposer<unknown>
 {
@@ -95,35 +25,125 @@ export class CssClassComposer extends AttributeComposer<unknown>
 }
 
 @databind('class')
-export class CssClass 
+export class CssClass extends TeardownManager
 {
-    constructor(element: HTMLElement, parameter: classParamType)
+    constructor(element: Element, parameter: classParamType)
     {
+        super();
         // if (Array.isArray(parameter))
         // {
         //     parameter = new ObservableArray(parameter);
         // }
         if (parameter instanceof ObservableArray)
         {
-            parameter.addListener(function (arg: ObservableArrayEventArgs<string>)
+            this.teardown(parameter.addListener(function (arg: ObservableArrayEventArgs<string>)
             {
                 if (arg.newItems)
                     arg.newItems.forEach(function (item)
                     {
-                        addClass(element, item);
+                        this.teardown(CssClass.add(element, item));
                     })
                 if (arg.oldItems)
                     arg.oldItems.forEach(function (item)
                     {
-                        removeClass(element, item);
+                        this.teardown(CssClass.remove(element, item));
                     })
-            });
-            parameter.init();
+            }, { triggerAtRegistration: true }));
         }
         else
-            addClass(element, parameter);
+            this.teardown(CssClass.add(element, parameter));
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    public apply() { }
+
+    public static add(element: Element, item: classParamType): Subscription | undefined
+    {
+        if (typeof (item) == 'undefined')
+            return;
+        if (typeof (item) == 'string')
+        {
+            if (~item.indexOf(' '))
+                return CssClass.add(element, item.split(' '));
+            element.classList.add(item);
+        }
+        else if (item instanceof ParsedString)
+            return CssClass.add(element, item.value);
+        else if (item instanceof Binding)
+        {
+            let oldValue = null;
+            return item.onChanged(async function (ev)
+            {
+                if (oldValue)
+                    CssClass.remove(element, oldValue);
+                if (isPromiseLike(ev.value))
+                    ev.value.then(function (value)
+                    {
+                        oldValue = value;
+                        CssClass.add(element, value);
+                    });
+                else
+                {
+                    CssClass.add(element, ev.value);
+                    oldValue = ev.value;
+                }
+            }, true);
+        }
+        else if (item instanceof ObservableArray)
+            return item.addListener(ev =>
+            {
+                if ('oldItems' in ev)
+                    CssClass.remove(element, ev.oldItems);
+
+                else if ('newItems' in ev)
+                    CssClass.add(element, ev.newItems);
+                else
+                {
+                    ev.replacedItems.forEach(ri =>
+                    {
+                        CssClass.remove(element, ri.oldItem);
+                        CssClass.add(element, ri.newItem)
+                    })
+                }
+            }, { triggerAtRegistration: true })
+        else
+            map(item, function (toggle, key)
+            {
+                if (typeof (toggle) == 'string' && !isNaN(Number(key)))
+                {
+                    return CssClass.add(element, toggle);
+                }
+                else if (toggle instanceof Binding)
+                    return toggle.onChanged(function (ev)
+                    {
+                        if (ev.value)
+                            CssClass.add(element, key as string);
+                        else
+                            CssClass.remove(element, key as string);
+                    }, true);
+                else if (toggle)
+                    return CssClass.add(element, key as string);
+                else
+                    return CssClass.remove(element, key as string);
+            })
+    }
+
+
+    public static remove(element: Element, item: ParsedString | Array<string> | string | { [key: string]: boolean })
+    {
+
+        if (typeof (item) == 'undefined')
+            return;
+        if (typeof (item) == 'string')
+            if (~item.indexOf(' '))
+                CssClass.remove(element, item.split(' '));
+            else
+                element.classList.remove(item);
+        else if (item instanceof ParsedString)
+            return CssClass.remove(element, item.value);
+        else if (item instanceof Binding)
+        {
+            CssClass.remove(element, item.getValue())
+        }
+    }
+
+
 }

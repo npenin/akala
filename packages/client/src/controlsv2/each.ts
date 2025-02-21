@@ -6,6 +6,7 @@ import { TeardownManager } from '../teardown-manager.js';
 import { a } from "../dom-helpers.js";
 
 export type Bound<T> = { [key in keyof T]: Binding<T[key]> };
+export type MaybeBound<T> = { [key in keyof T]: Binding<T[key]> | T[key] };
 
 export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaultIndexPropertyName, const TOptionItem extends PropertyKey = typeof Each.defaultItemPropertyName, TOption extends { [key in TOptionIndex]: number } & { [key in TOptionItem]: T } = { [key in TOptionIndex]: number } & { [key in TOptionItem]: T }> extends Control<{ each: Array<T> | ObservableArray<T>, [Each.indexPropertyNameAttribute]: keyof TOption, [Each.itemPropertyNameAttribute]: keyof TOption }>
 {
@@ -132,7 +133,7 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
                                 const option = {
                                     [self.indexPropertyName]: new EmptyBinding(i),
                                     [self.itemPropertyName]: new EmptyBinding(arg.newItems[i])
-                                } as Bound<TOption>;
+                                } as unknown as Bound<TOption>;
                                 self.optionsExtend?.(option);
                                 const item = getTemplate(option);
                                 let el: Element;
@@ -168,7 +169,7 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
                                 const option = {
                                     [self.indexPropertyName]: new EmptyBinding(i),
                                     [self.itemPropertyName]: new EmptyBinding(arg.newItems[i])
-                                } as Bound<TOption>;
+                                } as unknown as Bound<TOption>;
                                 self.optionsExtend?.(option);
                                 const item = getTemplate(option);
                                 let el: Element;
@@ -200,7 +201,7 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
                                 const option = {
                                     [self.indexPropertyName]: new EmptyBinding(i),
                                     [self.itemPropertyName]: new EmptyBinding(arg.newItems[i])
-                                } as Bound<TOption>;
+                                } as unknown as Bound<TOption>;
                                 self.optionsExtend?.(option);
                                 const item = getTemplate(option);
                                 let el: Element;
@@ -219,8 +220,7 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
                             }
                             break;
                     }
-                }));
-                observableArray.init();
+                }, { triggerAtRegistration: true }));
             }
         }, true)
     }

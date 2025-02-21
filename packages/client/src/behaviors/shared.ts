@@ -6,7 +6,7 @@ const databound = new SimpleInjector();
 
 export function databind(name: string)
 {
-    return function <T>(target: new (element: HTMLElement, value: any) => T)
+    return function <T>(target: new (element: Element, value: any) => T)
     {
         databound.register(name, target);
     }
@@ -154,7 +154,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
 
     getBindings<const TKey extends PropertyKey>(item: Element, options: T, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength)
     {
-        const binding = context.pipe<((...args: unknown[]) => unknown) | Record<string, (...args: unknown[]) => unknown>>(source, false);
+        const binding = context.pipe<((...args: unknown[]) => unknown) | Record<string, (...args: unknown[]) => unknown>>(source);
         const subs: Subscription[] = [];
         binding.onChanged(ev =>
         {

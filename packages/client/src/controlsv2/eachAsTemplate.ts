@@ -108,8 +108,7 @@ export class EachAsTemplate extends Control
                             }
                             break;
                     }
-                }));
-                observableArray.init();
+                }, { triggerAtRegistration: true }));
             }
         }, true)
     }

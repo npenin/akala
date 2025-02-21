@@ -34,7 +34,7 @@ export class DataContext implements Composer<IDataContext>
                     new MemberExpression<any, any, any>(new ConstantExpression(e[1]), new ConstantExpression(e[0]), false)),
                 ...sourceContext.expression.init,
                 new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
-            ), false);
+            ));
         }
         return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
             ...Object.entries(options).filter(e => e[0] !== 'context').map(e =>
@@ -42,7 +42,7 @@ export class DataContext implements Composer<IDataContext>
             ...DataContext.propagateProperties.filter(p => !(p in options)).map(e =>
                 new MemberExpression<any, any, any>(new MemberExpression(null, new ConstantExpression(e), false), new ConstantExpression(e), false)),
             new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
-        ), false);
+        ));
     }
 
     private static readonly dataContextExpression = Parser.parameterLess.parse('dataContext');
