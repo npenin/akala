@@ -38,7 +38,13 @@ export function a<T extends Element>(el: T, name: string | string[] | Record<str
     return el;
 }
 
-export function c<T extends Element>(el: T, ...children: (Node | Binding<Node>)[]): T
+export function c<T extends Element>(el: T, ...classes: string[]): T
+{
+    el.classList.add(...classes);
+    return el;
+}
+
+export function content<T extends Element>(el: T, ...children: (Node | Binding<Node>)[]): T
 {
     el.replaceChildren(...children.map(c => c instanceof Binding ? c.getValue() : c));
     Binding.combine(...children).onChanged(ev =>
@@ -47,7 +53,7 @@ export function c<T extends Element>(el: T, ...children: (Node | Binding<Node>)[
     return el;
 }
 
-c.p = function cp<T extends Element>(el: T, ...children: Node[]): T
+content.p = function cp<T extends Element>(el: T, ...children: Node[]): T
 {
     el.append(...children);
     return el;
