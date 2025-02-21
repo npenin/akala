@@ -1,4 +1,4 @@
-import { Subscription } from '@akala/core';
+export type Subscription = () => boolean
 
 
 export class TeardownManager

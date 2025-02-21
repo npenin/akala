@@ -12,6 +12,7 @@ export * from './middlewares/composite-with-priority-async.js';
 export * from './middlewares/composite-with-priority-sync.js';
 export * from './middlewares/indexed-async.js';
 export * from './middlewares/indexed-sync.js';
+export * from './teardown-manager.js';
 // export * from './global-injector';
 export * from './factory.js';
 export * from './http.js';
