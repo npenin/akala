@@ -122,8 +122,7 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
                         case "pop":
                             for (let i = 0; i < arg.oldItems.length; i++)
                             {
-                                self.container.removeChild(self.container.lastElementChild);
-                                items.pop();
+                                self.container.removeChild(items.pop().element);
                                 self.options.pop();
                             }
                             break;
