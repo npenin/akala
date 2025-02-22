@@ -1,13 +1,32 @@
-import { Binding, EmptyBinding, Event, Parser } from "@akala/core";
+import { Binding, EmptyBinding, ErrorWithStatus, Event, HttpStatusCode, Parser } from "@akala/core";
 import { DataContext, WebComponent } from "../common.js";
 import { TeardownManager } from '@akala/core';
 import { a } from "../dom-helpers.js";
 
-export class Control<TBindings extends Record<string, unknown> = Record<string, unknown>, TElement extends HTMLElement = HTMLElement> extends TeardownManager implements Partial<WebComponent>
+export class Control<TBindings extends Record<string, unknown> = Record<string, unknown>, TElement extends Element = Element> extends TeardownManager implements Partial<WebComponent>
 {
     constructor(protected readonly element: TElement)
     {
         super();
+    }
+
+    protected requiresAncestor<T extends Control, TElement extends Element>(ctor: new (element: TElement) => T): T
+    {
+        const ancestor = this.optionalAncestor(ctor);
+        if (ancestor)
+            return ancestor;
+        throw new ErrorWithStatus(HttpStatusCode.NotFound);
+    }
+
+    protected optionalAncestor<T extends Control, TElement extends Element>(ctor: new (element: TElement) => T): T
+    {
+        let parent: Element = this.element;
+        while ((parent = parent.parentElement))
+        {
+            if ('control' in parent && parent.control instanceof ctor)
+                return parent.control;
+        }
+        return null;
     }
 
     protected readonly attributeBindings: { [key in keyof TBindings]: Binding<string> } = {} as any;
