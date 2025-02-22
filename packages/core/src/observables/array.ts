@@ -67,6 +67,11 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
         }
     }
 
+    public [Symbol.iterator]()
+    {
+        return this.array[Symbol.iterator]();
+    }
+
     public [watcher] = this;
 
     public get length() { return this.array.length; }
@@ -95,6 +100,8 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
             action: 'push',
             newItems: items
         });
+
+        return finalLength;
     }
 
 
@@ -141,6 +148,8 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
             action: 'unshift',
             newItems: items
         });
+
+        return finalLength;
     };
 
     public replace(index: number, item: T)
@@ -176,6 +185,8 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
         }
         if (event.replacedItems.length)
             this.emit(event)
+
+        return this;
     }
 
     public addListener(listener: (args_0: ObservableArrayEventMap<T>) => void, options?: { triggerAtRegistration?: boolean, once?: boolean }): Subscription
@@ -265,6 +276,26 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
     public indexOf(...args: Parameters<typeof Array.prototype.indexOf>): ReturnType<typeof Array.prototype.indexOf>
     {
         return this.array.indexOf(...args);
+    }
+
+    public map<U>(...args: Parameters<typeof Array.prototype.map<U>>): ReturnType<typeof Array.prototype.map<U>>
+    {
+        return this.array.map(...args);
+    }
+
+    public reduce<U>(...args: Parameters<typeof Array.prototype.reduce<U>>): ReturnType<typeof Array.prototype.reduce<U>>
+    {
+        return this.array.reduce(...args);
+    }
+
+    public filter(...args: Parameters<typeof Array.prototype.filter>): ReturnType<typeof Array.prototype.filter>
+    {
+        return this.array.filter(...args);
+    }
+
+    public find(...args: Parameters<typeof Array.prototype.find>): ReturnType<typeof Array.prototype.find>
+    {
+        return this.array.find(...args);
     }
 
     public toString(): string
