@@ -7,7 +7,7 @@ import css from './popover.css?inline'
 @wcObserve('middlewares')
 @wcObserve('trigger')
 @wcObserve('closeonclickoutside')
-export class Popover extends Control<{ placement: Placement, trigger: string, middlewares?: Middleware[], closeonclickoutside?: boolean }>
+export class Popover extends Control<{ placement: Placement, trigger: string, middlewares?: Middleware[], closeonclickoutside?: boolean }, HTMLElement>
 {
     private visible?: Subscription;
     private _arrow: HTMLElement;
