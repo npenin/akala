@@ -59,6 +59,12 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
             return array[watcher] as ObservableArray<T>;
         this.array = array;
         Object.defineProperty(array, watcher, { value: this, enumerable: false, configurable: false })
+        for (let i = 0; i < array.length; i++)
+        {
+            Object.defineProperty(this, i, {
+                get: () => this.array[i],
+            })
+        }
     }
 
     public [watcher] = this;
@@ -77,6 +83,14 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
     public push(...items: T[])
     {
         this.array.push(...items);
+
+        const finalLength = this.array.length + items.length;
+        for (let i = this.array.length; i < finalLength; i++)
+        {
+            Object.defineProperty(this, i, {
+                get: () => this.array[i],
+            })
+        }
         this.emit({
             action: 'push',
             newItems: items
@@ -87,6 +101,12 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
     public shift(count: number = 1)
     {
         const items = this.array.splice(0, count);
+
+        for (let i = this.array.length - count; i < this.array.length; i++)
+        {
+            delete this[i];
+        }
+
         this.emit({
             action: 'shift',
             oldItems: items
@@ -95,6 +115,11 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
     public pop(count: number = 1)
     {
         const items = this.array.splice(this.array.length - count, count);
+
+        for (let i = this.array.length - count; i < this.array.length; i++)
+        {
+            delete this[i];
+        }
         this.emit({
             action: 'pop',
             oldItems: items
@@ -104,6 +129,14 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
     public unshift = function (...items)
     {
         this.array.unshift(...items);
+
+        const finalLength = this.array.length + items.length;
+        for (let i = this.array.length; i < finalLength; i++)
+        {
+            Object.defineProperty(this, i, {
+                get: () => this.array[i],
+            })
+        }
         this.emit({
             action: 'unshift',
             newItems: items
@@ -197,22 +230,6 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
 
         const array = Array.isArray(values) ? values : values.array;
         this.splice(0, this.length, ...array);
-
-        // this.replaceN(array.filter((_, i) => i < this.array.length).map((v, i) => ({
-        //     index: i, item: v
-        // })))
-
-        // if (this.length < values.length)
-        // {
-        //     if (Array.isArray(values))
-        //         this.push(...values.slice(this.length));
-        //     else
-        //         this.push(...values.array.slice(this.length));
-        // }
-        // else if (this.length > values.length)
-        // {
-        //     this.pop(this.length - array.length)
-        // }
 
         if (!Array.isArray(values))
             this.subcription = values.addListener(ev =>
