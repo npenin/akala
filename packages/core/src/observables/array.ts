@@ -67,10 +67,6 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
         }
     }
 
-    public [Symbol.iterator]()
-    {
-        return this.array[Symbol.iterator]();
-    }
 
     public [watcher] = this;
 
@@ -296,6 +292,16 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
     public find(...args: Parameters<typeof Array.prototype.find>): ReturnType<typeof Array.prototype.find>
     {
         return this.array.find(...args);
+    }
+
+    public forEach(...args: Parameters<typeof Array.prototype.forEach>): ReturnType<typeof Array.prototype.forEach>
+    {
+        return this.array.forEach(...args);
+    }
+
+    public [Symbol.iterator]()
+    {
+        return this.array[Symbol.iterator]();
     }
 
     public toString(): string
