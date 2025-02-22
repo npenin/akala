@@ -11,8 +11,6 @@ export default async function (commits: Commit[]): Promise<ParserCommit[]>
     const parserOpts = (await changelog()).parser;
     const headerPattern: RegExp = typeof parserOpts.headerPattern == 'string' ? new RegExp(parserOpts.headerPattern) : parserOpts.headerPattern;
     const headerCorrespondence: string[] = typeof parserOpts.headerCorrespondence == 'string' ? [parserOpts.headerCorrespondence] : parserOpts.headerCorrespondence;
-    if (!commits)
-        console.log(commits);
     return commits.map(c =>
     {
         const lines = c.message.split('\n').map(l => l.trim());
