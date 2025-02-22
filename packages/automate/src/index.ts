@@ -60,7 +60,8 @@ export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any,
 export const WithInterpolater = new MiddlewareRunnerMiddleware('with', () => { return Promise.resolve(); });
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export class ContainerMiddleware implements MiddlewareAsync<MiddlewareSignature<JobStepDef<string, any, any>>> {
+export class ContainerMiddleware implements MiddlewareAsync<MiddlewareSignature<JobStepDef<string, any, any>>>
+{
     constructor(private container: Container<unknown>) { }
 
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
