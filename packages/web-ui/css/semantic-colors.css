@@ -59,10 +59,7 @@
 table,
 :host(.table) {
 
-    tr.danger,
-    tr.success,
-    tr.info,
-    tr.warning {
+    tr {
 
         @media screen and (prefers-color-scheme:light) {
             --desaturate-ratio: .4;
@@ -79,11 +76,16 @@ table,
         --text-color: hsl(from var(--current-control-tint) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
         --text-color-striped: hsl(from var(--current-control-tint-striped) h s calc(50 - ((round(down, round(up, (l - 50) / 50) + 1 / 2) - 0.5) * 2) * 50));
 
+        &.danger,
+        .success,
+        .info,
+        .warning {
 
-        td,
-        th {
-            background-color: var(--current-control-tint) !important;
-            color: var(--text-color) !important;
+            td,
+            th {
+                background-color: var(--current-control-tint) !important;
+                color: var(--text-color) !important;
+            }
         }
 
         &.striped {
