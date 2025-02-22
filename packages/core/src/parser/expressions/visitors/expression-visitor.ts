@@ -45,7 +45,7 @@ export class ExpressionVisitor
             const settings = this.visit(expression.settings)
             if (source !== expression.lhs || settings != expression.settings)
             {
-                return new FormatExpression<TOutput>(source, expression.formatter, expression.settings);
+                return new FormatExpression<TOutput>(source, expression.formatter, settings);
             }
         }
         if (source !== expression.lhs)
