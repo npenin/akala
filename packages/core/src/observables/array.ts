@@ -1,6 +1,8 @@
 import { Event } from "../event-emitter.js";
+import { Formatter, formatters } from "../formatters/index.js";
+import { isPromiseLike } from "../promiseHelpers.js";
 import { Subscription } from "../teardown-manager.js";
-import { watcher } from "./object.js";
+import { watcher } from "./shared.js";
 
 export type ObservableArrayPopEvent<T> =
     {
@@ -162,6 +164,8 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
     {
         if (deleteCount === (replaceItems?.length ?? 0))
         {
+            if (deleteCount === 0)
+                return replaceItems || [];
             const oldItems = this.array.splice(start, deleteCount, ...replaceItems);
             this.emit({
                 action: 'replace',
@@ -257,3 +261,45 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
         super[Symbol.dispose]();
     }
 }
+
+
+export class AsyncArrayFormatter<T> implements Formatter<ObservableArray<T>>
+{
+    private promise: PromiseLike<T[] | ObservableArray<T>>;
+    private value: T[] | ObservableArray<T>;
+    private result: ObservableArray<T> = new ObservableArray([]);
+
+    format(value: T[] | ObservableArray<T>)
+    {
+        if (!isPromiseLike(value))
+        {
+            if (this.value != value)
+            {
+                this.value = value;
+                this.result.replaceArray(this.value);
+            }
+        }
+        else
+        {
+            if (this.promise !== value)
+            {
+                this.promise = value;
+                this.value = null;
+                if (this.result.length)
+                    this.result.replaceArray([]);
+                value.then(v =>
+                {
+                    this.value = v;
+                    this.result.replaceArray(v);
+                }, err => console.debug('a watched promise failed with err %O', err));
+            }
+        }
+        return this.result;
+    }
+
+    constructor()
+    {
+    }
+}
+
+formatters.register('#asyncArray', AsyncArrayFormatter);
