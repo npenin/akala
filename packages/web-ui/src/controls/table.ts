@@ -1,13 +1,13 @@
 import { Bound, c, content, Control, CssClass, DataContext, e, Each, s, subscribe, t } from "@akala/client";
-import { Binding, EmptyBinding, Event, ObservableArray, ObservableObject, Parser, Subscription } from "@akala/core";
+import { Binding, EmptyBinding, ErrorWithStatus, Event, formatters, HttpStatusCode, isPromiseLike, ObservableArray, ObservableObject, Parser, Subscription, Watcher, WatcherFormatter } from "@akala/core";
 import { BinaryExpression, BinaryOperator, ConstantExpression, MemberExpression, TypedExpression } from "@akala/core/expressions";
 import tableCss from './table.css?inline'
 
 export type SortDirection = 'asc' | 'desc' | 'none';
 
 export type SortEventArg<T> = { columnIndex: number, direction: SortDirection, field: false | keyof T };
-export type SortEventArgs<T> = SortEventArg<T>[];
-export type PageEventArg = { pageIndex: number, startOffset: number, pageSize: number };
+export type SortEventArgs<T> = ObservableArray<SortEventArg<T>>;
+export type PageEventArg = { pageIndex: number, startOffset: number, pageSize: number, isFirst: boolean, isLast: boolean };
 
 export type ColumnConfig<T> = {
     title?: string,
@@ -32,10 +32,104 @@ export interface TableConfig<T>
 const localSort = Symbol('local sort subscription');
 const localPage = Symbol('local page subscription');
 
+export class TablePager extends Control<{ pageSize: number, totalCount: number }>
+{
+    public connectedCallback(): void
+    {
+        const table = this.requiresAncestor(Table);
+        const pages = new ObservableArray<PageEventArg>([]);
+        Binding.combineNamed({ totalCount: this.bind('totalCount'), pageSize: this.bind('pageSize').pipe(ev => Number(ev.value)) }).onChanged(ev =>
+        {
+            const currentPage = table.page.getValue()
+            if (typeof ev.value.totalCount == 'undefined')
+            {
+
+            }
+            const pageCount = Math.ceil(ev.value.totalCount / ev.value.pageSize);
+            if (pageCount < pages.length)
+                pages.pop(pages.length - pageCount)
+            for (var i = 0; i < pageCount; i++)
+            {
+                if (i >= pages.length)
+                    pages.push({ pageIndex: i, pageSize: ev.value.pageSize, startOffset: i * ev.value.pageSize, isFirst: i == 0, isLast: i == pageCount - 1 })
+                else if (ev.value.pageSize != ev.oldValue?.pageSize)
+                    pages.replace(i, { pageIndex: i, pageSize: ev.value.pageSize, startOffset: i * ev.value.pageSize, isFirst: i == 0, isLast: i == pageCount - 1 });
+            }
+            if (pages.array.length)
+                table.page.setValue(pages.array.reduceRight((previous, current) => previous || (current.startOffset <= currentPage.startOffset ? current : previous), null));
+        }, true)
+
+        const pagerRow = c(e('div'), 'split-button');
+        content.p(table.tableElement, content(e('tfoot'), content(e('tr'), content(s(c(e('th')), { colSpan: table.tableElement.tHead.querySelectorAll('th').length }), pagerRow))));
+
+        const first = document.querySelector<HTMLElement>('[slot="first"]');
+        if (first)
+        {
+            this.teardown(subscribe(pagerRow.appendChild(first), 'click', ev =>
+            {
+                table.page.setValue(pages.array[0]);
+            }));
+            CssClass.add(first, { disabled: table.page.pipe('isFirst').pipe(ev => ev.value) })
+        }
+
+        const prev = document.querySelector<HTMLElement>('[slot="prev"]');
+        if (prev)
+        {
+            this.teardown(subscribe(pagerRow.appendChild(prev), 'click', ev =>
+            {
+                table.page.setValue(pages.array[table.page.getValue().pageIndex - 1]);
+            }));
+            CssClass.add(prev, { disabled: table.page.pipe('isFirst').pipe(ev => ev.value) })
+        }
+        Each.applyTemplate({
+            each: new EmptyBinding(pages),
+            indexPropertyName: Each.defaultIndexPropertyName,
+            itemPropertyName: Each.defaultItemPropertyName,
+            teardownManager: this,
+            container: pagerRow,
+            root: table.tableElement,
+            template: (option) =>
+            {
+                const page = option.item.getValue();
+                const pageEl = content(c(e('div'), 'button'), t(page.pageIndex + 1));
+                CssClass.add(pageEl, { active: Binding.combine(table.page, option.item).pipe(ev => ev.value[0] == ev.value[1]) });
+                subscribe(pageEl, 'click', () => table.page.setValue(option.item.getValue()))
+                return pageEl;
+            }
+        });
+
+        const next = document.querySelector<HTMLElement>('[slot="next"]');
+        if (next)
+        {
+            pages.addListener(ev => pagerRow.appendChild(next));
+            this.teardown(subscribe(pagerRow.appendChild(next), 'click', ev =>
+            {
+                table.page.setValue(pages.array[table.page.getValue().pageIndex + 1]);
+            }));
+            CssClass.add(next, { disabled: table.page.pipe('isLast').pipe(ev => ev.value) })
+        }
+
+        const last = document.querySelector<HTMLElement>('[slot="last"]');
+        if (last)
+        {
+            pages.addListener(ev => pagerRow.appendChild(last));
+            this.teardown(subscribe(pagerRow.appendChild(last), 'click', ev =>
+            {
+                table.page.setValue(pages.array[pages.array.length - 1]);
+            }));
+            CssClass.add(last, { disabled: table.page.pipe('isLast').pipe(ev => ev.value) })
+        }
+
+        if (pages.array.length)
+            table.page.setValue(pages.array[0]);
+    }
+}
+
 export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: TableConfig<T> }>
 {
-    private sort: ObservableArray<SortEventArg<T>> = new ObservableArray([]);
-    private page: Binding<PageEventArg> = new EmptyBinding({ pageIndex: 0, pageSize: 10, startOffset: 0 });
+    public readonly sort: ObservableArray<SortEventArg<T>> = new ObservableArray([]);
+    public readonly page: Binding<PageEventArg> = new EmptyBinding();
+    tableElement: HTMLTableElement;
 
     public static compare<T>(a: T, b: T): number
     {
@@ -291,6 +385,7 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
         shadow.appendChild(s(e('style'), { innerHTML: tableCss }));
 
         const table = shadow.appendChild(content.p(document.createElement('table'), document.createElement('thead')));
+        this.tableElement = table;
         const headerRow = table.tHead.appendChild(document.createElement('tr'));
 
         const dataBody = table.createTBody();
@@ -315,7 +410,7 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
 
             });
 
-        this.bind('config').pipe('pageSize').onChanged(ev => this.page.setValue({ ...this.page.getValue(), pageSize: typeof ev.value == 'undefined' ? 10 : ev.value }), true)
+        this.bind('config').pipe('pageSize').onChanged(ev => this.page.setValue(Object.assign({ pageIndex: 0, startOffset: 0, isFirst: true, isLast: true }, this.page.getValue(), { pageSize: typeof ev.value == 'undefined' || isNaN(Number(ev.value)) ? 10 : Number(ev.value) })), true)
 
         Each.applyTemplate({
             container: headerRow,
@@ -466,3 +561,64 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
         })
     }
 }
+
+export class TableFormatter<T> extends WatcherFormatter<ObservableArray<T>>
+{
+    private result = new ObservableArray<T>([])
+    private sort?: SortEventArg<T>[];
+    private page?: PageEventArg;
+    private oaResult?: ObservableArray<T>;
+    private sub?: Subscription;
+
+    constructor(private table: Table<T>, watcher: Watcher)
+    {
+        super(watcher);
+        if (!(table instanceof Table))
+            throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'expected a table for the table formatter settings');
+
+        if (watcher)
+        {
+            watcher.on(Symbol.dispose, table.sort.addListener(ev => { this.sort = table.sort.array; watcher.emit('change') }));
+            watcher.on(Symbol.dispose, table.page.onChanged(ev => { this.page = ev.value; watcher.emit('change') }));
+        }
+    }
+
+
+    format(value: (sort: SortEventArg<T>[], page: PageEventArg) => T[] | ObservableArray<T> | Promise<T[]>): ObservableArray<T>
+    {
+        if (typeof value != 'function')
+            throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'expected a function as a value for the table formatter');
+
+        const result = value(this.sort, this.page || this.table.page.getValue());
+
+        if (isPromiseLike(result))
+            result.then(v =>
+            {
+                if (!v?.length)
+                    this.result.replaceArray([]);
+                if (!Array.isArray(v))
+                    throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'expected an array as a result of the provided function');
+
+                this.result.replaceArray(v);
+            });
+        else if (Array.isArray(result))
+            this.result.replaceArray(result);
+        else if (result instanceof ObservableArray)
+        {
+            if (this.oaResult != result)
+            {
+                this.oaResult = result;
+                this.sub?.();
+                this.sub = result.addListener(ev => this.result.replaceArray(result.array), { triggerAtRegistration: true });
+            }
+        }
+        else
+            throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'expected an array as a result of the provided function');
+
+
+        return this.result;
+    }
+
+}
+
+formatters.register('#table', TableFormatter);
