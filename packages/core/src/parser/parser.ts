@@ -421,6 +421,7 @@ export class Parser
         if (expression[0] == ':')
         {
             settings = this.parseAny(expression.substring(1), false);
+            expression = expression.substring(settings.$$length + 1);
 
             // settings = formatter.parse(expression.substring(1)) as ParsedObject;
         }
@@ -525,8 +526,8 @@ export class Parser
         }, ')');
 
         if (lhs?.type == ExpressionType.MemberExpression)
-            return new ParsedCall(length, lhs.source as ExpressionsWithLength & TypedExpression<any>, lhs.member, results);
-        return new ParsedCall(length, lhs as ExpressionsWithLength & TypedExpression<any>, null, results);
+            return this.tryParseOperator(expression.substring(length), new ParsedCall(length, lhs.source as ExpressionsWithLength & TypedExpression<any>, lhs.member, results), parseFormatter);
+        return this.tryParseOperator(expression.substring(length), new ParsedCall(length, lhs as ExpressionsWithLength & TypedExpression<any>, null, results), parseFormatter);
     }
 
     public parseArray(expression: string, parseFormatter: boolean, reset?: () => void)

@@ -5,6 +5,7 @@ import { Parser, ParsedBinary, ParsedString } from '../parser/parser.js';
 import { BinaryOperator } from '../parser/expressions/binary-operator.js';
 import { Formatter, formatters } from '../formatters/index.js';
 import { EvaluatorAsFunction } from '../parser/evaluator-as-function.js';
+import { ObservableArray } from '../observables/array.js';
 
 //b*(c+d) ==> (b*c)+d
 
@@ -39,3 +40,18 @@ console.log((evaluator.eval(parser.parse("{options:{in:'/api/@domojs/zigate/pend
 console.log((evaluator.eval(parser.parse("{options:{in:'/api/@domojs/zigate/pending' # http, text:internalName, value:address}}")))({})['options']);
 
 console.log(evaluator.eval(parser.parse('columns[0].title'))({ columns: [{ title: 'pwet' }] }))
+
+const args = {
+    controller: {
+        async fakeServer(sort, page)
+        {
+            const result = await Promise.resolve(['x', 'y', 'z']);
+            return result.map(x => x + sort + page)
+        }
+    }, table: { sort: 'a', page: 1 }
+};
+setTimeout(() =>
+{
+    const array = evaluator.eval<ObservableArray<string>>(parser.parse('controller.fakeServer(table.sort, table.page)#asyncArray'))(args);
+    array.addListener(ev => console.log(array.array));
+}, 10)
