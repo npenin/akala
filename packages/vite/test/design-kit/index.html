@@ -1212,12 +1212,29 @@
         </kl-tooltip>
     </div>
     <h2>Data tables</h2>
+    <input type="number" min="1" data-bind="{value:controller.table1.config.pageSize}" />
     <input data-bind="{value: controller.table1.config.columns[0].title#debounce:500}" />
     <div class="horizontal">
         <kl-table class="table striped warning" config="controller.table1.config"
-            data="table.localPage(table.localSort(controller.table1.data))"></kl-table>
+            data="table.localPage(table.localSort(controller.table1.data))">
+            <kl-table-pager totalCount="controller.table1.data.length" pageSize="controller.table1.config.pageSize">
+                <div slot="prev" class="button">prev</div>
+                <div slot="next" class="button">next</div>
+                <div slot="first" class="button">first</div>
+                <div slot="last" class="button">last</div>
+            </kl-table-pager>
+        </kl-table>
         <div data-bind="{innerText: controller.table1.data#watch#json}"></div>
     </div>
+
+    <kl-table class="table striped" config="controller.table1.config" data="controller.fakeServer#table:table">
+        <kl-table-pager pageSize="controller.table1.config.pageSize">
+            <div slot="prev" class="button">prev</div>
+            <div slot="next" class="button">next</div>
+            <div slot="first" class="button">first</div>
+            <div slot="last" class="button">last</div>
+        </kl-table-pager>
+    </kl-table>
     <kl-table config="controller.table2.config" data="controller.table2.data"></kl-table>
     <div style="height:300px"></div>
 </div>

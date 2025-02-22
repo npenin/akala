@@ -7,7 +7,7 @@ import { Processors } from '@akala/commands';
 import { Signup } from './signup/signup.js';
 import { Login } from './login/login.js';
 import Home from './home.js';
-import { Dropdown, Mark, Popover, Table, Tooltip, TooltipComposer, Typeahead } from '@akala/web-ui';
+import { Dropdown, Mark, Popover, Table, TablePager, Tooltip, TooltipComposer, Typeahead } from '@akala/web-ui';
 import { DesignKit } from './design-kit/index.js';
 // import weather from './weather.js';
 
@@ -44,6 +44,7 @@ bootstrapModule.activate(['$rootScope', 'services.$outlet'], async (rootScope: S
     webComponent('kl-dropdown')(Dropdown);
     webComponent('kl-mark')(Mark);
     webComponent('kl-table')(Table);
+    webComponent('kl-table-pager')(TablePager);
 
     serviceModule.register('templateOptions', {
         $rootScope: rootScope, i18n: {

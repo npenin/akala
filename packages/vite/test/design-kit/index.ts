@@ -1,6 +1,6 @@
 import { a, DataBind, e, OutletService, Page, page, RootElement, t } from '@akala/client'
 import template from './index.html?raw'
-import { TableConfig } from '@akala/web-ui';
+import { PageEventArg, SortEventArg, TableConfig } from '@akala/web-ui';
 import { Binding } from '@akala/core';
 
 // type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
@@ -144,9 +144,50 @@ export class DesignKit extends Page
         return DesignKit.options.filter(o => !search || o.includes(search));
     }
 
+    async fakeServer(sort: SortEventArg<Person>[], paging: PageEventArg)
+    {
+        let result = await Promise.resolve(data.slice(0));
+
+        if (sort?.length)
+        {
+            result.sort((a, b) =>
+                sort.reduce((previous, current) =>
+                {
+                    if (previous)
+                        return previous;
+
+                    if (current.direction == 'none')
+                        return 0;
+
+                    switch (current.columnIndex)
+                    {
+                        case 0:
+                            if (current.direction == 'asc')
+                                return a.name.localeCompare(b.name);
+                            else
+                                return b.name.localeCompare(a.name);
+                        case 1:
+                            if (current.direction == 'asc')
+                                return a.age - b.age;
+                            else
+                                return b.age - a.age;
+                    }
+                    return 0;
+                }, 0)
+            )
+        }
+
+        if (paging)
+        {
+            result = result.slice(paging.startOffset, paging.pageSize + paging.startOffset);
+        }
+
+        return result;
+    }
+
     table1: { config: TableConfig<Person>, data: Person[] } = {
         config: {
-            pageSize: 10,
+            pageSize: 7,
             sortAscClasses: ['fa-solid', 'fa-sort-asc'],
             sortDescClasses: ['fa-solid', 'fa-sort-desc'],
             columns: [
