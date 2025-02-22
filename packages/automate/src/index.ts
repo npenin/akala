@@ -31,7 +31,7 @@ export class MiddlewareRunnerMiddleware<TSupportedJobSteps extends JobStepDef<st
             return Promise.resolve();
 
         if (!this.doNotInterpolate)
-            step[this.support] = (await interpolate.buildObject(step[this.support]))(context);
+            step[this.support] = (interpolate.buildObject(step[this.support]))(context);
 
         return this.handler(context, step, stdio);
     }
