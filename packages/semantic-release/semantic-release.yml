@@ -18,6 +18,7 @@ jobs:
     steps:
       - name: version
         dispatch: get-version
+        log: package
         with:
           path: $(package.location)
       - name: tags
