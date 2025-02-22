@@ -1,4 +1,5 @@
-import { Event, IEventSink, PipeEvent, ReplayEvent } from "../event-emitter.js";
+import EventEmitter, { Event, IEventSink, PipeEvent, ReplayEvent } from "../event-emitter.js";
+import { Formatter } from "../formatters/common.js";
 
 function noop() { }
 
@@ -70,3 +71,14 @@ export function pipe<T extends unknown[], U extends unknown[], TOptions extends 
 {
     return new PipeEvent(source, map, noop);
 }
+
+export type Watcher = EventEmitter<{ 'change': Event<[source?: object]> }>;
+
+export abstract class WatcherFormatter<T = void> implements Formatter<T>
+{
+    constructor(protected readonly watcher?: Watcher) { }
+
+    abstract format(value: unknown): T;
+}
+
+export const watcher = Symbol.for("akala/watcher");

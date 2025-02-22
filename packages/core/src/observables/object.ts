@@ -16,19 +16,13 @@ import { TernaryExpression } from "../parser/expressions/ternary-expression.js";
 import { TernaryOperator } from "../parser/expressions/ternary-operator.js";
 import { ExpressionSimplifyer } from "../parser/expressions/visitors/expression-simplifyer.js";
 import { Subscription } from "../teardown-manager.js";
+import { watcher, Watcher, WatcherFormatter } from './shared.js'
 
 export interface ObjectEvent<T>
 {
     readonly property: keyof T;
     readonly value: T[keyof T];
     readonly oldValue: T[keyof T];
-}
-
-export abstract class WatcherFormatter implements Formatter<void>
-{
-    constructor(protected readonly watcher?: Watcher) { }
-
-    abstract format(value: unknown): void;
 }
 
 export class AsyncFormatter extends WatcherFormatter
@@ -63,7 +57,6 @@ export class AsyncFormatter extends WatcherFormatter
 }
 
 formatters.register('#async', AsyncFormatter);
-
 
 export class EventFormatter<T extends unknown[]> extends WatcherFormatter
 {
@@ -166,7 +159,6 @@ formatters.register('#unbind', BindingFormatter);
 // {
 //     $$watchers?: { [key in keyof T]?: T[key] & ObservableObject<T[key]> };
 // }
-export const watcher = Symbol.for("akala/watcher");
 
 export type IWatched<T extends object> = T &
 {
@@ -510,7 +502,6 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
     }
 }
 
-export type Watcher = EventEmitter<{ 'change': Event<[source?: object]> }>;
 
 type ObservableType<T extends object> = Record<keyof T, IEvent<[ObjectEvent<T>], void>>;
 
