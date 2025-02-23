@@ -1,20 +1,28 @@
 import { Translator, defaultInjector } from '@akala/core';
 import * as path from 'path';
 
-defaultInjector.registerFactory('$translator', function (): Translator
+defaultInjector.registerFactory('$translator', async function (): Promise<Translator>
 {
     const language = defaultInjector.resolve('$language');
     let translations: { [key: string]: string };
     if (language)
-        translations = require(path.join(__dirname, 'i18n.' + defaultInjector.resolve('$language') + '.json'));
+        translations = await import(path.join(__dirname, 'i18n.' + defaultInjector.resolve('$language') + '.json'));
     else
         translations = {};
 
-    return function (key: string, ...parameters: unknown[])
+    return function (key: string | { key: string, fallback: string }, ...parameters: unknown[])
     {
+        let fallback: string;
+        if (typeof key == 'object')
+        {
+            fallback = key.fallback;
+            key = key.key;
+        }
+        else
+            fallback = key;
         if (!parameters)
-            return translations[key] || key;
-        return (translations[key] || key).replace(/\{\d+\}/g, function (m)
+            return translations[key] || fallback;
+        return (translations[key] || fallback).replace(/\{\d+\}/g, function (m)
         {
             return parameters[m];
         })
