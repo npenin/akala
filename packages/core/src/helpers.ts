@@ -38,4 +38,6 @@ export interface Translator
 {
     (key: string): string;
     (format: string, ...parameters: unknown[]): string;
+    (obj: { key: string, fallback: string }): string;
+    (obj: { key: string, fallback: string }, ...parameters: unknown[]): string;
 }
