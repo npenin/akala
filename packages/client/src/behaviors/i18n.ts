@@ -1,7 +1,7 @@
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
 import { DataContext } from "./context.js";
-import { Binding, ExpressionsWithLength, ParsedString, Parser } from "@akala/core";
+import { Binding, ExpressionsWithLength, ParsedString, Parser, Translator } from "@akala/core";
 import { ConstantExpression, MemberExpression, NewExpression } from "@akala/core/expressions";
 
 export class I18nParser extends Parser
@@ -14,7 +14,7 @@ export class I18nParser extends Parser
     }
 }
 
-export class I18nComposer<T extends Partial<Disposable> & { translate(value: string, currentValue: string): string }> extends AttributeComposer<T> implements Composer<T>
+export class I18nComposer<T extends Partial<Disposable> & { translate: Translator }> extends AttributeComposer<T> implements Composer<T>
 {
     // apply(item: HTMLElement, options: T, root: Element | ShadowRoot): { [Symbol.dispose](): void; }
     // {
@@ -55,9 +55,9 @@ export class I18nComposer<T extends Partial<Disposable> & { translate(value: str
             subItem = 'innerText';
         // const camelCased = AttributeComposer.toCamelCase(subItem.toString());
         if (Reflect.has(Object.getPrototypeOf(item), subItem))
-            item[subItem] = options.translate(prefix + value, item[subItem == 'innerText' ? 'innerHTML' : subItem]);
+            item[subItem] = options.translate({ key: prefix + value, fallback: item[subItem == 'innerText' ? 'innerHTML' : subItem] });
         else
-            item.setAttribute(subItem.toString(), value ? options.translate(prefix + value, item.getAttribute(subItem.toString())) : options.translate(prefix + value, item.getAttribute(subItem.toString())));
+            item.setAttribute(subItem.toString(), value ? options.translate({ key: prefix + value, fallback: item.getAttribute(subItem.toString()) }) : options.translate({ key: prefix + value, fallback: item.getAttribute(subItem.toString()) }));
     }
 
     getContext(item: HTMLElement, options?: T)
