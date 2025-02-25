@@ -1,4 +1,4 @@
-import { Binding, ExpressionsWithLength, ParsedAny, ParsedObject, ParsedString, Parser, SimpleInjector, Subscription, parser } from "@akala/core";
+import { Binding, ExpressionsWithLength, ParsedAny, ParsedObject, ParsedString, Parser, SimpleInjector, Subscription, parser, toCamelCase, toKebabCase } from "@akala/core";
 import { Composer } from "../template.js";
 import { Control } from '../controlsv2/shared.js';
 
@@ -105,12 +105,12 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
 
     static toCamelCase(s: string): string
     {
-        return s.replace(/-([a-z])/g, (_all, letter) => letter.toUpperCase());
+        return toCamelCase(s)
     }
 
     static fromCamlCase(s: string): string
     {
-        return s.replace(/[A-Z]/g, letter => '-' + letter.toLowerCase());
+        return toKebabCase(s);
     }
 
     abstract applyInternal<const TKey extends PropertyKey>(item: Element, options: T, subItem: TKey, value: unknown): Subscription | void;
