@@ -1,14 +1,10 @@
-import { program as root, CliContext, NamespaceMiddleware } from "@akala/cli";
+import { CliContext, NamespaceMiddleware } from "@akala/cli";
 import path from 'path'
 import Configuration from "./configuration.js";
 
-export default async function (_config, program: NamespaceMiddleware)
+export default async function (_config, program: NamespaceMiddleware, context: CliContext)
 {
-    root.preAction(async (context) =>
-    {
-        context.state = await Configuration.newAsync(context.options['configFile'] as string, _config)
-
-    });
+    context.state = await Configuration.newAsync(context.options['configFile'] as string, _config)
 
     program.format(async r =>
     {
