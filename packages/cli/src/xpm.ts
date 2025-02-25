@@ -34,8 +34,10 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
             {
                 case 'yarn':
                     await yarnHelper.install(context.args[0]);
+                    break;
                 case 'npm':
                     await npmHelper.install(context.args[0]);
+                    break;
                 default:
                     throw new ErrorWithStatus(HttpStatusCode.NotAcceptable, 'Unfortunately your package manager is not (yet) supported');
             }
@@ -59,17 +61,12 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
             {
                 case 'yarn':
                     await yarnHelper.uninstall(context.args[0]);
+                    break;
                 case 'npm':
                     await npmHelper.uninstall(context.args[0]);
+                    break;
                 default:
                     throw new ErrorWithStatus(HttpStatusCode.NotAcceptable, 'Unfortunately your package manager is not (yet) supported');
             }
-        });
-
-    plugins.command('ls')
-        .state<{ plugins: string[] }>()
-        .action(async function (context)
-        {
-            return context.state.plugins;
         });
 }
