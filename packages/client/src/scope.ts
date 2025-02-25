@@ -46,7 +46,7 @@ export class ScopeImpl<T extends object> implements IScope<T>
         return new ObservableObject(new newScope()).target;
     }
 
-    public $inject<T>(f: Injectable<T>, params?: { [key: string]: unknown })
+    public $inject<T, TArgs extends unknown[]>(f: Injectable<T, TArgs>, params?: { [key: string]: unknown })
     {
         if (!Object.getOwnPropertyDescriptor(this, '$$resolver'))
         {

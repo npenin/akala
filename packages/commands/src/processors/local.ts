@@ -84,7 +84,7 @@ export class Local extends CommandProcessor
         }
     }
 
-    public static execute<T, U>(cmd: Metadata.Command, handler: Injectable<U>, container: Container<T>, param: StructuredParameters): U
+    public static execute<T, U, TArgs extends unknown[]>(cmd: Metadata.Command, handler: Injectable<U, TArgs>, container: Container<T>, param: StructuredParameters): U
     {
         if (!container)
             throw new Error('container is undefined');
@@ -114,13 +114,13 @@ export class Local extends CommandProcessor
         return injector.injectWithName(inject, handler)(container.state);
     }
 
-    public static handle<T, U = unknown | PromiseLike<unknown>>(cmd: Metadata.Command, handler: Injectable<U>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
+    public static handle<T, TArgs extends unknown[], U = unknown | PromiseLike<unknown>>(cmd: Metadata.Command, handler: Injectable<U, TArgs>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
     {
         return new Promise((resolve, reject) =>
         {
             try
             {
-                var result = Local.execute<unknown, U>(cmd, handler, container, param);
+                var result = Local.execute(cmd, handler, container, param);
                 if (isPromiseLike(result))
                     result.then(reject, resolve);
                 else
@@ -148,7 +148,7 @@ export class Local extends CommandProcessor
 
 export class Self extends CommandProcessor
 {
-    public override handle(container: Container<unknown>, command: Metadata.Command & Partial<SelfDefinedCommand>, param: StructuredParameters): MiddlewarePromise
+    public override handle<TArgs extends unknown[]>(container: Container<unknown>, command: Metadata.Command & Partial<SelfDefinedCommand<TArgs>>, param: StructuredParameters): MiddlewarePromise
     {
         if ('handler' in command && typeof command.handler == 'function')
             return Local.handle(command, command.handler, container, param);

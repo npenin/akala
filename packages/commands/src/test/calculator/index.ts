@@ -5,7 +5,7 @@ export type state = { value: number };
 
 export const calculator = new cmds.Container<state>('counter', { value: 0 });
 
-let cmd = calculator.register(new cmds.SelfDefinedCommand<state>(function increment(step: number)
+let cmd: cmds.SelfDefinedCommand<unknown[], state> = calculator.register(new cmds.SelfDefinedCommand<[step: number], state>(function increment(step: number)
 {
     if (step && typeof step == 'string')
         step = Number(step);
@@ -13,14 +13,14 @@ let cmd = calculator.register(new cmds.SelfDefinedCommand<state>(function increm
 }, 'increment', ['param.0']));
 cmd.config.http = { method: 'post', route: '/increment/:step?', inject: ['route.step'] }
 
-cmd = calculator.register(new cmds.SelfDefinedCommand<state>(function reset()
+cmd = calculator.register(new cmds.SelfDefinedCommand<[], state>(function reset()
 {
     this.value = 0;
 }, 'reset'));
 cmd.config.http = { method: 'post', route: '/reset' }
 
 cmd = configure('http', { method: 'post', route: '/decrement/:step?', inject: ['$state', 'route.step'] })(
-    calculator.register(new cmds.SelfDefinedCommand<state>(function decrement(state: state, step: number)
+    calculator.register(new cmds.SelfDefinedCommand<[state: state, step: number], state>(function decrement(state: state, step: number)
     {
         if (step && typeof step == 'string')
             step = Number(step);

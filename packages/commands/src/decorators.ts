@@ -3,11 +3,11 @@ import { SelfDefinedCommand as ModelCommand } from "./model/command.js";
 import { Injectable as baseInjectable } from "@akala/core";
 import { Configurations } from './metadata/configurations.js';
 
-type Injectable<T> = baseInjectable<T> & { '$inject'?: string[] };
+type Injectable<T, TArgs extends unknown[]> = baseInjectable<T, TArgs> & { '$inject'?: string[] };
 
 export function inject(...toInject: string[])
 {
-    return function (f: Injectable<unknown>)
+    return function <TArgs extends unknown[]>(f: Injectable<unknown, TArgs>)
     {
         f['$inject'] = toInject;
         return f;
@@ -16,21 +16,21 @@ export function inject(...toInject: string[])
 
 export interface extendF<TConfiguration extends Configurations>
 {
-    (cmd: Injectable<unknown>, name?: string): ModelCommand & { config: TConfiguration }
-    <T extends ModelCommand>(cmd: T): T & { config: TConfiguration }
-    <TCommand extends ModelCommand>(cmdOrInj: TCommand | Injectable<unknown>): (TCommand | ModelCommand) & { config: TConfiguration }
+    <TArgs extends unknown[]>(cmd: Injectable<unknown, TArgs>, name?: string): ModelCommand<TArgs> & { config: TConfiguration }
+    <TArgs extends unknown[], T extends ModelCommand<TArgs>>(cmd: T): T & { config: TConfiguration }
+    <TCommand extends ModelCommand<TArgs>, TArgs extends unknown[]>(cmdOrInj: TCommand | Injectable<unknown, TArgs>): (TCommand | ModelCommand<TArgs>) & { config: TConfiguration }
 }
 
-export function extend<TConfiguration extends Configurations>(cmd: Injectable<unknown>, config: TConfiguration): ModelCommand & { config: TConfiguration }
-export function extend<T extends ModelCommand, TConfiguration extends Configurations>(cmd: T, config: TConfiguration): T & { config: TConfiguration }
-export function extend<TCommand extends ModelCommand, TConfiguration extends Configurations>(cmdOrInj: TCommand | Injectable<unknown>, config: TConfiguration): ReturnType<extendF<TConfiguration>>
-export function extend<TCommand extends ModelCommand, TConfiguration extends Configurations>(cmdOrInj: TCommand | Injectable<unknown>, config: TConfiguration): (TCommand | ModelCommand) & { config: TConfiguration }
+export function extend<TConfiguration extends Configurations, TArgs extends unknown[]>(cmd: Injectable<unknown, TArgs>, config: TConfiguration): ModelCommand<TArgs> & { config: TConfiguration }
+export function extend<TArgs extends unknown[], T extends ModelCommand<TArgs>, TConfiguration extends Configurations>(cmd: T, config: TConfiguration): T & { config: TConfiguration }
+export function extend<TCommand extends ModelCommand<TArgs>, TConfiguration extends Configurations, TArgs extends unknown[]>(cmdOrInj: TCommand | Injectable<unknown, TArgs>, config: TConfiguration): ReturnType<extendF<TConfiguration>>
+export function extend<TCommand extends ModelCommand<TArgs>, TConfiguration extends Configurations, TArgs extends unknown[]>(cmdOrInj: TCommand | Injectable<unknown, TArgs>, config: TConfiguration): (TCommand | ModelCommand<TArgs>) & { config: TConfiguration }
 {
-    let cmd: ModelCommand;
+    let cmd: ModelCommand<TArgs>;
     if (typeof cmdOrInj == 'function')
         cmd = new ModelCommand(cmdOrInj);
     else
-        cmd = cmdOrInj as ModelCommand;
+        cmd = cmdOrInj;
 
     Object.assign(cmd.config, config)
 
@@ -45,12 +45,12 @@ export function configure<T extends Configurations>(config: T): extendF<T>
 export function configure<T extends Configurations>(nameOrConfig: T | string, config?: GenericConfiguration): extendF<Configurations>
 {
     if (typeof nameOrConfig == 'string')
-        return function <TCommand extends ModelCommand>(cmd: TCommand | Injectable<unknown>)
+        return function <TCommand extends ModelCommand<TArgs>, TArgs extends unknown[]>(cmd: TCommand | Injectable<unknown, TArgs>)
         {
             return extend(cmd, { [nameOrConfig]: config });
         }
     else
-        return function <TCommand extends ModelCommand>(cmd: TCommand | Injectable<unknown>)
+        return function <TCommand extends ModelCommand<TArgs>, TArgs extends unknown[]>(cmd: TCommand | Injectable<unknown, TArgs>)
         {
             return extend(cmd, nameOrConfig);
         }
