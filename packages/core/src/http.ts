@@ -1,9 +1,9 @@
-import { injectWithName, register } from './global-injector.js';
 import { each, map } from './each.js';
 import { module, TypedSerializableObject } from './helpers.js';
 import { service } from './service.js';
 import { Formatter } from './formatters/common.js';
 import type { MiddlewareAsync } from './middlewares/shared.js';
+import { defaultInjector } from './injectors/simple-injector.js';
 import { MiddlewareCompositeAsync } from './index.js';
 
 
@@ -31,7 +31,7 @@ export interface Http<TResponse = Response>
 
 export type CallInterceptor = MiddlewareAsync<[RequestInit, Response]>
 
-register('$http-interceptors', new MiddlewareCompositeAsync('$http-interceptors'))
+defaultInjector.register('$http-interceptors', new MiddlewareCompositeAsync('$http-interceptors'))
 
 @service('$http', '$http-interceptors')
 export class FetchHttp implements Http<Response>
@@ -298,7 +298,7 @@ export class HttpCallFormatter implements Formatter<PromiseLike<Response>>
     {
         const settings = this.settings;
 
-        return injectWithName(['$http'], function (http: Http)
+        return defaultInjector.injectWithName(['$http'], function (http: Http)
         {
             const formattedValue = scope;
             if (typeof (formattedValue) == 'string' || formattedValue instanceof URL)

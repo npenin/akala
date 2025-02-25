@@ -4,11 +4,11 @@ import { isPromiseLike } from "../promiseHelpers.js";
 import { getParamNames } from "../reflect.js";
 
 export type Injected<T> = (instance?: unknown) => T;
-export type Injectable<T> = (...args: unknown[]) => T;
-export type InjectableConstructor<T> = new (...args: unknown[]) => T;
-export type InjectableWithTypedThis<T, U> = (this: U, ...args: unknown[]) => T;
-export type InjectableAsync<T> = (...args: unknown[]) => PromiseLike<T>;
-export type InjectableAsyncWithTypedThis<T, U> = (this: U, ...args: unknown[]) => PromiseLike<T>;
+export type Injectable<T, TArgs extends unknown[]> = (...args: TArgs) => T;
+export type InjectableConstructor<T, TArgs extends unknown[]> = new (...args: TArgs) => T;
+export type InjectableWithTypedThis<T, U, TArgs extends unknown[]> = (this: U, ...args: TArgs) => T;
+export type InjectableAsync<T, TArgs extends unknown[]> = (...args: TArgs) => PromiseLike<T>;
+export type InjectableAsyncWithTypedThis<T, U, TArgs extends unknown[]> = (this: U, ...args: TArgs) => PromiseLike<T>;
 export type InjectedParameter<T> = { index: number, value: T };
 
 export type InjectMap<T = object> = T extends object ? { [key in keyof T]: Resolvable<T[key]> } : never;
@@ -79,40 +79,40 @@ export abstract class Injector
     abstract onResolve<T = unknown>(name: Resolvable): PromiseLike<T>
     abstract onResolve<T = unknown>(name: Resolvable, handler: (value: T) => void): void;
 
-    public inject<T>(a: Injectable<T>): Injected<T>
-    public inject<T>(...a: (Resolvable)[]): (b: TypedPropertyDescriptor<Injectable<T>>) => void
-    public inject<T>(a: Injectable<T> | Resolvable, ...b: (Resolvable)[]): Injected<T> | ((b: TypedPropertyDescriptor<Injectable<T>>) => void)
-    public inject<T>(a: Injectable<T> | Resolvable, ...b: (Resolvable)[]): Injected<T> | ((b: TypedPropertyDescriptor<Injectable<T>>) => void)
+    public inject<T, TArgs extends unknown[]>(a: Injectable<T, TArgs>): Injected<T>
+    public inject<T, TArgs extends unknown[]>(...a: (Resolvable)[]): (b: TypedPropertyDescriptor<Injectable<T, TArgs>>) => void
+    public inject<T, TArgs extends unknown[]>(a: Injectable<T, TArgs> | Resolvable, ...b: (Resolvable)[]): Injected<T> | ((b: TypedPropertyDescriptor<Injectable<T, TArgs>>) => void)
+    public inject<T, TArgs extends unknown[]>(a: Injectable<T, TArgs> | Resolvable, ...b: (Resolvable)[]): Injected<T> | ((b: TypedPropertyDescriptor<Injectable<T, TArgs>>) => void)
     {
         if (typeof a == 'function')
-            return this.injectWithName(a['$inject'] || getParamNames(a as Injectable<T>), a as Injectable<T>);
+            return this.injectWithName(a['$inject'] || getParamNames(a as Injectable<T, TArgs>), a as Injectable<T, TArgs>);
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
-        return function (c: TypedPropertyDescriptor<Injectable<T>>)
+        return function (c: TypedPropertyDescriptor<Injectable<T, TArgs>>)
         {
             if (typeof b == 'undefined')
                 b = [];
             b.unshift(a);
             const oldf = self.injectWithName(b, c.value);
-            c.value = function (...args)
+            c.value = function (...args: TArgs)
             {
                 return oldf.apply(this, Array.from(args));
-            }
+            } as Injectable<T, TArgs>
         }
     }
 
-    public injectAsync<T>(a: Injectable<T>): Injected<T>
-    public injectAsync<T>(...a: (Resolvable)[]): Injectable<T>
-    public injectAsync<T>(a: Injectable<T> | Resolvable, ...b: (Resolvable)[])
+    public injectAsync<T, TArgs extends unknown[]>(a: Injectable<T, TArgs>): Injected<T>
+    public injectAsync<T, TArgs extends unknown[]>(...a: (Resolvable)[]): Injectable<T, TArgs>
+    public injectAsync<T, TArgs extends unknown[]>(a: Injectable<T, TArgs> | Resolvable, ...b: (Resolvable)[])
     {
         if (typeof a == 'function')
-            return this.injectWithNameAsync(a['$inject'] || getParamNames(a as Injectable<T>), a as Injectable<T>)
+            return this.injectWithNameAsync(a['$inject'] || getParamNames(a as Injectable<T, TArgs>), a as Injectable<T, TArgs>)
 
         if (typeof b == 'undefined')
             b = [];
         b.unshift(a);
 
-        return <U>(c: TypedPropertyDescriptor<InjectableAsync<U>>) =>
+        return <U>(c: TypedPropertyDescriptor<InjectableAsync<U, TArgs>>) =>
         {
             const f = c.value;
             c.value = function ()
@@ -121,9 +121,9 @@ export abstract class Injector
             }
         }
     }
-    public injectNew<T>(ctor: InjectableConstructor<T>)
+    public injectNew<T, TArgs extends unknown[]>(ctor: InjectableConstructor<T, TArgs>)
     {
-        return this.inject<T>(ctorToFunction(ctor));
+        return this.inject(ctorToFunction(ctor));
     }
 
     abstract resolve<T>(param: Resolvable): T;
@@ -135,15 +135,15 @@ export abstract class Injector
 
     abstract inspect(): void
 
-    public injectNewWithName<T>(toInject: Resolvable[], ctor: InjectableConstructor<T>): Injected<T>
+    public injectNewWithName<T, TArgs extends unknown[]>(toInject: Resolvable[], ctor: InjectableConstructor<T, TArgs>): Injected<T>
     {
         return this.injectWithName(toInject, ctorToFunction(ctor));
     }
 
-    public async injectWithNameAsync<T>(toInject: (Resolvable)[], a: InjectableAsync<T> | Injectable<T>): Promise<T>
+    public async injectWithNameAsync<T, TArgs extends unknown[]>(toInject: (Resolvable)[], a: InjectableAsync<T, TArgs> | Injectable<T, TArgs>): Promise<T>
     {
         if (!toInject || toInject.length == 0)
-            return Promise.resolve<T>(a());
+            return Promise.resolve<T>((a as Injectable<T, []>)());
         const paramNames = getParamNames(a);
         let wait = false;
 
@@ -154,7 +154,7 @@ export abstract class Injector
                 return await (a as Function).call(globalThis);
             else
             {
-                const args = [];
+                const args = [] as TArgs;
                 for (const param of toInject)
                 {
                     args[args.length] = this.resolveAsync(param);
@@ -168,7 +168,7 @@ export abstract class Injector
                         if (isPromiseLike(v))
                             return v;
                         return Promise.resolve(v);
-                    }));
+                    })) as TArgs;
                     return a(...args2);
                 }
                 else
@@ -179,7 +179,7 @@ export abstract class Injector
             throw new Error('the number of arguments does not match the number of injected parameters');
     }
 
-    public injectWithName<T>(toInject: Resolvable[], a: Injectable<T>): Injected<T>
+    public injectWithName<T, TArgs extends unknown[]>(toInject: Resolvable[], a: Injectable<T, TArgs>): Injected<T>
     {
         if (toInject && toInject.length > 0)
         {
@@ -187,7 +187,7 @@ export abstract class Injector
             if (paramNames.length == toInject.length || paramNames.length == 0)
             {
                 if (toInject.length == paramNames.length && paramNames.length == 0)
-                    return <Injectable<T>>a;
+                    return <Injectable<T, []>>a;
             }
         }
         return (instance?: unknown, ...otherArgs: unknown[]) =>
@@ -196,9 +196,9 @@ export abstract class Injector
         }
     }
 
-    exec<T>(...toInject: (Resolvable)[])
+    exec<T, TArgs extends unknown[]>(...toInject: (Resolvable)[])
     {
-        return (f: Injectable<T>) =>
+        return (f: Injectable<T, TArgs>) =>
         {
             return this.injectWithName(toInject, f)(this);
         }
