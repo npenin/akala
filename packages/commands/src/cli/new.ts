@@ -28,6 +28,8 @@ export async function outputHelper(outputFile: string | Writable | undefined, na
 
         if (!force && await promisify(fs.exists)(outputFile))
             throw new Error(`${outputFile} already exists. Use -f to force overwrite.`);
+        else
+            exists = false;
     }
 
     const outputFolder = path.dirname(outputFile);
@@ -52,6 +54,17 @@ export async function write(output: Writable, content: string)
                 reject(err);
             else
                 resolve();
+        })
+    })
+}
+
+export async function close(output: Writable)
+{
+    return new Promise<void>((resolve) =>
+    {
+        output.end(function ()
+        {
+            resolve();
         })
     })
 }
