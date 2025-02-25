@@ -39,14 +39,45 @@
     },
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "exports": {
-        "import": {
-            "types": "./dist/esm/index.d.ts",
-            "default": "./dist/esm/index.js"
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
         },
-        "require": {
-            "types": "./dist/cjs/index.d.ts",
-            "default": "./dist/cjs/index.js"
+        "./cli-helper": {
+            "import": {
+                "types": "./dist/esm/cli-helper.d.ts",
+                "default": "./dist/esm/cli-helper.js"
+            },
+            "require": {
+                "types": "./dist/cjs/cli-helper.d.ts",
+                "default": "./dist/cjs/cli-helper.js"
+            }
         },
-        "default": "./dist/cjs/index.js"
+        "./yarn-helper": {
+            "import": {
+                "types": "./dist/esm/yarn-helper.d.ts",
+                "default": "./dist/esm/yarn-helper.js"
+            },
+            "require": {
+                "types": "./dist/cjs/yarn-helper.d.ts",
+                "default": "./dist/cjs/yarn-helper.js"
+            }
+        },
+        "./npm-helper": {
+            "import": {
+                "types": "./dist/esm/npm-helper.d.ts",
+                "default": "./dist/esm/npm-helper.js"
+            },
+            "require": {
+                "types": "./dist/cjs/npm-helper.d.ts",
+                "default": "./dist/cjs/npm-helper.js"
+            }
+        }
     }
 }
