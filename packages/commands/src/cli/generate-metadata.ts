@@ -5,7 +5,7 @@ import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
 import { resolveToTypeScript } from './generate-ts-from-schema.js';
 import { Metadata, Processors } from '../index.js';
-import { eachAsync, MiddlewareCompositeWithPriorityAsync } from '@akala/core';
+import { eachAsync, MiddlewareCompositeWithPriorityAsync, toCamelCase } from '@akala/core';
 import { JsonSchema } from '../jsonschema.js';
 
 export const generatorPlugin = new MiddlewareCompositeWithPriorityAsync<[options: { name?: string, noContainer?: boolean; noProxy?: boolean; noStandalone?: boolean; noMetadata?: boolean; }, container: Metadata.Container, output: Writable, outputFolder: string, outputFile: string]>();
@@ -152,11 +152,6 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
 
     throw undefined;
 });
-
-function toCamelCase(s: string): string
-{
-    return s.replace(/-([a-z])/g, (_all, letter) => letter.toUpperCase());
-}
 export default async function generate(name?: string, folder?: string, outputFile?: string, options?: { name?: string, noContainer?: boolean, noProxy?: boolean, noStandalone?: boolean, noMetadata?: boolean })
 {
     folder = folder || process.cwd();
