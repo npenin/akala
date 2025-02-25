@@ -1,80 +1,70 @@
-# Getting Started with Akala
+# Getting Started with Akala Client
 
-Welcome to Akala! This guide will help you get started with our new framework.
+Welcome to the Akala Client guide! Before proceeding, make sure you have followed the [Getting Started with Akala](../getting-started) guide.
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
+Ensure you have the following installed:
 
-- Node.js (version 14.x or later)
-- npm (version 6.x or later) or Yarn (version 1.x or later)
+- Node.js (version 20.x or later)
+- Akala (installed via npm or Yarn)
 
-## Installation
+## Setting Up Your Client Project
 
-To install Akala, run one of the following commands:
-
-Using npm:
+To work with akala client, you will first of all need to register the client plugin.
 
 ```bash
-npm install @akala/cli
+akala plugins add @akala/client/akala
 ```
 
-Using Yarn:
+Optionally before going further, you may set up your [preferences](preferences).
+
+Once done, you may then create your client application.
 
 ```bash
-yarn add @akala/cli
+akala sdk new client <your project>
 ```
 
-## Creating a New Project
+## Creating Your First Page
 
-To create a new Akala project, use one of the following commands:
-
-Using npm:
+The easiest way to create a page is to leverage the CLI
 
 ```bash
-npx akala create my-new-project
+akala sdk new page <name of your page> [optional path where to create it]
 ```
 
-Using Yarn:
+1. Create an `index.html` file:
 
-```bash
-yarn create akala my-new-project
-```
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Akala Client</title>
+    </head>
+    <body>
+        <script src="index.js"></script>
+    </body>
+    </html>
+    ```
 
-Replace `my-new-project` with your desired project name.
+2. Create an `index.js` file:
 
-## Running the Project
+    ```javascript
+    import { Akala } from 'akala';
 
-Navigate to your project directory and start the development server:
+    const app = new Akala();
 
-```bash
-cd my-new-project
-akala start
-```
+    app.start().then(() => {
+        console.log('Akala client started');
+    });
+    ```
 
-Your project should now be running at `http://localhost:3000`.
-
-## Project Structure
-
-Here's a brief overview of the project structure:
-
-```
-my-new-project/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── index.js
-├── public/
-│   └── index.html
-└── package.json
-```
-
-- `src/`: Contains your source code.
-- `public/`: Contains static assets.
-- `package.json`: Manages project dependencies.
+3. Open `index.html` in your browser to see your Akala client in action.
 
 ## Learn More
 
-To learn more about Akala, visit our [documentation](https://akala.js.org/client).
+To learn more about Akala and its features, visit our [documentation](https://akala.js.org/).
 
 Happy coding!
