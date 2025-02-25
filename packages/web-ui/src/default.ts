@@ -29,7 +29,7 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
         webComponent('kl-table')(Table);
         webComponent('kl-table-pager')(TablePager);
 
-        serviceModule.register('templateOptions', Object.assign({
+        serviceModule.register('templateOptions', {
             $rootScope: rootScope, i18n: {
                 translate: (obj: Argument0<Translator>) =>
                 {
@@ -47,7 +47,8 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
                     return '@@' + key;
                 }
             }
-        }, init))
+            , ...init
+        })
     })
 
     bootstrapModule.ready(['services.$location', '$rootScope'], async function (location: LocationService, rootScope: IScope<any>)
