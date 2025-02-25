@@ -1,7 +1,7 @@
 import { Container, Metadata, ServeMetadata, ConnectionPreference } from "@akala/commands";
 import { module } from "@akala/core";
 
-export { spawnAsync } from './cli-helper.js'
+export { spawnAsync } from '@akala/cli/cli-helper'
 
 import definition from './container.js';
 

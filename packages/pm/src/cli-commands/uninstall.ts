@@ -1,6 +1,6 @@
 import State from '../state.js';
-import npmHelper from '../npm-helper.js';
-import yarnHelper, { hasYarn } from '../yarn-helper.js';
+import npmHelper from '@akala/cli/npm-helper';
+import yarnHelper, { hasYarn } from '@akala/cli/yarn-helper';
 import { Container } from "@akala/commands";
 
 export default async function uninstall(this: State, packageName: string, pm: Container<State>): Promise<void>
