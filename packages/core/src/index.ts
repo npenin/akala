@@ -53,3 +53,5 @@ export * from './formatters/index.js'
 export * from './url-handler.js'
 import * as UrlTemplate from './uri-template/index.js'
 export { UrlTemplate };
+
+export * from './case-helpers.js'
