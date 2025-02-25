@@ -1,7 +1,6 @@
-import { Container } from '@akala/commands'
+import { Container, Processors } from '@akala/commands'
 import { Argument0, Event, EventEmitter, Translator } from '@akala/core';
 import { Scope as IScope, LocationService, Template, serviceModule, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, EventComposer, I18nComposer, webComponent, Each, CssClassComposer } from '@akala/client'
-import { Processors } from '@akala/commands';
 import { Dropdown, Mark, Popover, Table, TablePager, Tooltip, TooltipComposer, Typeahead } from './index.js';
 
 type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
