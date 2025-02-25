@@ -114,7 +114,7 @@ process.emit = function (name, data, ...args)
                     {
                         packageName = plugin;
                     }
-                    (await import(packageName)).default(context.state, mainProgram);
+                    (await import(packageName)).default(context.state, mainProgram, context);
                 });
                 context.logger.debug(`plugins loaded`);
             }
