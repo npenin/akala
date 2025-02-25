@@ -1,7 +1,7 @@
 import State from '../state.js';
-import npmHelper from '../npm-helper.js';
+import npmHelper from '@akala/cli/npm-helper';
 import { Container } from "@akala/commands";
-import yarnHelper, { hasYarn } from '../yarn-helper.js';
+import yarnHelper, { hasYarn } from '@akala/cli/yarn-helper';
 
 export default async function update(this: State, packageName: string, folder: string, pm: Container<State>): Promise<string>
 {

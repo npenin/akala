@@ -4,7 +4,7 @@ import { platform, homedir } from 'os';
 import start from './commands/start.js'
 import { Readable } from 'stream';
 
-import { spawnAsync } from './cli-helper.js';
+import { spawnAsync } from '@akala/cli/cli-helper';
 import State, { StateConfiguration } from './state.js';
 import { CliContext, ErrorMessage, InteractError, NamespaceMiddleware, unparse } from '@akala/cli';
 import { eachAsync, logger, ObservableObject, Parser } from '@akala/core';
