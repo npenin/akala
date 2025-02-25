@@ -1,0 +1,13 @@
+{
+    "name": "akala",
+    "version": "0.0.0",
+    "description": "Empty stub installing all the required dependencies to start playing with the akala framework.",
+    "dependencies": {
+        "@akala/cli": "workspace:^",
+        "@akala/commands": "workspace:^",
+        "@akala/config": "workspace:^"
+    },
+    "scripts": {
+        "postinstall": "akala plugins add @akala/config/akala; akala plugins add @akala/commands/akala; akala commands add sdk @akala/commands/commands.json; "
+    }
+}
