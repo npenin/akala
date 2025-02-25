@@ -1,4 +1,4 @@
-import { inject, injectWithName, registerFactory } from './global-injector.js'
+import { defaultInjector } from './injectors/simple-injector.js';
 import { ctorToFunction } from './injectors/shared.js';
 
 export function factory(name: string, ...toInject: string[])
@@ -15,9 +15,9 @@ export function factory(name: string, ...toInject: string[])
         };
 
         if (toInject == null || toInject.length == 0)
-            registerFactory(name, inject(factory));
+            defaultInjector.registerFactory(name, defaultInjector.inject(factory));
         else
-            registerFactory(name, injectWithName(toInject, factory));
+            defaultInjector.registerFactory(name, defaultInjector.injectWithName(toInject, factory));
     }
 }
 
