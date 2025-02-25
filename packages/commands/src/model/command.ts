@@ -3,16 +3,16 @@ import { ICommandProcessor } from './processor.js';
 import { Command } from '../metadata/command.js'
 import { Configurations } from '../metadata/configurations.js'
 
-type Injectable<T, U> = InjectableWithTypedThis<T, U> & { '$inject'?: string[] }
+type Injectable<T, U, TArgs extends unknown[]> = InjectableWithTypedThis<T, U, TArgs> & { '$inject'?: string[] }
 
 export interface CommandWithProcessorAffinity extends Command
 {
     processor: ICommandProcessor;
 }
 
-export class SelfDefinedCommand<T = unknown> implements Command
+export class SelfDefinedCommand<TArgs extends unknown[], T = unknown> implements Command
 {
-    constructor(public readonly handler: Injectable<unknown | PromiseLike<unknown>, T>, name?: string, inject?: Exclude<Resolvable, symbol>[])
+    constructor(public readonly handler: Injectable<unknown | PromiseLike<unknown>, T, TArgs>, name?: string, inject?: Exclude<Resolvable, symbol>[])
     {
         this.name = name || handler.name;
         if (typeof inject == 'undefined')
