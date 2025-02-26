@@ -38,7 +38,7 @@ export default function (_, program: NamespaceMiddleware)
     generators.command<{ name: string, path?: string }>('page <name> [path]').state<Partial<ClientState>>().action(async context =>
     {
         const caseConverter: (s: string) => string = context.state?.client?.preferredCase in caseConverters ? caseConverters[context.state.client.preferredCase] : caseConverters.kebab;
-        const folder = join(context.options.path, caseConverter(context.options.name));
+        const folder = context.options.path ? join(context.options.path, caseConverter(context.options.name)) : caseConverter(context.options.name);
 
         await generatePage(context.options.name, folder);
     });
@@ -46,7 +46,8 @@ export default function (_, program: NamespaceMiddleware)
     generators.command<{ name: string, path?: string }>('client <name> [path]').state<Partial<ClientState>>().action(async context =>
     {
         const caseConverter: (s: string) => string = context.state?.client?.preferredCase in caseConverters ? caseConverters[context.state.client.preferredCase] : caseConverters.kebab;
-        const folder = join(context.options.path, caseConverter(context.options.name));
+
+        const folder = context.options.path ? join(context.options.path, caseConverter(context.options.name)) : caseConverter(context.options.name);
 
         await mkdir(folder, { recursive: true });
 
