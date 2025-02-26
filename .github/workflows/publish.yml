@@ -28,13 +28,11 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
       - name: Install yarn
-        run: |
-          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-          sudo apt-get update
-          sudo apt-get install yarn
+        run: corepack enable
       - name: Install Packages
         run: yarn
+        env:
+          NO_AKALAPOSTINSTALL: 1
       - name: Compile ESM
         run: yarn tsc -b packages/tsconfig.esm.json
       - name: Compile CJS
