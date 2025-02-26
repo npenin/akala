@@ -208,7 +208,7 @@ export class Template
 
         each(items, async function (el)
         {
-            if (directlyComposable.includes(el))
+            if (!el || directlyComposable.includes(el))
                 return;
             each(el.querySelectorAll(selector), async function (el)
             {
@@ -255,7 +255,7 @@ export function filter<T extends Element = Element>(items: ArrayLike<T>, filter:
         if (element instanceof DocumentFragment)
             return false;
         if (typeof filter == 'string')
-            return element.matches(filter);
+            return element?.matches(filter);
         return !!filter.find(filter => element.matches(filter));
     })
 }
