@@ -1,6 +1,6 @@
 import { Container, Processors } from '@akala/commands'
 import { Argument0, Event, EventEmitter, Translator } from '@akala/core';
-import { Scope as IScope, LocationService, Template, serviceModule, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, EventComposer, I18nComposer, webComponent, Each, CssClassComposer } from '@akala/client'
+import { Scope as IScope, LocationService, Template, serviceModule, FormComposer, bootstrapModule, DataContext, DataBind, EventComposer, I18nComposer, webComponent, Each, CssClassComposer } from '@akala/client'
 import { Dropdown, Mark, Popover, Table, TablePager, Tooltip, TooltipComposer, Typeahead } from './index.js';
 
 type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
@@ -10,7 +10,7 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
     bootstrapModule.register('services', serviceModule);
 
 
-    bootstrapModule.activate(['$rootScope', 'services.$outlet'], async (rootScope: Scope, outlet: OutletService) =>
+    bootstrapModule.activate(['$rootScope'], async (rootScope: Scope) =>
     {
         Template.composers.push(new FormComposer(rootScope.container))
         Template.composers.push(new DataContext());
