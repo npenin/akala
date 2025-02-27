@@ -1,4 +1,4 @@
-import program, { CliContext } from './router/index.js';
+import program from './router/index.js';
 import fs from 'fs/promises'
 // import { fileURLToPath, pathToFileURL } from 'url'
 import path from 'path'
@@ -11,12 +11,11 @@ function isRoot(indexOfSep: number): boolean
     return path.sep == '\\' ? indexOfSep == 2 : indexOfSep == 0
 }
 
-export function cli(context: CliContext<{ help: boolean }, { plugins: string[], commit?: () => Promise<void> }>)
+export function cli(config: { plugins: string[], commit?: () => Promise<void> })
 {
     const mainProgram = program.command(null).option('help');
     program.useError(supportInteract(mainProgram))
     const plugins = [new URL('./helpers/repl.js', import.meta.url).toString(), new URL('./plugins.js', import.meta.url).toString()];
-    const config: { plugins: string[], commit?: () => Promise<void> } = context.state;
     let loadedConfig: { plugins: string[] };
     program.option('configFile', { aliases: ['c', 'config-file'], needsValue: true, default: '' as string }).preAction(async context =>
     {
