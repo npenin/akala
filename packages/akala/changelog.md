@@ -3,16 +3,8 @@
 
 ### Bug Fixes
 
-* artificially bump akala c6407f8
-* ensure akala is not postinstalled 272b1ee
-* postinstall script ac0b390
-
-
-### Features
-
-* add NO_AKALAPOSTINSTALL support bebd6b1
-* first version 409539e
-* switch to nodejs postinstall script 2128399
+* artificial bump 51ca8e8
+* ensure postinstall completes 10c4a72
 
 
 
