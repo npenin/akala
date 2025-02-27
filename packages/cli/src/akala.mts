@@ -19,7 +19,7 @@ process.emit = function (name, data, ...args)
 };
 
 const context = buildCliContextFromProcess<{ help: boolean }, { plugins: string[] }>(undefined, { plugins: [] });
-const program = cli(context);
+const program = cli(context.state);
 await program.process(context).then(
     result =>
     {
