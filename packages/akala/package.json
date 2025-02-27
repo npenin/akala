@@ -8,6 +8,6 @@
         "@akala/config": "workspace:^"
     },
     "scripts": {
-        "postinstall": "node -e \"process.env.NO_AKALAPOSTINSTALL===1&&process.exit(1)\" || akala plugins add @akala/config/akala && akala plugins add @akala/commands/akala && akala commands add sdk @akala/commands/commands.json"
+        "postinstall": "node -e \"process.env.NO_AKALAPOSTINSTALL==1&&process.exit(1)\" || (akala plugins add @akala/config/akala && akala plugins add @akala/commands/akala && akala commands add sdk @akala/commands/commands.json)"
     }
 }
