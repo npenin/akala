@@ -194,6 +194,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
             else
                 cmd = step.run;
 
+            context.logger?.debug(cmd);
             const cp = spawn(cmd[0], cmd.slice(1), Object.assign(step.with, { timeout: step.with.timeout || 3600000 })).on('close', function (code)
             {
                 if (code == 0)
