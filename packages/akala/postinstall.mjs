@@ -1,4 +1,3 @@
-
 if (process.env.NO_AKALAPOSTINSTALL != '1')
     postinstall();
 
