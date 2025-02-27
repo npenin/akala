@@ -21,7 +21,12 @@ jobs:
         with:
           path: $(package.location)
       - name: tags
-        run: git rev-list -n 1 $(package.name)@$(build.version)
+        run:
+          - git
+          - rev-list
+          - -n
+          - 1
+          - $(package.name)@$(build.version)
         with:
           result: stdout
           shell: true
