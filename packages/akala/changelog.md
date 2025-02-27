@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add more logging 1bc54b5
+* force set configFile path f22123d
 
 
 
