@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* postinstall logger 186decb
+* postinstall to leverage config 4d2cbbe
 
 
 
