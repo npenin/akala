@@ -10,6 +10,7 @@ async function postinstall()
     const cliLogger = logger('akala')
 
     let context = buildCliContextFromProcess(cliLogger, config);
+    cliLogger.info('setting cwd to ' + (process.env.INIT_CWD || process.cwd()))
     context.currentWorkingDirectory = process.env.INIT_CWD || process.cwd();
 
     await akala.process(context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala'))
