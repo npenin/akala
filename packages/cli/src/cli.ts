@@ -1,41 +1,22 @@
-#!/usr/bin/env -S node --enable-source-maps
-import program, { ErrorMessage } from './router/index.js';
+import program, { CliContext } from './router/index.js';
 import fs from 'fs/promises'
 // import { fileURLToPath, pathToFileURL } from 'url'
 import path from 'path'
 import * as akala from '@akala/core'
-import { buildCliContextFromProcess, supportInteract } from './index.js';
+import { supportInteract } from './index.js';
 import normalize from './helpers/normalize.js';
-
-
 
 function isRoot(indexOfSep: number): boolean
 {
     return path.sep == '\\' ? indexOfSep == 2 : indexOfSep == 0
 }
 
-
-const originalEmit = process.emit;
-// @ts-expect-error - TS complains about the return type of originalEmit.apply
-process.emit = function (name, data, ...args)
-{
-    if (
-        name === `warning` &&
-        typeof data === `object` &&
-        data.name === `ExperimentalWarning` &&
-        (data.message.includes(`Importing JSON modules`) || data.message.includes(`Import assertions`))
-    )
-        return false;
-
-    return originalEmit.call(process, name, data, ...args);
-};
-
-(async function ()
+export function cli(context: CliContext<{ help: boolean }, { plugins: string[], commit?: () => Promise<void> }>)
 {
     const mainProgram = program.command(null).option('help');
     program.useError(supportInteract(mainProgram))
     const plugins = [new URL('./helpers/repl.js', import.meta.url).toString(), new URL('./plugins.js', import.meta.url).toString()];
-    const config: { plugins: string[], commit?: () => Promise<void> } = { plugins: [] };
+    const config: { plugins: string[], commit?: () => Promise<void> } = context.state;
     let loadedConfig: { plugins: string[] };
     program.option('configFile', { aliases: ['c', 'config-file'], needsValue: true, default: '' as string }).preAction(async context =>
     {
@@ -125,31 +106,7 @@ process.emit = function (name, data, ...args)
         })
 
 
-    program.option('help', { needsValue: false }).process(buildCliContextFromProcess(undefined, config)).then(
-        result =>
-        {
-            if (typeof result != 'undefined')
-                console.log(result);
-            process.exit(0);
-        },
-        err =>
-        {
-            if (err instanceof ErrorMessage)
-                console.error(err.message);
-            else if (err)
-                console.error(err);
-            else
-                console.error('There is no such command. Try the --help flag to get help on usage');
-            if (err && typeof err.statusCode != 'undefined')
-            {
-                if (Math.floor(err.statusCode / 100) > 3)
-                    process.exit(err.statusCode / 10);
-                else
-                    process.exit(0);
-            }
-            else if (typeof process.exitCode != 'undefined')
-                process.exit();
-            else
-                process.exit(50);
-        });
-})();
+    program.option('help', { needsValue: false });
+
+    return program;
+};
