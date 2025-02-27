@@ -30,7 +30,7 @@
         "typescript": "^5.7.2"
     },
     "bin": {
-        "akala": "./dist/esm/cli.js"
+        "akala": "./dist/esm/akala.mjs"
     },
     "preferGlobal": true,
     "scripts": {
@@ -47,6 +47,12 @@
             "require": {
                 "types": "./dist/cjs/index.d.ts",
                 "default": "./dist/cjs/index.js"
+            }
+        },
+        "./cli": {
+            "import": {
+                "types": "./dist/esm/cli.d.ts",
+                "default": "./dist/esm/cli.js"
             }
         },
         "./cli-helper": {
