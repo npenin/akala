@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* postinstall to leverage config 4d2cbbe
+* add support for INIT_CWD variable abd70ea
 
 
 
