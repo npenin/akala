@@ -1,29 +1,24 @@
-#  (2025-02-22)
+#  (2025-02-27)
 
 
 ### Bug Fixes
 
-* bug when each container contains other entries c2286ac
-* prevent memory leak in controls when using bind e7a5512
-* teardown accepts undefined or null without crashing ea62c94
-* update after Binding and Observable breaking change in core 1a97991
-
-
-### Code Refactoring
-
-* move teardown manager to core 86374cf
+* CLI handle optional path 26605aa
+* edge cases when template is not defined 412b6f6
+* i18n uses the core Translator interface 6dd0a83
+* leverage core case converters 63bcf6b
+* update after core breaking change 6ea3ca9
 
 
 ### Features
 
-* add class dom helper c2bc4af
-* add possibility to find ancerstor control (like the closest feature) 372bbe4
+* add akala plugin as referenced in doc ef39d5c
+* first CLI client generator working !!! 2ab3f9e
 
 
 ### BREAKING CHANGES
 
-* teardown manager is not available in client anymore
-* c is now for classes, content is the new name of c
+* i18n unifies with translator, which breaks the previous implementation
 
 
 
