@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* update after akala cli refactoring f69a2f4
+* postinstall logger 186decb
 
 
 
