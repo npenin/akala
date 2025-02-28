@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* postinstall after cli update fa48aa8
+* handle pre-processed context 64bf574
 
 
 
