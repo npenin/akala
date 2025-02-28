@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remove useless config parameter df3b94d
+* configFile init abcfad1
 
 
 
