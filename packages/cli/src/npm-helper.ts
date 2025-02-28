@@ -15,7 +15,7 @@ export default
     {
         async install(packageName: string, path?: string): Promise<void>
         {
-            await spawnAsync(npm, { env: { NODE_ENV: 'production' }, shell: true }, 'i', packageName, '--prefix', path || process.cwd());
+            await spawnAsync(npm, { shell: true }, 'i', packageName, '--prefix', path || process.cwd());
         },
         async uninstall(packageName: string, path?: string): Promise<void>
         {
@@ -23,10 +23,10 @@ export default
         },
         async update(packageName: string, path?: string): Promise<void>
         {
-            await spawnAsync(npm, { env: { NODE_ENV: 'production' }, shell: true }, 'up', packageName, '--prefix', path || process.cwd(), '--production');
+            await spawnAsync(npm, { shell: true }, 'up', packageName, '--prefix', path || process.cwd(), '--production');
         },
         async link(packageName: string, path?: string): Promise<void>
         {
-            await spawnAsync(npm, { env: { NODE_ENV: 'production' }, shell: true, cwd: path || process.cwd() }, 'link', packageName)
+            await spawnAsync(npm, { shell: true, cwd: path || process.cwd() }, 'link', packageName)
         }
     }
