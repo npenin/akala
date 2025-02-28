@@ -34,7 +34,7 @@ export function cli()
         if (!loadedConfig)
         {
             context.logger.info('loading config file from current working directory and/or parents');
-            const cwd = process.cwd();
+            const cwd = context.currentWorkingDirectory;
 
             let indexOfSlash = cwd.lastIndexOf(path.sep);
             let filePath: string = cwd;
