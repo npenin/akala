@@ -23,18 +23,18 @@ export default
     {
         async install(packageName: string, path?: string): Promise<void>
         {
-            await spawnAsync(npm, { cwd: path }, 'add', packageName)
+            await spawnAsync(npm, { cwd: path, shell: true }, 'add', packageName)
         },
         async uninstall(packageName: string, path?: string): Promise<void>
         {
-            await spawnAsync(npm, { cwd: path }, 'remove', packageName)
+            await spawnAsync(npm, { cwd: path, shell: true }, 'remove', packageName)
         },
         async update(packageName: string, path?: string): Promise<void>
         {
-            await spawnAsync(npm, { cwd: path }, 'upgrade', packageName)
+            await spawnAsync(npm, { cwd: path, shell: true }, 'upgrade', packageName)
         },
         async link(packageName: string, path?: string): Promise<void>
         {
-            await spawnAsync(npm, { cwd: path }, 'link', packageName)
+            await spawnAsync(npm, { cwd: path, shell: true }, 'link', packageName)
         }
     }
