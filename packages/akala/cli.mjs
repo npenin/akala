@@ -1,6 +1,6 @@
 import { writeFile } from 'fs/promises';
 import { join } from 'path'
-import { cli as akala } from '@akala/cli/cli'
+import { cli } from '@akala/cli/cli'
 import { buildCliContextFromContext, buildCliContextFromProcess, program } from '@akala/cli';
 import { logger, LogLevels } from '@akala/core';
 import npm from '@akala/cli/npm-helper'
@@ -23,6 +23,8 @@ try
 catch (e) { }
 
 const processedContext = buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala')
+
+const akala = cli();
 
 await program.process(processedContext);
 await akala.process(buildCliContextFromContext(processedContext, 'plugins', 'add', '@akala/commands/akala'))
