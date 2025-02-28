@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* cwd init fb44972
+* yarn and npm not discovered in spawnAsync 3ecd24e
 
 
 
