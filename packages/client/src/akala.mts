@@ -194,8 +194,9 @@ bootstrap('app')
     `);
         await FileGenerator.close(page.output);
 
-        if (await hasYarn())
-        {
+        const pm: typeof yarn | typeof npm = await hasYarn() ? yarn : npm;
+
+        if (pm === yarn)
             await FileGenerator.outputHelper(folder, 'yarn.lock', false).then((lockfile) =>
             {
                 if (!lockfile.exists)
@@ -203,10 +204,8 @@ bootstrap('app')
 
             }, () => { });
 
-            await yarn.install('vite', folder);
-        }
-        else
-            await npm.install('vite', folder);
+        await pm.install('vite', folder);
+        await pm.install('@akala/web-ui', folder);
 
     })
 
