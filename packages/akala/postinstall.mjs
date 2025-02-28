@@ -1,3 +1,5 @@
+import { fstat } from 'fs';
+import { writeFile } from 'fs/promises';
 import { join } from 'path'
 
 if (process.env.NO_AKALAPOSTINSTALL != '1')
@@ -15,6 +17,12 @@ async function postinstall()
     cliLogger.info('setting cwd to ' + (process.env.INIT_CWD || process.cwd()))
     context.currentWorkingDirectory = process.env.INIT_CWD || process.cwd();
     context.options.configFile = join(context.currentWorkingDirectory, './.akala.json')
+
+    try
+    {
+        await writeFile(context.options.configFile, JSON.stringify(config), { flag: 'wx' })
+    }
+    catch (e) { }
 
     await akala.process(context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala'))
     await akala.process(context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/commands/akala'))
