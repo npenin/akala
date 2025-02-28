@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* forcing context build b3fe873
+* remove useless config parameter df3b94d
 
 
 
