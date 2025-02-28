@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remove postinstall to use only the binary 5d53b4e
+* trying to fix akala cli 315af97
 
 
 
