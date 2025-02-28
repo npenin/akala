@@ -7,16 +7,23 @@ if (process.env.NO_AKALAPOSTINSTALL != '1')
 
 async function postinstall()
 {
-    const config = { plugins: [] };
     const akala = await import('@akala/cli/cli').then(x => x.cli(config));
-    const { buildCliContextFromContext, buildCliContextFromProcess } = await import('@akala/cli');
+    const { buildCliContext } = await import('@akala/cli');
     const { logger } = await import('@akala/core');
     const cliLogger = logger('akala')
+    const config = { plugins: [] };
 
-    let context = buildCliContextFromProcess(cliLogger, config);
     cliLogger.info('setting cwd to ' + (process.env.INIT_CWD || process.cwd()))
-    context.currentWorkingDirectory = process.env.INIT_CWD || process.cwd();
-    context.options.configFile = join(context.currentWorkingDirectory, './.akala.json')
+
+    function getCliContext(...args)
+    {
+        const context = buildCliContext(cliLogger, ...args);
+        context.currentWorkingDirectory = process.env.INIT_CWD || process.cwd();
+        context.options.configFile = join(context.currentWorkingDirectory, './.akala.json')
+
+        return context;
+    }
+
 
     try
     {
@@ -24,7 +31,7 @@ async function postinstall()
     }
     catch (e) { }
 
-    await akala.process(context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala'))
-    await akala.process(context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/commands/akala'))
-    await akala.process(context = buildCliContextFromContext(context, 'commands', 'add', 'sdk', '@akala/commands/commands.json'))
+    await akala.process(getCliContext('plugins', 'add', '@akala/config/akala'))
+    await akala.process(getCliContext('plugins', 'add', '@akala/commands/akala'))
+    await akala.process(getCliContext('commands', 'add', 'sdk', '@akala/commands/commands.json'))
 }
