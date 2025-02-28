@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* yarn and npm not discovered in spawnAsync 3ecd24e
+* remove production flag on npm helper 83a1885
 
 
 
