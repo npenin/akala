@@ -1,9 +1,11 @@
-#  (2025-02-27)
+#  (2025-02-28)
 
 
 ### Bug Fixes
 
 * config as akala plugin 211cc6b
+* inherit options from parent context 7080536
+* provide proper logging 2e02b06
 * strongly type built CliContext state 81df5e6
 * xpm issues bd430af
 
