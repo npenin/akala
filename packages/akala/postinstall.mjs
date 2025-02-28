@@ -7,7 +7,7 @@ if (process.env.NO_AKALAPOSTINSTALL != '1')
 async function postinstall()
 {
     const akala = await import('@akala/cli/cli').then(x => x.cli());
-    const { buildCliContext, program } = await import('@akala/cli');
+    const { buildCliContext, buildCliContextFromContext, program } = await import('@akala/cli');
     const { logger } = await import('@akala/core');
     const cliLogger = logger('akala')
 
@@ -31,7 +31,9 @@ async function postinstall()
     }
     catch (e) { }
 
-    await program.process(getCliContext('plugins', 'add', '@akala/config/akala'))
-    await akala.process(getCliContext('plugins', 'add', '@akala/commands/akala'))
-    await akala.process(getCliContext('commands', 'add', 'sdk', '@akala/commands/commands.json'))
+    const processedContext = getCliContext('plugins', 'add', '@akala/config/akala')
+
+    await program.process(processedContext);
+    await akala.process(buildCliContextFromContext(processedContext, 'plugins', 'add', '@akala/commands/akala'))
+    await akala.process(buildCliContextFromContext(processedContext, 'commands', 'add', 'sdk', '@akala/commands/commands.json'))
 }
