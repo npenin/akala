@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* cli returns mainprogram (to prevent multiple init if processing multiple times d14f9f0
+* cwd init fb44972
 
 
 
