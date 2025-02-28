@@ -12,7 +12,7 @@ import { join } from 'path';
 
 export function hasYarn(path?: string): Promise<boolean>
 {
-    return promisify(stat)(join(path || process.cwd(), './yarn.lock')).then(f => f.isFile())
+    return promisify(stat)(join(path || process.cwd(), './yarn.lock')).then(f => f.isFile(), e => false)
 }
 
 let npm = 'yarn';
