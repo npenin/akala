@@ -109,5 +109,5 @@ export function cli()
 
     program.option('help', { needsValue: false });
 
-    return program;
+    return mainProgram.state<config>();
 };

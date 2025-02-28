@@ -1,7 +1,7 @@
 #!/usr/bin/env -S node --enable-source-maps
 import { logger } from "@akala/core";
 import { cli } from "./cli.js";
-import { buildCliContextFromProcess, ErrorMessage } from "./index.js";
+import program, { buildCliContextFromProcess, ErrorMessage } from "./index.js";
 
 
 const originalEmit = process.emit;
@@ -20,7 +20,7 @@ process.emit = function (name, data, ...args)
 };
 
 const context = buildCliContextFromProcess<{ help: boolean }, { plugins: string[] }>(logger('akala'), { plugins: [] });
-const program = cli();
+cli();
 await program.process(context).then(
     result =>
     {
