@@ -11,14 +11,14 @@ async function postinstall()
     const { logger } = await import('@akala/core');
     const cliLogger = logger('akala')
 
-    cliLogger.info('setting cwd to ' + (process.env.INIT_CWD || process.cwd()))
-
-    const configFile = join(context.currentWorkingDirectory, './.akala.json')
+    const cwd = process.env.INIT_CWD || process.cwd();
+    cliLogger.info('setting cwd to ' + cwd)
+    const configFile = join(cwd, './.akala.json')
 
     function getCliContext(...args)
     {
         const context = buildCliContext(cliLogger, ...args);
-        context.currentWorkingDirectory = process.env.INIT_CWD || process.cwd();
+        context.currentWorkingDirectory = cwd;
         context.options.configFile = configFile;
 
         return context;
