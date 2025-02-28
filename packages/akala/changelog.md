@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remove reference to a legacy function b7dc12e
+* improper akala cli initialization 5ee0293
 
 
 
