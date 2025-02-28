@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remove useless config parameter df3b94d
+* hasYarn detection to prevent it to crash 2aff971
 
 
 
