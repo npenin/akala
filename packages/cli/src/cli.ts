@@ -11,7 +11,9 @@ function isRoot(indexOfSep: number): boolean
     return path.sep == '\\' ? indexOfSep == 2 : indexOfSep == 0
 }
 
-export function cli(config: { plugins: string[], commit?: () => Promise<void> })
+type config = { plugins: string[], commit?: () => Promise<void> };
+
+export function cli()
 {
     const mainProgram = program.command(null).option('help');
     program.useError(supportInteract(mainProgram))
@@ -76,7 +78,7 @@ export function cli(config: { plugins: string[], commit?: () => Promise<void> })
             plugins.push(...loadedConfig.plugins)
         }
     }).
-        state<typeof config>().
+        state<config>().
         preAction(async (context) =>
         {
             if (plugins)

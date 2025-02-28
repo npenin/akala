@@ -20,7 +20,7 @@ process.emit = function (name, data, ...args)
 };
 
 const context = buildCliContextFromProcess<{ help: boolean }, { plugins: string[] }>(logger('akala'), { plugins: [] });
-const program = cli(context.state);
+const program = cli();
 await program.process(context).then(
     result =>
     {
