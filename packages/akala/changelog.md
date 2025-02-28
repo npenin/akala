@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* allow using npx/yarn dlx e308778
-* allow using npx/yarn dlx f11dc14
+* remove postinstall to use only the binary 5d53b4e
 
 
 
