@@ -1,4 +1,4 @@
-# akala-client
+# Welcome
 
 Akala client framework aims to provide the same feature set that angualar is able to provide. Leveraging [akala-core](//github.com/npenin/akala-core), it provides :
 
@@ -7,6 +7,10 @@ Akala client framework aims to provide the same feature set that angualar is abl
 - controls
 - services
 - formatters (angular-like pipes)
+
+## Get started
+
+To get start, just follow the [instructions](getting-started)
 
 ## Composers
 
