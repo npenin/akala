@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* hasYarn detection to prevent it to crash 2aff971
+* cli returns mainprogram (to prevent multiple init if processing multiple times d14f9f0
 
 
 
