@@ -11,7 +11,19 @@ Ensure you have the following installed:
 
 ## Setting Up Your Client Project
 
-To work with akala client, you will first of all need to register the client plugin.
+To work with akala client, you will first of all need to install it and then register the client plugin.
+
+```bash
+npm install @akala/client
+```
+
+### OR
+
+```bash
+yarn add @akala/client
+```
+
+### THEN
 
 ```bash
 akala plugins add @akala/client/akala
