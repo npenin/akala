@@ -192,7 +192,7 @@ cli.preAction(async c =>
 //     }
 // });
 cli.format(async (result, context) => formatResult(result, context.options.output));
-program.useError((err: Error, context) =>
+cli.useError((err: Error, context) =>
 {
     if (context.options.verbose)
         console.error(err);
@@ -202,7 +202,7 @@ program.useError((err: Error, context) =>
         console.error('Error: ' + err.message);
     return Promise.reject(err);
 })
-program.process(buildCliContextFromProcess()).then(result =>
+cli.process(buildCliContextFromProcess()).then(result =>
 {
     if (result instanceof Readable)
     {

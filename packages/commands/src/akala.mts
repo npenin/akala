@@ -41,7 +41,7 @@ export async function install(_context: CliContext<{ configFile: string }, objec
                     if (e.message == 'Invalid URL')
                     {
                         if (!isAbsolute(path))
-                            path = resolve(dirname(context.options.configFile as string), path)
+                            path = resolve(dirname(context.options['configFile'] as string), path)
                         uri = new URL('file://' + path);
                     }
                 }
