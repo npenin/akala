@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* xpm init 37af8c5
+* install command should now handle any package (as long as it contains an akala plugin) cad421f
 
 
 
