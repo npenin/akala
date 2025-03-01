@@ -47,11 +47,11 @@ export default function (_, program: NamespaceMiddleware)
         await FileGenerator.close(html.output);
     });
 
-    generators.command<{ name: string, path?: string }>('client <name> [path]').state<Partial<ClientState>>().action(async context =>
+    generators.command<{ name?: string }>('client [name]').state<Partial<ClientState>>().action(async context =>
     {
         const caseConverter: (s: string) => string = context.state?.client?.preferredCase in caseConverters ? caseConverters[context.state.client.preferredCase] : caseConverters.kebab;
 
-        const folder = context.options.path ? join(context.options.path, caseConverter(context.options.name)) : caseConverter(context.options.name);
+        const folder = context.currentWorkingDirectory;
 
         await mkdir(folder, { recursive: true });
 
