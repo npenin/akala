@@ -75,19 +75,19 @@ export function readLine()
     })
 }
 
-export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: Logger, ...args: string[]): CliContext<T, unknown>
+export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number> & { help: boolean }>(logger: Logger, ...args: string[]): CliContext<T, unknown>
 {
     const result: Omit<CliContext<T>, 'logger'> = { abort: new AbortController(), args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined };
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
     return result as CliContext<T>;
 }
-export function buildCliContextFromContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown>(context: CliContext<T, TState>, ...args: string[]): CliContext<T, TState>
+export function buildCliContextFromContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number> & { help: boolean }, TState = unknown>(context: CliContext<T, TState>, ...args: string[]): CliContext<T, TState>
 {
     const result: Omit<CliContext<T, TState>, 'logger'> = { abort: context.abort, args: args, argv: context.argv, options: { ...context.options }, currentWorkingDirectory: context.currentWorkingDirectory, state: context.state };
     Object.defineProperty(result, 'logger', { enumerable: false, value: context.logger });
     return result as CliContext<T, TState>;
 }
-export function buildCliContextFromProcess<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown>(logger?: Logger, state?: TState): CliContext<T, TState>
+export function buildCliContextFromProcess<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number> & { help: boolean }, TState = unknown>(logger?: Logger, state?: TState): CliContext<T, TState>
 {
     if (process.env.NODE_ENV == 'production')
         logger = logger || LoggerBuilder(process.argv0, LogLevels.error);

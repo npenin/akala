@@ -518,7 +518,6 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
     }
 }
 
-const mainRouter = new NamespaceMiddleware(null);
-const cmd = mainRouter;
+const mainRouter = new NamespaceMiddleware<{ help: boolean }>(null);
 
-export default cmd;
+export default mainRouter;
