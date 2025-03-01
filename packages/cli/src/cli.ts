@@ -1,4 +1,4 @@
-import program, { NamespaceMiddleware } from './router/index.js';
+import program, { CliContext, NamespaceMiddleware } from './router/index.js';
 import fs from 'fs/promises'
 // import { fileURLToPath, pathToFileURL } from 'url'
 import path from 'path'
@@ -13,7 +13,7 @@ function isRoot(indexOfSep: number): boolean
 
 export type AkalaConfig = { plugins: string[], commit?: () => Promise<void> };
 
-export async function loadConfig(context)
+export async function loadConfig(context: CliContext<{ configFile: string }, AkalaConfig>)
 {
 
     let loadedConfig: AkalaConfig;
@@ -81,7 +81,7 @@ export async function loadConfig(context)
     return loadedConfig;
 }
 
-export async function loadPlugins(context, mainProgram: NamespaceMiddleware<{ help: boolean }>, plugins: string[])
+export async function loadPlugins(context: CliContext<{ configFile: string }, AkalaConfig>, mainProgram: NamespaceMiddleware<{ help: boolean }>, plugins: string[])
 {
 
     if (plugins)
@@ -113,11 +113,13 @@ export function cli()
 {
     const mainProgram = program.command(null).option<boolean, 'help'>('help', { needsValue: false });
     program.useError(supportInteract(mainProgram))
-    program.option('configFile', { aliases: ['c', 'config-file'], needsValue: true, default: '' as string }).preAction(async context =>
-    {
-        await loadConfig(context);
-    }).
+    program.
+        option('configFile', { aliases: ['c', 'config-file'], needsValue: true, default: '' as string }).
         state<AkalaConfig>().
+        preAction(async context =>
+        {
+            await loadConfig(context);
+        }).
         preAction(async (context) =>
         {
             await loadPlugins(context, mainProgram, plugins);
