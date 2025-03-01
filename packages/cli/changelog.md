@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* improper config init 0f90955
+* context inheritance during install de44263
 
 
 
