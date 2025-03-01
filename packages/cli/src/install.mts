@@ -1,31 +1,15 @@
-import { join } from 'path'
-import { AkalaConfig, cli, loadConfig } from './cli.js'
 import npm from './npm-helper.js'
 import yarn, { hasYarn } from './yarn-helper.js'
 import program, { buildCliContextFromContext } from './index.js';
 
 
-export default function ()
+export default function (config, mainProgram)
 {
-    program.command('install').state<AkalaConfig>().option('configFile', { normalize: true, needsValue: true }).action(async context =>
+    program.command('install').option('configFile', { normalize: true, needsValue: true }).action(async context =>
     {
-        const cwd = process.env.INIT_CWD || process.cwd();
-        context.logger.info('setting cwd to ' + cwd)
-        const configFile = join(cwd, './.akala.json')
-
-        // const context = buildCliContextFromProcess<{ help: boolean, configFile: string }>(cliLogger, { plugins: [] });
-        context.options.configFile = configFile;
-        context.currentWorkingDirectory = cwd;
-        await loadConfig(context)
-
-        const processedContext = buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala')
-
-        const akala = cli();
-
-        await program.process(processedContext);
-        context.state = processedContext.state;
-        await akala.process(buildCliContextFromContext(context, 'plugins', 'add', '@akala/commands/akala'))
-        await akala.process(buildCliContextFromContext(context, 'commands', 'add', 'sdk', '@akala/commands/commands.json'))
+        await mainProgram.process(buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala'));
+        await mainProgram.process(buildCliContextFromContext(context, 'plugins', 'add', '@akala/commands/akala'));
+        await mainProgram.process(buildCliContextFromContext(context, 'commands', 'add', 'sdk', '@akala/commands/commands.json'));
 
         context.logger.info('installing dependencies...');
 
