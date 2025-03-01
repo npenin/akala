@@ -1,9 +1,10 @@
-#  (2025-02-28)
+#  (2025-03-01)
 
 
 ### Bug Fixes
 
-* improper akala cli initialization 5ee0293
+* add missing dependencies 7251d39
+* configFile option 366f55a
 
 
 
