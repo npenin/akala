@@ -27,11 +27,14 @@ const processedContext = buildCliContextFromContext(context, 'plugins', 'add', '
 const akala = cli();
 
 await program.process(processedContext);
-await akala.process(buildCliContextFromContext(processedContext, 'plugins', 'add', '@akala/commands/akala'))
-await akala.process(buildCliContextFromContext(processedContext, 'commands', 'add', 'sdk', '@akala/commands/commands.json'))
+context.state = processedContext.state;
+await akala.process(buildCliContextFromContext(context, 'plugins', 'add', '@akala/commands/akala'))
+await akala.process(buildCliContextFromContext(context, 'commands', 'add', 'sdk', '@akala/commands/commands.json'))
 
 cliLogger.info('installing dependencies...');
 
 const xpm = await hasYarn() ? yarn : npm;
 
 await xpm.install('@akala/cli');
+await xpm.install('@akala/config');
+await xpm.install('@akala/commands');
