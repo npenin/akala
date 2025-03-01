@@ -7,7 +7,7 @@ export default function (config, mainProgram)
 {
     program.command('install').option('configFile', { normalize: true, needsValue: true }).action(async context =>
     {
-        await mainProgram.process(buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala'));
+        await mainProgram.process(context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala'));
         await mainProgram.process(buildCliContextFromContext(context, 'plugins', 'add', '@akala/commands/akala'));
         await mainProgram.process(buildCliContextFromContext(context, 'commands', 'add', 'sdk', '@akala/commands/commands.json'));
 
