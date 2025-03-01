@@ -15,7 +15,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                 config.plugins.push(context.options.path)
                 const plugin = await import(context.options.path);
                 if (plugin.install)
-                    await plugin.install(context);
+                    await plugin.install(context, program);
             }
             if (typeof context.state == 'object' && 'commit' in context.state && typeof context.state.commit == 'function')
                 await context.state.commit();
