@@ -4,12 +4,12 @@ import program, { buildCliContextFromContext } from './index.js';
 import { AkalaConfig } from './cli.js';
 
 
-export default async function (config, mainProgram)
+export default function (config, mainProgram)
 {
-    const xpm = await hasYarn() ? yarn : npm;
 
     program.state<AkalaConfig>().command<{ name: string }>('install [name]').option<string, 'configFile'>('configFile', { normalize: true, needsValue: true }).action(async context =>
     {
+        const xpm = hasYarn() ? yarn : npm;
         const options = context.options;
         switch (context.options.name)
         {
@@ -27,9 +27,7 @@ export default async function (config, mainProgram)
                 context.options = { ...options };
                 await mainProgram.process(context);
 
-
                 context.logger.info('installing dependencies...');
-
 
                 await xpm.install('@akala/cli');
                 await xpm.install('@akala/config');
