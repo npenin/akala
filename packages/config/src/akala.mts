@@ -2,9 +2,14 @@ import { CliContext, NamespaceMiddleware } from "@akala/cli";
 import path from 'path'
 import Configuration from "./configuration.js";
 
-export default async function (_config, program: NamespaceMiddleware, context: CliContext)
+export default async function (_, program: NamespaceMiddleware, context: CliContext<{ configFile: string }, object>)
 {
-    context.state = await Configuration.newAsync(context.options['configFile'] as string, _config)
+    return install(context, program)
+}
+
+export async function install(context: CliContext<{ configFile: string }, object>, program: NamespaceMiddleware)
+{
+    context.state = await Configuration.newAsync(context.options.configFile || path.join(context.currentWorkingDirectory, './.akala.json'), context.state)
 
     program.format(async r =>
     {
@@ -26,9 +31,4 @@ export default async function (_config, program: NamespaceMiddleware, context: C
         {
             return Promise.resolve(context.state.get(context.options['key'] as string));
         });
-}
-
-export async function install(context: CliContext<{ configFile: string }, object>)
-{
-    context.state = await Configuration.newAsync(context.options.configFile || path.join(context.currentWorkingDirectory, './.akala.json'), context.state)
 }
