@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add missing dependency 4435ab1
+* move all code to cli install 991eda8
 
 
 
