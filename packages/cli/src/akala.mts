@@ -1,5 +1,5 @@
 #!/usr/bin/env -S node --enable-source-maps
-import { logger } from "@akala/core";
+import { logger, LogLevels } from "@akala/core";
 import { cli } from "./cli.js";
 import program, { buildCliContextFromProcess, ErrorMessage } from "./index.js";
 
@@ -19,7 +19,7 @@ process.emit = function (name, data, ...args)
     return originalEmit.call(process, name, data, ...args);
 };
 
-const context = buildCliContextFromProcess<{ help: boolean }, { plugins: string[] }>(logger('akala'), { plugins: [] });
+const context = buildCliContextFromProcess(logger('akala', LogLevels.info), { plugins: [] });
 cli();
 await program.process(context).then(
     result =>
