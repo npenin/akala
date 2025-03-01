@@ -110,13 +110,13 @@ function getConfig()
 }
 
 const config = program.command('config');
-config.command('set <key> [value]')
+config.command<{ key: string, value?: string }>('set <key> [value]')
     .action(async function (context)
     {
         await updateConfig(context.options.value, context.options.key)
     });
 
-config.command('get [key]')
+config.command<{ key: string }>('get [key]')
     .action(function (context)
     {
         return akala.defaultInjector.resolve<typeof getConfigWithKey>('$getConfig')(context.options.key as string);
