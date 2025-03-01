@@ -83,7 +83,7 @@ export function buildCliContext<T extends Record<string, string | boolean | stri
 }
 export function buildCliContextFromContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number> & { help: boolean }, TState = unknown>(context: CliContext<T, TState>, ...args: string[]): CliContext<T, TState>
 {
-    const result: Omit<CliContext<T, TState>, 'logger'> = { abort: context.abort, args: args, argv: context.argv, options: { ...context.options }, currentWorkingDirectory: context.currentWorkingDirectory, state: context.state };
+    const result: Omit<CliContext<T, TState>, 'logger'> = { abort: context.abort, args: args, argv: context.argv, options: {} as T, currentWorkingDirectory: context.currentWorkingDirectory, state: context.state };
     Object.defineProperty(result, 'logger', { enumerable: false, value: context.logger });
     return result as CliContext<T, TState>;
 }
