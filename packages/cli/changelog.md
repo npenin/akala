@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* context inheritance during install de44263
+* revert options copy on buildCliContextFromContext 1cbbd3e
 
 
 
