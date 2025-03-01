@@ -13,7 +13,6 @@ export default function (config, mainProgram)
         const options = context.options;
         switch (context.options.name)
         {
-            default:
             case undefined:
                 context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala');
                 context.options = { ...options };
@@ -33,15 +32,15 @@ export default function (config, mainProgram)
                 await xpm.install('@akala/config');
                 await xpm.install('@akala/commands');
                 break;
-            case 'client':
+            default:
                 if (!('extract' in context.state))
                 {
                     context.logger.warn('Please first install akala');
                     return;
                 }
-                await xpm.install('@akala/client');
+                await xpm.install(context.options.name);
 
-                context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/client/akala');
+                context = buildCliContextFromContext(context, 'plugins', 'add', context.options.name + '/akala');
                 context.options = { ...options };
                 await mainProgram.process(context);
 
