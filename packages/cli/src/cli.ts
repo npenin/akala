@@ -67,6 +67,8 @@ export function cli()
             if (!loadedConfig)
             {
                 context.logger.debug('config not found, setting configFile path to cwd');
+                context.logger.debug('cwd is ', cwd);
+
                 context.options.configFile = path.join(cwd, '/.akala.json');
             }
         }
