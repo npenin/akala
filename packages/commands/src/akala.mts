@@ -1,4 +1,4 @@
-import { program as root, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
+import { program as root, ErrorMessage, NamespaceMiddleware, CliContext } from "@akala/cli"
 import { SimpleInjector, mapAsync } from "@akala/core"
 import commands from "./commands.js";
 import { registerCommands, ServeOptions, Triggers } from "./index.js";
@@ -10,7 +10,12 @@ import { handlers } from "./protocol-handler.js";
 import { pathToFileURL } from "node:url";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { with: { type: 'json' } }).then(x => x.default)
 
-export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
+export default async function (_, program: NamespaceMiddleware<{ configFile: string }>, context: CliContext<{ configFile: string }, object>)
+{
+    return install(context, program)
+}
+
+export async function install(_context: CliContext<{ configFile: string }, object>, program: NamespaceMiddleware<{ configFile: string }>)
 {
     let containers: Container<unknown> = new Container('akala cli', undefined);
 
