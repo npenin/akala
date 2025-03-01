@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* add missing dependencies 7251d39
-* configFile option 366f55a
+* add missing dependency 4435ab1
 
 
 
