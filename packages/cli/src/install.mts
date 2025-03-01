@@ -5,11 +5,21 @@ import program, { buildCliContextFromContext } from './index.js';
 
 export default function (config, mainProgram)
 {
-    program.command('install').option('configFile', { normalize: true, needsValue: true }).action(async context =>
+    program.command('install').option<string, 'configFile'>('configFile', { normalize: true, needsValue: true }).action(async context =>
     {
-        await mainProgram.process(context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala'));
-        await mainProgram.process(buildCliContextFromContext(context, 'plugins', 'add', '@akala/commands/akala'));
-        await mainProgram.process(buildCliContextFromContext(context, 'commands', 'add', 'sdk', '@akala/commands/commands.json'));
+        const options = context.options;
+        context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala');
+        context.options = { ...options };
+        await mainProgram.process(context);
+
+        context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/commands/akala');
+        context.options = { ...options };
+        await mainProgram.process(context);
+
+        context = buildCliContextFromContext(context, 'commands', 'add', 'sdk', '@akala/commands/commands.json');
+        context.options = { ...options };
+        await mainProgram.process(context);
+
 
         context.logger.info('installing dependencies...');
 
