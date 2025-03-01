@@ -15,13 +15,13 @@ To install Akala, run one of the following commands:
 Using npm:
 
 ```bash
-npm install akala
+npx akala install
 ```
 
 Using Yarn:
 
 ```bash
-yarn add akala
+yarn dlx akala install
 ```
 
 ## Usage
@@ -30,6 +30,7 @@ To start using akala, you first need to decide what you want to do:
 
 - a [client (browser)](client/getting-started) side project
 - a [server (node)](server/getting-started) side project
+- a [CLI](cli/getting-started) project
 
 ## Learn More
 

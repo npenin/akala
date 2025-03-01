@@ -7,26 +7,16 @@ Welcome to the Akala Client guide! Before proceeding, make sure you have followe
 Ensure you have the following installed:
 
 - Node.js (version 20.x or later)
-- Akala (installed via npm or Yarn)
+- [Akala](../getting-started.md) (installed via npm or Yarn)
 
 ## Setting Up Your Client Project
 
 To work with akala client, you will first of all need to install it and then register the client plugin.
 
-```bash
-npm install @akala/client
-```
-
-### OR
+Akala will automatically detect which package manager you are using to install the package.
 
 ```bash
-yarn add @akala/client
-```
-
-### THEN
-
-```bash
-akala plugins add @akala/client/akala
+akala install @akala/client
 ```
 
 Optionally before going further, you may set up your [preferences](preferences).
