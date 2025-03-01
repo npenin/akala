@@ -79,6 +79,8 @@ export default class Configuration<T extends object = SerializableObject>
 
     public static new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any, cryptKey?: CryptoKey): ProxyConfigurationObjectNonArray<T>
     {
+        if (config && 'commit' in config && typeof config.commit == 'function')
+            delete config.commit;
         return new Proxy(new Configuration<T>(path, config, rootConfig, cryptKey), {
             has(target, key)
             {
