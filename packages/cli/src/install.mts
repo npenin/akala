@@ -10,11 +10,11 @@ export default async function (config, mainProgram)
 
     program.state<AkalaConfig>().command<{ name: string }>('install [name]').option<string, 'configFile'>('configFile', { normalize: true, needsValue: true }).action(async context =>
     {
+        const options = context.options;
         switch (context.options.name)
         {
             default:
             case undefined:
-                const options = context.options;
                 context = buildCliContextFromContext(context, 'plugins', 'add', '@akala/config/akala');
                 context.options = { ...options };
                 await mainProgram.process(context);
