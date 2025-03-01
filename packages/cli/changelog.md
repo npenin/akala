@@ -1,9 +1,9 @@
-#  (2025-02-28)
+#  (2025-03-01)
 
 
-### Bug Fixes
+### Features
 
-* remove production flag on npm helper 83a1885
+* plugins can now be installed with the current cli "program" c2ac89a
 
 
 
