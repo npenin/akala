@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* options setup 387b195
+* xpm init 37af8c5
 
 
 
