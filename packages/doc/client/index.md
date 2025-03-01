@@ -10,7 +10,7 @@ Akala client framework aims to provide the same feature set that angualar is abl
 
 ## Get started
 
-To get start, just follow the [instructions](getting-started)
+To get started, just follow the [instructions](getting-started)
 
 ## Composers
 
