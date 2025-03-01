@@ -13,7 +13,7 @@ cliLogger.info('setting cwd to ' + cwd)
 const configFile = join(cwd, './.akala.json')
 
 const context = buildCliContextFromProcess(cliLogger, { plugins: [] });
-context.options = configFile;
+context.options.configFile = configFile;
 context.currentWorkingDirectory = cwd;
 
 try
