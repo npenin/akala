@@ -3,7 +3,13 @@
 
 ### Bug Fixes
 
-* revert options copy on buildCliContextFromContext 1cbbd3e
+* add strong typing to refactored functions 103a56a
+* default logging level f820f7a
+
+
+### Features
+
+* add client install support 02b05eb
 
 
 
