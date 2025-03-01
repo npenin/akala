@@ -1,9 +1,9 @@
 #  (2025-03-01)
 
 
-### Features
+### Bug Fixes
 
-* plugins can now be installed with the current cli "program" c2ac89a
+* add more logs b90e354
 
 
 
