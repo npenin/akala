@@ -1,10 +1,10 @@
 # AttributeComposer
 
-The `AttributeComposer` class is an abstract class that provides a way to bind attributes of an HTML element to a context. It is used to create custom attribute composers that can parse and apply attribute values to elements.
+The `AttributeComposer` class is an abstract class that binds HTML element attributes to a context. It helps create custom attribute composers that parse and apply attribute values to elements.
 
 ## Usage Example
 
-To create a custom attribute composer, extend the `AttributeComposer` class and implement the abstract methods.
+To create a custom attribute composer, extend the `AttributeComposer` class and implement its abstract methods.
 
 ### Example: CustomAttributeComposer
 
@@ -21,7 +21,7 @@ class CustomAttributeComposer extends AttributeComposer<{ customOption: string }
 
     getContext(item: Element, options?: { customOption: string }): Binding<unknown>
     {
-        return DataContext.find(item)
+        return DataContext.find(item);
     }
 
     applyInternal(item: Element, options: { customOption: string }, subItem: PropertyKey, value: unknown): void
@@ -34,21 +34,25 @@ class CustomAttributeComposer extends AttributeComposer<{ customOption: string }
 
 ### Using the CustomAttributeComposer
 
+#### Using Direct Attribute
+
 ```html
 <p custom-attribute="{role=context.role}">
 ```
 
-OR
+#### Using Sub Attributes
 
 ```html
 <p custom-attribute custom-attribute-role="context.role">
 ```
 
-In this example, the `CustomAttributeComposer` class extends the `AttributeComposer` class and implements the `getContext` and `applyInternal` methods. The `apply` method is then used to bind the custom attribute to the element.
+In this example, the `CustomAttributeComposer` class extends `AttributeComposer` and implements the `getContext` and `applyInternal` methods. The `apply` method binds the custom attribute to the element.
 
-This little example will bing the role attribute to the context.role value. Each time the role value will change in the [data context](datacontext), the role attribute will get updated.
+This example binds the `role` attribute to `context.role`. When `context.role` changes, the `role` attribute updates accordingly.
 
-**WARNING: the opposite is not true, if the attribute changes, it will not automatically update the `context.role` value.**
+**WARNING: Changes to the attribute do not update `context.role`.**
+
+In the second example, `<p custom-attribute custom-attribute-role="context.role">`, note the empty `custom-attribute` alongside `custom-attribute-role`. This is intentional. The `CustomAttributeComposer` uses `custom-attribute` as its selector. Since wildcard attribute selectors (`custom-attribute-*`) are not supported in the DOM, adding the empty attribute ensures proper selection and in the most efficient and optimized manner.
 
 ## Definition
 
@@ -58,14 +62,14 @@ This little example will bing the role attribute to the context.role value. Each
 constructor(protected readonly attribute: string, parser?: Parser)
 ```
 
-- `attribute`: The name of the attribute to bind.
-- `parser`: An optional parser to parse the attribute value.
+- `attribute`: The attribute name to bind.
+- `parser`: An optional parser for the attribute value.
 
 ### Properties
 
-- `selector`: A string representing the CSS selector for the attribute.
-- `optionName`: The name of the attribute.
-- `parser`: The parser used to parse the attribute value.
+- `selector`: The CSS selector string for the attribute.
+- `optionName`: The attribute name.
+- `parser`: The parser for the attribute value.
 
 ### Methods
 
@@ -75,8 +79,8 @@ constructor(protected readonly attribute: string, parser?: Parser)
 optionGetter(options: object): T
 ```
 
-- `options`: An object containing the options.
-- Returns the value of the attribute from the options.
+- `options`: An object with options.
+- Returns the attribute value from the options.
 
 #### getContext
 
@@ -109,7 +113,7 @@ apply(item: Element, options: T, root: Element | ShadowRoot)
 - `item`: The HTML element.
 - `options`: The options.
 - `root`: The root element or shadow root.
-- Applies the attribute bindings to the element.
+- Applies attribute bindings to the element.
 
 #### getBindings
 
