@@ -22,7 +22,7 @@ export interface Composer<TOptions = unknown>
 ### Properties
 
 - `selector`: A string or an array of strings that specifies the CSS selectors for the elements that the composer will apply to.
-- `optionGetter(options: object): TOptions`: A method that extracts the options for the composer from the root options object (you may define that during as a [bootstrap](bootstrap) parameter).
+- `optionGetter(options: object): TOptions`: A method that extracts the options for the composer from the root options object (you may define that during as a [bootstrap](../bootstrap) parameter).
 - `apply(items: Element, options?: TOptions, futureParent?: Element | DocumentFragment): Disposable`: A method that applies the composer to the specified elements. It returns a `Disposable` object that can be used to clean up the applied composer.
 
 ### Generic Parameter
