@@ -1,5 +1,4 @@
 ---
-title: cli
-nav_exclude: true
+title: @akala/cli
 ---
 # *Coming soon...*
