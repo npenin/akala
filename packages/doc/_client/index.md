@@ -20,7 +20,7 @@ To get started, just follow the [instructions](getting-started.md)
   | [DataBind ([data-bind])](composers/databind.md) | binds properties of the data context to your element (that can be style, innerText, ...). |
   | [CssClass ([klass])](composers/klass.md) | binds css classes to your data context (this works similarly to the ngClass from angular). |
   | [I18n ([i18n])](composers/i18n.md) | i18n tries to solve the internationalization problem than any application faces. |
-  | [Form (&lt;form&gt;)](composers/form.md) | if a [container](../commands/index.md) is accessible from the current data context, the form composer will try to invoke the command with the **html** trigger |
+  | [Form (&lt;form&gt;)](composers/form.md) | if a [container](../_commands/index.md) is accessible from the current data context, the form composer will try to invoke the command with the **html** trigger |
   
 ## Controls
   
