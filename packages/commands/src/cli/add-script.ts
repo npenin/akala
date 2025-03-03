@@ -10,7 +10,7 @@ export default async function addScript(name?: string, folder?: string, metadata
     //eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     //eslint-disable-next-line @typescript-eslint/no-var-requires
-    const pkg = (await import(path.join(process.cwd(), './package.json'), { assert: { type: 'json' } })).default;
+    const pkg = (await import(path.join(process.cwd(), './package.json'), { with: { type: 'json' } })).default;
 
     if (!metadataFile)
         metadataFile = 'commands.json';
@@ -33,10 +33,10 @@ export default async function addScript(name?: string, folder?: string, metadata
     if (pkg.scripts[scriptNames[1]])
         console.warn(`Warn: There is already a script named ${scriptNames[1]}. Overwriting...`)
 
-    pkg.scripts[scriptNames[0]] = `ac generate ${folder} ${metadataFile} --name ${name || pkg.name}`;
+    pkg.scripts[scriptNames[0]] = `akala sdk generate ${folder} ${metadataFile} --name ${name || pkg.name}`;
     if (typescriptFile)
     {
-        pkg.scripts[scriptNames[1]] = `ac generate-metadata ${metadataFile} ${typescriptFile}`;
+        pkg.scripts[scriptNames[1]] = `akala sdk generate-metadata ${metadataFile} ${typescriptFile}`;
         if (name)
             pkg.scripts[scriptNames[1]] += ` --name ${name}`;
     }
