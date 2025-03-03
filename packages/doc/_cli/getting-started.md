@@ -4,14 +4,14 @@ title: Getting started
 
 # Getting Started
 
-Welcome to the Akala Client guide! Before proceeding, make sure you have followed the [Getting Started with Akala](../getting-started) guide.
+Welcome to the Akala Client guide! Before proceeding, make sure you have followed the [Getting Started with Akala](../getting-started.md) guide.
 
 ## Prerequisites
 
 Ensure you have the following installed:
 
 - Node.js (version 20.x or later)
-- [Akala](../getting-started) (installed via npm or Yarn)
+- [Akala](../getting-started.md) (installed via npm or Yarn)
 
 ## Setting Up Your CLI Project
 
@@ -92,7 +92,7 @@ Here the usage is way simpler. In the entrypoint of your CLI, you just need thes
 #!/usr/bin/env -S node
 import * as path from 'path'
 import { fileURLToPath } from 'url'
-import { Cli } from './.js';
+import { Cli } from './index.js';
 
 const cli = await Cli.fromFileSystem('<absolute path to your commands folder>');
 await cli.start();

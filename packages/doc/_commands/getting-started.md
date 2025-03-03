@@ -69,7 +69,7 @@ This single line in your bash will discover your commands and check that the men
 }
 ```
 
-By default 2 [processors](processors/) are configured: fs and default (`""`). A common use case is to configure _at least_ a 3rd one amongst the followings:
+By default 2 [processors](processors) are configured: fs and default (`""`). A common use case is to configure _at least_ a 3rd one amongst the followings:
 
 - [http](processors/http)
 - [html](processors/html)

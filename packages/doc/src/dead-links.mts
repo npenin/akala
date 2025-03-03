@@ -1,42 +1,66 @@
 import fs, { mkdir } from 'fs/promises';
-import { dirname, resolve } from 'path';
+import { basename, dirname, join, resolve } from 'path/posix';
 import glob from 'glob';
 import markdownLinkExtractor from 'markdown-link-extractor';
 
 // Function to create a blank file if it does not exist
+async function createFolderIfNotExists(filePath: string): Promise<string>
+{
+    try
+    {
+        await fs.access(filePath);
+        return filePath;
+    }
+    catch
+    {
+        const fragments = filePath.split('/');
+        for (let i = 0; i < fragments.length; i++)
+        {
+            const newPath = fragments.map((v, j) => i == j ? '_' + v : v).join('/');
+            console.log('testing ' + newPath);
+            try
+            {
+                const stats = await fs.lstat(newPath);
+                if (stats.isDirectory())
+                    return newPath;
+            }
+            catch { }
+        }
+    }
+    filePath = join(await createFolderIfNotExists(dirname(filePath)), basename(filePath));
+    await mkdir(filePath);
+    console.log(`Created: ${filePath}`);
+    return filePath;
+
+}
+// Function to create a blank file if it does not exist
 async function createFileIfNotExists(path: string)
 {
-    const filePath = path.endsWith('.md') ? path : (path + '.md');
-    console.log(`creating ${filePath}`)
+    console.log(`creating ${path}`)
+    let filePath = path.endsWith('.md') ? path : (path + '.md');
     try
     {
         await fs.access(filePath);
     } catch
     {
-        if (filePath !== path)
+        const folder = await createFolderIfNotExists(path === filePath ? dirname(path) : path);
+        if (folder + '.md' === filePath)
+            filePath = join(folder, 'index.md');
+        else if (folder.split('/').length == filePath.split('/').length)
+            filePath = join(folder, 'index.md');
+        else
+            filePath = join(folder, basename(filePath));
+
+        try
         {
-            try
-            {
-                const stats = await fs.lstat(path);
-                if (stats.isDirectory())
-                    try
-                    {
-                        await fs.access(path + '/index.md');
-                        return;
-                    }
-                    catch
-                    {
-                        await mkdir(dirname(path), { recursive: true });
-                        await fs.writeFile(path + '/index.md', '# *Coming soon...*\n');
-                        console.log(`Created: ${path + '/index.md'}`);
-                        return;
-                    }
-            }
-            catch { }
+            await fs.access(filePath);
+            return;
         }
-        await mkdir(dirname(filePath), { recursive: true });
-        await fs.writeFile(filePath, '# *Coming soon...*\n');
-        console.log(`Created: ${filePath}`);
+        catch
+        {
+            await fs.writeFile(filePath, '# *Coming soon...*\n');
+            console.log(`Created: ${filePath}`);
+        }
     }
 }
 
