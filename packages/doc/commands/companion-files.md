@@ -68,7 +68,7 @@ The `inject` property specifies dependencies that should be injected into the co
 
 - `$container` that contains the command processor(s) and all the commands (including the currently invoked one).
 - `trigger` that contains the trigger name. If `undefined`, that would mean the command was directly invoked through javascript (or an improper command processor implementation)
-- Any "injectable" registered in the core [`defaultInjector`](../core/default-injector)
+- Any "injectable" registered in the core [`defaultInjector`](../core/default-injector.md)
 
 ### Example
 

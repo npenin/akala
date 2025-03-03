@@ -9,16 +9,16 @@ Example given: The most explicit example would be http which exists both as a pr
 
 ## Processors
 
-- [http](http)
-- [html](html)
-- [fs](fs)
-- [local](local)
-- [jsonrpc](local)
-- [schema validator](schema-validator)
+- [http](http.md)
+- [html](html.md)
+- [fs](fs.md)
+- [local](local.md)
+- [jsonrpc](local.md)
+- [schema validator](schema-validator.md)
 
 ## Triggers
 
-- [cli](cli)
-- [http](http)
-- [html](html)
-- [hotkey](hotkey)
+- [cli](cli.md)
+- [http](http.md)
+- [html](html.md)
+- [hotkey](hotkey.md)

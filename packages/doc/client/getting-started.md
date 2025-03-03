@@ -19,7 +19,7 @@ Akala will automatically detect which package manager you are using to install t
 akala install @akala/client
 ```
 
-Optionally before going further, you may set up your [preferences](preferences).
+Optionally before going further, you may set up your [preferences](preferences.md).
 
 Once done, you may then create your client application.
 

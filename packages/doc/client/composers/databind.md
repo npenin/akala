@@ -11,7 +11,7 @@ The `DataBind` class allows you to bind various properties to HTML elements, suc
 `data-bind` can be done in two ways:
 
 - Using a full object: `data-bind="{style:{color:context.name!=='aaa1'?'red':'green'}}"`
-- Using sub-attributes: `data-bind-inner-text="context.name"`. Please note that using sub-attributes means you still need to specify the `data-bind` attribute (empty or not). This attribute is required to identify all components that should be targeted by the `DataBind` composer. See [AttributeComposer](attribute-composer) for more details.
+- Using sub-attributes: `data-bind-inner-text="context.name"`. Please note that using sub-attributes means you still need to specify the `data-bind` attribute (empty or not). This attribute is required to identify all components that should be targeted by the `DataBind` composer. See [AttributeComposer](attribute-composer.md) for more details.
 
 ## Usage Example
 
