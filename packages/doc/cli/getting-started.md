@@ -1,4 +1,5 @@
 ---
+parent: cli
 nav_order: 2
 ---
 
