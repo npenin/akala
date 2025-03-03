@@ -76,4 +76,4 @@ The `inject` property specifies dependencies that should be injected into the co
 
 ### Example
 
-Refer to the [CLI Trigger](../cli/) documentation for a more detailed example of a companion file.
+Refer to the [CLI Trigger](../cli) documentation for a more detailed example of a companion file.
