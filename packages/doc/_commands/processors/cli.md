@@ -1,3 +1,7 @@
+---
+title: CLI Trigger
+---
+
 # CLI Trigger
 
 The CLI trigger expects a dedicated command metadata section. Below is the `add-script` companion file :
