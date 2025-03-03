@@ -28,6 +28,8 @@ collections:
     output: true
   storage:
     output: true
+  web-ui:
+    output: true
 
 just_the_docs:
   collections:
@@ -58,6 +60,9 @@ just_the_docs:
     storage:
       name: "@akala/storage"
       nav_fold: false
+    web-ui:
+      name: "@akala/web-ui"
+      nav_fold: false
 
 minima:
   skin: auto
@@ -77,10 +82,10 @@ minima:
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Akala
-description: A Jekyll theme for documentation
+description: A Do-it-all JS/TS framework
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://just-the-docs.com" # the base hostname & protocol for your site, e.g. http://example.com
-repository: just-the-docs/just-the-docs # for github-metadata
+url: "https://akala.js.org" # the base hostname & protocol for your site, e.g. http://example.com
+repository: npenin/akala # for github-metadata
 
 permalink: /:categories/:year/:month/:day/:title
 
@@ -165,7 +170,7 @@ exclude:
   - fixtures/
 
 # Set a path/url to a logo that will be displayed instead of the title
-#logo: "/assets/images/just-the-docs.png"
+logo: "../../logo.svg"
 
 # Enable or disable the site search
 # Supports true (default) or false

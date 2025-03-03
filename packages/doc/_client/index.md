@@ -1,6 +1,6 @@
 # Welcome
 
-Akala client framework aims to provide the same feature set that angualar is able to provide. Leveraging [akala-core](../core/index), it provides :
+Akala client framework aims to provide the same feature set that angualar is able to provide. Leveraging [akala-core](../core/), it provides :
 
 - scope
 - composers
@@ -20,13 +20,13 @@ To get started, just follow the [instructions](getting-started)
   | [DataBind ([data-bind])](composers/databind) | binds properties of the data context to your element (that can be style, innerText, ...). |
   | [CssClass ([klass])](composers/klass) | binds css classes to your data context (this works similarly to the ngClass from angular). |
   | [I18n ([i18n])](composers/i18n) | i18n tries to solve the internationalization problem than any application faces. |
-  | [Form (&lt;form&gt;)](composers/form) | if a [container](../_commands/index) is accessible from the current data context, the form composer will try to invoke the command with the **html** trigger |
+  | [Form (&lt;form&gt;)](composers/form) | if a [container](../_commands/) is accessible from the current data context, the form composer will try to invoke the command with the **html** trigger |
   
 ## Controls
   
   | Name | Description |
   | --- | --- |
-  | [Each](controls/each) | if a [container](../commands/index) is accessible from the current data context, the form composer will try to invoke the command with the **html** trigger |
+  | [Each](controls/each) | if a [container](../commands/) is accessible from the current data context, the form composer will try to invoke the command with the **html** trigger |
   
 ## Services
   

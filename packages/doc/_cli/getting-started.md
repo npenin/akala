@@ -42,7 +42,7 @@ Here too, you have 2 possibilities to create your own CLI
 
 `@akala/cli` is not that different from `yargs`. It provides a simple API to declare what your CLI will allow the user to do.
 
-Here is a simple example of what's achievable. This example has been extracted from an actual source file of the akala framework: the [pm](../_pm/index) cli
+Here is a simple example of what's achievable. This example has been extracted from an actual source file of the akala framework: the [pm](../_pm/) cli
 
 ```ts
 import { program } from '@akala/cli';
@@ -84,7 +84,7 @@ import {  buildCliContextFromProcess } from '@akala/cli';
 cli.process(buildCliContextFromProcess())
 ```
 
-### Using [@akala/commands](../commands/index)
+### Using [@akala/commands](../commands/)
 
 Here the usage is way simpler. In the entrypoint of your CLI, you just need these few lines of code:
 
@@ -92,7 +92,7 @@ Here the usage is way simpler. In the entrypoint of your CLI, you just need thes
 #!/usr/bin/env -S node
 import * as path from 'path'
 import { fileURLToPath } from 'url'
-import { Cli } from './index.js';
+import { Cli } from './.js';
 
 const cli = await Cli.fromFileSystem('<absolute path to your commands folder>');
 await cli.start();
