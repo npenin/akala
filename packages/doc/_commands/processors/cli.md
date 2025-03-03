@@ -1,5 +1,7 @@
 ---
 title: CLI Trigger
+parent: Getting started
+nav_order: 2
 ---
 
 # CLI Trigger
