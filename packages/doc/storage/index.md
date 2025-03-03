@@ -22,15 +22,16 @@ if (category)
 Vanilla is the most simple storage provider. It takes the objects as given and stores them in memory.
 
 ### File
- 
-File is currently the only other provider and allows storing objects on the file system. You can obviously configure the root folder. In the root folder, there will be 1 folder for the namespace and 1 for the model name
 
+File is currently the only other provider and allows storing objects on the file system. You can obviously configure the root folder. In the root folder, there will be 1 folder for the namespace and 1 for the model name
 
 ## Models
 
-Storage allows you to define your model and provide full typing support. 
+Storage allows you to define your model and provide full typing support.
 You may define your models with 2 different flavors:
+
 - with decorators
+
 ```ts
 import * as db from '../server'
 import 'reflect-metadata'
@@ -58,7 +59,9 @@ export class ModelTest1
     public d: Date;
 }
 ```
+
 - with imperative programmation
+
 ```ts
     var devices = new ModelDefinition<devices.IDevice>('Devices', 'devices', 'devices');
     devices.defineMember('name', true, Types.string(50), Generator.business);
