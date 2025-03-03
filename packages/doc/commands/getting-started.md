@@ -65,11 +65,11 @@ This single line in your bash will discover your commands and check that the men
 }
 ```
 
-By default 2 [providers](providers) are configured: fs and default (`""`). A common use case is to configure _at least_ a 3rd one amongst the followings:
+By default 2 [processors](processors) are configured: fs and default (`""`). A common use case is to configure _at least_ a 3rd one amongst the followings:
 
-- [http](providers/http)
-- [html](providers/html)
-- [cli](providers/cli)
+- [http](processors/http)
+- [html](processors/html)
+- [cli](processors/cli)
 
 Now that you have configured your command, you may wonder how to call it. Before that, it could be beneficial to prepare your project for the metadata generation. Indeed, it might be easier to have a single file containing all your commands metadata than depending on your dist folder. To do so, you may just run the `add-script` command of the akala sdk.
 
@@ -93,7 +93,7 @@ Now you have your command file that contains all your commands, it will becode e
 
 ### Running your first command
 
-Since the easiest explained is with the CLI, from now on, we will assume your command is configured for [CLI](providers/cli), thus you have a file as following:
+Since the easiest explained is with the CLI, from now on, we will assume your command is configured for [CLI](processors/cli), thus you have a file as following:
 
 ```json
 {
