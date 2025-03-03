@@ -1,4 +1,4 @@
-# Getting Started with Akala
+# Getting Started
 
 Welcome to Akala! This guide will help you get started with our new framework.
 
