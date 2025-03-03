@@ -1,3 +1,7 @@
+---
+nav_order: 2
+---
+
 # Getting Started with Akala CLI
 
 Welcome to the Akala Client guide! Before proceeding, make sure you have followed the [Getting Started with Akala](../getting-started) guide.
