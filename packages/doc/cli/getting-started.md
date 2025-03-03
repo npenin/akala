@@ -1,5 +1,5 @@
 ---
-parent: cli
+parent: \@akala/cli
 nav_order: 2
 ---
 
