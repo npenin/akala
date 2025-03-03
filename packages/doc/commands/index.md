@@ -15,7 +15,7 @@ Starting commands block came from a simple idea: combining server less functions
 
 ## Hello world
 
-A command consist of any javascript file that exports a default function. You may also configure injection based on various providers (jsonrpc, cli, ...).
+A command consist of any javascript file that exports a default function. You may also configure injection based on various processors (jsonrpc, cli, ...).
 
 status.ts
 
