@@ -1,4 +1,8 @@
-# Getting Started with Akala Commands
+---
+title: Getting started
+---
+
+# Getting Started
 
 Welcome to the Akala Commands guide! Before proceeding, make sure you have followed the [Getting Started with Akala](../getting-started) guide.
 

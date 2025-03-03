@@ -1,3 +1,7 @@
+---
+title: Welcome
+---
+
 # Welcome
 
 Commands is the second foundation block in the akala stack that allows running, well... commands.

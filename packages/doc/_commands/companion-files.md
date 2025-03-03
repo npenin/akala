@@ -1,3 +1,7 @@
+---
+title: Companion Files
+---
+
 # Companion Files
 
 Companion files are JSON files that provide metadata and configuration for commands. They help define how commands should be executed, what parameters they require, and how they interact with different processors and triggers.
