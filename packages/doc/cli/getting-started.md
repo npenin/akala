@@ -80,7 +80,7 @@ import {  buildCliContextFromProcess } from '@akala/cli';
 cli.process(buildCliContextFromProcess())
 ```
 
-### Using [@akala/commands](../commands.md)
+### Using [@akala/commands](../commands)
 
 Here the usage is way simpler. In the entrypoint of your CLI, you just need these few lines of code:
 
@@ -95,7 +95,7 @@ await cli.start();
 ```
 
 Each of your command is just a simple javascript/typescript file with a default export as a function.
-Next to your file, you will need a json file to explain how this command can be used.
+Next to your file, you will need a json companion file to explain how this command can be used.
 
 ```json
 {
