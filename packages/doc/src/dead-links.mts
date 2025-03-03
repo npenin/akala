@@ -27,7 +27,7 @@ async function createFileIfNotExists(path: string)
                     catch
                     {
                         await mkdir(dirname(path), { recursive: true });
-                        await fs.writeFile(path + '/index.md', '');
+                        await fs.writeFile(path + '/index.md', '# *Coming soon...*\n');
                         console.log(`Created: ${path + '/index.md'}`);
                         return;
                     }
@@ -35,7 +35,7 @@ async function createFileIfNotExists(path: string)
             catch { }
         }
         await mkdir(dirname(filePath), { recursive: true });
-        await fs.writeFile(filePath, '# *Coming soon...*');
+        await fs.writeFile(filePath, '# *Coming soon...*\n');
         console.log(`Created: ${filePath}`);
     }
 }

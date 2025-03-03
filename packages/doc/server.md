@@ -1,1 +1,5 @@
-_Coming soon_
+---
+nav_exclude: true
+---
+
+# *Coming soon...*
