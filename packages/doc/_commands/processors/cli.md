@@ -1,6 +1,6 @@
 ---
 title: CLI Trigger
-parent: Getting started
+parent: Processors & Triggers
 nav_order: 2
 ---
 

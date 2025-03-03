@@ -1,3 +1,7 @@
+---
+title: Processors & Triggers
+---
+
 # Command Processors/Triggers
 
 Even though it makes a hude difference, there is a thin line between processors and triggers. Triggers are independent and might or not trigger a command based on their own logic. Processors on the other hand are running commands through their own logic.
