@@ -1,4 +1,4 @@
 ---
-title: @akala/cli
+title: \@akala/cli
 ---
 # *Coming soon...*
