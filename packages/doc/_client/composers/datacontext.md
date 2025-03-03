@@ -1,6 +1,6 @@
 # DataContext
 
-The `DataContext` class is a core component of the Akala framework, responsible for managing and propagating data contexts within a DOM tree. It implements the [`Composer`](composer.md) interface for `IDataContext`, providing a structured way to handle data binding and context management in web applications.
+The `DataContext` class is a core component of the Akala framework, responsible for managing and propagating data contexts within a DOM tree. It implements the [`Composer`](composer) interface for `IDataContext`, providing a structured way to handle data binding and context management in web applications.
 
 ## What is a Data Context?
 

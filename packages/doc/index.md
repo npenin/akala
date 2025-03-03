@@ -4,17 +4,17 @@ Akala is a framework that aims to provide kind of a mix between [angular](https:
 
 It is composed of multiple layers
 
-- [jsonrpc](jsonrpc/index.md): base communication layer (obviously other protocols can be used, but this one is the firstclass choice).
-- [core](core/index.md): base layer containing all necessary implementations for subsequent layers: modules, dependency injection, 2way data binding, ...
-- [commands](commands/index.md): base layer to implement a redux-like system.
-- [configuration](configuration/index.md): on top of commands, sits the configuration layer. It has various way to control configuration content, so could be used without commands, but having commands implementation makes it depending on commands layer.
-- [storage](storage/index.md): storage layer is my vision of an ORM in javascript. (currently not many providers are supported, but it might grow in the future).
+- [jsonrpc](jsonrpc/index): base communication layer (obviously other protocols can be used, but this one is the firstclass choice).
+- [core](core/index): base layer containing all necessary implementations for subsequent layers: modules, dependency injection, 2way data binding, ...
+- [commands](commands/index): base layer to implement a redux-like system.
+- [configuration](configuration/index): on top of commands, sits the configuration layer. It has various way to control configuration content, so could be used without commands, but having commands implementation makes it depending on commands layer.
+- [storage](storage/index): storage layer is my vision of an ORM in javascript. (currently not many providers are supported, but it might grow in the future).
 
 Up to here, all previously mentioned layers are usable from either client or server side (understand browser or nodejs). Then comes the platform specific layers.
 
-- [pm](pm/index.md): process manager. It says it all: this layer is a docker like system which you can control using the [commands](commands/index.md) layer. Each process can be started with its own arguments (like a docker container).
-- [server](server/index.md): node layer. It basically supports server side command triggers like http (This permits to have commands being served by http).
-- [client](client/index.md): browser layer heavily inspired from angularjs and angular from a concept perspective, but with a radically different usage approach.
+- [pm](pm/index): process manager. It says it all: this layer is a docker like system which you can control using the [commands](commands/index) layer. Each process can be started with its own arguments (like a docker container).
+- [server](server/index): node layer. It basically supports server side command triggers like http (This permits to have commands being served by http).
+- [client](client/index): browser layer heavily inspired from angularjs and angular from a concept perspective, but with a radically different usage approach.
 
 ```mermaid
 %%{ init: { 'flowchart': { 'curve': 'linear' } } }%%

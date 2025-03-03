@@ -7,7 +7,7 @@ Typescript is preferred, but not mandatory.
 
 ## Get started
 
-To get started, just follow the [instructions](getting-started.md)
+To get started, just follow the [instructions](getting-started)
 
 ## History
 

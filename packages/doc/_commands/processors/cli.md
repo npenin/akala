@@ -61,7 +61,7 @@ Please refer to the [companion files](../companion-files) page to understand bet
 
 ### What can be injected
 
-The CLI trigger will provide some CLI related information in addition to [other native "injectables"](../companion-files.md)
+The CLI trigger will provide some CLI related information in addition to [other native "injectables"](../companion-files)
 
 - `context` which is the `CliContext`
 - `options` which is exactly the same as `context.options`, but makes it shorter.

@@ -11,7 +11,7 @@ Welcome to the Akala Client guide! Before proceeding, make sure you have followe
 Ensure you have the following installed:
 
 - Node.js (version 20.x or later)
-- [Akala](../getting-started.md) (installed via npm or Yarn)
+- [Akala](../getting-started) (installed via npm or Yarn)
 
 ## Setting Up Your Client Project
 
@@ -23,7 +23,7 @@ Akala will automatically detect which package manager you are using to install t
 akala install @akala/client
 ```
 
-Optionally before going further, you may set up your [preferences](preferences.md).
+Optionally before going further, you may set up your [preferences](preferences).
 
 Once done, you may then create your client application.
 

@@ -7,7 +7,7 @@ Welcome to the Akala Commands guide! Before proceeding, make sure you have follo
 Ensure you have the following installed:
 
 - Node.js (version 20.x or later)
-- [Akala](../getting-started.md) (installed via npm or Yarn)
+- [Akala](../getting-started) (installed via npm or Yarn)
 
 ## Setting Up Your Client Project
 
@@ -65,11 +65,11 @@ This single line in your bash will discover your commands and check that the men
 }
 ```
 
-By default 2 [processors](processors/index.md) are configured: fs and default (`""`). A common use case is to configure _at least_ a 3rd one amongst the followings:
+By default 2 [processors](processors/index) are configured: fs and default (`""`). A common use case is to configure _at least_ a 3rd one amongst the followings:
 
-- [http](processors/http.md)
-- [html](processors/html.md)
-- [cli](processors/cli.md)
+- [http](processors/http)
+- [html](processors/html)
+- [cli](processors/cli)
 
 Now that you have configured your command, you may wonder how to call it. Before that, it could be beneficial to prepare your project for the metadata generation. Indeed, it might be easier to have a single file containing all your commands metadata than depending on your dist folder. To do so, you may just run the `add-script` command of the akala sdk.
 
@@ -77,7 +77,7 @@ Now that you have configured your command, you may wonder how to call it. Before
 akala sdk add-script dist/commands
 ```
 
-With this command, you now have a new in your package.json (`generate`) to build that single file containing all your commands. If you want to know more about the add-script command, please refer to the [documentation](sdk/add-script.md).
+With this command, you now have a new in your package.json (`generate`) to build that single file containing all your commands. If you want to know more about the add-script command, please refer to the [documentation](sdk/add-script).
 
 Now that you have your script, you may want to run it to get your metadata
 
@@ -93,7 +93,7 @@ Now you have your command file that contains all your commands, it will becode e
 
 ### Running your first command
 
-Since the easiest explained is with the CLI, from now on, we will assume your command is configured for [CLI](processors/cli.md), thus you have a file as following:
+Since the easiest explained is with the CLI, from now on, we will assume your command is configured for [CLI](processors/cli), thus you have a file as following:
 
 ```json
 {
