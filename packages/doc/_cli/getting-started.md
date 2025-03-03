@@ -4,14 +4,14 @@ title: Getting started
 
 # Getting Started
 
-Welcome to the Akala Client guide! Before proceeding, make sure you have followed the [Getting Started with Akala](../getting-started.md) guide.
+Welcome to the Akala Client guide! Before proceeding, make sure you have followed the [Getting Started with Akala](../getting-started) guide.
 
 ## Prerequisites
 
 Ensure you have the following installed:
 
 - Node.js (version 20.x or later)
-- [Akala](../getting-started.md) (installed via npm or Yarn)
+- [Akala](../getting-started) (installed via npm or Yarn)
 
 ## Setting Up Your CLI Project
 
@@ -42,7 +42,7 @@ Here too, you have 2 possibilities to create your own CLI
 
 `@akala/cli` is not that different from `yargs`. It provides a simple API to declare what your CLI will allow the user to do.
 
-Here is a simple example of what's achievable. This example has been extracted from an actual source file of the akala framework: the [pm](../_pm/index.md) cli
+Here is a simple example of what's achievable. This example has been extracted from an actual source file of the akala framework: the [pm](../_pm/index) cli
 
 ```ts
 import { program } from '@akala/cli';
@@ -84,7 +84,7 @@ import {  buildCliContextFromProcess } from '@akala/cli';
 cli.process(buildCliContextFromProcess())
 ```
 
-### Using [@akala/commands](../commands/index.md)
+### Using [@akala/commands](../commands/index)
 
 Here the usage is way simpler. In the entrypoint of your CLI, you just need these few lines of code:
 

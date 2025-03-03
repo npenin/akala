@@ -2,7 +2,7 @@
 
 # Context
 
-Akala is aimed to be dependency injection framework (and more) available both on [client](../client.md) side and [server](../server.md) side.
+Akala is aimed to be dependency injection framework (and more) available both on [client](../client) side and [server](../server) side.
 
 # Features
 
@@ -92,6 +92,6 @@ Note: modules are registered in a dedicated injector, itself registered in the d
 
 # Parsing
 
-A partial javascript parser has been implemented to support expressions. Mostly used in [client](../client.md), as other pieces in akala, this is free to use.
+A partial javascript parser has been implemented to support expressions. Mostly used in [client](../client), as other pieces in akala, this is free to use.
 
 _documentation coming soon_
