@@ -1,3 +1,7 @@
+---
+title: Getting started
+---
+
 # Getting Started with Akala Client
 
 Welcome to the Akala Client guide! Before proceeding, make sure you have followed the [Getting Started with Akala](../getting-started) guide.
