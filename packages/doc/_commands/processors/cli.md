@@ -59,7 +59,7 @@ You may specify more information about your CLI options. In our example above, t
 
 The second option specified is `commands`. In this case, since the name is the same one of the positinal argument, it is referring to the mandatory `commands` positional argument. Here we are asking the `@akala/cli` to normalize the provided path so that a full path can be inferred based on the current working directory.
 
-More information can be found in the [`@akala/cli`](../../_cli) documentation.
+More information can be found in the [`@akala/cli`](../../cli) documentation.
 
 ## Inject
 
