@@ -1,3 +1,7 @@
+---
+parent: Welcome
+nav_order: 2
+---
 # Preferences
 
 Currently, there is only 1 preference, but other may come.

@@ -1,5 +1,6 @@
 ---
 title: Processors & Triggers
+parent: Welcome
 ---
 
 # Command Processors/Triggers

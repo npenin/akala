@@ -1,5 +1,6 @@
 ---
 title: Components
+parent: Web UI
 ---
 
 # Table of Contents

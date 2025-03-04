@@ -1,5 +1,6 @@
 ---
 title: Layouts
+parent: Web UI
 ---
 
 # Table of Contents

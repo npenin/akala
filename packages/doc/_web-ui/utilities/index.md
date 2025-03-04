@@ -1,5 +1,6 @@
 ---
 title: Utilities
+parent: Web UI
 ---
 
 # Table of Contents

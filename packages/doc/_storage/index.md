@@ -1,5 +1,6 @@
 ---
 title: Storage
+parent: Akala Documentation
 ---
 
 # Storage
