@@ -8,6 +8,7 @@ export default async function updateFrontMatter(directory: string = 'packages/do
     const files = await fs.readdir(directory, { withFileTypes: true });
 
     files.sort((a, b) => a.name == 'index.md' ? -1 : b.name == 'index.md' ? 1 : a.isDirectory() && b.isDirectory() ? a.name.localeCompare(b.name) : a.isDirectory() ? -1 : 1)
+    console.log(parentTitle);
     // console.log(files);
     if (files.length && files[0].name == 'index.md')
     {
@@ -29,10 +30,10 @@ export default async function updateFrontMatter(directory: string = 'packages/do
                 if (!parentTitle)
                 {
                     console.log(fullPath + ' has parent and should not')
-                    updatedContent = updatedContent.substring(0, parentMatch.index) + updatedContent.substring(parentMatch.index + parentMatch[0].length);
+                    updatedContent = updatedContent.substring(0, parentMatch.index) + updatedContent.substring(parentMatch.index + parentMatch[0].length + 1);
                 } else
                 {
-                    console.log(fullPath + ' has parent')
+                    console.log(fullPath + ` has '${parentTitle}' as  parent`)
                     updatedContent = updatedContent.substring(0, parentMatch.index) + `parent: ${parentTitle}\n` + updatedContent.substring(parentMatch.index + parentMatch[0].length);
                 }
             }
@@ -62,12 +63,13 @@ export default async function updateFrontMatter(directory: string = 'packages/do
                 updatedContent = data.replace(/^/s, `---\ntitle: ${path.basename(directory)}\n---\n`);
             currentTitle = path.basename(directory);
         }
-        const navOrderMatch = updatedContent.match(/nav_order:\s*(\d+)$/m);
 
         if (updatedContent !== data)
             await fs.writeFile(fullPath, updatedContent, 'utf8');
 
-        const parent = currentTitle;
+        const navOrderMatch = updatedContent.match(/nav_order:\s*(\d+)$/m);
+
+        const parent = path.basename(directory).startsWith('_') ? undefined : currentTitle;
         const navOrder = navOrderMatch ? parseInt(navOrderMatch[1], 10) : 1;
 
         for (const siblingFile of files)
@@ -82,15 +84,22 @@ export default async function updateFrontMatter(directory: string = 'packages/do
                 if (hasFrontMatter)
                 {
                     const parentMatch = updatedContent.match(/parent:\s*(.+)$/m);
-                    if (parentMatch && parentMatch[1] != parent)
+                    if (parentMatch && parentMatch[1] != currentTitle)
                     {
-                        console.log(siblingPath + ' has parent')
-                        updatedContent = updatedContent.substring(0, parentMatch.index) + `parent: ${parent}\n` + updatedContent.substring(parentMatch.index + parentMatch[0].length);
+                        if (!currentTitle)
+                        {
+                            console.log(siblingPath + ' has parent and should not')
+                            updatedContent = updatedContent.substring(0, parentMatch.index) + updatedContent.substring(parentMatch.index + parentMatch[0].length + 1);
+                        } else
+                        {
+                            console.log(siblingPath + ` has '${currentTitle}' as  parent`)
+                            updatedContent = updatedContent.substring(0, parentMatch.index) + `parent: ${currentTitle}\n` + updatedContent.substring(parentMatch.index + parentMatch[0].length);
+                        }
                     }
-                    else if (!parentMatch && parentTitle)
+                    else if (!parentMatch && currentTitle)
                     {
                         console.log(siblingPath + ' does not have parent')
-                        updatedContent = updatedContent.substring(0, hasFrontMatter[0].length - 3) + `parent: ${parent}\n---` + updatedContent.substring(hasFrontMatter[0].length);
+                        updatedContent = updatedContent.substring(0, hasFrontMatter[0].length - 3) + `parent: ${currentTitle}\n---` + updatedContent.substring(hasFrontMatter[0].length);
                     }
 
                     const navOrderMatch = updatedContent.match(/nav_order:\s*(\d+)$/m);
@@ -116,7 +125,7 @@ export default async function updateFrontMatter(directory: string = 'packages/do
 
         for (var otherFile of files)
             if (otherFile.isDirectory())
-                await updateFrontMatter(path.join(directory, otherFile.name), currentTitle);
+                await updateFrontMatter(path.join(directory, otherFile.name), path.basename(directory).startsWith('_') ? undefined : currentTitle);
     }
     else
         for (var file of files)
