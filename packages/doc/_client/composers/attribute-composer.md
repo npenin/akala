@@ -1,3 +1,7 @@
+---
+parent: composers
+nav_order: 2
+---
 # AttributeComposer
 
 The `AttributeComposer` class is an abstract class that binds HTML element attributes to a context. It helps create custom attribute composers that parse and apply attribute values to elements.
