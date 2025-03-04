@@ -11,7 +11,6 @@
 - [Modals](modals.md)
 - [Navs](navs.md)
 - [Pagination](pagination.md)
-- [Popovers](popovers.md)
 - [Tables](tables.md)
 - [Toasts](toasts.md)
 - [Tooltips](tooltips.md)
