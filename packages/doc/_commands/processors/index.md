@@ -1,6 +1,7 @@
 ---
 title: Processors & Triggers
-parent: Welcome
+parent: Akala Commands
+
 ---
 
 # Command Processors/Triggers

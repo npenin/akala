@@ -1,6 +1,7 @@
 ---
 title: Companion Files
-parent: Welcome
+parent: Akala Commands
+
 nav_order: 2
 ---
 

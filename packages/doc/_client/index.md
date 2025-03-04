@@ -1,5 +1,5 @@
 ---
-parent: Akala Documentation
+
 title: Akala client
 ---
 # Welcome
