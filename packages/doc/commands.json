@@ -1,0 +1,52 @@
+{
+    "name": "doc",
+    "commands": [
+        {
+            "name": "dead-links",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/dead-links.mjs",
+                    "source": "src/commands/dead-links.mts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.globSpec"
+                    ],
+                    "usage": "dead-links [globSpec]"
+                }
+            }
+        },
+        {
+            "name": "update-hierarchies",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/update-hierarchies.js",
+                    "source": "src/commands/update-hierarchies.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.folder"
+                    ],
+                    "usage": "update-hierarchies [folder]"
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
+}

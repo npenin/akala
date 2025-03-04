@@ -2,6 +2,10 @@
     "name": "doc",
     "private": true,
     "dependencies": {
+        "@akala/cli": "workspace:^",
         "markdown-link-extractor": "^4.0.2"
+    },
+    "scripts": {
+        "generate": "akala sdk generate dist/commands commands.json --name doc"
     }
 }

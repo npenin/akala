@@ -1,4 +1,5 @@
 ---
+title: Popovers
 parent: Interactions
 nav_order: 2
 ---
