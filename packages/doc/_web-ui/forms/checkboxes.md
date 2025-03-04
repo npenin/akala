@@ -1,5 +1,7 @@
 ---
 title: Checkboxes
+parent: Forms
+nav_order: 2
 ---
 
 # Checkboxes

@@ -1,4 +1,6 @@
 ---
+parent: Utilities
+nav_order: 2
 ---
 
 # Semantic Colors

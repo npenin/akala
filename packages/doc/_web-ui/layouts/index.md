@@ -1,4 +1,5 @@
 ---
+title: Layouts
 ---
 
 # Table of Contents
