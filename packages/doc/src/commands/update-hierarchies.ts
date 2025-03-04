@@ -8,7 +8,8 @@ export default async function updateFrontMatter(directory: string = 'packages/do
     const files = await fs.readdir(directory, { withFileTypes: true });
 
     files.sort((a, b) => a.name == 'index.md' ? -1 : b.name == 'index.md' ? 1 : a.isDirectory() && b.isDirectory() ? a.name.localeCompare(b.name) : a.isDirectory() ? -1 : 1)
-    // console.log(files);
+    if (directory.includes('_client'))
+        console.log(files);
     if (files.length && files[0].name == 'index.md')
     {
         const file = files[0];

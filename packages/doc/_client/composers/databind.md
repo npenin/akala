@@ -1,3 +1,7 @@
+---
+parent: composers
+nav_order: 2
+---
 # DataBind
 
 The `DataBind` class is an essential part of the Akala framework, extending the `AttributeComposer` class and implementing the `Composer` interface. It provides methods for extending objects, binding data to elements, and applying bindings to elements.

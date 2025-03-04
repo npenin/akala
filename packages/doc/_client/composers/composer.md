@@ -1,3 +1,7 @@
+---
+parent: composers
+nav_order: 2
+---
 # Composer
 
 Composer is a core concept in Akala client. It helps converting raw HTML to a living application.
