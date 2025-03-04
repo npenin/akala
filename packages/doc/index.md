@@ -36,4 +36,5 @@ flowchart TB
     pm -.-> commands
     server -.-> commands
     client -.-> commands
+    web-ui -.-> client
 ```
