@@ -1,14 +1,13 @@
 ---
-
-title: _core
+title: Welcome
 ---
 # akala-core
 
-# Context
+## Context
 
 Akala is aimed to be dependency injection framework (and more) available both on [client](../client) side and [server](../server) side.
 
-# Features
+## Features
 
 This library provides the core features to be expanded by akala-server and akala-client :
 
@@ -18,7 +17,7 @@ This library provides the core features to be expanded by akala-server and akala
 - modules
 - helpers
 
-# Dependency injection
+### Dependency injection
 
 At the core of all modern frameworks live dependency injectors. The choice have been made here to make dependency injector available and usable for any kind of purpose. You may create an injector by simply instantiating a `new Injector()`.
 Injectors also have the possibility to inherit registration from another one see sample below :
@@ -41,13 +40,13 @@ console.log(b.resolve('foo.hello')); //world
 
 Finally please note that there is a default injector. If no parent injector is specified, all injectors would inherit from it
 
-# Bindings
+### Bindings
 
-## History
+#### History
 
 Initally the binding idea came from .NET WPF. There we have the binding concept and the possibility to have 2 way data bindings. Then came angularjs with another presentation of 2 way data bindings. The approach taken here is to make fully accessible, just as another building block.
 
-## Usage
+#### Usage
 
 Bindings are very easy to use and have 1 clear limitation (for now): they only support the . (dot) notation.
 see examples below :
@@ -60,7 +59,7 @@ var setterXA=Binding.getSetter(o, 'x.a');
 setterXA(-1);
 ```
 
-# Modules
+### Modules
 
 Modules in akala are not modules as in nodejs, but rather equivalent to packages. They are providing a logic seggregation between various pieces of software. Again inspired from angularjs, modules are just a kind of injectors with a life cycle :
 
@@ -94,7 +93,7 @@ dModule.start(); //trigger internally the life cycle and eventually prompts 'wor
 
 Note: modules are registered in a dedicated injector, itself registered in the default injector as $modules
 
-# Parsing
+### Parsing
 
 A partial javascript parser has been implemented to support expressions. Mostly used in [client](../client), as other pieces in akala, this is free to use.
 
