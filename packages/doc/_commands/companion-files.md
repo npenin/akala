@@ -1,5 +1,7 @@
 ---
 title: Companion Files
+parent: Welcome
+nav_order: 2
 ---
 
 # Companion Files
