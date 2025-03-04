@@ -37,7 +37,7 @@ async function createFolderIfNotExists(filePath: string): Promise<string>
 async function createFileIfNotExists(path: string)
 {
     const lastIndexOfHash = path.lastIndexOf('#');
-    if (lastIndexOfHash)
+    if (lastIndexOfHash > -1)
         return path.substring(0, lastIndexOfHash);
     console.log(`creating ${path}`)
     let filePath = path.endsWith('.md') ? path : (path + '.md');
@@ -88,7 +88,7 @@ async function processMarkdownFile(filePath)
 
     for (const link of links)
     {
-        console.log(`analyzing ${link}`)
+        // console.log(`analyzing ${link}`)
         // Ignore external links
         if (link.startsWith('http') || link.startsWith('//')) continue;
 
