@@ -130,7 +130,7 @@ OR
 akala commands add mine ./dist/commands # if you did not generate your single metadata commands file
 ```
 
-**WARNING: The ./ is important as you may also specify remote container metadata files or files from your installed packages, the same considerations as import/require take place**
+**WARNING: The `./` is important as you may also specify remote container metadata files or files from your installed packages, the same considerations as import/require take place**
 
 This is now that the akala magic happens. Since `@akala/cli` can auto-document itself based on the configuration, you may now run:
 

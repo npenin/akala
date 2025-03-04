@@ -28,9 +28,9 @@ yarn dlx akala install
 
 To start using akala, you first need to decide what you want to do:
 
-- a [client (browser)](client/getting-started) side project
-- a [server (node)](server/getting-started) side project
-- a [CLI](cli/getting-started) project
+- a [client (browser)](client/) side project
+- a [server (node)](server/) side project
+- a [CLI](cli/) project
 
 ## Learn More
 

@@ -1,6 +1,5 @@
 ---
-title: Server
-
+title: Getting started
 ---
 
 # *Coming soon...*
