@@ -8,8 +8,7 @@ export default async function updateFrontMatter(directory: string = 'packages/do
     const files = await fs.readdir(directory, { withFileTypes: true });
 
     files.sort((a, b) => a.name == 'index.md' ? -1 : b.name == 'index.md' ? 1 : a.isDirectory() && b.isDirectory() ? a.name.localeCompare(b.name) : a.isDirectory() ? -1 : 1)
-    if (directory.includes('_client'))
-        console.log(files);
+    // console.log(files);
     if (files.length && files[0].name == 'index.md')
     {
         const file = files[0];
@@ -19,14 +18,23 @@ export default async function updateFrontMatter(directory: string = 'packages/do
         let updatedContent: string = data;
         let hasFrontMatter = updatedContent.match(/^---\n.*---/s);
         let currentTitle: string;
+        if (parentTitle && path.basename(directory).startsWith('_'))
+            parentTitle = undefined;
 
         if (hasFrontMatter)
         {
             const parentMatch = updatedContent.match(/parent:\s*(.+)$/m);
             if (parentMatch && parentMatch[1] != parentTitle)
             {
-                console.log(fullPath + ' has parent')
-                updatedContent = updatedContent.substring(0, parentMatch.index) + `parent: ${parentTitle}\n` + updatedContent.substring(parentMatch.index + parentMatch[0].length);
+                if (!parentTitle)
+                {
+                    console.log(fullPath + ' has parent and should not')
+                    updatedContent = updatedContent.substring(0, parentMatch.index) + updatedContent.substring(parentMatch.index + parentMatch[0].length);
+                } else
+                {
+                    console.log(fullPath + ' has parent')
+                    updatedContent = updatedContent.substring(0, parentMatch.index) + `parent: ${parentTitle}\n` + updatedContent.substring(parentMatch.index + parentMatch[0].length);
+                }
             }
             else if (!parentMatch && parentTitle)
             {
