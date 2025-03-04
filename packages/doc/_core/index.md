@@ -1,5 +1,5 @@
 ---
-parent: Akala Documentation
+
 title: _core
 ---
 # akala-core

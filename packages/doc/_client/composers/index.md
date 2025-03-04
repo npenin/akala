@@ -1,5 +1,6 @@
 ---
-parent: Welcome
+parent: Akala client
+
 title: composers
 ---
 
