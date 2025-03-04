@@ -1,5 +1,4 @@
 ---
-parent: Akala client
 
 title: controls
 ---
