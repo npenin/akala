@@ -1,6 +1,6 @@
 ---
 
-title: composers
+title: Composers
 ---
 
-# *Coming soon...*
+# Composers

@@ -1,6 +1,6 @@
 ---
 
-title: services
+title: Services
 ---
 
-# *Coming soon...*
+# Services
