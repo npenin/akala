@@ -4,6 +4,7 @@ title: Interactions
 
 # Table of Contents
 
+- [Interactive](interactive.md)
 - [Dialogs](dialogs.md)
 - [Navs](navs.md)
 - [Popovers](popovers.md)

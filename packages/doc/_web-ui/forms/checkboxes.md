@@ -71,7 +71,7 @@ You can customize the look and feel of any checkbox using the following CSS vari
 - `--disabled-border-color`: Border color when the checkbox is disabled.
 - `--control-border-radius`: Border radius of the checkbox.
 
-You may check the [interactable](../components/interactable) concept to see more variables
+You may check the [interactive](../interactions/interactive) concept to see more variables
 
 ### Variables for Checkbox Switches Only
 
