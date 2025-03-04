@@ -1,4 +1,4 @@
-import fs, { mkdir } from 'fs/promises';
+import fs from 'fs/promises';
 import { basename, dirname, join, resolve } from 'path/posix';
 import glob from 'glob';
 import markdownLinkExtractor from 'markdown-link-extractor';
@@ -28,7 +28,7 @@ async function createFolderIfNotExists(filePath: string): Promise<string>
         }
     }
     filePath = join(await createFolderIfNotExists(dirname(filePath)), basename(filePath));
-    await mkdir(filePath);
+    await fs.mkdir(filePath);
     console.log(`Created: ${filePath}`);
     return filePath;
 
@@ -43,23 +43,37 @@ async function createFileIfNotExists(path: string)
         await fs.access(filePath);
     } catch
     {
-        const folder = await createFolderIfNotExists(path === filePath ? dirname(path) : path);
-        if (folder + '.md' === filePath)
-            filePath = join(folder, 'index.md');
-        else if (folder.split('/').length == filePath.split('/').length)
-            filePath = join(folder, 'index.md');
+        const folder = await createFolderIfNotExists(dirname(path));
+        filePath = join(folder, basename(path));
+        console.log('testing ' + filePath);
+        let stats = await fs.lstat(filePath).catch(e => e.code === 'ENOENT' ? null : Promise.reject(e));
+        if (stats)
+            if (stats.isDirectory())
+                filePath = join(folder, 'index.md');
+            else if (stats.isFile())
+                return;
+            else
+                throw new Error('Unsupported file type: ' + filePath);
         else
-            filePath = join(folder, basename(filePath));
-
-        try
         {
-            await fs.access(filePath);
-            return;
-        }
-        catch
-        {
-            await fs.writeFile(filePath, '# *Coming soon...*\n');
-            console.log(`Created: ${filePath}`);
+            if (!filePath.endsWith('.md'))
+            {
+                console.log('testing ' + filePath + '.md');
+                let stats = await fs.access(filePath + '.md').then(() => true, e => e.code === 'ENOENT' ? false : Promise.reject(e));
+                if (stats)
+                    return;
+                console.log('testing ' + join(folder, '_' + basename(path)));
+                stats = await fs.access(join(folder, '_' + basename(path))).then(() => true, e => e.code === 'ENOENT' ? false : Promise.reject(e));
+                if (stats)
+                    return createFileIfNotExists(join(folder, '_' + basename(path)));
+                await fs.writeFile(filePath + '.md', '# *Coming soon...*\n');
+                console.log(`Created: ${filePath}`);
+            }
+            else
+            {
+                await fs.writeFile(filePath + '.md', '# *Coming soon...*\n');
+                console.log(`Created: ${filePath}`);
+            }
         }
     }
 }

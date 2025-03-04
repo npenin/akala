@@ -13,7 +13,7 @@ It is composed of multiple layers
 
 Up to here, all previously mentioned layers are usable from either client or server side (understand browser or nodejs). Then comes the platform specific layers.
 
-- [pm](pm): process manager. It says it all: this layer is a docker like system which you can control using the [commands](commandss)layer. Each process can be started with its own arguments (like a docker container).
+- [pm](pm): process manager. It says it all: this layer is a docker like system which you can control using the [commands](commands)layer. Each process can be started with its own arguments (like a docker container).
 - [server](server): node layer. It basically supports server side command triggers like http (This permits to have commands being served by http).
 - [client](client): browser layer heavily inspired from angularjs and angular from a concept perspective, but with a radically different usage approach.
 
