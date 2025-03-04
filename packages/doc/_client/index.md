@@ -1,3 +1,7 @@
+---
+parent: Akala Documentation
+title: Welcome
+---
 # Welcome
 
 Akala client framework aims to provide the same feature set that angualar is able to provide. Leveraging [akala-core](../core), it provides :
@@ -12,7 +16,7 @@ Akala client framework aims to provide the same feature set that angualar is abl
 
 To get started, just follow the [instructions](getting-started)
 
-## Composers
+## [Composers](composers/)
 
   | Name (selector) | Description |
   | --- | --- |
@@ -22,13 +26,13 @@ To get started, just follow the [instructions](getting-started)
   | [I18n ([i18n])](composers/i18n) | i18n tries to solve the internationalization problem than any application faces. |
   | [Form (&lt;form&gt;)](composers/form) | if a [container](../_commands) is accessible from the current data context, the form composer will try to invoke the command with the **html** trigger |
   
-## Controls
+## [Controls](controls/)
   
   | Name | Description |
   | --- | --- |
   | [Each](controls/each) | if a [container](../commands) is accessible from the current data context, the form composer will try to invoke the command with the **html** trigger |
   
-## Services
+## [Services](services/)
   
   | Name | Description |
   | --- | --- |

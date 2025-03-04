@@ -7,12 +7,13 @@ export default async function updateFrontMatter(directory: string = 'packages/do
 
     const files = await fs.readdir(directory, { withFileTypes: true });
 
-    files.sort((a, b) => a.name == 'index.md' ? 1 : b.name == 'index.md' ? -1 : a.isDirectory() && b.isDirectory() ? a.name.localeCompare(b.name) : a.isDirectory() ? 1 : -1)
-
+    files.sort((a, b) => a.name == 'index.md' ? -1 : b.name == 'index.md' ? 1 : a.isDirectory() && b.isDirectory() ? a.name.localeCompare(b.name) : a.isDirectory() ? -1 : 1)
+    // console.log(files);
     if (files.length && files[0].name == 'index.md')
     {
         const file = files[0];
         const fullPath = path.join(directory, file.name);
+        console.log('found ' + fullPath);
         const data = await fs.readFile(fullPath, 'utf8');
         let updatedContent: string = data;
         let hasFrontMatter = updatedContent.match(/^---\n.*---/s);
@@ -97,15 +98,16 @@ export default async function updateFrontMatter(directory: string = 'packages/do
                     }
                 }
                 else
-                    updatedContent = data.replace(/^/s, `---\nparent: ${parent}\nnav_order: ${navOrder + 1}\n---\n`);
+                    updatedContent = updatedContent.replace(/^/s, `---\nparent: ${parent}\nnav_order: ${navOrder + 1}\n---\n`);
 
                 if (updatedContent !== siblingData)
                     await fs.writeFile(siblingPath, updatedContent, 'utf8');
             }
         }
 
-        if ((await fs.stat(fullPath)).isDirectory())
-            await updateFrontMatter(fullPath, currentTitle);
+        for (var otherFile of files)
+            if (otherFile.isDirectory())
+                await updateFrontMatter(path.join(directory, otherFile.name), currentTitle);
     }
     else
         for (var file of files)
