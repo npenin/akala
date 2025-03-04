@@ -1,6 +1,6 @@
 ---
-title: Welcome
 parent: Akala Documentation
+title: Akala Commands
 ---
 
 # Welcome
