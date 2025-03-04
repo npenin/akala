@@ -1,5 +1,6 @@
 ---
 title: Configuration
+parent: Akala Documentation
 ---
 # Configuration
 

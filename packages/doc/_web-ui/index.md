@@ -1,5 +1,6 @@
 ---
 title: Web UI
+parent: Akala Documentation
 ---
 # @akala/web-ui
 

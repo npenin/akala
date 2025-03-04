@@ -1,5 +1,6 @@
 ---
 title: Welcome
+parent: Akala Documentation
 ---
 
 # Welcome

@@ -1,5 +1,6 @@
 ---
 title: Interactions
+parent: Web UI
 ---
 
 # Table of Contents

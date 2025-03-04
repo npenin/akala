@@ -1,5 +1,6 @@
 ---
 title: Forms
+parent: Web UI
 ---
 
 # Table of Contents
