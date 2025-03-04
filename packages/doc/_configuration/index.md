@@ -1,3 +1,6 @@
+---
+title: Configuration
+---
 # Configuration
 
 Configuration in the akala stack provides commands for configuration.
