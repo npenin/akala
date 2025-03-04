@@ -1,4 +1,5 @@
 ---
+title: Components
 ---
 
 # Table of Contents
@@ -8,7 +9,6 @@
 - [Button group](button-group.md)
 - [Card](card.md)
 - [Dropdowns](dropdowns.md)
-- [Modals](modals.md)
 - [Navs](navs.md)
 - [Pagination](pagination.md)
 - [Tables](tables.md)
