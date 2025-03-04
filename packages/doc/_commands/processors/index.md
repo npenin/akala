@@ -1,6 +1,5 @@
 ---
 title: Processors & Triggers
-parent: Akala Commands
 
 ---
 
