@@ -1,4 +1,5 @@
 ---
 
+title: Jsonrpc
 ---
 # *Coming soon...*
