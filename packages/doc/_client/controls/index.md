@@ -1,6 +1,6 @@
 ---
 
-title: controls
+title: Controls
 ---
 
-# *Coming soon...*
+# Controls
