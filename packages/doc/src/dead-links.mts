@@ -36,13 +36,15 @@ async function createFolderIfNotExists(filePath: string): Promise<string>
 // Function to create a blank file if it does not exist
 async function createFileIfNotExists(path: string)
 {
+    const lastIndexOfHash = path.lastIndexOf('#');
+    if (lastIndexOfHash)
+        return path.substring(0, lastIndexOfHash);
     console.log(`creating ${path}`)
     let filePath = path.endsWith('.md') ? path : (path + '.md');
-    try
+    if (!await fs.access(filePath).then(() => true, () => false))
     {
-        await fs.access(filePath);
-    } catch
-    {
+        if (path.endsWith('/'))
+            return createFileIfNotExists(path + 'index.md');
         const folder = await createFolderIfNotExists(dirname(path));
         filePath = join(folder, basename(path));
         console.log('testing ' + filePath);
@@ -66,12 +68,12 @@ async function createFileIfNotExists(path: string)
                 stats = await fs.access(join(folder, '_' + basename(path))).then(() => true, e => e.code === 'ENOENT' ? false : Promise.reject(e));
                 if (stats)
                     return createFileIfNotExists(join(folder, '_' + basename(path)));
-                await fs.writeFile(filePath + '.md', '# *Coming soon...*\n');
+                await fs.writeFile(filePath + '.md', '---\n---\n\n# *Coming soon...*\n');
                 console.log(`Created: ${filePath}`);
             }
             else
             {
-                await fs.writeFile(filePath + '.md', '# *Coming soon...*\n');
+                await fs.writeFile(filePath, '---\n---\n\n# *Coming soon...*\n');
                 console.log(`Created: ${filePath}`);
             }
         }
@@ -94,7 +96,7 @@ async function processMarkdownFile(filePath)
         const linkPath = resolve(dirname(filePath), link);
 
         // Check if the file exists, if not create it
-        await createFileIfNotExists(linkPath);
+        await createFileIfNotExists(link.endsWith('/') ? linkPath + '/' : linkPath);
     }
 }
 
