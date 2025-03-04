@@ -100,11 +100,15 @@ async function processMarkdownFile(filePath)
     }
 }
 
-// Get all markdown files in the workspace
-const markdownFiles = glob.sync('packages/doc/**/*.md');
 
-// Process each markdown file
-for (const file of markdownFiles)
+export default async function (globSpec: string = 'packages/doc/**/*.md')
 {
-    await processMarkdownFile(file);
+    // Get all markdown files in the workspace
+    const markdownFiles = glob.sync(globSpec);
+
+    // Process each markdown file
+    for (const file of markdownFiles)
+    {
+        await processMarkdownFile(file);
+    }
 }

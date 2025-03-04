@@ -1,3 +1,7 @@
+---
+title: Storage
+---
+
 # Storage
 
 Storage is one of the most complex layer. It allows you to store data virtually whereever you want. Initially originating from an old project I have been working on (EUSS) in .NET. This implementation in typescript provides much more flexibility, and is updated to nowadays requirements with async model support.

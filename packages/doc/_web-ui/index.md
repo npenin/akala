@@ -1,4 +1,5 @@
 ---
+title: Web UI
 ---
 # @akala/web-ui
 
