@@ -2,6 +2,10 @@
 title: Akala Documentation
 ---
 
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/sponsors/npenin" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @npenin on GitHub">Sponsor</a>
+<a class="github-button" href="https://github.com/npenin/akala" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star npenin/akala on GitHub">Star</a>
+
 # Welcome
 
 Akala is a framework that aims to provide kind of a mix between [angular](https://angular.io), [redux](https://redux.js.org), [uci](https://openwrt.org/docs/guide-user/base-system/uci) and [pm2](https://pm2.io/).
@@ -38,3 +42,6 @@ flowchart TB
     client -.-> commands
     web-ui -.-> client
 ```
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
