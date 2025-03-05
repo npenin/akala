@@ -13,6 +13,7 @@ This library provides the core features to be expanded by akala-server and akala
 
 - [dependency injection](dependency-injection)
 - [two way data binding](bindings)
+- [events](events)
 - [restricted set of jaascript parsing](parsing)
 - [modules](modules)
 - [helpers](helpers)
