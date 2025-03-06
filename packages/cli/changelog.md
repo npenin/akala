@@ -1,9 +1,9 @@
-#  (2025-03-01)
+#  (2025-03-06)
 
 
 ### Bug Fixes
 
-* install command should now handle any package (as long as it contains an akala plugin) cad421f
+* switch from try catch to URL.canParse 5d093f5
 
 
 
