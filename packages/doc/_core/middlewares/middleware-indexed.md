@@ -1,10 +1,10 @@
 ---
-title: MiddlewareIndexed
+title: Indexed Middleware
 parent: Middleware
 nav_order: 4
 ---
 
-# MiddlewareIndexed
+# Indexed Middleware
 
 ## Synchronous variant
 
