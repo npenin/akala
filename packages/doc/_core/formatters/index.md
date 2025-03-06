@@ -1,6 +1,6 @@
 ---
-parent: Welcome
 nav_order: 2
+title: formatters
 ---
 
 # Formatters
