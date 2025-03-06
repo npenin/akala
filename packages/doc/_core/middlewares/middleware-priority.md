@@ -1,5 +1,5 @@
 ---
-title: Middleware Priority
+title: Middleware with Priority
 parent: Middleware
 
 nav_order: 4

@@ -1,11 +1,11 @@
 ---
-title: MiddlewareComposite
+title: Composite Middleware
 parent: Middleware
 
 nav_order: 4
 ---
 
-# MiddlewareComposite
+# Composite Middleware
 
 ## Synchronous variant
 
