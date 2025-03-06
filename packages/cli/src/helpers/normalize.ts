@@ -35,14 +35,9 @@ export default function normalize(mode: 'import' | 'require' | 'requireMeta' | b
             return value;
         default:
         case true:
-            try
-            {
-                new URL(value);
+            if (URL.canParse(value))
                 return value;
-            }
-            catch (e)
-            {
+            else
                 return path.resolve(currentWorkingDirectory, value);
-            }
     }
 }
