@@ -35,6 +35,20 @@ A middleware function should return a `MiddlewareResult` to indicate the outcome
 - `undefined`: Use this to indicate the middleware could not process the task and continue the middleware chain.
 - `'break'`: Terminates the current composite middleware. In case of running in nested [composite](middleware-composite), only the current composite is stopped, letting siblings and parents handle the execution.
 
+## Detailed Description
+
+Middleware in Akala is designed to be highly flexible and reusable. By defining middleware functions, you can create modular components that handle specific tasks within your application. This allows you to build a robust and maintainable system that can easily be extended and modified.
+
+### Synchronous Middleware
+
+Synchronous middleware functions are executed in a blocking manner. They are useful for tasks that need to be completed before moving on to the next middleware, such as validation or logging.
+
+### Asynchronous Middleware
+
+Asynchronous middleware functions are executed in a non-blocking manner. They are useful for tasks that involve asynchronous operations, such as fetching data from a database or making external API calls.
+
+By understanding how to define and use middleware, as well as how to work with `MiddlewareResult`, you can create a powerful and flexible system for handling requests and responses in your application.
+
 ## Conclusion
 
 Middleware is a powerful feature in Akala that allows you to create reusable functions to handle various tasks in your application. Understanding how to define and use middleware, as well as how to work with `MiddlewareResult`, is essential for building robust and maintainable applications with Akala.
