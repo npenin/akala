@@ -49,7 +49,7 @@ observableArr.push(4); // This will trigger the event and log: Array changed: pu
 
 ### History
 
-Initally the binding idea came from .NET WPF. There we have the binding concept and the possibility to have 2 way data bindings. Then came angularjs with another presentation of 2 way data bindings. The approach taken here is to make fully accessible, just as another building block.
+Initally the binding idea came from .NET WPF. There we have the binding concept and the possibility to have 2 way data bindings. Then came angularjs, and angular, with another presentation of 2 way data bindings. The approach taken here is to make fully accessible, just as another building block.
 
 ### Usage
 
